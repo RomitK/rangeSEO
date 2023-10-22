@@ -11,7 +11,7 @@ function Navbar() {
                     <div className="container py-3">
                         <div className="my-auto">
                             <Link href={{ pathname: '/' }} className="navbar-brand">
-                                <img src="images/logo.png" alt="Range Internation Property Investments" className="img-fluid navMobLogo" width="175" />
+                                <img src="/images/logo.png" alt="Range Internation Property Investments" className="img-fluid navMobLogo" width="175" />
                             </Link>
                         </div>
                         <div className="my-auto">
@@ -91,7 +91,7 @@ function Navbar() {
 
                                 </ul>
                                 <div className=" my-auto me-0 me-lg-3 me-md-3 ms-3 ms-lg-0 ms-md-0">
-                                    <img src="images/icons/menu.png"
+                                    <img src="/images/icons/menu.png"
                                         alt="Range Internation Property Investments"
                                         className="img-fluid navMobMen cursor-pointer" data-bs-toggle="offcanvas"
                                         data-bs-target="#offcanvasRight" width="35" />
@@ -100,7 +100,7 @@ function Navbar() {
                                         <div className="offcanvas-header">
                                             <div className="">
                                                 <Link href={{ pathname: '/' }} className="navbar-brand">
-                                                    <img src="images/logo.png"
+                                                    <img src="/images/logo.png"
                                                         alt="Range Internation Property Investments"
                                                         className="img-fluid navMobLogo" width="175" />
                                                 </Link>
@@ -137,7 +137,7 @@ function Navbar() {
                                 <div className="my-auto">
                                     <div className="d-flex justify-content-end">
                                         <div className="my-auto me-1">
-                                            <img src="images/icons/phone.png"
+                                            <img src="/images/icons/phone.png"
                                                 alt="Range Internation Property Investments" className="img-fluid"
                                                 width="15" />
                                         </div>
@@ -156,7 +156,7 @@ function Navbar() {
                 <div className="container py-3">
                     <div className="my-auto">
                         <Link href={{ pathname: '/' }} className="navbar-brand">
-                            <img src="images/logo_white.png"
+                            <img src="/images/logo_white.png"
                                 alt="Range Internation Property Investments" className="img-fluid navMobLogo" width="175" />
                         </Link>
                     </div>
@@ -268,7 +268,7 @@ function Navbar() {
                                 </li>
                             </ul>
                             <div className=" my-auto me-0 me-lg-3 me-md-3 ms-3 ms-lg-0 ms-md-0">
-                                <img src="images/icons/menu.png"
+                                <img src="/images/icons/menu.png"
                                     alt="Range Internation Property Investments" data-bs-toggle="offcanvas"
                                     data-bs-target="#offcanvasRight" className="img-fluid navMobMen cursor-pointer filterBright"
                                     width="35" />
@@ -277,7 +277,7 @@ function Navbar() {
                                     <div className="offcanvas-header">
                                         <div className="">
                                             <Link href={{ pathname: '/' }} className="navbar-brand">
-                                                <img src="images/logo.png"
+                                                <img src="/images/logo.png"
                                                     alt="Range Internation Property Investments"
                                                     className="img-fluid navMobLogo" width="175" />
                                             </Link>
@@ -314,7 +314,7 @@ function Navbar() {
                             <div className="my-auto">
                                 <div className="d-flex justify-content-end">
                                     <div className="my-auto me-1">
-                                        <img src="images/icons/phone.png"
+                                        <img src="/images/icons/phone.png"
                                             alt="Range Internation Property Investments" className="img-fluid filterBright" width="15" />
                                     </div>
                                     <div className="my-auto text-uppercase text-end fs-14 navMob14 text-white">

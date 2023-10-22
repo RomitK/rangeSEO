@@ -1,6 +1,5 @@
 import useSWR from "swr";
-export const useGetAllProjects = () => {
-  const { data: projects, error, mutate } = useSWR(`/getHomeProjects`);
-
-  return { projects: projects?.data, projectsMutate: mutate };
+export const useGetAllHomeData = () => {
+  const { data:homeData, error, mutate } = useSWR(`/getHomeData`);
+  return { homeData: homeData?.data, homeDataMutate: mutate };
 };

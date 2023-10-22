@@ -2,33 +2,11 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import Select from "react-select";
-import { useGetAllProjects } from "@/src/services/HomeService";
+import { useGetAllHomeData } from "@/src/services/HomeService";
 function ProjectList() {
-  const { projects } = useGetAllProjects();
-  const [newProjects, setNewProjects] = useState([]);
+  const { homeData } = useGetAllHomeData();
   const [selectedProject, setSelectedProjectName] = useState();
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
-
-  useEffect(() => {
-    fetch("https://rangenew.websitedemo.world/api/getNewProjects", {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setNewProjects(data.data);
-      });
-  }, []);
+  const options = homeData?.newProjects;
 
   return (
     <>
@@ -85,7 +63,7 @@ function ProjectList() {
                     </div>
                   </div>
                 </div>
-                {projects?.map((project, index) => {
+                {homeData?.projects?.map((project, index) => {
                   return (
                     <div
                       className="col-12 col-lg-3 col-md-3"
@@ -93,19 +71,18 @@ function ProjectList() {
                     >
                       <div className="projectImgCont">
                         <img
-                          src={project["mainImage"]}
+                          src={project.mainImage}
                           alt={project.title}
                           className="img-fluid"
                         />
                         <div className="projectImgOverlay">
                           <div>
                             <span className="badge projectType">
-                              {project["accommodations"] &&
-                                project["accommodations"][0]["name"]}
+                              {project.accommodation }
                             </span>
                           </div>
                           <div className="text-white">
-                            <p className="fw-bold mb-1">{project["title"]}</p>
+                            <p className="fw-bold mb-1">{project.title}</p>
                           </div>
                         </div>
                       </div>

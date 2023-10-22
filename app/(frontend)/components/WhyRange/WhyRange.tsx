@@ -29,7 +29,7 @@ function WhyRange(){
                                 <div className="col-12 col-lg-6 col-md-6 my-auto">
                                     <div className="d-flex justify-content-start py-3 py-lg-5 py-md-3">
                                         <div className="my-auto me-3">
-                                            <center><img src="images/icons/why1.png"
+                                            <center><img src="/images/icons/why1.png"
                                                     className="img-fluid" alt="range" width="60" /></center>
                                         </div>
                                         <div className="my-auto">
@@ -43,7 +43,7 @@ function WhyRange(){
                                 <div className="col-12 col-lg-6 col-md-6 my-auto">
                                     <div className="d-flex justify-content-start  py-3 py-lg-5 py-md-3">
                                         <div className="my-auto me-3">
-                                            <center><img src="images/icons/why2.png"
+                                            <center><img src="/images/icons/why2.png"
                                                     className="img-fluid" alt="range" width="60" /></center>
                                         </div>
                                         <div className="my-auto">
@@ -71,7 +71,7 @@ function WhyRange(){
                                 <div className="col-12 col-lg-6 col-md-6 my-auto">
                                     <div className="d-flex justify-content-start  py-3 py-lg-5 py-md-3">
                                         <div className="my-auto me-3">
-                                            <center><img src="images/icons/why4.png"
+                                            <center><img src="/images/icons/why4.png"
                                                     className="img-fluid" alt="range" width="60" /></center>
                                         </div>
                                         <div className="my-auto">
