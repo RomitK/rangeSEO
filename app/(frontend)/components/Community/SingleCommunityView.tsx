@@ -26,13 +26,13 @@ function SinglecommunityDataView({ params }) {
 
   const swiperRef = useRef<SwiperType>;
   const PropertySwiperRef = useRef<SwiperType>;
-  // const renderMarkers = (map, maps) => {
-  //   let marker = new maps.Marker({
-  //     position: { lat: addressLatitude, lng: addressLongitude },
-  //     map,
-  //   });
-  //   return marker;
-  // };
+  const renderMarkers = (map, maps) => {
+    let marker = new maps.Marker({
+      position: { lat: communityData.address_latitude, lng: communityData.address_longitude },
+      map,
+    });
+    return marker;
+  };
 
   return (
     <>
@@ -243,14 +243,14 @@ function SinglecommunityDataView({ params }) {
             <div className="col-12 col-lg-10 col-md-12">
               <div className="row g-0">
                 <div className="col-12 col-lg-6 col-md-6">
-                  {communityData && communityData.location_iframe && parse(communityData.location_iframe)}
-                  {/* <GoogleMapReact
+                  {/* {communityData && communityData.location_iframe && parse(communityData.location_iframe)} */}
+                  <GoogleMapReact
                         bootstrapURLKeys={{key: 'AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE'}}
                         defaultCenter={defaultProps.center}
                         defaultZoom={defaultProps.zoom}
                         onGoogleApiLoaded={({map, maps}) => renderMarkers(map, maps)}
                         yesIWantToUseGoogleMapApiInternals
-                    /> */}
+                    />
                 </div>
                 {communityData && (
                   <div className="col-12 col-lg-6 col-md-6 bg-white">
