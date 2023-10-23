@@ -13,7 +13,7 @@ import { useMemo } from "react";
 
 import { useGetSingleCommunityData } from "@/src/services/CommunityService";
 
-function SingleCommunityView({ params }) {
+function SinglecommunityDataView({ params }) {
   const slug = params.slug[0];
   const { communityData } = useGetSingleCommunityData(slug);
 
@@ -24,36 +24,16 @@ function SingleCommunityView({ params }) {
     },
     zoom: 15,
   };
-  const [community, setCommunity] = useState();
-  const [addressLatitude, setAddressLatitude] = useState();
-  const [addressLongitude, setAddressLongitude] = useState();
+
   const swiperRef = useRef<SwiperType>;
   const PropertySwiperRef = useRef<SwiperType>;
-  const renderMarkers = (map, maps) => {
-    let marker = new maps.Marker({
-      position: { lat: addressLatitude, lng: addressLongitude },
-      map,
-    });
-    return marker;
-  };
-
-  // useEffect(() => {
-  //     fetch('https://rangenew.websitedemo.world/api/communities/' + slug, {
-  //         method: 'GET',
-  //         mode: 'cors',
-  //         headers: {
-  //             "Access-Control-Allow-Origin": "*",
-  //             "Content-Type": "application/json"
-  //         }
-  //     }).then(response => {
-  //         return response.json();
-  //     }).then(data => {
-  //         setCommunity(data.data)
-  //         console.log(data.data['address_latitude'])
-  //         setAddressLatitude(data.data['address_latitude'])
-  //         setAddressLongitude(data.data['address_longitude'])
-  //     });
-  // }, []);
+  // const renderMarkers = (map, maps) => {
+  //   let marker = new maps.Marker({
+  //     position: { lat: addressLatitude, lng: addressLongitude },
+  //     map,
+  //   });
+  //   return marker;
+  // };
 
   return (
     <>
@@ -65,12 +45,12 @@ function SingleCommunityView({ params }) {
                 <div className="col-12 col-lg-12 col-md-12">
                   <div>
                     <div className="mainHead mb-3 text-primary text-center">
-                      <h4>{community && community.name}</h4>
+                      <h4>{communityData && communityData.name}</h4>
                     </div>
                   </div>
                 </div>
                 <div className="col-12 col-lg-12 col-md-12">
-                  {community && (
+                  {communityData && (
                     <Swiper
                       slidesPerView={1}
                       spaceBetween={10}
@@ -100,17 +80,17 @@ function SingleCommunityView({ params }) {
                       onBeforeInit={(swiper) => {
                         swiperRef.current = swiper;
                       }}
-                      className="swiper communityMainSwiper"
+                      className="swiper communityDataMainSwiper"
                     >
-                      {community.imageGallery.map((img) => {
+                      {communityData?.imageGallery.map((img, index) => {
                         return (
-                          <SwiperSlide key={img.id}>
+                          <SwiperSlide key={img.id + index}>
                             <div className="swiper-slide">
-                              <div className="communityImgCont">
+                              <div className="communityDataImgCont">
                                 <img
                                   src={img.path}
-                                  alt="community1"
-                                  className="img-fluid communityGalleryImage"
+                                  alt="communityData1"
+                                  className="img-fluid communityDataGalleryImage"
                                 />
                               </div>
                             </div>
@@ -139,26 +119,26 @@ function SingleCommunityView({ params }) {
                 </div>
                 <div className="col-12 col-lg-10 col-md-11">
                   <div className="text-center my-5">
-                    {community && parse(community.longDescription)}
+                    {communityData && parse(communityData.longDescription)}
                   </div>
                 </div>
                 <div className="col-12 col-lg-4 col-md-3 ">
                   <a href="#highlight" className="text-decoration-none">
-                    <div className="communityTab">
+                    <div className="communityDataTab">
                       <h3>Highlights</h3>
                     </div>
                   </a>
                 </div>
                 <div className="col-12 col-lg-4 col-md-3 ">
                   <a href="#amenities" className="text-decoration-none">
-                    <div className="communityTab">
+                    <div className="communityDataTab">
                       <h3>Amenities</h3>
                     </div>
                   </a>
                 </div>
                 <div className="col-12 col-lg-4 col-md-3 ">
                   <a href="#properties" className="text-decoration-none">
-                    <div className="communityTab">
+                    <div className="communityDataTab">
                       <h3>Available Properties</h3>
                     </div>
                   </a>
@@ -208,21 +188,21 @@ function SingleCommunityView({ params }) {
             <div className="col-12 col-lg-10 col-md-12">
               <div className="row g-0">
                 <div className="col-12 col-lg-6 col-md-6">
-                  {community && parse(community.location_iframe)}
+                  {communityData && parse(communityData.location_iframe)}
                   {/* <GoogleMapReact
-                                    bootstrapURLKeys={{key: 'AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE'}}
-                                    defaultCenter={defaultProps.center}
-                                    defaultZoom={defaultProps.zoom}
-                                    onGoogleApiLoaded={({map, maps}) => renderMarkers(map, maps)}
-                                    yesIWantToUseGoogleMapApiInternals
-                                /> */}
+                        bootstrapURLKeys={{key: 'AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE'}}
+                        defaultCenter={defaultProps.center}
+                        defaultZoom={defaultProps.zoom}
+                        onGoogleApiLoaded={({map, maps}) => renderMarkers(map, maps)}
+                        yesIWantToUseGoogleMapApiInternals
+                    /> */}
                 </div>
                 <div className="col-12 col-lg-6 col-md-6 bg-white">
-                  {community && (
+                  {communityData && (
                     <div className="p-3 p-md-5 p-lg-5">
-                      {community.statValues.map((stat) => {
+                      {communityData?.statValues.map((stat, index) => {
                         return (
-                          <div className="border-bottom border-1 border-dark py-2">
+                          <div className="border-bottom border-1 border-dark py-2" key={stat.id + index}>
                             <p className="text-black fw-500 mb-0 fs-20">
                               {stat.key}
                             </p>
@@ -252,7 +232,7 @@ function SingleCommunityView({ params }) {
                     </div>
                   </div>
                 </div>
-                {community && (
+                {communityData && (
                   <div className="col-12 col-lg-12 col-md-12">
                     <Swiper
                       slidesPerView={1}
@@ -285,9 +265,9 @@ function SingleCommunityView({ params }) {
                       }}
                       className="swiper pb-5 amenitiesSwiper px-5"
                     >
-                      {community["amenities"].map((amenity) => {
+                      {communityData?.amenities.map((amenity, index) => {
                         return (
-                          <SwiperSlide key={amenity.id}>
+                          <SwiperSlide key={amenity.id + index}>
                             <div className="swiper-slide">
                               <div className="py-3">
                                 <div className="mb-2">
@@ -348,7 +328,7 @@ function SingleCommunityView({ params }) {
                   </div>
                 </div>
 
-                {community && (
+                {communityData && (
                   <div className="col-12 col-lg-12 col-md-12">
                     <Swiper
                       slidesPerView={1}
@@ -381,9 +361,9 @@ function SingleCommunityView({ params }) {
                       }}
                       className="swiper pb-5 projectSlider"
                     >
-                      {community["properties"].map((property) => {
+                      {communityData?.properties.map((property, index) => {
                         return (
-                          <SwiperSlide key={property.id}>
+                          <SwiperSlide key={property.id + index}>
                             <div className="swiper-slide">
                               <div>
                                 <div className="card propCard rounded-0">
@@ -403,7 +383,7 @@ function SingleCommunityView({ params }) {
                                             <div></div>
                                             <div>
                                               <span className="badge float-start fs-10 projectType">
-                                                VILLAS
+                                                {property.accommodation}
                                               </span>
                                             </div>
                                           </div>
@@ -567,22 +547,92 @@ function SingleCommunityView({ params }) {
                     </div>
                   </div>
                 </div>
-                <div className="col-12 col-lg-12 col-md-12">
-                  <div className="swiper pb-5 projectSlider">
-                    <div className="swiper-button-prev swiperUniquePrev text-primary">
-                      <span className="">
-                        <i className="bi bi-chevron-left fs-1"></i>
-                      </span>
-                    </div>
-                    <div className="swiper-wrapper"></div>
-                    <div className="swiper-button-next swiperUniqueNext text-primary">
-                      <span className="">
-                        <i className="bi bi-chevron-right fs-1"></i>
-                      </span>
-                    </div>
-                    <div className="swiper-pagination"></div>
+                {communityData && (
+                  <div className="col-12 col-lg-12 col-md-12">
+                    <Swiper
+                      slidesPerView={1}
+                      spaceBetween={10}
+                      pagination={{
+                        el: ".swiper-pagination",
+                        clickable: true,
+                      }}
+                      navigation={{
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                      }}
+                      breakpoints={{
+                        640: {
+                          slidesPerView: 2,
+                          spaceBetween: 10,
+                        },
+                        768: {
+                          slidesPerView: 3,
+                          spaceBetween: 10,
+                        },
+                        1024: {
+                          slidesPerView: 4,
+                          spaceBetween: 10,
+                        },
+                      }}
+                      modules={[Navigation, Pagination]}
+                      onBeforeInit={(swiper) => {
+                        PropertySwiperRef.current = swiper;
+                      }}
+                      className="swiper pb-5 projectSlider"
+                    >
+                      {communityData?.nearbyCommunities.map((nearbyCommunity, index) => {
+                        return (
+                          <SwiperSlide key={nearbyCommunity.id + index}>
+                            <div className="swiper-slide">
+                              <div>
+                                <div className="card propCard rounded-0">
+                                  <div>
+                                    <div className="">
+                                      <a href="" className="text-decoration-none">
+                                        <div className="projectImgCont">
+                                          <img src={nearbyCommunity.mainImage}
+                                            alt="project1" className="img-fluid propImg" />
+
+                                        </div>
+                                      </a>
+                                    </div>
+                                    <div className="card-body rounded-3 rounded-top-0">
+                                      <a href="#" className="text-decoration-none">
+                                        <div className="mb-1 text-center">
+                                          <h5 className="text-black">{nearbyCommunity.name}</h5>
+                                        </div>
+                                      </a>
+
+
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </SwiperSlide>
+                        );
+                      })}
+
+                      <div
+                        className="swiper-button-prev swiperUniquePrev text-primary"
+                        onClick={() => PropertySwiperRef.current?.slidePrev()}
+                      >
+                        <span className="">
+                          <i className="bi bi-chevron-left fs-1"></i>
+                        </span>
+                      </div>
+                      <div
+                        className="swiper-button-next swiperUniqueNext text-primary"
+                        onClick={() => PropertySwiperRef.current?.slideNext()}
+                      >
+                        <span className="">
+                          <i className="bi bi-chevron-right fs-1"></i>
+                        </span>
+                      </div>
+                      <div className="swiper-pagination"></div>
+                    </Swiper>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
@@ -591,4 +641,4 @@ function SingleCommunityView({ params }) {
     </>
   );
 }
-export default SingleCommunityView;
+export default SinglecommunityDataView;
