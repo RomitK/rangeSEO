@@ -1,6 +1,5 @@
 import useSWR from "swr";
 export const useGetSingleCommunityData = (slug) => {
-  console.log(slug);
   const {
     data: communityData,
     error,

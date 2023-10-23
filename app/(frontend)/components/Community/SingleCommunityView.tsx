@@ -10,7 +10,6 @@ import Link from "next/link";
 import parse from "html-react-parser";
 import GoogleMapReact from "google-map-react";
 import { useMemo } from "react";
-
 import { useGetSingleCommunityData } from "@/src/services/CommunityService";
 
 function SinglecommunityDataView({ params }) {
@@ -68,8 +67,9 @@ function SinglecommunityDataView({ params }) {
                     </div>
                   </div>
                 </div>
-                <div className="col-12 col-lg-12 col-md-12">
-                  {communityData && (
+                {communityData && communityData.imageGallery && (
+                  <div className="col-12 col-lg-12 col-md-12">
+
                     <Swiper
                       slidesPerView={1}
                       spaceBetween={10}
@@ -101,15 +101,15 @@ function SinglecommunityDataView({ params }) {
                       }}
                       className="swiper communityDataMainSwiper"
                     >
-                      {communityData?.imageGallery.map((img, index) => {
+                      {communityData?.imageGallery?.map((img, index) => {
                         return (
-                          <SwiperSlide key={img.id + index}>
+                          <SwiperSlide key={img.id + index + 'gallery'}>
                             <div className="swiper-slide">
-                              <div className="communityDataImgCont">
+                              <div className="communityImgCont">
                                 <img
                                   src={img.path}
                                   alt="communityData1"
-                                  className="img-fluid communityDataGalleryImage"
+                                  className="img-fluid communityGalleryImage"
                                 />
                               </div>
                             </div>
@@ -134,31 +134,32 @@ function SinglecommunityDataView({ params }) {
                       </div>
                       <div className="swiper-pagination"></div>
                     </Swiper>
-                  )}
-                </div>
+
+                  </div>
+                )}
                 <div className="col-12 col-lg-10 col-md-11">
                   <div className="text-center my-5">
                     {communityData &&
                       parse(communityData?.longDescription ?? "")}
                   </div>
                 </div>
-                <div className="col-12 col-lg-4 col-md-3 ">
+                <div className="col-12 col-lg-4 col-md-3">
                   <a href="#highlight" className="text-decoration-none">
-                    <div className="communityDataTab">
+                    <div className="communityTab">
                       <h3>Highlights</h3>
                     </div>
                   </a>
                 </div>
-                <div className="col-12 col-lg-4 col-md-3 ">
+                <div className="col-12 col-lg-4 col-md-3">
                   <a href="#amenities" className="text-decoration-none">
-                    <div className="communityDataTab">
+                    <div className="communityTab">
                       <h3>Amenities</h3>
                     </div>
                   </a>
                 </div>
-                <div className="col-12 col-lg-4 col-md-3 ">
+                <div className="col-12 col-lg-4 col-md-3">
                   <a href="#properties" className="text-decoration-none">
-                    <div className="communityDataTab">
+                    <div className="communityTab">
                       <h3>Available Properties</h3>
                     </div>
                   </a>
@@ -168,47 +169,101 @@ function SinglecommunityDataView({ params }) {
           </div>
         </div>
       </section>
-      <section className="my-5" id="highlight">
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-lg-12 col-md-12">
-              <div className="row ">
-                <div className="col-12 col-lg-12 col-md-12">
-                  <div>
-                    <div className="mainHead mb-5 text-center text-primary">
-                      <h4>HIGHLIGHTS</h4>
+      {communityData && communityData.highlights && (
+        <section className="my-5" id="highlight">
+          <div className="container">
+            <div className="row">
+              <div className="col-12 col-lg-12 col-md-12">
+                <div className="row ">
+                  <div className="col-12 col-lg-12 col-md-12">
+                    <div>
+                      <div className="mainHead mb-5 text-center text-primary">
+                        <h4>HIGHLIGHTS</h4>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="col-12 col-lg-12 col-md-12">
-                  <div className="swiper pb-5 highlightSwiper px-5">
-                    <div className="swiper-wrapper pb-3"></div>
-                    <div className="swiper-button-next text-primary">
-                      <span className="">
-                        <i className="bi bi-chevron-right fs-1"></i>
-                      </span>
-                    </div>
-                    <div className="swiper-button-prev text-primary">
-                      <span className="">
-                        <i className="bi bi-chevron-left fs-1"></i>
-                      </span>
-                    </div>
-                    <div className="swiper-pagination"></div>
+                  <div className="col-12 col-lg-12 col-md-12">
+                    <Swiper
+                      slidesPerView={1}
+                      spaceBetween={50}
+                      pagination={{
+                        el: ".swiper-pagination",
+                        clickable: true,
+                      }}
+                      navigation={{
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                      }}
+                      breakpoints={{
+                        640: {
+                          slidesPerView: 2,
+                          spaceBetween: 50,
+                        },
+                        768: {
+                          slidesPerView: 3,
+                          spaceBetween: 50,
+                        },
+                        1024: {
+                          slidesPerView: 4,
+                          spaceBetween: 50,
+                        },
+                      }}
+                      modules={[Navigation, Pagination]}
+                      onBeforeInit={(swiper) => {
+                        swiperRef.current = swiper;
+                      }}
+                      className="swiper pb-5 highlightSwiper px-5"
+                    >
+                      {communityData?.highlights?.map((highlight, index) => {
+                        return (
+                          <SwiperSlide key={highlight.id + index + 'hightlight'}>
+                            <div className="swiper-slide">
+                              <div className="card border-0 rounded-0 bg-primary p-5">
+                                <div className="">
+                                  <center><img src={highlight.image}
+                                    className="img-fluid" alt="range" width="80px" /></center>
+                                </div>
+                                <div className="card-body text-center pb-0">
+                                  <small className="card-title text-white text-uppercase fs-20">{highlight.name}</small>
+                                </div>
+                              </div>
+                            </div>
+                          </SwiperSlide>
+                        );
+                      })}
+                      <div
+                        className="swiper-button-next text-primary"
+                        onClick={() => swiperRef.current?.slideNext()}
+                      >
+                        <span className="">
+                          <i className="bi bi-chevron-right fs-1"></i>
+                        </span>
+                      </div>
+                      <div
+                        className="swiper-button-prev text-primary"
+                        onClick={() => swiperRef.current?.slidePrev()}
+                      >
+                        <span className="">
+                          <i className="bi bi-chevron-left fs-1"></i>
+                        </span>
+                      </div>
+                      <div className="swiper-pagination"></div>
+                    </Swiper>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       <section className="my-5 bg-light py-5">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12 col-lg-10 col-md-12">
               <div className="row g-0">
                 <div className="col-12 col-lg-6 col-md-6">
-                  {communityData && parse(communityData?.location_iframe ?? "")}
+                  {/* {communityData && parse(communityData?.location_iframe ?? "")} */}
                   {/* <GoogleMapReact
                     bootstrapURLKeys={{
                       key: "AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE",
@@ -222,7 +277,7 @@ function SinglecommunityDataView({ params }) {
                   /> */}
                   <GoogleMapReact
                     bootstrapURLKeys={{
-                      key: "AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE", // Replace with your Google Maps API key
+                      key: "AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE",
                     }}
                     defaultCenter={defaultProps.center}
                     defaultZoom={defaultProps.zoom}
@@ -234,10 +289,10 @@ function SinglecommunityDataView({ params }) {
                     />
                   </GoogleMapReact>
                 </div>
-                <div className="col-12 col-lg-6 col-md-6 bg-white">
-                  {communityData && (
+                {communityData && (
+                  <div className="col-12 col-lg-6 col-md-6 bg-white">
                     <div className="p-3 p-md-5 p-lg-5">
-                      {communityData?.statValues.map((stat, index) => {
+                      {communityData?.statValues?.map((stat, index) => {
                         return (
                           <div
                             className="border-bottom border-1 border-dark py-2"
@@ -253,26 +308,27 @@ function SinglecommunityDataView({ params }) {
                         );
                       })}
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section className="my-5" id="amenities">
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-lg-12 col-md-12">
-              <div className="row ">
-                <div className="col-12 col-lg-12 col-md-12">
-                  <div>
-                    <div className="mainHead mb-5 text-center text-primary">
-                      <h4>AMENITIES</h4>
+      {communityData && communityData.amenities && (
+        <section className="my-5" id="amenities">
+          <div className="container">
+            <div className="row">
+              <div className="col-12 col-lg-12 col-md-12">
+                <div className="row ">
+                  <div className="col-12 col-lg-12 col-md-12">
+                    <div>
+                      <div className="mainHead mb-5 text-center text-primary">
+                        <h4>AMENITIES</h4>
+                      </div>
                     </div>
                   </div>
-                </div>
-                {communityData && (
+
                   <div className="col-12 col-lg-12 col-md-12">
                     <Swiper
                       slidesPerView={1}
@@ -305,9 +361,9 @@ function SinglecommunityDataView({ params }) {
                       }}
                       className="swiper pb-5 amenitiesSwiper px-5"
                     >
-                      {communityData?.amenities.map((amenity, index) => {
+                      {communityData?.amenities?.map((amenity, index) => {
                         return (
-                          <SwiperSlide key={amenity.id + index}>
+                          <SwiperSlide key={amenity.id + index + 'amentity'}>
                             <div className="swiper-slide">
                               <div className="py-3">
                                 <div className="mb-2">
@@ -349,26 +405,28 @@ function SinglecommunityDataView({ params }) {
                       <div className="swiper-pagination"></div>
                     </Swiper>
                   </div>
-                )}
+
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section className="my-5" id="properties">
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-lg-12 col-md-12">
-              <div className="row">
-                <div className="col-12 col-lg-12 col-md-12">
-                  <div>
-                    <div className="mainHead mb-5 text-center text-primary">
-                      <h4>AVAILABLE PROPERTIES</h4>
+        </section>
+      )}
+      {communityData && communityData.properties && (
+        <section className="my-5" id="properties">
+          <div className="container">
+            <div className="row">
+              <div className="col-12 col-lg-12 col-md-12">
+                <div className="row">
+                  <div className="col-12 col-lg-12 col-md-12">
+                    <div>
+                      <div className="mainHead mb-5 text-center text-primary">
+                        <h4>AVAILABLE PROPERTIES</h4>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {communityData && (
+
                   <div className="col-12 col-lg-12 col-md-12">
                     <Swiper
                       slidesPerView={1}
@@ -401,9 +459,9 @@ function SinglecommunityDataView({ params }) {
                       }}
                       className="swiper pb-5 projectSlider"
                     >
-                      {communityData?.properties.map((property, index) => {
+                      {communityData?.properties?.map((property, index) => {
                         return (
-                          <SwiperSlide key={property.id + index}>
+                          <SwiperSlide key={property.id + + 'property'}>
                             <div className="swiper-slide">
                               <div>
                                 <div className="card propCard rounded-0">
@@ -474,12 +532,13 @@ function SinglecommunityDataView({ params }) {
                       <div className="swiper-pagination"></div>
                     </Swiper>
                   </div>
-                )}
+
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       <section className="my-5 ">
         <div className="container">
           <div className="row g-3 justify-content-center">
@@ -575,19 +634,20 @@ function SinglecommunityDataView({ params }) {
           </div>
         </div>
       </section>
-      <section className="mt-5 bg-light py-5">
-        <div className="container">
-          <div className="row g-3 justify-content-center">
-            <div className="col-12 col-lg-12 col-md-12">
-              <div className="row">
-                <div className="col-12 col-lg-12 col-md-12">
-                  <div>
-                    <div className="mainHead mb-5 text-primary">
-                      <h4>NEIGHBOURHOOD</h4>
+      {communityData && communityData.nearbyCommunities && (
+        <section className="mt-5 bg-light py-5">
+          <div className="container">
+            <div className="row g-3 justify-content-center">
+              <div className="col-12 col-lg-12 col-md-12">
+                <div className="row">
+                  <div className="col-12 col-lg-12 col-md-12">
+                    <div>
+                      <div className="mainHead mb-5 text-primary">
+                        <h4>NEIGHBOURHOOD</h4>
+                      </div>
                     </div>
                   </div>
-                </div>
-                {communityData && (
+
                   <div className="col-12 col-lg-12 col-md-12">
                     <Swiper
                       slidesPerView={1}
@@ -682,12 +742,13 @@ function SinglecommunityDataView({ params }) {
                       <div className="swiper-pagination"></div>
                     </Swiper>
                   </div>
-                )}
+
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 }
