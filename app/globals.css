@@ -37,6 +37,29 @@ p,small,a{
 .bg-blue{
     background-color: #2F3C6A !important;
 }
+.communityMainSwiper .swiper-pagination-bullet {
+    background-color: #fff;
+    opacity: 1;
+}
+.communityTab{
+    background-color: white;
+    color: #136DAE;
+    text-align: center;
+    height: 100%;
+    padding: 25px 15px;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    cursor: pointer;
+}
+.communityTab:hover , .communityTab.active{
+    background-color: #136DAE;
+    color: #fff;
+}
+.communityTab h3{
+    text-transform: uppercase;
+    font-weight: 500;
+font-size: 25px;
+margin-bottom: 0px;
+}
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
