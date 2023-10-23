@@ -24,12 +24,31 @@ function SinglecommunityDataView({ params }) {
     },
     zoom: 15,
   };
-
+  const Marker = ({ text }) => (
+    <div
+      style={{
+        color: "white",
+        background: "red",
+        padding: "10px 15px",
+        display: "inline-flex",
+        textAlign: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: "100%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
+      {text}
+    </div>
+  );
   const swiperRef = useRef<SwiperType>;
   const PropertySwiperRef = useRef<SwiperType>;
   // const renderMarkers = (map, maps) => {
   //   let marker = new maps.Marker({
-  //     position: { lat: addressLatitude, lng: addressLongitude },
+  //     position: {
+  //       lat: communityData?.address_latitude,
+  //       lng: communityData?.address_longitude,
+  //     },
   //     map,
   //   });
   //   return marker;
@@ -119,7 +138,8 @@ function SinglecommunityDataView({ params }) {
                 </div>
                 <div className="col-12 col-lg-10 col-md-11">
                   <div className="text-center my-5">
-                    {communityData && parse(communityData.longDescription)}
+                    {communityData &&
+                      parse(communityData?.longDescription ?? "")}
                   </div>
                 </div>
                 <div className="col-12 col-lg-4 col-md-3 ">
@@ -188,21 +208,41 @@ function SinglecommunityDataView({ params }) {
             <div className="col-12 col-lg-10 col-md-12">
               <div className="row g-0">
                 <div className="col-12 col-lg-6 col-md-6">
-                  {communityData && parse(communityData.location_iframe)}
+                  {communityData && parse(communityData?.location_iframe ?? "")}
                   {/* <GoogleMapReact
-                        bootstrapURLKeys={{key: 'AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE'}}
-                        defaultCenter={defaultProps.center}
-                        defaultZoom={defaultProps.zoom}
-                        onGoogleApiLoaded={({map, maps}) => renderMarkers(map, maps)}
-                        yesIWantToUseGoogleMapApiInternals
-                    /> */}
+                    bootstrapURLKeys={{
+                      key: "AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE",
+                    }}
+                    defaultCenter={defaultProps.center}
+                    defaultZoom={defaultProps.zoom}
+                    onGoogleApiLoaded={({ map, maps }) =>
+                      renderMarkers(map, maps)
+                    }
+                    yesIWantToUseGoogleMapApiInternals
+                  /> */}
+                  <GoogleMapReact
+                    bootstrapURLKeys={{
+                      key: "AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE", // Replace with your Google Maps API key
+                    }}
+                    defaultCenter={defaultProps.center}
+                    defaultZoom={defaultProps.zoom}
+                  >
+                    <Marker
+                      lat={communityData?.address_latitude} // Latitude for your marker
+                      lng={communityData?.address_longitude} // Longitude for your marker
+                      text={communityData?.name}
+                    />
+                  </GoogleMapReact>
                 </div>
                 <div className="col-12 col-lg-6 col-md-6 bg-white">
                   {communityData && (
                     <div className="p-3 p-md-5 p-lg-5">
                       {communityData?.statValues.map((stat, index) => {
                         return (
-                          <div className="border-bottom border-1 border-dark py-2" key={stat.id + index}>
+                          <div
+                            className="border-bottom border-1 border-dark py-2"
+                            key={stat.id + index}
+                          >
                             <p className="text-black fw-500 mb-0 fs-20">
                               {stat.key}
                             </p>
@@ -580,38 +620,48 @@ function SinglecommunityDataView({ params }) {
                       }}
                       className="swiper pb-5 projectSlider"
                     >
-                      {communityData?.nearbyCommunities.map((nearbyCommunity, index) => {
-                        return (
-                          <SwiperSlide key={nearbyCommunity.id + index}>
-                            <div className="swiper-slide">
-                              <div>
-                                <div className="card propCard rounded-0">
-                                  <div>
-                                    <div className="">
-                                      <a href="" className="text-decoration-none">
-                                        <div className="projectImgCont">
-                                          <img src={nearbyCommunity.mainImage}
-                                            alt="project1" className="img-fluid propImg" />
-
-                                        </div>
-                                      </a>
-                                    </div>
-                                    <div className="card-body rounded-3 rounded-top-0">
-                                      <a href="#" className="text-decoration-none">
-                                        <div className="mb-1 text-center">
-                                          <h5 className="text-black">{nearbyCommunity.name}</h5>
-                                        </div>
-                                      </a>
-
-
+                      {communityData?.nearbyCommunities.map(
+                        (nearbyCommunity, index) => {
+                          return (
+                            <SwiperSlide key={nearbyCommunity.id + index}>
+                              <div className="swiper-slide">
+                                <div>
+                                  <div className="card propCard rounded-0">
+                                    <div>
+                                      <div className="">
+                                        <a
+                                          href=""
+                                          className="text-decoration-none"
+                                        >
+                                          <div className="projectImgCont">
+                                            <img
+                                              src={nearbyCommunity.mainImage}
+                                              alt="project1"
+                                              className="img-fluid propImg"
+                                            />
+                                          </div>
+                                        </a>
+                                      </div>
+                                      <div className="card-body rounded-3 rounded-top-0">
+                                        <a
+                                          href="#"
+                                          className="text-decoration-none"
+                                        >
+                                          <div className="mb-1 text-center">
+                                            <h5 className="text-black">
+                                              {nearbyCommunity.name}
+                                            </h5>
+                                          </div>
+                                        </a>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          </SwiperSlide>
-                        );
-                      })}
+                            </SwiperSlide>
+                          );
+                        }
+                      )}
 
                       <div
                         className="swiper-button-prev swiperUniquePrev text-primary"
