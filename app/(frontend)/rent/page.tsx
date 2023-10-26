@@ -1,16 +1,15 @@
-"use client"
-import { useEffect, useRef, useState } from "react";
-import Head from "next/head";
-import { SWRProvider } from "@/app/swr-provider";
-import PropertyList from '../components/Property/PropertyList'
+"use client";
+import React, { useEffect, useRef, useState } from "react";
 
-function Properties() {
-    return (
-        <SWRProvider>
-        <PropertyList></PropertyList>
-      </SWRProvider>
-       
-    );
-}
+import { SWRProvider } from "@/app/swr-provider";
+import PropertyList from "../components/Property/PropertyList";
+
+const Properties = () => {
+  return (
+    <SWRProvider>
+      <PropertyList></PropertyList>
+    </SWRProvider>
+  );
+};
 
 export default Properties;
