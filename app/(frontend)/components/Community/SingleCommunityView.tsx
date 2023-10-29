@@ -9,12 +9,73 @@ import "swiper/css/pagination";
 import Link from "next/link";
 import parse from "html-react-parser";
 import GoogleMapReact from "google-map-react";
+import { GoogleMap, DistanceMatrixService } from "@react-google-maps/api";
 import { useMemo } from "react";
 import { useGetSingleCommunityData } from "@/src/services/CommunityService";
+import axios from "axios";
 
 function SinglecommunityDataView({ params }) {
   const slug = params.slug[0];
   const { communityData } = useGetSingleCommunityData(slug);
+  const [nearByLocations, setNearByLocations] = useState([]);
+
+  const onMapLoad = (map, maps, data) => {
+    console.log("address_latitude", data?.address_latitude);
+    console.log("address_latitude", data?.address_longitude);
+
+    let request = {
+      location: {
+        lat: parseFloat(data?.address_latitude),
+        lng: parseFloat(data?.address_longitude),
+      },
+      radius: 5000,
+    };
+
+    let service = new google.maps.places.PlacesService(map);
+
+    service.nearbySearch(request, async (results, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        const locationData = [];
+        for (var i = 0; i < results.length; i++) {
+          locationData.push({
+            name: results[i].name,
+            lat: results[i].geometry?.location?.lat(),
+            lng: results[i].geometry?.location?.lng(),
+            distance: await getDistanceMatrix(data, {
+              lat: results[i].geometry?.location?.lat(),
+              lng: results[i].geometry?.location?.lng(),
+            }),
+          });
+        }
+        setNearByLocations(locationData);
+      }
+    });
+  };
+
+  const getDistanceMatrix = async (origin, destination) => {
+    const distance = [];
+    let requestLocation = {
+      destinations: [
+        {
+          lat: parseFloat(destination?.lat),
+          lng: parseFloat(destination?.lng),
+        },
+      ],
+      origins: [
+        {
+          lat: parseFloat(origin?.address_latitude),
+          lng: parseFloat(origin?.address_longitude),
+        },
+      ],
+      travelMode: "DRIVING",
+    };
+
+    let distanceService = new google.maps.DistanceMatrixService();
+    await distanceService.getDistanceMatrix(requestLocation, (response) => {
+      distance.push(response.rows[0].elements[0].distance);
+    });
+    return distance;
+  };
 
   const defaultProps = {
     center: {
@@ -52,7 +113,7 @@ function SinglecommunityDataView({ params }) {
   //   });
   //   return marker;
   // };
-
+  console.log("near by", nearByLocations);
   return (
     <>
       <section className="my-5">
@@ -69,7 +130,6 @@ function SinglecommunityDataView({ params }) {
                 </div>
                 {communityData && communityData.imageGallery && (
                   <div className="col-12 col-lg-12 col-md-12">
-
                     <Swiper
                       slidesPerView={1}
                       spaceBetween={10}
@@ -103,7 +163,7 @@ function SinglecommunityDataView({ params }) {
                     >
                       {communityData?.imageGallery?.map((img, index) => {
                         return (
-                          <SwiperSlide key={img.id + index + 'gallery'}>
+                          <SwiperSlide key={img.id + index + "gallery"}>
                             <div className="swiper-slide">
                               <div className="communityImgCont">
                                 <img
@@ -134,7 +194,6 @@ function SinglecommunityDataView({ params }) {
                       </div>
                       <div className="swiper-pagination"></div>
                     </Swiper>
-
                   </div>
                 )}
                 <div className="col-12 col-lg-10 col-md-11">
@@ -217,15 +276,25 @@ function SinglecommunityDataView({ params }) {
                     >
                       {communityData?.highlights?.map((highlight, index) => {
                         return (
-                          <SwiperSlide key={highlight.id + index + 'hightlight'}>
+                          <SwiperSlide
+                            key={highlight.id + index + "hightlight"}
+                          >
                             <div className="swiper-slide">
                               <div className="card border-0 rounded-0 bg-primary p-5">
                                 <div className="">
-                                  <center><img src={highlight.image}
-                                    className="img-fluid" alt="range" width="80px" /></center>
+                                  <center>
+                                    <img
+                                      src={highlight.image}
+                                      className="img-fluid"
+                                      alt="range"
+                                      width="80px"
+                                    />
+                                  </center>
                                 </div>
                                 <div className="card-body text-center pb-0">
-                                  <small className="card-title text-white text-uppercase fs-20">{highlight.name}</small>
+                                  <small className="card-title text-white text-uppercase fs-20">
+                                    {highlight.name}
+                                  </small>
                                 </div>
                               </div>
                             </div>
@@ -275,38 +344,49 @@ function SinglecommunityDataView({ params }) {
                     }
                     yesIWantToUseGoogleMapApiInternals
                   /> */}
-                  <GoogleMapReact
-                    bootstrapURLKeys={{
-                      key: "AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE",
-                    }}
-                    defaultCenter={defaultProps.center}
-                    defaultZoom={defaultProps.zoom}
-                  >
-                    <Marker
-                      lat={communityData?.address_latitude} // Latitude for your marker
-                      lng={communityData?.address_longitude} // Longitude for your marker
-                      text={communityData?.name}
-                    />
-                  </GoogleMapReact>
+                  {communityData && (
+                    <GoogleMapReact
+                      bootstrapURLKeys={{
+                        key: "AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE",
+                        libraries: ["places"],
+                      }}
+                      defaultCenter={defaultProps.center}
+                      defaultZoom={defaultProps.zoom}
+                      yesIWantToUseGoogleMapApiInternals
+                      onGoogleApiLoaded={({ map, maps }) =>
+                        onMapLoad(map, maps, communityData)
+                      }
+                    >
+                      <Marker
+                        lat={communityData?.address_latitude} // Latitude for your marker
+                        lng={communityData?.address_longitude} // Longitude for your marker
+                        text={communityData?.name}
+                      />
+                    </GoogleMapReact>
+                  )}
                 </div>
                 {communityData && (
                   <div className="col-12 col-lg-6 col-md-6 bg-white">
                     <div className="p-3 p-md-5 p-lg-5">
-                      {communityData?.statValues?.map((stat, index) => {
-                        return (
-                          <div
-                            className="border-bottom border-1 border-dark py-2"
-                            key={stat.id + index}
-                          >
-                            <p className="text-black fw-500 mb-0 fs-20">
-                              {stat.key}
-                            </p>
-                            <p className="text-primary fw-500 mb-0 fs-20">
-                              {stat.value}
-                            </p>
-                          </div>
-                        );
-                      })}
+                      {nearByLocations.length > 0 && (
+                        <>
+                          {nearByLocations?.map((location, locIndex) => {
+                            return (
+                              <div
+                                className="border-bottom border-1 border-dark py-2"
+                                key={locIndex + "loc"}
+                              >
+                                <p className="text-black fw-500 mb-0 fs-20">
+                                  {location?.name}
+                                </p>
+                                <p className="text-primary fw-500 mb-0 fs-20">
+                                  {location?.distance[0].text}
+                                </p>
+                              </div>
+                            );
+                          })}
+                        </>
+                      )}
                     </div>
                   </div>
                 )}
@@ -363,7 +443,7 @@ function SinglecommunityDataView({ params }) {
                     >
                       {communityData?.amenities?.map((amenity, index) => {
                         return (
-                          <SwiperSlide key={amenity.id + index + 'amentity'}>
+                          <SwiperSlide key={amenity.id + index + "amentity"}>
                             <div className="swiper-slide">
                               <div className="py-3">
                                 <div className="mb-2">
@@ -405,7 +485,6 @@ function SinglecommunityDataView({ params }) {
                       <div className="swiper-pagination"></div>
                     </Swiper>
                   </div>
-
                 </div>
               </div>
             </div>
@@ -425,7 +504,6 @@ function SinglecommunityDataView({ params }) {
                       </div>
                     </div>
                   </div>
-
 
                   <div className="col-12 col-lg-12 col-md-12">
                     <Swiper
@@ -461,7 +539,7 @@ function SinglecommunityDataView({ params }) {
                     >
                       {communityData?.properties?.map((property, index) => {
                         return (
-                          <SwiperSlide key={property.id + + 'property'}>
+                          <SwiperSlide key={property.id + +"property"}>
                             <div className="swiper-slide">
                               <div>
                                 <div className="card propCard rounded-0">
@@ -532,7 +610,6 @@ function SinglecommunityDataView({ params }) {
                       <div className="swiper-pagination"></div>
                     </Swiper>
                   </div>
-
                 </div>
               </div>
             </div>
@@ -742,7 +819,6 @@ function SinglecommunityDataView({ params }) {
                       <div className="swiper-pagination"></div>
                     </Swiper>
                   </div>
-
                 </div>
               </div>
             </div>
