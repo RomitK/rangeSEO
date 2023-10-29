@@ -1,5 +1,6 @@
 function AboutDubai() {
-    return (<>
+    return (
+    <>
         <section className="bg-light my-5 py-5 p-relative">
             <div className="container">
                 <div className="row">

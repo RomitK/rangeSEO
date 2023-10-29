@@ -91,7 +91,7 @@ function Navbar() {
 
                                 </ul>
                                 <div className=" my-auto me-0 me-lg-3 me-md-3 ms-3 ms-lg-0 ms-md-0">
-                                    <img src="images/icons/menu.png"
+                                    <img src="/images/icons/menu.png"
                                         alt="Range Internation Property Investments"
                                         className="img-fluid navMobMen cursor-pointer" data-bs-toggle="offcanvas"
                                         data-bs-target="#offcanvasRight" width="35" />
@@ -100,7 +100,7 @@ function Navbar() {
                                         <div className="offcanvas-header">
                                             <div className="">
                                                 <Link href={{ pathname: '/' }} className="navbar-brand">
-                                                    <img src="images/logo.png"
+                                                    <img src="/images/logo.png"
                                                         alt="Range Internation Property Investments"
                                                         className="img-fluid navMobLogo" width="175" />
                                                 </Link>

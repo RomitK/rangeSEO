@@ -8,25 +8,13 @@ import { Swiper as SwiperType } from 'swiper';
 import 'swiper/swiper-bundle.css';
 import 'swiper/css/pagination';
 import { useState, useEffect } from 'react';
+import { useGetAllHomeData } from "@/src/services/HomeService";
 import Link from "next/link";
 
 function CommunityList(props) {
     const swiperRef = useRef<SwiperType>;
-    const [communities, setCommunities] = useState([]);
-    useEffect(() => {
-        fetch('https://rangenew.websitedemo.world/api/getHomeCommunities', {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Content-Type": "application/json"
-            }
-        }).then(response => {
-            return response.json();
-        }).then(data => {
-            setCommunities(data.data)
-        });
-    });
+    const { homeData } = useGetAllHomeData();
+   
     return (
         <div>
             <section className="my-5">
@@ -75,25 +63,24 @@ function CommunityList(props) {
                                         className="swiper pb-5 communitySwiper"
                                     >
                                         {
-                                            communities.map((community) => {
-                                                return <SwiperSlide key={community['id']}>
-                                                <div className="swiper-slide">
-                                                    <div className="communityImgCont">
-                                                        <img src={community['mainImage']}
-                                                            alt={community['name']} className="img-fluid" />
-                                                        <div className="communityImgOverlay">
-                                                            <div className="text-white">
-                                                                <p className="fw-bold mb-1">
-                                                                    <Link href={`communities/${community['slug']}`}  className="fw-bold mb-1 text-decoration-none text-white">
-                                                                        {community['name']}
+                                            homeData?.communities?.map((community, index) => {
+                                                return <SwiperSlide key={community.id + index}>
+                                                    <div className="swiper-slide">
+                                                        <div className="communityImgCont">
+                                                            <img src={community.mainImage}
+                                                                alt={community.name} className="img-fluid" />
+                                                            <div className="communityImgOverlay">
+                                                                <div className="text-white">
+                                                                    <p className="fw-bold mb-1">
+                                                                    <Link href={`communities/${community.slug}`}  className="fw-bold mb-1 text-decoration-none text-white">
+                                                                        {community.name}
                                                                     </Link>
-                                                                </p>
+                                                                    </p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </SwiperSlide>
-                                               
+                                                </SwiperSlide>
                                             })
                                         }
                                         <div className="swiper-button-next text-white" onClick={() => swiperRef.current?.slideNext()} onClick={() => swiperRef.current?.slideNext()}>

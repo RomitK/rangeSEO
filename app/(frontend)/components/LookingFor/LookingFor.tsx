@@ -15,7 +15,7 @@ function LookingFor(){
                         <div className="col-6 col-lg-3 col-md-3">
                             <div className="card cardInterest">
                                 <div className="my-3">
-                                    <center><img src="images/icons/interest1.png"
+                                    <center><img src="/images/icons/interest1.png"
                                             className="img-fluid" alt="range" width="80px" /></center>
                                 </div>
                                 <div className="card-body text-center">
@@ -27,7 +27,7 @@ function LookingFor(){
                         <div className="col-6 col-lg-3 col-md-3">
                             <div className="card cardInterest">
                                 <div className="my-3">
-                                    <center><img src="images/icons/interest2.png"
+                                    <center><img src="/images/icons/interest2.png"
                                             className="img-fluid" alt="range" width="80px"/></center>
                                 </div>
                                 <div className="card-body text-center">
