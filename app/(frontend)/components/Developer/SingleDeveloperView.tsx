@@ -15,6 +15,7 @@ import { useGetSingleDeveloperData } from "@/src/services/DeveloperService";
 function SingleDeveloperView({ params }) {
     const slug = params.slug[0];
     const { developerData } = useGetSingleDeveloperData(slug);
+    const PropertySwiperRef = useRef<SwiperType>;
     const swiperRef = useRef<SwiperType>;
     return (
         <>
@@ -267,81 +268,134 @@ function SingleDeveloperView({ params }) {
             }
 
 
-            {developerData && developerData.communities && (
-                <section className="my-5" id="properties">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-12 col-lg-12 col-md-12">
-                                <div className="row">
-                                    <div className="col-12 col-lg-12 col-md-12">
-                                        <div>
-                                            <div className="mainHead mb-5 text-center text-primary">
-                                                <h4>AVAILABLE PROPERTIES</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="col-12 col-lg-12 col-md-12">
-                                        <div className="swiper pb-5 projectSlider">
-                                            <div className="swiper-button-prev swiperUniquePrev text-primary">
-                                                <span className=''>
-                                                    <i className='bi bi-chevron-left fs-1'></i>
-                                                </span>
-                                            </div>
-                                            <div className="swiper-wrapper">
-
-                                                <div className="swiper-slide">
-                                                    <div>
-                                                        <div className="card propCard rounded-0">
-                                                            <div>
-                                                                <div className="">
-                                                                    <a href="" className="text-decoration-none">
-                                                                        <div className="projectImgCont">
-                                                                            <img src="" alt="project1" className="img-fluid propImg" />
-                                                                            <div className="projectImgOverlay">
-                                                                                <div></div>
-                                                                                <div><span
-                                                                                    className="badge float-start fs-10 projectType">VILLAS</span>
-                                                                                </div>
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-                                                                <div className="card-body rounded-3 rounded-top-0">
-                                                                    <a href="#" className="text-decoration-none">
-                                                                        <h6 className="text-black fs-16 fw-semibold mb-0">
-                                                                            Nice, Damac Lagoons
-                                                                        </h6>
-                                                                    </a>
-                                                                    <div className="mb-1">
-                                                                        <small className="text-secondary">Palm Jumeirah</small>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                            <div className="swiper-button-next swiperUniqueNext text-primary">
-                                                <span className=''>
-                                                    <i className='bi bi-chevron-right fs-1'></i>
-                                                </span>
-                                            </div>
-
-                                            <div className="swiper-pagination"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        {developerData && developerData.properties && (
+        <section className="my-5" id="properties">
+          <div className="container">
+            <div className="row">
+              <div className="col-12 col-lg-12 col-md-12">
+                <div className="row">
+                  <div className="col-12 col-lg-12 col-md-12">
+                    <div>
+                      <div className="mainHead mb-5 text-center text-primary">
+                        <h4>AVAILABLE PROPERTIES</h4>
+                      </div>
                     </div>
-                </section>
-            )
-            }
+                  </div>
+
+
+                  <div className="col-12 col-lg-12 col-md-12">
+                    <Swiper
+                      slidesPerView={1}
+                      spaceBetween={10}
+                      pagination={{
+                        el: ".swiper-pagination",
+                        clickable: true,
+                      }}
+                      navigation={{
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                      }}
+                      breakpoints={{
+                        640: {
+                          slidesPerView: 2,
+                          spaceBetween: 10,
+                        },
+                        768: {
+                          slidesPerView: 3,
+                          spaceBetween: 10,
+                        },
+                        1024: {
+                          slidesPerView: 4,
+                          spaceBetween: 10,
+                        },
+                      }}
+                      modules={[Navigation, Pagination]}
+                      onBeforeInit={(swiper) => {
+                        PropertySwiperRef.current = swiper;
+                      }}
+                      className="swiper pb-5 projectSlider"
+                    >
+                   
+                      { developerData?.properties?.map((property, index) => {
+                        return (
+                          <SwiperSlide key={property.id + + 'property'}>
+                            <div className="swiper-slide">
+                              <div>
+                                <div className="card propCard rounded-0">
+                                  <div>
+                                    <div className="">
+                                      <a
+                                        href=""
+                                        className="text-decoration-none"
+                                      >
+                                        <div className="projectImgCont">
+                                          <img
+                                            src={property.property_banner}
+                                            alt="project1"
+                                            className="img-fluid propImg"
+                                          />
+                                          <div className="projectImgOverlay">
+                                            <div></div>
+                                            <div>
+                                              <span className="badge float-start fs-10 projectType">
+                                                {property.accommodation}
+                                              </span>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </a>
+                                    </div>
+                                    <div className="card-body rounded-3 rounded-top-0">
+                                      <a
+                                        href="#"
+                                        className="text-decoration-none"
+                                      >
+                                        <h6 className="text-black fs-16 fw-semibold mb-0">
+                                          {property.name}
+                                        </h6>
+                                      </a>
+                                      <div className="mb-1">
+                                        <small className="text-secondary">
+                                          {property &&
+                                            property.communities &&
+                                            property.communities.name}
+                                        </small>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </SwiperSlide>
+                        );
+                      })}
+
+                      <div
+                        className="swiper-button-prev swiperUniquePrev text-primary"
+                        onClick={() => PropertySwiperRef.current?.slidePrev()}
+                      >
+                        <span className="">
+                          <i className="bi bi-chevron-left fs-1"></i>
+                        </span>
+                      </div>
+                      <div
+                        className="swiper-button-next swiperUniqueNext text-primary"
+                        onClick={() => PropertySwiperRef.current?.slideNext()}
+                      >
+                        <span className="">
+                          <i className="bi bi-chevron-right fs-1"></i>
+                        </span>
+                      </div>
+                      <div className="swiper-pagination"></div>
+                    </Swiper>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
         </>
     );
 }
