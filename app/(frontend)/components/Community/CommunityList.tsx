@@ -31,6 +31,7 @@ function CommunityList(props) {
                                 </div>
                                 <div className="col-12 col-lg-12 col-md-12">
                                     <Swiper
+                                        loop
                                         slidesPerView={1}
                                         spaceBetween={10}
                                         pagination={{
