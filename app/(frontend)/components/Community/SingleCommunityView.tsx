@@ -77,6 +77,18 @@ function SinglecommunityDataView({ params }) {
     return distance;
   };
 
+  const renderMarkers = (map, maps, data) => {
+    let marker = new maps.Marker({
+      position: {
+        lat: parseFloat(data?.address_latitude),
+        lng: parseFloat(data?.address_longitude),
+      },
+      map,
+      title: data?.name,
+    });
+    return marker;
+  };
+
   const defaultProps = {
     center: {
       lat: 25.2048,
@@ -84,35 +96,10 @@ function SinglecommunityDataView({ params }) {
     },
     zoom: 15,
   };
-  const Marker = ({ text }) => (
-    <div
-      style={{
-        color: "white",
-        background: "red",
-        padding: "10px 15px",
-        display: "inline-flex",
-        textAlign: "center",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: "100%",
-        transform: "translate(-50%, -50%)",
-      }}
-    >
-      {text}
-    </div>
-  );
+
   const swiperRef = useRef<SwiperType>;
   const PropertySwiperRef = useRef<SwiperType>;
-  // const renderMarkers = (map, maps) => {
-  //   let marker = new maps.Marker({
-  //     position: {
-  //       lat: communityData?.address_latitude,
-  //       lng: communityData?.address_longitude,
-  //     },
-  //     map,
-  //   });
-  //   return marker;
-  // };
+
   console.log("near by", nearByLocations);
   return (
     <>
@@ -353,16 +340,11 @@ function SinglecommunityDataView({ params }) {
                       defaultCenter={defaultProps.center}
                       defaultZoom={defaultProps.zoom}
                       yesIWantToUseGoogleMapApiInternals
-                      onGoogleApiLoaded={({ map, maps }) =>
-                        onMapLoad(map, maps, communityData)
-                      }
-                    >
-                      <Marker
-                        lat={communityData?.address_latitude} // Latitude for your marker
-                        lng={communityData?.address_longitude} // Longitude for your marker
-                        text={communityData?.name}
-                      />
-                    </GoogleMapReact>
+                      onGoogleApiLoaded={({ map, maps }) => {
+                        renderMarkers(map, maps, communityData);
+                        onMapLoad(map, maps, communityData);
+                      }}
+                    ></GoogleMapReact>
                   )}
                 </div>
                 {communityData && (
