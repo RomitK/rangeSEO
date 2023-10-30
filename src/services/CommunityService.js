@@ -5,6 +5,5 @@ export const useGetSingleCommunityData = (slug) => {
     error,
     mutate,
   } = useSWR(slug ? `/communities/${slug}` : null);
-  console.log(communityData);
   return { communityData: communityData?.data, communityDataMutate: mutate };
 };
