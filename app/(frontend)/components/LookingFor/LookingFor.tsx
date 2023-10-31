@@ -1,8 +1,9 @@
-function LookingFor(){
-    return (<>
-    <section className="my-5">
+function LookingFor() {
+  return (
+    <>
+      <section className="my-5">
         <div className="container">
-            {/* <div className="row justify-content-center">
+          {/* <div className="row justify-content-center">
                 <div className="col-12 col-lg-10 col-md-11">
                     <div className="row g-3">
                        
@@ -61,112 +62,116 @@ function LookingFor(){
               
             </div> */}
 
-            <div className="col-12 col-lg-12 col-md-12">
-                            <div>
-                                <div className="mainHead mb-5 text-primary text-center">
-                                    <h4>I AM INTERESTED TO</h4>
-                                </div>
-                            </div>
-                        </div>
-            <div className="d-flex circleCardsRow">
-                            {/* Circle box Start */}
-                            <div className="proCircleCard">
-                                    <a href="#" className="proCircleBox">
-                                        <div className="circleContent">
-                                                <img src="/images/icons/interest1.png" 
-                                                    className="proCricleImg" 
-                                                    alt="range" 
-                                                    width="80px" />
-                                                <p className="text">Buy / Rent</p>
-                                        </div>
-                                        
-                                    </a>
-                                    <div className="nbrCircle">
-                                            <h6>01</h6>
-                                    </div>
-                            </div>
-                              {/* Circle box End */}
-
-                              {/* Circle box Start */}
-                            <div className="proCircleCard">
-                                    <a href="#" className="proCircleBox">
-                                        <div className="circleContent">
-                                                <img src="/images/icons/interest1.png" 
-                                                    className="proCricleImg" 
-                                                    alt="range" 
-                                                    width="80px" />
-                                                <p className="text">Sell with us</p>
-                                        </div>
-                                        
-                                    </a>
-                                    <div className="nbrCircle">
-                                            <h6>02</h6>
-                                    </div>
-                            </div>
-                              {/* Circle box End */}
-
-                              {/* Circle box Start */}
-                            <div className="proCircleCard">
-                                    <a href="#" className="proCircleBox">
-                                        <div className="circleContent">
-                                                <img src="/images/icons/interest1.png" 
-                                                    className="proCricleImg" 
-                                                    alt="range" 
-                                                    width="80px" />
-                                                <p className="text">Property Management</p>
-                                        </div>
-                                        
-                                    </a>
-                                    <div className="nbrCircle">
-                                            <h6>03</h6>
-                                    </div>
-                            </div>
-                              {/* Circle box End */}
-
-                              {/* Circle box Start */}
-                            <div className="proCircleCard">
-                                    <a href="#" className="proCircleBox">
-                                        <div className="circleContent">
-                                                <img src="/images/icons/interest1.png" 
-                                                    className="proCricleImg" 
-                                                    alt="range" 
-                                                    width="80px" />
-                                                <p className="text">Mortgage</p>
-                                        </div>
-                                        
-                                    </a>
-                                    <div className="nbrCircle">
-                                            <h6>04</h6>
-                                    </div>
-                            </div>
-                              {/* Circle box End */}
-
-                            {/* Circle box Start */}
-                            <div className="proCircleCard">
-                                    <a href="#" className="proCircleBox">
-                                        <div className="circleContent">
-                                                <img src="/images/icons/interest1.png" 
-                                                    className="proCricleImg" 
-                                                    alt="range" 
-                                                    width="80px" />
-                                                <p className="text">Hollyday Homes</p>
-                                        </div>
-                                        
-                                    </a>
-                                    <div className="nbrCircle">
-                                            <h6>01</h6>
-                                    </div>
-                            </div>
-                              {/* Circle box End */}
-                            
-
+          <div className="col-12 col-lg-12 col-md-12">
+            <div>
+              <div className="mainHead mb-5 text-primary text-center">
+                <h4>I AM INTERESTED TO</h4>
+              </div>
             </div>
-
-            <div className="col-12 col-lg-12 col-md-12">
-                    <div className="borderBottom"></div>
+          </div>
+          <div className="d-flex circleCardsRow">
+            {/* Circle box Start */}
+            <div className="proCircleCard">
+              <a href="#" className="proCircleBox">
+                <div className="circleContent">
+                  <img
+                    src="/images/icons/interest1.png"
+                    className="proCricleImg"
+                    alt="range"
+                    width="80px"
+                  />
+                  <p className="text">Buy / Rent</p>
                 </div>
+              </a>
+              <div className="nbrCircle">
+                <h6>01</h6>
+              </div>
+            </div>
+            {/* Circle box End */}
+
+            {/* Circle box Start */}
+            <div className="proCircleCard">
+              <a href="#" className="proCircleBox">
+                <div className="circleContent">
+                  <img
+                    src="/images/icons/interest1.png"
+                    className="proCricleImg"
+                    alt="range"
+                    width="80px"
+                  />
+                  <p className="text">Sell with us</p>
+                </div>
+              </a>
+              <div className="nbrCircle">
+                <h6>02</h6>
+              </div>
+            </div>
+            {/* Circle box End */}
+
+            {/* Circle box Start */}
+            <div className="proCircleCard">
+              <a href="#" className="proCircleBox">
+                <div className="circleContent">
+                  <img
+                    src="/images/icons/interest1.png"
+                    className="proCricleImg"
+                    alt="range"
+                    width="80px"
+                  />
+                  <p className="text">Property Management</p>
+                </div>
+              </a>
+              <div className="nbrCircle">
+                <h6>03</h6>
+              </div>
+            </div>
+            {/* Circle box End */}
+
+            {/* Circle box Start */}
+            <div className="proCircleCard">
+              <a href="#" className="proCircleBox">
+                <div className="circleContent">
+                  <img
+                    src="/images/icons/interest1.png"
+                    className="proCricleImg"
+                    alt="range"
+                    width="80px"
+                  />
+                  <p className="text">Mortgage</p>
+                </div>
+              </a>
+              <div className="nbrCircle">
+                <h6>04</h6>
+              </div>
+            </div>
+            {/* Circle box End */}
+
+            {/* Circle box Start */}
+            <div className="proCircleCard">
+              <a href="#" className="proCircleBox">
+                <div className="circleContent">
+                  <img
+                    src="/images/icons/interest1.png"
+                    className="proCricleImg"
+                    alt="range"
+                    width="80px"
+                  />
+                  <p className="text">Hollyday Homes</p>
+                </div>
+              </a>
+              <div className="nbrCircle">
+                <h6>05</h6>
+              </div>
+            </div>
+            {/* Circle box End */}
+          </div>
+
+          <div className="col-12 col-lg-12 col-md-12">
+            <div className="borderBottom"></div>
+          </div>
         </div>
-    </section>
-    </>);
+      </section>
+    </>
+  );
 }
 export default LookingFor;

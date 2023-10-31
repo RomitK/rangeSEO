@@ -215,7 +215,7 @@ function SinglecommunityDataView({ params }) {
           </div>
         </div>
       </section>
-      {communityData && communityData.highlights && (
+      {communityData && communityData.highlights &&   communityData.highlights.length > 0 && (
         <section className="my-5" id="highlight">
           <div className="container">
             <div className="row">
@@ -377,7 +377,7 @@ function SinglecommunityDataView({ params }) {
           </div>
         </div>
       </section>
-      {communityData && communityData.amenities && (
+      {communityData && communityData.amenities &&  communityData.amenities.length > 0  && (
         <section className="my-5" id="amenities">
           <div className="container">
             <div className="row">
@@ -473,7 +473,7 @@ function SinglecommunityDataView({ params }) {
           </div>
         </section>
       )}
-      {communityData && communityData.properties && (
+      {communityData && communityData.properties && communityData.properties.length > 0  &&(
         <section className="my-5" id="properties">
           <div className="container">
             <div className="row">
@@ -527,11 +527,8 @@ function SinglecommunityDataView({ params }) {
                                 <div className="card propCard rounded-0">
                                   <div>
                                     <div className="">
-                                      <a
-                                        href=""
-                                        className="text-decoration-none"
-                                      >
-                                        <div className="projectImgCont">
+                                    <Link href={`/properties/${property.slug}`}  className="text-decoration-none">
+                                    <div className="projectImgCont">
                                           <img
                                             src={property.property_banner}
                                             alt="project1"
@@ -545,18 +542,17 @@ function SinglecommunityDataView({ params }) {
                                               </span>
                                             </div>
                                           </div>
-                                        </div>
-                                      </a>
+                                        </div>                           
+                                    </Link>
+
+                                      
                                     </div>
                                     <div className="card-body rounded-3 rounded-top-0">
-                                      <a
-                                        href="#"
-                                        className="text-decoration-none"
-                                      >
+                                      <Link href={`/properties/${property.slug}`}  className="text-decoration-none">
                                         <h6 className="text-black fs-16 fw-semibold mb-0">
                                           {property.name}
                                         </h6>
-                                      </a>
+                                      </Link>
                                       <div className="mb-1">
                                         <small className="text-secondary">
                                           {property &&
@@ -748,10 +744,7 @@ function SinglecommunityDataView({ params }) {
                                   <div className="card propCard rounded-0">
                                     <div>
                                       <div className="">
-                                        <a
-                                          href=""
-                                          className="text-decoration-none"
-                                        >
+                                      <Link href={`/communities/${nearbyCommunity.slug}`}  className="text-decoration-none">
                                           <div className="projectImgCont">
                                             <img
                                               src={nearbyCommunity.mainImage}
@@ -759,19 +752,16 @@ function SinglecommunityDataView({ params }) {
                                               className="img-fluid propImg"
                                             />
                                           </div>
-                                        </a>
+                                          </Link>
                                       </div>
                                       <div className="card-body rounded-3 rounded-top-0">
-                                        <a
-                                          href="#"
-                                          className="text-decoration-none"
-                                        >
+                                      <Link href={`/communities/${nearbyCommunity.slug}`}  className="text-decoration-none">
                                           <div className="mb-1 text-center">
                                             <h5 className="text-black">
                                               {nearbyCommunity.name}
                                             </h5>
                                           </div>
-                                        </a>
+                                          </Link>
                                       </div>
                                     </div>
                                   </div>

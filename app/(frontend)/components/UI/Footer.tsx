@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import ContactUs from "./ContactUs";
+import parse from "html-react-parser";
 
 function Footer() {
   return (
@@ -121,8 +122,7 @@ function Footer() {
                             href="#"
                           >
                             <i className="bi bi-geo-alt-fill text-primary"></i>
-                            &nbsp; 2601 Aspect Tower, Business Bay, United Arab
-                            Emirates
+                            &nbsp; 2601 Aspect Tower, Business Bay, United Arab Emirates
                           </a>
                         </li>
                       </ul>
@@ -158,7 +158,6 @@ function Footer() {
                     </div>
                   </div>
                 </div>
-
                 <ContactUs />
               </div>
             </div>
@@ -170,7 +169,7 @@ function Footer() {
               <div className="row g-0">
                 <div className="col-2 col-lg-2 my-auto">
                   <div className="text-center socialLinkNav p-3">
-                    <a href="" className="text-decoration-none">
+                    <a href={process.env.FACEBOOK_LINK} className="text-decoration-none" target="_blanket">
                       <span className="iconRoundBlack">
                         <i className="fa fa-facebook"></i>
                       </span>
@@ -179,7 +178,7 @@ function Footer() {
                 </div>
                 <div className="col-2 col-lg-2 my-auto">
                   <div className="text-center socialLinkNav p-3">
-                    <a href="" className="text-decoration-none">
+                    <a href={process.env.INSTAGRAM_LINK} className="text-decoration-none" target="_blanket">
                       <span className="iconRoundBlack">
                         <i className="fa fa-instagram"></i>
                       </span>
@@ -188,7 +187,7 @@ function Footer() {
                 </div>
                 <div className="col-2 col-lg-2 my-auto">
                   <div className="text-center socialLinkNav p-3">
-                    <a href="" className="text-decoration-none">
+                    <a href={process.env.TWITTER_LINK} className="text-decoration-none" target="_blanket">
                       <span className="iconRoundBlack">
                         <i className="fa fa-twitter"></i>
                       </span>
@@ -197,7 +196,7 @@ function Footer() {
                 </div>
                 <div className="col-2 col-lg-2 my-auto">
                   <div className="text-center socialLinkNav p-3">
-                    <a href="" className="text-decoration-none">
+                    <a href={process.env.LINKEDIN_LINK} className="text-decoration-none" target="_blanket">
                       <span className="iconRoundBlack">
                         <i className="fa fa-linkedin"></i>
                       </span>
@@ -206,7 +205,7 @@ function Footer() {
                 </div>
                 <div className="col-2 col-lg-2 my-auto">
                   <div className="text-center socialLinkNav p-3">
-                    <a href="" className="text-decoration-none">
+                    <a href={process.env.YOUTUBE_LINK} className="text-decoration-none" target="_blanket">
                       <span className="iconRoundBlack">
                         <i className="bi bi-youtube"></i>
                       </span>
@@ -215,7 +214,7 @@ function Footer() {
                 </div>
                 <div className="col-2 col-lg-2 my-auto">
                   <div className="text-center socialLinkNav p-3">
-                    <a href="" className="text-decoration-none">
+                    <a href={process.env.TIKTOK_LINK} className="text-decoration-none" target="_blanket">
                       <span className="iconRoundBlack">
                         <i className="bi bi-tiktok"></i>
                       </span>

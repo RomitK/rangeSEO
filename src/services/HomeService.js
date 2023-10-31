@@ -6,5 +6,5 @@ export const useGetAllHomeData = () => {
 };
 
 export const saveContactFormApi = (data) => {
-  return httpClient.post("/url", data);
+  return httpClient.post("/contactUs", data);
 };

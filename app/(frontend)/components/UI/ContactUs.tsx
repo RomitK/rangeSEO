@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-
+import { saveContactFormApi } from "@/src/services/HomeService";
 const ContactUs = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -12,6 +12,7 @@ const ContactUs = () => {
 
   const handleSubmit = () => {
     if (!formData.name || !formData.email || formData.message) {
+      saveContactFormApi(formData);
       return toast.error("Please fill required field");
     }
     toast.success(
