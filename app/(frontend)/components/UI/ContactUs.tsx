@@ -11,13 +11,18 @@ const ContactUs = () => {
   });
 
   const handleSubmit = () => {
-    if (!formData.name || !formData.email || formData.message) {
-      saveContactFormApi(formData);
+    if (!formData.name || !formData.email || !formData.message) {
       return toast.error("Please fill required field");
     }
-    toast.success(
-      "Contact form submitted successfully, out support teams contact you soon"
-    );
+    saveContactFormApi(formData)
+      .then((res) => {
+        toast.success(
+          "Contact form submitted successfully, out support teams contact you soon"
+        );
+      })
+      .catch((err) => {
+        toast.error("Something went wrong, please try again");
+      });
   };
   return (
     <div className="col-12 col-lg-4 col-md-4">
