@@ -8,6 +8,7 @@ const ContactUs = () => {
     email: "",
     subject: "",
     message: "",
+    phone: "",
   });
 
   const handleSubmit = () => {
@@ -56,6 +57,18 @@ const ContactUs = () => {
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
+                  }
+                />
+              </div>
+              <div className="col-12 mb-2">
+                <input
+                  type="text"
+                  className="form-control rounded-0 fs-14"
+                  id="phone"
+                  placeholder="Phone"
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
                   }
                 />
               </div>
