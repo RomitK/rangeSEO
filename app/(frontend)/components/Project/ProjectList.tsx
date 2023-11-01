@@ -3,12 +3,18 @@ import { useState, useEffect } from "react";
 import React from "react";
 import Select from "react-select";
 import Link from "next/link";
+import { useRouter } from 'next/navigation'
+
 import { useGetAllHomeData } from "@/src/services/HomeService";
 function ProjectList() {
+  const router = useRouter()
   const { homeData } = useGetAllHomeData();
   const [selectedProject, setSelectedProjectName] = useState();
   const options = homeData?.newProjects;
-
+  const projectChangeHandle = (event) => {
+    console.log(event.value);
+    router.push('/projects/'+event.value);
+  };
   return (
     <>
       <section className="my-5">
@@ -32,6 +38,7 @@ function ProjectList() {
                         </p>
                         <div>
                           <Select
+                            onChange={projectChangeHandle}
                             options={options}
                             className=""
                             value={selectedProject}
@@ -41,7 +48,11 @@ function ProjectList() {
                     </div>
                     <div className="col-10 col-lg-2 col-md-3 mx-3 my-auto">
                       <div className="mapShowBg shadow">
-                        <p className="text-primary mb-1 fw-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <p
+                          className="text-primary mb-1 fw-semibold"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModal"
+                        >
                           SHOW MAP
                         </p>
                       </div>
@@ -71,25 +82,26 @@ function ProjectList() {
                       key={project.id + index}
                     >
                       <div className="projectImgCont">
-                        <img
-                          src={project.mainImage}
-                          alt={project.title}
-                          className="img-fluid"
-                        />
-                        <div className="projectImgOverlay">
-                          <div>
-                            <span className="badge projectType">
-                              {project.accommodation }
-                            </span>
+                        <Link
+                          href={`projects/${project.slug}`}
+                          className="fw-bold mb-1 text-decoration-none text-white"
+                        >
+                          <img
+                            src={project.mainImage}
+                            alt={project.title}
+                            className="img-fluid"
+                          />
+                          <div className="projectImgOverlay">
+                            <div>
+                              <span className="badge projectType">
+                                {project.accommodation}
+                              </span>
+                            </div>
+                            <div className="text-white">
+                              <p className="fw-bold mb-1">{project.title}</p>
+                            </div>
                           </div>
-                          <div className="text-white">
-                            <p className="fw-bold mb-1">
-                            <Link href={`projects/${project.slug}`}  className="fw-bold mb-1 text-decoration-none text-white">
-                            {project.title}
-                              </Link>
-                            </p>
-                          </div>
-                        </div>
+                        </Link>
                       </div>
                     </div>
                   );
@@ -99,24 +111,43 @@ function ProjectList() {
           </div>
         </div>
       </section>
-      
-<div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className="modal-dialog modal-lg">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+      <div
+        className="modal fade"
+        id="exampleModal"
+        tabIndex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-lg">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
+                Modal title
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">...</div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" className="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="modal-body">
-        ...
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
     </>
   );
 }

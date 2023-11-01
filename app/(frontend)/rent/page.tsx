@@ -4,10 +4,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { SWRProvider } from "@/app/swr-provider";
 import PropertyList from "../components/Property/PropertyList";
 
-const Properties = () => {
+const Properties = ({ params }) => {
   return (
     <SWRProvider>
-      <PropertyList></PropertyList>
+      <PropertyList params={params}></PropertyList>
     </SWRProvider>
   );
 };

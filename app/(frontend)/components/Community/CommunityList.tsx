@@ -68,17 +68,19 @@ function CommunityList(props) {
                                                 return <SwiperSlide key={community.id + index}>
                                                     <div className="swiper-slide">
                                                         <div className="communityImgCont">
+                                                        <Link href={`communities/${community.slug}`}  className=" text-decoration-none ">
                                                             <img src={community.mainImage}
                                                                 alt={community.name} className="img-fluid" />
                                                             <div className="communityImgOverlay">
                                                                 <div className="text-white">
                                                                     <p className="fw-bold mb-1">
-                                                                    <Link href={`communities/${community.slug}`}  className="fw-bold mb-1 text-decoration-none text-white">
+                                                                   
                                                                         {community.name}
-                                                                    </Link>
+                                                                    
                                                                     </p>
                                                                 </div>
                                                             </div>
+                                                            </Link>
                                                         </div>
                                                     </div>
                                                 </SwiperSlide>

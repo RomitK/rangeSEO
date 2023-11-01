@@ -1,6 +1,4 @@
-"use client";
-import React from "react";
-const Property = (props) => {
+function Property(props) {
   return (
     <>
       <div>
@@ -54,7 +52,6 @@ const Property = (props) => {
                   className="fa fa-bed fa-lg bed"
                   title="bedroom"
                 ></i>
-                <span className="fa-sr-only">bedroom</span>
                 <span>{props.bedrooms}</span>
               </div>
               <div>
@@ -63,7 +60,6 @@ const Property = (props) => {
                   className="fa fa-bath fa-lg bath"
                   title="bathroom"
                 ></i>
-                <span className="fa-sr-only">bathroom</span>
                 <span>{props.bathrooms}</span>
               </div>
               <div>
@@ -83,6 +79,6 @@ const Property = (props) => {
       </div>
     </>
   );
-};
+}
 
 export default Property;

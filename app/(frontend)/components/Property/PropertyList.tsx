@@ -1,10 +1,5 @@
 "use client";
-import React from "react";
-import { useEffect, useRef, useState } from "react";
-import Select from "react-select";
-import Link from "next/link";
-import { useGetAllPropertyData } from "@/src/services/PropertyService";
-
+import { useEffect, useRef, useState, useCallback } from "react";
 import Property from "./Property";
 import {
   GoogleMap,
@@ -16,11 +11,15 @@ import {
 } from "@react-google-maps/api";
 
 const PropertyList = ({ params }) => {
-  const [showMap, setShowMap] = useState(false);
-  const [airports, setAirports] = useState([]);
-  const [markers2, setMarkers2] = useState([]);
-  const [zoom, setZoom] = useState(10);
+  const [showMap, setShowMap] = useState(true);
+  const [properties, setProperties] = useState([]);
+  const [originalMarkers, setOriginalMarkers] = useState([]);
+  const [filteredMarkers, setFilteredMarkers] = useState([]);
   const [trigger, setTrigger] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
+  const [infoWindowData, setInfoWindowData] = useState();
+  const mapRef2 = useRef(null);
   const [form, setForm] = useState({
     acc: "",
     cat: "",
@@ -30,45 +29,71 @@ const PropertyList = ({ params }) => {
     maxprice: "",
   });
 
-  //   useEffect(() => {
-  //     const formData = new FormData();
-  //     for (let key in form) {
-  //       if (form.hasOwnProperty(key)) {
-  //         // Ensure the key is a direct property of the object
-  //         //   console.log(key, );
-  //         formData.append(key, form[key]);
-  //       }
-  //     }
-  //   }, []);
-  const { propertiesData } = useGetAllPropertyData();
-  const airportDup = propertiesData?.html;
-  //   setMarkers2([...airportDup]);
-  //   setAirports([...airportDup]);
+  const getMarkersInView = useCallback(() => {
+    if (!mapRef2.current) return;
+
+    const bounds = mapRef2.current.getBounds();
+
+    const markersInsideView = originalMarkers.filter((marker) =>
+      bounds.contains(new window.google.maps.LatLng(marker.lat, marker.lng))
+    );
+    // setFilteredMarkers([...markersInsideView]);
+    setProperties([...markersInsideView]);
+  }, [originalMarkers]);
+
+  useEffect(() => {
+    const formData = new FormData();
+    for (let key in form) {
+      if (form.hasOwnProperty(key)) {
+        formData.append(key, form[key]);
+      }
+    }
+    fetch("https://rangenew.websitedemo.world/api/properties", {
+      method: "post",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        const propertiesDup = JSON.parse(res.data);
+        setProperties([...propertiesDup]);
+        setOriginalMarkers([...propertiesDup]);
+        mapRef2?.current?.setCenter({
+          lat: parseFloat(propertiesDup[0].address_latitude),
+          lng: parseFloat(propertiesDup[0].address_longitude),
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error); // Handle the error response object
+      });
+  }, [form]);
+
+  useEffect(() => {
+    if (trigger) {
+      setFilteredMarkers([...originalMarkers]);
+      getMarkersInView();
+    }
+  }, [trigger, getMarkersInView, originalMarkers]);
+
   const handleChange = (e) => {
     form[e.target.name] = e.target.value;
     setForm({ ...form });
   };
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE",
     libraries: ["drawing", "geometry"],
   });
-  const [mapRef, setMapRef] = useState();
-  const [isOpen, setIsOpen] = useState(false);
-  const [infoWindowData, setInfoWindowData] = useState();
-  const mapRef2 = useRef(null);
-  /*const markers = [
-        { address: "Address1", lat: 31.4697, lng: 74.2728 },
-        { address: "Address2", lat: 31.5124, lng: 74.2845 },
-        { address: "Address3", lat: 31.5209, lng: 74.2701 },
-    ];*/
 
-  const markers = airports;
+  useEffect(() => {
+    if (isLoaded && properties.length) {
+      setFilteredMarkers([...properties]);
+    }
+  }, [isLoaded, properties]);
 
   const onMapLoad = (map) => {
-    setMapRef(map);
     mapRef2.current = map;
     const bounds = new google.maps.LatLngBounds();
-    markers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
+    filteredMarkers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
     map.fitBounds(bounds);
   };
 
@@ -84,7 +109,6 @@ const PropertyList = ({ params }) => {
     price,
     property_banner
   ) => {
-    mapRef?.panTo({ lat, lng });
     setInfoWindowData({
       id,
       address,
@@ -98,17 +122,10 @@ const PropertyList = ({ params }) => {
     setIsOpen(true);
   };
 
-  const getMarkersInView = () => {
-    console.log("zoom-in");
-    if (!mapRef2.current) return;
-
-    const bounds = mapRef2.current.getBounds();
-
-    const markersInsideView = markers2.filter((marker) =>
-      bounds.contains(new window.google.maps.LatLng(marker.lat, marker.lng))
-    );
-    console.log(markersInsideView);
-    setAirports(markersInsideView);
+  const handleCenterChanged = () => {
+    if (mapRef2) {
+      const newCenter = mapRef2?.current?.getCenter();
+    }
   };
 
   return (
@@ -181,9 +198,7 @@ const PropertyList = ({ params }) => {
                     disabled=""
                   >
                     <option value="">Select Category</option>
-                    <option value="1" selected="">
-                      Rent
-                    </option>
+                    <option value="1">Rent</option>
                     <option value="2">Ready</option>
                   </select>
                 </div>
@@ -243,173 +258,204 @@ const PropertyList = ({ params }) => {
                     </div>
                   </div>
                 </div>
+                <div className="col d-flex align-items-center">
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id="exampleCheckbox"
+                      checked={showMap}
+                      onChange={() => {
+                        setShowMap(!showMap);
+                      }}
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="exampleCheckbox"
+                    >
+                      Map
+                    </label>
+                  </div>
+                </div>
               </div>
             </form>
           </div>
         </div>
-        <div className="col">
-          <div className="">
-            <button
-              style={{
-                color: "black",
-                backgroundColor: "lightgrey",
-                border: "none",
-              }}
-              onClick={() => setTrigger((prev) => prev + 1)}
-            >
-              Clear Map Selection
-            </button>
-            {!isLoaded ? (
-              <h1>Loading...</h1>
-            ) : (
-              <GoogleMap
-                onZoomChanged={getMarkersInView}
-                onDragEnd={getMarkersInView}
-                zoom={zoom}
-                center={airports[0]}
-                mapContainerClassName="map-container"
-                onLoad={onMapLoad}
-                onClick={() => setIsOpen(false)}
-              >
-                {markers.map(
-                  (
-                    {
-                      address,
-                      name,
-                      area,
-                      bedrooms,
-                      bathrooms,
-                      price,
-                      property_banner,
-                      lat,
-                      lng,
-                    },
-                    ind
-                  ) => (
-                    <MarkerF
-                      key={ind}
-                      position={{ lat, lng }}
-                      onClick={() => {
-                        handleMarkerClick(
-                          ind,
-                          lat,
-                          lng,
-                          address,
-                          name,
-                          area,
-                          bedrooms,
-                          bathrooms,
-                          price,
-                          property_banner
-                        );
-                      }}
-                    >
-                      <OverlayView
-                        position={{ lat, lng }}
-                        mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-                      >
-                        <div
-                          style={{
-                            backgroundColor: "white",
-                            padding: "5px",
-                            border: "1px solid #ccc",
-                            boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
-                            borderRadius: "4px",
-                            minWidth: "50px", // Set a minimum width
-                            whiteSpace: "nowrap", // Rounded corners
-                          }}
-                        >
-                          {price}
-                        </div>
-                      </OverlayView>
-                      {isOpen && infoWindowData?.id === ind && (
-                        <InfoWindow onCloseClick={() => setIsOpen(false)}>
-                          <div>
-                            <Property
-                              area={infoWindowData.area}
-                              bathrooms={infoWindowData.bathrooms}
-                              bedrooms={infoWindowData.bedrooms}
-                              price={infoWindowData.price}
-                              address={infoWindowData.address}
-                              property_banner={infoWindowData.property_banner}
-                              name={infoWindowData.name}
-                            />
-                          </div>
-                        </InfoWindow>
-                      )}
-                    </MarkerF>
-                  )
-                )}
-                <DrawingManagerF
-                  onPolygonComplete={(polygon) => {
-                    const drawnPolygonPath = polygon.getPath();
-                    const markersInsidePolygon = markers.filter((marker) =>
-                      window.google.maps.geometry.poly.containsLocation(
-                        new window.google.maps.LatLng(marker.lat, marker.lng),
-                        polygon
-                      )
-                    );
-                    setAirports(markersInsidePolygon);
-                    setMarkers2(markersInsidePolygon);
-                    console.log(markersInsidePolygon); // These are the markers inside the drawn polygon
-
-                    polygon.setMap(null); // Remove the polygon after processing
-                  }}
-                  options={{
-                    drawingControl: true,
-                    drawingControlOptions: {
-                      position: window.google.maps.ControlPosition.TOP_CENTER,
-                      drawingModes: ["polygon"],
-                    },
-                    polygonOptions: {
-                      fillColor: "#FF0000",
-                      fillOpacity: 0.2,
-                      strokeWeight: 1,
-                      clickable: false,
-                      editable: true,
-                      zIndex: 1,
-                    },
-                  }}
-                />
-              </GoogleMap>
-            )}
-          </div>
-        </div>
-        {!showMap && (
+        {showMap && (
           <div className="col">
-            <div id="dataTable">
+            <div className="">
+              <button
+                style={{
+                  color: "black",
+                  backgroundColor: "lightgrey",
+                  border: "none",
+                }}
+                onClick={() => {
+                  setTrigger((prev) => prev + 1);
+                }}
+              >
+                Clear Map Selection
+              </button>
+              {!isLoaded ? (
+                <h1>Loading...</h1>
+              ) : (
+                <GoogleMap
+                  onZoomChanged={getMarkersInView}
+                  onDragEnd={getMarkersInView}
+                  zoom={10}
+                  center={centerRef.current}
+                  onCenterChanged={handleCenterChanged}
+                  mapContainerClassName="map-container"
+                  onLoad={onMapLoad}
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
+                >
+                  {filteredMarkers.map(
+                    (
+                      {
+                        address,
+                        name,
+                        area,
+                        bedrooms,
+                        bathrooms,
+                        price,
+                        property_banner,
+                        lat,
+                        lng,
+                      },
+                      ind
+                    ) => (
+                      <MarkerF
+                        key={ind}
+                        position={{ lat, lng }}
+                        onClick={() => {
+                          handleMarkerClick(
+                            ind,
+                            lat,
+                            lng,
+                            address,
+                            name,
+                            area,
+                            bedrooms,
+                            bathrooms,
+                            price,
+                            property_banner
+                          );
+                        }}
+                      >
+                        <OverlayView
+                          position={{ lat, lng }}
+                          mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+                        >
+                          <div
+                            style={{
+                              backgroundColor: "white",
+                              padding: "5px",
+                              border: "1px solid #ccc",
+                              boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
+                              borderRadius: "4px",
+                              minWidth: "50px", // Set a minimum width
+                              whiteSpace: "nowrap", // Rounded corners
+                            }}
+                          >
+                            {price}
+                          </div>
+                        </OverlayView>
+                        {isOpen && infoWindowData?.id === ind && (
+                          <InfoWindow
+                            onCloseClick={() => {
+                              setIsOpen(false);
+                            }}
+                          >
+                            <div>
+                              <Property
+                                area={infoWindowData.area}
+                                bathrooms={infoWindowData.bathrooms}
+                                bedrooms={infoWindowData.bedrooms}
+                                price={infoWindowData.price}
+                                address={infoWindowData.address}
+                                property_banner={infoWindowData.property_banner}
+                                name={infoWindowData.name}
+                              />
+                            </div>
+                          </InfoWindow>
+                        )}
+                      </MarkerF>
+                    )
+                  )}
+                  <DrawingManagerF
+                    onPolygonComplete={(polygon) => {
+                      const drawnPolygonPath = polygon.getPath();
+                      const markersInsidePolygon = originalMarkers.filter(
+                        (marker) =>
+                          window.google.maps.geometry.poly.containsLocation(
+                            new window.google.maps.LatLng(
+                              marker.lat,
+                              marker.lng
+                            ),
+                            polygon
+                          )
+                      );
+                      setProperties(markersInsidePolygon);
+                      setFilteredMarkers(markersInsidePolygon);
+
+                      polygon.setMap(null); // Remove the polygon after processing
+                    }}
+                    options={{
+                      drawingControl: true,
+                      drawingControlOptions: {
+                        position: window.google.maps.ControlPosition.TOP_CENTER,
+                        drawingModes: ["polygon"],
+                      },
+                      polygonOptions: {
+                        fillColor: "#FF0000",
+                        fillOpacity: 0.2,
+                        strokeWeight: 1,
+                        clickable: false,
+                        editable: true,
+                        zIndex: 1,
+                      },
+                    }}
+                  />
+                </GoogleMap>
+              )}
+            </div>
+          </div>
+        )}
+        <div className="col">
+          <div id="dataTable">
+            <div>
+              <h5>Real Estate &amp; Homes For Sale</h5>
+            </div>
+            <div id="PropertyResult">
               <div>
-                <h5>Real Estate &amp; Homes For Sale</h5>
-              </div>
-              <div id="PropertyResult">
-                <div>
-                  <div className="col-12 col-lg-12 col-md-12">
-                    <div className="row g-3">
-                      <div className="col-12 col-lg-12 col-md-12">
-                        <p className="text-primary mb-0">
-                          {airports.length} results found
-                        </p>
-                      </div>
-                      {airports.map((airpot, index) => (
-                        <div key={index} className="col-12 col-lg-6 col-md-4">
-                          <Property
-                            area={airpot.area}
-                            bathrooms={airpot.bathrooms}
-                            bedrooms={airpot.bedrooms}
-                            price={airpot.price}
-                            address={airpot.address}
-                            property_banner={airpot.property_banner}
-                            name={airpot.name}
-                          />
-                        </div>
-                      ))}
+                <div className="col-12 col-lg-12 col-md-12">
+                  <div className="row g-3">
+                    <div className="col-12 col-lg-12 col-md-12">
+                      <p className="text-primary mb-0">
+                        {properties.length} results found
+                      </p>
                     </div>
+                    {properties.map((property, index) => (
+                      <div key={index} className="col-12 col-lg-6 col-md-4">
+                        <Property
+                          area={property.area}
+                          bathrooms={property.bathrooms}
+                          bedrooms={property.bedrooms}
+                          price={property.price}
+                          address={property.address}
+                          property_banner={property.property_banner}
+                          name={property.name}
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

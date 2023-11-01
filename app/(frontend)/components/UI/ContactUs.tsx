@@ -20,6 +20,13 @@ const ContactUs = () => {
         toast.success(
           "Contact form submitted successfully, out support teams contact you soon"
         );
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          phone: "",
+        })
       })
       .catch((err) => {
         toast.error("Something went wrong, please try again");
