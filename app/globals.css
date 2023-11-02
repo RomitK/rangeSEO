@@ -8,6 +8,11 @@
 @import '../public/css/style.css';
 @import '../public/css/responsive.css';
 
+.map-container {
+    height: 80vh;
+    width: 100%;
+    margin: auto;
+  }
 body{
     font-family: 'Montserrat', sans-serif;
 }
