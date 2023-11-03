@@ -1,3 +1,4 @@
+import Link from "next/link";
 function Property(props) {
   return (
     <>
@@ -31,14 +32,14 @@ function Property(props) {
             </a>
           </div>
           <div className="card-body rounded-3 rounded-top-0">
-            <a
-              href="http://localhost:8000/singleProject"
+            <Link
+              href={`properties/${props.slug}`}
               className="text-decoration-none"
             >
               <h6 className="text-black fs-16 fw-semibold mb-0">
                 {props.name}
               </h6>
-            </a>
+            </Link>
             <div className="mb-1">
               <small className="text-secondary">{props.address}</small>
             </div>

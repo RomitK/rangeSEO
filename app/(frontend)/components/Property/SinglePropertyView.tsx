@@ -1,6 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper as SwiperType } from "swiper";
@@ -8,18 +7,62 @@ import "swiper/swiper-bundle.css";
 import "swiper/css/pagination";
 import Link from "next/link";
 import parse from "html-react-parser";
-import GoogleMapReact from "google-map-react";
-import { useMemo } from "react";
+import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
+
 import { useGetSinglePropertyData } from "@/src/services/PropertyService";
 
 function SinglePropertyView({ params }) {
   const slug = params.slug[0];
+  const [nearByLocations, setNearByLocations] = useState([]);
+  const [type, setType] = useState("property");
+  const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
+  const mapRef = useRef(null);
+
   const { propertyData } = useGetSinglePropertyData(slug);
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.GOOGLE_MAP_KEY,
+    libraries: ["geometry", "places"],
+  });
 
   const swiperRef = useRef<SwiperType>;
   const PropertySwiperRef = useRef<SwiperType>;
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  const onMapLoad = (map) => {
+    mapRef.current = map;
+  };
+
+  const getNearByPlacesByType = (locType, data) => {
+    setNearByLocations([]);
+    let request = {
+      location: {
+        lat: parseFloat(data?.address_latitude),
+        lng: parseFloat(data?.address_longitude),
+      },
+      radius: 5000,
+      type: locType,
+    };
+
+    let service = new google.maps.places.PlacesService(mapRef.current);
+
+    service.nearbySearch(request, (results, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        const locationData = [];
+        for (var i = 0; i < results.length; i++) {
+          locationData.push({
+            name: results[i]?.name,
+            lat: results[i].geometry?.location?.lat(),
+            lng: results[i].geometry?.location?.lng(),
+            icon: results[i]?.icon,
+          });
+        }
+        setNearByLocations(locationData);
+        setType(locType);
+      }
+    });
+  };
+
   return (
     <>
       <section className="my-5">
@@ -277,25 +320,28 @@ function SinglePropertyView({ params }) {
                             </span>
                           </small>
                         </li>
-                        {propertyData && propertyData.developer && Object.keys(propertyData.developer).length > 0 && (
+                        {propertyData &&
+                          propertyData.developer &&
+                          Object.keys(propertyData.developer).length > 0 && (
                             <li className="mb-2">
-                            <small>
-                              <img
-                                src="/images/icons/building.png"
-                                alt="Range"
-                                className="img-fluid"
-                                width="30px"
-                              />
-                              <span className="align-text-top ms-2 fs-16 fw-500">
-                                
-                                  <Link href={`/developers/${propertyData.developer.slug}`}  className="text-decoration-none">
-                                      {propertyData.developer.name}
+                              <small>
+                                <img
+                                  src="/images/icons/building.png"
+                                  alt="Range"
+                                  className="img-fluid"
+                                  width="30px"
+                                />
+                                <span className="align-text-top ms-2 fs-16 fw-500">
+                                  <Link
+                                    href={`/developers/${propertyData.developer.slug}`}
+                                    className="text-decoration-none"
+                                  >
+                                    {propertyData.developer.name}
                                   </Link>
-                              </span>
-                            </small>
-                          </li>
-                        )}
-                        
+                                </span>
+                              </small>
+                            </li>
+                          )}
                       </ul>
                     </div>
                     <div className="py-3">
@@ -613,83 +659,158 @@ function SinglePropertyView({ params }) {
                         <h4 className="mb-0">NEARBY</h4>
                       </div>
                     </div>
-                    <div className="row g-1">
-                      <div className="col-6 col-lg-3 col-md-3">
-                        <button
-                          className="btn btnNearby w-100 h-100"
-                          icon="graduation-cap"
-                          btnNearbyKey="School"
-                        >
-                          School
-                        </button>
-                      </div>
-                      <div className="col-6 col-lg-3 col-md-3">
-                        <button
-                          className="btn btnNearby w-100 h-100"
-                          icon="building"
-                          btnNearbyKey="Gym"
-                        >
-                          Gym
-                        </button>
-                      </div>
-                      <div className="col-6 col-lg-3 col-md-3">
-                        <button
-                          className="btn btnNearby w-100 h-100"
-                          icon="shopping-cart"
-                          btnNearbyKey="Super market"
-                        >
-                          Super market
-                        </button>
-                      </div>
-                      <div className="col-6 col-lg-3 col-md-3">
-                        <button
-                          className="btn btnNearby w-100 h-100"
-                          icon="h-square"
-                          btnNearbyKey="Hospital"
-                        >
-                          Hospital
-                        </button>
-                      </div>
-                      <div className="col-6 col-lg-3 col-md-3">
-                        <button
-                          className="btn btnNearby w-100 h-100"
-                          icon="paw"
-                          btnNearbyKey="pet shop"
-                        >
-                          PET SHOP
-                        </button>
-                      </div>
-                      <div className="col-6 col-lg-3 col-md-3">
-                        <button
-                          className="btn btnNearby w-100 h-100"
-                          icon="shopping-bag"
-                          btnNearbyKey="mall"
-                        >
-                          MALL
-                        </button>
-                      </div>
-                      <div className="col-6 col-lg-3 col-md-3">
-                        <button
-                          className="btn btnNearby w-100 h-100"
-                          icon="building-o"
-                          btnNearbyKey="Gas Station"
-                        >
-                          GAS STATION
-                        </button>
-                      </div>
-                      <div className="col-6 col-lg-3 col-md-3">
-                        <button
-                          className="btn btnNearby w-100 h-100"
-                          icon="cutlery"
-                          btnNearbyKey="Restaurant"
-                        >
-                          RESTAURANT
-                        </button>
-                      </div>
-                    </div>
-                    <div className="mapContainer py-3">
-                      <div id="map"></div>
-                    </div>
+                    {propertyData && (
+                      <>
+                        <div className="row g-1">
+                          <div className="col-6 col-lg-3 col-md-3">
+                            <button
+                              className="btn btnNearby w-100 h-100"
+                              icon="graduation-cap"
+                              btnNearbyKey="School"
+                              onClick={() =>
+                                getNearByPlacesByType("school", propertyData)
+                              }
+                            >
+                              School
+                            </button>
+                          </div>
+                          <div className="col-6 col-lg-3 col-md-3">
+                            <button
+                              className="btn btnNearby w-100 h-100"
+                              icon="building"
+                              btnNearbyKey="Gym"
+                              onClick={() =>
+                                getNearByPlacesByType("gym", propertyData)
+                              }
+                            >
+                              Gym
+                            </button>
+                          </div>
+                          <div className="col-6 col-lg-3 col-md-3">
+                            <button
+                              className="btn btnNearby w-100 h-100"
+                              icon="shopping-cart"
+                              btnNearbyKey="Super market"
+                              onClick={() =>
+                                getNearByPlacesByType(
+                                  "supermarket",
+                                  propertyData
+                                )
+                              }
+                            >
+                              Super market
+                            </button>
+                          </div>
+                          <div className="col-6 col-lg-3 col-md-3">
+                            <button
+                              className="btn btnNearby w-100 h-100"
+                              icon="h-square"
+                              btnNearbyKey="Hospital"
+                              onClick={() =>
+                                getNearByPlacesByType("hospital", propertyData)
+                              }
+                            >
+                              Hospital
+                            </button>
+                          </div>
+                          <div className="col-6 col-lg-3 col-md-3">
+                            <button
+                              className="btn btnNearby w-100 h-100"
+                              icon="paw"
+                              btnNearbyKey="pet shop"
+                              onClick={() =>
+                                getNearByPlacesByType("pet_store", propertyData)
+                              }
+                            >
+                              PET SHOP
+                            </button>
+                          </div>
+                          <div className="col-6 col-lg-3 col-md-3">
+                            <button
+                              className="btn btnNearby w-100 h-100"
+                              icon="shopping-bag"
+                              btnNearbyKey="mall"
+                              onClick={() =>
+                                getNearByPlacesByType(
+                                  "shopping_mall",
+                                  propertyData
+                                )
+                              }
+                            >
+                              MALL
+                            </button>
+                          </div>
+                          <div className="col-6 col-lg-3 col-md-3">
+                            <button
+                              className="btn btnNearby w-100 h-100"
+                              icon="building-o"
+                              btnNearbyKey="Gas Station"
+                              onClick={() =>
+                                getNearByPlacesByType(
+                                  "gas_station",
+                                  propertyData
+                                )
+                              }
+                            >
+                              GAS STATION
+                            </button>
+                          </div>
+                          <div className="col-6 col-lg-3 col-md-3">
+                            <button
+                              className="btn btnNearby w-100 h-100"
+                              icon="cutlery"
+                              btnNearbyKey="Restaurant"
+                              onClick={() =>
+                                getNearByPlacesByType(
+                                  "restaurant",
+                                  propertyData
+                                )
+                              }
+                            >
+                              RESTAURANT
+                            </button>
+                          </div>
+                        </div>
+                        <div className="mapContainer py-3">
+                          {isLoaded && (
+                            <GoogleMap
+                              zoom={10}
+                              center={centerRef.current}
+                              mapContainerClassName="map-container"
+                              onLoad={onMapLoad}
+                            >
+                              {type == "property" ? (
+                                <MarkerF
+                                  position={{
+                                    lat: parseFloat(
+                                      propertyData?.address_latitude
+                                    ),
+                                    lng: parseFloat(
+                                      propertyData?.address_longitude
+                                    ),
+                                  }}
+                                  title={propertyData?.name}
+                                />
+                              ) : (
+                                <>
+                                  {nearByLocations.map((location, lIndex) => (
+                                    <MarkerF
+                                      key={lIndex + "location"}
+                                      position={{
+                                        lat: location?.lat,
+                                        lng: location?.lng,
+                                      }}
+                                      title={location?.name}
+                                      icon={location?.icon}
+                                    />
+                                  ))}
+                                </>
+                              )}
+                            </GoogleMap>
+                          )}
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
                 <div className="col-12 col-lg-4 col-md-4">
