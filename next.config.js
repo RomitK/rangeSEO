@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   env: {
     API_HOST: process.env.API_HOST,
     GOOGLE_MAP_KEY: process.env.GOOGLE_MAP_KEY,

@@ -41,7 +41,13 @@ function Navbar() {
                                             <li className=""><a href="" className="mainLink">Sell</a></li>
                                         </ul>
                                     </li>
-                                    <li className="dropdown navDropMain nav-item">
+                                    <li className="nav-item">
+                                        <Link className="nav-link" href="/services">
+                                        Services
+                                        </Link>
+                                        
+                                    </li>
+                                    {/* <li className="dropdown navDropMain nav-item">
                                         <a href="" className="dropdown-toggle nav-link " data-toggle="dropdown">Services<b
                                             className="caret"></b></a>
                                         <ul className="dropdown-menu">
@@ -52,7 +58,7 @@ function Navbar() {
                                             <li className=""><a href="" className="mainLink">Holiday Homes</a></li>
                                             <li className=""><a href="" className="mainLink">Mortgages</a></li>
                                         </ul>
-                                    </li>
+                                    </li> */}
                                     <li className="dropdown navDropMain nav-item">
                                         <a className="dropdown-toggle nav-link " data-toggle="dropdown">Insights<b
                                             className="caret"></b></a>
@@ -64,8 +70,16 @@ function Navbar() {
                                                 </Link>
 
                                             </li>
-                                            <li className=""><a href="singleDeveloper" className="mainLink">Developers</a></li>
-                                            <li className=""><a href="singleProject" className="mainLink">Projects</a></li>
+                                            <li className="">
+                                                <Link className="mainLink" href="/developers">
+                                                Developers
+                                                </Link>
+                                              </li>
+                                            <li className="">
+                                            <Link className="mainLink" href="/projects">
+                                                Projects
+                                            </Link>
+                                           </li>
                                         </ul>
                                     </li>
 
@@ -217,8 +231,13 @@ function Navbar() {
                                         </ul>
                                     </li>
                                 }
-
-                                <li className="dropdown navDropMain nav-item">
+                                    <li className="nav-item">
+                                        <Link className="nav-link" href="/services">
+                                        Services
+                                        </Link>
+                                        
+                                    </li>
+                                {/* <li className="dropdown navDropMain nav-item">
                                     <a href="" className="dropdown-toggle nav-link " data-toggle="dropdown">Services<b
                                         className="caret"></b></a>
                                     <ul className="dropdown-menu">
@@ -229,7 +248,7 @@ function Navbar() {
                                         <li className=""><a href="" className="mainLink">Holiday Homes</a></li>
                                         <li className=""><a href="" className="mainLink">Mortgages</a></li>
                                     </ul>
-                                </li>
+                                </li> */}
                                 <li className="dropdown navDropMain nav-item">
                                     <a className="dropdown-toggle nav-link " data-toggle="dropdown">Insights<b
                                         className="caret"></b></a>
@@ -242,8 +261,17 @@ function Navbar() {
                                                 Communities
                                             </Link>
                                         </li>
-                                        <li className=""><a href="singleDeveloper" className="mainLink">Developers</a></li>
-                                        <li className=""><a href="singleProject" className="mainLink">Projects</a></li>
+                                        <li className="">
+                                                <Link className="mainLink" href="/developers">
+                                                Developers
+                                                </Link>
+                                              </li>
+                                            <li className="">
+                                            <Link className="mainLink" href="/projects">
+                                                Projects
+                                            </Link>
+                                            </li>
+                                        
                                     </ul>
                                 </li>
 
