@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper as SwiperType } from "swiper";
@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import Link from "next/link";
 import parse from "html-react-parser";
 import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
+import { getFontAwesomeSvgPath } from "@/src/utils/helpers/common";
 
 import { useGetSinglePropertyData } from "@/src/services/PropertyService";
 
@@ -15,6 +16,8 @@ function SinglePropertyView({ params }) {
   const slug = params.slug[0];
   const [nearByLocations, setNearByLocations] = useState([]);
   const [type, setType] = useState("property");
+  const [icon, setIcon] = useState("");
+  const [iconPath, setIconPath] = useState("");
   const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
   const mapRef = useRef(null);
 
@@ -63,6 +66,12 @@ function SinglePropertyView({ params }) {
     });
   };
 
+  useEffect(() => {
+    let path = getFontAwesomeSvgPath(icon);
+    setIconPath(path);
+  }, [icon]);
+
+  
   return (
     <>
       <section className="my-5">
@@ -665,11 +674,12 @@ function SinglePropertyView({ params }) {
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
                               className="btn btnNearby w-100 h-100"
-                              icon="graduation-cap"
+                              icon="school"
                               btnNearbyKey="School"
-                              onClick={() =>
-                                getNearByPlacesByType("school", propertyData)
-                              }
+                              onClick={() => {
+                                getNearByPlacesByType("school", propertyData);
+                                setIcon("school");
+                              }}
                             >
                               School
                             </button>
@@ -677,11 +687,12 @@ function SinglePropertyView({ params }) {
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
                               className="btn btnNearby w-100 h-100"
-                              icon="building"
+                              icon="gym"
                               btnNearbyKey="Gym"
-                              onClick={() =>
-                                getNearByPlacesByType("gym", propertyData)
-                              }
+                              onClick={() => {
+                                getNearByPlacesByType("gym", propertyData);
+                                setIcon("gym");
+                              }}
                             >
                               Gym
                             </button>
@@ -689,14 +700,15 @@ function SinglePropertyView({ params }) {
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
                               className="btn btnNearby w-100 h-100"
-                              icon="shopping-cart"
+                              icon="supermarket"
                               btnNearbyKey="Super market"
-                              onClick={() =>
+                              onClick={() => {
                                 getNearByPlacesByType(
                                   "supermarket",
                                   propertyData
-                                )
-                              }
+                                );
+                                setIcon("supermarket");
+                              }}
                             >
                               Super market
                             </button>
@@ -704,11 +716,12 @@ function SinglePropertyView({ params }) {
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
                               className="btn btnNearby w-100 h-100"
-                              icon="h-square"
+                              icon="hospital"
                               btnNearbyKey="Hospital"
-                              onClick={() =>
-                                getNearByPlacesByType("hospital", propertyData)
-                              }
+                              onClick={() => {
+                                getNearByPlacesByType("hospital", propertyData);
+                                setIcon("hospital");
+                              }}
                             >
                               Hospital
                             </button>
@@ -716,11 +729,15 @@ function SinglePropertyView({ params }) {
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
                               className="btn btnNearby w-100 h-100"
-                              icon="paw"
+                              icon="pet"
                               btnNearbyKey="pet shop"
-                              onClick={() =>
-                                getNearByPlacesByType("pet_store", propertyData)
-                              }
+                              onClick={() => {
+                                getNearByPlacesByType(
+                                  "pet_store",
+                                  propertyData
+                                );
+                                setIcon("pet");
+                              }}
                             >
                               PET SHOP
                             </button>
@@ -728,14 +745,15 @@ function SinglePropertyView({ params }) {
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
                               className="btn btnNearby w-100 h-100"
-                              icon="shopping-bag"
+                              icon="mall"
                               btnNearbyKey="mall"
-                              onClick={() =>
+                              onClick={() => {
                                 getNearByPlacesByType(
                                   "shopping_mall",
                                   propertyData
-                                )
-                              }
+                                );
+                                setIcon("mall");
+                              }}
                             >
                               MALL
                             </button>
@@ -743,14 +761,15 @@ function SinglePropertyView({ params }) {
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
                               className="btn btnNearby w-100 h-100"
-                              icon="building-o"
+                              icon="gas_station"
                               btnNearbyKey="Gas Station"
-                              onClick={() =>
+                              onClick={() => {
                                 getNearByPlacesByType(
                                   "gas_station",
                                   propertyData
-                                )
-                              }
+                                );
+                                setIcon("gas_station");
+                              }}
                             >
                               GAS STATION
                             </button>
@@ -758,14 +777,15 @@ function SinglePropertyView({ params }) {
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
                               className="btn btnNearby w-100 h-100"
-                              icon="cutlery"
+                              icon="restaurant"
                               btnNearbyKey="Restaurant"
-                              onClick={() =>
+                              onClick={() => {
                                 getNearByPlacesByType(
                                   "restaurant",
                                   propertyData
-                                )
-                              }
+                                );
+                                setIcon("restaurant");
+                              }}
                             >
                               RESTAURANT
                             </button>
@@ -801,7 +821,14 @@ function SinglePropertyView({ params }) {
                                         lng: location?.lng,
                                       }}
                                       title={location?.name}
-                                      icon={location?.icon}
+                                      icon={{
+                                        path: iconPath,
+                                        fillColor: "#ff0000",
+                                        fillOpacity: 1,
+                                        strokeWeight: 1,
+                                        strokeColor: "#ffffff",
+                                        scale: 0.075,
+                                      }}
                                     />
                                   ))}
                                 </>
