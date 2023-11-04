@@ -1418,3 +1418,24 @@ height:600px;
 .propertyCardNew .size {
     color: #388E3C;
 }
+.mapMarker .icon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #FFFFFF;
+}.mapMarker {
+    align-items: center;
+    background-color: #e93636;
+    border-radius: 50%;
+    color: #263238;
+    display: flex;
+    font-size: 14px;
+    gap: 15px;
+    height: 30px;
+    justify-content: center;
+    padding: 4px;
+    position: relative;
+    position: relative;
+    transition: all 0.3s ease-out;
+    width: 30px;
+}

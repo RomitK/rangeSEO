@@ -39,7 +39,10 @@ function SinglePropertyView({ params }) {
   const onMapLoad = (map) => {
     mapRef.current = map;
   };
-
+  $('.btnNearby').on('click', function() {
+    $('.btnNearby').removeClass('active');
+    $(this).addClass('active');
+});
   const getNearByPlacesByType = (locType, data) => {
     setNearByLocations([]);
     let request = {
@@ -93,7 +96,6 @@ function SinglePropertyView({ params }) {
     $(".step-2").hide();
     $(".pickitem ").removeClass("active");
   });
-
   return (
     <>
       <section className="my-5">
@@ -816,8 +818,11 @@ function SinglePropertyView({ params }) {
                         <div className="mapContainer py-3">
                           {isLoaded && (
                             <GoogleMap
-                              zoom={10}
-                              center={centerRef.current}
+                              zoom={15}
+                              center={{
+                                lat: parseFloat(propertyData?.default_latitude),
+                                lng: parseFloat(propertyData?.default_longitude),
+                              }}
                               mapContainerClassName="map-container"
                               onLoad={onMapLoad}
                             >
