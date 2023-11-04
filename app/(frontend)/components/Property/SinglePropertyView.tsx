@@ -9,6 +9,7 @@ import Link from "next/link";
 import parse from "html-react-parser";
 import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
 import { getFontAwesomeSvgPath } from "@/src/utils/helpers/common";
+import Location from "./Location";
 
 import { useGetSinglePropertyData } from "@/src/services/PropertyService";
 
@@ -20,6 +21,7 @@ function SinglePropertyView({ params }) {
   const [iconPath, setIconPath] = useState("");
   const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
   const mapRef = useRef(null);
+  const [map, setMap] = useState(null);
 
   const { propertyData } = useGetSinglePropertyData(slug);
   const { isLoaded } = useLoadScript({
@@ -34,36 +36,50 @@ function SinglePropertyView({ params }) {
 
   const onMapLoad = (map) => {
     mapRef.current = map;
+    setMap(map);
   };
 
-  const getNearByPlacesByType = (locType, data) => {
+  const getNearByPlacesByTypeMap = (locType, data) => {
     setNearByLocations([]);
-    let request = {
-      location: {
-        lat: parseFloat(data?.address_latitude),
-        lng: parseFloat(data?.address_longitude),
-      },
-      radius: 5000,
-      type: locType,
-    };
-
+    const requestData = prepareRequestData(
+      locType,
+      data.address_latitude,
+      data.address_longitude
+    );
     let service = new google.maps.places.PlacesService(mapRef.current);
-
-    service.nearbySearch(request, (results, status) => {
+    service.nearbySearch(requestData, (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
-        const locationData = [];
-        for (var i = 0; i < results.length; i++) {
-          locationData.push({
-            name: results[i]?.name,
-            lat: results[i].geometry?.location?.lat(),
-            lng: results[i].geometry?.location?.lng(),
-            icon: results[i]?.icon,
-          });
-        }
-        setNearByLocations(locationData);
+        const resultData = prepareMapData(results);
+        setNearByLocations(resultData);
         setType(locType);
       }
     });
+  };
+
+  const prepareMapData = (results, limit = null) => {
+    const locationData = [];
+    let limitIteration = limit ?? results.length;
+    for (var i = 0; i < limitIteration; i++) {
+      locationData.push({
+        name: results[i]?.name,
+        lat: results[i]?.geometry?.location?.lat(),
+        lng: results[i]?.geometry?.location?.lng(),
+        icon: results[i]?.icon,
+      });
+    }
+    return locationData;
+  };
+
+  const prepareRequestData = (searchType, lat, lng) => {
+    let request = {
+      location: {
+        lat: parseFloat(lat),
+        lng: parseFloat(lng),
+      },
+      radius: 5000,
+      type: searchType,
+    };
+    return request;
   };
 
   useEffect(() => {
@@ -71,7 +87,6 @@ function SinglePropertyView({ params }) {
     setIconPath(path);
   }, [icon]);
 
-  
   return (
     <>
       <section className="my-5">
@@ -661,15 +676,16 @@ function SinglePropertyView({ params }) {
                     </div>
                   </div>
                 </div>
-                <div className="col-12 col-lg-8 col-md-8">
-                  <div>
-                    <div className="py-3">
-                      <div className="mainHead text-primary">
-                        <h4 className="mb-0">NEARBY</h4>
-                      </div>
-                    </div>
-                    {propertyData && (
-                      <>
+                {propertyData && (
+                  <>
+                    <div className="col-12 col-lg-8 col-md-8">
+                      <div>
+                        <div className="py-3">
+                          <div className="mainHead text-primary">
+                            <h4 className="mb-0">NEARBY</h4>
+                          </div>
+                        </div>
+
                         <div className="row g-1">
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
@@ -677,7 +693,10 @@ function SinglePropertyView({ params }) {
                               icon="school"
                               btnNearbyKey="School"
                               onClick={() => {
-                                getNearByPlacesByType("school", propertyData);
+                                getNearByPlacesByTypeMap(
+                                  "school",
+                                  propertyData
+                                );
                                 setIcon("school");
                               }}
                             >
@@ -690,7 +709,7 @@ function SinglePropertyView({ params }) {
                               icon="gym"
                               btnNearbyKey="Gym"
                               onClick={() => {
-                                getNearByPlacesByType("gym", propertyData);
+                                getNearByPlacesByTypeMap("gym", propertyData);
                                 setIcon("gym");
                               }}
                             >
@@ -703,7 +722,7 @@ function SinglePropertyView({ params }) {
                               icon="supermarket"
                               btnNearbyKey="Super market"
                               onClick={() => {
-                                getNearByPlacesByType(
+                                getNearByPlacesByTypeMap(
                                   "supermarket",
                                   propertyData
                                 );
@@ -719,7 +738,10 @@ function SinglePropertyView({ params }) {
                               icon="hospital"
                               btnNearbyKey="Hospital"
                               onClick={() => {
-                                getNearByPlacesByType("hospital", propertyData);
+                                getNearByPlacesByTypeMap(
+                                  "hospital",
+                                  propertyData
+                                );
                                 setIcon("hospital");
                               }}
                             >
@@ -732,7 +754,7 @@ function SinglePropertyView({ params }) {
                               icon="pet"
                               btnNearbyKey="pet shop"
                               onClick={() => {
-                                getNearByPlacesByType(
+                                getNearByPlacesByTypeMap(
                                   "pet_store",
                                   propertyData
                                 );
@@ -748,7 +770,7 @@ function SinglePropertyView({ params }) {
                               icon="mall"
                               btnNearbyKey="mall"
                               onClick={() => {
-                                getNearByPlacesByType(
+                                getNearByPlacesByTypeMap(
                                   "shopping_mall",
                                   propertyData
                                 );
@@ -764,7 +786,7 @@ function SinglePropertyView({ params }) {
                               icon="gas_station"
                               btnNearbyKey="Gas Station"
                               onClick={() => {
-                                getNearByPlacesByType(
+                                getNearByPlacesByTypeMap(
                                   "gas_station",
                                   propertyData
                                 );
@@ -780,7 +802,7 @@ function SinglePropertyView({ params }) {
                               icon="restaurant"
                               btnNearbyKey="Restaurant"
                               onClick={() => {
-                                getNearByPlacesByType(
+                                getNearByPlacesByTypeMap(
                                   "restaurant",
                                   propertyData
                                 );
@@ -836,41 +858,61 @@ function SinglePropertyView({ params }) {
                             </GoogleMap>
                           )}
                         </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-                <div className="col-12 col-lg-4 col-md-4">
-                  <div className="bg-light px-3 py-2 h-100">
-                    <div className="py-3">
-                      <p className="text-primary fw-500 mb-1 fs-20">
-                        NEARBY LOCATION
-                      </p>
+                      </div>
                     </div>
-                    <div className="border-bottom border-2 py-3">
-                      <h4 className="fw-500 mb-1">METRO STATION</h4>
-                      <p className="fw-500 mb-0">JVC Bus Station</p>
-                    </div>
+                    <div className="col-12 col-lg-4 col-md-4">
+                      <div className="bg-light px-3 py-2 h-100">
+                        <div className="py-3">
+                          <p className="text-primary fw-500 mb-1 fs-20">
+                            NEARBY LOCATION
+                          </p>
+                        </div>
+                        <div className="border-bottom border-2 py-3">
+                          <h4 className="fw-500 mb-1">METRO STATION</h4>
+                          <Location
+                            type={"bus_station"}
+                            prepareRequestData={prepareRequestData}
+                            prepareMapData={prepareMapData}
+                            property={propertyData}
+                            map={map}
+                          />
+                        </div>
 
-                    <div className="border-bottom border-2 py-3">
-                      <h4 className="fw-500 mb-1">MALL</h4>
-                      <p className="fw-500 mb-0">Mall of Emirates</p>
-                    </div>
-                    <div className="border-bottom border-2 py-3">
-                      <h4 className="fw-500 mb-1">PARK</h4>
-                      <p className="fw-500 mb-0">Lorem ipsum dolor</p>
-                      <p className="fw-500 mb-0">Lorem ipsum dolor</p>
-                      <p className="fw-500 mb-0">Lorem ipsum dolor</p>
-                    </div>
+                        <div className="border-bottom border-2 py-3">
+                          <h4 className="fw-500 mb-1">MALL</h4>
+                          <Location
+                            type={"shopping_mall"}
+                            prepareRequestData={prepareRequestData}
+                            prepareMapData={prepareMapData}
+                            property={propertyData}
+                            map={map}
+                          />
+                        </div>
+                        <div className="border-bottom border-2 py-3">
+                          <h4 className="fw-500 mb-1">PARK</h4>
+                          <Location
+                            type={"park"}
+                            prepareRequestData={prepareRequestData}
+                            prepareMapData={prepareMapData}
+                            property={propertyData}
+                            map={map}
+                          />
+                        </div>
 
-                    <div className="border-bottom border-2 py-3">
-                      <h4 className="fw-500 mb-1">SALON</h4>
-                      <p className="fw-500 mb-0">Lorem ipsum dolor</p>
-                      <p className="fw-500 mb-0">Lorem ipsum dolor</p>
-                      <p className="fw-500 mb-0">Lorem ipsum dolor</p>
+                        <div className="border-bottom border-2 py-3">
+                          <h4 className="fw-500 mb-1">SALON</h4>
+                          <Location
+                            type={"beauty_salon"}
+                            prepareRequestData={prepareRequestData}
+                            prepareMapData={prepareMapData}
+                            property={propertyData}
+                            map={map}
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
