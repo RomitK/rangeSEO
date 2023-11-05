@@ -1,5 +1,4 @@
 header{
-background-color: red;
 height: 600px;
 }
 .swiper {
@@ -112,13 +111,13 @@ height: 30px;
 background-position: center;
 }
 .sliderArrowBar .swiper-button-prev{
-    background-image: url(/images/icons/slider-left-arrow.png);
-    background-size: 30px;
-    background-repeat: no-repeat;
-    width: 30px;
-    height: 30px;
-    background-position: center;
-    }
+background-image: url(/images/icons/slider-left-arrow.png);
+background-size: 30px;
+background-repeat: no-repeat;
+width: 30px;
+height: 30px;
+background-position: center;
+}
 .vtTextBXox{
 text-align:center;
 }
@@ -166,18 +165,6 @@ padding: 20px 0px;
 font-size: 40px;
 text-transform: uppercase;
 font-weight: 500;
-}
-#secAccordion .accordion-button {
-padding: 0px;
-padding-left:30px;
-font-size: 18px;
-font-weight: 500;
-color: #3f3f3f;
-border: 0px;
-outline: none;
-box-shadow: unset;
-width: fit-content;
-text-transform: uppercase;
 }
 .collapsArea{
 margin-bottom: 30px;
@@ -306,19 +293,31 @@ color: #fff !important;
 padding: 10px 20px;
 }
 .tblTdText{
-    margin-bottom: 0px;
+margin-bottom: 0px;
 }
 .form-control.textArea{
 min-height: 140px;
 }
 .submitBtn{
-    width: 120px;
-    height: 40px;
-    margin-bottom: 10px;
+width: 120px;
+height: 40px;
+margin-bottom: 10px;
 }
 .floorFormBox{
-    padding: 10px 5px;
+padding: 10px 5px;
 }
 .floorFormBox .form-floating>label{
 font-size: 14px;
+}
+.listArrowIcon{
+width: 16px;
+height: 20px;
+object-fit: contain;
+}
+.ListpPannel .listItem{
+gap: 10px;
+display: flex;
+align-items: center;
+margin-bottom: 12px;
+font-size: 20px;
 }

@@ -66,7 +66,7 @@ function SingleProjectView({
                               <div className="sliderContent">
                                     <h5>Damac</h5>
                                     <h1>Casa</h1>
-                                  <p>
+                                  <p className="mb-5">
                                       A stunning silhouette, both distinct and majestic against the city sky, 
                                       with stunning Palm views, DAMAC Casa’s smooth curves and fluid avant-garde 
                                       design adds to Dubai’s expansive urban tapestry. A reflection of life’s special
@@ -87,7 +87,7 @@ function SingleProjectView({
                               <div className="sliderContent">
                                     <h5>Damac</h5>
                                     <h1>Casa</h1>
-                                  <p>
+                                  <p className="mb-5">
                                       A stunning silhouette, both distinct and majestic against the city sky, 
                                       with stunning Palm views, DAMAC Casa’s smooth curves and fluid avant-garde 
                                       design adds to Dubai’s expansive urban tapestry. A reflection of life’s special
@@ -180,82 +180,32 @@ function SingleProjectView({
                                                 memories and dreams, DAMAC Casa is both home and an escape, making it the 
                                                 perfect blend of urban and island life.
                                             </p>
-                                            {/* Collaps Area Start */}
+                                            {/* List Pannel Start  */}
                                             <div className="collapsArea">
-                                                  <div className="accordion" id="secAccordion">
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-1" aria-expanded="true" aria-controls="collapseOne">
+                                                  <div className="ListpPannel">
+                                                        <div className="listItem">
+                                                             <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
                                                               Outdoor Pool
-                                                            </button>
-                                                            <div id="FaqCollapse-1" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                      A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                      Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                      Dubai’s expansive urban tapestry. 
-                                                                  </p>
-                                                              </div>
-                                                            </div>
                                                         </div>
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-2" aria-expanded="false" aria-controls="collapseTwo">
-                                                                Fitness Area
-                                                            </button>
-                                                            <div id="FaqCollapse-2" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                      A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                      Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                      Dubai’s expansive urban tapestry. 
-                                                                  </p>
-                                                              </div>
-                                                            </div>
+                                                        <div className="listItem">
+                                                             <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                               Fitness Area
                                                         </div>
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-3" aria-expanded="false" aria-controls="collapseThree">
-                                                                  Kids Play Area
-                                                            </button>
-                                                            <div id="FaqCollapse-3" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                        A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                        Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                        Dubai’s expansive urban tapestry. 
-                                                                    </p>
-                                                              </div>
-                                                            </div>
+                                                        <div className="listItem">
+                                                             <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                                Kids Play Area
                                                         </div>
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-4" aria-expanded="false" aria-controls="collapseThree">
-                                                                  Beach and lagoon 
-                                                            </button>
-                                                            <div id="FaqCollapse-4" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                        A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                        Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                        Dubai’s expansive urban tapestry. 
-                                                                    </p>
-                                                              </div>
-                                                            </div>
+                                                        <div className="listItem">
+                                                              <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                                Beach and lagoon 
                                                         </div>
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-5" aria-expanded="false" aria-controls="collapseThree">
-                                                                    Green Community
-                                                            </button>
-                                                            <div id="FaqCollapse-5" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                        A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                        Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                        Dubai’s expansive urban tapestry. 
-                                                                    </p>
-                                                              </div>
-                                                            </div>
+                                                        <div className="listItem">
+                                                              <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                               Green Community
                                                         </div>
                                                   </div>
                                             </div>
-                                            {/* Collaps Area End */}
+                                            {/* List Pannel End */}
                                         </div> 
                                   </div>
                                   <div className="col-md-4">
@@ -278,6 +228,18 @@ function SingleProjectView({
                                                           className="clmCoverImg"
                                                         />
                                                 </SwiperSlide>
+                                                <div className="carouselArrowBar">
+                                                    <div className="swiper-button-next text-white" onClick={() => swiperRef.current?.slideNext()} onClick={() => swiperRef.current?.slideNext()}>
+                                                        <span className=''>
+                                                            <i className='bi bi-chevron-right fs-1'></i>
+                                                        </span>
+                                                    </div>
+                                                    <div className="swiper-button-prev text-white" onClick={() => swiperRef.current?.slidePrev()}>
+                                                        <span className=''>
+                                                            <i className='bi bi-chevron-left fs-1'></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             
                                           </Swiper>
                                   </div>
@@ -300,86 +262,43 @@ function SingleProjectView({
                                                 memories and dreams, DAMAC Casa is both home and an escape, making it the 
                                                 perfect blend of urban and island life.
                                             </p>
-                                            {/* Collaps Area Start */}
-                                            <div className="collapsArea">
-                                                  <div className="accordion" id="secAccordion">
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-1" aria-expanded="true" aria-controls="collapseOne">
+                                             {/* List Pannel Start  */}
+                                             <div className="collapsArea">
+                                                  <div className="ListpPannel">
+                                                        <div className="listItem">
+                                                             <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
                                                               Outdoor Pool
-                                                            </button>
-                                                            <div id="FaqCollapse-1" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                      A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                      Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                      Dubai’s expansive urban tapestry. 
-                                                                  </p>
-                                                              </div>
-                                                            </div>
                                                         </div>
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-2" aria-expanded="false" aria-controls="collapseTwo">
-                                                                Fitness Area
-                                                            </button>
-                                                            <div id="FaqCollapse-2" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                      A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                      Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                      Dubai’s expansive urban tapestry. 
-                                                                  </p>
-                                                              </div>
-                                                            </div>
+                                                        <div className="listItem">
+                                                             <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                               Fitness Area
                                                         </div>
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-3" aria-expanded="false" aria-controls="collapseThree">
-                                                                  Kids Play Area
-                                                            </button>
-                                                            <div id="FaqCollapse-3" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                        A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                        Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                        Dubai’s expansive urban tapestry. 
-                                                                    </p>
-                                                              </div>
-                                                            </div>
+                                                        <div className="listItem">
+                                                             <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                                Kids Play Area
                                                         </div>
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-4" aria-expanded="false" aria-controls="collapseThree">
-                                                                  Beach and lagoon 
-                                                            </button>
-                                                            <div id="FaqCollapse-4" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                        A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                        Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                        Dubai’s expansive urban tapestry. 
-                                                                    </p>
-                                                              </div>
-                                                            </div>
+                                                        <div className="listItem">
+                                                              <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                                Beach and lagoon 
                                                         </div>
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-5" aria-expanded="false" aria-controls="collapseThree">
-                                                                    Green Community
-                                                            </button>
-                                                            <div id="FaqCollapse-5" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                        A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                        Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                        Dubai’s expansive urban tapestry. 
-                                                                    </p>
-                                                              </div>
-                                                            </div>
+                                                        <div className="listItem">
+                                                              <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                               Green Community
                                                         </div>
                                                   </div>
-                                            </div>
-                                            {/* Collaps Area End */}
+                                              </div>
+                                            {/* List Pannel End */}
                                         </div> 
                                   </div>
                                   <div className="col-md-4">
-                                          <Swiper pagination={true} modules={[Pagination]} className="mySwiper singleSlider clmSlider">
+                                          <Swiper 
+                                                pagination={true} modules={[Pagination]} 
+                                                modules={[Navigation]}
+                                                onBeforeInit={(swiper) => {
+                                                    swiperRef.current = swiper;
+                                                }}
+                                                className="mySwiper singleSlider clmSlider"
+                                              >
                                                 <SwiperSlide>
                                                         <img
                                                           src="/images/slider/sliderImg-1.jpg"
@@ -420,82 +339,32 @@ function SingleProjectView({
                                                 memories and dreams, DAMAC Casa is both home and an escape, making it the 
                                                 perfect blend of urban and island life.
                                             </p>
-                                            {/* Collaps Area Start */}
+                                             {/* List Pannel Start  */}
                                             <div className="collapsArea">
-                                                  <div className="accordion" id="secAccordion">
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-1" aria-expanded="true" aria-controls="collapseOne">
+                                                  <div className="ListpPannel">
+                                                        <div className="listItem">
+                                                             <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
                                                               Outdoor Pool
-                                                            </button>
-                                                            <div id="FaqCollapse-1" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                      A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                      Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                      Dubai’s expansive urban tapestry. 
-                                                                  </p>
-                                                              </div>
-                                                            </div>
                                                         </div>
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-2" aria-expanded="false" aria-controls="collapseTwo">
-                                                                Fitness Area
-                                                            </button>
-                                                            <div id="FaqCollapse-2" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                      A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                      Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                      Dubai’s expansive urban tapestry. 
-                                                                  </p>
-                                                              </div>
-                                                            </div>
+                                                        <div className="listItem">
+                                                             <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                               Fitness Area
                                                         </div>
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-3" aria-expanded="false" aria-controls="collapseThree">
-                                                                  Kids Play Area
-                                                            </button>
-                                                            <div id="FaqCollapse-3" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                        A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                        Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                        Dubai’s expansive urban tapestry. 
-                                                                    </p>
-                                                              </div>
-                                                            </div>
+                                                        <div className="listItem">
+                                                             <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                                Kids Play Area
                                                         </div>
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-4" aria-expanded="false" aria-controls="collapseThree">
-                                                                  Beach and lagoon 
-                                                            </button>
-                                                            <div id="FaqCollapse-4" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                        A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                        Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                        Dubai’s expansive urban tapestry. 
-                                                                    </p>
-                                                              </div>
-                                                            </div>
+                                                        <div className="listItem">
+                                                              <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                                Beach and lagoon 
                                                         </div>
-                                                        <div className="accordion-item">
-                                                            <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-5" aria-expanded="false" aria-controls="collapseThree">
-                                                                    Green Community
-                                                            </button>
-                                                            <div id="FaqCollapse-5" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#secAccordion">
-                                                              <div className="accordion-body">
-                                                                  <p className="text-secondary mb-0">
-                                                                        A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                        Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                        Dubai’s expansive urban tapestry. 
-                                                                    </p>
-                                                              </div>
-                                                            </div>
+                                                        <div className="listItem">
+                                                              <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                               Green Community
                                                         </div>
                                                   </div>
                                             </div>
-                                            {/* Collaps Area End */}
+                                            {/* List Pannel End */}
                                         </div> 
                                   </div>
                                   <div className="col-md-4">
@@ -540,82 +409,32 @@ function SingleProjectView({
                                             memories and dreams, DAMAC Casa is both home and an escape, making it the 
                                             perfect blend of urban and island life.
                                         </p>
-                                        {/* Collaps Area Start */}
+                                        {/* List Pannel Start  */}
                                         <div className="collapsArea">
-                                              <div className="accordion" id="secAccordion">
-                                                    <div className="accordion-item">
-                                                        <button className="accordion-button"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-1" aria-expanded="true" aria-controls="collapseOne">
-                                                          Outdoor Pool
-                                                        </button>
-                                                        <div id="FaqCollapse-1" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#secAccordion">
-                                                          <div className="accordion-body">
-                                                              <p className="text-secondary mb-0">
-                                                                  A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                  Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                  Dubai’s expansive urban tapestry. 
-                                                              </p>
-                                                          </div>
+                                                  <div className="ListpPannel">
+                                                        <div className="listItem">
+                                                             <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                              Outdoor Pool
                                                         </div>
-                                                    </div>
-                                                    <div className="accordion-item">
-                                                        <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-2" aria-expanded="false" aria-controls="collapseTwo">
-                                                            Fitness Area
-                                                        </button>
-                                                        <div id="FaqCollapse-2" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#secAccordion">
-                                                          <div className="accordion-body">
-                                                              <p className="text-secondary mb-0">
-                                                                  A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                  Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                  Dubai’s expansive urban tapestry. 
-                                                              </p>
-                                                          </div>
+                                                        <div className="listItem">
+                                                             <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                               Fitness Area
                                                         </div>
-                                                    </div>
-                                                    <div className="accordion-item">
-                                                        <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-3" aria-expanded="false" aria-controls="collapseThree">
-                                                              Kids Play Area
-                                                        </button>
-                                                        <div id="FaqCollapse-3" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#secAccordion">
-                                                          <div className="accordion-body">
-                                                              <p className="text-secondary mb-0">
-                                                                    A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                    Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                    Dubai’s expansive urban tapestry. 
-                                                                </p>
-                                                          </div>
+                                                        <div className="listItem">
+                                                             <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                                Kids Play Area
                                                         </div>
-                                                    </div>
-                                                    <div className="accordion-item">
-                                                        <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-4" aria-expanded="false" aria-controls="collapseThree">
-                                                              Beach and lagoon 
-                                                        </button>
-                                                        <div id="FaqCollapse-4" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#secAccordion">
-                                                          <div className="accordion-body">
-                                                              <p className="text-secondary mb-0">
-                                                                    A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                    Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                    Dubai’s expansive urban tapestry. 
-                                                                </p>
-                                                          </div>
+                                                        <div className="listItem">
+                                                              <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                                Beach and lagoon 
                                                         </div>
-                                                    </div>
-                                                    <div className="accordion-item">
-                                                        <button className="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#FaqCollapse-5" aria-expanded="false" aria-controls="collapseThree">
-                                                                Green Community
-                                                        </button>
-                                                        <div id="FaqCollapse-5" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#secAccordion">
-                                                          <div className="accordion-body">
-                                                              <p className="text-secondary mb-0">
-                                                                    A stunning silhouette, both distinct and majestic against the city sky, with stunning 
-                                                                    Palm views, DAMAC Casa’s smooth curves and fluid avant-garde design adds to 
-                                                                    Dubai’s expansive urban tapestry. 
-                                                                </p>
-                                                          </div>
+                                                        <div className="listItem">
+                                                              <img src="/images/icons/list-arrow-icon.png" className="listArrowIcon" />
+                                                               Green Community
                                                         </div>
-                                                    </div>
-                                              </div>
-                                        </div>
-                                        {/* Collaps Area End */}
+                                                  </div>
+                                            </div>
+                                            {/* List Pannel End */}
                                     </div> 
                               </div>
                               <div className="col-md-4">
