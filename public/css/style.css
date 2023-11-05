@@ -1282,3 +1282,6 @@ filter: brightness(0) invert(1);
 .communityGalleryImage{
 height:600px;
 }
+.floorFormbox{
+padding: 10px;
+}
