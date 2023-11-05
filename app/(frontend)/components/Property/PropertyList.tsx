@@ -377,6 +377,7 @@ const PropertyList = ({ params }) => {
                                 address={infoWindowData.address}
                                 property_banner={infoWindowData.property_banner}
                                 name={infoWindowData.name}
+                                slug={infoWindowData.slug}
                               />
                             </div>
                           </InfoWindow>
@@ -447,6 +448,7 @@ const PropertyList = ({ params }) => {
                           address={property.address}
                           property_banner={property.property_banner}
                           name={property.name}
+                          slug={property.slug}
                         />
                       </div>
                     ))}

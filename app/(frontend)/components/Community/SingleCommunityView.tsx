@@ -86,6 +86,7 @@ function SinglecommunityDataView({ params }) {
       map,
       title: data?.name,
     });
+    map.setCenter(marker.getPosition());
     return marker;
   };
 
@@ -100,7 +101,6 @@ function SinglecommunityDataView({ params }) {
   const swiperRef = useRef<SwiperType>;
   const PropertySwiperRef = useRef<SwiperType>;
 
-  console.log("near by", nearByLocations);
   return (
     <>
       <section className="my-5">
@@ -215,104 +215,106 @@ function SinglecommunityDataView({ params }) {
           </div>
         </div>
       </section>
-      {communityData && communityData.highlights &&   communityData.highlights.length > 0 && (
-        <section className="my-5" id="highlight">
-          <div className="container">
-            <div className="row">
-              <div className="col-12 col-lg-12 col-md-12">
-                <div className="row ">
-                  <div className="col-12 col-lg-12 col-md-12">
-                    <div>
-                      <div className="mainHead mb-5 text-center text-primary">
-                        <h4>HIGHLIGHTS</h4>
+      {communityData &&
+        communityData.highlights &&
+        communityData.highlights.length > 0 && (
+          <section className="my-5" id="highlight">
+            <div className="container">
+              <div className="row">
+                <div className="col-12 col-lg-12 col-md-12">
+                  <div className="row ">
+                    <div className="col-12 col-lg-12 col-md-12">
+                      <div>
+                        <div className="mainHead mb-5 text-center text-primary">
+                          <h4>HIGHLIGHTS</h4>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="col-12 col-lg-12 col-md-12">
-                    <Swiper
-                      slidesPerView={1}
-                      spaceBetween={50}
-                      pagination={{
-                        el: ".swiper-pagination",
-                        clickable: true,
-                      }}
-                      navigation={{
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
-                      }}
-                      breakpoints={{
-                        640: {
-                          slidesPerView: 2,
-                          spaceBetween: 50,
-                        },
-                        768: {
-                          slidesPerView: 3,
-                          spaceBetween: 50,
-                        },
-                        1024: {
-                          slidesPerView: 4,
-                          spaceBetween: 50,
-                        },
-                      }}
-                      modules={[Navigation, Pagination]}
-                      onBeforeInit={(swiper) => {
-                        swiperRef.current = swiper;
-                      }}
-                      className="swiper pb-5 highlightSwiper px-5"
-                    >
-                      {communityData?.highlights?.map((highlight, index) => {
-                        return (
-                          <SwiperSlide
-                            key={highlight.id + index + "hightlight"}
-                          >
-                            <div className="swiper-slide">
-                              <div className="card border-0 rounded-0 bg-primary p-5">
-                                <div className="">
-                                  <center>
-                                    <img
-                                      src={highlight.image}
-                                      className="img-fluid"
-                                      alt="range"
-                                      width="80px"
-                                    />
-                                  </center>
-                                </div>
-                                <div className="card-body text-center pb-0">
-                                  <small className="card-title text-white text-uppercase fs-20">
-                                    {highlight.name}
-                                  </small>
+                    <div className="col-12 col-lg-12 col-md-12">
+                      <Swiper
+                        slidesPerView={1}
+                        spaceBetween={50}
+                        pagination={{
+                          el: ".swiper-pagination",
+                          clickable: true,
+                        }}
+                        navigation={{
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                        }}
+                        breakpoints={{
+                          640: {
+                            slidesPerView: 2,
+                            spaceBetween: 50,
+                          },
+                          768: {
+                            slidesPerView: 3,
+                            spaceBetween: 50,
+                          },
+                          1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 50,
+                          },
+                        }}
+                        modules={[Navigation, Pagination]}
+                        onBeforeInit={(swiper) => {
+                          swiperRef.current = swiper;
+                        }}
+                        className="swiper pb-5 highlightSwiper px-5"
+                      >
+                        {communityData?.highlights?.map((highlight, index) => {
+                          return (
+                            <SwiperSlide
+                              key={highlight.id + index + "hightlight"}
+                            >
+                              <div className="swiper-slide">
+                                <div className="card border-0 rounded-0 bg-primary p-5">
+                                  <div className="">
+                                    <center>
+                                      <img
+                                        src={highlight.image}
+                                        className="img-fluid"
+                                        alt="range"
+                                        width="80px"
+                                      />
+                                    </center>
+                                  </div>
+                                  <div className="card-body text-center pb-0">
+                                    <small className="card-title text-white text-uppercase fs-20">
+                                      {highlight.name}
+                                    </small>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </SwiperSlide>
-                        );
-                      })}
-                      <div
-                        className="swiper-button-next text-primary"
-                        onClick={() => swiperRef.current?.slideNext()}
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-right fs-1"></i>
-                        </span>
-                      </div>
-                      <div
-                        className="swiper-button-prev text-primary"
-                        onClick={() => swiperRef.current?.slidePrev()}
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-left fs-1"></i>
-                        </span>
-                      </div>
-                      <div className="swiper-pagination"></div>
-                    </Swiper>
+                            </SwiperSlide>
+                          );
+                        })}
+                        <div
+                          className="swiper-button-next text-primary"
+                          onClick={() => swiperRef.current?.slideNext()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-right fs-1"></i>
+                          </span>
+                        </div>
+                        <div
+                          className="swiper-button-prev text-primary"
+                          onClick={() => swiperRef.current?.slidePrev()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-left fs-1"></i>
+                          </span>
+                        </div>
+                        <div className="swiper-pagination"></div>
+                      </Swiper>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )}
       <section className="my-5 bg-light py-5">
         <div className="container">
           <div className="row justify-content-center">
@@ -337,7 +339,10 @@ function SinglecommunityDataView({ params }) {
                         key: "AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE",
                         libraries: ["places"],
                       }}
-                      defaultCenter={defaultProps.center}
+                      center={{
+                        lat: parseFloat(communityData?.default_latitude),
+                        lng: parseFloat(communityData?.default_longitude),
+                      }}
                       defaultZoom={defaultProps.zoom}
                       yesIWantToUseGoogleMapApiInternals
                       onGoogleApiLoaded={({ map, maps }) => {
@@ -377,223 +382,231 @@ function SinglecommunityDataView({ params }) {
           </div>
         </div>
       </section>
-      {communityData && communityData.amenities &&  communityData.amenities.length > 0  && (
-        <section className="my-5" id="amenities">
-          <div className="container">
-            <div className="row">
-              <div className="col-12 col-lg-12 col-md-12">
-                <div className="row ">
-                  <div className="col-12 col-lg-12 col-md-12">
-                    <div>
-                      <div className="mainHead mb-5 text-center text-primary">
-                        <h4>AMENITIES</h4>
+      {communityData &&
+        communityData.amenities &&
+        communityData.amenities.length > 0 && (
+          <section className="my-5" id="amenities">
+            <div className="container">
+              <div className="row">
+                <div className="col-12 col-lg-12 col-md-12">
+                  <div className="row ">
+                    <div className="col-12 col-lg-12 col-md-12">
+                      <div>
+                        <div className="mainHead mb-5 text-center text-primary">
+                          <h4>AMENITIES</h4>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="col-12 col-lg-12 col-md-12">
-                    <Swiper
-                      slidesPerView={1}
-                      spaceBetween={50}
-                      pagination={{
-                        el: ".swiper-pagination",
-                        clickable: true,
-                      }}
-                      navigation={{
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
-                      }}
-                      breakpoints={{
-                        640: {
-                          slidesPerView: 2,
-                          spaceBetween: 50,
-                        },
-                        768: {
-                          slidesPerView: 4,
-                          spaceBetween: 50,
-                        },
-                        1024: {
-                          slidesPerView: 6,
-                          spaceBetween: 50,
-                        },
-                      }}
-                      modules={[Navigation, Pagination]}
-                      onBeforeInit={(swiper) => {
-                        swiperRef.current = swiper;
-                      }}
-                      className="swiper pb-5 amenitiesSwiper px-5"
-                    >
-                      {communityData?.amenities?.map((amenity, index) => {
-                        return (
-                          <SwiperSlide key={amenity.id + index + "amentity"}>
-                            <div className="swiper-slide">
-                              <div className="py-3">
-                                <div className="mb-2">
-                                  <div className="amenityImg mx-auto">
-                                    <img
-                                      src={amenity.image}
-                                      alt="Range"
-                                      className="img-fluid"
-                                      width="40px"
-                                    />
+                    <div className="col-12 col-lg-12 col-md-12">
+                      <Swiper
+                        slidesPerView={1}
+                        spaceBetween={50}
+                        pagination={{
+                          el: ".swiper-pagination",
+                          clickable: true,
+                        }}
+                        navigation={{
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                        }}
+                        breakpoints={{
+                          640: {
+                            slidesPerView: 2,
+                            spaceBetween: 50,
+                          },
+                          768: {
+                            slidesPerView: 4,
+                            spaceBetween: 50,
+                          },
+                          1024: {
+                            slidesPerView: 6,
+                            spaceBetween: 50,
+                          },
+                        }}
+                        modules={[Navigation, Pagination]}
+                        onBeforeInit={(swiper) => {
+                          swiperRef.current = swiper;
+                        }}
+                        className="swiper pb-5 amenitiesSwiper px-5"
+                      >
+                        {communityData?.amenities?.map((amenity, index) => {
+                          return (
+                            <SwiperSlide key={amenity.id + index + "amentity"}>
+                              <div className="swiper-slide">
+                                <div className="py-3">
+                                  <div className="mb-2">
+                                    <div className="amenityImg mx-auto">
+                                      <img
+                                        src={amenity.image}
+                                        alt="Range"
+                                        className="img-fluid"
+                                        width="40px"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="text-center">
+                                    <small className="fs-20">
+                                      {amenity.name}
+                                    </small>
                                   </div>
                                 </div>
-                                <div className="text-center">
-                                  <small className="fs-20">
-                                    {amenity.name}
-                                  </small>
-                                </div>
                               </div>
-                            </div>
-                          </SwiperSlide>
-                        );
-                      })}
-                      <div
-                        className="swiper-button-next text-primary"
-                        onClick={() => swiperRef.current?.slideNext()}
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-right fs-1"></i>
-                        </span>
-                      </div>
-                      <div
-                        className="swiper-button-prev text-primary"
-                        onClick={() => swiperRef.current?.slidePrev()}
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-left fs-1"></i>
-                        </span>
-                      </div>
-                      <div className="swiper-pagination"></div>
-                    </Swiper>
+                            </SwiperSlide>
+                          );
+                        })}
+                        <div
+                          className="swiper-button-next text-primary"
+                          onClick={() => swiperRef.current?.slideNext()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-right fs-1"></i>
+                          </span>
+                        </div>
+                        <div
+                          className="swiper-button-prev text-primary"
+                          onClick={() => swiperRef.current?.slidePrev()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-left fs-1"></i>
+                          </span>
+                        </div>
+                        <div className="swiper-pagination"></div>
+                      </Swiper>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      )}
-      {communityData && communityData.properties && communityData.properties.length > 0  &&(
-        <section className="my-5" id="properties">
-          <div className="container">
-            <div className="row">
-              <div className="col-12 col-lg-12 col-md-12">
-                <div className="row">
-                  <div className="col-12 col-lg-12 col-md-12">
-                    <div>
-                      <div className="mainHead mb-5 text-center text-primary">
-                        <h4>AVAILABLE PROPERTIES</h4>
+          </section>
+        )}
+      {communityData &&
+        communityData.properties &&
+        communityData.properties.length > 0 && (
+          <section className="my-5" id="properties">
+            <div className="container">
+              <div className="row">
+                <div className="col-12 col-lg-12 col-md-12">
+                  <div className="row">
+                    <div className="col-12 col-lg-12 col-md-12">
+                      <div>
+                        <div className="mainHead mb-5 text-center text-primary">
+                          <h4>AVAILABLE PROPERTIES</h4>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="col-12 col-lg-12 col-md-12">
-                    <Swiper
-                      slidesPerView={1}
-                      spaceBetween={10}
-                      pagination={{
-                        el: ".swiper-pagination",
-                        clickable: true,
-                      }}
-                      navigation={{
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
-                      }}
-                      breakpoints={{
-                        640: {
-                          slidesPerView: 2,
-                          spaceBetween: 10,
-                        },
-                        768: {
-                          slidesPerView: 3,
-                          spaceBetween: 10,
-                        },
-                        1024: {
-                          slidesPerView: 4,
-                          spaceBetween: 10,
-                        },
-                      }}
-                      modules={[Navigation, Pagination]}
-                      onBeforeInit={(swiper) => {
-                        PropertySwiperRef.current = swiper;
-                      }}
-                      className="swiper pb-5 projectSlider"
-                    >
-                      {communityData?.properties?.map((property, index) => {
-                        return (
-                          <SwiperSlide key={property.id + +"property"}>
-                            <div className="swiper-slide">
-                              <div>
-                                <div className="card propCard rounded-0">
-                                  <div>
-                                    <div className="">
-                                    <Link href={`/properties/${property.slug}`}  className="text-decoration-none">
-                                    <div className="projectImgCont">
-                                          <img
-                                            src={property.property_banner}
-                                            alt="project1"
-                                            className="img-fluid propImg"
-                                          />
-                                          <div className="projectImgOverlay">
-                                            <div></div>
-                                            <div>
-                                              <span className="badge float-start fs-10 projectType">
-                                                {property.accommodation}
-                                              </span>
+                    <div className="col-12 col-lg-12 col-md-12">
+                      <Swiper
+                        slidesPerView={1}
+                        spaceBetween={10}
+                        pagination={{
+                          el: ".swiper-pagination",
+                          clickable: true,
+                        }}
+                        navigation={{
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                        }}
+                        breakpoints={{
+                          640: {
+                            slidesPerView: 2,
+                            spaceBetween: 10,
+                          },
+                          768: {
+                            slidesPerView: 3,
+                            spaceBetween: 10,
+                          },
+                          1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 10,
+                          },
+                        }}
+                        modules={[Navigation, Pagination]}
+                        onBeforeInit={(swiper) => {
+                          PropertySwiperRef.current = swiper;
+                        }}
+                        className="swiper pb-5 projectSlider"
+                      >
+                        {communityData?.properties?.map((property, index) => {
+                          return (
+                            <SwiperSlide key={property.id + +"property"}>
+                              <div className="swiper-slide">
+                                <div>
+                                  <div className="card propCard rounded-0">
+                                    <div>
+                                      <div className="">
+                                        <Link
+                                          href={`/properties/${property.slug}`}
+                                          className="text-decoration-none"
+                                        >
+                                          <div className="projectImgCont">
+                                            <img
+                                              src={property.property_banner}
+                                              alt="project1"
+                                              className="img-fluid propImg"
+                                            />
+                                            <div className="projectImgOverlay">
+                                              <div></div>
+                                              <div>
+                                                <span className="badge float-start fs-10 projectType">
+                                                  {property.accommodation}
+                                                </span>
+                                              </div>
                                             </div>
                                           </div>
-                                        </div>                           
-                                    </Link>
-
-                                      
-                                    </div>
-                                    <div className="card-body rounded-3 rounded-top-0">
-                                      <Link href={`/properties/${property.slug}`}  className="text-decoration-none">
-                                        <h6 className="text-black fs-16 fw-semibold mb-0">
-                                          {property.name}
-                                        </h6>
-                                      </Link>
-                                      <div className="mb-1">
-                                        <small className="text-secondary">
-                                          {property &&
-                                            property.communities &&
-                                            property.communities.name}
-                                        </small>
+                                        </Link>
+                                      </div>
+                                      <div className="card-body rounded-3 rounded-top-0">
+                                        <Link
+                                          href={`/properties/${property.slug}`}
+                                          className="text-decoration-none"
+                                        >
+                                          <h6 className="text-black fs-16 fw-semibold mb-0">
+                                            {property.name}
+                                          </h6>
+                                        </Link>
+                                        <div className="mb-1">
+                                          <small className="text-secondary">
+                                            {property &&
+                                              property.communities &&
+                                              property.communities.name}
+                                          </small>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          </SwiperSlide>
-                        );
-                      })}
+                            </SwiperSlide>
+                          );
+                        })}
 
-                      <div
-                        className="swiper-button-prev swiperUniquePrev text-primary"
-                        onClick={() => PropertySwiperRef.current?.slidePrev()}
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-left fs-1"></i>
-                        </span>
-                      </div>
-                      <div
-                        className="swiper-button-next swiperUniqueNext text-primary"
-                        onClick={() => PropertySwiperRef.current?.slideNext()}
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-right fs-1"></i>
-                        </span>
-                      </div>
-                      <div className="swiper-pagination"></div>
-                    </Swiper>
+                        <div
+                          className="swiper-button-prev swiperUniquePrev text-primary"
+                          onClick={() => PropertySwiperRef.current?.slidePrev()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-left fs-1"></i>
+                          </span>
+                        </div>
+                        <div
+                          className="swiper-button-next swiperUniqueNext text-primary"
+                          onClick={() => PropertySwiperRef.current?.slideNext()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-right fs-1"></i>
+                          </span>
+                        </div>
+                        <div className="swiper-pagination"></div>
+                      </Swiper>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )}
       <section className="my-5 ">
         <div className="container">
           <div className="row g-3 justify-content-center">
@@ -744,7 +757,10 @@ function SinglecommunityDataView({ params }) {
                                   <div className="card propCard rounded-0">
                                     <div>
                                       <div className="">
-                                      <Link href={`/communities/${nearbyCommunity.slug}`}  className="text-decoration-none">
+                                        <Link
+                                          href={`/communities/${nearbyCommunity.slug}`}
+                                          className="text-decoration-none"
+                                        >
                                           <div className="projectImgCont">
                                             <img
                                               src={nearbyCommunity.mainImage}
@@ -752,16 +768,19 @@ function SinglecommunityDataView({ params }) {
                                               className="img-fluid propImg"
                                             />
                                           </div>
-                                          </Link>
+                                        </Link>
                                       </div>
                                       <div className="card-body rounded-3 rounded-top-0">
-                                      <Link href={`/communities/${nearbyCommunity.slug}`}  className="text-decoration-none">
+                                        <Link
+                                          href={`/communities/${nearbyCommunity.slug}`}
+                                          className="text-decoration-none"
+                                        >
                                           <div className="mb-1 text-center">
                                             <h5 className="text-black">
                                               {nearbyCommunity.name}
                                             </h5>
                                           </div>
-                                          </Link>
+                                        </Link>
                                       </div>
                                     </div>
                                   </div>
