@@ -42,10 +42,6 @@ function SinglePropertyView({ params }) {
     mapRef.current = map;
     setMap(map);
   };
-  $(".btnNearby").on("click", function () {
-    $(".btnNearby").removeClass("active");
-    $(this).addClass("active");
-  });
 
   const getNearByPlacesByTypeMap = (locType, data) => {
     setNearByLocations([]);
@@ -715,7 +711,9 @@ function SinglePropertyView({ params }) {
                         <div className="row g-1">
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className="btn btnNearby w-100 h-100"
+                              className={`btn btnNearby w-100 h-100 ${
+                                type == "school" ? "active" : ""
+                              }`}
                               icon="school"
                               btnNearbyKey="School"
                               onClick={() => {
@@ -731,7 +729,9 @@ function SinglePropertyView({ params }) {
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className="btn btnNearby w-100 h-100"
+                              className={`btn btnNearby w-100 h-100 ${
+                                type == "gym" ? "active" : ""
+                              }`}
                               icon="gym"
                               btnNearbyKey="Gym"
                               onClick={() => {
@@ -744,7 +744,9 @@ function SinglePropertyView({ params }) {
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className="btn btnNearby w-100 h-100"
+                              className={`btn btnNearby w-100 h-100 ${
+                                type == "supermarket" ? "active" : ""
+                              }`}
                               icon="supermarket"
                               btnNearbyKey="Super market"
                               onClick={() => {
@@ -760,7 +762,9 @@ function SinglePropertyView({ params }) {
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className="btn btnNearby w-100 h-100"
+                              className={`btn btnNearby w-100 h-100 ${
+                                type == "hospital" ? "active" : ""
+                              }`}
                               icon="hospital"
                               btnNearbyKey="Hospital"
                               onClick={() => {
@@ -776,7 +780,9 @@ function SinglePropertyView({ params }) {
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className="btn btnNearby w-100 h-100"
+                              className={`btn btnNearby w-100 h-100 ${
+                                type == "pet_store" ? "active" : ""
+                              }`}
                               icon="pet"
                               btnNearbyKey="pet shop"
                               onClick={() => {
@@ -792,7 +798,9 @@ function SinglePropertyView({ params }) {
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className="btn btnNearby w-100 h-100"
+                              className={`btn btnNearby w-100 h-100 ${
+                                type == "shopping_mall" ? "active" : ""
+                              }`}
                               icon="mall"
                               btnNearbyKey="mall"
                               onClick={() => {
@@ -808,7 +816,9 @@ function SinglePropertyView({ params }) {
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className="btn btnNearby w-100 h-100"
+                              className={`btn btnNearby w-100 h-100 ${
+                                type == "gas_station" ? "active" : ""
+                              }`}
                               icon="gas_station"
                               btnNearbyKey="Gas Station"
                               onClick={() => {
@@ -824,7 +834,9 @@ function SinglePropertyView({ params }) {
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className="btn btnNearby w-100 h-100"
+                              className={`btn btnNearby w-100 h-100 ${
+                                type == "restaurant" ? "active" : ""
+                              }`}
                               icon="restaurant"
                               btnNearbyKey="Restaurant"
                               onClick={() => {
