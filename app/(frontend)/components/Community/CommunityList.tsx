@@ -25,7 +25,7 @@ function CommunityList(props) {
                                 <div className="col-12 col-lg-12 col-md-12">
                                     <div>
                                         <div className="mainHead mb-5 text-center text-primary">
-                                            <h4>TOP LOCATIONS</h4>
+                                            <h4></h4>
                                         </div>
                                     </div>
                                 </div>
