@@ -1,4 +1,4 @@
-import "@/public/css/developers-styles.css";
+import "@/public/css/services-styles.css";
 
 function Services(){
     return (
