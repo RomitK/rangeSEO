@@ -10,21 +10,21 @@ import { faUtensils } from "@fortawesome/free-solid-svg-icons/faUtensils";
 export const getFontAwesomeSvgPath = (icon) => {
   switch (icon) {
     case "school":
-      return faGraduationCap.icon[4];
+      return faGraduationCap;
     case "gym":
-      return faBuilding.icon[4];
+      return faBuilding;
     case "supermarket":
-      return faCartShopping.icon[4];
+      return faCartShopping;
     case "hospital":
-      return faSquareH.icon[4];
+      return faSquareH;
     case "pet":
-      return faPaw.icon[4];
+      return faPaw;
     case "mall":
-      return faBagShopping.icon[4];
+      return faBagShopping;
     case "gas_station":
-      return faGasPump.icon[4];
+      return faGasPump;
     case "restaurant":
-      return faUtensils.icon[4];
+      return faUtensils;
 
     default:
       return null;

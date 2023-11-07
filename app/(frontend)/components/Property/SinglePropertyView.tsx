@@ -7,13 +7,21 @@ import "swiper/swiper-bundle.css";
 import "swiper/css/pagination";
 import Link from "next/link";
 import parse from "html-react-parser";
-import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  MarkerF,
+  useLoadScript,
+  InfoWindow,
+} from "@react-google-maps/api";
+import { createRoot } from "react-dom/client";
+
 import { getFontAwesomeSvgPath } from "@/src/utils/helpers/common";
 import Location from "./Location";
 
 import { useGetSinglePropertyData } from "@/src/services/PropertyService";
 import DatePicker from "react-datepicker";
 import $ from "jquery";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function SinglePropertyView({ params }) {
   const slug = params.slug[0];
@@ -21,6 +29,7 @@ function SinglePropertyView({ params }) {
   const [type, setType] = useState("property");
   const [icon, setIcon] = useState("");
   const [iconPath, setIconPath] = useState("");
+  const [isOpen, setIsOpen] = useState(null);
   const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
@@ -30,7 +39,7 @@ function SinglePropertyView({ params }) {
   const { propertyData } = useGetSinglePropertyData(slug);
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.GOOGLE_MAP_KEY,
-    libraries: ["geometry", "places"],
+    libraries: ["geometry", "places", "marker"],
   });
 
   const swiperRef = useRef<SwiperType>;
@@ -109,6 +118,33 @@ function SinglePropertyView({ params }) {
     $(".step-2").hide();
     $(".pickitem ").removeClass("active");
   });
+
+  const AdvanceMarker = ({ map, position, children, onClick }) => {
+    const rootRef = useRef();
+    const markerRef = useRef();
+
+    useEffect(() => {
+      if (!rootRef.current) {
+        const container = document.createElement("div");
+        container.classList.add("mapMarker");
+        rootRef.current = createRoot(container);
+        markerRef.current = new google.maps.marker.AdvancedMarkerElement({
+          position,
+          content: container,
+        });
+      }
+
+      return () => (markerRef.current.map = null);
+    }, []);
+
+    useEffect(() => {
+      rootRef.current.render(children);
+      markerRef.current.position = position;
+      markerRef.current.map = map;
+      const listener = markerRef.current.addListener("click", onClick);
+      return () => listener.remove();
+    }, [map, position, children, onClick]);
+  };
   return (
     <>
       <section className="my-5">
@@ -861,8 +897,12 @@ function SinglePropertyView({ params }) {
                                   propertyData?.default_longitude
                                 ),
                               }}
+                              options={{ mapId: "4504f8b37365c3d0" }}
                               mapContainerClassName="map-container"
                               onLoad={onMapLoad}
+                              onClick={() => {
+                                setIsOpen(null);
+                              }}
                             >
                               {type == "property" ? (
                                 <MarkerF
@@ -879,22 +919,34 @@ function SinglePropertyView({ params }) {
                               ) : (
                                 <>
                                   {nearByLocations.map((location, lIndex) => (
-                                    <MarkerF
-                                      key={lIndex + "location"}
-                                      position={{
-                                        lat: location?.lat,
-                                        lng: location?.lng,
-                                      }}
-                                      title={location?.name}
-                                      icon={{
-                                        path: iconPath,
-                                        fillColor: "#ff0000",
-                                        fillOpacity: 1,
-                                        strokeWeight: 1,
-                                        strokeColor: "#ffffff",
-                                        scale: 0.075,
-                                      }}
-                                    />
+                                    <>
+                                      <AdvanceMarker
+                                        key={lIndex + "location"}
+                                        position={{
+                                          lat: location?.lat,
+                                          lng: location?.lng,
+                                        }}
+                                        map={map}
+                                        onClick={() => setIsOpen(lIndex)}
+                                      >
+                                        <div className="icon">
+                                          <FontAwesomeIcon icon={iconPath} />
+                                        </div>
+                                      </AdvanceMarker>
+                                      {isOpen == lIndex && (
+                                        <InfoWindow
+                                          position={{
+                                            lat: location?.lat,
+                                            lng: location?.lng,
+                                          }}
+                                          onCloseClick={() => {
+                                            setIsOpen(null);
+                                          }}
+                                        >
+                                          <div>{location?.name}</div>
+                                        </InfoWindow>
+                                      )}
+                                    </>
                                   ))}
                                 </>
                               )}
