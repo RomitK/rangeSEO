@@ -35,6 +35,12 @@
     justify-content: center;
     color: #FFFFFF;
 }
+.gm-style .gm-style-iw-c{
+    top:-26px !important;
+}
+.gm-style .gm-style-iw-tc::after{
+    top:-26px !important;
+}
 body{
     font-family: 'Montserrat', sans-serif;
 }
