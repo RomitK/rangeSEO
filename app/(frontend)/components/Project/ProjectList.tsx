@@ -83,7 +83,7 @@ function ProjectList() {
                     >
                       <div className="projectImgCont">
                         <Link
-                          href={`projects/${project.slug}`}
+                          href={`/projects/${project.slug}`}
                           className="fw-bold mb-1 text-decoration-none text-white"
                         >
                           <img
