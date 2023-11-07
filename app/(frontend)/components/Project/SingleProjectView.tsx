@@ -115,7 +115,7 @@ function SingleProjectView({ params }) {
             <div className="row">
               <div className="col-3">
                 <a
-                  className=" text-decoration-none bdrBtn"
+                  className=" text-decoration-none "
                   href="#secTab-1"
                   aria-selected="true"
                 >
@@ -124,7 +124,7 @@ function SingleProjectView({ params }) {
               </div>
               <div className="col-3">
                 <a
-                  className=" text-decoration-none bdrBtn"
+                  className=" text-decoration-none"
                   href="#secTab-1"
                   aria-selected="true"
                 >
@@ -133,7 +133,7 @@ function SingleProjectView({ params }) {
               </div>
               <div className="col-3">
                 <a
-                  className=" text-decoration-none bdrBtn"
+                  className=" text-decoration-none "
                   href="#secTab-1"
                   aria-selected="true"
                 >
@@ -142,7 +142,7 @@ function SingleProjectView({ params }) {
               </div>
               <div className="col-3">
                 <a
-                  className=" text-decoration-none bdrBtn"
+                  className=" text-decoration-none"
                   href="#secTab-1"
                   aria-selected="true"
                 >
