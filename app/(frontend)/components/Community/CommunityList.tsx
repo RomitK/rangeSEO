@@ -1,112 +1,86 @@
 "use client";
-import React from 'react'
-import { useRef } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React from "react";
+import { useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
-import { Navigation, Pagination } from 'swiper/modules';
-import { Swiper as SwiperType } from 'swiper';
-import 'swiper/swiper-bundle.css';
-import 'swiper/css/pagination';
-import { useState, useEffect } from 'react';
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper as SwiperType } from "swiper";
+import "swiper/swiper-bundle.css";
+import "swiper/css/pagination";
+import { useState, useEffect } from "react";
 import { useGetAllHomeData } from "@/src/services/HomeService";
 import Link from "next/link";
+import Select from "react-select";
+import parse from "html-react-parser";
+import { useGetAllCommunityData } from "@/src/services/CommunityService";
 
-function CommunityList(props) {
-    const swiperRef = useRef<SwiperType>;
-    const { homeData } = useGetAllHomeData();
-   
-    return (
-        <div>
-            <section className="my-5">
-                <div className="container-fluid px-0">
-                    <div className="row g-0">
-                        <div className="col-12 col-lg-12 col-md-12">
-                            <div className="row g-0">
-                                <div className="col-12 col-lg-12 col-md-12">
-                                    <div>
-                                        <div className="mainHead mb-5 text-center text-primary">
-                                            <h4></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-12 col-lg-12 col-md-12">
-                                    <Swiper
-                                        loop
-                                        slidesPerView={1}
-                                        spaceBetween={10}
-                                        pagination={{
-                                            el: ".swiper-pagination",
-                                            clickable: true
-                                        }}
-                                        navigation={{
-                                            nextEl: ".swiper-button-next",
-                                            prevEl: ".swiper-button-prev"
-                                        }}
-                                        breakpoints={{
-                                            640: {
-                                                slidesPerView: 2,
-                                                spaceBetween: 10,
-                                            },
-                                            768: {
-                                                slidesPerView: 3,
-                                                spaceBetween: 10,
-                                            },
-                                            1024: {
-                                                slidesPerView: 4,
-                                                spaceBetween: 10,
-                                            },
-                                        }}
+function CommunityList() {
+  const swiperRef = useRef<SwiperType>;
+  const { communitiesData } = useGetAllCommunityData();
+  const options = [
+    { value: "Pakistan", label: "Pakistan" },
+    { value: "Dubai", label: "Dubai" },
+    { value: "Lahore", label: "Lahore" },
+    { value: "Karachi", label: "Karachi" },
+  ];
 
-                                        modules={[Navigation, Pagination]}
-                                        onBeforeInit={(swiper) => {
-                                            swiperRef.current = swiper;
-                                        }}
-                                        className="swiper pb-5 communitySwiper"
-                                    >
-                                        {
-                                            homeData?.communities?.map((community, index) => {
-                                                return <SwiperSlide key={community.id + index}>
-                                                    <div className="swiper-slide">
-                                                        <div className="communityImgCont">
-                                                        <Link href={`communities/${community.slug}`}  className=" text-decoration-none ">
-                                                            <img src={community.mainImage}
-                                                                alt={community.name} className="img-fluid" />
-                                                            <div className="communityImgOverlay">
-                                                                <div className="text-white">
-                                                                    <p className="fw-bold mb-1">
-                                                                   
-                                                                        {community.name}
-                                                                    
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                            </Link>
-                                                        </div>
-                                                    </div>
-                                                </SwiperSlide>
-                                            })
-                                        }
-                                        <div className="swiper-button-next text-white" onClick={() => swiperRef.current?.slideNext()} onClick={() => swiperRef.current?.slideNext()}>
-                                            <span className=''>
-                                                <i className='bi bi-chevron-right fs-1'></i>
-                                            </span>
-                                        </div>
-                                        <div className="swiper-button-prev text-white" onClick={() => swiperRef.current?.slidePrev()}>
-                                            <span className=''>
-                                                <i className='bi bi-chevron-left fs-1'></i>
-                                            </span>
-                                        </div>
-                                        <div className="swiper-pagination"></div>
-                                    </Swiper>
-
-                                </div>
-                            </div>
-                        </div>
+  return (
+    <section className="communitiesSection">
+      <div className="container">
+        <h4 className="sctionMdTitle text-primary mb-5 text-center">
+          COMMUNITIES
+        </h4>
+        <div className="row mb-5">
+          <div className="col-md-3">
+            <div className="proSelectBox">
+              <label>PROJECT</label>
+              <Select options={options} className="reactSelectInput" />
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="proSelectBox">
+              <label>PROPERTY TYPE</label>
+              <Select options={options} className="reactSelectInput" />
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="proSelectBox">
+              <label>DEVELOPER</label>
+              <Select options={options} className="reactSelectInput" />
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="proSelectBox">
+              <label>PROJECT STATUS</label>
+              <Select options={options} className="reactSelectInput" />
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          {communitiesData &&
+            communitiesData.map(function (community, index) {
+              return (
+                <div className="col-md-4" key={community.id}>
+                  <Link
+                    href={`/communities/${community.slug}`}
+                    className="cardBox"
+                  >
+                    <img src={community.mainImage} className="clmCardImage" />
+                    <div className="overlay">
+                      <h5 className="crdtitle">{community.name}</h5>
+                      <p className="crdText">
+                        {community && parse(community?.description ?? "")}
+                      </p>
                     </div>
+                  </Link>
                 </div>
-            </section>
+              );
+            })}
         </div>
 
-    );
+        <button className="bdrBtn mrAuto loadBtn mt-4">view All</button>
+      </div>
+    </section>
+  );
 }
 export default CommunityList;
