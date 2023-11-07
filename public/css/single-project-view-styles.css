@@ -166,6 +166,11 @@ font-size: 40px;
 text-transform: uppercase;
 font-weight: 500;
 }
+.sctionSubTitle{
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+    }
 .collapsArea{
 margin-bottom: 30px;
 }
@@ -263,9 +268,11 @@ border: 1.5px solid #136DAE;
 padding: 5px 20px;
 color: #136DAE;
 transition: 0.3s ease;
-display: block;
+/* display: block; */
 font-size: 16px;
 }
+
+
 .bdrBtn:hover{
 background-color: #136DAE;
 color: #fff;
