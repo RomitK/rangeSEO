@@ -13,10 +13,7 @@ function WhyRange(){
                                     <h4 className="mb-0">WHY RANGE?</h4>
                                 </div>
                                 <div className="pb-4">
-                                    <p className="text-secondary mb-0">Range provide an upgraded, automated, and futuristic
-                                        approach to the Dubai property market. Our state-of-the-art marketing ensures a
-                                        competitive edge with modern and advanced strategies. Experience bespoke services
-                                        tailored to deliver accurate results and ultimate customer satisfaction.
+                                    <p className="text-secondary mb-0">Range International Property Investments is an esteemed award-winning real estate brokerage based in Dubai, UAE. With over two decades of unmatched experience, we have established ourselves as industry leaders, renowned for our exceptional services and deep knowledge of the real estate market locally and internationally.
                                     </p>
                                 </div>
                                 <div className="">

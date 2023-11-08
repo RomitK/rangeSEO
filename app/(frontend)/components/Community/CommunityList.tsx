@@ -13,15 +13,22 @@ import Link from "next/link";
 import Select from "react-select";
 import parse from "html-react-parser";
 import { useGetAllCommunityData } from "@/src/services/CommunityService";
+import { useGetAllDeveloperData } from "@/src/services/DeveloperService";
 
 function CommunityList() {
   const swiperRef = useRef<SwiperType>;
   const { communitiesData } = useGetAllCommunityData();
+  const { developersData } = useGetAllDeveloperData();
+  const [selectedProject, setSelectedProjectName] = useState();
+  const projectChangeHandle = (event) => {
+    console.log(event.value);
+  };
+  
   const options = [
-    { value: "Pakistan", label: "Pakistan" },
-    { value: "Dubai", label: "Dubai" },
-    { value: "Lahore", label: "Lahore" },
-    { value: "Karachi", label: "Karachi" },
+    { value: "pk", label: "Pakistan", },
+    { value: "Db", label: "Dubai" },
+    { value: "Lhr", label: "Lahore" },
+    { value: "Kai", label: "Karachi" },
   ];
 
   return (
@@ -34,7 +41,11 @@ function CommunityList() {
           <div className="col-md-3">
             <div className="proSelectBox">
               <label>PROJECT</label>
-              <Select options={options} className="reactSelectInput" />
+              <Select 
+              options={options} 
+              value={selectedProject}
+              className="reactSelectInput" 
+              onChange={projectChangeHandle}/>
             </div>
           </div>
           <div className="col-md-3">

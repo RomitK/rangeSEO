@@ -65,7 +65,7 @@ function LookingFor() {
           <div className="col-12 col-lg-12 col-md-12">
             <div>
               <div className="mainHead mb-5 text-primary text-center">
-                <h4>I AM INTERESTED TO</h4>
+                <h4>I AM INTERESTED IN</h4>
               </div>
             </div>
           </div>
