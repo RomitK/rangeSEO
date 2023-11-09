@@ -1,3 +1,7 @@
+body{
+overflow-x: hidden;
+}
+
 .fw-800 {
 font-weight: 800 !important;
 }
@@ -937,9 +941,9 @@ transform: scale(1, 1);
 }
 .videoPlaywrapper .circle.pulse {
 -webkit-animation-timing-function: ease;
-    animation-timing-function: ease;
+animation-timing-function: ease;
 -webkit-animation: pulse 2s infinite;
-    animation: pulse 2s infinite;
+animation: pulse 2s infinite;
 background-color: rgba(19, 109, 174, 0.3);
 }
 .videoPlaywrapper svg {
@@ -1286,10 +1290,10 @@ height:600px;
 padding: 10px;
 }
 #dataTable {
-    width: 100%;
-    height: 80vh;
-    padding: 20px;
-    overflow-y: auto;
+width: 100%;
+height: 80vh;
+padding: 20px;
+overflow-y: auto;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -1298,147 +1302,209 @@ padding: 10px;
 /* Hide scrollbar for IE, Edge and Firefox */
 
 #dataTable {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(86, 182, 231, 0.5) transparent;
+scrollbar-width: thin;
+scrollbar-color: rgba(86, 182, 231, 0.5) transparent;
 }
 
 #dataTable::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-    background: #000;
+width: 4px;
+height: 4px;
+background: #000;
 }
 
 #dataTable::-webkit-scrollbar-thumb {
-    background-color: #ddd;
+background-color: #ddd;
 
-    &:hover {
-        background-color: #002db6;
-    }
+&:hover {
+background-color: #002db6;
+}
 }
 
 #map {
-    width: 100%;
-    height: 80vh;
+width: 100%;
+height: 80vh;
 }
 
 .property .price {
-    color: #e93636;
-    font-size: 16px;
-    font-weight: bold;
+color: #e93636;
+font-size: 16px;
+font-weight: bold;
 }
 
 .price-tag {
-    background-color: #e93636;
-    color: #fff;
-    padding: 5px 8px;
-    border-radius: 5px;
-    position: relative;
+background-color: #e93636;
+color: #fff;
+padding: 5px 8px;
+border-radius: 5px;
+position: relative;
 }
 
 .price-tag::after {
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid #e93636;
-    content: "";
-    height: 0;
-    left: 50%;
-    position: absolute;
-    top: 95%;
-    transform: translate(-50%, 0);
-    transition: all 0.3s ease-out;
-    width: 0;
-    z-index: 1;
+border-left: 5px solid transparent;
+border-right: 5px solid transparent;
+border-top: 5px solid #e93636;
+content: "";
+height: 0;
+left: 50%;
+position: absolute;
+top: 95%;
+transform: translate(-50%, 0);
+transition: all 0.3s ease-out;
+width: 0;
+z-index: 1;
 }
 
 .property .details {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+display: flex;
+flex-direction: column;
+flex: 1;
 }
 
 .property .address {
-    color: #000;
-    font-size: 12px;
+color: #000;
+font-size: 12px;
 }
 
 .propertyCardNew .features {
-    align-items: flex-end;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+align-items: flex-end;
+display: flex;
+flex-direction: row;
+gap: 10px;
 }
 
 .propertyCardNew .features>div {
-    align-items: center;
-    background: #F5F5F5;
-    border-radius: 5px;
-    color: #000;
-    border: 1px solid #ccc;
-    display: flex;
-    font-size: 10px;
-    gap: 5px;
-    padding: 5px;
+align-items: center;
+background: #F5F5F5;
+border-radius: 5px;
+color: #000;
+border: 1px solid #ccc;
+display: flex;
+font-size: 10px;
+gap: 5px;
+padding: 5px;
 }
 
 /*
-                       * Property styles in highlighted state.
-                       */
+    * Property styles in highlighted state.
+    */
 .property.highlight {
-    background-color: #FFFFFF;
-    border-radius: 8px;
-    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
-    height: 100%;
-    width: auto;
+background-color: #FFFFFF;
+border-radius: 8px;
+box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+height: 100%;
+width: auto;
 }
 
 .property.highlight::after {
-    border-top: 9px solid #FFFFFF;
+border-top: 9px solid #FFFFFF;
 }
 
 .property.highlight .details {
-    display: flex;
+display: flex;
 }
 
 .property.highlight .priceIcon {
-    display: none;
+display: none;
 }
 
 .propMapIMage {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+width: 100%;
+height: 200px;
+object-fit: cover;
 }
 
 
 .propertyCardNew .bed {
-    color: #FFA000;
+color: #FFA000;
 }
 
 .propertyCardNew .bath {
-    color: #03A9F4;
+color: #03A9F4;
 }
 
 .propertyCardNew .size {
-    color: #388E3C;
+color: #388E3C;
 }
 .mapMarker .icon {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    color: #FFFFFF;
+align-items: center;
+display: flex;
+justify-content: center;
+color: #FFFFFF;
 }.mapMarker {
-    align-items: center;
-    background-color: #e93636;
-    border-radius: 50%;
-    color: #263238;
-    display: flex;
-    font-size: 14px;
-    gap: 15px;
-    height: 30px;
-    justify-content: center;
-    padding: 4px;
-    position: relative;
-    position: relative;
-    transition: all 0.3s ease-out;
-    width: 30px;
+align-items: center;
+background-color: #e93636;
+border-radius: 50%;
+color: #263238;
+display: flex;
+font-size: 14px;
+gap: 15px;
+height: 30px;
+justify-content: center;
+padding: 4px;
+position: relative;
+position: relative;
+transition: all 0.3s ease-out;
+width: 30px;
+}
+.react-datepicker__header{
+background-color: unset !important;
+border: 0px !important;
+}
+.react-datepicker{
+width: 100%;
+border: 0px !important;
+}
+.react-datepicker__month-container{
+width: 100%;
+}
+.react-datepicker__day-names{
+display: flex;
+}
+.react-datepicker__day-names .react-datepicker__day-name{
+width: 100% !important;
+color: #2F3C6A !important;
+font-weight: 700;
+font-size: 16px;
+}
+.react-datepicker__day-name{
+width: 100% !important;
+}
+.react-datepicker__week {
+width: 100%;
+display: flex;
+justify-content: space-between;
+}
+.react-datepicker__day{
+color: #2F3C6A !important;  
+font-size: 15px;
+width: 100%;
+}
+.react-datepicker__day--selected{
+background-color: #2F3C6A !important;
+color: #fff !important;
+width: 28px !important;
+height: 28px !important;
+border-radius: 100px !important;
+font-size: 16px;
+display: flex !important;
+justify-content: center;
+align-items: center;
+}
+.react-datepicker__current-month{
+text-align: left;
+font-size: 18px;
+color: #2F3C6A !important;
+font-weight: 300 !important;
+margin-bottom: 15px;
+}
+.react-datepicker__navigation--previous{
+position: absolute !important;
+right: 40px !important;
+left: unset  !important;
+}
+.react-datepicker__navigation-icon::before{
+    border-color: #2F3C6A !important;
+}
+.react-datepicker__month{
+    padding: 0px 7px  !important;
 }

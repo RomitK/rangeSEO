@@ -137,9 +137,10 @@ line-height: 32px;
 padding: 30px 0px;
 }
 .tabsListConatiner{
-padding: 20px 0px;
-border-top:1px solid #3f3f3f;
-border-bottom:1px solid #3f3f3f;
+padding: 24px 0px;
+border-top: 1.4px solid #bcbcbc;
+border-bottom: 1.4px solid #bcbcbc;
+margin-bottom: 60px;
 }
 
 .TabsListOptions{
@@ -167,10 +168,10 @@ text-transform: uppercase;
 font-weight: 500;
 }
 .sctionSubTitle{
-    font-size: 20px;
-    text-transform: uppercase;
-    font-weight: 500;
-    }
+font-size: 20px;
+text-transform: uppercase;
+font-weight: 500;
+}
 .collapsArea{
 margin-bottom: 30px;
 }
@@ -192,7 +193,7 @@ padding-top: 6px;
 #secAccordion .accordion-button:not(.collapsed){
 color: #136DAE ;
 }
-.secTabsArea .tab-pane .container{
+.tabsListConatiner  .tab-pane .container{
 border-bottom: 1px solid #3f3f3f;
 margin-bottom: 40px;
 }
@@ -279,7 +280,7 @@ color: #fff;
 box-shadow: 0px 3px 5px #00000052;
 }
 .tableSection{
-margin-bottom: 40px;
+margin-bottom: 60px;
 }
 .clmContainImg{
 width: 100%;
@@ -328,4 +329,57 @@ display: flex;
 align-items: center;
 margin-bottom: 12px;
 font-size: 20px;
+}
+.selectTitle .tabTitle{
+color: #3f3f3f;
+font-size: 18px;
+font-weight: 500;
+text-transform: uppercase;
+text-decoration: none;
+display: block;
+text-align: center;
+}
+.selectTitle .tabTitle:active{
+color: #136DAE;
+text-decoration: underline;
+}
+.selectTitle .tabTitle.active{
+color: #136DAE;
+text-decoration: underline;
+}
+.secTabCntent .trix-content ul{
+padding: 0;
+padding-left: 15px;
+}
+.secTabCntent .trix-content ul li{
+font-size: 14px;
+font-family: 'Montserrat', sans-serif;
+color: #3f3f3f;
+font-weight: 500;
+margin-bottom: 3px;
+}
+.tabsListConatiner .container .row{
+padding: 0px 40px;
+}
+#ProjectDetails{
+    margin-bottom: 60px;
+}
+#ProjectDetails .trix-content p{
+font-size: 14px;
+}
+#Hightlights .container{
+    border-bottom:1.4px solid #bcbcbc;
+    padding-bottom: 30px;
+    margin-bottom: 50px;
+}
+.AboutDeveloper .container{
+    padding-bottom: 40px;
+border-bottom: 1.4px solid #bcbcbc;
+}
+.tableContainer{
+    width: 100%;
+    overflow-x: auto;
+}
+.tableContainer .priceTable{
+width: 100%;
 }
