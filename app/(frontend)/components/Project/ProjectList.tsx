@@ -3,17 +3,17 @@ import { useState, useEffect } from "react";
 import React from "react";
 import Select from "react-select";
 import Link from "next/link";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 import { useGetAllHomeData } from "@/src/services/HomeService";
 function ProjectList() {
-  const router = useRouter()
+  const router = useRouter();
   const { homeData } = useGetAllHomeData();
   const [selectedProject, setSelectedProjectName] = useState();
   const options = homeData?.newProjects;
   const projectChangeHandle = (event) => {
     console.log(event.value);
-    router.push('/projects/'+event.value);
+    router.push("/projects/" + event.value);
   };
   return (
     <>
@@ -115,7 +115,7 @@ function ProjectList() {
       <div
         className="modal fade"
         id="exampleModal"
-        tabIndex="-1"
+        tabIndex={-1}
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >

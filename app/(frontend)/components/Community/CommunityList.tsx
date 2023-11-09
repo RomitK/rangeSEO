@@ -15,22 +15,27 @@ import parse from "html-react-parser";
 import { useGetAllCommunityData } from "@/src/services/CommunityService";
 import { useGetAllDeveloperData } from "@/src/services/DeveloperService";
 
+type OptionType = {
+  value: string;
+  label: string;
+};
 function CommunityList() {
   const swiperRef = useRef<SwiperType>;
   const { communitiesData } = useGetAllCommunityData();
   const { developersData } = useGetAllDeveloperData();
-  const [selectedProject, setSelectedProjectName] = useState();
+
   const projectChangeHandle = (event) => {
     console.log(event.value);
   };
-  
-  const options = [
-    { value: "pk", label: "Pakistan", },
+
+  const options: OptionType[] = [
+    { value: "pk", label: "Pakistan" },
     { value: "Db", label: "Dubai" },
     { value: "Lhr", label: "Lahore" },
     { value: "Kai", label: "Karachi" },
   ];
 
+  const [selectedProject, setSelectedProjectName] = useState(options[0]);
   return (
     <section className="communitiesSection">
       <div className="container">
@@ -41,11 +46,12 @@ function CommunityList() {
           <div className="col-md-3">
             <div className="proSelectBox">
               <label>PROJECT</label>
-              <Select 
-              options={options} 
-              value={selectedProject}
-              className="reactSelectInput" 
-              onChange={projectChangeHandle}/>
+              <Select
+                options={options}
+                value={selectedProject}
+                className="reactSelectInput"
+                onChange={projectChangeHandle}
+              />
             </div>
           </div>
           <div className="col-md-3">

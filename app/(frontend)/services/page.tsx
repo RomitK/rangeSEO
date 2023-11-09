@@ -14,8 +14,8 @@ function Services() {
     message: "",
     phone: "",
     formName: "enquireForm",
-    page:"services"
-  }); 
+    page: "services",
+  });
   const handleSubmit = () => {
     if (!formData.name || !formData.email || !formData.phone) {
       return toast.error("Please fill required field");
@@ -28,11 +28,12 @@ function Services() {
         setFormData({
           name: "",
           email: "",
+          subject: "",
           message: "",
           phone: "",
           formName: "enquireForm",
-          page:"services"
-        })
+          page: "services",
+        });
       })
       .catch((err) => {
         toast.error("Something went wrong, please try again");
@@ -280,7 +281,7 @@ function Services() {
 
                   <div className="col-12 col-md-6 col-lg-6">
                     <div className="form-div mt-3">
-                      <form id="forms" method="POST" id="contact_form">
+                      <form id="contact_form" method="POST">
                         <div className="mb-3">
                           <input
                             type="text"
@@ -315,8 +316,8 @@ function Services() {
                             name="message"
                             placeholder="Message"
                             id="message_input"
-                            cols="30"
-                            rows="5"
+                            cols={30}
+                            rows={5}
                             required
                           ></textarea>
                         </div>

@@ -10,7 +10,7 @@ const ContactUs = () => {
     message: "",
     phone: "",
     formName: "footerContactForm",
-    page:"home"
+    page: "home",
   });
 
   const handleSubmit = () => {
@@ -29,8 +29,8 @@ const ContactUs = () => {
           message: "",
           phone: "",
           formName: "footerContactForm",
-          page:"home"
-        })
+          page: "home",
+        });
       })
       .catch((err) => {
         toast.error("Something went wrong, please try again");
@@ -99,7 +99,7 @@ const ContactUs = () => {
                 <textarea
                   className="form-control rounded-0 fs-14"
                   id="message"
-                  rows="3"
+                  rows={3}
                   placeholder="Message"
                   value={formData.message}
                   onChange={(e) =>

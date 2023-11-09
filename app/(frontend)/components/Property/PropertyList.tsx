@@ -18,7 +18,17 @@ const PropertyList = ({ params }) => {
   const [trigger, setTrigger] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
-  const [infoWindowData, setInfoWindowData] = useState();
+  const [infoWindowData, setInfoWindowData] = useState({
+    id: null,
+    address: "",
+    name: "",
+    area: "",
+    bedrooms: "",
+    bathrooms: "",
+    price: "",
+    property_banner: "",
+    slug: "",
+  });
   const mapRef2 = useRef(null);
   const [form, setForm] = useState({
     acc: "",
@@ -107,7 +117,8 @@ const PropertyList = ({ params }) => {
     bedrooms,
     bathrooms,
     price,
-    property_banner
+    property_banner,
+    slug
   ) => {
     setInfoWindowData({
       id,
@@ -118,6 +129,7 @@ const PropertyList = ({ params }) => {
       bathrooms,
       price,
       property_banner,
+      slug,
     });
     setIsOpen(true);
   };
@@ -195,7 +207,6 @@ const PropertyList = ({ params }) => {
                     name="cat"
                     id="category"
                     className="form-select bedroomSelect"
-                    disabled=""
                   >
                     <option value="">Select Category</option>
                     <option value="1">Rent</option>
@@ -323,6 +334,7 @@ const PropertyList = ({ params }) => {
                         property_banner,
                         lat,
                         lng,
+                        slug,
                       },
                       ind
                     ) => (
@@ -340,7 +352,8 @@ const PropertyList = ({ params }) => {
                             bedrooms,
                             bathrooms,
                             price,
-                            property_banner
+                            property_banner,
+                            slug
                           );
                         }}
                       >
@@ -407,7 +420,7 @@ const PropertyList = ({ params }) => {
                       drawingControl: true,
                       drawingControlOptions: {
                         position: window.google.maps.ControlPosition.TOP_CENTER,
-                        drawingModes: ["polygon"],
+                        drawingModes: [google.maps.drawing.OverlayType.POLYGON],
                       },
                       polygonOptions: {
                         fillColor: "#FF0000",

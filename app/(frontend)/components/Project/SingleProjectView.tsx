@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
-import { Swiper as SwiperType } from "swiper";
+import SwiperCore, { Swiper as SwiperType } from "swiper";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -17,12 +17,12 @@ import "@/public/css/single-project-view-styles.css";
 function SingleProjectView({ params }) {
   const slug = params.slug[0];
   const { projectData } = useGetSingleProjectData(slug);
-  const bannerSwiperRef = useRef<SwiperType>;
-  const innerSwiperRef = useRef<SwiperType>;
-  const otherProjectSwiperRef = useRef<SwiperType>;
-  const hightlightSwiperRef = useRef<SwiperType>;
-  const rentSwiperRef = useRef<SwiperType>;
-  const saleSwiperRef = useRef<SwiperType>;
+  const bannerSwiperRef = useRef<SwiperCore>();
+  const innerSwiperRef = useRef<SwiperCore>();
+  const otherProjectSwiperRef = useRef<SwiperCore>();
+  const hightlightSwiperRef = useRef<SwiperCore>();
+  const rentSwiperRef = useRef<SwiperCore>();
+  const saleSwiperRef = useRef<SwiperCore>();
 
   // const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
@@ -30,7 +30,7 @@ function SingleProjectView({ params }) {
       <header>
         <Swiper
           modules={[Navigation]}
-          onBeforeInit={(swiper) => {
+          onSwiper={(swiper) => {
             bannerSwiperRef.current = swiper;
           }}
           className="swiper"
@@ -39,7 +39,7 @@ function SingleProjectView({ params }) {
             return (
               <SwiperSlide
                 className="swiperSilderItem"
-                key={exteriorGallery.id + +"exteriorGallery"}
+                key={exteriorGallery.id + +"exteriorGallery" + index}
               >
                 <img src={exteriorGallery.path} className="sliderCoverImg" />
                 <div className=" sliderContainer">
@@ -170,7 +170,7 @@ function SingleProjectView({ params }) {
                     <Swiper
                       pagination={true}
                       modules={[Pagination]}
-                      onBeforeInit={(swiper) => {
+                      onSwiper={(swiper) => {
                         innerSwiperRef.current = swiper;
                       }}
                       className="mySwiper singleSlider clmSlider"
@@ -254,7 +254,7 @@ function SingleProjectView({ params }) {
             <tbody>
               {projectData?.types?.map((type, index) => {
                 return (
-                  <tr key={type.id}>
+                  <tr key={type.id + index}>
                     <td>
                       <p className="tblTdText text-secondary">{type.name}</p>
                     </td>
@@ -376,7 +376,7 @@ function SingleProjectView({ params }) {
                   },
                 }}
                 modules={[Navigation, Pagination]}
-                onBeforeInit={(swiper) => {
+                onSwiper={(swiper) => {
                   otherProjectSwiperRef.current = swiper;
                 }}
                 className="swiper pb-5 communitySwiper"
@@ -439,7 +439,9 @@ function SingleProjectView({ params }) {
         <div className="container">
           <div className="row">
             <div className="secTabCntent">
-              <h4 className="sctionMdTitle text-primary">AVAILABLE PROPERTIES</h4>
+              <h4 className="sctionMdTitle text-primary">
+                AVAILABLE PROPERTIES
+              </h4>
               <h6 className="sctionSubTitle text-primary">FOR RENT</h6>
             </div>
             <div className="row g-0">
@@ -470,7 +472,7 @@ function SingleProjectView({ params }) {
                   },
                 }}
                 modules={[Navigation, Pagination]}
-                onBeforeInit={(swiper) => {
+                onSwiper={(swiper) => {
                   rentSwiperRef.current = swiper;
                 }}
                 className="swiper pb-5 communitySwiper"
@@ -527,7 +529,6 @@ function SingleProjectView({ params }) {
             </div>
 
             <div className="secTabCntent">
-             
               <h6 className="sctionSubTitle text-primary">FOR SALE</h6>
             </div>
             <div className="row g-0">
@@ -558,7 +559,7 @@ function SingleProjectView({ params }) {
                   },
                 }}
                 modules={[Navigation, Pagination]}
-                onBeforeInit={(swiper) => {
+                onSwiper={(swiper) => {
                   saleSwiperRef.current = swiper;
                 }}
                 className="swiper pb-5 communitySwiper"
@@ -616,11 +617,14 @@ function SingleProjectView({ params }) {
           </div>
         </div>
       </section>
-   
 
       {projectData?.types?.map((type, index) => {
         return (
-          <div className="modal fade" id={"pricePlaneModal" + type.id}>
+          <div
+            className="modal fade"
+            id={"pricePlaneModal" + type.id}
+            key={index + "pricePlaneModal"}
+          >
             <div className="modal-dialog modal-lg">
               <div className="modal-content">
                 <div className="modal-header">
@@ -682,7 +686,6 @@ function SingleProjectView({ params }) {
         );
       })}
 
-      
       <div className="modal fade" id="floorPlaneModal">
         <div className="modal-dialog modal-md">
           <div className="modal-content">

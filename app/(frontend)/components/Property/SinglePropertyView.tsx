@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
-import { Swiper as SwiperType } from "swiper";
+import SwiperCore, { Swiper as SwiperType } from "swiper";
 import "swiper/swiper-bundle.css";
 import "swiper/css/pagination";
 import Link from "next/link";
@@ -28,7 +28,7 @@ function SinglePropertyView({ params }) {
   const [nearByLocations, setNearByLocations] = useState([]);
   const [type, setType] = useState("property");
   const [icon, setIcon] = useState("");
-  const [iconPath, setIconPath] = useState("");
+  const [iconPath, setIconPath] = useState(null);
   const [isOpen, setIsOpen] = useState(null);
   const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
   const mapRef = useRef(null);
@@ -42,8 +42,8 @@ function SinglePropertyView({ params }) {
     libraries: ["geometry", "places", "marker"],
   });
 
-  const swiperRef = useRef<SwiperType>;
-  const PropertySwiperRef = useRef<SwiperType>;
+  const swiperRef = useRef<SwiperCore>();
+  const PropertySwiperRef = useRef<SwiperCore>();
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
@@ -120,8 +120,8 @@ function SinglePropertyView({ params }) {
   });
 
   const AdvanceMarker = ({ map, position, children, onClick }) => {
-    const rootRef = useRef();
-    const markerRef = useRef();
+    const rootRef = useRef(null);
+    const markerRef = useRef(null);
 
     useEffect(() => {
       if (!rootRef.current) {
@@ -144,6 +144,7 @@ function SinglePropertyView({ params }) {
       const listener = markerRef.current.addListener("click", onClick);
       return () => listener.remove();
     }, [map, position, children, onClick]);
+    return <>{children}</>;
   };
   return (
     <>
@@ -165,7 +166,7 @@ function SinglePropertyView({ params }) {
                         thumbsSwiper ? { swiper: thumbsSwiper } : undefined
                       }
                       modules={[FreeMode, Navigation, Thumbs]}
-                      onBeforeInit={(swiper) => {
+                      onSwiper={(swiper) => {
                         PropertySwiperRef.current = swiper;
                       }}
                       className="swiper swiperThumb2"
@@ -195,16 +196,16 @@ function SinglePropertyView({ params }) {
                       </div>
                     </Swiper>
                     <Swiper
-                      onSwiper={setThumbsSwiper}
+                      onSwiper={(swiper) => {
+                        setThumbsSwiper(swiper);
+                        PropertySwiperRef.current = swiper;
+                      }}
                       loop={true}
                       spaceBetween={10}
                       slidesPerView={4}
                       freeMode={true}
                       watchSlidesProgress={true}
                       modules={[FreeMode, Navigation, Thumbs]}
-                      onBeforeInit={(swiper) => {
-                        PropertySwiperRef.current = swiper;
-                      }}
                       className="swiper swiperThumb1 pt-3"
                     >
                       {propertyData?.gallery?.map((image, index) => {
@@ -682,7 +683,7 @@ function SinglePropertyView({ params }) {
                           },
                         }}
                         modules={[Navigation]}
-                        onBeforeInit={(swiper) => {
+                        onSwiper={(swiper) => {
                           PropertySwiperRef.current = swiper;
                         }}
                         className="swiper pb-5 communityProjectSwiperr"
@@ -690,7 +691,9 @@ function SinglePropertyView({ params }) {
                         {propertyData?.community["gallery"].map(
                           (community, index) => {
                             return (
-                              <SwiperSlide key={community.id + +"community"}>
+                              <SwiperSlide
+                                key={community.id + index + "community"}
+                              >
                                 <div className="swiper-slide">
                                   <div className="communityImgCont">
                                     <img
@@ -750,8 +753,6 @@ function SinglePropertyView({ params }) {
                               className={`btn btnNearby w-100 h-100 ${
                                 type == "school" ? "active" : ""
                               }`}
-                              icon="school"
-                              btnNearbyKey="School"
                               onClick={() => {
                                 getNearByPlacesByTypeMap(
                                   "school",
@@ -768,8 +769,6 @@ function SinglePropertyView({ params }) {
                               className={`btn btnNearby w-100 h-100 ${
                                 type == "gym" ? "active" : ""
                               }`}
-                              icon="gym"
-                              btnNearbyKey="Gym"
                               onClick={() => {
                                 getNearByPlacesByTypeMap("gym", propertyData);
                                 setIcon("gym");
@@ -783,8 +782,6 @@ function SinglePropertyView({ params }) {
                               className={`btn btnNearby w-100 h-100 ${
                                 type == "supermarket" ? "active" : ""
                               }`}
-                              icon="supermarket"
-                              btnNearbyKey="Super market"
                               onClick={() => {
                                 getNearByPlacesByTypeMap(
                                   "supermarket",
@@ -801,8 +798,6 @@ function SinglePropertyView({ params }) {
                               className={`btn btnNearby w-100 h-100 ${
                                 type == "hospital" ? "active" : ""
                               }`}
-                              icon="hospital"
-                              btnNearbyKey="Hospital"
                               onClick={() => {
                                 getNearByPlacesByTypeMap(
                                   "hospital",
@@ -819,8 +814,6 @@ function SinglePropertyView({ params }) {
                               className={`btn btnNearby w-100 h-100 ${
                                 type == "pet_store" ? "active" : ""
                               }`}
-                              icon="pet"
-                              btnNearbyKey="pet shop"
                               onClick={() => {
                                 getNearByPlacesByTypeMap(
                                   "pet_store",
@@ -837,8 +830,6 @@ function SinglePropertyView({ params }) {
                               className={`btn btnNearby w-100 h-100 ${
                                 type == "shopping_mall" ? "active" : ""
                               }`}
-                              icon="mall"
-                              btnNearbyKey="mall"
                               onClick={() => {
                                 getNearByPlacesByTypeMap(
                                   "shopping_mall",
@@ -855,8 +846,6 @@ function SinglePropertyView({ params }) {
                               className={`btn btnNearby w-100 h-100 ${
                                 type == "gas_station" ? "active" : ""
                               }`}
-                              icon="gas_station"
-                              btnNearbyKey="Gas Station"
                               onClick={() => {
                                 getNearByPlacesByTypeMap(
                                   "gas_station",
@@ -873,8 +862,6 @@ function SinglePropertyView({ params }) {
                               className={`btn btnNearby w-100 h-100 ${
                                 type == "restaurant" ? "active" : ""
                               }`}
-                              icon="restaurant"
-                              btnNearbyKey="Restaurant"
                               onClick={() => {
                                 getNearByPlacesByTypeMap(
                                   "restaurant",
@@ -1015,7 +1002,7 @@ function SinglePropertyView({ params }) {
         <div
           className="modal fade"
           id="bookAmeeting"
-          tabindex="-1"
+          tabIndex={-1}
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
@@ -1436,7 +1423,7 @@ function SinglePropertyView({ params }) {
                                   id="nameCon2"
                                   className="form-control mb-2"
                                   placeholder="Enter your name"
-                                  autocomplete="off"
+                                  autoComplete="off"
                                   required
                                 />
                               </div>
@@ -1448,7 +1435,7 @@ function SinglePropertyView({ params }) {
                                   id="emailCon2"
                                   className="form-control mb-2"
                                   placeholder="Enter your email"
-                                  autocomplete="off"
+                                  autoComplete="off"
                                   required
                                 />
                               </div>
@@ -1465,7 +1452,7 @@ function SinglePropertyView({ params }) {
                                   id="telephoneNew3"
                                   name="phone"
                                   placeholder="Enter your Phone Number"
-                                  autocomplete="off"
+                                  autoComplete="off"
                                   required
                                 />
                               </div>
@@ -1477,7 +1464,7 @@ function SinglePropertyView({ params }) {
                                   id="messageCon2"
                                   className="form-control mb-2"
                                   placeholder="Message"
-                                  autocomplete="off"
+                                  autoComplete={"off"}
                                 />
                               </div>
                             </div>

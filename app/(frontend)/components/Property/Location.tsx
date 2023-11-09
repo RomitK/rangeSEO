@@ -32,7 +32,7 @@ const Location = ({
   return (
     <>
       {locations?.map((location, lIndex) => (
-        <p className="fw-500 mb-0" key={lIndex}>
+        <p className="fw-500 mb-0" key={lIndex + "nearLocation"}>
           {location.name}
         </p>
       ))}

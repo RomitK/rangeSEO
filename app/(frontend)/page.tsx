@@ -12,7 +12,7 @@ import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Navigation, Pagination } from "swiper/modules";
-import { Swiper as SwiperType } from "swiper";
+import SwiperCore, { Swiper as SwiperType } from "swiper";
 import "swiper/swiper-bundle.css";
 import "swiper/css/pagination";
 import { useState, useEffect } from "react";
@@ -20,8 +20,8 @@ import { useGetAllHomeData } from "@/src/services/HomeService";
 import Link from "next/link";
 
 export default function Home() {
-  const PropertySwiperRef = useRef<SwiperType>;
-  const testimonialSwiperRef = useRef<SwiperType>;
+  const PropertySwiperRef = useRef<SwiperCore>();
+  const testimonialSwiperRef = useRef<SwiperCore>();
   const { homeData } = useGetAllHomeData();
   return (
     <>
@@ -71,7 +71,7 @@ export default function Home() {
                           },
                         }}
                         modules={[Navigation, Pagination]}
-                        onBeforeInit={(swiper) => {
+                        onSwiper={(swiper) => {
                           PropertySwiperRef.current = swiper;
                         }}
                         className="swiper pb-5 projectSlider"
@@ -170,14 +170,14 @@ export default function Home() {
                         },
                       }}
                       modules={[Navigation]}
-                      onBeforeInit={(swiper) => {
+                      onSwiper={(swiper) => {
                         testimonialSwiperRef.current = swiper;
                       }}
                       className="swiper px-5 testiSlider"
                     >
                       {homeData?.testimonials?.map((testimonial, index) => {
                         return (
-                          <SwiperSlide>
+                          <SwiperSlide key={index + "slide"}>
                             <div className="swiper-slide">
                               <div className="bg-light p-4">
                                 <div>
@@ -204,7 +204,7 @@ export default function Home() {
                                     <div className="my-auto">
                                       <div className="">
                                         <h4 className="fw-800 mb-0 fs-14 text-blue">
-                                        {testimonial.clientName}
+                                          {testimonial.clientName}
                                         </h4>
                                         {/* <p className="text-primary fs-12 mb-0">
                                           Daren Axell
