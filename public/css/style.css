@@ -1442,3 +1442,16 @@ padding: 10px;
     transition: all 0.3s ease-out;
     width: 30px;
 }
+.need {
+    color: #3d4e60;
+    font-size: 25px;
+    font-weight: 200;
+    text-shadow: 0 0 10pxrgba(0, 0, 0, .3);
+}
+textarea#message_input {
+    border: 1px solid #66666685;
+    padding: 10px;
+    color: #474544;
+    border-radius: 0px;
+    height: 90px;
+}

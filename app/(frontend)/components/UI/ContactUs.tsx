@@ -9,6 +9,8 @@ const ContactUs = () => {
     subject: "",
     message: "",
     phone: "",
+    formName: "footerContactForm",
+    page:"home"
   });
 
   const handleSubmit = () => {
@@ -26,6 +28,8 @@ const ContactUs = () => {
           subject: "",
           message: "",
           phone: "",
+          formName: "footerContactForm",
+          page:"home"
         })
       })
       .catch((err) => {

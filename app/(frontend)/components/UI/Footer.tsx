@@ -6,6 +6,7 @@ import ContactUs from "./ContactUs";
 import parse from "html-react-parser";
 
 function Footer() {
+  const currentYear = new Date().getFullYear();
   return (
     <>
       <footer className="pt-5 bg-blue">
@@ -60,9 +61,14 @@ function Footer() {
                     <div className="col-12 col-lg-6 col-md-6">
                       <ul className="mb-0 list-unstyled footNav">
                         <li>
-                          <a href="" className="footLink">
+                        <Link
+                            className="footLink"
+                            href={{
+                              pathname: "/services",
+                            }}
+                          >
                             Services
-                          </a>
+                          </Link>
                         </li>
                         <li>
                           <a href="" className="footLink">
@@ -223,7 +229,7 @@ function Footer() {
             <div className="col-12 col-lg-12">
               <div className="pt-3">
                 <p className="fs-12 mb-0 text-white text-center">
-                  All Rights Reserved 2023 @ Range International Property
+                  All Rights Reserved {currentYear} @ Range International Property
                   Investments
                 </p>
               </div>
