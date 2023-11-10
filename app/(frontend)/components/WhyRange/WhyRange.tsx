@@ -1,3 +1,4 @@
+import CalenderModel from "../models/calenderModel";
 function WhyRange(){
     return (
         <>
@@ -17,7 +18,8 @@ function WhyRange(){
                                     </p>
                                 </div>
                                 <div className="">
-                                    <button className="btn btn-blue text-uppercase btn-lg">Book A Call</button>
+                                    <button className="btn btn-blue text-uppercase btn-lg"  data-bs-toggle="modal"
+                                    data-bs-target="#bookAmeeting">Book A Call</button>
                                 </div>
                             </div>
                         </div>
@@ -86,6 +88,7 @@ function WhyRange(){
             </div>
         </div>
     </section>
+    <CalenderModel/>
 
 </>
     );

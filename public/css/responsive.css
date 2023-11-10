@@ -1,0 +1,77 @@
+@media (max-width:1200px){
+    
+}
+@media (max-width:992px){
+    .vtTextBXox p {
+        font-size: 16px;
+    }
+    .vtTextBXox h3{
+        font-size: 18px;
+    } 
+    .sliderContentArea .sliderContent h1{
+        font-size: 70px;
+    }
+    .sliderContentArea .sliderContent h5{
+        font-size: 28px;
+    }
+    .tabsListConatiner .container .row{
+        padding: 0px;
+    }
+    .selectTitle .tabTitle{
+        font-size: 16px;
+    }
+    .priceTable thead .tblThText{
+        font-size: 14px;
+    }
+    .tblBtn {
+        width: 80px;
+        height: 32px;
+        font-size: 14px;
+    }
+    .priceTable thead th{
+    min-width: 90px;
+    }
+    .sctionMdTitle{
+        font-size: 32px;
+    }
+}
+@media (max-width:768px){
+    .tabsListConatiner .container .row{
+     display: flex;
+     flex-direction: column;
+     
+    }
+    .tabsListConatiner .col-3.selectTitle{
+        width: 100%;
+    margin-bottom: 8px;
+    }
+    .vtTextBXox p {
+        font-size: 20px;
+    }
+    .vtTextBXox h3 {
+        font-size: 24px;
+    }
+    .secContent{
+        margin-bottom: 20px;
+    }
+    .priceTable tbody .tblTdText{
+        font-size: 13px;
+    }
+    .sliderContentArea .sliderContent{
+        max-width: 90%;
+    }
+    .simpleImgHeader{
+        height: 300px;
+    }
+    .simpleImgHeader .headerImg{
+     height: 300px;
+    }
+    .fillBtn.cardBtn{
+        font-size: 16px;
+    }
+    .proSelectBox {
+        padding: 15px 24px;
+        box-shadow: 0px 4px 20px #00000026;
+        margin-bottom: 20px;
+    }
+}

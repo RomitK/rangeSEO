@@ -13,6 +13,7 @@ import parse from "html-react-parser";
 import { useMemo } from "react";
 import { useGetSingleProjectData } from "@/src/services/ProjectService";
 import "@/public/css/single-project-view-styles.css";
+import "@/public/css/responsive.css";
 
 function SingleProjectView({ params }) {
   const slug = params.slug[0];
@@ -78,7 +79,7 @@ function SingleProjectView({ params }) {
           </div>
         </Swiper>
       </header>
-      <section>
+      <section className="mb-3">
         <div className="container">
           <div className="row">
             <div className="col-md-3">
@@ -110,51 +111,51 @@ function SingleProjectView({ params }) {
       </section>
 
       <section>
-        <div className="secTabsArea">
-          <div className="tabsListConatiner container">
-            <div className="row">
-              <div className="col-3">
-                <a
-                  className=" text-decoration-none "
-                  href="#secTab-1"
-                  aria-selected="true"
-                >
-                  Hightlights
-                </a>
+          <div className="tabsListConatiner ">
+              <div className="container">
+                    <div className="row">
+                        <div className="col-3 selectTitle">
+                          <a
+                            className="tabTitle active"
+                            href="#Hightlights"
+                            aria-selected="true"
+                          >
+                            Hightlights
+                          </a>
+                        </div>
+                        <div className="col-3 selectTitle ">
+                          <a
+                            className="tabTitle"
+                            href="#ProjectDetails"
+                            aria-selected="true"
+                          >
+                            Project Details
+                          </a>
+                        </div>
+                        <div className="col-3 selectTitle">
+                          <a
+                            className="tabTitle "
+                            href="#NearBy"
+                            aria-selected="true"
+                          >
+                            Nearby
+                          </a>
+                        </div>
+                        <div className="col-3 selectTitle">
+                          <a
+                            className="tabTitle"
+                            href="#AvailableProperties"
+                            aria-selected="true"
+                          >
+                            Available Properties
+                          </a>
+                        </div>
+                    </div>
               </div>
-              <div className="col-3">
-                <a
-                  className=" text-decoration-none"
-                  href="#secTab-1"
-                  aria-selected="true"
-                >
-                  Project Details
-                </a>
-              </div>
-              <div className="col-3">
-                <a
-                  className=" text-decoration-none "
-                  href="#secTab-1"
-                  aria-selected="true"
-                >
-                  Nearby
-                </a>
-              </div>
-              <div className="col-3">
-                <a
-                  className=" text-decoration-none"
-                  href="#secTab-1"
-                  aria-selected="true"
-                >
-                  Available Properties
-                </a>
-              </div>
-            </div>
           </div>
-
-          <div className="tab-content" id="pills-tabContent">
-            <div className=" border-bottom border-dark" id="secTab-1">
-              <div className="container ">
+      </section>
+      <section id="Hightlights">
+               <div className="container ">
                 <div className="row align-items-center ">
                   <div className="col-md-8">
                     <div className="secTabCntent" id="hightlight">
@@ -190,7 +191,7 @@ function SingleProjectView({ params }) {
                         }
                       )}
 
-                      <div className="carouselArrowBar">
+                      {/* <div className="carouselArrowBar">
                         <div
                           className="swiper-button-next text-white"
                           onClick={() => innerSwiperRef.current?.slideNext()}
@@ -207,109 +208,110 @@ function SingleProjectView({ params }) {
                             <i className="bi bi-chevron-left fs-1"></i>
                           </span>
                         </div>
-                      </div>
+                      </div> */}
                     </Swiper>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
       </section>
-      <section>
+      <section id="ProjectDetails">
         <div className="container ">
           <h4 className="sctionMdTitle text-primary my-4">Project Details</h4>
           {parse(projectData?.longDescription ?? "")}
         </div>
       </section>
-      <section className="tableSection">
+      <section className="tableSection " >
         <div className="container">
           <h4 className="sctionMdTitle text-primary my-4">Property Type</h4>
-          <table className="priceTable">
-            <thead>
-              <tr>
-                <th>
-                  <h5 className="tblThText">Unit No.</h5>
-                </th>
-                <th>
-                  <h5 className="tblThText">Type</h5>
-                </th>
-                <th>
-                  <h5 className="tblThText">Size</h5>
-                </th>
-                <th>
-                  <h5 className="tblThText text-center">Bedroom</h5>
-                </th>
-                <th>
-                  <h5 className="tblThText text-center">Starting Price</h5>
-                </th>
-                <th>
-                  <h5 className="tblThText text-center">Payment Plan</h5>
-                </th>
-                <th>
-                  <h5 className="tblThText text-center">Floor Plan</h5>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {projectData?.types?.map((type, index) => {
-                return (
-                  <tr key={type.id + index}>
-                    <td>
-                      <p className="tblTdText text-secondary">{type.name}</p>
-                    </td>
-                    <td>
-                      <p className="tblTdText text-secondary">
-                        {type?.accommodation}
-                      </p>
-                    </td>
-                    <td>
-                      <p className="tblTdText text-secondary">
-                        {type?.area} {type?.areaUnit}
-                      </p>
-                    </td>
-                    <td>
-                      <p className="tblTdText text-secondary text-center">
-                        {type?.bedrooms}
-                      </p>
-                    </td>
-                    <td>
-                      <p className="tblTdText text-secondary text-center">
-                        AED{" "}
-                        {type &&
-                          new Intl.NumberFormat().format(
-                            type?.startingPrice
-                          )}{" "}
-                      </p>
-                    </td>
-                    <td>
-                      <button
-                        className="fillBtn tblBtn mrAuto"
-                        data-bs-toggle="modal"
-                        data-bs-target={"#pricePlaneModal" + type.id}
-                      >
-                        view
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        className="fillBtn tblBtn mrAuto"
-                        data-bs-toggle="modal"
-                        data-bs-target="#floorPlaneModal"
-                      >
-                        view
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+
+          <div className="tableContainer">
+            <table className="priceTable">
+              <thead>
+                <tr>
+                  <th>
+                    <h5 className="tblThText">Unit No.</h5>
+                  </th>
+                  <th>
+                    <h5 className="tblThText">Type</h5>
+                  </th>
+                  <th>
+                    <h5 className="tblThText">Size</h5>
+                  </th>
+                  <th>
+                    <h5 className="tblThText text-center">Bedroom</h5>
+                  </th>
+                  <th>
+                    <h5 className="tblThText text-center">Starting Price</h5>
+                  </th>
+                  <th>
+                    <h5 className="tblThText text-center">Payment Plan</h5>
+                  </th>
+                  <th>
+                    <h5 className="tblThText text-center">Floor Plan</h5>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {projectData?.types?.map((type, index) => {
+                  return (
+                    <tr key={type.id}>
+                      <td>
+                        <p className="tblTdText text-secondary">{type.name}</p>
+                      </td>
+                      <td>
+                        <p className="tblTdText text-secondary">
+                          {type?.accommodation}
+                        </p>
+                      </td>
+                      <td>
+                        <p className="tblTdText text-secondary">
+                          {type?.area} {type?.areaUnit}
+                        </p>
+                      </td>
+                      <td>
+                        <p className="tblTdText text-secondary text-center">
+                          {type?.bedrooms}
+                        </p>
+                      </td>
+                      <td>
+                        <p className="tblTdText text-secondary text-center">
+                          AED{" "}
+                          {type &&
+                            new Intl.NumberFormat().format(
+                              type?.startingPrice
+                            )}{" "}
+                        </p>
+                      </td>
+                      <td>
+                        <button
+                          className="fillBtn tblBtn mrAuto"
+                          data-bs-toggle="modal"
+                          data-bs-target={"#pricePlaneModal" + type.id}
+                        >
+                          view
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className="fillBtn tblBtn mrAuto"
+                          data-bs-toggle="modal"
+                          data-bs-target="#floorPlaneModal"
+                        >
+                          view
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+
+          </div>
         </div>
       </section>
       {projectData?.developer &&
         Object.keys(projectData.developer).length > 0 && (
-          <section className="my-5 ">
+          <section className="AboutDeveloper my-5 ">
             <div className="container">
               <div className="row">
                 <div className="col-md-7">
@@ -341,7 +343,7 @@ function SingleProjectView({ params }) {
             </div>
           </section>
         )}
-      <section className="my-5  border-top border-dark">
+      <section className="my-5   " id="NearBy">
         <div className="container">
           <div className="row">
             <div className="secTabCntent">
@@ -435,7 +437,7 @@ function SingleProjectView({ params }) {
         </div>
       </section>
 
-      <section className="my-5  border-top border-dark">
+      <section className="my-5  border-top border-dark" id="AvailableProperties">
         <div className="container">
           <div className="row">
             <div className="secTabCntent">

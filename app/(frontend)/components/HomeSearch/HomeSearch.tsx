@@ -3,8 +3,8 @@ function HomeSearch(){
      <section className="mainBg d-none d-md-block d-lg-block d-xl-block " id="home">
         <div className="p-relative">
           <video className="d-block w-100 videoMain"  autoPlay loop  preload="metadata" poster="images/banner/homeBg.webp">
-            <source src="/videos/homeVideo.mp4" type="video/mp4" />
-            <source src="/videos/homeVideo.mp4" type="video/mov" />
+            <source src="/videos/home2.mp4" type="video/mp4" />
+            <source src="/videos/home2.mp4" type="video/mov" />
             Sorry, your browser doesn't support videos.
           </video>
           <div className="videoOverlay"></div>
@@ -36,7 +36,7 @@ function HomeSearch(){
                             </div>
                             <div className="icon"><i className="fa fa-search"></i></div>
                           </div>
-                       
+
                     </form>
                   </div>
                 </div>

@@ -45,18 +45,22 @@ function Services() {
   return (
     <>
       <header>
-        <img src="/images/banner/homeBg.webp" className="headerImg" />
-        {/* <div className="p-relative">
-                        <video className="d-block w-100 videoMain" 
-                                autoPlay loop  preload="metadata"
-                                poster="images/banner/homeBg.webp"
-                               >
-                                <source src="/videos/homeVideo.mp4" type="video/mp4" />
-                                <source src="/videos/homeVideo.mp4" type="video/mov" />
-                                Sorry, your browser doesn't support videos.
-                        </video>
-                        <div className="videoOverlay"></div>
-                        </div> */}
+        {/* <img src="/images/banner/homeBg.webp" className="headerImg" /> */}
+        <div className="p-relative">
+          <video
+            className="d-block w-100 videoMain"
+            autoPlay
+            loop
+            muted
+            preload="metadata"
+            poster="/images/services/service-header.webp"
+          >
+            <source src="/videos/services.mp4" type="video/mp4" />
+            <source src="/videos/services.mp4" type="video/mov" />
+            Sorry, your browser doesn't support videos.
+          </video>
+          <div className="videoOverlay"></div>
+        </div>
       </header>
       <section className="servicePageSec">
         <div className="container">
@@ -74,7 +78,7 @@ function Services() {
             <div className="col-md-6">
               <div className="serviceCard">
                 <img
-                  src="/images/banner/homeBg.webp"
+                  src="/images/services/service1.webp"
                   className="serviceCardImg"
                 />
                 <div className="serCardContent ">
@@ -101,7 +105,7 @@ function Services() {
             <div className="col-md-6">
               <div className="serviceCard">
                 <img
-                  src="/images/banner/homeBg.webp"
+                  src="/images/services/service2.webp"
                   className="serviceCardImg"
                 />
                 <div className="serCardContent ">
@@ -128,7 +132,7 @@ function Services() {
             <div className="col-md-6">
               <div className="serviceCard">
                 <img
-                  src="/images/banner/homeBg.webp"
+                  src="/images/services/service3.webp"
                   className="serviceCardImg"
                 />
                 <div className="serCardContent ">
@@ -152,7 +156,7 @@ function Services() {
             <div className="col-md-6">
               <div className="serviceCard">
                 <img
-                  src="/images/banner/homeBg.webp"
+                  src="/images/services/service4.webp"
                   className="serviceCardImg"
                 />
                 <div className="serCardContent ">
@@ -177,7 +181,7 @@ function Services() {
             <div className="col-md-6">
               <div className="serviceCard">
                 <img
-                  src="/images/banner/homeBg.webp"
+                  src="/images/services/service5.webp"
                   className="serviceCardImg"
                 />
                 <div className="serCardContent ">
@@ -202,7 +206,7 @@ function Services() {
             <div className="col-md-6">
               <div className="serviceCard">
                 <img
-                  src="/images/banner/homeBg.webp"
+                  src="/images/services/service6.webp"
                   className="serviceCardImg"
                 />
                 <div className="serCardContent ">
