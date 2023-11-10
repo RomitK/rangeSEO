@@ -126,19 +126,25 @@ function Navbar() {
                     </a>
                     <ul className="dropdown-menu">
                       <li className="">
-                        <a href="" className="mainLink">
-                          Range
-                        </a>
+                        
+
+                        <Link className="mainLink" href="/about">
+                        About Range
+                        </Link>
+
                       </li>
                       <li className="">
-                        <a href="" className="mainLink">
-                          Management
-                        </a>
+                        
+
+                        <Link className="mainLink" href="/management">
+                        Management
+                        </Link>
+
                       </li>
                       <li className="">
-                        <a href="" className="mainLink">
-                          Agents
-                        </a>
+                      <Link className="mainLink" href="/teams">
+                        Agents
+                        </Link>
                       </li>
                       <li className="">
                         <a href="" className="mainLink">
@@ -157,14 +163,14 @@ function Navbar() {
                     </a>
                     <ul className="dropdown-menu">
                       <li className="">
-                        <a href="" className="mainLink">
+                        <Link className="mainLink" href="/contactUs">
                           Contact Us
-                        </a>
+                        </Link>
                       </li>
                       <li className="">
-                        <a href="" className="mainLink">
+                        <Link className="mainLink" href="/careers">
                           Career
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </li>
@@ -207,9 +213,9 @@ function Navbar() {
                     <div className="offcanvas-body">
                       <ul className="list-unstyled dropList">
                         <li className="nav-item py-3 border-bottom">
-                          <a className="nav-link" href="">
+                          <Link className="nav-link" href="/careers">
                             Career
-                          </a>
+                          </Link>
                         </li>
                         <li className="nav-item py-3 border-bottom">
                           <a className="nav-link" href="">
@@ -409,19 +415,25 @@ function Navbar() {
                     </a>
                     <ul className="dropdown-menu">
                       <li className="">
-                        <a href="" className="mainLink">
-                          Range
-                        </a>
+                       
+                        <Link className="mainLink" href="/about">
+                        About Range
+                        </Link>
                       </li>
                       <li className="">
-                        <a href="" className="mainLink">
-                          Management
-                        </a>
+                       
+                        <Link className="mainLink" href="/management">
+                        Management
+                        </Link>
+
                       </li>
                       <li className="">
-                        <a href="" className="mainLink">
-                          Agents
-                        </a>
+                       
+                        <Link className="mainLink" href="/teams">
+                        Agents
+                        </Link>
+
+
                       </li>
                       <li className="">
                         <a href="" className="mainLink">
@@ -440,14 +452,14 @@ function Navbar() {
                     </a>
                     <ul className="dropdown-menu">
                       <li className="">
-                        <a href="" className="mainLink">
+                        <Link className="mainLink" href="/contactUs">
                           Contact Us
-                        </a>
+                        </Link>
                       </li>
                       <li className="">
-                        <a href="" className="mainLink">
+                        <Link className="mainLink" href="/careers">
                           Career
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </li>
@@ -490,9 +502,9 @@ function Navbar() {
                     <div className="offcanvas-body">
                       <ul className="list-unstyled dropList">
                         <li className="nav-item py-3 border-bottom">
-                          <a className="nav-link" href="">
+                          <Link className="nav-link" href="/careers">
                             Career
-                          </a>
+                          </Link>
                         </li>
                         <li className="nav-item py-3 border-bottom">
                           <a className="nav-link" href="">
