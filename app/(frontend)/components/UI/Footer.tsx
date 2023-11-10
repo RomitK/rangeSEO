@@ -6,6 +6,7 @@ import ContactUs from "./ContactUs";
 import parse from "html-react-parser";
 
 function Footer() {
+  const currentYear = new Date().getFullYear();
   return (
     <>
       <footer className="pt-5 bg-blue">
@@ -26,7 +27,12 @@ function Footer() {
                   </div>
                   <div className="mb-3">
                     <p className="text-white fs-12 mb-0">
-                    Range International Property Investments is an esteemed award-winning real estate brokerage based in Dubai, UAE. With over two decades of unmatched experience, we have established ourselves as industry leaders, renowned for our exceptional services and deep knowledge of the real estate market locally and internationally.
+                      Range International Property Investments is an esteemed
+                      award-winning real estate brokerage based in Dubai, UAE.
+                      With over two decades of unmatched experience, we have
+                      established ourselves as industry leaders, renowned for
+                      our exceptional services and deep knowledge of the real
+                      estate market locally and internationally.
                     </p>
                   </div>
                   <div className="mb-1">
@@ -60,9 +66,14 @@ function Footer() {
                     <div className="col-12 col-lg-6 col-md-6">
                       <ul className="mb-0 list-unstyled footNav">
                         <li>
-                          <a href="" className="footLink">
+                          <Link
+                            className="footLink"
+                            href={{
+                              pathname: "/services",
+                            }}
+                          >
                             Services
-                          </a>
+                          </Link>
                         </li>
                         <li>
                           <a href="" className="footLink">
@@ -119,7 +130,8 @@ function Footer() {
                             href="#"
                           >
                             <i className="bi bi-geo-alt-fill text-primary"></i>
-                            &nbsp; 2601 Aspect Tower, Business Bay, United Arab Emirates
+                            &nbsp; 2601 Aspect Tower, Business Bay, United Arab
+                            Emirates
                           </a>
                         </li>
                       </ul>
@@ -166,7 +178,11 @@ function Footer() {
               <div className="row g-0">
                 <div className="col-2 col-lg-2 my-auto">
                   <div className="text-center socialLinkNav p-3">
-                    <a href={process.env.FACEBOOK_LINK} className="text-decoration-none" target="_blanket">
+                    <a
+                      href={process.env.FACEBOOK_LINK}
+                      className="text-decoration-none"
+                      target="_blanket"
+                    >
                       <span className="iconRoundBlack">
                         <i className="fa fa-facebook"></i>
                       </span>
@@ -175,7 +191,11 @@ function Footer() {
                 </div>
                 <div className="col-2 col-lg-2 my-auto">
                   <div className="text-center socialLinkNav p-3">
-                    <a href={process.env.INSTAGRAM_LINK} className="text-decoration-none" target="_blanket">
+                    <a
+                      href={process.env.INSTAGRAM_LINK}
+                      className="text-decoration-none"
+                      target="_blanket"
+                    >
                       <span className="iconRoundBlack">
                         <i className="fa fa-instagram"></i>
                       </span>
@@ -184,7 +204,11 @@ function Footer() {
                 </div>
                 <div className="col-2 col-lg-2 my-auto">
                   <div className="text-center socialLinkNav p-3">
-                    <a href={process.env.TWITTER_LINK} className="text-decoration-none" target="_blanket">
+                    <a
+                      href={process.env.TWITTER_LINK}
+                      className="text-decoration-none"
+                      target="_blanket"
+                    >
                       <span className="iconRoundBlack">
                         <i className="fa fa-twitter"></i>
                       </span>
@@ -193,7 +217,11 @@ function Footer() {
                 </div>
                 <div className="col-2 col-lg-2 my-auto">
                   <div className="text-center socialLinkNav p-3">
-                    <a href={process.env.LINKEDIN_LINK} className="text-decoration-none" target="_blanket">
+                    <a
+                      href={process.env.LINKEDIN_LINK}
+                      className="text-decoration-none"
+                      target="_blanket"
+                    >
                       <span className="iconRoundBlack">
                         <i className="fa fa-linkedin"></i>
                       </span>
@@ -202,7 +230,11 @@ function Footer() {
                 </div>
                 <div className="col-2 col-lg-2 my-auto">
                   <div className="text-center socialLinkNav p-3">
-                    <a href={process.env.YOUTUBE_LINK} className="text-decoration-none" target="_blanket">
+                    <a
+                      href={process.env.YOUTUBE_LINK}
+                      className="text-decoration-none"
+                      target="_blanket"
+                    >
                       <span className="iconRoundBlack">
                         <i className="bi bi-youtube"></i>
                       </span>
@@ -211,7 +243,11 @@ function Footer() {
                 </div>
                 <div className="col-2 col-lg-2 my-auto">
                   <div className="text-center socialLinkNav p-3">
-                    <a href={process.env.TIKTOK_LINK} className="text-decoration-none" target="_blanket">
+                    <a
+                      href={process.env.TIKTOK_LINK}
+                      className="text-decoration-none"
+                      target="_blanket"
+                    >
                       <span className="iconRoundBlack">
                         <i className="bi bi-tiktok"></i>
                       </span>
@@ -223,8 +259,8 @@ function Footer() {
             <div className="col-12 col-lg-12">
               <div className="pt-3">
                 <p className="fs-12 mb-0 text-white text-center">
-                  All Rights Reserved 2023 @ Range International Property
-                  Investments
+                  All Rights Reserved {currentYear} @ Range International
+                  Property Investments
                 </p>
               </div>
             </div>
@@ -235,14 +271,14 @@ function Footer() {
         type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       />
       <Script
         type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"
         integrity="sha512-+gShyB8GWoOiXNwOlBaYXdLTiZt10Iy6xjACGadpqMs20aJOoh+PJt3bwUVA6Cefe7yF7vblX6QwyXZiVwTWGg=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
+        crossOrigin="anonymous"
+        referrerPolicy="no-referrer"
       />
       <Script
         type="text/javascript"

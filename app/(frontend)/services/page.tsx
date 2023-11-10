@@ -1,12 +1,47 @@
 "use client";
 import "@/public/css/services-styles.css";
 import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { saveContactFormApi } from "@/src/services/HomeService";
 
 function Services() {
-      const router = useRouter();
-      const goldenHandler = ()=>{
-            router.push('/goldenVisa');
-      }
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+    phone: "",
+    formName: "enquireForm",
+    page: "services",
+  });
+  const handleSubmit = () => {
+    if (!formData.name || !formData.email || !formData.phone) {
+      return toast.error("Please fill required field");
+    }
+    saveContactFormApi(formData)
+      .then((res) => {
+        toast.success(
+          "Enquire form submitted successfully, out support teams contact you soon"
+        );
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          phone: "",
+          formName: "enquireForm",
+          page: "services",
+        });
+      })
+      .catch((err) => {
+        toast.error("Something went wrong, please try again");
+      });
+  };
+  const goldenHandler = () => {
+    router.push("/goldenVisa");
+  };
   return (
     <>
       <header className="simpleImgHeader">
@@ -53,9 +88,11 @@ function Services() {
                     assisting you in finding ideal buyers and maximizing your
                     ROI.
                   </p>
-                  <button className="fillBtn  mrAuto cardBtn"  
+                  <button
+                    className="fillBtn  mrAuto cardBtn"
                     data-bs-toggle="modal"
-                        data-bs-target={"#download"}>
+                    data-bs-target="#enquireNow"
+                  >
                     ENQUIRE NOW
                   </button>
                 </div>
@@ -78,7 +115,11 @@ function Services() {
                     ideal space for your business growth, whether it's offices
                     or retail.
                   </p>
-                  <button className="fillBtn  mrAuto cardBtn">
+                  <button
+                    className="fillBtn  mrAuto cardBtn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#enquireNow"
+                  >
                     ENQUIRE NOW
                   </button>
                 </div>
@@ -98,7 +139,11 @@ function Services() {
                     to ensuring your property is well-maintained and optimized
                     for its highest potential.
                   </p>
-                  <button className="fillBtn  mrAuto cardBtn">
+                  <button
+                    className="fillBtn  mrAuto cardBtn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#enquireNow"
+                  >
                     ENQUIRE NOW
                   </button>
                 </div>
@@ -119,7 +164,11 @@ function Services() {
                     the perfect backdrop for creating lasting memories with
                     loved ones.
                   </p>
-                  <button className="fillBtn  mrAuto cardBtn">
+                  <button
+                    className="fillBtn  mrAuto cardBtn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#enquireNow"
+                  >
                     ENQUIRE NOW
                   </button>
                 </div>
@@ -140,7 +189,11 @@ function Services() {
                     comprehensive solutions for property purchases in Dubai and
                     other Emirates.
                   </p>
-                  <button className="fillBtn  mrAuto cardBtn">
+                  <button
+                    className="fillBtn  mrAuto cardBtn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#enquireNow"
+                  >
                     ENQUIRE NOW
                   </button>
                 </div>
@@ -163,7 +216,11 @@ function Services() {
                     wealth of knowledge and expertise to diversify your property
                     portfolio.
                   </p>
-                  <button className="fillBtn  mrAuto cardBtn">
+                  <button
+                    className="fillBtn  mrAuto cardBtn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#enquireNow"
+                  >
                     ENQUIRE NOW
                   </button>
                 </div>
@@ -175,106 +232,115 @@ function Services() {
       <section className="imgSection overlayBgClr">
         <div className="contentBox">
           <h2>CHECK YOUR ELIGIBILITY FOR GOLDEN VISA</h2>
-          <button className="bdrBtn largBtn text-white border border-white" onClick={goldenHandler}>Check Now</button>
+          <button
+            className="bdrBtn largBtn text-white border border-white"
+            onClick={goldenHandler}
+          >
+            Check Now
+          </button>
         </div>
       </section>
-      <div id={"download"} className="modal fade" role="dialog">
-
-    <div className="modal-dialog modal-dialog-centered modal-lg">
-
-        <div className="modal-content">
-
+      <div id="enquireNow" className="modal fade" role="dialog">
+        <div className="modal-dialog modal-dialog-centered modal-lg">
+          <div className="modal-content">
             <div className="modal-header">
-
-                <button type="button" className="close" data-dismiss="modal">&times;</button>
-
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
 
             <div className="modal-body">
-
-                <div className="container-fluid1">
-
-                    <div className="row justify-content-center align-items-center d-flex">
-
-                        <div className="col-12 col-md-6 col-lg-6">                                                    
-
-                            <div className="logo-text">
-                                <div className="logo mt-3 mb-3">
-                                    <div className="logo-img"> 
-                                        <img src="" alt=""/>
-                                    </div>
-                                </div>
-
-                                <div className="assist-text  text-left mt-3 mb-5">
-                                    <h5 className="need">Download Brochure</h5>
-                                    <h5><strong className="need">By filling your details</strong></h5>
-                                </div>
-                            </div>
+              <div className="container-fluid1">
+                <div className="row justify-content-center align-items-center d-flex">
+                  <div className="col-12 col-md-6 col-lg-6">
+                    <div className="logo-text">
+                      <div className="logo mt-3 mb-3">
+                        <div className="logo-img">
+                          <img
+                            src="/images/logo_blue.png"
+                            alt="Range Property"
+                            className="img-fluid"
+                            width="200"
+                          />
                         </div>
+                      </div>
 
-                        <div className="col-12 col-md-6 col-lg-6">
-
-                            <div className="form-div mt-3">                                
-
-                                <form  id="forms"   method="POST" id="contact_form" >
-
-                                  
-
-                                    <div className="mb-3">
-
-                                        <input type="text" name="name" className="form-control"
-
-                                            id="name" placeholder="Name"/>
-
-                                    </div>
-
-                                    <div className="mb-3">
-
-                                        <input type="text" name="email" className="form-control"
-
-                                            id="email" placeholder="Email"/>
-
-                                    </div>
-
-                                    <div className="mb-3">
-
-                                        <input type="text" name="phone" className="form-control"
-
-                                            id="phone" placeholder="Phone"/>
-
-                                    </div>
-
-                                    <div className="mb-3">
-
-                                        <textarea name="message" placeholder="Message" id="message_input" cols="30" rows="5" required></textarea>
-
-                                    </div>
-
-                                    <div className="mb-3 mt-3">
-
-                                        <button type="submit" name="submit" className="btn btn-blue">Submit</button>
-
-                                    </div>
-
-                                </form>                                    
-
-                                
-
-                            </div>
-
-                        </div>
-
+                      <div className="assist-text  text-left mt-3 mb-5">
+                        <h5>
+                          <strong className="need">
+                            An esteemed award-winning real estate brokerage
+                            based in Dubai, UAE.
+                          </strong>
+                        </h5>
+                      </div>
                     </div>
+                  </div>
 
+                  <div className="col-12 col-md-6 col-lg-6">
+                    <div className="form-div mt-3">
+                      <form id="contact_form" method="POST">
+                        <div className="mb-3">
+                          <input
+                            type="text"
+                            name="name"
+                            className="form-control"
+                            id="name"
+                            placeholder="Name"
+                          />
+                        </div>
+
+                        <div className="mb-3">
+                          <input
+                            type="text"
+                            name="email"
+                            className="form-control"
+                            id="email"
+                            placeholder="Email"
+                          />
+                        </div>
+
+                        <div className="mb-3">
+                          <input
+                            type="text"
+                            name="phone"
+                            className="form-control"
+                            id="phone"
+                            placeholder="Phone"
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <textarea
+                            name="message"
+                            placeholder="Message"
+                            id="message_input"
+                            cols={30}
+                            rows={5}
+                            required
+                          ></textarea>
+                        </div>
+
+                        <div className="mb-3 mt-3">
+                          <button
+                            type="submit"
+                            name="submit"
+                            className="btn btn-blue"
+                            onClick={handleSubmit}
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
                 </div>
-
+              </div>
             </div>
-
+          </div>
         </div>
-
-    </div>
-
-</div>
+      </div>
     </>
   );
 }

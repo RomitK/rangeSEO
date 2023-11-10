@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import { Swiper as SwiperType } from "swiper";
+import SwiperCore, { Swiper as SwiperType } from "swiper";
+
 import "swiper/swiper-bundle.css";
 import "swiper/css/pagination";
 import Link from "next/link";
@@ -54,7 +55,7 @@ function SinglecommunityDataView({ params }) {
 
   const getDistanceMatrix = async (origin, destination) => {
     const distance = [];
-    let requestLocation = {
+    let requestLocation: any = {
       destinations: [
         {
           lat: parseFloat(destination?.lat),
@@ -98,8 +99,8 @@ function SinglecommunityDataView({ params }) {
     zoom: 15,
   };
 
-  const swiperRef = useRef<SwiperType>;
-  const PropertySwiperRef = useRef<SwiperType>;
+  const swiperRef = useRef<SwiperCore>();
+  const PropertySwiperRef = useRef<SwiperCore>();
 
   return (
     <>
@@ -115,6 +116,7 @@ function SinglecommunityDataView({ params }) {
                     </div>
                   </div>
                 </div>
+
                 {communityData && communityData.imageGallery && (
                   <div className="col-12 col-lg-12 col-md-12">
                     <Swiper
@@ -258,7 +260,7 @@ function SinglecommunityDataView({ params }) {
                           },
                         }}
                         modules={[Navigation, Pagination]}
-                        onBeforeInit={(swiper) => {
+                        onSwiper={(swiper) => {
                           swiperRef.current = swiper;
                         }}
                         className="swiper pb-5 highlightSwiper px-5"
@@ -425,7 +427,7 @@ function SinglecommunityDataView({ params }) {
                           },
                         }}
                         modules={[Navigation, Pagination]}
-                        onBeforeInit={(swiper) => {
+                        onSwiper={(swiper) => {
                           swiperRef.current = swiper;
                         }}
                         className="swiper pb-5 amenitiesSwiper px-5"
@@ -523,7 +525,7 @@ function SinglecommunityDataView({ params }) {
                           },
                         }}
                         modules={[Navigation, Pagination]}
-                        onBeforeInit={(swiper) => {
+                        onSwiper={(swiper) => {
                           PropertySwiperRef.current = swiper;
                         }}
                         className="swiper pb-5 projectSlider"
@@ -743,7 +745,7 @@ function SinglecommunityDataView({ params }) {
                         },
                       }}
                       modules={[Navigation, Pagination]}
-                      onBeforeInit={(swiper) => {
+                      onSwiper={(swiper) => {
                         PropertySwiperRef.current = swiper;
                       }}
                       className="swiper pb-5 projectSlider"

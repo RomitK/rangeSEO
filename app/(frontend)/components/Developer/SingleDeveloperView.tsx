@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import { Swiper as SwiperType } from "swiper";
+import SwiperCore, { Swiper as SwiperType } from "swiper";
 import "swiper/swiper-bundle.css";
 import "swiper/css/pagination";
 import Link from "next/link";
@@ -15,8 +15,8 @@ import { useGetSingleDeveloperData } from "@/src/services/DeveloperService";
 function SingleDeveloperView({ params }) {
   const slug = params.slug[0];
   const { developerData } = useGetSingleDeveloperData(slug);
-  const PropertySwiperRef = useRef<SwiperType>;
-  const swiperRef = useRef<SwiperType>;
+  const PropertySwiperRef = useRef<SwiperCore>();
+  const swiperRef = useRef<SwiperCore>();
   return (
     <>
       {developerData && (
@@ -63,7 +63,7 @@ function SingleDeveloperView({ params }) {
                           },
                         }}
                         modules={[Navigation, Pagination]}
-                        onBeforeInit={(swiper) => {
+                        onSwiper={(swiper) => {
                           swiperRef.current = swiper;
                         }}
                         className="swiper communityMainSwiper"
@@ -246,7 +246,7 @@ function SingleDeveloperView({ params }) {
                         },
                       }}
                       modules={[Navigation, Pagination]}
-                      onBeforeInit={(swiper) => {
+                      onSwiper={(swiper) => {
                         swiperRef.current = swiper;
                       }}
                       className="swiper pb-5 projectSlider"
@@ -293,7 +293,6 @@ function SingleDeveloperView({ params }) {
                       })}
                       <div
                         className=""
-                        onClick={() => swiperRef.current?.slideNext()}
                         onClick={() => swiperRef.current?.slideNext()}
                       >
                         <span className="swiper-button-prev swiperUniquePrev text-primary">
@@ -359,7 +358,7 @@ function SingleDeveloperView({ params }) {
                         },
                       }}
                       modules={[Navigation, Pagination]}
-                      onBeforeInit={(swiper) => {
+                      onSwiper={(swiper) => {
                         PropertySwiperRef.current = swiper;
                       }}
                       className="swiper pb-5 projectSlider"
