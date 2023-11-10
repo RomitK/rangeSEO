@@ -21,9 +21,6 @@ function SinglecommunityDataView({ params }) {
   const [nearByLocations, setNearByLocations] = useState([]);
 
   const onMapLoad = (map, maps, data) => {
-    console.log("address_latitude", data?.address_latitude);
-    console.log("address_latitude", data?.address_longitude);
-
     let request = {
       location: {
         lat: parseFloat(data?.address_latitude),
@@ -38,16 +35,21 @@ function SinglecommunityDataView({ params }) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         const locationData = [];
         for (var i = 0; i < results.length; i++) {
-          locationData.push({
-            name: results[i].name,
-            lat: results[i].geometry?.location?.lat(),
-            lng: results[i].geometry?.location?.lng(),
-            distance: await getDistanceMatrix(data, {
+          if (results[i].rating && results[i].vicinity != data.name) {
+            locationData.push({
+              name: results[i].name,
               lat: results[i].geometry?.location?.lat(),
               lng: results[i].geometry?.location?.lng(),
-            }),
-          });
+              distance: await getDistanceMatrix(data, {
+                lat: results[i].geometry?.location?.lat(),
+                lng: results[i].geometry?.location?.lng(),
+              }),
+            });
+          }
         }
+        locationData.sort((a, b) => {
+          return a.distance[0].value - b.distance[0].value;
+        });
         setNearByLocations(locationData);
       }
     });
@@ -361,17 +363,21 @@ function SinglecommunityDataView({ params }) {
                         <>
                           {nearByLocations?.map((location, locIndex) => {
                             return (
-                              <div
-                                className="border-bottom border-1 border-dark py-2"
-                                key={locIndex + "loc"}
-                              >
-                                <p className="text-black fw-500 mb-0 fs-20">
-                                  {location?.name}
-                                </p>
-                                <p className="text-primary fw-500 mb-0 fs-20">
-                                  {location?.distance[0].text}
-                                </p>
-                              </div>
+                              <>
+                                {locIndex < 5 && (
+                                  <div
+                                    className="border-bottom border-1 border-dark py-2"
+                                    key={locIndex + "loc"}
+                                  >
+                                    <p className="text-black fw-500 mb-0 fs-20">
+                                      {location?.name}
+                                    </p>
+                                    <p className="text-primary fw-500 mb-0 fs-20">
+                                      {location?.distance[0].text}
+                                    </p>
+                                  </div>
+                                )}
+                              </>
                             );
                           })}
                         </>
