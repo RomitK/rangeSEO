@@ -2,13 +2,25 @@ import React, { useState, useRef, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import $ from "jquery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { toast } from "react-toastify";
+import { saveContactFormApi } from "@/src/services/HomeService";
 
 function CalenderModel () {
     const [startDate, setStartDate] = useState(new Date());
-  const [minDate, setMinDate] = useState(new Date());
+    const [minDate, setMinDate] = useState(new Date());
 
+    const [formData, setFormData] = useState({
+      name: "",
+      email: "",
+      message: "",
+      phone: "",
+      date:startDate,
+      time:"",
+      formName: "bookACall",
+      page: "home",
+    });
     // $(document).on("click", ".timeitem", function () {
-    //     $("#ths_time").val($(this).val());
+    //     setFormData({ ...formData, time: $(this).val() })
     //     $(".pickitem").removeClass("active");
     //     $(this).parent(".pickitem").addClass("active");
     //   });
@@ -26,9 +38,26 @@ function CalenderModel () {
     //     $(".step-2").hide();
     //     $(".pickitem ").removeClass("active");
     //   });
+      const handleSubmit = () => {
+        console.log(formData)
+        if (!formData.name || !formData.email || !formData.phone) {
+          return toast.error("Please fill required field");
+        }
+        saveContactFormApi(formData)
+          .then((res) => {
+            toast.success(
+              "Enquire form submitted successfully, out support teams contact you soon"
+            );
+            $("#bookAmeeting").modal("hide");
+           
+          })
+          .catch((err) => {
+            toast.error("Something went wrong, please try again");
+          });
+      };
 
     return (
-<div
+        <div
           className="modal fade"
           id="bookAmeeting"
           tabIndex={-1}
@@ -97,16 +126,11 @@ function CalenderModel () {
                                 minDate={minDate}
                                 selected={startDate}
                                 onChange={(date) => {
-                                  console.log("lll");
                                   $(".modalBookMeet").addClass("modalBookView");
                                   $(".timepic").show();
                                   $(".descricalenderCol").hide();
-                                  $(".calenderCol")
-                                    .removeClass("col-lg-7")
-                                    .addClass("col-lg-12");
-                                  $(".newcol")
-                                    .removeClass("col-md-12")
-                                    .addClass("col-md-7");
+                                  $(".calenderCol").removeClass("col-lg-7").addClass("col-lg-12");
+                                  $(".newcol") .removeClass("col-md-12").addClass("col-md-7");
                                   setStartDate(date);
                                 }}
                               />
@@ -114,7 +138,7 @@ function CalenderModel () {
                             <div className="col-md-5">
                               <div className="timepic">
                                 <b>
-                                  <p className="ths_date">Fri Sep 2023</p>
+                                <p className="ths_date">{startDate.toDateString()}</p>
                                 </b>
                                 <input type="hidden" name="id" value="" />
                                 <input
@@ -135,6 +159,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="09:00 AM"
+                                      
                                     >
                                       09:00 AM
                                     </button>
@@ -142,6 +167,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="09:00 AM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -151,6 +177,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="09:30 AM"
+                                      
                                     >
                                       09:30 AM
                                     </button>
@@ -158,6 +185,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="09:30 AM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -167,6 +195,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="10:00 AM"
+                                      
                                     >
                                       10:00 AM
                                     </button>
@@ -174,6 +203,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="10:00 AM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -183,6 +213,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="10:30 AM"
+                                      
                                     >
                                       10:30 AM
                                     </button>
@@ -190,6 +221,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="10:30 AM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -199,6 +231,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="11:00 AM"
+                                      
                                     >
                                       11:00 AM
                                     </button>
@@ -206,6 +239,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="11:00 AM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -215,6 +249,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="11:30 AM"
+                                      
                                     >
                                       11:30 AM
                                     </button>
@@ -222,6 +257,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="11:30 AM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -231,6 +267,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="12:00 PM"
+                                      
                                     >
                                       12:00 PM
                                     </button>
@@ -238,6 +275,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="12:00 PM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -247,6 +285,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="12:30 PM"
+                                      
                                     >
                                       12:30 PM
                                     </button>
@@ -254,6 +293,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="12:30 PM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -263,6 +303,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="13:00 PM"
+                                      
                                     >
                                       13:00 PM
                                     </button>
@@ -270,6 +311,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="13:00 PM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -279,6 +321,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="13:30 PM"
+                                      
                                     >
                                       13:30 PM
                                     </button>
@@ -286,6 +329,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="13:30 PM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -295,6 +339,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="14:00 PM"
+                                      
                                     >
                                       14:00 PM
                                     </button>
@@ -302,6 +347,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="14:00 PM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -311,6 +357,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="14:30 PM"
+                                      
                                     >
                                       14:30 PM
                                     </button>
@@ -318,6 +365,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="14:30 PM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -327,6 +375,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="15:00 PM"
+                                      
                                     >
                                       15:00 PM
                                     </button>
@@ -334,6 +383,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="15:00 PM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -343,6 +393,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="15:30 PM"
+                                      
                                     >
                                       15:30 PM
                                     </button>
@@ -350,6 +401,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="15:30 PM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -359,6 +411,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="16:00 PM"
+                                      
                                     >
                                       16:00 PM
                                     </button>
@@ -366,6 +419,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="16:00 PM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -375,6 +429,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="16:30 PM"
+                                      
                                     >
                                       16:30 PM
                                     </button>
@@ -382,6 +437,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="16:30 PM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -391,6 +447,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="17:00 PM"
+                                      
                                     >
                                       17:00 PM
                                     </button>
@@ -398,6 +455,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="17:00 PM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -407,6 +465,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="17:30 PM"
+                                      
                                     >
                                       17:30 PM
                                     </button>
@@ -414,6 +473,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="17:30 PM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -423,6 +483,7 @@ function CalenderModel () {
                                       type="button"
                                       className="timeitem"
                                       value="18:00 PM"
+                                      
                                     >
                                       18:00 PM
                                     </button>
@@ -430,6 +491,7 @@ function CalenderModel () {
                                       className="confirm-button"
                                       type="button"
                                       value="18:00 PM"
+                                      
                                     >
                                       Confirm
                                     </button>
@@ -453,6 +515,10 @@ function CalenderModel () {
                                   className="form-control mb-2"
                                   placeholder="Enter your name"
                                   autoComplete="off"
+                                  value={formData.name}
+                                  onChange={(e) =>
+                                    setFormData({ ...formData, name: e.target.value })
+                                  }
                                   required
                                 />
                               </div>
@@ -465,6 +531,10 @@ function CalenderModel () {
                                   className="form-control mb-2"
                                   placeholder="Enter your email"
                                   autoComplete="off"
+                                  value={formData.email}
+                                  onChange={(e) =>
+                                    setFormData({ ...formData, email: e.target.value })
+                                  }
                                   required
                                 />
                               </div>
@@ -481,6 +551,10 @@ function CalenderModel () {
                                   id="telephoneNew3"
                                   name="phone"
                                   placeholder="Enter your Phone Number"
+                                  value={formData.phone}
+                                  onChange={(e) =>
+                                    setFormData({ ...formData, phone: e.target.value })
+                                  }
                                   autoComplete="off"
                                   required
                                 />
@@ -494,6 +568,10 @@ function CalenderModel () {
                                   className="form-control mb-2"
                                   placeholder="Message"
                                   autoComplete={"off"}
+                                  value={formData.message}
+                                  onChange={(e) =>
+                                    setFormData({ ...formData, message: e.target.value })
+                                  }
                                 />
                               </div>
                             </div>
@@ -503,6 +581,7 @@ function CalenderModel () {
                               type="submit"
                               name="submit"
                               className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                              onClick={handleSubmit}
                             >
                               Book A Meeting
                             </button>

@@ -1,13 +1,14 @@
 import Link from "next/link";
 function Property(props) {
+  console.log(props)
   return (
     <>
       <div>
         {" "}
         <div className="card propertyCardNew rounded-0">
           <div className="">
-            <a
-              href="http://localhost:8000/singleProject"
+          <Link
+              href={`/properties/${props.slug}`}
               className="text-decoration-none"
             >
               <div className="projectImgCont">
@@ -29,11 +30,11 @@ function Property(props) {
                   </div>
                 </div>
               </div>
-            </a>
+            </Link>
           </div>
           <div className="card-body rounded-3 rounded-top-0">
             <Link
-              href={`properties/${props.slug}`}
+              href={`/properties/${props.slug}`}
               className="text-decoration-none"
             >
               <h6 className="text-black fs-16 fw-semibold mb-0">

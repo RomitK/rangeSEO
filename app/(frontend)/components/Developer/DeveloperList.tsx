@@ -26,7 +26,7 @@ function DeveloperList({ params }) {
               );
             })}
         </div>
-        <button className="bdrBtn mrAuto loadBtn mt-4">view All</button>
+        {/* <button className="bdrBtn mrAuto loadBtn mt-4">view All</button> */}
       </div>
     </section>
   );

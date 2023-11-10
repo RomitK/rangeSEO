@@ -609,7 +609,7 @@ function SinglecommunityDataView({ params }) {
             </div>
           </section>
         )}
-      <section className="my-5 ">
+      {/* <section className="my-5 ">
         <div className="container">
           <div className="row g-3 justify-content-center">
             <div className="col-12 col-lg-12 col-md-12">
@@ -703,7 +703,7 @@ function SinglecommunityDataView({ params }) {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {communityData && communityData.nearbyCommunities && (
         <section className="mt-5 bg-light py-5">
           <div className="container">

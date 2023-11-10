@@ -13,42 +13,42 @@ import Link from "next/link";
 import Select from "react-select";
 import parse from "html-react-parser";
 import { useGetAllCommunityData } from "@/src/services/CommunityService";
-import { useGetAllDeveloperData } from "@/src/services/DeveloperService";
+import { useGetDeveloperOptions } from "@/src/services/DeveloperService";
 
 type OptionType = {
   value: string;
   label: string;
 };
 function CommunityList() {
-  const swiperRef = useRef<SwiperType>;
-  const { communitiesData } = useGetAllCommunityData();
-  const { developersData } = useGetAllDeveloperData();
 
+  const { communitiesData } = useGetAllCommunityData();
+  // const { developerOptions } = useGetDeveloperOptions();
+  
   const projectChangeHandle = (event) => {
     console.log(event.value);
   };
-
   const options: OptionType[] = [
-    { value: "pk", label: "Pakistan" },
-    { value: "Db", label: "Dubai" },
-    { value: "Lhr", label: "Lahore" },
-    { value: "Kai", label: "Karachi" },
+    { value: "rent", label: "Rent" },
+    { value: "sale", label: "Sale" },
+    
   ];
 
-  const [selectedProject, setSelectedProjectName] = useState(options[0]);
+  //const options: OptionType[] = developerOptions;
+
+  // const [selectedProject, setSelectedProjectName] = useState(options[0]);
   return (
     <section className="communitiesSection">
       <div className="container">
         <h4 className="sctionMdTitle text-primary mb-5 text-center">
           COMMUNITIES
         </h4>
-        <div className="row mb-5">
+        {/* <div className="row mb-5">
           <div className="col-md-3">
             <div className="proSelectBox">
               <label>PROJECT</label>
               <Select
                 options={options}
-                value={selectedProject}
+               
                 className="reactSelectInput"
                 onChange={projectChangeHandle}
               />
@@ -63,7 +63,7 @@ function CommunityList() {
           <div className="col-md-3">
             <div className="proSelectBox">
               <label>DEVELOPER</label>
-              <Select options={options} className="reactSelectInput" />
+              <Select options={developerOptions} className="reactSelectInput" />
             </div>
           </div>
           <div className="col-md-3">
@@ -72,7 +72,7 @@ function CommunityList() {
               <Select options={options} className="reactSelectInput" />
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="row">
           {communitiesData &&
             communitiesData.map(function (community, index) {
@@ -95,7 +95,7 @@ function CommunityList() {
             })}
         </div>
 
-        <button className="bdrBtn mrAuto loadBtn mt-4">view All</button>
+        {/* <button className="bdrBtn mrAuto loadBtn mt-4">view All</button> */}
       </div>
     </section>
   );

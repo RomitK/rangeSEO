@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
-
+import ContactModel from "../components/models/contactModel";
 function Services() {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -244,107 +244,7 @@ function Services() {
           </button>
         </div>
       </section>
-      <div id="enquireNow" className="modal fade" role="dialog">
-        <div className="modal-dialog modal-dialog-centered modal-lg">
-          <div className="modal-content">
-            <div className="modal-header">
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-
-            <div className="modal-body">
-              <div className="container-fluid1">
-                <div className="row justify-content-center align-items-center d-flex">
-                  <div className="col-12 col-md-6 col-lg-6">
-                    <div className="logo-text">
-                      <div className="logo mt-3 mb-3">
-                        <div className="logo-img">
-                          <img
-                            src="/images/logo_blue.png"
-                            alt="Range Property"
-                            className="img-fluid"
-                            width="200"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="assist-text  text-left mt-3 mb-5">
-                        <h5>
-                          <strong className="need">
-                            An esteemed award-winning real estate brokerage
-                            based in Dubai, UAE.
-                          </strong>
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col-12 col-md-6 col-lg-6">
-                    <div className="form-div mt-3">
-                      <form id="contact_form" method="POST">
-                        <div className="mb-3">
-                          <input
-                            type="text"
-                            name="name"
-                            className="form-control"
-                            id="name"
-                            placeholder="Name"
-                          />
-                        </div>
-
-                        <div className="mb-3">
-                          <input
-                            type="text"
-                            name="email"
-                            className="form-control"
-                            id="email"
-                            placeholder="Email"
-                          />
-                        </div>
-
-                        <div className="mb-3">
-                          <input
-                            type="text"
-                            name="phone"
-                            className="form-control"
-                            id="phone"
-                            placeholder="Phone"
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <textarea
-                            name="message"
-                            placeholder="Message"
-                            id="message_input"
-                            cols={30}
-                            rows={5}
-                            required
-                          ></textarea>
-                        </div>
-
-                        <div className="mb-3 mt-3">
-                          <button
-                            type="submit"
-                            name="submit"
-                            className="btn btn-blue"
-                            onClick={handleSubmit}
-                          >
-                            Submit
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ContactModel></ContactModel>
     </>
   );
 }

@@ -6,6 +6,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css');
 @import '../public/css/style.css';
+@import '../public/css/bottombar.css';
 @import '../public/css/responsive.css';
 
 .map-container {

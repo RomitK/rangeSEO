@@ -120,7 +120,7 @@ export default function Home() {
                             <i className="bi bi-chevron-right fs-1"></i>
                           </span>
                         </div>
-                        <div className="swiper-pagination"></div>
+                        {/* <div className="swiper-pagination"></div> */}
                       </Swiper>
                     </div>
                   </div>
@@ -249,13 +249,13 @@ export default function Home() {
                       </div>
                     </Swiper>
                   </div>
-                  <div className="col-12 col-lg-12 col-md-12">
+                  {/* <div className="col-12 col-lg-12 col-md-12">
                     <div className="text-center py-3">
                       <button className="btn btn-blue text-uppercase btn-lg">
                         VIEW MORE
                       </button>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
