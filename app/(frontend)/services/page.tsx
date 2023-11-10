@@ -44,7 +44,7 @@ function Services() {
   };
   return (
     <>
-      <header>
+      <header className="simpleImgHeader">
         <img src="/images/banner/homeBg.webp" className="headerImg" />
         {/* <div className="p-relative">
                         <video className="d-block w-100 videoMain" 
