@@ -171,7 +171,7 @@ cursor: pointer;
 color: #fff !important;
 }
 .mainBg{
-min-height:70vh;box-shadow: inset 0 0 0 2000px rgb(0 0 0 / 15%);
+box-shadow: inset 0 0 0 2000px rgb(0 0 0 / 15%);
 }
 .search-input .icon{
 position: absolute;
@@ -263,19 +263,13 @@ left: 67% !important;
 .formBgMain {
 background-color: rgb(244 238 232 / 60%);
 border-radius: 25px;
-padding: 2rem;
+min-height: 400px;
+display: flex;
+flex-direction: column;
+justify-content: center;
 }
 .p-relative {
 position: relative;
-}
-.searchOnVid {
-position: absolute;
-z-index: 99;
-display: flex;
-justify-content: center;
-flex-direction: column;
-width: 100%;
-bottom: 35%;
 }
 .search-input{
 background: #fff;
@@ -284,16 +278,16 @@ border-radius: 5px;
 position: relative;
 box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
 }
-
 .search-input input{
 height: 55px;
 width: 100%;
 outline: none;
 border: none;
-border-radius: 5px;
-padding: 0 60px 0 20px;
+border-radius: 0px;
+padding: 0 20px 0 20px;
 font-size: 18px;
 box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+padding-left: 44px;
 }
 .videoMain {
 position: absolute;
@@ -303,7 +297,7 @@ left: 0;
 right: 0;
 width: 100%;
 object-fit: cover;
-min-height: 70vh;
+min-height:400px;
 z-index: 0;
 height: 100%;
 }
@@ -366,7 +360,6 @@ border-bottom: 15px solid #136dae;
 text-decoration: none;
 position: relative;
 z-index: 22;
-
 }
 .proCircleBox .circleContent{
 width: 140px;
@@ -377,7 +370,6 @@ align-items: center;
 justify-content: center;
 flex-direction: column;
 box-shadow: 0px 3px 20px #136dae26;
-
 }
 .proCricleImg{
 width: 60px;
@@ -901,19 +893,16 @@ background-position: center;
 height: 70vh;
 width: 100%;
 }
-
 .swiperThumb1 {
 height: 30vh;
 box-sizing: border-box;
 padding: 10px 0;
 }
-
 .swiperThumb1 .swiper-slide {
 width: 25% !important;
 height: 100%;
 opacity: 1;
 }
-
 .swiperThumb1 .swiper-slide-thumb-active {
 opacity: 1;
 }
@@ -955,7 +944,6 @@ cursor: pointer;
 fill: #fff;
 transform: scale(1.2, 1.2);
 }
-
 @-webkit-keyframes pulse {
 0% {
 transform: scale(1, 1);
@@ -1124,9 +1112,7 @@ right: 35% !important;
 .homeMainBg {
 min-height:50vh !important;
 }
-.videoMain  {
-min-height:50vh !important;
-}
+
 .bgAboutDubai {
 position: relative !important;
 }
@@ -1385,8 +1371,8 @@ padding: 5px;
 }
 
 /*
-    * Property styles in highlighted state.
-    */
+* Property styles in highlighted state.
+*/
 .property.highlight {
 background-color: #FFFFFF;
 border-radius: 8px;
@@ -1503,21 +1489,60 @@ right: 40px !important;
 left: unset  !important;
 }
 .react-datepicker__navigation-icon::before{
-    border-color: #2F3C6A !important;
+border-color: #2F3C6A !important;
 }
 .react-datepicker__month{
-    padding: 0px 7px  !important;
+padding: 0px 7px  !important;
 }
 .need {
-    color: #3d4e60;
-    font-size: 25px;
-    font-weight: 200;
-    text-shadow: 0 0 10pxrgba(0, 0, 0, .3);
+color: #3d4e60;
+font-size: 25px;
+font-weight: 200;
+text-shadow: 0 0 10pxrgba(0, 0, 0, .3);
 }
 textarea#message_input {
-    border: 1px solid #66666685;
-    padding: 10px;
-    color: #474544;
-    border-radius: 0px;
-    height: 90px;
+border: 1px solid #66666685;
+padding: 10px;
+color: #474544;
+border-radius: 0px;
+height: 90px;
+}
+.headerForm{
+position: relative;
+}
+.frmTabList{
+display: flex;
+justify-content: center;
+}
+.frmTabList .nav-link{
+background-color: #fff;
+border-radius: 0px;
+color: #3f3f3f;
+}
+.frmTabList .nav-link.active{
+background-color: #117bb9;
+}
+.search-input.frmSearcBar .fa-search{
+position: absolute;
+left: 15px;
+top: 16px;
+font-size: 22px;
+color: #7c7c7c;
+}
+.swiper-slide .bg-light{
+min-height: 390px;
+}
+.searchOnVid .headerForm{
+width: 100%;
+max-width: 500px;
+margin: 0 auto;
+}
+[data-bs-target="#bookAmeeting"]{
+    margin-bottom: 20px;
+}
+.header.videoMain{
+height: 500px;
+}
+.videoHeadContainer{
+    height: 500px;
 }
