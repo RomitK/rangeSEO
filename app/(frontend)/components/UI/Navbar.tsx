@@ -57,8 +57,6 @@ function Navbar() {
                         </Link>
                           </li>
 
-                          
-
                         </ul>
                       </li>
                       <li className="">
@@ -98,11 +96,11 @@ function Navbar() {
                       Insights<b className="caret"></b>
                     </a>
                     <ul className="dropdown-menu">
-                      <li className="">
+                      {/* <li className="">
                         <a href="" className="mainLink">
                           Dubai Trends
                         </a>
-                      </li>
+                      </li> */}
                       <li className="">
                         <Link className="mainLink" href="/communities">
                           Communities
@@ -137,24 +135,17 @@ function Navbar() {
                         </Link>
 
                       </li>
-                      <li className="">
-                        
-
-                        <Link className="mainLink" href="/management">
-                        Management
-                        </Link>
-
-                      </li>
+                      
                       <li className="">
                       <Link className="mainLink" href="/teams">
-                        Agents
+                        Meet the Team
                         </Link>
                       </li>
-                      <li className="">
+                      {/* <li className="">
                         <a href="" className="mainLink">
                           Achievements
                         </a>
-                      </li>
+                      </li> */}
                     </ul>
                   </li>
 
@@ -395,11 +386,11 @@ function Navbar() {
                       Insights<b className="caret"></b>
                     </a>
                     <ul className="dropdown-menu">
-                      <li className="">
+                      {/* <li className="">
                         <a href="" className="mainLink">
                           Dubai Trends
                         </a>
-                      </li>
+                      </li> */}
 
                       <li className="">
                         <Link className="mainLink" href="/communities">
@@ -433,26 +424,20 @@ function Navbar() {
                         About Range
                         </Link>
                       </li>
-                      <li className="">
-                       
-                        <Link className="mainLink" href="/management">
-                        Management
-                        </Link>
-
-                      </li>
+                      
                       <li className="">
                        
                         <Link className="mainLink" href="/teams">
-                        Agents
+                        Meet the Team
                         </Link>
 
 
                       </li>
-                      <li className="">
+                      {/* <li className="">
                         <a href="" className="mainLink">
                           Achievements
                         </a>
-                      </li>
+                      </li> */}
                     </ul>
                   </li>
 
