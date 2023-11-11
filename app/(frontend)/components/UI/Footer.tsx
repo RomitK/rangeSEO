@@ -81,15 +81,18 @@ function Footer() {
                           </a>
                         </li>
                         <li>
-                          <a href="" className="footLink">
-                            About
-                          </a>
+                         
+
+                          <Link className="footLink" href="/about">
+                        About
+                        </Link>
+
                         </li>
                         <li>
                           <Link
                             className="footLink"
                             href={{
-                              pathname: "/contact",
+                              pathname: "/contactUs",
                             }}
                           >
                             Contact
