@@ -7,7 +7,7 @@ function Navbar() {
     "/properties",
     "/ready",
     "/rent",
-    "/off-plan",
+    "/offplan",
     "/luxury-properties",
   ].includes(usePathname());
   return (
@@ -46,15 +46,19 @@ function Navbar() {
                         </a>
                         <ul className="dropdown-menu">
                           <li className="">
-                            <a className="" href="/ready">
-                              Ready
-                            </a>
+                           
+                            <Link className="" href="/ready">
+                            Ready
+                        </Link>
                           </li>
                           <li className="">
-                            <a className="" href="off-plan'">
-                              Off-plan
-                            </a>
+                          <Link className="" href="/off-plan">
+                          Off-plan
+                        </Link>
                           </li>
+
+                          
+
                         </ul>
                       </li>
                       <li className="">
@@ -300,9 +304,12 @@ function Navbar() {
                   )}
                   {expandPropertyDropdown && (
                     <li className="nav-item">
-                      <a className="nav-link" href="off-plan">
-                        OFF-PLAN
-                      </a>
+                     
+
+                      <Link className="nav-link" href="/offplan">
+                          Off-plan
+                        </Link>
+
                     </li>
                   )}
                   {expandPropertyDropdown && (
@@ -332,14 +339,20 @@ function Navbar() {
                           </a>
                           <ul className="dropdown-menu">
                             <li className="">
-                              <a className="" href="buy">
-                                Ready
-                              </a>
+                             
+
+                              <Link className="" href="/ready">
+                              Ready
+                        </Link>
+
                             </li>
                             <li className="">
-                              <a className="" href="off-plan">
-                                Off-plan
-                              </a>
+                             
+
+                              <Link className="" href="/off-plan">
+                              Off-plan
+                        </Link>
+
                             </li>
                           </ul>
                         </li>
