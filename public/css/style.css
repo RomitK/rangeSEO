@@ -263,7 +263,7 @@ left: 67% !important;
 .formBgMain {
 background-color: rgb(244 238 232 / 60%);
 border-radius: 25px;
-min-height: 400px;
+min-height: 450px;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -284,10 +284,9 @@ width: 100%;
 outline: none;
 border: none;
 border-radius: 0px;
-padding: 0 20px 0 20px;
+padding: 0 15px 0 15px;
 font-size: 18px;
 box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
-padding-left: 44px;
 }
 .videoMain {
 position: absolute;
@@ -297,9 +296,10 @@ left: 0;
 right: 0;
 width: 100%;
 object-fit: cover;
-min-height:400px;
+min-height:450px;
 z-index: 0;
 height: 100%;
+object-position: top;
 }
 .vertLine {
 border-style: solid;
@@ -1524,7 +1524,7 @@ background-color: #117bb9;
 }
 .search-input.frmSearcBar .fa-search{
 position: absolute;
-left: 15px;
+right: 15px;
 top: 16px;
 font-size: 22px;
 color: #7c7c7c;
@@ -1540,7 +1540,7 @@ margin: 0 auto;
 [data-bs-target="#bookAmeeting"]{
     margin-bottom: 20px;
 }
-.header.videoMain{
+.header .videoMain{
 height: 500px;
 }
 .videoHeadContainer{
