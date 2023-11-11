@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { SWRProvider } from "@/app/swr-provider";
 import PropertyList from "../components/Property/PropertyList";
 
-const Projects = ({ params }) => {
+const OffPlan = ({ params }) => {
   return (
     <SWRProvider>
       <PropertyList params={params}></PropertyList>
@@ -12,4 +12,4 @@ const Projects = ({ params }) => {
   );
 };
 
-export default Projects;
+export default OffPlan;

@@ -42,19 +42,20 @@ function Footer() {
                     <div className="col-12 col-lg-6 col-md-6">
                       <ul className="mb-0 list-unstyled footNav">
                         <li>
-                          <a href="" className="footLink">
-                            Buy
-                          </a>
+                        <Link className="footLink" href="/buy">
+                        Buy
+                        </Link>  
+                         
                         </li>
                         <li>
-                          <a href="" className="footLink">
+                        <Link className="footLink" href="/rent">
                             Rent
-                          </a>
+                            </Link>  
                         </li>
                         <li>
-                          <a href="" className="footLink">
+                        <Link className="footLink" href="/offplan">
                             Off-Plan
-                          </a>
+                            </Link>  
                         </li>
                         <li>
                           <a href="" className="footLink">

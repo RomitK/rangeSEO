@@ -1136,9 +1136,9 @@ display:none;
 .ui-datepicker-title{
 padding:10px;
 }
-.confirm-button, .step-2, .timepic{
+/* .confirm-button, .step-2, .timepic{
 display: none;
-}
+} */
 .active .confirm-button {
 display: block;
 }
@@ -1163,9 +1163,9 @@ width: 100%;
 background: transparent;
 }
 
-.confirm-button, .step-2, .timepic {
+/* .confirm-button, .step-2, .timepic {
 display: none;
-}
+} */
 
 .active button.timeitem {
 width: 48%;
@@ -1244,7 +1244,7 @@ border-radius: 0px;
 width: 100%;
 margin-bottom: 10px;
 }
-.active .confirm-button {
+.confirm-button {
 display: block;
 background: #2F3C6A ;
 border-radius: 0px;
