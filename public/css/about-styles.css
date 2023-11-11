@@ -26,7 +26,6 @@ width: 150px;
 height: 150px;
 object-fit: contain;
 }
-
 .aboutPgSection{
 padding:80px 0px 60px 0px;
 }
@@ -83,7 +82,7 @@ font-size: 22px;
 color: #3f3f3f;
 font-weight: 600;
 }
-.userCard .cardContent  .crdText{
+.userCard .cardContent .crdText{
 color: #136DAE;
 font-size: 18px;
 font-weight: 500;

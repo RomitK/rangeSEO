@@ -366,6 +366,7 @@ padding: 0px 40px;
 }
 #ProjectDetails .trix-content p{
 font-size: 14px;
+color: #6F6D71 !important;
 }
 #Hightlights .container{
     border-bottom:1.4px solid #bcbcbc;

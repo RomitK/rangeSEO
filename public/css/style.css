@@ -505,6 +505,7 @@ border: 1px solid white;
 width: 100%;
 object-fit: cover;
 object-position: center;
+height: 250px;
 }
 .projectImgCont .projectImgOverlay {
 position: absolute;
@@ -1538,11 +1539,34 @@ max-width: 500px;
 margin: 0 auto;
 }
 [data-bs-target="#bookAmeeting"]{
-    margin-bottom: 20px;
+margin-bottom: 20px;
 }
 .header .videoMain{
 height: 500px;
 }
 .videoHeadContainer{
-    height: 500px;
+height: 500px;
+}
+.sctionMdTitle{
+font-size: 40px;
+text-transform: uppercase;
+font-weight: 500;
+}
+.PagiList{
+display: block;
+}
+.PagiList .pagiText{
+font-size: 16px;
+position: relative;
+color: #bfbfbf;
+padding: 10px 8px 0px 15px;
+text-decoration: underline;
+}
+.PagiList .pagiText:before{
+content: "<";
+position: absolute;
+left: 0px;
+top: 7px;
+color: #bfbfbf;
+font-size: 16px;
 }

@@ -1,0 +1,60 @@
+.PagiList{
+margin-top: 40px;
+}
+.ceoText{
+color: #283975;
+font-size: 20px;
+font-weight: 500;
+margin-bottom: 40px;
+display: block;
+}
+.leaderImg{
+width: 100%;
+height: 500px;
+object-fit: cover;
+object-position: top;
+}
+.sectionImgVideo{
+width: 100%;
+height: 450px;
+object-fit: cover;
+}
+.section{
+margin-bottom: 80px;
+}
+.carouselSection{
+position: relative;
+width: 100%;
+}
+.multiItemsSlider .swiper {
+width: 100%;
+height: 100%;
+}
+.multiItemsSlider .swiper-slide {
+text-align: center;
+font-size: 18px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.multiItemsSlider .swiper-wrapper{
+display: flex;
+gap: 20px;
+}
+.awardsImg{
+width: 100%;
+height: 220px;
+object-fit: cover;
+}
+.multiItemsSlider .swiper-button-prev{
+background-image: url("/images/icons/multi-slider-left-arrow.png");
+width: 48px;
+height: 48px;
+background-size: cover;
+}
+.multiItemsSlider .swiper-button-next{
+background-image: url("/images/icons/multi-slider-right-arrow.png");
+width: 48px;
+height: 48px;
+background-size: cover;
+    }
