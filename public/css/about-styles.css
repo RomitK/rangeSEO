@@ -22,9 +22,10 @@ color: #136DAE;
 margin-bottom: 20px;
 }
 .cardIcon{
-width: 150px;
-height: 150px;
+width: 120px;
+height: 120px;
 object-fit: contain;
+margin-bottom: 12px;
 }
 .aboutPgSection{
 padding:80px 0px 60px 0px;
