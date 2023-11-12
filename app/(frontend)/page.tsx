@@ -48,12 +48,10 @@ export default function Home() {
                       <Swiper
                         slidesPerView={1}
                         spaceBetween={10}
+                        loop={true}
                         pagination={{
                           el: ".swiper-pagination",
                           clickable: true,
-                        }}
-                        autoplay={{
-                          delay: 2500,
                         }}
                         navigation={{
                           nextEl: ".swiper-button-next",
