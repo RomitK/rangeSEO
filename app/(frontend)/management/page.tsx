@@ -58,7 +58,7 @@ function Management() {
               </p>
             </div>
             <div className="col-md-4">
-              <img src="images/team/team-img-1.png" className="leaderImg" />
+              <img src="/images/team/nitin.png" className="leaderImg" />
             </div>
           </div>
         </section>

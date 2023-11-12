@@ -4,7 +4,7 @@ function About() {
   return (
     <>
       <header>
-        <img src="images/banner/homeBg.webp" className="headerSimpleImg" />
+        <img src="/images/banner/homeBg.webp" className="headerSimpleImg" />
       </header>
       <section className="aboutPgSection">
         <div className="container">
@@ -30,7 +30,7 @@ function About() {
           <div className="row">
             <div className="col-md-6">
               <div className="simpleCard">
-                <img src="images/icons/mission-icon.png" className="cardIcon" />
+                <img src="/images/icons/about-mission-icon.png" className="cardIcon" />
                 <h3 className="cardTitle text-center">MISSION</h3>
                 <p className="fs-12 text-secondary">
                   We aspire to shape tomorrow’s real estate through unparalleled
@@ -43,7 +43,7 @@ function About() {
             </div>
             <div className="col-md-6">
               <div className="simpleCard">
-                <img src="images/icons/vision-icon.png" className="cardIcon" />
+                <img src="/images/icons/about-vision-icon.png" className="cardIcon" />
                 <h3 className="cardTitle text-center">VISION</h3>
                 <p className="fs-12 text-secondary">
                   Empowering aspirations in real estate, we envision excellence
@@ -64,7 +64,7 @@ function About() {
           <div className="row">
             <div className="col-md-4">
               <div className="userCard">
-                <img src="images/team/team-img-1.png" className="leaderImg" />
+                <img src="/images/team/nitin.png" className="leaderImg" />
                 <div className="cardContent ">
                   <h5 className="crdTitle">Nitin Chopra</h5>
                   <p className="crdText">CEO/Founder</p>
@@ -76,7 +76,7 @@ function About() {
             </div>
             <div className="col-md-4">
               <div className="userCard">
-                <img src="images/team/team-img-2.png" className="leaderImg" />
+                <img src="/images/team/lester.png" className="leaderImg" />
                 <div className="cardContent ">
                   <h5 className="crdTitle">Lester Verma </h5>
                   <p className="crdText">Managing Partner</p>
@@ -88,7 +88,7 @@ function About() {
             </div>
             <div className="col-md-4">
               <div className="userCard">
-                <img src="images/team/team-img-3.png" className="leaderImg" />
+                <img src="/images/team/brendon.png" className="leaderImg" />
                 <div className="cardContent ">
                   <h5 className="crdTitle">Brendon Baker</h5>
                   <p className="crdText">Managing Director</p>
