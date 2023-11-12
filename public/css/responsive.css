@@ -74,4 +74,16 @@
         box-shadow: 0px 4px 20px #00000026;
         margin-bottom: 20px;
     }
+    .simpleCard{
+        margin-bottom: 40px;
+    }
+    .userCard{
+        margin-bottom: 44px;
+    }
+    section .sctionMdTitle{
+        font-size: 30px;
+    }
+    .simpleCard .cardTitle{
+     font-size: 24px;
+    }
 }
