@@ -64,7 +64,7 @@ function About() {
           <div className="row">
             <div className="col-md-4">
               <div className="userCard">
-                <img src="/images/team/team-img-1.png" className="leaderImg" />
+                <img src="images/team/team-img-1.png" className="leaderImg" />
                 <div className="cardContent ">
                   <h5 className="crdTitle">Nitin Chopra</h5>
                   <p className="crdText">CEO/Founder</p>
@@ -76,7 +76,7 @@ function About() {
             </div>
             <div className="col-md-4">
               <div className="userCard">
-                <img src="/images/team/team-img-2.png" className="leaderImg" />
+                <img src="images/team/team-img-2.png" className="leaderImg" />
                 <div className="cardContent ">
                   <h5 className="crdTitle">Lester Verma </h5>
                   <p className="crdText">Managing Partner</p>
@@ -88,7 +88,7 @@ function About() {
             </div>
             <div className="col-md-4">
               <div className="userCard">
-                <img src="/images/team/team-img-3.png" className="leaderImg" />
+                <img src="images/team/team-img-3.png" className="leaderImg" />
                 <div className="cardContent ">
                   <h5 className="crdTitle">Brendon Baker</h5>
                   <p className="crdText">Managing Director</p>
