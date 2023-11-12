@@ -61,6 +61,7 @@ width: 50%;
 .addressBoxContent{
 background-color: #f6f6f6;
 height: 100%;
+max-height: 430px;
 }
 .addressBoxContent iframe{
 width: 100%;
@@ -73,5 +74,85 @@ padding:50px 30px 50px 50px;
 padding: 0px;
 }
 .addressSection{
-    margin-bottom: 120px;
+margin-bottom: 80px;
+}
+.cntInptField{
+border-radius: 2px;
+height: 44px;  
+border: 1px solid #eeeeee;
+padding-left: 15px;
+font-size: 14px;
+}
+.cntInptField::-ms-input-placeholder { /* Edge 12-18 */
+color: #5d5d5d;
+font-size: 12px;
+}
+.cntInptField::placeholder {
+color: #5d5d5d;
+font-size: 12px;
+}
+.cntInptField.textareaField{
+height: 100px;
+}
+.fillBtn{
+background-color: #136DAE;
+color: #fff;
+border: 0px;
+box-shadow: 0px 3px 5px #00000052;
+transition: 0.3s ease;
+border: 1.5px solid #136DAE;
+}
+.fillBtn:hover{
+box-shadow: unset;
+background-color: unset;
+color: #136DAE;
+border: 1.5px solid #136DAE;
+}
+.submitBtn{
+width: 140px;
+height: 40px;
+display: block;
+margin-left: 10px;
+margin-top: 20px;
+}
+.addressBoxHead{
+text-align: center;
+}
+.addressBoxHead h4{
+color: #136DAE;
+font-size: 24px;
+font-weight: 500;
+}
+.addressBoxHead p{
+color:#3f3f3f ;
+font-size: 16px;
+}
+#FAQAccordion .accordion-button{
+font-size: 20px;
+font-weight: 500;
+}
+#FAQAccordion{
+border: 0px;   
+}
+#FAQAccordion .accordion-item {
+border: 0px;   
+
+}
+#FAQAccordion .accordion-item .accordion-button{
+box-shadow: unset;
+border-radius: 0px;
+}
+#FAQAccordion .accordion-item .accordion-collapse{
+border-bottom:1px solid #3f3f3f ;  
+}
+#FAQAccordion .accordion-item .accordion-button:hover{
+color: #136DAE;
+}
+#FAQAccordion .accordion-item .accordion-button[aria-expanded="true"]{
+background-color: unset;
+color: #136DAE;
+
+}
+.faqSection{
+margin-bottom: 60px;
 }
