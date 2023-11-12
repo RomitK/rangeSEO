@@ -34,7 +34,7 @@ function Filters({
   const maxPriceRef = useRef(null);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "/properties?";
+    let getPropertiesURL = process.env.API_HOST + "properties?";
     const formData = new FormData();
     for (let key in form) {
       if (form.hasOwnProperty(key)) {
@@ -87,7 +87,7 @@ function Filters({
   return (
     <form action="">
       <div className="row">
-        <div className="col">
+        <div className="col-md-3">
           <select
             onChange={handleChange}
             value={form.community}
@@ -103,7 +103,7 @@ function Filters({
             ))}
           </select>
         </div>
-        <div className="col">
+        <div className="col-md-1">
           <select
             onChange={handleChange}
             value={form.category}
@@ -112,15 +112,11 @@ function Filters({
             className="form-select bedroomSelect"
             disabled=""
           >
-            <option value="">Select Category</option>
             <option value="buy">Buy</option>
             <option value="rent">Rent</option>
-            <option value="sale">Sale</option>
-            <option value="offplan">Off Plan</option>
-            <option value="ready">Ready</option>
           </select>
         </div>
-        <div className="col">
+        <div className="col-md-2">
           <select
             onChange={handleChange}
             value={form.accommodation_id}
@@ -136,7 +132,7 @@ function Filters({
             ))}
           </select>
         </div>
-        <div className="col">
+        <div className="col-md-2">
           <div className="dropdown">
             <div
               className="form-select"
@@ -188,7 +184,7 @@ function Filters({
           </div>
         </div>
 
-        <div className="col d-flex align-items-center justify-content-end">
+        <div className="col-md-3 d-flex align-items-center justify-content-end">
           <button
             className="btn btn-primary btn-lg"
             type="button"

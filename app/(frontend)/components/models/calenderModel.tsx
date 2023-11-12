@@ -35,25 +35,6 @@ function CalenderModel() {
 
   const [formData, setFormData] = useState(initialState);
 
-  // $(document).on("click", ".timeitem", function () {
-  //     setFormData({ ...formData, time: $(this).val() })
-  //     $(".pickitem").removeClass("active");
-  //     $(this).parent(".pickitem").addClass("active");
-  //   });
-  //   $(document).on("click", ".confirm-button", function () {
-  //     $("#ths_time").val($(this).val());
-  //     $(".step-1").hide();
-  //     $(".step-2").show();
-  //     $(".descricalenderCol").show();
-  //     $(".calenderCol").removeClass("col-lg-12").addClass("col-lg-7");
-  //   });
-  //   $(document).on("click", ".bookBtn", function () {
-  //     $(".timepic").hide();
-  //     $(".newcol").removeClass("col-md-7").addClass("col-md-12");
-  //     $(".step-1").show();
-  //     $(".step-2").hide();
-  //     $(".pickitem ").removeClass("active");
-  //   });
   const handleSubmit = () => {
     console.log(formData);
     if (!formData.name || !formData.email || !formData.phone) {

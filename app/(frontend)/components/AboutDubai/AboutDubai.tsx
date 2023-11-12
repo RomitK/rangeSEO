@@ -1,4 +1,6 @@
+import ContactModel from "../models/contactModel";
 function AboutDubai() {
+  const contactSideText ="An esteemed award-winning real estate brokerage based in Dubai, UAE.";
   return (
     <>
       <section className="bg-light my-5 py-5 p-relative">
@@ -308,6 +310,7 @@ function AboutDubai() {
           </div>
         </div>
       </section>
+      <ContactModel sideText={contactSideText}></ContactModel>
     </>
   );
 }
