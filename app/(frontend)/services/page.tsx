@@ -46,7 +46,7 @@ function Services() {
     <>
       <header>
         {/* <img src="/images/banner/homeBg.webp" className="headerImg" /> */}
-        <div className="p-relative">
+        <div className="p-relative videoHeadContainer">
           <video
             className="d-block w-100 videoMain"
             autoPlay
