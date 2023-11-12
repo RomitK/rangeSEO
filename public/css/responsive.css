@@ -56,7 +56,9 @@ padding: 30px 0px;
 .contactBoxsSection .contactBox{
 padding:20px 0px;
 }
-
+.TeamRow{
+grid-template-columns: auto auto auto !important ;
+}
 }
 @media (max-width:768px){
 .AddressArea{
@@ -132,5 +134,14 @@ margin-bottom: 15px;
 }
 header .headerSimpleImg{
 height: 250px;
+}
+.TeamRow .teamCard{
+width: 100%;
+}
+.TeamRow{
+grid-template-columns: auto auto !important ;
+}
+.homeHeader .videoMain{
+height: 240px;
 }
 }

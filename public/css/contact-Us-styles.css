@@ -136,11 +136,11 @@ border: 0px;
 }
 #FAQAccordion .accordion-item {
 border: 0px;   
-
 }
 #FAQAccordion .accordion-item .accordion-button{
 box-shadow: unset;
 border-radius: 0px;
+padding: 14px 0px;
 }
 #FAQAccordion .accordion-item .accordion-collapse{
 border-bottom:1px solid #3f3f3f ;  
@@ -151,8 +151,34 @@ color: #136DAE;
 #FAQAccordion .accordion-item .accordion-button[aria-expanded="true"]{
 background-color: unset;
 color: #136DAE;
-
 }
 .faqSection{
 margin-bottom: 60px;
+}
+.fillBtn.submitBtn.btn{
+font-size: 12px;   
+}
+.sectionBanner .row{
+background: #f6f6f6;
+align-items: center;
+padding: 40px 20px;
+border-radius: 30px;
+}
+.sectionBanner{
+margin-bottom: 60px;
+}
+.bnrTitle{
+color: #3f3f3f;
+font-size: 22px;
+font-weight: 600;
+}
+.fillBtn.contactBtn{
+width: 180px;
+font-size: 12px;
+height: 44px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 0px;
+
 }
