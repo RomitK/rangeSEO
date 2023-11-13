@@ -7,6 +7,7 @@ import { saveContactFormApi } from "@/src/services/HomeService";
 import ContactModel from "../components/models/contactModel";
 function Services() {
   const router = useRouter();
+  const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -244,7 +245,7 @@ function Services() {
           </button>
         </div>
       </section>
-      <ContactModel></ContactModel>
+      <ContactModel sideText={contactSideText}></ContactModel>
     </>
   );
 }

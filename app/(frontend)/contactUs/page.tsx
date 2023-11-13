@@ -11,9 +11,8 @@ function ContactUs(){
                    <div className="container">
                         <h4 className="sctionMdTitle text-primary text-center ">CONTACT US</h4>
                         <p className="fs-12 text-secondary mxWdtext mb-5">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            
+                        Connect with Range for unparalleled real estate solutions. From inquiries to collaborations, our team is ready to assist. Reach out through the form below or stay updated on industry insights through our social channels. Let's transform your property goals into reality – contact Range today.
                         </p>
                    </div>
            </section>
@@ -32,7 +31,7 @@ function ContactUs(){
                                  <div className="col-lg-4">
                                        <div className="contactBox bdr">
                                             <h5>Email</h5>
-                                            <a href="#" className="textFlexBar">
+                                            <a href="mailto:sales@range.ae" className="textFlexBar">
                                                 <img src="/images/icons/mail-icon.png" className="contact-icon" />
                                                 <p>sales@range.ae</p>
                                             </a>
@@ -54,12 +53,10 @@ function ContactUs(){
                    <div className="container">
                          <div className="AddressArea">
                               <div className="addressBox">
-                                     <div className="addressBoxHead">
-                                            <h4>Request a Call back</h4>
-                                            <p className=" text-secondary">
-                                            Please fill up the form
-                                            </p>
-                                     </div>
+                                     <h4>Request a Call back</h4>
+                                     <p>
+                                     Please fill up the form
+                                     </p>
                                      <div className="addressBoxContent">
                                           <div className="row ">
                                                 <div className="col-12 mb-2">

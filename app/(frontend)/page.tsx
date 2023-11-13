@@ -11,7 +11,7 @@ import { SWRProvider } from "../swr-provider";
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import SwiperCore, { Swiper as SwiperType } from "swiper";
 import "swiper/swiper-bundle.css";
 import "swiper/css/pagination";
@@ -48,6 +48,7 @@ export default function Home() {
                       <Swiper
                         slidesPerView={1}
                         spaceBetween={10}
+                        loop={true}
                         pagination={{
                           el: ".swiper-pagination",
                           clickable: true,
@@ -70,7 +71,7 @@ export default function Home() {
                             spaceBetween: 10,
                           },
                         }}
-                        modules={[Navigation, Pagination]}
+                        modules={[Navigation, Pagination, Autoplay]}
                         onSwiper={(swiper) => {
                           PropertySwiperRef.current = swiper;
                         }}

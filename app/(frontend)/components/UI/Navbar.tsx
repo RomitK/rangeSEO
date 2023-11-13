@@ -7,7 +7,7 @@ function Navbar() {
     "/properties",
     "/ready",
     "/rent",
-    "/off-plan",
+    "/offplan",
     "/luxury-properties",
   ].includes(usePathname());
   return (
@@ -46,15 +46,17 @@ function Navbar() {
                         </a>
                         <ul className="dropdown-menu">
                           <li className="">
-                            <a className="" href="/ready">
-                              Ready
-                            </a>
+                           
+                            <Link className="" href="/ready">
+                            Ready
+                        </Link>
                           </li>
                           <li className="">
-                            <a className="" href="off-plan'">
-                              Off-plan
-                            </a>
+                          <Link className="" href="/off-plan">
+                          Off-plan
+                        </Link>
                           </li>
+
                         </ul>
                       </li>
                       <li className="">
@@ -94,11 +96,11 @@ function Navbar() {
                       Insights<b className="caret"></b>
                     </a>
                     <ul className="dropdown-menu">
-                      <li className="">
+                      {/* <li className="">
                         <a href="" className="mainLink">
                           Dubai Trends
                         </a>
-                      </li>
+                      </li> */}
                       <li className="">
                         <Link className="mainLink" href="/communities">
                           Communities
@@ -133,24 +135,17 @@ function Navbar() {
                         </Link>
 
                       </li>
-                      <li className="">
-                        
-
-                        <Link className="mainLink" href="/management">
-                        Management
-                        </Link>
-
-                      </li>
+                      
                       <li className="">
                       <Link className="mainLink" href="/teams">
-                        Agents
+                        Meet the Team
                         </Link>
                       </li>
-                      <li className="">
+                      {/* <li className="">
                         <a href="" className="mainLink">
                           Achievements
                         </a>
-                      </li>
+                      </li> */}
                     </ul>
                   </li>
 
@@ -300,9 +295,12 @@ function Navbar() {
                   )}
                   {expandPropertyDropdown && (
                     <li className="nav-item">
-                      <a className="nav-link" href="off-plan">
-                        OFF-PLAN
-                      </a>
+                     
+
+                      <Link className="nav-link" href="/offplan">
+                          Off-plan
+                        </Link>
+
                     </li>
                   )}
                   {expandPropertyDropdown && (
@@ -332,14 +330,20 @@ function Navbar() {
                           </a>
                           <ul className="dropdown-menu">
                             <li className="">
-                              <a className="" href="buy">
-                                Ready
-                              </a>
+                             
+
+                              <Link className="" href="/ready">
+                              Ready
+                        </Link>
+
                             </li>
                             <li className="">
-                              <a className="" href="off-plan">
-                                Off-plan
-                              </a>
+                             
+
+                              <Link className="" href="/off-plan">
+                              Off-plan
+                        </Link>
+
                             </li>
                           </ul>
                         </li>
@@ -382,11 +386,11 @@ function Navbar() {
                       Insights<b className="caret"></b>
                     </a>
                     <ul className="dropdown-menu">
-                      <li className="">
+                      {/* <li className="">
                         <a href="" className="mainLink">
                           Dubai Trends
                         </a>
-                      </li>
+                      </li> */}
 
                       <li className="">
                         <Link className="mainLink" href="/communities">
@@ -420,26 +424,20 @@ function Navbar() {
                         About Range
                         </Link>
                       </li>
-                      <li className="">
-                       
-                        <Link className="mainLink" href="/management">
-                        Management
-                        </Link>
-
-                      </li>
+                      
                       <li className="">
                        
                         <Link className="mainLink" href="/teams">
-                        Agents
+                        Meet the Team
                         </Link>
 
 
                       </li>
-                      <li className="">
+                      {/* <li className="">
                         <a href="" className="mainLink">
                           Achievements
                         </a>
-                      </li>
+                      </li> */}
                     </ul>
                   </li>
 
