@@ -46,7 +46,7 @@ function About() {
                 <img src="/images/icons/about-vision-icon.png" className="cardIcon" />
                 <h3 className="cardTitle text-center">VISION</h3>
                 <p className="fs-12 text-secondary">
-                Empowering aspirations in real estate, we envision excellence as a premier brokerage in the UAE, expanding our influence across diverse markets. We aim to unlock untapped potential in real estate technology, propelling us to pioneer and craft bespoke products tailored for international markets.
+                Empowering real estate aspirations, we strive to become a premier brokerage in the UAE, with a vision to expand globally. We focus on leveraging innovative real estate technology to explore untapped potential, crafting bespoke products to reshape the global real estate landscape.
                 </p>
               </div>
             </div>
@@ -63,7 +63,7 @@ function About() {
                 <div className="cardContent ">
                   <h5 className="crdTitle">Nitin Chopra</h5>
                   <p className="crdText">CEO/Founder</p>
-                  <Link href={`/management`} className="fillBtn  crdReadMorebtn mrAuto" >
+                  <Link href={`/managements/nitin`} className="fillBtn  crdReadMorebtn mrAuto" >
                     READ MORE
                   </Link>
                 </div>
@@ -74,8 +74,8 @@ function About() {
                 <img src="/images/team/lester.png" className="leaderImg" />
                 <div className="cardContent ">
                   <h5 className="crdTitle">Lester Verma </h5>
-                  <p className="crdText">Managing Partner</p>
-                  <Link href={`/management`} className="fillBtn  crdReadMorebtn mrAuto" >
+                  <p className="crdText">Managing Partner & Co-Founder</p>
+                  <Link href={`/managements/lester`} className="fillBtn  crdReadMorebtn mrAuto" >
                     READ MORE
                   </Link>
                 </div>
@@ -87,7 +87,7 @@ function About() {
                 <div className="cardContent ">
                   <h5 className="crdTitle">Brendon Baker</h5>
                   <p className="crdText">Managing Director</p>
-                  <Link href={`/management`} className="fillBtn  crdReadMorebtn mrAuto" >
+                  <Link href={`/managements/bredon`} className="fillBtn  crdReadMorebtn mrAuto" >
                     READ MORE
                   </Link>
                 </div>
