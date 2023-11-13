@@ -80,7 +80,7 @@ function LookingFor() {
                     alt="range"
                     width="80px"
                   />
-                  <p className="text">Buy / Rent</p>
+                  <p className="text">Buying/Renting</p>
                 </div>
               </a>
               <div className="nbrCircle">
@@ -94,12 +94,12 @@ function LookingFor() {
               <a href="#" className="proCircleBox">
                 <div className="circleContent">
                   <img
-                    src="/images/icons/interest1.png"
+                    src="/images/icons/interest2.png"
                     className="proCricleImg"
                     alt="range"
                     width="80px"
                   />
-                  <p className="text">Sell with us</p>
+                  <p className="text">Selling</p>
                 </div>
               </a>
               <div className="nbrCircle">
@@ -113,7 +113,7 @@ function LookingFor() {
               <a href="#" className="proCircleBox">
                 <div className="circleContent">
                   <img
-                    src="/images/icons/interest1.png"
+                    src="/images/icons/interest2.png"
                     className="proCricleImg"
                     alt="range"
                     width="80px"
@@ -132,12 +132,12 @@ function LookingFor() {
               <a href="#" className="proCircleBox">
                 <div className="circleContent">
                   <img
-                    src="/images/icons/interest1.png"
+                    src="/images/icons/interest3.png"
                     className="proCricleImg"
                     alt="range"
                     width="80px"
                   />
-                  <p className="text">Mortgage</p>
+                  <p className="text">Holiday Homes</p>
                 </div>
               </a>
               <div className="nbrCircle">
@@ -151,12 +151,12 @@ function LookingFor() {
               <a href="#" className="proCircleBox">
                 <div className="circleContent">
                   <img
-                    src="/images/icons/interest1.png"
+                    src="/images/icons/interest4.png"
                     className="proCricleImg"
                     alt="range"
                     width="80px"
                   />
-                  <p className="text">Hollyday Homes</p>
+                  <p className="text">	Mortgage </p>
                 </div>
               </a>
               <div className="nbrCircle">

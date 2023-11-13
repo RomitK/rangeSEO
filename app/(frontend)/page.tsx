@@ -141,8 +141,8 @@ export default function Home() {
                     </div>
                     <div className="text-center mb-0">
                       <p className="text-secondary">
-                        Discover What Our Clients Are Saying About Their
-                        Exceptional Experience with Range International Property
+                        Discover what our clients are saying about their
+                        exceptional experience with Range International Property
                         Investments.
                       </p>
                     </div>

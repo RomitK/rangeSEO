@@ -548,6 +548,7 @@ position: relative;
 border: 1px solid white;
 }
 .communityImgCont img{
+    height: 600px;
 width: 100%;
 object-fit: cover;
 object-position: center;
@@ -1552,7 +1553,7 @@ color: #7c7c7c;
 cursor: pointer;
 }
 .swiper-slide .bg-light{
-min-height: 390px;
+min-height: 320px;
 }
 .searchOnVid .headerForm{
 width: 100%;
