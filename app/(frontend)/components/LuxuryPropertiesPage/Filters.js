@@ -112,7 +112,6 @@ function Filters({
             name="category"
             id="category"
             className="form-select bedroomSelect"
-            disabled=""
           >
             <option value="buy">Buy</option>
             <option value="rent">Rent</option>
