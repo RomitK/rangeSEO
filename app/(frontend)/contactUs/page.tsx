@@ -83,12 +83,7 @@ function ContactUs(){
                                         </p>
                                      </div>
                                      <div className="addressBoxContent pad-0">
-                                            <iframe 
-                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462560.6828361546!2d54.89780997457341!3d25.07628044412959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2s!4v1699736440138!5m2!1sen!2s"
-                                                loading="lazy" 
-                                                referrerPolicy="no-referrer-when-downgrade">
-
-                                            </iframe>
+                                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.330369250141!2d55.26378107538162!3d25.192078977714353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69d5b3fdaac1%3A0xb73489ebcf242a4f!2sRange%20International%20Property%20Investments!5e0!3m2!1sen!2sae!4v1699861068005!5m2!1sen!2sae" width="600" height="450"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                      </div>
                               </div>
                          </div>
@@ -100,7 +95,6 @@ function ContactUs(){
 
                           <div className="accordion" id="FAQAccordion">
                                 <div className="accordion-item">
-                                
                                     <button className="accordion-button" data-bs-toggle="collapse" data-bs-target="#faqCollapse-1" aria-expanded="true" >
                                         Lorem ipsum dolor sit amet?
                                     </button>
@@ -164,8 +158,6 @@ function ContactUs(){
                                     </div>
                                     </div>
                                 </div>
-                               
-                               
                             </div>
                     </div>
            </section>

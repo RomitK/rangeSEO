@@ -58,9 +58,9 @@ function Footer() {
                             </Link>  
                         </li>
                         <li>
-                          <a href="" className="footLink">
+                        <Link href="/luxuryProperties" className="footLink">
                             Luxury Properties
-                          </a>
+                            </Link>
                         </li>
                       </ul>
                     </div>

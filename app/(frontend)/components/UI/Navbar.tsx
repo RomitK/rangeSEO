@@ -8,7 +8,7 @@ function Navbar() {
     "/ready",
     "/rent",
     "/offplan",
-    "/luxury-properties",
+    "/luxuryProperties",
   ].includes(usePathname());
   return (
     <>
@@ -305,9 +305,9 @@ function Navbar() {
                   )}
                   {expandPropertyDropdown && (
                     <li className="nav-item">
-                      <a className="nav-link" href="luxury-properties">
+                      <Link className="nav-link" href="/luxuryProperties">
                         LUXURY PROPERTIES
-                      </a>
+                      </Link>
                     </li>
                   )}
 

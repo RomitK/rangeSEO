@@ -43,7 +43,10 @@ function HomeSearch() {
 
   return (
     <>
-      <section className="mainBg  d-md-block d-lg-block d-xl-block overlayBg homeHeader" id="home">
+      <section
+        className="mainBg  d-md-block d-lg-block d-xl-block overlayBg homeHeader"
+        id="home"
+      >
         <div className="p-relative">
           <video
             className="d-block w-100 videoMain"
@@ -59,18 +62,33 @@ function HomeSearch() {
           <div className="videoOverlay"></div>
         </div>
         <div className="headerForm">
-                              <ul className="nav nav-pills frmTabList" id="pills-tab" >
-                                      <button className="nav-link active"  data-bs-toggle="pill" data-bs-target="#ProTab-1"  aria-selected="true">
-                                           Buy
-                                      </button>
-                                      <button className="nav-link" data-bs-toggle="pill" data-bs-target="#ProTab-2" aria-selected="false">
-                                           Sell
-                                      </button>
-                                      <button className="nav-link"  data-bs-toggle="pill" data-bs-target="#ProTab-3"  aria-selected="false">
-                                           Rent
-                                      </button>
-                              </ul>
-                              {/* <div className="tab-content" id="pills-tabContent">
+          <ul className="nav nav-pills frmTabList" id="pills-tab">
+            <button
+              className="nav-link active"
+              data-bs-toggle="pill"
+              data-bs-target="#ProTab-1"
+              aria-selected="true"
+            >
+              Buy
+            </button>
+            <button
+              className="nav-link"
+              data-bs-toggle="pill"
+              data-bs-target="#ProTab-2"
+              aria-selected="false"
+            >
+              Sell
+            </button>
+            <button
+              className="nav-link"
+              data-bs-toggle="pill"
+              data-bs-target="#ProTab-3"
+              aria-selected="false"
+            >
+              Rent
+            </button>
+          </ul>
+          {/* <div className="tab-content" id="pills-tabContent">
                                   <div className="tab-pane show active" id="ProTab-1">
                                         <div className="search-input frmSearcBar">
                                              <input type="text" placeholder="Buy Search" />
@@ -90,12 +108,31 @@ function HomeSearch() {
                                         </div>
                                   </div>
                               </div> */}
-                              <div className="search-input frmSearcBar">
-                                            <input type="text" placeholder="Search" />
-                                            <i className="fa fa-search"></i>
-                                        </div>
+          <div className="search-input frmSearcBar">
+            <input type="text" placeholder="Search" onChange={changeSearch}/>
+            <i className="fa fa-search"></i>
           </div>
-        
+          <div id="suggestion-box">
+            {showSuggestion && (
+              <div id="suggestion">
+                {suggestion.map((sug, index) => (
+                  <div key={index}>
+                    <Link className="suggestion-link" href="/rent">
+                      <i className="bi bi-geo-alt-fill text-primary" />
+                      &nbsp;&nbsp;
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: sug.name,
+                        }}
+                      />
+                    </Link>
+                    <br />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       </section>
     </>
   );

@@ -1,0 +1,6 @@
+.clearMapButtonContainer {
+    display: flex;
+    position: relative;
+    top: 30px;
+    justify-content: center;
+}

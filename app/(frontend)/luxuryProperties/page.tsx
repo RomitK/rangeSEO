@@ -2,9 +2,9 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { SWRProvider } from "@/app/swr-provider";
-import PropertyList from "../components/RentPage/PropertyList";
+import PropertyList from "../components/LuxuryPropertiesPage/PropertyList";
 
-const Properties = ({ params }) => {
+const Ready = ({ params }) => {
   return (
     <SWRProvider>
       <PropertyList params={params}></PropertyList>
@@ -12,4 +12,4 @@ const Properties = ({ params }) => {
   );
 };
 
-export default Properties;
+export default Ready;
