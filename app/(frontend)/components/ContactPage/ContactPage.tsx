@@ -4,11 +4,15 @@ import React, { useState } from "react";
 
 function ContactPage() {
   const { faqsData } = useGetAllFaqsData();
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <>
       <header>
-        <img src="/images/banner/contact-banner.png" className="headerSimpleImg"/>
+        <img
+          src="/images/banner/contact-banner.png"
+          className="headerSimpleImg"
+        />
       </header>
       <section className="section contactSection">
         <div className="container">
@@ -145,8 +149,8 @@ function ContactPage() {
                     <button
                       className="accordion-button"
                       data-bs-toggle="collapse"
-                      data-bs-target={"#faqCollapse-" + faq.id}
-                      aria-expanded="true"
+                      data-bs-target={"#faqCollapse-" + index}
+                      aria-expanded={activeIndex == index ? true : false}
                       onClick={() => {
                         setActiveIndex(index);
                       }}
@@ -154,8 +158,10 @@ function ContactPage() {
                       {faq.question}
                     </button>
                     <div
-                      id={"faqCollapse-" + faq.id}
-                      className="accordion-collapse collapse show"
+                      id={"faqCollapse-" + index}
+                      className={`accordion-collapse collapse ${
+                        activeIndex == index ? "show" : ""
+                      } `}
                       data-bs-parent="#FAQAccordion"
                     >
                       <div className="accordion-body">
