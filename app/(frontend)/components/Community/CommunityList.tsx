@@ -82,7 +82,7 @@ function CommunityList() {
                     href={`/communities/${community.slug}`}
                     className="cardBox"
                   >
-                    <img src={community.mainImage} className="clmCardImage" />
+                    <img src={community.mainImage} className="clmCardImage" alt={community.name}/>
                     <div className="overlay">
                       <h5 className="crdtitle">{community.name}</h5>
                       <p className="crdText">

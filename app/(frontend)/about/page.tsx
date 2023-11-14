@@ -4,7 +4,7 @@ function About() {
   return (
     <>
       <header>
-        <img src="/images/banner/homeBg.webp" className="headerSimpleImg" />
+        <img src="/images/banner/homeBg.webp" className="headerSimpleImg" alt="header"/>
       </header>
       <section className="aboutPgSection">
         <div className="container">
@@ -30,7 +30,7 @@ function About() {
           <div className="row">
             <div className="col-md-6">
               <div className="simpleCard">
-                <img src="/images/icons/about-mission-icon.png" className="cardIcon" />
+                <img src="/images/icons/about-mission-icon.png" className="cardIcon" alt="mission"/>
                 <h3 className="cardTitle text-center">MISSION</h3>
                 <p className="fs-12 text-secondary">
                   We aspire to shape tomorrow’s real estate through unparalleled
@@ -43,7 +43,7 @@ function About() {
             </div>
             <div className="col-md-6">
               <div className="simpleCard">
-                <img src="/images/icons/about-vision-icon.png" className="cardIcon" />
+                <img src="/images/icons/about-vision-icon.png" className="cardIcon" alt="vission" />
                 <h3 className="cardTitle text-center">VISION</h3>
                 <p className="fs-12 text-secondary">
                 Empowering real estate aspirations, we strive to become a premier brokerage in the UAE, with a vision to expand globally. We focus on leveraging innovative real estate technology to explore untapped potential, crafting bespoke products to reshape the global real estate landscape.
@@ -59,7 +59,7 @@ function About() {
           <div className="row">
             <div className="col-md-4">
               <div className="userCard">
-                <img src="/images/team/nitin.png" className="leaderImg" />
+                <img src="/images/team/nitin.png" className="leaderImg"  alt="nitin"/>
                 <div className="cardContent ">
                   <h5 className="crdTitle">Nitin Chopra</h5>
                   <p className="crdText">CEO/Founder</p>
@@ -71,7 +71,7 @@ function About() {
             </div>
             <div className="col-md-4">
               <div className="userCard">
-                <img src="/images/team/lester.png" className="leaderImg" />
+                <img src="/images/team/lester.png" className="leaderImg"  alt="lester"/>
                 <div className="cardContent ">
                   <h5 className="crdTitle">Lester Verma </h5>
                   <p className="crdText">Managing Partner & Co-Founder</p>
@@ -83,7 +83,7 @@ function About() {
             </div>
             <div className="col-md-4">
               <div className="userCard">
-                <img src="/images/team/brendon.png" className="leaderImg" />
+                <img src="/images/team/brendon.png" className="leaderImg"  alt="bredon"/>
                 <div className="cardContent ">
                   <h5 className="crdTitle">Brendon Baker</h5>
                   <p className="crdText">Managing Director</p>

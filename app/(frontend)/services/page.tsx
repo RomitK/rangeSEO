@@ -81,6 +81,7 @@ function Services() {
                 <img
                   src="/images/services/service1.webp"
                   className="serviceCardImg"
+                  alt="Residential Sales & Leasing"
                 />
                 <div className="serCardContent ">
                   <h3 className="cardTitle text-center">
@@ -108,6 +109,7 @@ function Services() {
                 <img
                   src="/images/services/service2.webp"
                   className="serviceCardImg"
+                  alt="Commercial Sales & Leasing"
                 />
                 <div className="serCardContent ">
                   <h3 className="cardTitle text-center">
@@ -135,6 +137,7 @@ function Services() {
                 <img
                   src="/images/services/service3.webp"
                   className="serviceCardImg"
+                  alt="Property Management"
                 />
                 <div className="serCardContent ">
                   <h3 className="cardTitle text-center">Property Management</h3>
@@ -159,6 +162,7 @@ function Services() {
                 <img
                   src="/images/services/service4.webp"
                   className="serviceCardImg"
+                  alt="Holiday Homes"
                 />
                 <div className="serCardContent ">
                   <h3 className="cardTitle text-center">Holiday Homes</h3>
@@ -184,6 +188,7 @@ function Services() {
                 <img
                   src="/images/services/service5.webp"
                   className="serviceCardImg"
+                  alt="Mortgage Services"
                 />
                 <div className="serCardContent ">
                   <h3 className="cardTitle text-center">Mortgage Services</h3>
@@ -209,6 +214,7 @@ function Services() {
                 <img
                   src="/images/services/service6.webp"
                   className="serviceCardImg"
+                  alt=" Investment Consultancy"
                 />
                 <div className="serCardContent ">
                   <h3 className="cardTitle text-center">

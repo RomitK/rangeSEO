@@ -8,7 +8,7 @@ function ContactPage() {
   return (
     <>
       <header>
-        <img src="/images/banner/contact-banner.png" className="headerSimpleImg" />
+        <img src="/images/banner/contact-banner.png" className="headerSimpleImg" alt="header"/>
       </header>
       <section className="section contactSection">
         <div className="container">
@@ -34,6 +34,7 @@ function ContactPage() {
                   <img
                     src="/images/icons/phone-icon.png"
                     className="contact-icon"
+                    alt="phone"
                   />
                   <p>800 72 888</p>
                 </a>
@@ -46,6 +47,7 @@ function ContactPage() {
                   <img
                     src="/images/icons/mail-icon.png"
                     className="contact-icon"
+                    alt="mail"
                   />
                   <p>sales@range.ae</p>
                 </a>
@@ -58,6 +60,7 @@ function ContactPage() {
                   <img
                     src="/images/icons/whatsapp-icon.png"
                     className="contact-icon"
+                    alt="whatsapp"
                   />
                   <p>+971 56 1234567</p>
                 </a>

@@ -20,7 +20,7 @@ function DeveloperList({ params }) {
               return (
                 <Link href={`/developers/${developer?.slug}`} className="col-md-4" key={developer.id}>
                   <div className="partnerBox">
-                    <img src={developer.logo} className="logoImg" />
+                    <img src={developer.logo} className="logoImg" alt={developer.name}/>
                   </div>
                 </Link>
               );

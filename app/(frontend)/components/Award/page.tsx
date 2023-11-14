@@ -28,28 +28,28 @@ function AwardGallery(){
             className="mySwiper multiItemsSlider"
           >
             <SwiperSlide>
-              <img src="/images/blogs/blog5.png" className="awardsImg" />
+              <img src="/images/blogs/blog5.png" className="awardsImg" alt="dumy"/>
             </SwiperSlide>
             <SwiperSlide>
-              <img src="/images/blogs/blog2.png" className="awardsImg" />
+              <img src="/images/blogs/blog2.png" className="awardsImg"  alt="dumy"/>
             </SwiperSlide>
             <SwiperSlide>
-              <img src="/images/blogs/blog3.png" className="awardsImg" />
+              <img src="/images/blogs/blog3.png" className="awardsImg"  alt="dumy"/>
             </SwiperSlide>
             <SwiperSlide>
-              <img src="/images/blogs/blog4.png" className="awardsImg" />
+              <img src="/images/blogs/blog4.png" className="awardsImg"  alt="dumy"/>
             </SwiperSlide>
             <SwiperSlide>
-              <img src="/images/blogs/blog4.png" className="awardsImg" />
+              <img src="/images/blogs/blog4.png" className="awardsImg"  alt="dumy"/>
             </SwiperSlide>
             <SwiperSlide>
-              <img src="/images/blogs/blog5.png" className="awardsImg" />
+              <img src="/images/blogs/blog5.png" className="awardsImg"  alt="dumy"/>
             </SwiperSlide>
             <SwiperSlide>
-              <img src="/images/blogs/blog5.png" className="awardsImg" />
+              <img src="/images/blogs/blog5.png" className="awardsImg"  alt="dumy"/>
             </SwiperSlide>
             <SwiperSlide>
-              <img src="/images/blogs/blog5.png" className="awardsImg" />
+              <img src="/images/blogs/blog5.png" className="awardsImg"  alt="dumy"/>
             </SwiperSlide>
           </Swiper>
         </section>
