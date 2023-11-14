@@ -4,14 +4,15 @@ import React, { useEffect, useRef, useState } from "react";
 import { SWRProvider } from "@/app/swr-provider";
 import "@/public/css/about-styles.css";
 import Link from "next/link";
-import AboutPage from "../components/AboutPage/AboutPage";
-function About() {
+import SingleManagementPage from "../../components/Management/SingleManagementPage";
+
+function SingleManagement({ params }) {
   return (
     <>
       <SWRProvider>
-      <AboutPage></AboutPage>
+      <SingleManagementPage params={params}></SingleManagementPage>
     </SWRProvider>
     </>
   );
 }
-export default About;
+export default SingleManagement;
