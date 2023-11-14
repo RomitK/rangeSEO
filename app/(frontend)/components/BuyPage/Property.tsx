@@ -1,6 +1,5 @@
 import Link from "next/link";
 function Property(props) {
-  console.log(props)
   return (
     <>
       <div>
