@@ -1,13 +1,14 @@
 import { useGetAllFaqsData } from "@/src/services/FaqService";
 import parse from "html-react-parser";
-
+import React, { useState } from "react";
 
 function ContactPage() {
   const { faqsData } = useGetAllFaqsData();
+  const [activeIndex, setActiveIndex] = useState(1);
   return (
     <>
       <header>
-        <img src="images/banner/banner-2.png" className="headerSimpleImg" />
+        <img src="/images/banner/contact-banner.png" className="headerSimpleImg" />
       </header>
       <section className="section contactSection">
         <div className="container">
@@ -132,23 +133,25 @@ function ContactPage() {
       <section className="faqSection">
         <div className="container">
           <h4 className="sctionMdTitle text-primary ">FAQS</h4>
+
           <div className="accordion" id="FAQAccordion">
-
-
             {faqsData &&
               faqsData?.map((faq, index) => {
                 return (
-                  <div className="accordion-item" key={faq.id}>
+                  <div className="accordion-item">
                     <button
                       className="accordion-button"
                       data-bs-toggle="collapse"
-                      data-bs-target={"#faqCollapse-"+faq.id}
+                      data-bs-target={"#faqCollapse-" + faq.id}
                       aria-expanded="true"
+                      onClick={() => {
+                        setActiveIndex(index);
+                      }}
                     >
                       {faq.question}
                     </button>
                     <div
-                      id={"faqCollapse-"+faq.id}
+                      id={"faqCollapse-" + faq.id}
                       className="accordion-collapse collapse show"
                       data-bs-parent="#FAQAccordion"
                     >
@@ -161,6 +164,145 @@ function ContactPage() {
                   </div>
                 );
               })}
+            {/* <div className="accordion-item">
+              <button
+                className="accordion-button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faqCollapse-1"
+                aria-expanded="true"
+              >
+                Lorem ipsum dolor sit amet?
+              </button>
+              <div
+                id="faqCollapse-1"
+                className="accordion-collapse collapse show"
+                data-bs-parent="#FAQAccordion"
+              >
+                <div className="accordion-body">
+                  <p className="fs-14 text-secondary">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    minim veniam, quis nostrud exercitation ullamco laboris nisi
+                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                    reprehenderit in voluptate velit esse cillum dolore eu
+                    fugiat nulla pariatur.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="accordion-item">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faqCollapse-2"
+                aria-expanded="false"
+              >
+                Lorem ipsum dolor sit amet?
+              </button>
+              <div
+                id="faqCollapse-2"
+                className="accordion-collapse collapse"
+                data-bs-parent="#FAQAccordion"
+              >
+                <div className="accordion-body">
+                  <p className="fs-14 text-secondary">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    minim veniam, quis nostrud exercitation ullamco laboris nisi
+                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                    reprehenderit in voluptate velit esse cillum dolore eu
+                    fugiat nulla pariatur.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="accordion-item">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faqCollapse-3"
+                aria-expanded="false"
+              >
+                Lorem ipsum dolor sit amet?
+              </button>
+              <div
+                id="faqCollapse-3"
+                className="accordion-collapse collapse"
+                data-bs-parent="#FAQAccordion"
+              >
+                <div className="accordion-body">
+                  <p className="fs-14 text-secondary">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    minim veniam, quis nostrud exercitation ullamco laboris nisi
+                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                    reprehenderit in voluptate velit esse cillum dolore eu
+                    fugiat nulla pariatur.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="accordion-item">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faqCollapse-4"
+                aria-expanded="false"
+              >
+                Lorem ipsum dolor sit amet?
+              </button>
+              <div
+                id="faqCollapse-4"
+                className="accordion-collapse collapse"
+                data-bs-parent="#FAQAccordion"
+              >
+                <div className="accordion-body">
+                  <p className="fs-14 text-secondary">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    minim veniam, quis nostrud exercitation ullamco laboris nisi
+                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                    reprehenderit in voluptate velit esse cillum dolore eu
+                    fugiat nulla pariatur.
+                  </p>
+                </div>
+              </div>
+            </div> */}
           </div>
         </div>
       </section>
