@@ -20,18 +20,28 @@ type OptionType = {
   label: string;
 };
 function CommunityList() {
-
   const { communitiesData } = useGetAllCommunityData();
   // const { developerOptions } = useGetDeveloperOptions();
-  
+  const [communities, setCommunities] = useState([]);
+  const [visibleCommunities, setVisibleCommunities] = useState([]);
+  const [page, setPage] = useState(0);
+  const maxPage = Math.ceil(communities?.length / 3);
   const projectChangeHandle = (event) => {
     console.log(event.value);
+  };
+
+  const onNextPage = () => {
+    const newCommunities = communities.slice(0, visibleCommunities.length * 2);
+    setVisibleCommunities(newCommunities);
   };
   const options: OptionType[] = [
     { value: "rent", label: "Rent" },
     { value: "sale", label: "Sale" },
-    
   ];
+  useEffect(() => {
+    setCommunities(communitiesData);
+    setVisibleCommunities(communitiesData?.slice(0, 3));
+  }, [communitiesData]);
 
   //const options: OptionType[] = developerOptions;
 
@@ -73,29 +83,36 @@ function CommunityList() {
             </div>
           </div>
         </div> */}
-        <div className="row">
-          {communitiesData &&
-            communitiesData.map(function (community, index) {
-              return (
-                <div className="col-md-4" key={community.id}>
-                  <Link
-                    href={`/communities/${community.slug}`}
-                    className="cardBox"
-                  >
-                    <img src={community.mainImage} className="clmCardImage" alt={community.name}/>
-                    <div className="overlay">
-                      <h5 className="crdtitle">{community.name}</h5>
-                      <p className="crdText">
-                        {community && parse(community?.description ?? "")}
-                      </p>
-                    </div>
-                  </Link>
-                </div>
-              );
-            })}
-        </div>
 
-        {/* <button className="bdrBtn mrAuto loadBtn mt-4">view All</button> */}
+        <div className="row">
+          {visibleCommunities?.map(function (community, index) {
+            return (
+              <div className="col-md-4" key={community.id}>
+                <Link
+                  href={`/communities/${community.slug}`}
+                  className="cardBox"
+                >
+                  <img
+                    src={community.mainImage}
+                    className="clmCardImage"
+                    alt={community.name}
+                  />
+                  <div className="overlay">
+                    <h5 className="crdtitle">{community.name}</h5>
+                    <p className="crdText">
+                      {community && parse(community?.description ?? "")}
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+        {communities?.length != visibleCommunities?.length && (
+          <button className="bdrBtn mrAuto loadBtn mt-4" onClick={onNextPage}>
+            View All
+          </button>
+        )}
       </div>
     </section>
   );
