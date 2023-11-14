@@ -8,7 +8,10 @@ function ContactPage() {
   return (
     <>
       <header>
-        <img src="/images/banner/contact-banner.png" className="headerSimpleImg" />
+        <img
+          src="/images/banner/contact-banner.png"
+          className="headerSimpleImg"
+        />
       </header>
       <section className="section contactSection">
         <div className="container">
@@ -138,7 +141,7 @@ function ContactPage() {
             {faqsData &&
               faqsData?.map((faq, index) => {
                 return (
-                  <div className="accordion-item">
+                  <div className="accordion-item" key={index + "faq"}>
                     <button
                       className="accordion-button"
                       data-bs-toggle="collapse"
