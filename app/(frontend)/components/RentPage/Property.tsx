@@ -4,7 +4,6 @@ function Property(props) {
   return (
     <>
       <div>
-        {" "}
         <div className="card propertyCardNew rounded-0">
           <div className="">
           <Link
