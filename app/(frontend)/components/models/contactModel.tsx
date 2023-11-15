@@ -137,11 +137,6 @@ function ContactModel(props) {
                                 <small className="text-danger">*</small>
                               </label>
                               <input
-                                id="fullNumber3"
-                                type="hidden"
-                                name="fullNumber"
-                              />
-                              <input
                                 type="tel"
                                 className="form-control mb-2"
                                 id="telephoneNew3"

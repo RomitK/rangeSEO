@@ -182,3 +182,7 @@ justify-content: center;
 border-radius: 0px;
 
 }
+.accordion-button:not(.collapsed) {
+    color: black;
+    background-color: white;
+}

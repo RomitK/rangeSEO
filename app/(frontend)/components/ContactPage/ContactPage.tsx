@@ -1,11 +1,42 @@
 import { useGetAllFaqsData } from "@/src/services/FaqService";
 import parse from "html-react-parser";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { saveContactFormApi } from "@/src/services/HomeService";
 
 function ContactPage() {
   const { faqsData } = useGetAllFaqsData();
   const [activeIndex, setActiveIndex] = useState(0);
-
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+    phone: "",
+    formName: "contactForm",
+    page: "contact",
+  });
+  const handleSubmit = () => {
+    if (!formData.name || !formData.email || !formData.phone) {
+      return toast.error("Please fill required field");
+    }
+    saveContactFormApi(formData)
+      .then((res) => {
+        toast.success(
+          "Enquire form submitted successfully, out support teams contact you soon"
+        );
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+          phone: "",
+          formName: "contactForm",
+          page: "contact",
+        });
+      })
+      .catch((err) => {
+        toast.error("Something went wrong, please try again");
+      });
+  };
   return (
     <>
       <header>
@@ -14,7 +45,7 @@ function ContactPage() {
           className="headerSimpleImg"
         />
       </header>
-      <section className="section contactSection">
+      <section className="section contactSection" id="contactSectionId">
         <div className="container">
           <h4 className="sctionMdTitle text-primary text-center ">
             CONTACT US
@@ -86,6 +117,14 @@ function ContactPage() {
                       type="text"
                       className="form-control cntInptField"
                       placeholder="Name"
+                      value={formData.name}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          name: e.target.value,
+                        })
+                      }
+                      required
                     />
                   </div>
                   <div className="col-12 mb-2">
@@ -93,6 +132,14 @@ function ContactPage() {
                       type="email"
                       className="form-control cntInptField"
                       placeholder="Email Address"
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          email: e.target.value,
+                        })
+                      }
+                      required
                     />
                   </div>
                   <div className="col-12 mb-2">
@@ -100,18 +147,34 @@ function ContactPage() {
                       type="email"
                       className="form-control cntInptField"
                       placeholder="Contact Number"
+                      value={formData.phone}
+                                onChange={(e) =>
+                                  setFormData({
+                                    ...formData,
+                                    phone: e.target.value,
+                                  })
+                                }
+                                autoComplete="off"
+                                required
                     />
                   </div>
                   <div className="col-12">
                     <textarea
                       className="form-control cntInptField textareaField"
                       placeholder="Message"
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          message: e.target.value,
+                        })
+                      }
                     ></textarea>
                   </div>
                   <input
                     type="submit"
                     className="fillBtn submitBtn"
                     value="Submit"
+                    onClick={handleSubmit}
                   />
                 </div>
               </div>
@@ -330,7 +393,7 @@ function ContactPage() {
               </p>
             </div>
             <div className="col-md-4">
-              <a href="" className="fillBtn contactBtn btn">
+              <a href="#contactSectionId" className="fillBtn contactBtn btn">
                 CONTACT US
               </a>
             </div>
