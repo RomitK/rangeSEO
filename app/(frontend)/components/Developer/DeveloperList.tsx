@@ -8,6 +8,19 @@ import { useGetAllDeveloperData } from "@/src/services/DeveloperService";
 function DeveloperList({ params }) {
   const { developersData } = useGetAllDeveloperData();
 
+  const [developers, setDevelopers] = useState([]);
+  const [visibleDevelopers, setVisibleDevelopers] = useState([]);
+
+  const onNextPage = () => {
+    const newDevelopers = developers.slice(0, visibleDevelopers.length * 2);
+    setVisibleDevelopers(newDevelopers);
+  };
+
+  useEffect(() => {
+    setDevelopers(developersData);
+    setVisibleDevelopers(developersData?.slice(0, 3));
+  }, [developersData]);
+
   return (
     <section className="developersSection">
       <div className="container">
@@ -15,18 +28,29 @@ function DeveloperList({ params }) {
           DEVELOPERS
         </h4>
         <div className="row">
-          {developersData &&
-            developersData.map(function (developer, index) {
-              return (
-                <Link href={`/developers/${developer?.slug}`} className="col-md-4" key={developer.id}>
-                  <div className="partnerBox">
-                    <img src={developer.logo} className="logoImg" alt={developer.name}/>
-                  </div>
-                </Link>
-              );
-            })}
+          {visibleDevelopers?.map(function (developer, index) {
+            return (
+              <Link
+                href={`/developers/${developer?.slug}`}
+                className="col-md-4"
+                key={developer.id}
+              >
+                <div className="partnerBox">
+                  <img
+                    src={developer.logo}
+                    className="logoImg"
+                    alt={developer.name}
+                  />
+                </div>
+              </Link>
+            );
+          })}
         </div>
-        {/* <button className="bdrBtn mrAuto loadBtn mt-4">view All</button> */}
+        {developers?.length != visibleDevelopers?.length && (
+          <button className="bdrBtn mrAuto loadBtn mt-4" onClick={onNextPage}>
+            view All
+          </button>
+        )}
       </div>
     </section>
   );
