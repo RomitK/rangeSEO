@@ -980,8 +980,101 @@ function SinglePropertyView({ params }) {
             </div>
           </div>
         </div>
-        <CalenderModel/>
+        
       </section>
+      <section className="mt-5 bg-light py-5">
+        <div className="container">
+            <div className="row g-3 justify-content-center">
+                <div className="col-12 col-lg-12 col-md-12">
+                    <div className="row">
+                        <div className="col-12 col-lg-12 col-md-12">
+                            <div>
+                                <div className="mainHead mb-5 text-primary">
+                                    <h4>SIMILAR RENTALS</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-12 col-lg-12 col-md-12">
+                            <div className="swiper pb-5 projectSlider">
+                                <div className="swiper-button-prev swiperUniquePrev text-primary">
+                                    <span className=''>
+                                        <i className='bi bi-chevron-left fs-1'></i>
+                                    </span>
+                                </div>
+                                <div className="swiper-wrapper">
+                                    
+                                    <div className="swiper-slide">
+                                        <div>
+                                            <div className="card propCard rounded-0">
+                                                <div>
+                                                    <div className="">
+                                                        <a href="" className="text-decoration-none">
+                                                            <div className="projectImgCont">
+                                                                <img src=""
+                                                                    alt="project1" className="img-fluid propImg"/>
+                                                                <div className="projectImgOverlay">
+                                                                    <div></div>
+                                                                    <div><span
+                                                                            className="badge float-start fs-10 projectType">VILLAS</span>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div className="card-body rounded-3 rounded-top-0">
+                                                        <a href="#" className="text-decoration-none">
+                                                            <h6 className="text-black fs-16 fw-semibold mb-0">
+                                                                Nice, Damac Lagoons
+                                                            </h6>
+                                                        </a>
+                                                        <div className="mb-1">
+                                                            <small className="text-secondary">Palm Jumeirah</small>
+                                                        </div>
+                                                        <p className="fs-18 mb-2 text-primary fw-semibold">AED 2,200,000 </p>
+                                                        <ul className="list-unstyled mb-0 d-flex justify-content-between">
+                                                            <li className="d-inline">
+                                                                <small><img
+                                                                        src="/images/icons/bed.png"
+                                                                        alt="Range" className="img-fluid" width="25px"/>
+                                                                    <span className="align-text-top ms-1">4 & 5</span>
+                                                                </small>
+                                                            </li>
+                                                            <li className="d-inline">
+                                                                <small><img
+                                                                        src="images/icons/bath.png"
+                                                                        alt="Range" className="img-fluid" width="20px"/>
+                                                                    <span className="align-text-top ms-1">2</span></small>
+                                                            </li>
+                                                            <li className="d-inline">
+                                                                <small><img
+                                                                        src="images/icons/area.png"
+                                                                        alt="Range" className="img-fluid" width="20px"/>
+                                                                    <span
+                                                                        className="align-text-top ms-1">726sqft</span></small>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <div className="swiper-button-next swiperUniqueNext text-primary">
+                                    <span className=''>
+                                        <i className='bi bi-chevron-right fs-1'></i>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </section>
+    <CalenderModel/>
     </>
   );
 }
