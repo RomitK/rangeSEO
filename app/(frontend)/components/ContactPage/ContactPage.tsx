@@ -148,14 +148,14 @@ function ContactPage() {
                       className="form-control cntInptField"
                       placeholder="Contact Number"
                       value={formData.phone}
-                                onChange={(e) =>
-                                  setFormData({
-                                    ...formData,
-                                    phone: e.target.value,
-                                  })
-                                }
-                                autoComplete="off"
-                                required
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          phone: e.target.value,
+                        })
+                      }
+                      autoComplete="off"
+                      required
                     />
                   </div>
                   <div className="col-12">
@@ -210,7 +210,7 @@ function ContactPage() {
                 return (
                   <div className="accordion-item" key={index + "faq"}>
                     <button
-                      className="accordion-button"
+                      className={`accordion-button ${activeIndex != index ?' collapsed':''} `}
                       data-bs-toggle="collapse"
                       data-bs-target={"#faqCollapse-" + index}
                       aria-expanded={activeIndex == index ? true : false}
@@ -222,8 +222,8 @@ function ContactPage() {
                     </button>
                     <div
                       id={"faqCollapse-" + index}
-                      className={`accordion-collapse collapse ${
-                        activeIndex == index ? "show" : ""
+                      className={`accordion-collapse collapse  ${
+                        activeIndex == index ? " show" : ""
                       } `}
                       data-bs-parent="#FAQAccordion"
                     >
