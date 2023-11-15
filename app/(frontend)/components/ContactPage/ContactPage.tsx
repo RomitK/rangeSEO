@@ -1,11 +1,11 @@
-import { useGetAllFaqsData } from "@/src/services/FaqService";
+import { useGetContactFaqsData } from "@/src/services/FaqService";
 import parse from "html-react-parser";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
 
 function ContactPage() {
-  const { faqsData } = useGetAllFaqsData();
+  const { faqsData } = useGetContactFaqsData();
   const [activeIndex, setActiveIndex] = useState(0);
   const [formData, setFormData] = useState({
     name: "",

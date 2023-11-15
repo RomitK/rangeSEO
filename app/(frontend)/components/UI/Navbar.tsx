@@ -281,9 +281,9 @@ function Navbar() {
                 <ul className="navMainPc navBlue navMenu d-none d-lg-flex d-md-flex my-auto me-3">
                   {expandPropertyDropdown && (
                     <li className="nav-item">
-                      <a className="nav-link" href="ready">
+                     <Link className="nav-link" href="/ready">
                         Ready
-                      </a>
+                      </Link>
                     </li>
                   )}
                   {expandPropertyDropdown && (
@@ -525,9 +525,11 @@ function Navbar() {
                           </a>
                         </li>
                         <li className="nav-item py-3 border-bottom">
-                          <a className="nav-link" href="">
-                            FAQ's
-                          </a>
+                         
+                          <Link className="nav-link" href="/faqs">
+                          FAQ's
+                          </Link>
+                          
                         </li>
                       </ul>
                     </div>
