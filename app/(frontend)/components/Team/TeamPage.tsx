@@ -93,7 +93,7 @@ function TeamPage() {
                 );
               })}
           </div>
-          <button className="bdrBtn mrAuto loadBtn mb-5">View All</button>
+          {/* <button className="bdrBtn mrAuto loadBtn mb-5">View All</button> */}
         </div>
       </section>
     </>

@@ -18,7 +18,7 @@ function DeveloperList({ params }) {
 
   useEffect(() => {
     setDevelopers(developersData);
-    setVisibleDevelopers(developersData?.slice(0, 3));
+    setVisibleDevelopers(developersData?.slice(0, 9));
   }, [developersData]);
 
   return (

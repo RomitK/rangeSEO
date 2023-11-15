@@ -40,7 +40,7 @@ function CommunityList() {
   ];
   useEffect(() => {
     setCommunities(communitiesData);
-    setVisibleCommunities(communitiesData?.slice(0, 3));
+    setVisibleCommunities(communitiesData?.slice(0, 9));
   }, [communitiesData]);
 
   //const options: OptionType[] = developerOptions;
