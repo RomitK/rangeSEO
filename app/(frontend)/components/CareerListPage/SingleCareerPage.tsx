@@ -27,7 +27,7 @@ function SingleCareerPage({ params }) {
                   <div className="listflexRow">
                     <div className="listflexBar">
                       <img
-                        src="/images/icons/location-icon.png"
+                        src="/images/icons/location_icon.png"
                         className="iconImg"
                         alt="location"
                       />
@@ -35,7 +35,7 @@ function SingleCareerPage({ params }) {
                     </div>
                     <div className="listflexBar">
                       <img
-                        src="/images/icons/fullTime-icon.png"
+                        src="/images/icons/type-icon.png"
                         className="iconImg"
                         alt="type"
                       />
