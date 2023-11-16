@@ -33,18 +33,14 @@ function SinglePropertyView({ params }) {
   const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
-  const [startDate, setStartDate] = useState(new Date());
-  const [minDate, setMinDate] = useState(new Date());
-
   const { propertyData } = useGetSinglePropertyData(slug);
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.GOOGLE_MAP_KEY,
     libraries: ["geometry", "places", "marker"],
   });
 
-  const swiperRef = useRef<SwiperCore>();
   const PropertySwiperRef = useRef<SwiperCore>();
-
+  const similiarPropertySwiperRef = useRef<SwiperCore>();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const onMapLoad = (map) => {
@@ -127,6 +123,21 @@ function SinglePropertyView({ params }) {
     }, [map, position, children, onClick]);
     return <>{children}</>;
   };
+  const [propertyPrice, setPropertyPrice] = useState(propertyData?.price);
+  const [downpaymentPer, setDownpaymentPer] = useState(20)
+  const [downpaymentMoney, setDownpaymentMoney] = useState(0)
+  const [duration, setDuration] = useState(25)
+  const [mortgage, setMortgage] = useState();
+
+  useEffect(()=>{
+    setPropertyPrice(propertyData?.price)
+    setDownpaymentMoney((downpaymentPer/100)*propertyPrice)
+  }, [propertyData?.price])
+
+  useEffect(()=>{
+    setDownpaymentMoney((downpaymentPer/100)*propertyPrice)
+  }, [downpaymentPer])
+
   return (
     <>
       <section className="my-5">
@@ -496,15 +507,21 @@ function SinglePropertyView({ params }) {
                               type="text"
                               className="form-control border-start-0  rounded-0"
                               placeholder="Enter amount"
+                              value={propertyPrice}
+                              onChange={(e) =>
+                                setPropertyPrice(e.target.value)
+                              }
                             />
                           </div>
                         </div>
                         <div className="mb-3">
                           <div className="d-flex justify-content-between">
                             <label className="form-label fw-500">
-                              Down payment
+                              Down payment ({new Intl.NumberFormat().format(
+                                              downpaymentMoney
+                                            ) })
                             </label>
-                            <label className="form-label fw-500">20%</label>
+                            <label className="form-label fw-500">{downpaymentPer}%</label>
                           </div>
                           <input
                             type="range"
@@ -512,53 +529,31 @@ function SinglePropertyView({ params }) {
                             id="customRange1"
                             min="20"
                             max="80"
-                            value="20"
+                            value={downpaymentPer}
+                            onChange={(e) =>
+                              setDownpaymentPer(e.target.value)
+                            }
+
                           />
-                          <input
-                            type="text"
-                            className="form-control rounded-0 mb-2"
-                            placeholder="0"
-                          />
-                          <small>
-                            <i>Minimum of 20%</i>
-                          </small>
                         </div>
                         <div className="mb-3">
+                        <div className="d-flex justify-content-between">
                           <label className="form-label fw-500">
-                            Mortgage Term
+                            Loan Duration
                           </label>
+                          <label className="form-label fw-500">{duration} Years</label>
+                          </div>
                           <input
                             type="range"
                             className="form-range"
                             id="customRange1"
                             min="1"
                             max="25"
-                            value="25"
+                            value={duration}
+                            onChange={(e) =>
+                              setDuration(e.target.value)
+                            }
                           />
-                        </div>
-                        <div className="row">
-                          <div className="col">
-                            <div className="mb-3">
-                              <label className="form-label fw-500">Year</label>
-                              <input
-                                type="text"
-                                className="form-control rounded-0"
-                                id="customRange1"
-                                placeholder="25"
-                              />
-                            </div>
-                          </div>
-                          <div className="col">
-                            <div className="mb-3">
-                              <label className="form-label fw-500">Month</label>
-                              <input
-                                type="text"
-                                className="form-control rounded-0"
-                                id="customRange1"
-                                placeholder="0"
-                              />
-                            </div>
-                          </div>
                         </div>
                         <div className="mb-3">
                           <label className="form-label fw-500">
@@ -576,6 +571,7 @@ function SinglePropertyView({ params }) {
                             <button
                               className="btn border border-primary text-primary px-2 py-1 rounded-circle m-1 "
                               type="button"
+                              
                             >
                               <i className="bi bi-dash-lg"></i>
                             </button>
@@ -980,101 +976,189 @@ function SinglePropertyView({ params }) {
             </div>
           </div>
         </div>
-        
       </section>
       <section className="mt-5 bg-light py-5">
         <div className="container">
-            <div className="row g-3 justify-content-center">
+          <div className="row g-3 justify-content-center">
+            <div className="col-12 col-lg-12 col-md-12">
+              <div className="row">
                 <div className="col-12 col-lg-12 col-md-12">
-                    <div className="row">
-                        <div className="col-12 col-lg-12 col-md-12">
-                            <div>
-                                <div className="mainHead mb-5 text-primary">
-                                    <h4>SIMILAR RENTALS</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-12 col-lg-12 col-md-12">
-                            <div className="swiper pb-5 projectSlider">
-                                <div className="swiper-button-prev swiperUniquePrev text-primary">
-                                    <span className=''>
-                                        <i className='bi bi-chevron-left fs-1'></i>
-                                    </span>
-                                </div>
-                                <div className="swiper-wrapper">
-                                    
-                                    <div className="swiper-slide">
-                                        <div>
-                                            <div className="card propCard rounded-0">
-                                                <div>
-                                                    <div className="">
-                                                        <a href="" className="text-decoration-none">
-                                                            <div className="projectImgCont">
-                                                                <img src=""
-                                                                    alt="project1" className="img-fluid propImg"/>
-                                                                <div className="projectImgOverlay">
-                                                                    <div></div>
-                                                                    <div><span
-                                                                            className="badge float-start fs-10 projectType">VILLAS</span>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div className="card-body rounded-3 rounded-top-0">
-                                                        <a href="#" className="text-decoration-none">
-                                                            <h6 className="text-black fs-16 fw-semibold mb-0">
-                                                                Nice, Damac Lagoons
-                                                            </h6>
-                                                        </a>
-                                                        <div className="mb-1">
-                                                            <small className="text-secondary">Palm Jumeirah</small>
-                                                        </div>
-                                                        <p className="fs-18 mb-2 text-primary fw-semibold">AED 2,200,000 </p>
-                                                        <ul className="list-unstyled mb-0 d-flex justify-content-between">
-                                                            <li className="d-inline">
-                                                                <small><img
-                                                                        src="/images/icons/bed.png"
-                                                                        alt="Range" className="img-fluid" width="25px"/>
-                                                                    <span className="align-text-top ms-1">4 & 5</span>
-                                                                </small>
-                                                            </li>
-                                                            <li className="d-inline">
-                                                                <small><img
-                                                                        src="images/icons/bath.png"
-                                                                        alt="Range" className="img-fluid" width="20px"/>
-                                                                    <span className="align-text-top ms-1">2</span></small>
-                                                            </li>
-                                                            <li className="d-inline">
-                                                                <small><img
-                                                                        src="images/icons/area.png"
-                                                                        alt="Range" className="img-fluid" width="20px"/>
-                                                                    <span
-                                                                        className="align-text-top ms-1">726sqft</span></small>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                   
-                                </div>
-                                <div className="swiper-button-next swiperUniqueNext text-primary">
-                                    <span className=''>
-                                        <i className='bi bi-chevron-right fs-1'></i>
-                                    </span>
-                                </div>
-
-                            </div>
-                        </div>
+                  <div>
+                    <div className="mainHead mb-5 text-primary">
+                      <h4>SIMILAR {propertyData?.category}</h4>
                     </div>
+                  </div>
                 </div>
+                <div className="col-12 col-lg-12 col-md-12">
+                  <div className="swiper pb-5 projectSlider">
+                    <Swiper
+                      slidesPerView={1}
+                      spaceBetween={10}
+                      navigation={{
+                        nextEl: ".swiperUniqueNext",
+                        prevEl: ".swiperUniquePrev",
+                      }}
+                      breakpoints={{
+                        640: {
+                          slidesPerView: 2,
+                          spaceBetween: 10,
+                        },
+                        768: {
+                          slidesPerView: 3,
+                          spaceBetween: 10,
+                        },
+                        1024: {
+                          slidesPerView: 4,
+                          spaceBetween: 10,
+                        },
+                      }}
+                      modules={[Navigation]}
+                      onSwiper={(swiper) => {
+                        similiarPropertySwiperRef.current = swiper;
+                      }}
+                      className="swiper pb-5"
+                    >
+                      {propertyData?.similarProperties.map(
+                        (similarProperty, index) => {
+                          return (
+                            <SwiperSlide
+                              key={
+                                similarProperty.id + index + "similarProperty"
+                              }
+                            >
+                              <div className="swiper-slide">
+                                <div>
+                                  <div className="card propCard rounded-0">
+                                    <div>
+                                      <div className="">
+                                        <a
+                                          href=""
+                                          className="text-decoration-none"
+                                        >
+                                          <div className="projectImgCont">
+                                            <img
+                                              src={
+                                                similarProperty.property_banner
+                                              }
+                                              alt="project1"
+                                              className="img-fluid propImg"
+                                            />
+                                            <div className="projectImgOverlay">
+                                              <div></div>
+                                              <div>
+                                                <span className="badge float-start fs-10 projectType">
+                                                  {
+                                                    similarProperty.accommodation
+                                                  }
+                                                </span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </a>
+                                      </div>
+                                      <div className="card-body rounded-3 rounded-top-0">
+                                        <Link
+                                          href={`/properties/${similarProperty.slug}`}
+                                          className="text-decoration-none"
+                                        >
+                                          <h6 className="text-black fs-16 fw-semibold mb-0">
+                                            {similarProperty.name}
+                                          </h6>
+                                        </Link>
+                                        <div className="mb-1">
+                                          <small className="text-secondary">
+                                            {similarProperty.communityName}
+                                          </small>
+                                        </div>
+                                        <p className="fs-18 mb-2 text-primary fw-semibold">
+                                          AED{" "}
+                                          {similarProperty &&
+                                            new Intl.NumberFormat().format(
+                                              similarProperty.price
+                                            )}{" "}
+                                        </p>
+                                        <ul className="list-unstyled mb-0 d-flex justify-content-between">
+                                          <li className="d-inline">
+                                            <small>
+                                              <img
+                                                src="/images/icons/bed.png"
+                                                alt="Range"
+                                                className="img-fluid"
+                                                width="25px"
+                                              />
+                                              <span className="align-text-top ms-1">
+                                                {similarProperty.bedrooms}
+                                              </span>
+                                            </small>
+                                          </li>
+                                          <li className="d-inline">
+                                            <small>
+                                              <img
+                                                src="/images/icons/bath.png"
+                                                alt="Range"
+                                                className="img-fluid"
+                                                width="20px"
+                                              />
+                                              <span className="align-text-top ms-1">
+                                                {similarProperty.bathrooms}
+                                              </span>
+                                            </small>
+                                          </li>
+                                          <li className="d-inline">
+                                            <small>
+                                              <img
+                                                src="/images/icons/area.png"
+                                                alt="Range"
+                                                className="img-fluid"
+                                                width="20px"
+                                              />
+                                              <span className="align-text-top ms-1">
+                                                {" "}
+                                                {similarProperty.area}{" "}
+                                                {similarProperty.unit_measure}
+                                              </span>
+                                            </small>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </SwiperSlide>
+                          );
+                        }
+                      )}
+
+                      <div
+                        className="swiper-button-next swiperUniqueNext text-primary"
+                        onClick={() =>
+                          similiarPropertySwiperRef.current?.slidePrev()
+                        }
+                      >
+                        <span className="">
+                          <i className="bi bi-chevron-right fs-1"></i>
+                        </span>
+                      </div>
+                      <div
+                        className="swiper-button-prev swiperUniquePrev text-primary"
+                        onClick={() =>
+                          similiarPropertySwiperRef.current?.slideNext()
+                        }
+                      >
+                        <span className="">
+                          <i className="bi bi-chevron-left fs-1"></i>
+                        </span>
+                      </div>
+                    </Swiper>
+                  </div>
+                </div>
+              </div>
             </div>
-            </div>
-    </section>
-    <CalenderModel/>
+          </div>
+        </div>
+      </section>
+      <CalenderModel />
     </>
   );
 }
