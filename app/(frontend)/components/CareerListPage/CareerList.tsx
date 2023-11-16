@@ -245,6 +245,133 @@ function CareerListPage() {
                           <button className=" bdrBtn fillBtn mr-auto">View All</button>
                      </div>
             </section>
+        {/* Single Career page Start */}
+            <section className="ListingSection SingleCareer">
+                     <div className="container">
+                           <div className="row">
+                                 <div className="col-12">
+                                      <div className="listCardArea SingleCareerSec">
+                                            <div className="SingleCareerHead">
+                                                <h3 className="listCardTit">Marketing Manager</h3>
+                                                
+                                                <div className="listflexRow">
+                                                    <div className="listflexBar">
+                                                        <img src="./images/icons/location-icon.png" className="iconImg"/>
+                                                        <p>Dubai</p>
+                                                    </div>
+                                                    <div className="listflexBar">
+                                                        <img src="./images/icons/fullTime-icon.png" className="iconImg" />
+                                                        <p>Fulltime</p>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <p className="fs-14 text-secondary mb-4">
+                                                        As a key driver of our success, you'll lead strategic planning, campaign management, and team 
+                                                        leadership to elevate our brand presence. Your expertise will
+                                                        shape multi-channel marketing initiatives, ensuring alignment with company goals. Stay ahead of
+                                                            industry trends through market research and contribute to
+                                                        budget optimization. If you're a creative, results-oriented leader ready to make a mark in the dynamic
+                                                            world of [Industry], we invite you to propel our brand to new heights.
+                                                </p>
+                                            </div>
+                                            <div className="CarearInfoList">
+                                                  <h4 className="listTitle mb-5">Key Responsibilities:</h4>
+                                                  <ul className="ulList">
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                         <p className="fs-14 text-secondary">Develop strategies and tactics to get the word out about our company and drive qualified traffic to our front door</p>
+                                                      </li>
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                            <p className="fs-14 text-secondary">
+                                                               Develop strategies and tactics to get the word out about our company and drive qualified traffic to our front door
+                                                            </p>
+                                                      </li>
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                         <p className="fs-14 text-secondary">
+                                                            Experiment with a variety of organic and paid acquisition channels like content creation, content curation, pay per click campaigns, event management,
+                                                            publicity, social media, lead generation campaigns, copywriting, performance analysis
+                                                        </p>
+                                                      </li>
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                         <p className="fs-14 text-secondary">Develop strategies and tactics to get the word out about our company and drive qualified traffic to our front door</p>
+                                                      </li>
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                         <p className="fs-14 text-secondary">Develop strategies and tactics to get the word out about our company and drive qualified traffic to our front door</p>
+                                                      </li>
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                         <p className="fs-14 text-secondary">
+                                                            Experiment with a variety of organic and paid acquisition channels like content creation, content curation, pay per click campaigns, event management,
+                                                            publicity, social media, lead generation campaigns, copywriting, performance analysis
+                                                        </p>
+                                                      </li>
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                         <p className="fs-14 text-secondary">Develop strategies and tactics to get the word out about our company and drive qualified traffic to our front door</p>
+                                                      </li>
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                         <p className="fs-14 text-secondary">Develop strategies and tactics to get the word out about our company and drive qualified traffic to our front door</p>
+                                                      </li>
+                                                  </ul>
+                                                
+                                            </div>
+                                            <div className="CarearInfoList">
+                                                  <h4 className="listTitle mb-5">Qualification and Skills required:</h4>
+                                                  <ul className="ulList">
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                         <p className="fs-14 text-secondary">Develop strategies and tactics to get the word out about our company and drive qualified traffic to our front door</p>
+                                                      </li>
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                            <p className="fs-14 text-secondary">
+                                                               Develop strategies and tactics to get the word out about our company and drive qualified traffic to our front door
+                                                            </p>
+                                                      </li>
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                         <p className="fs-14 text-secondary">
+                                                            Experiment with a variety of organic and paid acquisition channels like content creation, content curation, pay per click campaigns, event management,
+                                                            publicity, social media, lead generation campaigns, copywriting, performance analysis
+                                                        </p>
+                                                      </li>
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                         <p className="fs-14 text-secondary">Develop strategies and tactics to get the word out about our company and drive qualified traffic to our front door</p>
+                                                      </li>
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                         <p className="fs-14 text-secondary">Develop strategies and tactics to get the word out about our company and drive qualified traffic to our front door</p>
+                                                      </li>
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                         <p className="fs-14 text-secondary">
+                                                            Experiment with a variety of organic and paid acquisition channels like content creation, content curation, pay per click campaigns, event management,
+                                                            publicity, social media, lead generation campaigns, copywriting, performance analysis
+                                                        </p>
+                                                      </li>
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                         <p className="fs-14 text-secondary">Develop strategies and tactics to get the word out about our company and drive qualified traffic to our front door</p>
+                                                      </li>
+                                                      <li className="fs-14 text-secondary checkListItem">
+                                                         <img src="/images/icons/tick-icon.png" className="tikIcon"/>  
+                                                         <p className="fs-14 text-secondary">Develop strategies and tactics to get the word out about our company and drive qualified traffic to our front door</p>
+                                                      </li>
+                                                  </ul>
+                                            </div>
+                                            <a href="#" className="fillBtn appleNowBtn">APPLY NOW</a>
+                                      </div>
+                                 </div>
+                           </div>
+                     </div>
+            </section>
+         {/* Single Career page Start */}
         </>
         
     );
