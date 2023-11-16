@@ -5,11 +5,13 @@ import "@/public/css/responsive.css";
 import { Pagination, Navigation } from "swiper/modules";
 import parse from "html-react-parser";
 import Link from "next/link";
+import CareerModel from "../models/careerModel";
 
 function SingleCareerPage({ params }) {
   const slug = params.slug[0];
   const { CareerData } = useGetSingleCareerData(slug);
-
+  const [currentCareerId, setCurrentCareerId] = useState(0);
+  const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
   return (
     <>
       {/* Single Career page Start */}
@@ -74,13 +76,15 @@ function SingleCareerPage({ params }) {
                   </div>
                   
                 </div>
-                <a href="#" className="fillBtn appleNowBtn">
+                <a href="#" className="fillBtn appleNowBtn" data-bs-toggle="modal"
+                        data-bs-target="#careerModel" onClick={() => setCurrentCareerId(CareerData.id)}>
                   APPLY NOW
                 </a>
               </div>
             </div>
           </div>
         </div>
+        <CareerModel sideText={contactSideText} careerId={currentCareerId}></CareerModel>
       </section>
       {/* Single Career page Start */}
     </>
