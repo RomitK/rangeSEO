@@ -65,9 +65,10 @@ function Navbar() {
                         </Link>
                       </li>
                       <li className="">
-                        <a href="" className="mainLink">
-                          Sell
-                        </a>
+                       
+                        <Link className="mainLink" href="/sell">
+                         Sell
+                        </Link>
                       </li>
                     </ul>
                   </li>
@@ -354,9 +355,12 @@ function Navbar() {
                           </Link>
                         </li>
                         <li className="">
-                          <a href="rent" className="mainLink">
-                            Sell
-                          </a>
+
+                        <Link className="mainLink" href="/sell">
+                        Sell
+                          </Link>
+
+                          
                         </li>
                       </ul>
                     </li>
@@ -552,12 +556,14 @@ function Navbar() {
                     </div>
                   </div>
                   <div>
-                    <button
-                      type="button"
-                      className="btn btn-primary rounded-0 fs-12 btn-sm w-100"
-                    >
-                      SELL WITH US
-                    </button>
+                   
+
+
+                    <Link className="btn btn-primary rounded-0 fs-12 btn-sm w-100" href="/sell">
+                    SELL WITH US
+                        </Link>
+
+                    
                   </div>
                 </div>
               </div>
