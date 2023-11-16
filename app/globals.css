@@ -95,6 +95,55 @@ p,small,a{
 font-size: 25px;
 margin-bottom: 0px;
 }
+.sectionBanner .row{
+    background: #f6f6f6;
+    align-items: center;
+    padding: 40px 20px;
+    border-radius: 30px;
+    }
+    .sectionBanner{
+    margin-bottom: 60px;
+    }.fs-10{
+        font-size: 10px !important;
+        }
+        .fs-12{
+        font-size: 12px !important;
+        }
+        .fs-14{
+        font-size: 14px !important;
+        }
+        .fs-16{
+        font-size: 16px !important;
+        }
+        .fs-18{
+        font-size: 18px !important;
+        }
+        .fs-20{
+        font-size: 20px !important;
+        }
+        .bnrTitle{
+            color: #3f3f3f;
+            font-size: 22px;
+            font-weight: 600;
+            }
+            .fillBtn.contactBtn {
+                width: 180px;
+                font-size: 12px;
+                height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 0px;
+            }
+            .fillBtn:hover {
+                box-shadow: unset;
+                background-color: unset;
+                color: rgb(19, 109, 174);
+                border-width: 1.5px;
+                border-style: solid;
+                border-color: rgb(19, 109, 174);
+                border-image: initial;
+            }
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {

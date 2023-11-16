@@ -6,6 +6,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import parse from "html-react-parser";
 import Link from "next/link";
 import CareerModel from "../models/careerModel";
+import ContactSection from "../ContactSection/ContactSection";
 
 function SingleCareerPage({ params }) {
   const slug = params.slug[0];
@@ -87,6 +88,7 @@ function SingleCareerPage({ params }) {
         <CareerModel sideText={contactSideText} careerId={currentCareerId}></CareerModel>
       </section>
       {/* Single Career page Start */}
+      <ContactSection></ContactSection>
     </>
   );
 }

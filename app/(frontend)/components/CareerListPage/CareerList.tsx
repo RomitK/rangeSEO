@@ -13,7 +13,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import parse from "html-react-parser";
 import Link from "next/link";
 import CareerModel from "../models/careerModel";
-
+import ContactSection from "../ContactSection/ContactSection";
 function CareerListPage() {
   const { CareersData } = useGetAllCareerData();
   const [careers, setCareers] = useState([]);
@@ -161,7 +161,7 @@ function CareerListPage() {
       </section>
       <section className="ListingSection">
         <div className="container">
-          <h4 className="sctionMdTitle text-primary  mb-5">OPEN ROLE</h4>
+          <h4 className="sctionMdTitle text-primary">OPEN ROLE</h4>
           <div className="row">
             {visibleCareers &&
               visibleCareers?.map((career, index) => {
@@ -217,6 +217,7 @@ function CareerListPage() {
         </div>
         <CareerModel sideText={contactSideText} careerId={currentCareerId}></CareerModel>
       </section>
+      <ContactSection></ContactSection>
     </>
   );
 }
