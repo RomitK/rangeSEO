@@ -530,10 +530,7 @@ function SinglePropertyView({ params }) {
                             min="20"
                             max="80"
                             value={downpaymentPer}
-                            onChange={(e) =>
-                              setDownpaymentPer(e.target.value)
-                            }
-
+                           
                           />
                         </div>
                         <div className="mb-3">
@@ -550,9 +547,7 @@ function SinglePropertyView({ params }) {
                             min="1"
                             max="25"
                             value={duration}
-                            onChange={(e) =>
-                              setDuration(e.target.value)
-                            }
+                           
                           />
                         </div>
                         <div className="mb-3">
