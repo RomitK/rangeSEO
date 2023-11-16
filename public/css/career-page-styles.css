@@ -2,7 +2,7 @@
 .headerImgVideo{
 width: 100%;
 height: 100%;
-max-height: 800px;
+max-height: 600px;
 object-fit: cover;
 }
 .headConentBox{
@@ -48,7 +48,7 @@ object-fit: contain;
 transition: 0.5s ease;
 }
 .fillBtn.linkBtn:hover .btnRightArrow{
- transform: translateX(10px);   
+transform: translateX(10px);   
 }
 .sctionMdTitle{
 font-size: 40px;
@@ -176,4 +176,60 @@ border: 1.5px solid #136DAE;
 }
 .mr-auto{
 margin: 0 auto;
+}
+.listTitle{
+font-size: 24px;
+color: #3f3f3f;
+font-weight: 500;
+}
+.ulList{
+padding: 0px;
+margin: 0px;
+}
+.ulList {
+    list-style-image: url(../images/icons/tick-icon.png);
+}
+.ulList li{
+    font-size: 14px !important;
+    color: #6F6D71 !important;
+    margin: 0px;
+}
+.ulList li {
+    margin-bottom: 5px;
+}
+.checkListItem{
+position: relative;
+display: flex;
+align-items:flex-start;
+gap: 10px;
+margin-bottom: 15px;
+}
+.tikIcon{
+width: 16px;
+height: 16px;
+object-fit: contain;
+position: relative;
+top: 2px;
+}
+.ulList{
+list-style-type: none;
+}
+.checkListItem p{
+margin: 0px;
+}
+.CarearInfoList{
+padding: 20px 0px;
+}
+.listCardArea.SingleCareerSec{
+border-left: 8px solid #136DAE !important;
+padding-left: 50px;
+}
+.listCardArea.SingleCareerSec .appleNowBtn{
+position: relative !important;
+margin: 20px 0px 40px;
+right: unset  !important;
+top: unset  !important;
+}
+.ListingSection.SingleCareer{
+    border-top: 0px;
 }

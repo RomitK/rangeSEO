@@ -155,5 +155,13 @@ height: 240px;
 .headTitle{
     font-size: 36px;
 }
-
+.listCardArea.SingleCareerSec{
+    padding-left: 20px;
+    border-left: 6px solid #136DAE !important;
+}
+.listCardTit{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+   
 }

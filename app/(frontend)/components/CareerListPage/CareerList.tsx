@@ -36,7 +36,7 @@ function CareerListPage() {
     <>
       <header className="header">
         <img
-          src="./images/banner/banner-3.png"
+          src="/images/banner/banner-3.png"
           className="headerImgVideo"
           alt="career"
         />
@@ -45,7 +45,7 @@ function CareerListPage() {
           <a href="#" className="fillBtn linkBtn">
             SEE CURRENT OPENING
             <img
-              src="./images/icons/btn-right-arrow.png"
+              src="/images/icons/btn-right-arrow.png"
               className="btnRightArrow"
               alt="arrow"
             />
