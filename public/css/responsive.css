@@ -144,4 +144,16 @@ grid-template-columns: auto auto !important ;
 .homeHeader .videoMain{
 height: 240px;
 }
+.listCardArea .fillBtn.appleNowBtn{
+    position: relative;
+    top: unset;
+    right: unset;
+}
+.headerImgVideo{
+    height: 500PX;
+}
+.headTitle{
+    font-size: 36px;
+}
+
 }
