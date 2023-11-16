@@ -8,3 +8,8 @@ export const useGetAllHomeData = () => {
 export const saveContactFormApi = (data) => {
   return httpClient.post("/contactUs", data);
 };
+
+
+export const saveContactFormApi2 = (data) => {
+  return httpClient.post("/contactUs", data);
+};

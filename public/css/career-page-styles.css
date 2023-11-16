@@ -186,6 +186,17 @@ font-weight: 500;
 padding: 0px;
 margin: 0px;
 }
+.ulList {
+    list-style-image: url(../images/icons/tick-icon.png);
+}
+.ulList li{
+    font-size: 14px !important;
+    color: #6F6D71 !important;
+    margin: 0px;
+}
+.ulList li {
+    margin-bottom: 5px;
+}
 .checkListItem{
 position: relative;
 display: flex;
