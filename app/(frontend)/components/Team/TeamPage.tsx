@@ -7,7 +7,7 @@ function TeamPage() {
     <>
       <header>
         <img
-          src="images/banner/banner-2.png"
+          src="/images/banner/team-banner.png"
           className="headerSimpleImg"
           alt="team"
         />
