@@ -63,30 +63,27 @@ function HomeSearch() {
         </div>
         <div className="headerForm">
           <ul className="nav nav-pills frmTabList" id="pills-tab">
-            <button
+          <Link
+              href="/buy"
               className="nav-link active"
-              data-bs-toggle="pill"
-              data-bs-target="#ProTab-1"
-              aria-selected="true"
             >
               Buy
-            </button>
-            <button
+            </Link>
+            
+            <Link
+            href="/rent"
               className="nav-link"
-              data-bs-toggle="pill"
-              data-bs-target="#ProTab-2"
-              aria-selected="false"
-            >
-              Sell
-            </button>
-            <button
-              className="nav-link"
-              data-bs-toggle="pill"
-              data-bs-target="#ProTab-3"
-              aria-selected="false"
+              
             >
               Rent
-            </button>
+            </Link>
+            <Link
+              href="/sell"
+              className="nav-link"
+
+            >
+              Sell
+            </Link>
           </ul>
           {/* <div className="tab-content" id="pills-tabContent">
                                   <div className="tab-pane show active" id="ProTab-1">

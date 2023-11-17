@@ -17,7 +17,7 @@ function SingleCareerPage({ params }) {
   const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
   return (
     <>
-          <header className="header">
+               <header className="header careerHeader">
         <img
           src="/images/banner/banner-3.png"
           className="headerImgVideo"
@@ -25,7 +25,7 @@ function SingleCareerPage({ params }) {
         />
         <div className="headConentBox">
             <h2 className="headTitle mb-3">JOIN RANGE</h2>
-            <a href="#" className="fillBtn linkBtn">
+            <a href="#currentOpening" className="fillBtn linkBtn">
                 SEE CURRENT OPENING
                 <img
                 src="/images/icons/btn-right-arrow.png"
