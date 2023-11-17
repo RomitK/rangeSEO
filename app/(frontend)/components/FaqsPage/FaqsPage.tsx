@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import Link from "next/link";
 import { useGetAllFaqsData } from "@/src/services/FaqService";
 import parse from "html-react-parser";
+import "@/public/css/faq-styles.css";
 
 function FaqsPage(){
     const { faqsData } = useGetAllFaqsData();
@@ -11,7 +12,12 @@ function FaqsPage(){
         <>
         <section className="faqSection">
         <div className="container">
-          <h4 className="sctionMdTitle text-primary ">FAQS</h4>
+          <h4 className="sctionMdTitle text-primary mb-4">DUBAI REAL ESTATE FAQ</h4> 
+
+          <div className="faqSearchBar">
+                <input type="search"  className="searchInputField" placeholder="Search..."/>
+                <button className="searchBtn"><i className="fa fa-search searchIcon"></i> Search </button>
+          </div>
 
           <div className="accordion" id="FAQAccordion">
             {faqsData &&

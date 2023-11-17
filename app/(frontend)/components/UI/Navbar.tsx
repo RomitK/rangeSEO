@@ -46,17 +46,15 @@ function Navbar() {
                         </a>
                         <ul className="dropdown-menu">
                           <li className="">
-                           
                             <Link className="" href="/ready">
-                            Ready
-                        </Link>
+                              Ready
+                            </Link>
                           </li>
                           <li className="">
-                          <Link className="" href="/off-plan">
-                          Off-plan
-                        </Link>
+                            <Link className="" href="/off-plan">
+                              Off-plan
+                            </Link>
                           </li>
-
                         </ul>
                       </li>
                       <li className="">
@@ -65,9 +63,8 @@ function Navbar() {
                         </Link>
                       </li>
                       <li className="">
-                       
                         <Link className="mainLink" href="/sell">
-                         Sell
+                          Sell
                         </Link>
                       </li>
                     </ul>
@@ -129,17 +126,14 @@ function Navbar() {
                     </a>
                     <ul className="dropdown-menu">
                       <li className="">
-                        
-
                         <Link className="mainLink" href="/about">
-                        About Range
+                          About Range
                         </Link>
-
                       </li>
-                      
+
                       <li className="">
-                      <Link className="mainLink" href="/teams">
-                        Meet the Team
+                        <Link className="mainLink" href="/teams">
+                          Meet the Team
                         </Link>
                       </li>
                       {/* <li className="">
@@ -282,7 +276,7 @@ function Navbar() {
                 <ul className="navMainPc navBlue navMenu d-none d-lg-flex d-md-flex my-auto me-3">
                   {expandPropertyDropdown && (
                     <li className="nav-item">
-                     <Link className="nav-link" href="/ready">
+                      <Link className="nav-link" href="/ready">
                         Ready
                       </Link>
                     </li>
@@ -296,12 +290,9 @@ function Navbar() {
                   )}
                   {expandPropertyDropdown && (
                     <li className="nav-item">
-                     
-
                       <Link className="nav-link" href="/offplan">
-                          Off-plan
-                        </Link>
-
+                        Off-plan
+                      </Link>
                     </li>
                   )}
                   {expandPropertyDropdown && (
@@ -331,20 +322,14 @@ function Navbar() {
                           </a>
                           <ul className="dropdown-menu">
                             <li className="">
-                             
-
                               <Link className="" href="/ready">
-                              Ready
-                        </Link>
-
+                                Ready
+                              </Link>
                             </li>
                             <li className="">
-                             
-
                               <Link className="" href="/off-plan">
-                              Off-plan
-                        </Link>
-
+                                Off-plan
+                              </Link>
                             </li>
                           </ul>
                         </li>
@@ -355,12 +340,9 @@ function Navbar() {
                           </Link>
                         </li>
                         <li className="">
-
-                        <Link className="mainLink" href="/sell">
-                        Sell
+                          <Link className="mainLink" href="/sell">
+                            Sell
                           </Link>
-
-                          
                         </li>
                       </ul>
                     </li>
@@ -423,19 +405,15 @@ function Navbar() {
                     </a>
                     <ul className="dropdown-menu">
                       <li className="">
-                       
                         <Link className="mainLink" href="/about">
-                        About Range
+                          About Range
                         </Link>
                       </li>
-                      
+
                       <li className="">
-                       
                         <Link className="mainLink" href="/teams">
-                        Meet the Team
+                          Meet the Team
                         </Link>
-
-
                       </li>
                       {/* <li className="">
                         <a href="" className="mainLink">
@@ -529,11 +507,9 @@ function Navbar() {
                           </a>
                         </li>
                         <li className="nav-item py-3 border-bottom">
-                         
                           <Link className="nav-link" href="/faqs">
-                          FAQ's
+                            FAQ's
                           </Link>
-                          
                         </li>
                       </ul>
                     </div>
@@ -556,14 +532,12 @@ function Navbar() {
                     </div>
                   </div>
                   <div>
-                   
-
-
-                    <Link className="btn btn-primary rounded-0 fs-12 btn-sm w-100" href="/sell">
-                    SELL WITH US
-                        </Link>
-
-                    
+                    <Link
+                      className="btn btn-primary rounded-0 fs-12 btn-sm w-100"
+                      href="/sell"
+                    >
+                      SELL WITH US
+                    </Link>
                   </div>
                 </div>
               </div>

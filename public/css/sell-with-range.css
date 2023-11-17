@@ -1,0 +1,162 @@
+
+.sellWithRange{
+position: relative;
+}
+.sellWithRange .headerImgVideo{
+height: 350px;
+width: 100%;
+object-fit: cover;
+}
+.sellWithRange .headConentBox{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+max-width: 60%;
+}
+.headTitle{
+color: #fff;
+font-size: 40px;
+font-weight: 500;
+}
+.headConentBox .pText{
+color: #fff;
+font-size: 14px;
+font-weight: 300;
+}
+.sellWithRange .fillBtn{
+background-color:#2F3C6A ;
+border: 1px solid #2F3C6A;
+color: #fff;
+font-size: 16px;
+padding:12px 24px;
+text-decoration: none;
+display: flex;  
+align-items: center;
+gap: 10px;
+width:250px !important;
+margin: 0 auto;
+justify-content: center;
+font-weight: 600;
+}
+.sellWithRange .fillBtn:hover{
+border: 1px solid #2F3C6A !important;
+background-color:#2F3C6A;
+color: #fff;
+}
+.rowArea{
+display: flex;
+gap:30px;
+flex-flow: wrap;
+justify-content: center;
+}
+.rowArea .colmBox{
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+padding: 20px;
+width: 18%;
+min-width: 150px;
+box-shadow: 0px 13px 24px #00000024;
+position: relative;
+text-decoration: none;
+}
+.rowArea .colmBox h5{
+text-align: center;
+color: #136DAE ;
+}
+.sectionSec{
+margin: 60px 0px;
+padding:40px 0px;
+}
+.rowArea .colmBox .iconImg{
+width:80px;
+height: 80px;
+object-fit: contain;
+margin-bottom: 8px;
+}
+.arrrowIconImg{
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: -40px;
+width: 54px;
+height: 54px;
+}
+.videoSectionContiner{
+max-width: 900px;
+margin: 0 auto;
+}
+.videoBox .videoMain{
+width: 100%;
+height: 350px;
+}
+.guideSellSection{
+display: flex;
+}
+.colmBoxImg{
+width: 100%;
+height: 450px;
+}
+.rowSec .colmBox{
+width: 50%;
+position: relative;
+}
+.colmBoxContent{
+position: absolute;
+top: 0px;
+left: 0px;
+width: 100%;
+}
+.colmBoxContent{
+position:absolute;
+left: 0px;
+top:50%;
+padding-left: 50px;
+transform: translateY(-50%);
+}
+.colmBoxContent h2{
+color: #fff;
+font-size: 40px;
+font-weight: 500;
+margin-bottom: 15px;
+}
+.fillBtn{
+background-color:#2F3C6A ;
+border: 1px solid #2F3C6A;
+color: #fff;
+font-size: 16px;
+padding:12px 24px;
+text-decoration: none;
+display: flex;  
+align-items: center;
+gap: 10px;
+width:250px !important;
+justify-content: center;
+font-weight: 600;  
+}
+.fillBtn:hover{
+background-color:#2F3C6A;
+color: #fff !important;
+}
+.guideSellSection{
+margin: 60px 0px ;   
+padding: 30px 0px;
+}
+.colmBox.formBox{
+background-color: #f6f6f6;
+padding: 50px 20px 20px 50px;
+}
+.rowSec{
+display: flex;
+}
+.colmBox.formBox .title{
+color: #136DAE;
+font-weight: 500;
+}
+.colmBox.formBox .fillBtn.submitBtn{
+width:200px !important;
+height: 48px;
+}

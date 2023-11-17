@@ -59,6 +59,13 @@ padding:20px 0px;
 .TeamRow{
 grid-template-columns: auto auto auto !important ;
 }
+.rowSec{
+ flex-direction: column;
+ width: 100%;
+}
+.guideSellSection .colmBox.formBox, .guideSellSection .rowSec .colmBox{
+    width: 100%;
+}
 }
 @media (max-width:768px){
 .AddressArea{
@@ -163,5 +170,33 @@ height: 240px;
     font-size: 30px;
     margin-bottom: 10px;
 }
-   
+.arrrowIconImg{
+    display: none;
+}
+.guideSellSection .colmBoxContent h2{
+    font-size: 30px;
+}
+.guideSellSection .colmBoxImg{
+    height: 400px;
+}
+.guideSellSection .colmBox.formBox{
+padding: 20px;
+}
+.sellWithRange .headerImgVideo{
+    height: 480px !important;
+}
+.sellWithRange .headTitle{
+    font-size: 24px;
+    font-weight: 500;
+}
+.rowArea .colmBox h5{
+    font-size: 16px;
+}
+.sectionSec .rowArea .colmBox .iconImg {
+    width: 60px;
+    height: 60px;
+}
+.videoSectionContiner .videoBox .videoMain{
+    height: 200px;
+}
 }
