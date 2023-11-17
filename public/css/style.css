@@ -439,19 +439,21 @@ border: 1px solid #707070;
 height: 0px;
 margin-top: 4rem;
 }
+.imgCoverBox{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.aboutSectionArea{
+    padding-top: 60px;
+}
 .bgAboutDubai {
 background-image: url(../images/aboutDubai.webp);
 background-repeat: no-repeat;
-background-size: contain;
+background-size: cover;
 background-position: right;
-min-height: 300px;
-position: absolute;
-right: 0;
-left: 0;
-top: 0;
-bottom: 0;
-width: 100%;
-height: 100%;
+width: 52vw;
+height: 40vw;
 }
 .benefitAccord {
 border:0px !important;
@@ -1608,4 +1610,69 @@ font-size: 16px;
 .suggestion-link {
     text-decoration: none;
     color: #000;
+}
+.cntInptField{
+border-radius: 2px;
+height: 44px;  
+border: 1px solid #eeeeee;
+padding-left: 15px;
+font-size: 14px;
+}
+.cntInptField::-ms-input-placeholder { /* Edge 12-18 */
+color: #5d5d5d;
+font-size: 12px;
+}
+.cntInptField::placeholder {
+color: #5d5d5d;
+font-size: 12px;
+}
+.cntInptField.textareaField{
+height: 100px;
+}
+#simpleModal .btn-close{
+position: absolute;
+right: 10px;
+top: 10px;
+z-index: 9;
+}
+.formMdlBox {
+background-color: #f6f6f6;
+padding:50px 20px 40px;
+}
+.modalLogo{
+width: 200px;
+height: 80px;
+object-fit: contain;
+}
+.mdlContentBox{
+display: flex;
+flex-direction: column;
+justify-content: center;
+height: 100%;
+padding-left: 20px;
+}
+.mdlContentBox h1{
+font-size: 26px;
+font-weight: 400;
+}
+#simpleModal .modal-body{
+padding: 0px;
+}
+#simpleModal .submitBtn{
+width: 140px;
+height: 40px;
+display: block;
+margin-left: 10px;
+margin-top: 20px;
+border:1px solid #136dae;
+background-color: #136dae;
+color: #fff;
+box-shadow: 0px 3px 5px #00000052;
+}
+#simpleModal .submitBtn:hover{
+background-color: unset;
+color: #136dae;
+}
+#simpleModal .modal-content{
+overflow: hidden;
 }
