@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { saveCareerFormApi } from "@/src/services/CareerService";
 import { saveContactFormApi2 } from "@/src/services/HomeService";
 function CareerModel(props) {
+  console.log(props)
   const [formData, setFormData] = useState({
     careerId : props.careerId,
     name: "",
@@ -14,7 +15,7 @@ function CareerModel(props) {
     formName: "applyForm",
     page: "career",
   });
-  const contactCloseRef = useRef(null);
+  const careerCloseRef = useRef(null);
 
   const handleSubmit = () => {
     if (!formData.name || !formData.email || !formData.phone) {
@@ -25,7 +26,7 @@ function CareerModel(props) {
         toast.success(
           "Enquire form submitted successfully, out support teams contact you soon"
         );
-        contactCloseRef.current.click();
+        careerCloseRef.current.click();
         setFormData({
             careerId : props.careerId,
             name: "",
@@ -50,7 +51,7 @@ function CareerModel(props) {
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
-        ref={contactCloseRef}
+        ref={careerCloseRef}
       >
         <div className="modal-dialog  modal-dialog-centered modal-lg modalBookMeet ">
           <div className="modal-content">
@@ -92,6 +93,7 @@ function CareerModel(props) {
                       <div className="">
                         <div className="row">
                           <div className="col-md-12">
+                            <h5 className="text-primary">{props.careerPosition}</h5>
                             <h6 className="text-primary">Enter Details</h6>
                             <div className="form-group">
                               <label>

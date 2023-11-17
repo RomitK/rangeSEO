@@ -131,7 +131,7 @@ height: 24px;
 object-fit: contain;
 }
 .listCardTit{
-font-size:40px;
+font-size:30px;
 font-weight: 500;
 }
 .fillBtn.appleNowBtn{
@@ -187,10 +187,10 @@ padding: 0px;
 margin: 0px;
 }
 .ulList {
-    list-style-image: url(../images/icons/tick-icon.png);
+    list-style-image: url(../images/icons/tick-icon1.ico);
 }
 .ulList li{
-    font-size: 14px !important;
+    /* font-size: 14px !important; */
     color: #6F6D71 !important;
     margin: 0px;
 }

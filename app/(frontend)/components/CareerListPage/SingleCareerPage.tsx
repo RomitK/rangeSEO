@@ -12,9 +12,29 @@ function SingleCareerPage({ params }) {
   const slug = params.slug[0];
   const { CareerData } = useGetSingleCareerData(slug);
   const [currentCareerId, setCurrentCareerId] = useState(0);
+  const [currentCareerPosition, setCurrentCareerName] = useState(null);
+  
   const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
   return (
     <>
+          <header className="header">
+        <img
+          src="/images/banner/banner-3.png"
+          className="headerImgVideo"
+          alt="career"
+        />
+        <div className="headConentBox">
+            <h2 className="headTitle mb-3">JOIN RANGE</h2>
+            <a href="#" className="fillBtn linkBtn">
+                SEE CURRENT OPENING
+                <img
+                src="/images/icons/btn-right-arrow.png"
+                className="btnRightArrow"
+                alt="arrow"
+                />
+            </a>
+        </div>
+      </header>
       {/* Single Career page Start */}
       <section className="ListingSection SingleCareer">
         <div className="container">
@@ -78,14 +98,14 @@ function SingleCareerPage({ params }) {
                   
                 </div>
                 <a href="#" className="fillBtn appleNowBtn" data-bs-toggle="modal"
-                        data-bs-target="#careerModel" onClick={() => setCurrentCareerId(CareerData.id)}>
+                        data-bs-target="#careerModel" onClick={() => {setCurrentCareerId(CareerData.id); setCurrentCareerName(CareerData.position)}} >
                   APPLY NOW
                 </a>
               </div>
             </div>
           </div>
         </div>
-        <CareerModel sideText={contactSideText} careerId={currentCareerId}></CareerModel>
+        <CareerModel sideText={contactSideText} careerId={currentCareerId} careerPosition={currentCareerPosition}></CareerModel>
       </section>
       {/* Single Career page Start */}
       <ContactSection></ContactSection>

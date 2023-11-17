@@ -96,7 +96,7 @@ function SellPage() {
                                          GUIDE TO SELL <br/>
                                         YOUR PROPERTY
                                       </h2>
-                                      <a href="#" className="fillBtn">CONTACT US NOW</a>
+                                      <a href="#" className="fillBtn">DOWNLOAD NOW</a>
                                 </div>
                            </div>
                            <div className="colmBox formBox">
