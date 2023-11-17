@@ -34,7 +34,7 @@ function Filters({
   const maxPriceRef = useRef(null);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "properties?";
+    let getPropertiesURL = process.env.API_HOST + "/properties?";
     const formData = new FormData();
     for (let key in form) {
       if (form.hasOwnProperty(key)) {
@@ -51,7 +51,7 @@ function Filters({
       .then((res) => {
         if (res.success) {
           const propertiesDup = JSON.parse(res.data);
-          console.log(propertiesDup)
+          console.log(propertiesDup);
           setProperties([...propertiesDup]);
           setOriginalMarkers([...propertiesDup]);
           if (propertiesDup.length) {

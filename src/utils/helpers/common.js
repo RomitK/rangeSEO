@@ -30,3 +30,7 @@ export const getFontAwesomeSvgPath = (icon) => {
       return null;
   }
 };
+
+export const getCurrentUrl = () => {
+  return window.location.href;
+};
