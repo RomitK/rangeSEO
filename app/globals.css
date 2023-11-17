@@ -158,7 +158,12 @@ label {
   font-size: 14px !important;
   display: inline-block;
 }
-
+.communityImgCont img {
+  height: 600px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
 }
