@@ -41,15 +41,15 @@ function CareerListPage() {
           alt="career"
         />
         <div className="headConentBox">
-          <h2 className="headTitle mb-3">JOIN RANGE</h2>
-          <a href="#" className="fillBtn linkBtn">
-            SEE CURRENT OPENING
-            <img
-              src="/images/icons/btn-right-arrow.png"
-              className="btnRightArrow"
-              alt="arrow"
-            />
-          </a>
+            <h2 className="headTitle mb-3">JOIN RANGE</h2>
+            <a href="#" className="fillBtn linkBtn">
+                SEE CURRENT OPENING
+                <img
+                src="/images/icons/btn-right-arrow.png"
+                className="btnRightArrow"
+                alt="arrow"
+                />
+            </a>
         </div>
       </header>
       <section className="multiCarouselSection">
