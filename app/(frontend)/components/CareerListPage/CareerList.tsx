@@ -34,7 +34,7 @@ function CareerListPage() {
   const swiperRef = useRef<SwiperCore>();
   return (
     <>
-      <header className="header">
+      <header className="header careerHeader">
         <img
           src="/images/banner/banner-3.png"
           className="headerImgVideo"
