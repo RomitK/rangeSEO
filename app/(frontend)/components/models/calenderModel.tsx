@@ -31,6 +31,15 @@ function CalenderModel() {
     "12:30 PM",
     "01:00 PM",
     "01:30 PM",
+    "02:00 PM",
+    "02:30 PM",
+    "03:00 PM",
+    "03:30 PM",
+    "04:00 PM",
+    "04:30 PM",
+    "05:00 PM",
+    "05:30 PM",
+    "06:00 PM",
   ];
 
   const [formData, setFormData] = useState(initialState);
@@ -69,7 +78,8 @@ function CalenderModel() {
         } `}
       >
         <div className="modal-content">
-          <div className="modal-header border-0 justify-content-end p-1">
+        {/* <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
+        <div className="modal-header border-0 justify-content-end p-1">
             <button
               type="button"
               className="bg-transparent border-0"
@@ -79,7 +89,7 @@ function CalenderModel() {
             >
               <i className="bi bi-x-circle text-primary"></i>
             </button>
-          </div>
+         </div>
           <div className="modal-body  p-0 rounded-1 m-2">
             <div className="row g-0">
               {(!startDate || confirm) && (
@@ -95,15 +105,29 @@ function CalenderModel() {
                     </div>
                   </div>
                   <div className="p-3">
-                    <p className="fw-semibold mb-0">
-                      Range International Property Investments
-                    </p>
-                    <h3 className="text-primary fw-semibold">
-                      Schedule Viewing with Sales Team
-                    </h3>
-                    <small className="text-secondary">
-                      <i className="bi bi-clock-fill"></i> 30 min
-                    </small>
+                    <div className="agent-img mt-2">
+                      <img
+                        src="/images/videocall.jpeg"
+                        alt="Range Property"
+                        className="agent-img"
+                      />
+                    </div>
+                    <div className="col-md-12 mt-3 mb-3">
+                      <h4 className="fs-18">Live meeting with our team</h4>
+
+                      <p>
+                        <i className="fa fa-clock-o" aria-hidden="true"></i> 30
+                        Min
+                      </p>
+
+                      <p>
+                        <i
+                          className="fa fa-video-camera"
+                          aria-hidden="true"
+                        ></i>{" "}
+                        Web conferencing details provided upon confirmation.
+                      </p>
+                    </div>
                   </div>
                 </div>
               )}
@@ -111,7 +135,7 @@ function CalenderModel() {
               <div
                 className={`col-12 ${
                   startDate && !confirm ? "col-lg-12" : "col-lg-7"
-                }  col-md-12 calenderCol`}
+                }  col-md-12 calenderCol `}
               >
                 <div className="calenderDiv p-4">
                   <form id="bookAviewing" action="" method="POST">
@@ -196,17 +220,16 @@ function CalenderModel() {
                     )}
 
                     {confirm && (
-                      <div className="step-2">
+                      <div className="step-2 ">
                         <div className="row">
                           <div className="col-md-12">
                             <h6 className="text-primary">Enter Details</h6>
                             <div className="form-group">
-                              <label>Name*</label>
                               <input
                                 type="text"
                                 name="nameCon2"
                                 id="nameCon2"
-                                className="form-control mb-2"
+                                className="form-control cntInptField mb-2"
                                 placeholder="Enter your name"
                                 autoComplete="off"
                                 value={formData.name}
@@ -220,12 +243,11 @@ function CalenderModel() {
                               />
                             </div>
                             <div className="form-group">
-                              <label>Email*</label>
                               <input
                                 type="email"
                                 name="emailCon2"
                                 id="emailCon2"
-                                className="form-control mb-2"
+                                className="form-control cntInptField mb-2"
                                 placeholder="Enter your email"
                                 autoComplete="off"
                                 value={formData.email}
@@ -239,15 +261,9 @@ function CalenderModel() {
                               />
                             </div>
                             <div className="form-group">
-                              <label>Phone Number*</label>
-                              <input
-                                id="fullNumber3"
-                                type="hidden"
-                                name="fullNumber"
-                              />
                               <input
                                 type="tel"
-                                className="form-control mb-2"
+                                className="form-control cntInptField mb-2"
                                 id="telephoneNew3"
                                 name="phone"
                                 placeholder="Enter your Phone Number"
@@ -263,12 +279,12 @@ function CalenderModel() {
                               />
                             </div>
                             <div className="form-group">
-                              <label>Message</label>
+                              
                               <input
                                 type="text"
                                 name="messageCon2"
                                 id="messageCon2"
-                                className="form-control mb-2"
+                                className="form-control  cntInptField mb-2"
                                 placeholder="Message"
                                 autoComplete={"off"}
                                 value={formData.message}
