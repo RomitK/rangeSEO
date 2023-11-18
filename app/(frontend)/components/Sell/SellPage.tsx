@@ -15,9 +15,7 @@ function SellPage() {
                        SELL WITH RANGE
                     </h2>
                     <p className="pText">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    We offer comprehensive property selling services. Our expert team assists clients in navigating the complex real estate market, leveraging our extensive knowledge and network to facilitate swift and profitable property sales. From initial consultation to marketing strategies, negotiations, and finalizing deals, we provide personalized guidance every step of the way. 
                     </p>
                     <a href="#" className="fillBtn">
                         CONTACT US NOW
@@ -64,10 +62,7 @@ function SellPage() {
                                   WHY SELL WITH RANGE?
                               </h4>  
                               <p className="fs-14 text-secondary text-center mb-4">
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                  enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                              We have unparalleled expertise in the Dubai real estate market. Our dedicated team delivers personalized and comprehensive services tailored to each client's needs, ensuring a seamless and successful property selling experience. We combine in-depth market knowledge with a strategic approach to maximize value and achieve optimal results for our clients. With Range, you gain access to a network of resources and professionals dedicated to making your property sale in Dubai a rewarding and hassle-free endeavor.
                               </p>
                               <div className="videoBox">
                                   <video
