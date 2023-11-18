@@ -209,6 +209,16 @@ function Navbar() {
                         <li className="nav-item py-3 border-bottom">
                           <Link
                             className="nav-link"
+                            href="/goldenVisa"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            Golden Visa
+                          </Link>
+                        </li>
+
+                        <li className="nav-item py-3 border-bottom">
+                          <Link
+                            className="nav-link"
                             href="/careers"
                             onClick={() => closeRef.current.click()}
                           >
@@ -494,6 +504,15 @@ function Navbar() {
                     </div>
                     <div className="offcanvas-body">
                       <ul className="list-unstyled dropList">
+                      <li className="nav-item py-3 border-bottom">
+                          <Link
+                            className="nav-link"
+                            href="/goldenVisa"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            Golden Visa
+                          </Link>
+                        </li>
                         <li className="nav-item py-3 border-bottom">
                           <Link
                             className="nav-link"
