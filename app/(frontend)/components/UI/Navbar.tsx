@@ -221,19 +221,19 @@ function Navbar() {
                           </a>
                         </li>
                         <li className="nav-item py-3 border-bottom">
-                          <a className="nav-link" href="">
+                          <Link className="nav-link" href="/dubaiGuide">
                             Dubai Guide
-                          </a>
+                          </Link>
                         </li>
-                        <li className="nav-item py-3 border-bottom">
+                        {/* <li className="nav-item py-3 border-bottom">
                           <a className="nav-link" href="">
                             Investment Guide
                           </a>
-                        </li>
+                        </li> */}
                         <li className="nav-item py-3 border-bottom">
-                          <a className="nav-link" href="">
+                          <Link className="nav-link" href="/faqs">
                             FAQ's
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -505,15 +505,15 @@ function Navbar() {
                           </a>
                         </li>
                         <li className="nav-item py-3 border-bottom">
-                          <a className="nav-link" href="">
+                          <Link className="nav-link" href="/dubaiGuide">
                             Dubai Guide
-                          </a>
+                          </Link>
                         </li>
-                        <li className="nav-item py-3 border-bottom">
+                        {/* <li className="nav-item py-3 border-bottom">
                           <a className="nav-link" href="">
                             Investment Guide
                           </a>
-                        </li>
+                        </li> */}
                         <li className="nav-item py-3 border-bottom">
                           <Link
                             className="nav-link"
