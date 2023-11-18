@@ -1,8 +1,11 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useRef } from "react";
 function Navbar() {
   const homePage = usePathname() === "/" ? true : false;
+
+  const closeRef = useRef(null);
   const expandPropertyDropdown = [
     "/properties",
     "/ready",
@@ -476,13 +479,18 @@ function Navbar() {
                           className="btn-close"
                           data-bs-dismiss="offcanvas"
                           aria-label="Close"
+                          ref={closeRef}
                         ></button>
                       </div>
                     </div>
                     <div className="offcanvas-body">
                       <ul className="list-unstyled dropList">
                         <li className="nav-item py-3 border-bottom">
-                          <Link className="nav-link" href="/careers">
+                          <Link
+                            className="nav-link"
+                            href="/careers"
+                            onClick={() => closeRef.current.click()}
+                          >
                             Career
                           </Link>
                         </li>
@@ -507,7 +515,11 @@ function Navbar() {
                           </a>
                         </li>
                         <li className="nav-item py-3 border-bottom">
-                          <Link className="nav-link" href="/faqs">
+                          <Link
+                            className="nav-link"
+                            href="/faqs"
+                            onClick={() => closeRef.current.click()}
+                          >
                             FAQ's
                           </Link>
                         </li>
