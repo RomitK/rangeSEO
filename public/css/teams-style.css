@@ -38,6 +38,13 @@ font-size: 12px;
 .TeamRow .teamCard{
 background-color:#fff;
 margin-bottom: 40px;
+padding-bottom: 20px;
+transition: 0.5s ease;
+}
+
+.TeamRow .teamCard:hover{
+box-shadow: 0px 10px 20px #00000014;
+transform: scale(1.1);
 }
 .teamContentBox{
 text-align: center;
