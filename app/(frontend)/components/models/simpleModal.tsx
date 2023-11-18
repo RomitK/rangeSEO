@@ -1,81 +1,54 @@
+
 import React, { useState, useRef, useEffect } from "react";
-import DatePicker from "react-datepicker";
-import $ from "jquery";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
 
-function CalenderModel() {
-  const initialState = {
-    name: "",
-    email: "",
-    message: "",
-    phone: "",
-    date: "",
-    time: "",
-    formName: "bookACall",
-    page: "home",
-  };
-  const [startDate, setStartDate] = useState(null);
-  const [minDate, setMinDate] = useState(new Date());
-  const [confirm, setConfirm] = useState(false);
-  const closeRef = useRef(null);
-  const timeOptions = [
-    "09:00 AM",
-    "09:30 AM",
-    "10:00 AM",
-    "10:30 AM",
-    "11:00 AM",
-    "11:30 AM",
-    "12:00 PM",
-    "12:30 PM",
-    "01:00 PM",
-    "01:30 PM",
-    "02:00 PM",
-    "02:30 PM",
-    "03:00 PM",
-    "03:30 PM",
-    "04:00 PM",
-    "04:30 PM",
-    "05:00 PM",
-    "05:30 PM",
-    "06:00 PM",
-  ];
+function SimpleModal() {
+    const closeRef = useRef(null);
+    const initialState = {
+        name: "",
+        email: "",
+        message: "",
+        phone: "",
+        date: "",
+        time: "",
+        formName: "bookACall",
+        page: "home",
+      };
 
-  const [formData, setFormData] = useState(initialState);
-
-  const handleSubmit = () => {
-    console.log(formData);
-    if (!formData.name || !formData.email || !formData.phone) {
-      return toast.error("Please fill required field");
-    }
-    closeRef.current.click();
-    saveContactFormApi(formData)
-      .then((res) => {
-        setFormData(initialState);
-        setStartDate(null);
-        setConfirm(false);
-        toast.success(
-          "Enquire form submitted successfully, out support teams contact you soon"
-        );
-      })
-      .catch((err) => {
-        toast.error("Something went wrong, please try again");
-      });
-  };
-
+    const [formData, setFormData] = useState(initialState);
+    const handleSubmit = () => {
+        console.log(formData);
+        if (!formData.name || !formData.email || !formData.phone) {
+          return toast.error("Please fill required field");
+        }
+        closeRef.current.click();
+        saveContactFormApi(formData)
+          .then((res) => {
+            setFormData(initialState);
+            toast.success(
+              "Enquire form submitted successfully, out support teams contact you soon"
+            );
+          })
+          .catch((err) => {
+            toast.error("Something went wrong, please try again");
+          });
+      };
   return (
+    <>
+    <div className="modalArea">
+                <button type="button" className="btn btn-blue text-uppercase btn-lg broucherBtn" data-bs-toggle="modal" data-bs-target="#simpleModal">
+                    DOWNLOAD BROCHURE
+                    </button>
     <div
       className="modal fade"
-      id="bookAmeeting"
+      id="simpleModal"
       tabIndex={-1}
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
       <div
-        className={`modal-dialog  modal-dialog-centered modal-lg modalBookMeet ${
-          startDate ? "modalBookView" : ""
-        } `}
+        className={`modal-dialog  modal-dialog-centered modal-lg modalBookMeet`}
       >
         <div className="modal-content">
         {/* <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
@@ -92,7 +65,7 @@ function CalenderModel() {
          </div>
           <div className="modal-body  p-0 rounded-1 m-2">
             <div className="row g-0">
-              {(!startDate || confirm) && (
+              
                 <div className="col-12 col-lg-5 col-md-12 border-end descricalenderCol">
                   <div className="border-bottom">
                     <div className="p-3">
@@ -113,114 +86,18 @@ function CalenderModel() {
                       />
                     </div>
                     <div className="col-md-12 mt-3 mb-3">
-                      <h4 className="fs-18">Live meeting with our team</h4>
-
                       <p>
-                        <i className="fa fa-clock-o" aria-hidden="true"></i> 30
-                        Min
-                      </p>
-
-                      <p>
-                        <i
-                          className="fa fa-video-camera"
-                          aria-hidden="true"
-                        ></i>{" "}
-                        Web conferencing details provided upon confirmation.
+                      Download Brochure By filling your details
                       </p>
                     </div>
                   </div>
                 </div>
-              )}
-
               <div
-                className={`col-12 ${
-                  startDate && !confirm ? "col-lg-12" : "col-lg-7"
-                }  col-md-12 calenderCol `}
+                className="col-md-7"
               >
-                <div className="calenderDiv p-4">
+                <div  className="formMdlBox">
                   <form id="bookAviewing" action="" method="POST">
-                    <input
-                      id="formFrom"
-                      name="formFrom"
-                      type="hidden"
-                      value="Book A Viewing"
-                      required
-                    />
-                    {!confirm && (
-                      <div className="step-1">
-                        <div className="row">
-                          <div className="col-md-12">
-                            <h5 className="text-start">Select a Date & Time</h5>
-                          </div>
-
-                          <div
-                            className={` ${
-                              startDate ? "col-md-7" : "col-md-12"
-                            } newcol py-2`}
-                          >
-                            <DatePicker
-                              id="calendar"
-                              inline
-                              minDate={minDate}
-                              selected={startDate ?? new Date()}
-                              onChange={(date) => {
-                                setStartDate(date);
-                                setFormData({ ...formData, date: startDate });
-                              }}
-                            />
-                          </div>
-                          {startDate && (
-                            <div className="col-md-5">
-                              <div className="timepic">
-                                <b>
-                                  <p className="ths_date">
-                                    {startDate.toDateString()}
-                                  </p>
-                                </b>
-
-                                <div className="listitem">
-                                  {timeOptions.map((item, index) => {
-                                    return (
-                                      <div
-                                        className={`pickitem ${
-                                          formData.time == item ? "active" : ""
-                                        }`}
-                                        key={"pickitem" + index}
-                                      >
-                                        <button
-                                          type="button"
-                                          className="timeitem"
-                                          onClick={() =>
-                                            setFormData({
-                                              ...formData,
-                                              time: item,
-                                            })
-                                          }
-                                        >
-                                          {item}
-                                        </button>
-                                        {formData.time == item && (
-                                          <button
-                                            className="confirm-button"
-                                            type="button"
-                                            onClick={() => setConfirm(true)}
-                                          >
-                                            Confirm
-                                          </button>
-                                        )}
-                                      </div>
-                                    );
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    )}
-
-                    {confirm && (
-                      <div className="step-2 ">
+                      <div className="">
                         <div className="row">
                           <div className="col-md-12">
                             <h6 className="text-primary">Enter Details</h6>
@@ -305,11 +182,11 @@ function CalenderModel() {
                             className="btn btn-blue rounded-0 px-5 float-end btnContact2"
                             onClick={handleSubmit}
                           >
-                            Book A Meeting
+                            Submit
                           </button>
                         </div>
                       </div>
-                    )}
+                  
                   </form>
                 </div>
               </div>
@@ -318,6 +195,9 @@ function CalenderModel() {
         </div>
       </div>
     </div>
+    </div>
+
+    </>
   );
 }
-export default CalenderModel;
+export default SimpleModal;

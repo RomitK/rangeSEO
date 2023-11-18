@@ -1,9 +1,10 @@
 import ContactModel from "../models/contactModel";
+import SimpleModal from "../models/simpleModal";
 function AboutDubai() {
   const contactSideText ="An esteemed award-winning real estate brokerage based in Dubai, UAE.";
   return (
     <>
-      <section className="bg-light my-5 py-5 p-relative">
+      <section className="bg-light my-5  p-relative aboutSectionArea">
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-12 col-md-12">
@@ -296,14 +297,14 @@ function AboutDubai() {
                       </div>
                     </div>
                     <div className="">
-                      <button className="btn btn-blue text-uppercase btn-lg">
-                        DOWNLOAD BROCHURE
-                      </button>
+                    <SimpleModal/>
                     </div>
                   </div>
                 </div>
                 <div className="col-12 col-lg-6 col-md-6">
-                  <div className="bgAboutDubai"></div>
+                    <div className="imgCoverBox">
+                        <div className="bgAboutDubai"></div>
+                     </div>
                 </div>
               </div>
             </div>

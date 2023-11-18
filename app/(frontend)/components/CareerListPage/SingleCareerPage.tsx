@@ -97,7 +97,7 @@ function SingleCareerPage({ params }) {
                   </div>
                   
                 </div>
-                <a href="#" className="fillBtn appleNowBtn" data-bs-toggle="modal"
+                <a href="#" className="fillBtn appleNowBtn text-decoration-none" data-bs-toggle="modal"
                         data-bs-target="#careerModel" onClick={() => {setCurrentCareerId(CareerData.id); setCurrentCareerName(CareerData.position)}} >
                   APPLY NOW
                 </a>

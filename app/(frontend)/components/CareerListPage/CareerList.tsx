@@ -207,7 +207,7 @@ function CareerListPage() {
                         {career && parse(career?.description ?? "")}
                         </Link>
                       </p>
-                      <a href="#" className="fillBtn appleNowBtn" data-bs-toggle="modal"
+                      <a href="#" className="fillBtn appleNowBtn text-decoration-none" data-bs-toggle="modal"
                         data-bs-target="#careerModel" onClick={() => {setCurrentCareerId(career.id); setCurrentCareerName(career.position)}}>
                         APPLY NOW
                       </a>
