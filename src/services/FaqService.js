@@ -1,7 +1,11 @@
 import useSWR from "swr";
 
-export const useGetAllFaqsData = () => {
-  const { data: faqsData, error, mutate } = useSWR(`/faqs`);
+export const useGetAllFaqsData = (search = null) => {
+  const {
+    data: faqsData,
+    error,
+    mutate,
+  } = useSWR(`/faqs${search ? "?keyword=" + search : ""}`);
   return { faqsData: faqsData?.data, faqsDataMutate: mutate };
 };
 

@@ -5,18 +5,29 @@ import { useGetAllFaqsData } from "@/src/services/FaqService";
 import parse from "html-react-parser";
 import "@/public/css/faq-styles.css";
 
-function FaqsPage(){
-    const { faqsData } = useGetAllFaqsData();
-    const [activeIndex, setActiveIndex] = useState(0);
-    return (
-        <>
-        <section className="faqSection">
+function FaqsPage() {
+  const [query, setQuery] = useState("");
+  const { faqsData } = useGetAllFaqsData(query);
+  const [activeIndex, setActiveIndex] = useState(0);
+  return (
+    <>
+      <section className="faqSection">
         <div className="container">
-          <h4 className="sctionMdTitle text-primary mb-4">DUBAI REAL ESTATE FAQ</h4> 
+          <h4 className="sctionMdTitle text-primary mb-4">
+            DUBAI REAL ESTATE FAQ
+          </h4>
 
           <div className="faqSearchBar">
-                <input type="search"  className="searchInputField" placeholder="Search..."/>
-                <button className="searchBtn"><i className="fa fa-search searchIcon"></i> Search </button>
+            <input
+              type="search"
+              className="searchInputField"
+              placeholder="Search..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button className="searchBtn">
+              <i className="fa fa-search searchIcon"></i> Search{" "}
+            </button>
           </div>
 
           <div className="accordion" id="FAQAccordion">
@@ -25,7 +36,9 @@ function FaqsPage(){
                 return (
                   <div className="accordion-item" key={index + "faq"}>
                     <button
-                      className={`accordion-button ${activeIndex != index ?' collapsed':''} `}
+                      className={`accordion-button ${
+                        activeIndex != index ? " collapsed" : ""
+                      } `}
                       data-bs-toggle="collapse"
                       data-bs-target={"#faqCollapse-" + index}
                       aria-expanded={activeIndex == index ? true : false}
@@ -69,15 +82,14 @@ function FaqsPage(){
               </p>
             </div>
             <div className="col-md-4">
-             
               <Link className="fillBtn contactBtn btn" href="/contactUs">
                 Contact Us
-            </Link>
+              </Link>
             </div>
           </div>
         </div>
       </section>
-        </>
-    );
+    </>
+  );
 }
 export default FaqsPage;

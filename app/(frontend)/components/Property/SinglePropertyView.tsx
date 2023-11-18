@@ -7,6 +7,8 @@ import "swiper/swiper-bundle.css";
 import "swiper/css/pagination";
 import Link from "next/link";
 import parse from "html-react-parser";
+import { EmailShareButton, WhatsappShareButton } from "react-share";
+import DownloadPPTModal from "@/app/(frontend)/components/models/DownloadPPTModal";
 import {
   GoogleMap,
   MarkerF,
@@ -22,9 +24,11 @@ import DatePicker from "react-datepicker";
 import $ from "jquery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CalenderModel from "../models/calenderModel";
+import { getCurrentUrl } from "@/src/utils/helpers/common";
 
 function SinglePropertyView({ params }) {
   const slug = params.slug[0];
+
   const [nearByLocations, setNearByLocations] = useState([]);
   const [type, setType] = useState("property");
   const [icon, setIcon] = useState("");
@@ -124,19 +128,19 @@ function SinglePropertyView({ params }) {
     return <>{children}</>;
   };
   const [propertyPrice, setPropertyPrice] = useState(propertyData?.price);
-  const [downpaymentPer, setDownpaymentPer] = useState(20)
-  const [downpaymentMoney, setDownpaymentMoney] = useState(0)
-  const [duration, setDuration] = useState(25)
+  const [downpaymentPer, setDownpaymentPer] = useState(20);
+  const [downpaymentMoney, setDownpaymentMoney] = useState(0);
+  const [duration, setDuration] = useState(25);
   const [mortgage, setMortgage] = useState();
 
-  useEffect(()=>{
-    setPropertyPrice(propertyData?.price)
-    setDownpaymentMoney((downpaymentPer/100)*propertyPrice)
-  }, [propertyData?.price])
+  useEffect(() => {
+    setPropertyPrice(propertyData?.price);
+    setDownpaymentMoney((downpaymentPer / 100) * propertyPrice);
+  }, [propertyData?.price]);
 
-  useEffect(()=>{
-    setDownpaymentMoney((downpaymentPer/100)*propertyPrice)
-  }, [downpaymentPer])
+  useEffect(() => {
+    setDownpaymentMoney((downpaymentPer / 100) * propertyPrice);
+  }, [downpaymentPer]);
 
   return (
     <>
@@ -460,32 +464,42 @@ function SinglePropertyView({ params }) {
                           <i className="fa fa-whatsapp"></i> &nbsp;CALL WHATSAPP
                         </a>
                       </div>
-                    </div>
-                    <div className="py-3">
-                      <div>
-                        Share on:&nbsp;
-                        <a href="" className="text-decoration-none  text-black">
-                          <small>
-                            <img
-                              src="/images/icons/whatsapp.png"
-                              alt="Range"
-                              className="img-fluid"
-                              width="25px"
-                            />
-                          </small>
-                        </a>
-                        <a href="" className="text-decoration-none  text-black">
-                          <small>
-                            <img
-                              src="/images/icons/gmail.png"
-                              alt="Range"
-                              className="img-fluid"
-                              width="25px"
-                            />
-                          </small>
-                        </a>
+                      <div className="text-center">
+                        <DownloadPPTModal />
                       </div>
                     </div>
+                    {propertyData && (
+                      <div className="py-3">
+                        <div>
+                          Share on:&nbsp;
+                          <WhatsappShareButton
+                            title={propertyData?.name}
+                            separator=","
+                            url={getCurrentUrl()}
+                            className="text-decoration-none  text-black"
+                          >
+                            <small>
+                              <img
+                                src="/images/icons/whatsapp.png"
+                                alt="Range"
+                                className="img-fluid"
+                                width="25px"
+                              />
+                            </small>
+                          </WhatsappShareButton>
+                          <EmailShareButton url={getCurrentUrl()}>
+                            <small>
+                              <img
+                                src="/images/icons/gmail.png"
+                                alt="Range"
+                                className="img-fluid"
+                                width="25px"
+                              />
+                            </small>
+                          </EmailShareButton>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <div className="bg-light px-3 py-2 mb-5">
                     <div className="pt-3">
@@ -508,20 +522,20 @@ function SinglePropertyView({ params }) {
                               className="form-control border-start-0  rounded-0"
                               placeholder="Enter amount"
                               value={propertyPrice}
-                              onChange={(e) =>
-                                setPropertyPrice(e.target.value)
-                              }
+                              onChange={(e) => setPropertyPrice(e.target.value)}
                             />
                           </div>
                         </div>
                         <div className="mb-3">
                           <div className="d-flex justify-content-between">
                             <label className="form-label fw-500">
-                              Down payment ({new Intl.NumberFormat().format(
-                                              downpaymentMoney
-                                            ) })
+                              Down payment (
+                              {new Intl.NumberFormat().format(downpaymentMoney)}
+                              )
                             </label>
-                            <label className="form-label fw-500">{downpaymentPer}%</label>
+                            <label className="form-label fw-500">
+                              {downpaymentPer}%
+                            </label>
                           </div>
                           <input
                             type="range"
@@ -530,15 +544,16 @@ function SinglePropertyView({ params }) {
                             min="20"
                             max="80"
                             value={downpaymentPer}
-                           
                           />
                         </div>
                         <div className="mb-3">
-                        <div className="d-flex justify-content-between">
-                          <label className="form-label fw-500">
-                            Loan Duration
-                          </label>
-                          <label className="form-label fw-500">{duration} Years</label>
+                          <div className="d-flex justify-content-between">
+                            <label className="form-label fw-500">
+                              Loan Duration
+                            </label>
+                            <label className="form-label fw-500">
+                              {duration} Years
+                            </label>
                           </div>
                           <input
                             type="range"
@@ -547,7 +562,6 @@ function SinglePropertyView({ params }) {
                             min="1"
                             max="25"
                             value={duration}
-                           
                           />
                         </div>
                         <div className="mb-3">
@@ -566,7 +580,6 @@ function SinglePropertyView({ params }) {
                             <button
                               className="btn border border-primary text-primary px-2 py-1 rounded-circle m-1 "
                               type="button"
-                              
                             >
                               <i className="bi bi-dash-lg"></i>
                             </button>
