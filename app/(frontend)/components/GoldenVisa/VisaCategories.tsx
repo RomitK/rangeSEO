@@ -10,7 +10,7 @@ function VisaCategories({ answers, onBackToQuestionClicked }) {
     useEffect(() => {
         let visaCategoriesDup = [];
         for (const property in answers) {
-            if (property != 0) {
+            if (property) {
                 if (answers[property]) {
                     visaCategoriesDup = [...visaCategoriesDup, ...QUESTIONS[property].visas];
                 } else {
