@@ -1,0 +1,266 @@
+/* check eligibility */
+.wrapper {
+    padding: 15px;
+}
+.dashoboardpage {
+    padding: 0 15px !important;
+}
+.golderservicepage .margin0 {
+    margin: 0;
+    padding: 0;
+}
+.dashoboardpage .dashboardcontrols {
+    clear: both;
+    margin-top: 15px;
+}
+.custom-checkbox {
+    display: block;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+.custom-checkbox input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+}
+.ng-not-empty.ng-valid-validation.ng-valid {
+    border-left-color: #27c24c;
+    border-right: solid 1px #cfdadd;
+    border-left-width: 3px;
+}
+
+.form-group input[type="radio"] {
+    vertical-align: middle;
+    margin: 0 5px;
+}
+input[type="radio"] {
+    border: none !important;
+}
+.custom-checkbox .answers-options-container label {
+    width: 39px;
+}
+
+.custom-checkbox label {
+    position: relative;
+    cursor: pointer;
+}
+.custom-checkbox .answers-options-container label span {
+    font-size: 2rem;
+    color: #0b5ed7;
+}
+.custom-checkbox .answers-options-container {
+    border: 2px solid;
+    border-color: #0b5ed7;
+    border-radius: 5px;
+    width: 135px;
+    height: 135px;
+}
+
+.custom-checkbox .answers-options-container label::before {
+    padding: 15px;
+    margin: 0;
+}
+.custom-checkbox label:before {
+    content: "";
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 2px solid;
+    border-color: #0b5ed7;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-inline-end: 0.6rem;
+    border-radius: 50px;
+}
+.custom-checkbox .answers-options-container input:checked + label:after {
+    left: 19px;
+    width: 15px;
+    height: 30px;
+    border-width: 0 5px 5px 0;
+}
+
+.custom-checkbox input:checked + label:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -7px;
+    left: 11px;
+    width: 10px;
+    height: 25px;
+    border: solid;
+    border-width: 0 3px 3px 0;
+    border-color: #0b5ed7;
+    transform: rotate(45deg);
+}
+.card-box-shadow {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.box-wrapper {
+    background: #fff;
+    border-radius: 13px;
+    margin-bottom: 2rem;
+    padding: 0.9rem 1.5rem;
+}
+@media (min-width: 1024px) {
+    .actionbar {
+        margin-top: 50px;
+        width: 100%;
+        clear: both;
+    }
+
+    .actionbar {
+        padding: 15px;
+        margin-top: 15px;
+    }
+}
+.bg-gold {
+    background-color: rgba(152, 111, 47, 0.7) !important;
+    border-color: rgba(152, 111, 47, 0.7) !important;
+    color: white;
+}
+
+.bg-gold {
+    background-color: #a87935 !important;
+    border-color: #a87935 !important;
+}
+.bg-gd-dk {
+    background-image: -webkit-gradient(
+        linear,
+        left 10%,
+        left 100%,
+        from(rgba(40, 50, 60, 0)),
+        to(rgba(40, 50, 60, 0.5))
+    );
+    background-image: -webkit-linear-gradient(top, rgba(40, 50, 60, 0), 10%, rgba(40, 50, 60, 0.5), 100%);
+    background-image: -moz-linear-gradient(top, rgba(40, 50, 60, 0) 10%, rgba(40, 50, 60, 0.5) 100%);
+    background-image: linear-gradient(to bottom, rgba(40, 50, 60, 0) 10%, rgba(40, 50, 60, 0.5) 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0028323c', endColorstr='#8028323c', GradientType=0);
+    filter: none;
+}
+.golderservicepage .margin0 .dashboardcontrols {
+    margin: 15px -15px;
+}
+.dashoboardpage {
+    position: relative;
+}
+.m-n {
+    margin: 0 !important;
+}
+
+.font-thin {
+    font-weight: 300;
+}
+.b-b {
+    border-bottom: 1px solid #dee5e7;
+}
+
+.wrapper-md {
+    padding: 20px;
+}
+.bg-light {
+    background-color: #edf1f2;
+    color: #58666e;
+}
+.bg-light {
+    background-color: #fcfdfd;
+}
+
+.fadeInRightBig {
+    -webkit-animation-name: fadeInRightBig;
+    -moz-animation-name: fadeInRightBig;
+    -o-animation-name: fadeInRightBig;
+    animation-name: fadeInRightBig;
+}
+.animated {
+    -webkit-animation-duration: 0.3s;
+    -moz-animation-duration: 0.3s;
+    -ms-animation-duration: 0.3s;
+    -o-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+}
+
+@keyframes fadeInRightBig {
+    0% {
+        opacity: 0;
+        transform: translateX(2000px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+.golderservicepage .margin0 .dashboardcontrols {
+    margin: 15px -15px;
+}
+.dashoboardpage .dashboardcontrols {
+    clear: both;
+    margin-top: 15px;
+}
+
+.dashoboardpage .dashboardcontrols .dash-section {
+    min-height: 250px;
+    border: solid 1px #d6d6d6;
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.golderservicepage .dash-section {
+    box-shadow: 0 0 15px 0 #0b5ed765;
+    padding: 20px 15px;
+}
+.golderservicepage .dash-section,
+.golderservicepage .list_btns,
+.golderservicepage .dash-section .icondiv {
+    background: none !important;
+    border: none !important;
+}
+.dashboardcontrolsboxs2 .dash-section {
+    background: #f8f8f8;
+}
+.dash-section {
+    position: relative;
+}
+.dashoboardpage .dashboardcontrols.dashboardcontrolsboxs2 .dash-section .icondiv {
+    border-width: 0;
+}
+.dashoboardpage .dashboardcontrols .dash-section .icondiv {
+    color: rgba(152, 111, 47, 0.7);
+}
+.dashoboardpage .dashboardcontrols .dash-section .icondiv {
+    color: #a87935;
+}
+.dashoboardpage .dashboardcontrols .dash-section .icondiv {
+    border-width: 0 1px 1px 0px;
+    border-color: #d8d8d8;
+    border-style: solid;
+    background: #f9fafb;
+    text-align: center;
+    padding: 5px;
+    color: #cc0000;
+    font-size: 32px;
+}
+.golderservicepage .dash-section,
+.golderservicepage .list_btns,
+.golderservicepage .dash-section .icondiv {
+    background: none !important;
+    border: none !important;
+}
+.dashoboardpage .dashboardcontrols .dash-section p {
+    margin: 0;
+    padding: 5px 0;
+    font-size: 0.85rem;
+    text-align: center;
+    line-height: 20px;
+}
+
+/* end check eligibility */
