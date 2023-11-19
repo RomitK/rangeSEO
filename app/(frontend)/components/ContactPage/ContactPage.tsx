@@ -162,6 +162,7 @@ function ContactPage() {
                     <textarea
                       className="form-control cntInptField textareaField"
                       placeholder="Message"
+                      value={formData.message}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
@@ -210,7 +211,9 @@ function ContactPage() {
                 return (
                   <div className="accordion-item" key={index + "faq"}>
                     <button
-                      className={`accordion-button ${activeIndex != index ?' collapsed':''} `}
+                      className={`accordion-button ${
+                        activeIndex != index ? " collapsed" : ""
+                      } `}
                       data-bs-toggle="collapse"
                       data-bs-target={"#faqCollapse-" + index}
                       aria-expanded={activeIndex == index ? true : false}
