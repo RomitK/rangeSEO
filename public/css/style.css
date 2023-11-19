@@ -1264,12 +1264,12 @@ margin-left: 10px;
 font-size: 13px;
 color: #2F3C6A ;
 }
-#bookAviewing .form-control {
+/* #bookAviewing .form-control {
 border-radius: 0px;
 border: 1px solid #2F3C6A ;
 font-size: 14px;
 color: #2F3C6A ;
-}
+} */
 .filterBright{
 filter: brightness(0) invert(1);
 }

@@ -153,6 +153,11 @@ a {
   border-color: rgb(19, 109, 174);
   border-image: initial;
 }
+
+#sellSubmit:hover {
+  color: rgb(19, 109, 174) !important;
+}
+
 label {
   color: #6f6d71 !important;
   font-size: 14px !important;
@@ -188,7 +193,21 @@ label {
   object-fit: cover;
   border-radius: 10px;
 }
+#enquireNow .agent-img img {
+  width: 100%;
+  max-width: 300px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 #simpleModal .agent-img img {
+  width: 100%;
+  max-width: 300px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+#careerModel .agent-img img {
   width: 100%;
   max-width: 300px;
   height: 150px;
@@ -217,7 +236,71 @@ label {
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
 }
-
+  .accordion-item{
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    background: #fff;
+}
+.accordion-content {
+  margin: 0 auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+}
+.text-center {
+  text-align: center;
+}
+.padding-bottom {
+  padding-bottom: 32px;
+}
+.padding {
+  padding-top: 10px;
+}
+.upper-heading {
+  color: #293A77;
+  font-size: 21px;
+  /* font-family: Raleway; */
+  font-weight: 600;
+}
+.location-heading {
+  color: #293A77;
+  font-size: 40px;
+  /* font-family: Raleway; */
+  font-weight: 700;
+}
+.video iframe {
+  width: 100%;
+  height: 415px;
+  position: relative;
+  top: 45px;
+}
+.video-text {
+  font-weight: 500;
+  /* padding: 4% 0; */
+  line-height: 30px;
+  /* font-family: Raleway; */
+  font-size: 22px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #293A77;
+}
+textarea {
+  border: 1px solid #66666685;
+  padding: 10px;
+  color: #474544;
+  border-radius: 0px;
+  height: 90px;
+  }
+  .propCard .propImg {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+}
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
 }

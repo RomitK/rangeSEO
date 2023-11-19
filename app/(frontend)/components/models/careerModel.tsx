@@ -92,12 +92,20 @@ function CareerModel(props) {
                     </div>
                   </div>
                   <div className="p-3">
-                    <div className="assist-text  text-left mt-3 mb-5">
-                      <h5>
+                    <div className="agent-img mt-2">
+                      <img
+                        src="/images/videocall.jpeg"
+                        alt="Range Property"
+                        className="agent-img"
+                      />
+                    </div>
+                    <div className="col-md-12 mt-3 mb-3">
+                    <h5>
                         <strong className="need">{props.sideText}</strong>
                       </h5>
                     </div>
                   </div>
+
                 </div>
                 <div className="col-12 col-lg-7 col-md-12 ">
                   <div className=" p-4">
@@ -110,9 +118,7 @@ function CareerModel(props) {
                             </h5>
                             <h6 className="text-primary">Enter Details</h6>
                             <div className="form-group">
-                              <label>
-                                Name<small className="text-danger">*</small>
-                              </label>
+                              
                               <input
                                 type="text"
                                 name="nameCon2"
@@ -131,9 +137,7 @@ function CareerModel(props) {
                               />
                             </div>
                             <div className="form-group">
-                              <label>
-                                Email<small className="text-danger">*</small>
-                              </label>
+                              
                               <input
                                 type="email"
                                 name="emailCon2"
@@ -152,13 +156,10 @@ function CareerModel(props) {
                               />
                             </div>
                             <div className="form-group">
-                              <label>
-                                Phone Number{" "}
-                                <small className="text-danger">*</small>
-                              </label>
+                              
                               <input
                                 type="tel"
-                                className="form-control mb-2"
+                                className="form-control mb-2 "
                                 id="telephoneNew3"
                                 name="phone"
                                 placeholder="Enter your Phone Number"
@@ -174,11 +175,9 @@ function CareerModel(props) {
                               />
                             </div>
                             <div className="form-group">
-                              <label>
-                                CV <small className="text-danger">*</small>
-                              </label>
                               <input
                                 type="file"
+                                // className="form-control mb-2 cntInptField"
                                 className="form-control mb-2"
                                 id="cv"
                                 name="cv"
@@ -194,9 +193,7 @@ function CareerModel(props) {
                               />
                             </div>
                             <div className="form-group">
-                              <label>Message</label>
-                              <input
-                                type="text"
+                              <textarea
                                 name="messageCon2"
                                 id="messageCon2"
                                 className="form-control mb-2"

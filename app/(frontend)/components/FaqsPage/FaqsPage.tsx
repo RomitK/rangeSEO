@@ -13,9 +13,19 @@ function FaqsPage() {
     <>
       <section className="faqSection">
         <div className="container">
-          <h4 className="sctionMdTitle text-primary mb-4">
+          {/* <h4 className="sctionMdTitle text-primary mb-4">
             DUBAI REAL ESTATE FAQ
-          </h4>
+          </h4> */}
+
+          <div className="upper-heading-div text-center padding">
+            <span className="upper-heading">FAQ</span>
+            <span>
+              <i className="fa-solid fa-horizontal-rule"></i>
+            </span>
+          </div>
+          <div className="location-heading-div text-center padding-bottom">
+            <h2 className="location-heading">Frequently Ask Questions</h2>
+          </div>
 
           <div className="faqSearchBar">
             <input
@@ -29,8 +39,8 @@ function FaqsPage() {
               <i className="fa fa-search searchIcon"></i> Search{" "}
             </button>
           </div>
-
-          <div className="accordion" id="FAQAccordion">
+          {/* <div className="accordion" id="FAQAccordion"> */}
+          <div className="accordion">
             {faqsData &&
               faqsData?.map((faq, index) => {
                 return (

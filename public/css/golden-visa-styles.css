@@ -1,5 +1,6 @@
 .wizardWrapArea{
-min-height: 650px;
+/* min-height: 650px; */
+margin: 10%;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -25,6 +26,7 @@ border: 1px solid #e1e1e1;
 background-color: #f6f6f6;
 }
 .wizardFooterBar{
+margin-top: 5%;
 background-color: #fff;
 padding: 14px 15px;   
 border: 1px solid #e1e1e1;

@@ -24,14 +24,14 @@ function CareerListPage() {
     " An esteemed award-winning real estate brokerage based in Dubai, UAE.";
 
   const onNextPage = () => {
-    const newCareers = CareersData.slice(0, visibleCareers.length * 2);
+    const newCareers = CareersData?.careers.slice(0, visibleCareers.length * 2);
     setVisibleCareers(newCareers);
   };
 
   useEffect(() => {
-    setCareers(CareersData);
-    setVisibleCareers(CareersData?.slice(0, 9));
-  }, [CareersData]);
+    setCareers(CareersData?.careers);
+    setVisibleCareers(CareersData?.careers?.slice(0, 9));
+  }, [CareersData?.careers]);
 
   const swiperRef = useRef<SwiperCore>();
   return (
@@ -100,48 +100,16 @@ function CareerListPage() {
               },
             }}
           >
-            <SwiperSlide>
-              <div className="counterBox">
-                <h2 className=" counterTit text-primary">AED 20B+</h2>
-                <p className="countertext">TRANSACTIONS</p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="counterBox">
-                <h2 className=" counterTit text-primary">20+</h2>
-                <p className="countertext">LANGUAGE SPOKEN </p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="counterBox">
-                <h2 className=" counterTit text-primary">4.8/5</h2>
-                <p className="countertext">GOOGLE REVIEWS</p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="counterBox">
-                <h2 className=" counterTit text-primary">5,000+</h2>
-                <p className="countertext">PROPERTIES SOLD</p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="counterBox">
-                <h2 className=" counterTit text-primary">20+</h2>
-                <p className="countertext">LANGUAGE SPOKEN </p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="counterBox">
-                <h2 className=" counterTit text-primary">4.8/5</h2>
-                <p className="countertext">GOOGLE REVIEWS</p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="counterBox">
-                <h2 className=" counterTit text-primary">5,000+</h2>
-                <p className="countertext">PROPERTIES SOLD</p>
-              </div>
-            </SwiperSlide>
+            {CareersData?.counters?.map((counter, index) => {
+              return (
+                <SwiperSlide key={counter.id}>
+                <div className="counterBox">
+                  <h2 className="counterTit text-primary">{counter.value}</h2>
+                  <p className="countertext">{counter.key}</p>
+                </div>
+              </SwiperSlide>
+              );
+            })}
             <div
               className="swiper-button-prev swiperUniquePrev text-primary"
               onClick={() => swiperRef.current?.slidePrev()}

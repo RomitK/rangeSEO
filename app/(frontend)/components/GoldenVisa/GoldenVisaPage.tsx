@@ -45,7 +45,7 @@ function GoldenVisaPage()
                     <div className=" ">
                         <h1 className="sctionMdTitle text-primary text-center mb-4">Check Your Eligibility</h1>
                     </div>
-                    <div className="clearfix"></div>
+                   
                     <div className="wrapper dashoboardpage golderservicepage">
                         <div className="row">
                             {checkClicked ? (
@@ -55,7 +55,7 @@ function GoldenVisaPage()
                                     <div className="dashboardcontrols dashboardcontrolsboxs
                                                      dashboardcontrolsboxs2 box-wrapper 
                                                      card-box-shadow p-5 my-5 wizardWrapArea">
-                                                    <div className="col-md-12 mb-5">
+                                                    <div className="col-md-12">
                                                         <p className="ng-binding wzdTitleBar">
                                                             {" "}
                                                             <strong>{QUESTIONS[currentQuestion].question}</strong>
@@ -71,7 +71,7 @@ function GoldenVisaPage()
                                                                 </ul>
                                                             ))}
                                                     </div>
-                                        <div className="clearfix"></div>
+                                        
 
                                         <div className="form-group col-md-12">
                                             <div className="custom-checkbox d-flex justify-content-center mt-3 ng-binding">
@@ -116,15 +116,15 @@ function GoldenVisaPage()
                                             </div>
                                         </div>
 
-                                        <div className="clearfix"></div>
-                                        <div className="col-md-12 mt-5 d-flex justify-content-between wizardFooterBar">
+                                        
+                                        <div className="col-md-12  d-flex justify-content-between wizardFooterBar">
                                             <div>
                                                 {currentQuestion > 0 && (
                                                     <button
                                                         type="button"
                                                        
                                                         onClick={() => setCurrentQuestion(currentQuestion - 1)}
-                                                        className="btn btn-lg btn-primary"
+                                                        className="btn btn-lg btn-blue"
                                                     >
                                                         Back
                                                     </button>
@@ -146,7 +146,7 @@ function GoldenVisaPage()
                                                     <button
                                                         type="button"
                                                         onClick={handleNextClicked}
-                                                        className="btn btn-lg btn-primary ms-2"
+                                                        className="btn btn-lg btn-blue ms-2"
                                                     >
                                                         Next
                                                     </button>

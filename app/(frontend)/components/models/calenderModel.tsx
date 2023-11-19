@@ -229,7 +229,7 @@ function CalenderModel() {
                                 type="text"
                                 name="nameCon2"
                                 id="nameCon2"
-                                className="form-control cntInptField mb-2"
+                                className="form-control mb-2"
                                 placeholder="Enter your name"
                                 autoComplete="off"
                                 value={formData.name}
@@ -247,7 +247,7 @@ function CalenderModel() {
                                 type="email"
                                 name="emailCon2"
                                 id="emailCon2"
-                                className="form-control cntInptField mb-2"
+                                className="form-control mb-2"
                                 placeholder="Enter your email"
                                 autoComplete="off"
                                 value={formData.email}
@@ -263,7 +263,7 @@ function CalenderModel() {
                             <div className="form-group">
                               <input
                                 type="tel"
-                                className="form-control cntInptField mb-2"
+                                className="form-control mb-2"
                                 id="telephoneNew3"
                                 name="phone"
                                 placeholder="Enter your Phone Number"
@@ -280,11 +280,11 @@ function CalenderModel() {
                             </div>
                             <div className="form-group">
                               
-                              <input
-                                type="text"
+                              <textarea
+                                
                                 name="messageCon2"
                                 id="messageCon2"
-                                className="form-control  cntInptField mb-2"
+                                className="form-control mb-2"
                                 placeholder="Message"
                                 autoComplete={"off"}
                                 value={formData.message}
@@ -302,7 +302,7 @@ function CalenderModel() {
                           <button
                             type="button"
                             name="submit"
-                            className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                            className="btn btn-blue rounded-0 px-5 float-end"
                             onClick={handleSubmit}
                           >
                             Book A Meeting

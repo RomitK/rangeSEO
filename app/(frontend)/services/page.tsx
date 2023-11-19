@@ -8,6 +8,7 @@ import ContactModel from "../components/models/contactModel";
 function Services() {
   const router = useRouter();
   const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
+  const pageUrl ="Services"
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -251,7 +252,7 @@ function Services() {
           </button>
         </div>
       </section>
-      <ContactModel sideText={contactSideText}></ContactModel>
+      <ContactModel sideText={contactSideText} pageUrl={pageUrl}></ContactModel>
     </>
   );
 }

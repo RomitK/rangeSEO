@@ -127,7 +127,7 @@ font-weight: 500;
 color:#3f3f3f ;
 font-size: 16px;
 }
-#FAQAccordion .accordion-button{
+/* #FAQAccordion .accordion-button{
 font-size: 20px;
 font-weight: 500;
 }
@@ -151,7 +151,7 @@ color: #136DAE;
 #FAQAccordion .accordion-item .accordion-button[aria-expanded="true"]{
 background-color: unset;
 color: #136DAE;
-}
+} */
 
 .faqSection{
 margin-top: 60px;

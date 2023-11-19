@@ -1,70 +1,122 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import "@/public/css/sell-with-range.css";
+import { toast } from "react-toastify";
+import { saveContactFormApi } from "@/src/services/HomeService";
 
+import ContactModel from "../models/contactModel";
 function SellPage() {
+const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
+  const pageUrl ="Sell"
+  const [formData, setFormData] = useState({
+     name: "",
+     email: "",
+     message: "",
+     phone: "",
+     formName: "contactForm",
+     page: "contact",
+   });
+  const handleSubmit = () => {
+     if (!formData.name || !formData.email || !formData.phone) {
+       return toast.error("Please fill required field");
+     }
+     saveContactFormApi(formData)
+       .then((res) => {
+         toast.success(
+           "Enquire form submitted successfully, out support teams contact you soon"
+         );
+         setFormData({
+           name: "",
+           email: "",
+           message: "",
+           phone: "",
+           formName: "contactForm",
+           page: "contact",
+         });
+       })
+       .catch((err) => {
+         toast.error("Something went wrong, please try again");
+       });
+   };
   return (
     <>
       <header className="sellWithRange">
-          <img
-              src="/images/banner/banner-4.png"
-               className="headerImgVideo"
-              />
-               <div className="headConentBox">
-                    <h2 className="headTitle mb-3">
-                       SELL WITH RANGE
-                    </h2>
-                    <p className="pText">
-                    We offer comprehensive property selling services. Our expert team assists clients in navigating the complex real estate market, leveraging our extensive knowledge and network to facilitate swift and profitable property sales. From initial consultation to marketing strategies, negotiations, and finalizing deals, we provide personalized guidance every step of the way. 
-                    </p>
-                    <a href="#" className="fillBtn">
-                        CONTACT US NOW
-                    </a>
-              </div>
+        <img src="/images/banner/banner-4.png" className="headerImgVideo" alt="sell your property"/>
+        <div className="headConentBox">
+          <h2 className="headTitle mb-3">SELL WITH RANGE</h2>
+          <p className="pText">
+            We offer comprehensive property selling services. Our expert team
+            assists clients in navigating the complex real estate market,
+            leveraging our extensive knowledge and network to facilitate swift
+            and profitable property sales. From initial consultation to
+            marketing strategies, negotiations, and finalizing deals, we provide
+            personalized guidance every step of the way.
+          </p>
+          <a  className="fillBtn"  
+                    data-bs-toggle="modal"
+                    data-bs-target="#enquireNow">
+            CONTACT US NOW
+          </a>
+        </div>
       </header>
       <section className="sectionSec">
-              <div className="container">
-                    <h4 className="sctionMdTitle text-primary  mb-5">
-                        HOW WE MAKE IT EASY FOR YOU?
-                    </h4>
-                    <div className="rowArea">
-                          <div className="colmBox">
-                               <img src="/images/icons/icon-5.png" className="iconImg" />
-                               <h5 className="colmBoxText">PROPERTY VALUATION </h5>
-                          </div>
-                          <div className="colmBox">
-                               <img src="/images/icons/icon-4.png" className="arrrowIconImg"/>
-                               <img src="/images/icons/icon-6.png" className="iconImg"/>
-                               <h5 className="colmBoxText">MARKETING </h5>
-                          </div>
-                          <div className="colmBox">
-                               <img src="/images/icons/icon-4.png" className="arrrowIconImg"/>
-                               <img src="/images/icons/icon-9.png" className="iconImg"/>
-                               <h5 className="colmBoxText">VIEWING </h5>
-                          </div>
-                          <div className="colmBox">
-                               <img src="/images/icons/icon-4.png" className="arrrowIconImg"/>
-                               <img src="/images/icons/icon-8.png" className="iconImg"/>
-                               <h5 className="colmBoxText">NEGOTIATIONS</h5>
-                          </div>
-                          <div className="colmBox">
-                               <img src="/images/icons/icon-4.png" className="arrrowIconImg"/>
-                               <img src="/images/icons/icon-7.png" className="iconImg"/>
-                               <h5 className="colmBoxText">PROPERTY TRACKER </h5>
-                          </div>
-                    </div>
-              </div>
+        <div className="container">
+          <h4 className="sctionMdTitle text-primary  mb-5">
+            HOW WE MAKE IT EASY FOR YOU?
+          </h4>
+          <div className="rowArea">
+            <div className="colmBox">
+              <img src="/images/icons/icon-5.png" className="iconImg" alt="PROPERTY VALUATION"/>
+              <h5 className="colmBoxText">PROPERTY VALUATION </h5>
+            </div>
+            <div className="colmBox">
+              <img src="/images/icons/icon-4.png" className="arrrowIconImg" alt="arrrowIconImg"/>
+              <img src="/images/icons/icon-6.png" className="iconImg" alt="MARKETING"/>
+              <h5 className="colmBoxText">MARKETING </h5>
+            </div>
+            <div className="colmBox">
+              <img src="/images/icons/icon-4.png" className="arrrowIconImg" alt="arrrowIconImg"/>
+              <img src="/images/icons/icon-9.png" className="iconImg" alt="VIEWING"/>
+              <h5 className="colmBoxText">VIEWING </h5>
+            </div>
+            <div className="colmBox">
+              <img src="/images/icons/icon-4.png" className="arrrowIconImg" alt="arrrowIconImg"/>
+              <img src="/images/icons/icon-8.png" className="iconImg" alt="NEGOTIATIONS"/>
+              <h5 className="colmBoxText">NEGOTIATIONS</h5>
+            </div>
+            <div className="colmBox">
+              <img src="/images/icons/icon-4.png" className="arrrowIconImg" alt="arrrowIconImg"/>
+              <img src="/images/icons/icon-7.png" className="iconImg" alt="PROPERTY TRACKER"/>
+              <h5 className="colmBoxText">PROPERTY TRACKER </h5>
+            </div>
+          </div>
+        </div>
       </section>
       <section>
-                <div className="container">
-                     <div className="videoSectionContiner">
-                              <h4 className="sctionMdTitle text-primary  text-center mb-4">
-                                  WHY SELL WITH RANGE?
-                              </h4>  
-                              <p className="fs-14 text-secondary text-center mb-4">
-                              We have unparalleled expertise in the Dubai real estate market. Our dedicated team delivers personalized and comprehensive services tailored to each client's needs, ensuring a seamless and successful property selling experience. We combine in-depth market knowledge with a strategic approach to maximize value and achieve optimal results for our clients. With Range, you gain access to a network of resources and professionals dedicated to making your property sale in Dubai a rewarding and hassle-free endeavor.
-                              </p>
-                              <div className="videoBox">
+        <div className="container">
+          <div className="videoSectionContiner">
+            <h4 className="sctionMdTitle text-primary  text-center mb-4">
+              WHY SELL WITH RANGE?
+            </h4>
+            <p className="fs-14 text-secondary text-center mb-4">
+              We have unparalleled expertise in the Dubai real estate market.
+              Our dedicated team delivers personalized and comprehensive
+              services tailored to each client's needs, ensuring a seamless and
+              successful property selling experience. We combine in-depth market
+              knowledge with a strategic approach to maximize value and achieve
+              optimal results for our clients. With Range, you gain access to a
+              network of resources and professionals dedicated to making your
+              property sale in Dubai a rewarding and hassle-free endeavor.
+            </p>
+            <div className="video">
+              <iframe
+                src="https://player.vimeo.com/video/392311980?h=2f90973f9d"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+            {/* <div className="videoBox">
                                   <video
                                         className="d-block w-100 videoMain"
                                         autoPlay
@@ -77,44 +129,99 @@ function SellPage() {
                                         <source src="/videos/services.mp4" type="video/mov" />
                                         Sorry, your browser doesn't support videos.
                                   </video>
-                              </div>
-                      </div>
-                </div>
+                              </div> */}
+          </div>
+        </div>
       </section>
       <section className="guideSellSection">
-               <div className="container">
-                      <div className="rowSec">
-                           <div className="colmBox">
-                                <img src="/images/banner/banner-5.png" className="colmBoxImg"/>
-                                <div className="colmBoxContent">
-                                      <h2>
-                                         GUIDE TO SELL <br/>
-                                        YOUR PROPERTY
-                                      </h2>
-                                      <a href="#" className="fillBtn">DOWNLOAD NOW</a>
-                                </div>
-                           </div>
-                           <div className="colmBox formBox">
-                                <h3 className="title">Contact our Agents now</h3>
-                                <div className="row ">
-                                      <div className="col-12 mb-2">
-                                          <input className="form-control cntInptField" placeholder="Name"  type="text"  />
-                                      </div>
-                                        <div className="col-12 mb-2">
-                                                <input className="form-control cntInptField" placeholder="Email Address"  type="email" />
-                                        </div>
-                                        <div className="col-12 mb-2">
-                                                  <input className="form-control cntInptField" placeholder="Contact Number"   type="email"  />
-                                        </div>
-                                        <div className="col-12">
-                                                <textarea className="form-control cntInptField textareaField" placeholder="Message">
-                                                </textarea>
-                                          </div>
-                                          <input className="fillBtn submitBtn" type="submit" value="Submit" />
-                                  </div>
-                           </div>
-                      </div>
-               </div>
+        <div className="container">
+          <div className="rowSec">
+            <div className="colmBox">
+              <img src="/images/banner/banner-5.png" className="colmBoxImg" alt="sell your properties"/>
+              <div className="colmBoxContent">
+                <h2>
+                  GUIDE TO SELL <br />
+                  YOUR PROPERTY
+                </h2>
+                <a className="fillBtn" data-bs-toggle="modal"
+                    data-bs-target="#enquireNow">
+                  DOWNLOAD NOW
+                </a>
+              </div>
+            </div>
+            <div className="colmBox formBox">
+              <h3 className="title">Contact our Agents now</h3>
+              <div className="row ">
+                <div className="col-12 mb-2">
+                  <input
+                    className="form-control cntInptField"
+                    placeholder="Name"
+                    type="text"
+                    value={formData.name}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          name: e.target.value,
+                        })
+                      }
+                      required
+                  />
+                </div>
+                <div className="col-12 mb-2">
+                  <input
+                    className="form-control cntInptField"
+                    placeholder="Email Address"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        email: e.target.value,
+                      })
+                    }
+                    required
+                  />
+                </div>
+                <div className="col-12 mb-2">
+                  <input
+                    className="form-control cntInptField"
+                    placeholder="Contact Number"
+                    type="phone"
+                    value={formData.phone}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          phone: e.target.value,
+                        })
+                      }
+                      autoComplete="off"
+                      required
+                  />
+                </div>
+                <div className="col-12">
+                  <textarea
+                    className="form-control cntInptField textareaField"
+                    placeholder="Message"
+                    value={formData.message}
+                    onChange={(e) =>
+                         setFormData({
+                           ...formData,
+                           message: e.target.value,
+                         })
+                       }
+                  ></textarea>
+                </div>
+                <input
+                  className="fillBtn submitBtn"
+                  type="submit"
+                  value="Submit"
+                  id="sellSubmit"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <ContactModel sideText={contactSideText} pageUrl={pageUrl}></ContactModel>
       </section>
     </>
   );
