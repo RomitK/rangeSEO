@@ -1,6 +1,9 @@
 import { useState } from "react";
 import QUESTIONS from "../../../../src/constants/checkEligibilityQuestions"
 import VisaCategories from "./VisaCategories";
+import "@/public/css/golden-visa-styles.css";
+import "@/public/css/responsive.css";
+
 function GoldenVisaPage()
 {
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -40,7 +43,7 @@ function GoldenVisaPage()
             <div className="container">
                 <div className="">
                     <div className=" ">
-                        <h1 className="m-n h3">Check Your Eligibility</h1>
+                        <h1 className="sctionMdTitle text-primary text-center mb-4">Check Your Eligibility</h1>
                     </div>
                     <div className="clearfix"></div>
                     <div className="wrapper dashoboardpage golderservicepage">
@@ -49,23 +52,25 @@ function GoldenVisaPage()
                                 <VisaCategories onBackToQuestionClicked={handleCheckClick} answers={answers} />
                             ) : (
                                 <div className="col-md-12 margin0">
-                                    <div className="dashboardcontrols dashboardcontrolsboxs dashboardcontrolsboxs2 box-wrapper card-box-shadow p-5 my-5">
-                                        <div className="col-md-12 mb-5">
-                                            <p className="ng-binding">
-                                                {" "}
-                                                <strong>{QUESTIONS[currentQuestion].question}</strong>
-                                            </p>
-                                            {QUESTIONS[currentQuestion].data &&
-                                                (QUESTIONS[currentQuestion].data.length === 1 ? (
-                                                    <p>{QUESTIONS[currentQuestion].data[0]}</p>
-                                                ) : (
-                                                    <ul>
-                                                        {QUESTIONS[currentQuestion].data.map((data1, index) => (
-                                                            <li key={index}>{data1}</li>
-                                                        ))}
-                                                    </ul>
-                                                ))}
-                                        </div>
+                                    <div className="dashboardcontrols dashboardcontrolsboxs
+                                                     dashboardcontrolsboxs2 box-wrapper 
+                                                     card-box-shadow p-5 my-5 wizardWrapArea">
+                                                    <div className="col-md-12 mb-5">
+                                                        <p className="ng-binding wzdTitleBar">
+                                                            {" "}
+                                                            <strong>{QUESTIONS[currentQuestion].question}</strong>
+                                                        </p>
+                                                        {QUESTIONS[currentQuestion].data &&
+                                                            (QUESTIONS[currentQuestion].data.length === 1 ? (
+                                                                <p>{QUESTIONS[currentQuestion].data[0]}</p>
+                                                            ) : (
+                                                                <ul>
+                                                                    {QUESTIONS[currentQuestion].data.map((data1, index) => (
+                                                                        <li key={index}>{data1}</li>
+                                                                    ))}
+                                                                </ul>
+                                                            ))}
+                                                    </div>
                                         <div className="clearfix"></div>
 
                                         <div className="form-group col-md-12">
@@ -112,7 +117,7 @@ function GoldenVisaPage()
                                         </div>
 
                                         <div className="clearfix"></div>
-                                        <div className="col-md-12 mt-5 d-flex justify-content-between">
+                                        <div className="col-md-12 mt-5 d-flex justify-content-between wizardFooterBar">
                                             <div>
                                                 {currentQuestion > 0 && (
                                                     <button
