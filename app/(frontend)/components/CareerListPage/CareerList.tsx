@@ -20,7 +20,8 @@ function CareerListPage() {
   const [visibleCareers, setVisibleCareers] = useState([]);
   const [currentCareerId, setCurrentCareerId] = useState(0);
   const [currentCareerPosition, setCurrentCareerName] = useState(null);
-  const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
+  const contactSideText =
+    " An esteemed award-winning real estate brokerage based in Dubai, UAE.";
 
   const onNextPage = () => {
     const newCareers = CareersData.slice(0, visibleCareers.length * 2);
@@ -42,18 +43,18 @@ function CareerListPage() {
           alt="career"
         />
         <div className="headConentBox">
-            <h2 className="headTitle mb-3">JOIN RANGE</h2>
-            <a href="#currentOpening" className="fillBtn linkBtn">
-                SEE CURRENT OPENING
-                <img
-                src="/images/icons/btn-right-arrow.png"
-                className="btnRightArrow"
-                alt="arrow"
-                />
-            </a>
+          <h2 className="headTitle mb-3">JOIN RANGE</h2>
+          <a href="#currentOpening" className="fillBtn linkBtn">
+            SEE CURRENT OPENING
+            <img
+              src="/images/icons/btn-right-arrow.png"
+              className="btnRightArrow"
+              alt="arrow"
+            />
+          </a>
         </div>
       </header>
-      <section className="multiCarouselSection" >
+      <section className="multiCarouselSection">
         <div className="container">
           <h4 className="sctionMdTitle text-primary  mb-4">WHY RANGE?</h4>
           <p className="fs-14 text-secondary mb-2">
@@ -163,10 +164,14 @@ function CareerListPage() {
       <section className="ListingSection" id="currentOpening">
         <div className="container">
           <div className="text-center mb-2  row g-3 justify-content-center">
-          <h4 className=" text-primary">OPEN ROLE</h4>
-          <p className="fs-14 text-secondary mb-2">We are currently hiring for the below mentioned roles. Please click on the role to view the full job description and apply with your CV.</p>
+            <h4 className=" text-primary">OPEN ROLE</h4>
+            <p className="fs-14 text-secondary mb-2">
+              We are currently hiring for the below mentioned roles. Please
+              click on the role to view the full job description and apply with
+              your CV.
+            </p>
           </div>
-         
+
           <div className="row">
             {visibleCareers &&
               visibleCareers?.map((career, index) => {
@@ -174,13 +179,13 @@ function CareerListPage() {
                   <div className="col-12" key={career.id}>
                     <div className="listCardArea">
                       <h3 className="listCardTit">
-                      <Link
-                        href={`/careers/${career.slug}`}
-                        className="text-decoration-none"
+                        <Link
+                          href={`/careers/${career.slug}`}
+                          className="text-decoration-none"
                         >
-                        {career.position}
+                          {career.position}
                         </Link>
-                    </h3>
+                      </h3>
                       <div className="listflexRow">
                         <div className="listflexBar">
                           <img
@@ -200,15 +205,23 @@ function CareerListPage() {
                         </div>
                       </div>
                       <p className="fs-14 text-secondary mb-4">
-                      <Link
-                        href={`/careers/${career.slug}`}
-                        className="text-decoration-none fs-14 text-secondary mb-4"
+                        <Link
+                          href={`/careers/${career.slug}`}
+                          className="text-decoration-none fs-14 text-secondary mb-4"
                         >
-                        {career && parse(career?.description ?? "")}
+                          {career && parse(career?.description ?? "")}
                         </Link>
                       </p>
-                      <a href="#" className="fillBtn appleNowBtn text-decoration-none" data-bs-toggle="modal"
-                        data-bs-target="#careerModel" onClick={() => {setCurrentCareerId(career.id); setCurrentCareerName(career.position)}}>
+                      <a
+                        href="#"
+                        className="fillBtn appleNowBtn text-decoration-none"
+                        data-bs-toggle="modal"
+                        data-bs-target="#careerModel"
+                        onClick={() => {
+                          setCurrentCareerId(career.careerId);
+                          setCurrentCareerName(career.position);
+                        }}
+                      >
                         APPLY NOW
                       </a>
                     </div>
@@ -217,10 +230,16 @@ function CareerListPage() {
               })}
           </div>
           {careers?.length != visibleCareers?.length && (
-            <button className=" bdrBtn fillBtn mr-auto"  onClick={onNextPage}>View All</button>
-        )}
+            <button className=" bdrBtn fillBtn mr-auto" onClick={onNextPage}>
+              View All
+            </button>
+          )}
         </div>
-        <CareerModel sideText={contactSideText} careerId={currentCareerId} careerPosition={currentCareerPosition}></CareerModel>
+        <CareerModel
+          sideText={contactSideText}
+          careerId={currentCareerId}
+          careerPosition={currentCareerPosition}
+        ></CareerModel>
       </section>
       <ContactSection></ContactSection>
     </>
