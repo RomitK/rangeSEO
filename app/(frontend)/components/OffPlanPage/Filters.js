@@ -14,7 +14,6 @@ function Filters({
   setOriginalMarkers,
   mapRef,
 }) {
-  const mapRef = useRef(null);
   const { accommodations } = useGetAccommodations();
   const { communities } = useGetCommunities();
   const { amenities } = useGetAmenities();

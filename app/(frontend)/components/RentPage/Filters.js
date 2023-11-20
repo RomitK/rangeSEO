@@ -24,7 +24,6 @@ function Filters({
   const maxPriceRef = useRef(null);
   const minAreaRef = useRef(null);
   const maxAreaRef = useRef(null);
-  const mapRef = useRef(null);
   const [form, setForm] = useState({
     accommodation_id: "",
     community: "",
