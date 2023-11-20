@@ -14,7 +14,8 @@ import { useMemo } from "react";
 import { useGetSingleProjectData } from "@/src/services/ProjectService";
 import "@/public/css/single-project-view-styles.css";
 import "@/public/css/responsive.css";
-
+import DownloadFileModel from "../models/DownloadFileModel";
+import PaymentPlanModel from "../models/paymentPlanModel";
 function SingleProjectView({ params }) {
   const slug = params.slug[0];
   const { projectData } = useGetSingleProjectData(slug);
@@ -24,7 +25,11 @@ function SingleProjectView({ params }) {
   const hightlightSwiperRef = useRef<SwiperCore>();
   const rentSwiperRef = useRef<SwiperCore>();
   const saleSwiperRef = useRef<SwiperCore>();
-
+  const contactSideText ="An esteemed award-winning real estate brokerage based in Dubai, UAE.";
+  const pageUrl ="Home"
+  const [currentUnit, setCurrentUnit] = useState(null);
+  const [floorPlanFile, setFloorPlanFile] = useState(null);
+  
   // const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <>
@@ -286,7 +291,8 @@ function SingleProjectView({ params }) {
                         <button
                           className="fillBtn tblBtn mrAuto"
                           data-bs-toggle="modal"
-                          data-bs-target={"#pricePlaneModal" + type.id}
+                          data-bs-target="#paymentplan"
+                          onClick={() => setCurrentUnit(type)}
                         >
                           view
                         </button>
@@ -295,7 +301,8 @@ function SingleProjectView({ params }) {
                         <button
                           className="fillBtn tblBtn mrAuto"
                           data-bs-toggle="modal"
-                          data-bs-target="#floorPlaneModal"
+                          data-bs-target="#floorplan"
+                          onClick={() => setFloorPlanFile(type.floorPlan)}
                         >
                           view
                         </button>
@@ -620,124 +627,9 @@ function SingleProjectView({ params }) {
         </div>
       </section>
 
-      {projectData?.types?.map((type, index) => {
-        return (
-          <div
-            className="modal fade"
-            id={"pricePlaneModal" + type.id}
-            key={index + "pricePlaneModal"}
-          >
-            <div className="modal-dialog modal-lg">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title">Payment Plan</h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div className="modal-body">
-                  <div className="labelFLex">
-                    <label className="priceLabel">
-                      Sizes From : {projectData?.minPrice} To{" "}
-                      {projectData?.maxPrice} SQFT
-                    </label>
-                    <label className="priceLabel">
-                      Starting Price : AED {projectData?.price}
-                    </label>
-                  </div>
-                  <table className="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th className="tblThText">Installments</th>
-                        <th className="tblThText">Percentage (%)</th>
-                        <th className="tblThText">Milestones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {type?.paymentPlans.map((paymentPlan, index) => {
-                        return (
-                          <tr key={paymentPlan.id}>
-                            <td>
-                              {" "}
-                              <p className="tblTdText text-secondary">
-                                {paymentPlan?.installment}
-                              </p>
-                            </td>
-                            <td>
-                              <p className="tblTdText text-secondary">
-                                {paymentPlan?.percentage}
-                              </p>
-                            </td>
-                            <td>
-                              <p className="tblTdText text-secondary">
-                                {paymentPlan?.milestone}
-                              </p>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-
-      <div className="modal fade" id="floorPlaneModal">
-        <div className="modal-dialog modal-md">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Payment Plan</h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              <form className="floorFormBox">
-                <div className="form-floating mb-3">
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="floatingInput"
-                    placeholder="Email"
-                  />
-                  <label htmlFor="floatingInput">Email address</label>
-                </div>
-                <div className="form-floating mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="floatingNumber"
-                    placeholder="Phone Number"
-                  />
-                  <label htmlFor="floatingNumber">Phone Number</label>
-                </div>
-                <div className="form-floating mb-4">
-                  <textarea
-                    className="form-control textArea"
-                    placeholder="Leave a comment here"
-                    id="floatingTextarea"
-                  ></textarea>
-                  <label htmlFor="floatingTextarea">Comments</label>
-                </div>
-                <input
-                  type="submit"
-                  className="fillBtn tblBtn mrAuto submitBtn"
-                  value="submit"
-                />
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+      
+      <DownloadFileModel sideText={contactSideText} pageUrl={pageUrl} downloadFile={floorPlanFile}></DownloadFileModel>
+      <PaymentPlanModel sideText={contactSideText} pageUrl={pageUrl} currentUnit={currentUnit} project={projectData}></PaymentPlanModel>
     </>
   );
 }

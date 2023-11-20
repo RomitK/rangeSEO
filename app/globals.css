@@ -186,6 +186,13 @@ label {
   transition: 0.3s ease;
   border: 1.5px solid #136DAE;
 }
+#floorplan .agent-img img {
+  width: 100%;
+  max-width: 300px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 #bookAmeeting .agent-img img {
   width: 100%;
   max-width: 300px;
