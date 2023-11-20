@@ -13,6 +13,7 @@ function DownloadFileModel(props) {
     page: props.pageUrl,
   });
   const contactCloseRef = useRef(null);
+  const fileRef = useRef(null);
 
   const handleSubmit = () => {
     if (!formData.name || !formData.email || !formData.phone) {
@@ -33,7 +34,7 @@ function DownloadFileModel(props) {
           formName: "enquireForm",
           page: props.pageUrl,
         });
-        console.log(props.downloadFile)
+        fileRef.current.click();
       })
       .catch((err) => {
         toast.error("Something went wrong, please try again");
@@ -41,13 +42,15 @@ function DownloadFileModel(props) {
   };
   return (
     <>
+      <a href={props.downloadFile} target="_blank" ref={fileRef}>
+        Download
+      </a>
       <div
         className="modal fade"
         id="floorplan"
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
-        ref={contactCloseRef}
       >
         <div className="modal-dialog  modal-dialog-centered modal-lg modalBookMeet ">
           <div className="modal-content">
@@ -57,6 +60,7 @@ function DownloadFileModel(props) {
                 className="bg-transparent border-0"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                ref={contactCloseRef}
               >
                 <i className="bi bi-x-circle text-primary"></i>
               </button>
@@ -84,7 +88,7 @@ function DownloadFileModel(props) {
                       />
                     </div>
                     <div className="col-md-12 mt-3 mb-3">
-                    <h5>
+                      <h5>
                         <strong className="need">{props.sideText}</strong>
                       </h5>
                     </div>
@@ -116,7 +120,6 @@ function DownloadFileModel(props) {
                               />
                             </div>
                             <div className="form-group">
-                              
                               <input
                                 type="email"
                                 name="emailCon2"
@@ -135,7 +138,6 @@ function DownloadFileModel(props) {
                               />
                             </div>
                             <div className="form-group">
-                             
                               <input
                                 type="tel"
                                 className="form-control mb-2"
@@ -154,13 +156,11 @@ function DownloadFileModel(props) {
                               />
                             </div>
                             <div className="form-group">
-                              
                               <textarea
                                 name="messageCon2"
                                 id="messageCon2"
                                 className="form-control mb-2"
                                 placeholder="Message"
-                               
                                 autoComplete={"off"}
                                 value={formData.message}
                                 onChange={(e) =>
@@ -175,7 +175,7 @@ function DownloadFileModel(props) {
                         </div>
                         <div className="modal-footer border-0">
                           <button
-                            type="submit"
+                            type="button"
                             name="submit"
                             className="btn btn-blue rounded-0 px-5 float-end btnContact2"
                             onClick={handleSubmit}

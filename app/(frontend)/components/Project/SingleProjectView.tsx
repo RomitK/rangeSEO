@@ -25,11 +25,12 @@ function SingleProjectView({ params }) {
   const hightlightSwiperRef = useRef<SwiperCore>();
   const rentSwiperRef = useRef<SwiperCore>();
   const saleSwiperRef = useRef<SwiperCore>();
-  const contactSideText ="An esteemed award-winning real estate brokerage based in Dubai, UAE.";
-  const pageUrl ="Home"
+  const contactSideText =
+    "An esteemed award-winning real estate brokerage based in Dubai, UAE.";
+  const pageUrl = "Home";
   const [currentUnit, setCurrentUnit] = useState(null);
   const [floorPlanFile, setFloorPlanFile] = useState(null);
-  
+
   // const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <>
@@ -116,87 +117,74 @@ function SingleProjectView({ params }) {
       </section>
 
       <section>
-          <div className="tabsListConatiner ">
-              <div className="container">
-                    <div className="row">
-                        <div className="col-3 selectTitle">
-                          <a
-                            className="tabTitle active"
-                            href="#Hightlights"
-                            aria-selected="true"
-                          >
-                            Hightlights
-                          </a>
-                        </div>
-                        <div className="col-3 selectTitle ">
-                          <a
-                            className="tabTitle"
-                            href="#ProjectDetails"
-                            aria-selected="true"
-                          >
-                            Project Details
-                          </a>
-                        </div>
-                        <div className="col-3 selectTitle">
-                          <a
-                            className="tabTitle "
-                            href="#NearBy"
-                            aria-selected="true"
-                          >
-                            Nearby
-                          </a>
-                        </div>
-                        <div className="col-3 selectTitle">
-                          <a
-                            className="tabTitle"
-                            href="#AvailableProperties"
-                            aria-selected="true"
-                          >
-                            Available Properties
-                          </a>
-                        </div>
-                    </div>
+        <div className="tabsListConatiner ">
+          <div className="container">
+            <div className="row">
+              <div className="col-3 selectTitle">
+                <a
+                  className="tabTitle active"
+                  href="#Hightlights"
+                  aria-selected="true"
+                >
+                  Hightlights
+                </a>
               </div>
+              <div className="col-3 selectTitle ">
+                <a
+                  className="tabTitle"
+                  href="#ProjectDetails"
+                  aria-selected="true"
+                >
+                  Project Details
+                </a>
+              </div>
+              <div className="col-3 selectTitle">
+                <a className="tabTitle " href="#NearBy" aria-selected="true">
+                  Nearby
+                </a>
+              </div>
+              <div className="col-3 selectTitle">
+                <a
+                  className="tabTitle"
+                  href="#AvailableProperties"
+                  aria-selected="true"
+                >
+                  Available Properties
+                </a>
+              </div>
+            </div>
           </div>
+        </div>
       </section>
       <section id="Hightlights">
-               <div className="container ">
-                <div className="row align-items-center ">
-                  <div className="col-md-8">
-                    <div className="secTabCntent" id="hightlight">
-                      <h4 className="sctionMdTitle text-primary">
-                        Hightlights
-                      </h4>
-                      <div className="text-secondary mb-4">
-                        {parse(projectData?.hightlightDescription ?? "")}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <Swiper
-                      pagination={true}
-                      modules={[Pagination]}
-                      onSwiper={(swiper) => {
-                        innerSwiperRef.current = swiper;
-                      }}
-                      className="mySwiper singleSlider clmSlider"
-                    >
-                      {projectData?.interiorGallery?.map(
-                        (interiorGallery, index) => {
-                          return (
-                            <SwiperSlide
-                              key={interiorGallery.id + +"interiorGallery"}
-                            >
-                              <img
-                                src={interiorGallery.path}
-                                className="clmCoverImg"
-                              />
-                            </SwiperSlide>
-                          );
-                        }
-                      )}
+        <div className="container ">
+          <div className="row align-items-center ">
+            <div className="col-md-8">
+              <div className="secTabCntent" id="hightlight">
+                <h4 className="sctionMdTitle text-primary">Hightlights</h4>
+                <div className="text-secondary mb-4">
+                  {parse(projectData?.hightlightDescription ?? "")}
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <Swiper
+                pagination={true}
+                modules={[Pagination]}
+                onSwiper={(swiper) => {
+                  innerSwiperRef.current = swiper;
+                }}
+                className="mySwiper singleSlider clmSlider"
+              >
+                {projectData?.interiorGallery?.map((interiorGallery, index) => {
+                  return (
+                    <SwiperSlide key={interiorGallery.id + +"interiorGallery"}>
+                      <img src={interiorGallery.path} className="clmCoverImg" />
+                    </SwiperSlide>
+                  );
+                })}
 
-                      {/* <div className="carouselArrowBar">
+                {/* <div className="carouselArrowBar">
                         <div
                           className="swiper-button-next text-white"
                           onClick={() => innerSwiperRef.current?.slideNext()}
@@ -214,10 +202,10 @@ function SingleProjectView({ params }) {
                           </span>
                         </div>
                       </div> */}
-                    </Swiper>
-                  </div>
-                </div>
-              </div>
+              </Swiper>
+            </div>
+          </div>
+        </div>
       </section>
       <section id="ProjectDetails">
         <div className="container ">
@@ -225,19 +213,18 @@ function SingleProjectView({ params }) {
           {parse(projectData?.longDescription ?? "")}
 
           <div>
-          <button
-                          className="btn btn-blue text-uppercase btn-lg"
-                          data-bs-toggle="modal"
-                          data-bs-target="#floorplan"
-                          onClick={() => setFloorPlanFile(projectData.brochure)}
-                        >
-                          Downlod Brochure
-                        </button>
+            <button
+              className="btn btn-blue text-uppercase btn-lg"
+              data-bs-toggle="modal"
+              data-bs-target="#floorplan"
+              onClick={() => setFloorPlanFile(projectData.brochure)}
+            >
+              Download Brochure
+            </button>
           </div>
         </div>
-        
       </section>
-      <section className="tableSection " >
+      <section className="tableSection ">
         <div className="container">
           <h4 className="sctionMdTitle text-primary my-4">Property Type</h4>
 
@@ -324,7 +311,6 @@ function SingleProjectView({ params }) {
                 })}
               </tbody>
             </table>
-
           </div>
         </div>
       </section>
@@ -456,8 +442,6 @@ function SingleProjectView({ params }) {
         </div>
       </section>
 
-
-
       <section className="mt-5 bg-light py-5">
         <div className="container">
           <div className="row g-3 justify-content-center">
@@ -470,18 +454,19 @@ function SingleProjectView({ params }) {
                         AVAILABLE PROPERTIES
                       </h4>
                       <div className="row">
-                      <h6 className="sctionSubTitle text-primary col-6">FOR RENT</h6>
-                      <div className="col-6 text-end">
-                      {projectData?.rentProperties.length > 0 && (
-                      <Link
-                        href={`/rent`}
-                        className="text-decoration-none bdrBtn "
-                      >
-                        View All
-                      </Link>
-                      )}
-                      </div>
-                      
+                        <h6 className="sctionSubTitle text-primary col-6">
+                          FOR RENT
+                        </h6>
+                        <div className="col-6 text-end">
+                          {projectData?.rentProperties.length > 0 && (
+                            <Link
+                              href={`/rent`}
+                              className="text-decoration-none bdrBtn "
+                            >
+                              View All
+                            </Link>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -539,9 +524,7 @@ function SingleProjectView({ params }) {
                                         >
                                           <div className="projectImgCont">
                                             <img
-                                              src={
-                                                similarProperty.mainImage
-                                              }
+                                              src={similarProperty.mainImage}
                                               alt="project1"
                                               className="img-fluid propImg"
                                             />
@@ -634,9 +617,7 @@ function SingleProjectView({ params }) {
 
                       <div
                         className="swiper-button-next swiperUniqueNext text-primary"
-                        onClick={() =>
-                          rentSwiperRef.current?.slidePrev()
-                        }
+                        onClick={() => rentSwiperRef.current?.slidePrev()}
                       >
                         <span className="">
                           <i className="bi bi-chevron-right fs-1"></i>
@@ -644,9 +625,7 @@ function SingleProjectView({ params }) {
                       </div>
                       <div
                         className="swiper-button-prev swiperUniquePrev text-primary"
-                        onClick={() =>
-                          rentSwiperRef.current?.slideNext()
-                        }
+                        onClick={() => rentSwiperRef.current?.slideNext()}
                       >
                         <span className="">
                           <i className="bi bi-chevron-left fs-1"></i>
@@ -654,23 +633,21 @@ function SingleProjectView({ params }) {
                       </div>
                     </Swiper>
                   </div>
-                  
                 </div>
 
                 <div className="row mb-5">
-                      <h6 className="sctionSubTitle text-primary col-6">FOR BUY</h6>
-                      <div className="col-6 text-end">
-                      {projectData?.buyProperties.length > 0 && (
-                        <Link
+                  <h6 className="sctionSubTitle text-primary col-6">FOR BUY</h6>
+                  <div className="col-6 text-end">
+                    {projectData?.buyProperties.length > 0 && (
+                      <Link
                         href={`/buy`}
                         className="text-decoration-none bdrBtn "
                       >
                         View All
                       </Link>
-                      )} 
-                      
-                      </div>
-                      </div>
+                    )}
+                  </div>
+                </div>
                 <div className="col-12 col-lg-12 col-md-12">
                   <div className="swiper pb-5 projectSlider">
                     <Swiper
@@ -724,9 +701,7 @@ function SingleProjectView({ params }) {
                                         >
                                           <div className="projectImgCont">
                                             <img
-                                              src={
-                                                similarProperty.mainImage
-                                              }
+                                              src={similarProperty.mainImage}
                                               alt="project1"
                                               className="img-fluid propImg"
                                             />
@@ -819,9 +794,7 @@ function SingleProjectView({ params }) {
 
                       <div
                         className="swiper-button-next swiperUniqueNext text-primary"
-                        onClick={() =>
-                          saleSwiperRef.current?.slidePrev()
-                        }
+                        onClick={() => saleSwiperRef.current?.slidePrev()}
                       >
                         <span className="">
                           <i className="bi bi-chevron-right fs-1"></i>
@@ -829,9 +802,7 @@ function SingleProjectView({ params }) {
                       </div>
                       <div
                         className="swiper-button-prev swiperUniquePrev text-primary"
-                        onClick={() =>
-                          saleSwiperRef.current?.slideNext()
-                        }
+                        onClick={() => saleSwiperRef.current?.slideNext()}
                       >
                         <span className="">
                           <i className="bi bi-chevron-left fs-1"></i>
@@ -846,7 +817,7 @@ function SingleProjectView({ params }) {
         </div>
       </section>
 
-{/* 
+      {/* 
       <section className="my-5  border-top border-dark" id="AvailableProperties">
         <div className="container">
           <div className="row">
@@ -1030,9 +1001,17 @@ function SingleProjectView({ params }) {
         </div>
       </section> */}
 
-      
-      <DownloadFileModel sideText={contactSideText} pageUrl={pageUrl} downloadFile={floorPlanFile}></DownloadFileModel>
-      <PaymentPlanModel sideText={contactSideText} pageUrl={pageUrl} currentUnit={currentUnit} project={projectData}></PaymentPlanModel>
+      <DownloadFileModel
+        sideText={contactSideText}
+        pageUrl={pageUrl}
+        downloadFile={floorPlanFile}
+      ></DownloadFileModel>
+      <PaymentPlanModel
+        sideText={contactSideText}
+        pageUrl={pageUrl}
+        currentUnit={currentUnit}
+        project={projectData}
+      ></PaymentPlanModel>
     </>
   );
 }
