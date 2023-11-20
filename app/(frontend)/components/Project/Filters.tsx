@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import Bottombar from "./BottomNavigationBar";
 import {
   useGetAccommodations,
@@ -16,7 +17,7 @@ function Filters({
   setOriginalMarkers,
   mapRef,
 }) {
-  
+  const searchParams = useSearchParams();
   const { accommodations } = useGetAccommodations();
   const { communities } = useGetCommunities();
   const { amenities } = useGetAmenities();
@@ -56,7 +57,16 @@ function Filters({
     return false;
   };
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "projects?";
+    if (searchParams.has("minprice") && searchParams.has("maxprice")) {
+      setForm({
+        ...form,
+        minprice: searchParams.get("minprice"),
+        maxprice: searchParams.get("maxprice"),
+      });
+    }
+  }, []);
+  useEffect(() => {
+    let getPropertiesURL = process.env.API_HOST + "/projects?";
     const formData = new FormData();
     for (let key in form) {
       if (form.hasOwnProperty(key)) {
@@ -216,8 +226,12 @@ function Filters({
                   id="minprice"
                   min={0}
                   placeholder="0"
+                  value={form.minprice}
                   name="minprice"
                   ref={minPriceRef}
+                  onChange={(e) =>
+                    setForm({ ...form, minprice: e.target.value })
+                  }
                 />
               </div>
               <div className="mb-3">
@@ -229,6 +243,10 @@ function Filters({
                   id="maxprice"
                   placeholder="Any Price"
                   ref={maxPriceRef}
+                  value={form.maxprice}
+                  onChange={(e) =>
+                    setForm({ ...form, maxprice: e.target.value })
+                  }
                 />
               </div>
               <div className="mt-4 d-grid">
