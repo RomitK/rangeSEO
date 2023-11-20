@@ -16,6 +16,7 @@ function Filters({
   setOriginalMarkers,
   mapRef,
 }) {
+  
   const { accommodations } = useGetAccommodations();
   const { communities } = useGetCommunities();
   const { amenities } = useGetAmenities();

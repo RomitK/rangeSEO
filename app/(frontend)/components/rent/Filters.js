@@ -16,7 +16,7 @@ function Filters({
   const { accommodations } = useGetAccommodations();
   const { communities } = useGetCommunities();
   const { amenities } = useGetAmenities();
-
+  const mapRef = useRef(null);
   const [form, setForm] = useState({
     accommodation_id: "",
     community: "",

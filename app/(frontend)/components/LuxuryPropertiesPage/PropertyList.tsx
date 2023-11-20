@@ -15,6 +15,7 @@ import Filters from "./Filters";
 
 const PropertyList = ({ params }) => {
   const [showMap, setShowMap] = useState(true);
+  const mapRef = useRef(null);
   const [properties, setProperties] = useState([]);
   const [originalMarkers, setOriginalMarkers] = useState([]);
   const [filteredMarkers, setFilteredMarkers] = useState([]);
