@@ -10,21 +10,29 @@ import "swiper/css/pagination";
 import Link from "next/link";
 import parse from "html-react-parser";
 import GoogleMapReact from "google-map-react";
-import { GoogleMap, DistanceMatrixService } from "@react-google-maps/api";
-import { useMemo } from "react";
+import {
+  GoogleMap,
+  MarkerF,
+  useLoadScript,
+  InfoWindow,
+} from "@react-google-maps/api";
 import { useGetSingleCommunityData } from "@/src/services/CommunityService";
-import axios from "axios";
 
 function SinglecommunityDataView({ params }) {
   const slug = params.slug[0];
   const { communityData } = useGetSingleCommunityData(slug);
   const [nearByLocations, setNearByLocations] = useState([]);
 
-  const onMapLoad = (map, maps, data) => {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.GOOGLE_MAP_KEY,
+    libraries: ["geometry", "places", "marker"],
+  });
+
+  const onMapLoad = (map) => {
     let request = {
       location: {
-        lat: parseFloat(data?.address_latitude),
-        lng: parseFloat(data?.address_longitude),
+        lat: parseFloat(communityData?.address_latitude),
+        lng: parseFloat(communityData?.address_longitude),
       },
       radius: 5000,
     };
@@ -35,12 +43,12 @@ function SinglecommunityDataView({ params }) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         const locationData = [];
         for (var i = 0; i < results.length; i++) {
-          if (results[i].rating && results[i].vicinity != data.name) {
+          if (results[i].rating && results[i].vicinity != communityData.name) {
             locationData.push({
               name: results[i].name,
               lat: results[i].geometry?.location?.lat(),
               lng: results[i].geometry?.location?.lng(),
-              distance: await getDistanceMatrix(data, {
+              distance: await getDistanceMatrix(communityData, {
                 lat: results[i].geometry?.location?.lat(),
                 lng: results[i].geometry?.location?.lng(),
               }),
@@ -80,25 +88,12 @@ function SinglecommunityDataView({ params }) {
     return distance;
   };
 
-  const renderMarkers = (map, maps, data) => {
-    let marker = new maps.Marker({
-      position: {
-        lat: parseFloat(data?.address_latitude),
-        lng: parseFloat(data?.address_longitude),
-      },
-      map,
-      title: data?.name,
-    });
-    map.setCenter(marker.getPosition());
-    return marker;
-  };
-
   const defaultProps = {
     center: {
-      lat: 25.2048,
-      lng: 55.2708,
+      lat: 24.2048,
+      lng: 56.2708,
     },
-    zoom: 15,
+    zoom: 13,
   };
 
   const swiperRef = useRef<SwiperCore>();
@@ -337,23 +332,24 @@ function SinglecommunityDataView({ params }) {
                     }
                     yesIWantToUseGoogleMapApiInternals
                   /> */}
-                  {communityData && (
-                    <GoogleMapReact
-                      bootstrapURLKeys={{
-                        key: "AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE",
-                        libraries: ["places"],
-                      }}
+                  {communityData && isLoaded && (
+                    <GoogleMap
                       center={{
-                        lat: parseFloat(communityData?.default_latitude),
-                        lng: parseFloat(communityData?.default_longitude),
+                        lat: parseFloat(communityData?.address_latitude),
+                        lng: parseFloat(communityData?.address_longitude),
                       }}
-                      defaultZoom={defaultProps.zoom}
-                      yesIWantToUseGoogleMapApiInternals
-                      onGoogleApiLoaded={({ map, maps }) => {
-                        renderMarkers(map, maps, communityData);
-                        onMapLoad(map, maps, communityData);
-                      }}
-                    ></GoogleMapReact>
+                      mapContainerClassName="map-container"
+                      zoom={defaultProps.zoom}
+                      onLoad={onMapLoad}
+                    >
+                      <MarkerF
+                        position={{
+                          lat: parseFloat(communityData?.address_latitude),
+                          lng: parseFloat(communityData?.address_longitude),
+                        }}
+                        title={communityData?.name}
+                      />
+                    </GoogleMap>
                   )}
                 </div>
                 {communityData && (
