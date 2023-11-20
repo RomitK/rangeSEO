@@ -2,8 +2,8 @@
 import React from "react";
 import WhyRange from "./components/WhyRange/WhyRange";
 import AboutDubai from "./components/AboutDubai/AboutDubai";
-import ProjectList from "./components/Project/ProjectList";
-import HomeProjectList from "./components/HomeProject/HomeProject";
+
+import ProjectList from "./components/HomeProject/ProjectList";
 import LookingFor from "./components/LookingFor/LookingFor";
 import Testimonials from "./components/Testimonial/TestimonialList";
 import HomeSearch from "./components/HomeSearch/HomeSearch";
@@ -31,7 +31,7 @@ export default function Home() {
         <LookingFor></LookingFor>
         <WhyRange></WhyRange>
         <AboutDubai></AboutDubai>
-        <HomeProjectList></HomeProjectList>
+        <ProjectList></ProjectList>
         <div>
           <section className="my-5">
             <div className="container-fluid px-0">

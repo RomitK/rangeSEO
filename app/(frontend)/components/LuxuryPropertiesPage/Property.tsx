@@ -1,10 +1,9 @@
 import Link from "next/link";
 function Property(props) {
-  console.log(props)
+  console.log(props.unit_measure)
   return (
     <>
       <div>
-        {" "}
         <div className="card propertyCardNew rounded-0">
           <div className="">
           <Link
@@ -18,12 +17,9 @@ function Property(props) {
                   className="img-fluid propImg"
                 />
                 <div className="projectImgOverlay">
-                  <div >
+                  <div>
                     <span className="badge float-start fs-10 projectType">
                       {props.categoryName}
-                    </span>
-                    <span className="badge ms-1 float-start fs-10 projectType">
-                      {props.completionStatusName}
                     </span>
                   </div>
                   <div>
@@ -78,7 +74,7 @@ function Property(props) {
                 ></i>
                 <span className="fa-sr-only"></span>
                 <span>
-                  {props.area} ft<sup>2</sup>
+                  {props.area} {props.unit_measure}
                 </span>
               </div>
             </div>

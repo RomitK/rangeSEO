@@ -26,11 +26,14 @@ const ProjectPageList = ({ params }) => {
       address: "",
       title: "",
       area: "",
+      area_unit:"",
       bedrooms: "",
       bathrooms: "",
       starting_price: "",
       mainImage: "",
       slug: "",
+      completionStatusName:"",
+      accommodationName:""
     });
     const [showClearMapButton, setShowClearMapButton] = useState(false);
     const mapRef2 = useRef(null);
@@ -43,6 +46,10 @@ const ProjectPageList = ({ params }) => {
       const markersInsideView = originalMarkers.filter((marker) =>
         bounds.contains(new window.google.maps.LatLng(marker.lat, marker.lng))
       );
+      mapRef2?.current?.setCenter({
+        lat: parseFloat(originalMarkers[0].address_latitude),
+        lng: parseFloat(originalMarkers[0].address_longitude),
+    });
       // setFilteredMarkers([...markersInsideView]);
       setProperties([...markersInsideView]);
     }, [originalMarkers]);
@@ -67,9 +74,9 @@ const ProjectPageList = ({ params }) => {
   
     const onMapLoad = (map) => {
       mapRef2.current = map;
-      const bounds = new google.maps.LatLngBounds();
-      filteredMarkers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
-      map.fitBounds(bounds);
+      // const bounds = new google.maps.LatLngBounds();
+      // filteredMarkers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
+     // map.fitBounds(bounds);
     };
   
     const handleMarkerClick = (
@@ -79,22 +86,28 @@ const ProjectPageList = ({ params }) => {
       address,
       title,
       area,
+      area_unit,
       bedrooms,
       bathrooms,
       starting_price,
       mainImage,
-      slug
+      slug,
+      completionStatusName,
+      accommodationName
     ) => {
       setInfoWindowData({
         id,
         address,
         title,
         area,
+        area_unit,
         bedrooms,
         bathrooms,
         starting_price,
         mainImage,
         slug,
+        completionStatusName,
+        accommodationName
       });
       setIsOpen(true);
     };
@@ -160,6 +173,7 @@ const ProjectPageList = ({ params }) => {
                           address,
                           title,
                           area,
+                          area_unit,
                           bedrooms,
                           bathrooms,
                           starting_price,
@@ -167,6 +181,8 @@ const ProjectPageList = ({ params }) => {
                           lat,
                           lng,
                           slug,
+                          completionStatusName,
+                          accommodationName
                         },
                         ind
                       ) => (
@@ -181,11 +197,14 @@ const ProjectPageList = ({ params }) => {
                               address,
                               title,
                               area,
+                              area_unit,
                               bedrooms,
                               bathrooms,
                               starting_price,
                               mainImage,
-                              slug
+                              slug,
+                              completionStatusName,
+                              accommodationName
                             );
                           }}
                         >
@@ -223,6 +242,9 @@ const ProjectPageList = ({ params }) => {
                                   address={infoWindowData.address}
                                   mainImage={infoWindowData.mainImage}
                                   title={infoWindowData.title}
+                                  completionStatusName ={infoWindowData.completionStatusName}
+                                  area_unit={infoWindowData.area_unit}
+                                  accommodationName={infoWindowData.accommodationName}
                                 />
                               </div>
                             </InfoWindow>
@@ -301,6 +323,9 @@ const ProjectPageList = ({ params }) => {
                             address={property.address}
                             mainImage={property.mainImage}
                             title={property.title}
+                            completionStatusName = {property.completionStatusName}
+                            area_unit={property.area_unit}
+                            accommodationName={property.accommodationName}
                           />
                         </div>
                       ))}

@@ -20,7 +20,12 @@ function Project(props) {
                 <div className="projectImgOverlay">
                   <div>
                     <span className="badge float-start fs-10 projectType">
-                    {props.accommodationName}
+                    {props.completionStatusName}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="badge float-start fs-10 projectType">
+                      {props.accommodationName}
                     </span>
                   </div>
                 </div>
@@ -67,7 +72,7 @@ function Project(props) {
                 ></i>
                 <span className="fa-sr-only"></span>
                 <span>
-                  {props.area} ft<sup>2</sup>
+                  {props.area} {props.area_unit}
                 </span>
               </div>
             </div>
