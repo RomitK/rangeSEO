@@ -123,7 +123,7 @@ function Filters({
             id="accomodation"
             className="form-select bedroomSelect"
           >
-            <option value="">Select Accomodation</option>
+            <option value="">Select Property Type</option>
             {accommodations?.map((accomodation) => (
               <option key={accomodation.id} value={accomodation.id}>
                 {accomodation.name}
