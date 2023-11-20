@@ -24,12 +24,12 @@ const ProjectPageList = ({ params }) => {
     const [infoWindowData, setInfoWindowData] = useState({
       id: null,
       address: "",
-      name: "",
+      title: "",
       area: "",
       bedrooms: "",
       bathrooms: "",
-      price: "",
-      property_banner: "",
+      starting_price: "",
+      mainImage: "",
       slug: "",
     });
     const [showClearMapButton, setShowClearMapButton] = useState(false);
@@ -77,23 +77,23 @@ const ProjectPageList = ({ params }) => {
       lat,
       lng,
       address,
-      name,
+      title,
       area,
       bedrooms,
       bathrooms,
-      price,
-      property_banner,
+      starting_price,
+      mainImage,
       slug
     ) => {
       setInfoWindowData({
         id,
         address,
-        name,
+        title,
         area,
         bedrooms,
         bathrooms,
-        price,
-        property_banner,
+        starting_price,
+        mainImage,
         slug,
       });
       setIsOpen(true);
@@ -158,12 +158,12 @@ const ProjectPageList = ({ params }) => {
                       (
                         {
                           address,
-                          name,
+                          title,
                           area,
                           bedrooms,
                           bathrooms,
-                          price,
-                          property_banner,
+                          starting_price,
+                          mainImage,
                           lat,
                           lng,
                           slug,
@@ -179,12 +179,12 @@ const ProjectPageList = ({ params }) => {
                               lat,
                               lng,
                               address,
-                              name,
+                              title,
                               area,
                               bedrooms,
                               bathrooms,
-                              price,
-                              property_banner,
+                              starting_price,
+                              mainImage,
                               slug
                             );
                           }}
@@ -204,7 +204,7 @@ const ProjectPageList = ({ params }) => {
                                 whiteSpace: "nowrap", // Rounded corners
                               }}
                             >
-                              {price}
+                              {starting_price}
                             </div>
                           </OverlayView>
                           {isOpen && infoWindowData?.id === ind && (
@@ -219,10 +219,10 @@ const ProjectPageList = ({ params }) => {
                                   area={infoWindowData.area}
                                   bathrooms={infoWindowData.bathrooms}
                                   bedrooms={infoWindowData.bedrooms}
-                                  price={infoWindowData.price}
+                                  starting_price={infoWindowData.starting_price}
                                   address={infoWindowData.address}
-                                  property_banner={infoWindowData.property_banner}
-                                  name={infoWindowData.name}
+                                  mainImage={infoWindowData.mainImage}
+                                  title={infoWindowData.title}
                                 />
                               </div>
                             </InfoWindow>
@@ -274,7 +274,7 @@ const ProjectPageList = ({ params }) => {
           >
             <div id="dataTable">
               <div>
-                <h5>Real Estate &amp; Homes For Sale</h5>
+                <h5>Real Estate Project</h5>
               </div>
               <div id="PropertyResult">
                 <div>
@@ -297,10 +297,10 @@ const ProjectPageList = ({ params }) => {
                             area={property.area}
                             bathrooms={property.bathrooms}
                             bedrooms={property.bedrooms}
-                            price={property.price}
+                            starting_price={property.starting_price}
                             address={property.address}
-                            property_banner={property.property_banner}
-                            name={property.name}
+                            mainImage={property.mainImage}
+                            title={property.title}
                           />
                         </div>
                       ))}

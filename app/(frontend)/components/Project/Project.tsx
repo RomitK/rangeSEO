@@ -8,24 +8,19 @@ function Project(props) {
         <div className="card propertyCardNew rounded-0">
           <div className="">
           <Link
-              href={`/properties/${props.slug}`}
+              href={`/projects/${props.slug}`}
               className="text-decoration-none"
             >
               <div className="projectImgCont">
                 <img
-                  src={props.property_banner}
+                  src={props.mainImage}
                   alt="project1"
                   className="img-fluid propImg"
                 />
                 <div className="projectImgOverlay">
                   <div>
                     <span className="badge float-start fs-10 projectType">
-                      Rent
-                    </span>
-                  </div>
-                  <div>
-                    <span className="badge float-start fs-10 projectType">
-                      Apartment
+                    {props.accommodationName}
                     </span>
                   </div>
                 </div>
@@ -34,18 +29,18 @@ function Project(props) {
           </div>
           <div className="card-body rounded-3 rounded-top-0">
             <Link
-              href={`/properties/${props.slug}`}
+              href={`/projects/${props.slug}`}
               className="text-decoration-none"
             >
               <h6 className="text-black fs-16 fw-semibold mb-0">
-                {props.name}
+                {props.title}
               </h6>
             </Link>
             <div className="mb-1">
               <small className="text-secondary">{props.address}</small>
             </div>
             <p className="fs-18 mb-2 text-primary fw-semibold">
-              AED {props.price}
+              AED {props.starting_price}
             </p>
             <div className="features">
               <div>
@@ -56,14 +51,14 @@ function Project(props) {
                 ></i>
                 <span>{props.bedrooms}</span>
               </div>
-              <div>
+              {/* <div>
                 <i
                   aria-hidden="true"
                   className="fa fa-bath fa-lg bath"
                   title="bathroom"
                 ></i>
                 <span>{props.bathrooms}</span>
-              </div>
+              </div> */}
               <div>
                 <i
                   aria-hidden="true"

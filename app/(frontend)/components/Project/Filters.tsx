@@ -34,7 +34,7 @@ function Filters({
   const maxPriceRef = useRef(null);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "properties?";
+    let getPropertiesURL = process.env.API_HOST + "projects?";
     const formData = new FormData();
     for (let key in form) {
       if (form.hasOwnProperty(key)) {
@@ -103,7 +103,7 @@ function Filters({
             ))}
           </select>
         </div>
-        <div className="col-md-1">
+        {/* <div className="col-md-1">
           <select
             onChange={handleChange}
             value={form.category}
@@ -114,7 +114,7 @@ function Filters({
             <option value="buy">Buy</option>
             <option value="rent">Rent</option>
           </select>
-        </div>
+        </div> */}
         <div className="col-md-2">
           <select
             onChange={handleChange}
@@ -131,6 +131,35 @@ function Filters({
             ))}
           </select>
         </div>
+        <div className="col-md-2">
+            <select
+              onChange={handleChange}
+              value={form.bedrooms}
+              name="bedrooms"
+              id="bedrooms"
+              className="form-select bedroomSelect"
+            >
+              <option value="">Select Bedrooms</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="ST">ST</option>
+            </select>
+          </div>
+          <div className="col-md-1">
+            <input
+              value={form.area}
+              type="number"
+              name="area"
+              onChange={handleChange}
+              className="form-control"
+              id="area"
+              placeholder="Area"
+            />
+          </div>
         <div className="col-md-2">
           <div className="dropdown">
             <div
@@ -183,14 +212,14 @@ function Filters({
           </div>
         </div>
 
-        <div className="col-md-3 d-flex align-items-center justify-content-end">
-          <button
+        <div className="col-md-2 d-flex align-items-center justify-content-end">
+          {/* <button
             className="btn btn-primary btn-lg"
             type="button"
             onClick={() => setShowMore(!showMore)}
           >
             {showMore ? "Hide" : "More"}
-          </button>
+          </button> */}
           <div className="form-check d-none d-sm-block">
             <div
               className="btn-group"
@@ -233,7 +262,7 @@ function Filters({
         </div>
       </div>
 
-      {showMore && (
+      {/* {showMore && (
         <div className="row mt-3">
           <div className="col">
             <select
@@ -280,19 +309,9 @@ function Filters({
               placeholder="Bathrooms"
             />
           </div>
-          <div className="col">
-            <input
-              value={form.area}
-              type="number"
-              name="area"
-              onChange={handleChange}
-              className="form-control"
-              id="area"
-              placeholder="Area"
-            />
-          </div>
+          
         </div>
-      )}
+      )} */}
       <Bottombar
         item={0}
         callBack={(index) =>
