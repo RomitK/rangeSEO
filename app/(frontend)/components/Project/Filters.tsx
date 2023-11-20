@@ -66,7 +66,7 @@ function Filters({
     }
   }, []);
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "/projects?";
+    let getPropertiesURL = process.env.API_HOST + "projects?";
     const formData = new FormData();
     for (let key in form) {
       if (form.hasOwnProperty(key)) {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-
+import ContactModel from "../models/contactModel";
 function MortgageCalculator({ property }) {
+
     const [price, setPrice] = useState(property?.price);
     const [downPaymentPercentage, setDownPaymentPerecntage] = useState(20);
     const [mortgageTerm, setMortageTerm] = useState(25);
@@ -8,7 +9,9 @@ function MortgageCalculator({ property }) {
     const [interestRate, setInterestRate] = useState(4.99);
     const [downPayment, setDownPayment] = useState(0);
     const [payableEMI, setPayableEMI] = useState(0);
-
+    const contactSideText ="An esteemed award-winning real estate brokerage based in Dubai, UAE.";
+    const pageUrl ="Home"
+    
     const calculateDownPayment = () => {
         const downPayment = (price * downPaymentPercentage) / 100;
         setDownPayment(downPayment);
@@ -40,9 +43,14 @@ function MortgageCalculator({ property }) {
     }
 
     useEffect(() => {
+        
         calculateDownPayment();
         calculateEMI();
     }, []);
+    useEffect(() => {
+        setPrice(property?.price)
+        
+    }, [property?.price]);
 
     useEffect(() => {
         calculateDownPayment();
@@ -222,7 +230,8 @@ function MortgageCalculator({ property }) {
                     <h4 className=" mb-2">AED {payableEMI ? payableEMI : ""}</h4>
                 </div>
                 <div className="mb-2">
-                    <a href="" className="text-white fs-16">
+                    <a href="" className="text-white fs-16"  data-bs-toggle="modal"
+                    data-bs-target="#enquireNow">
                         VIEW CLOSING COSTS
                     </a>
                 </div>
@@ -240,6 +249,7 @@ function MortgageCalculator({ property }) {
                     personalised solutions to meet the specific needs of each of our clients
                 </p>
             </div>
+            <ContactModel sideText={contactSideText} pageUrl={pageUrl}></ContactModel>
         </div>
     );
 }
