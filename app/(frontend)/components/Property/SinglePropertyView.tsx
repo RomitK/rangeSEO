@@ -25,6 +25,9 @@ import $ from "jquery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CalenderModel from "../models/calenderModel";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
+import GallaryModalImg from "@/app/(frontend)/components/models/GallaryModalImg";
+import GallaryModalVideo from "@/app/(frontend)/components/models/GallaryModalVideo";
+import "@/public/css/single-project-view-styles.css";
 
 function SinglePropertyView({ params }) {
   const slug = params.slug[0];
@@ -144,6 +147,7 @@ function SinglePropertyView({ params }) {
 
   return (
     <>
+
       <section className="my-5">
         <div className="container">
           <div className="row justify-content-center">
@@ -191,34 +195,40 @@ function SinglePropertyView({ params }) {
                         </span>
                       </div>
                     </Swiper>
-                    <Swiper
-                      onSwiper={(swiper) => {
-                        setThumbsSwiper(swiper);
-                        PropertySwiperRef.current = swiper;
-                      }}
-                      loop={true}
-                      spaceBetween={10}
-                      slidesPerView={4}
-                      freeMode={true}
-                      watchSlidesProgress={true}
-                      modules={[FreeMode, Navigation, Thumbs]}
-                      className="swiper swiperThumb1 pt-3"
-                    >
-                      {propertyData?.gallery?.map((image, index) => {
-                        return (
-                          <SwiperSlide key={image.id + index + "gallery2"}>
-                            <img
-                              src={image.path}
-                              alt="range"
-                              className="img-fluid"
-                            />
-                          </SwiperSlide>
-                        );
-                      })}
-                    </Swiper>
+                      <div className="sliderThumbnailArea">
+                            <Swiper
+                              onSwiper={(swiper) => {
+                                setThumbsSwiper(swiper);
+                                PropertySwiperRef.current = swiper;
+                              }}
+                              loop={true}
+                              spaceBetween={10}
+                              slidesPerView={3}
+                              freeMode={true}
+                              watchSlidesProgress={true}
+                              modules={[FreeMode, Navigation, Thumbs]}
+                              className="swiper swiperThumb1  swiperThumbnailColm"
+                            >
+                              {propertyData?.gallery?.map((image, index) => {
+                                return (
+                                  <SwiperSlide key={image.id + index + "gallery2"}>
+                                    <img
+                                      src={image.path}
+                                      alt="range"
+                                      className="img-fluid"
+                                    />
+                                  </SwiperSlide>
+                                );
+                              })}
+                            </Swiper>
+                            <div className="sliderModalBox">
+                                 <GallaryModalImg/>
+                                 <GallaryModalVideo/>
+                            </div>
+                        </div>
                   </div>
                   <div className="mb-3">
-                    <div className="py-3">
+                    {/* <div className="py-3">
                       <div className="row">
                         <div className="col-12 col-lg-6 my-auto">
                           <a href="#" className="text-decoration-none">
@@ -251,7 +261,7 @@ function SinglePropertyView({ params }) {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="py-2">
                       <div>
                         <div className="fs-14">
@@ -342,24 +352,45 @@ function SinglePropertyView({ params }) {
                     )}
                 </div>
                 <div className="col-12 col-lg-4 col-md-4">
-                  <div className="bg-light px-3 py-2 mb-5">
-                    <div className="border-bottom border-2 py-3">
-                      <p className="text-primary fw-500 mb-1 fs-20">
-                        PROPERTY STATUS
-                      </p>
-                      <p className="fw-500 mb-0">For Sale</p>
+                  <div className=" px-2 py-2 mb-5">
+                    <div className="rowFlexBar border-bottom border-2">
+                          <div className="mdColBar">
+                              <div className=" py-3">
+                                  <p className="text-primary fw-500 mb-1 fs-16">
+                                    PROPERTY STATUS
+                                  </p>
+                                  <p className="fw-500 mb-0 fs-16">For Sale</p>
+                              </div>
+                          </div>
+                          <div className="mdColBar">
+                             <div className=" py-3">
+                                <p className="text-primary fw-500 mb-1 fs-16">
+                                  PROPERTY TYPE
+                                </p>
+                                <p className="fw-500 mb-0 fs-16">
+                                  {propertyData && propertyData.accommodation}
+                                </p>
+                             </div>
+                          </div>
+                    </div>
+                    <div className="rowFlexBar border-bottom border-2">
+                          <div className="mdColBar">
+                              <div className=" py-3">
+                                  <p className="text-primary fw-500 mb-1 fs-16">
+                                     PRICE
+                                  </p>
+                                  
+                              </div>
+                          </div>
+                          <div className="mdColBar">
+                             <div className=" py-3">
+                                  <p className="fw-500 mb-0 fs-16">AED 170, 888</p>
+                             </div>
+                          </div>
                     </div>
                     <div className="border-bottom border-2 py-3">
-                      <p className="text-primary fw-500 mb-1 fs-20">
-                        PROPERTY TYPE
-                      </p>
-                      <p className="fw-500 mb-0">
-                        {propertyData && propertyData.accommodation}
-                      </p>
-                    </div>
-                    <div className="border-bottom border-2 py-3">
-                      <ul className="list-unstyled">
-                        <li className="mb-2">
+                      <ul className="list-unstyled proInfoList">
+                        <li className="liBar">
                           <small>
                             <img
                               src="/images/icons/bed-blue.png"
@@ -367,12 +398,12 @@ function SinglePropertyView({ params }) {
                               className="img-fluid"
                               width="30px"
                             />
-                            <span className="align-text-top ms-2 fs-16 fw-500">
+                            <span className="align-text-top ms-2 fs-14 fw-500">
                               {propertyData && propertyData.bedrooms}
                             </span>
                           </small>
                         </li>
-                        <li className="mb-2">
+                        <li className="liBar">
                           <small>
                             <img
                               src="/images/icons/bath-blue.png"
@@ -380,13 +411,13 @@ function SinglePropertyView({ params }) {
                               className="img-fluid"
                               width="30px"
                             />
-                            <span className="align-text-top ms-2 fs-16 fw-500">
+                            <span className="align-text-top ms-2 fs-14 fw-500">
                               {propertyData && propertyData.bathrooms}
                             </span>
                           </small>
                         </li>
 
-                        <li className="mb-2">
+                        <li className="liBar">
                           <small>
                             <img
                               src="/images/icons/area-blue.png"
@@ -394,7 +425,7 @@ function SinglePropertyView({ params }) {
                               className="img-fluid"
                               width="30px"
                             />
-                            <span className="align-text-top ms-2 fs-16 fw-500">
+                            <span className="align-text-top ms-2 fs-14 fw-500">
                               {propertyData && propertyData.area} Sq.Ft
                             </span>
                           </small>
@@ -402,7 +433,7 @@ function SinglePropertyView({ params }) {
                         {propertyData &&
                           propertyData.developer &&
                           Object.keys(propertyData.developer).length > 0 && (
-                            <li className="mb-2">
+                            <li className="liBar">
                               <small>
                                 <img
                                   src="/images/icons/building.png"
@@ -423,9 +454,10 @@ function SinglePropertyView({ params }) {
                           )}
                       </ul>
                     </div>
-                    <div className="py-3">
-                      <div className="d-flex justify-content-start py-3">
-                        <div className="my-auto projctSpecIMg me-3">
+                    <div className="py-3 proUserBox">
+                      
+                      <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
+                        <div className="my-auto projctSpecIMg me-3 mb-3">
                           <center>
                             <img
                               src="/images/icons/hand-over.png"
@@ -435,34 +467,50 @@ function SinglePropertyView({ params }) {
                             />
                           </center>
                         </div>
-                        <div className="my-auto">
+                        <div className="proUserBoxContent mb-3">
                           <div className="projectSpec  text-uppercase">
-                            <p className="mb-0">
+
+                                  <p className="text-primary fw-500 mb-0 fs-16">
+                                     FIRST NAME SURNAME
+                                  </p>
+                                  <p className="fw-500 mb-2 fs-16">Designation</p>
+                                  <a href="#" className="Probtn bg-primary">
+                                      <img src="/images/icons/phone.png"  className="proPhoneIcon" />
+                                      CALL NOW
+                                  </a>
+                            {/* <p className="mb-0">
                               AED{" "}
                               {propertyData &&
                                 new Intl.NumberFormat().format(
                                   propertyData.price
                                 )}
                             </p>
-                            <p className="text-primary mb-0 fs-20">Price</p>
+                            <p className="text-primary mb-0 fs-20">Price</p> */}
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="py-3">
-                      <div className="text-center mb-3">
-                        <a
-                          className="btn text-decoration-none bg-primary text-white  fs-18 fw-500 text-uppercase w-100 btn-lg"
-                          data-bs-toggle="modal"
-                          data-bs-target="#bookAmeeting"
-                        >
-                          SCHEDULE VIEWING
-                        </a>
+                      
+                      <div className="BtnsflexBar mb-3">
+                            <a className="Probtn whatsappBtn wd50pr">
+                               <i className="fa fa-whatsapp"></i> 
+                               WHATSAPP
+                            </a>
+                            <a className="Probtn bg-primary wd50pr">
+                              Email
+                            </a>
                       </div>
-                      <div className="text-center">
-                        <a className="btn   text-decoration-none btn-success text-uppercase fs-18 fw-500 w-100 btn-lg">
-                          <i className="fa fa-whatsapp"></i> &nbsp;CALL WHATSAPP
-                        </a>
+
+                      <div className="text-center mb-3">
+                          <a
+                            className="Probtn bg-primary scheduleBtn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#bookAmeeting"
+                          >
+                             <i className="fa fa-calendar" aria-hidden="true"></i>
+                            SCHEDULE VIEWING
+                          </a>
                       </div>
                       <div className="text-center">
                         <DownloadPPTModal />

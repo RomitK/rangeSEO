@@ -1,6 +1,8 @@
 import { useState } from "react";
 import QUESTIONS from "../../../../src/constants/checkEligibilityQuestions"
 import VisaCategories from "./VisaCategories";
+
+
 function GoldenVisaPage()
 {
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -21,7 +23,7 @@ function GoldenVisaPage()
         setAnswer(value);
         setAnswers({ ...answers, [currentQuestion]: value });
     };
-
+ 
     const handleNextClicked = () => {
         if (!QUESTIONS[currentQuestion + 1]) {
             return;

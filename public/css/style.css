@@ -192,6 +192,7 @@ color: #136dae;
 .btn-check:checked+.btn{
 background-color:  #136dae;
 border-color: #136dae;
+color: #fff !important;
 }
 .btn-check:hover+.btn{
 background-color:  #136dae;
