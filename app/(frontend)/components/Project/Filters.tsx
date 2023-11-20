@@ -128,10 +128,9 @@ function Filters({
             options={communityOption}
             placeholder="Select Community"
             className=""
-            onChange={(comm) => {
-              form["community"] = comm.id;
+            onChange={({ id }) => {
+              form["community"] = id;
               setForm({ ...form });
-             
             }}
           />
         </div>

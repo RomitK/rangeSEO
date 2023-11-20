@@ -28,7 +28,7 @@ function ProjectList() {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.GOOGLE_MAP_KEY,
   });
-  const [mapRef, setMapRef] = useState();
+  const [mapRef, setMapRef] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [infoWindowData, setInfoWindowData] = useState({
     id: null,
