@@ -9,6 +9,7 @@ function HomeSearch() {
   async function changeSearch(e) {
     if (e.target.value.trim() === "") {
       setShowSuggestion(false);
+      return;
     }
     if (e.target.value.trim() != "") {
       const val = e.target.value;
@@ -31,10 +32,15 @@ function HomeSearch() {
             new RegExp(`(${val})`, "gi"),
             "<strong>$1</strong>"
           );
+          //console.log(formattedText);
           data2[i].name = formattedText;
         }
-        setShowSuggestion(true);
+        if (e.target.value.trim() === "") {
+        } else {
+          setShowSuggestion(true);
+        }
         setSuggestion(data2);
+        console.log(data2);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -63,25 +69,14 @@ function HomeSearch() {
         </div>
         <div className="headerForm">
           <ul className="nav nav-pills frmTabList" id="pills-tab">
-          <Link
-              href="/buy"
-              className="nav-link active"
-            >
+            <Link href="/buy" className="nav-link active">
               Buy
             </Link>
-            
-            <Link
-            href="/rent"
-              className="nav-link"
-              
-            >
+
+            <Link href="/rent" className="nav-link">
               Rent
             </Link>
-            <Link
-              href="/sell"
-              className="nav-link"
-
-            >
+            <Link href="/sell" className="nav-link">
               Sell
             </Link>
           </ul>
@@ -106,7 +101,7 @@ function HomeSearch() {
                                   </div>
                               </div> */}
           <div className="search-input frmSearcBar">
-            <input type="text" placeholder="Search" onChange={changeSearch}/>
+            <input type="text" placeholder="Search" onChange={changeSearch} />
             <i className="fa fa-search"></i>
           </div>
           <div id="suggestion-box">
@@ -114,7 +109,12 @@ function HomeSearch() {
               <div id="suggestion">
                 {suggestion.map((sug, index) => (
                   <div key={index}>
-                    <Link className="suggestion-link" href="/rent">
+                    <Link
+                      className="suggestion-link"
+                      href={
+                        sug.type
+                      }
+                    >
                       <i className="bi bi-geo-alt-fill text-primary" />
                       &nbsp;&nbsp;
                       <span
