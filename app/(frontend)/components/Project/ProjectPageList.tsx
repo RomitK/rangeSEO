@@ -21,6 +21,7 @@ const ProjectPageList = ({ params }) => {
     const [trigger, setTrigger] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
+    const mapRef = useRef(null);
     const [infoWindowData, setInfoWindowData] = useState({
       id: null,
       address: "",

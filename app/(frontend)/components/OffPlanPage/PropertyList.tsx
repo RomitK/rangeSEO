@@ -14,6 +14,7 @@ import classes from "./Properties.module.css";
 import Filters from "./Filters";
 
 const PropertyList = ({ params }) => {
+  const mapRef = useRef(null);
   const [showMap, setShowMap] = useState(true);
   const [properties, setProperties] = useState([]);
   const [originalMarkers, setOriginalMarkers] = useState([]);

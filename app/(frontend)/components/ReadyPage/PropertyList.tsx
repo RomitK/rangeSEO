@@ -19,6 +19,7 @@ const PropertyList = ({ params }) => {
   const [originalMarkers, setOriginalMarkers] = useState([]);
   const [filteredMarkers, setFilteredMarkers] = useState([]);
   const [trigger, setTrigger] = useState(0);
+  const mapRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
   const [infoWindowData, setInfoWindowData] = useState({
