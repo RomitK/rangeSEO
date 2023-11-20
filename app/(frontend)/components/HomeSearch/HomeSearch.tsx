@@ -13,7 +13,7 @@ function HomeSearch() {
     }
     if (e.target.value.trim() != "") {
       const val = e.target.value;
-      const apiUrl = process.env.API_HOST + "/search?keyword=" + val;
+      const apiUrl = process.env.API_HOST + "search?keyword=" + val;
       try {
         // Make a GET request to the API
         const response = await fetch(apiUrl);

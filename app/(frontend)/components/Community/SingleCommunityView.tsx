@@ -21,6 +21,7 @@ import { useGetSingleCommunityData } from "@/src/services/CommunityService";
 function SinglecommunityDataView({ params }) {
   const slug = params.slug[0];
   const { communityData } = useGetSingleCommunityData(slug);
+  console.log(communityData)
   const [nearByLocations, setNearByLocations] = useState([]);
 
   const { isLoaded } = useLoadScript({
@@ -38,7 +39,6 @@ function SinglecommunityDataView({ params }) {
     };
 
     let service = new google.maps.places.PlacesService(map);
-
     service.nearbySearch(request, async (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         const locationData = [];
