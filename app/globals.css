@@ -186,6 +186,10 @@ label {
   transition: 0.3s ease;
   border: 1.5px solid #136DAE;
 }
+.btn-blue:hover {
+  background-color: white !important;
+  color:  #2f3c6a !important
+}
 #floorplan .agent-img img {
   width: 100%;
   max-width: 300px;
