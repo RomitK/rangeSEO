@@ -25,7 +25,7 @@ import $ from "jquery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CalenderModel from "../models/calenderModel";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
-
+import MortgageCalculator from "./MortgageCalculator";
 function SinglePropertyView({ params }) {
   const slug = params.slug[0];
 
@@ -501,133 +501,7 @@ function SinglePropertyView({ params }) {
                       </div>
                     )}
                   </div>
-                  <div className="bg-light px-3 py-2 mb-5">
-                    <div className="pt-3">
-                      <p className="text-primary fw-500 mb-0 fs-20">
-                        MORTGAGE CALCULATOR
-                      </p>
-                    </div>
-                    <div className="mortgageForm py-3">
-                      <form>
-                        <div className="mb-3">
-                          <label className="form-label fw-500">
-                            Property Value
-                          </label>
-                          <div className="input-group mb-3">
-                            <span className="input-group-text  rounded-0 border-end p-2 bg-white">
-                              AED
-                            </span>
-                            <input
-                              type="text"
-                              className="form-control border-start-0  rounded-0"
-                              placeholder="Enter amount"
-                              value={propertyPrice}
-                              onChange={(e) => setPropertyPrice(e.target.value)}
-                            />
-                          </div>
-                        </div>
-                        <div className="mb-3">
-                          <div className="d-flex justify-content-between">
-                            <label className="form-label fw-500">
-                              Down payment (
-                              {new Intl.NumberFormat().format(downpaymentMoney)}
-                              )
-                            </label>
-                            <label className="form-label fw-500">
-                              {downpaymentPer}%
-                            </label>
-                          </div>
-                          <input
-                            type="range"
-                            className="form-range mb-3"
-                            id="customRange1"
-                            min="20"
-                            max="80"
-                            value={downpaymentPer}
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <div className="d-flex justify-content-between">
-                            <label className="form-label fw-500">
-                              Loan Duration
-                            </label>
-                            <label className="form-label fw-500">
-                              {duration} Years
-                            </label>
-                          </div>
-                          <input
-                            type="range"
-                            className="form-range"
-                            id="customRange1"
-                            min="1"
-                            max="25"
-                            value={duration}
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <label className="form-label fw-500">
-                            RATE{" "}
-                            <small>
-                              (choose from the current best options)
-                            </small>
-                          </label>
-                          <div className="input-group bg-white border">
-                            <input
-                              type="text"
-                              className="form-control border-0"
-                              placeholder="4.24"
-                            />
-                            <button
-                              className="btn border border-primary text-primary px-2 py-1 rounded-circle m-1 "
-                              type="button"
-                            >
-                              <i className="bi bi-dash-lg"></i>
-                            </button>
-                            <button
-                              className="btn border border-primary text-primary px-2 py-1 rounded-circle m-1 "
-                              type="button"
-                            >
-                              <i className="bi bi-plus-lg"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <div className="p-4 my-2 bg-primary text-white text-center">
-                      <p className="fs-14 mb-2">
-                        Your monthly payable EMI will be
-                      </p>
-                      <div className="mainHead">
-                        <h4 className=" mb-2">AED 5,327</h4>
-                      </div>
-                      <div className="mb-2">
-                        <a href="" className="text-white fs-16">
-                          VIEW CLOSING COSTS
-                        </a>
-                      </div>
-                      <p className="fs-14  mb-2">
-                        Estimated monthly payment based on 800,000 AED finance
-                        amount with a 6.35% variable finance rate.
-                      </p>
-                      <p className="fs-14  mb-0">
-                        Disclaimer Rates may vary based on bank policies. T&C's
-                        apply
-                      </p>
-                    </div>
-                    <div className="py-3">
-                      <p className="text-primary fw-500 fs-20">
-                        ABOUT MY MORTGAGE
-                      </p>
-
-                      <p className="mb-0 fs-14">
-                        Leading mortgage brokerage dedicated to helping our
-                        clients achieve their dream of home ownership. Our team
-                        of experienced professionals are committed to providing
-                        exceptional customer service and personalised solutions
-                        to meet the specific needs of each of our clients
-                      </p>
-                    </div>
-                  </div>
+                  <MortgageCalculator property={propertyData} />
 
                   <div className="bg-light px-3 py-2 mb-5">
                     {propertyData && propertyData.community && (
