@@ -16,7 +16,6 @@ function Filters({
   const { accommodations } = useGetAccommodations();
   const { communities } = useGetCommunities();
   const { amenities } = useGetAmenities();
-
   const [form, setForm] = useState({
     accommodation_id: "",
     community: "",
@@ -34,7 +33,7 @@ function Filters({
   const maxPriceRef = useRef(null);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "/properties?";
+    let getPropertiesURL = process.env.API_HOST + "properties?";
     const formData = new FormData();
     for (let key in form) {
       if (form.hasOwnProperty(key)) {
@@ -123,7 +122,7 @@ function Filters({
             id="accomodation"
             className="form-select bedroomSelect"
           >
-            <option value="">Select Accomodation</option>
+            <option value="">Select Property Type</option>
             {accommodations?.map((accomodation) => (
               <option key={accomodation.id} value={accomodation.id}>
                 {accomodation.name}

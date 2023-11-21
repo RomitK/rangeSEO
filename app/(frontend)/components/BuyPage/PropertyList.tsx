@@ -34,6 +34,7 @@ const PropertyList = ({ params }) => {
     accommodationName: "",
     categoryName:""
   });
+  const mapRef = useRef(null);
   const [showClearMapButton, setShowClearMapButton] = useState(false);
   const mapRef2 = useRef(null);
 

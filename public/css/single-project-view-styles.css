@@ -352,11 +352,11 @@ padding: 0;
 padding-left: 15px;
 }
 .secTabCntent .trix-content ul li{
-font-size: 14px;
+/* font-size: 14px;
 font-family: 'Montserrat', sans-serif;
 color: #3f3f3f;
 font-weight: 500;
-margin-bottom: 3px;
+margin-bottom: 3px; */
 }
 .tabsListConatiner .container .row{
 padding: 0px 40px;

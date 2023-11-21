@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/(frontend)/communities/[...slug]/page.tsx"
-  ],
+, "app/(frontend)/components/Property/MortgageCalculator.js"  ],
   "exclude": ["node_modules"]
 }

@@ -153,6 +153,11 @@ a {
   border-color: rgb(19, 109, 174);
   border-image: initial;
 }
+
+#sellSubmit:hover {
+  color: rgb(19, 109, 174) !important;
+}
+
 label {
   color: #6f6d71 !important;
   font-size: 14px !important;
@@ -181,6 +186,31 @@ label {
   transition: 0.3s ease;
   border: 1.5px solid #136DAE;
 }
+.btn-blue:hover {
+  background-color: white !important;
+  color:  #2f3c6a !important
+}
+#floorplan .agent-img img {
+  width: 100%;
+  max-width: 300px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+#saleSale .agent-img img {
+  width: 100%;
+  max-width: 300px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+#downlaodPPT  .agent-img img {
+  width: 100%;
+  max-width: 300px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 #bookAmeeting .agent-img img {
   width: 100%;
   max-width: 300px;
@@ -188,7 +218,21 @@ label {
   object-fit: cover;
   border-radius: 10px;
 }
+#enquireNow .agent-img img {
+  width: 100%;
+  max-width: 300px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 #simpleModal .agent-img img {
+  width: 100%;
+  max-width: 300px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+#careerModel .agent-img img {
   width: 100%;
   max-width: 300px;
   height: 150px;
@@ -217,7 +261,151 @@ label {
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
 }
+  .accordion-item{
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    background: #fff;
+}
+.accordion-content {
+  margin: 0 auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+}
+.text-center {
+  text-align: center;
+}
+.padding-bottom {
+  padding-bottom: 32px;
+}
+.padding {
+  padding-top: 10px;
+}
+.upper-heading {
+  color: #293A77;
+  font-size: 21px;
+  /* font-family: Raleway; */
+  font-weight: 600;
+}
+.location-heading {
+  color: #293A77;
+  font-size: 40px;
+  /* font-family: Raleway; */
+  font-weight: 700;
+}
+.video iframe {
+  width: 100%;
+  height: 415px;
+  position: relative;
+  top: 45px;
+}
+.video-text {
+  font-weight: 500;
+  /* padding: 4% 0; */
+  line-height: 30px;
+  /* font-family: Raleway; */
+  font-size: 22px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #293A77;
+}
+textarea {
+  border: 1px solid #66666685;
+  padding: 10px;
+  color: #474544;
+  border-radius: 0px;
+  height: 90px;
+  }
+  .propCard .propImg {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: #fff;
+  width: 1000px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+#dropdown-basic{
+  text-align: left;
+  border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+}
+.btn-check:checked+.btn {
+  /* color: white !important; */
+}
+.options-container {
+  padding: 20px;
+  max-height: 200px;
+  overflow-y: scroll;
+  min-width: 600px;
+}
 
+
+.dt {
+  border: 1px solid lightgray;
+}
+.fc {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.options-container {
+  padding: 20px;
+  max-height: 200px;
+  overflow-y: scroll;
+  min-width: 600px;
+}
+.im {
+  width: 100%;
+}
+.bu {
+  z-index: 300 !important;
+}
+
+#suggestion-box {
+  position: relative;
+}
+
+#suggestion {
+  position: absolute;
+  margin-top: 0.5rem;
+  padding: 10px;
+  width: 100%;
+  white-space: nowrap;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
+}
+.suggestion-link {
+  text-decoration: none;
+  color: #000;
+}
+.Link {
+  text-decoration: none;
+}
+.react-share__ShareButton{
+  background-color: #64b161 !important;
+  color: white !important;
+}
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
 }

@@ -3,44 +3,52 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from "react-toastify";
 import { saveCareerFormApi } from "@/src/services/CareerService";
 import { saveContactFormApi2 } from "@/src/services/HomeService";
+import ErrorToast from "../toast/ErrorToast";
+import { fetchResponseErrors } from "@/src/utils/helpers/common";
 function CareerModel(props) {
-  console.log(props)
-  const [formData, setFormData] = useState({
-    careerId : props.careerId,
+  const initialState = {
+    careerId: props.careerId,
     name: "",
     email: "",
     message: "",
     phone: "",
-    cv:"",
+    cv: null,
     formName: "applyForm",
     page: "career",
-  });
+  };
+  const [formData, setFormData] = useState(initialState);
   const careerCloseRef = useRef(null);
+  const fileRef = useRef(null);
+
+  useEffect(() => {
+    setFormData({ ...formData, careerId: props.careerId });
+  }, [props.careerId]);
+
+  const resetFile = () => {
+    fileRef.current.value = "";
+  };
 
   const handleSubmit = () => {
-    if (!formData.name || !formData.email || !formData.phone) {
+    if (!formData.name || !formData.email || !formData.phone || !formData.cv) {
       return toast.error("Please fill required field");
     }
-    saveCareerFormApi(formData)
+    const frmData = new FormData();
+    frmData.append("career_id", formData.careerId);
+    frmData.append("name", formData.name);
+    frmData.append("email", formData.email);
+    frmData.append("contact_number", formData.phone);
+    frmData.append("cv", formData.cv);
+    frmData.append("message", formData.message);
+    saveCareerFormApi(frmData)
       .then((res) => {
-        toast.success(
-          "Enquire form submitted successfully, out support teams contact you soon"
-        );
+        toast.success(res.data.message);
         careerCloseRef.current.click();
-        setFormData({
-            careerId : props.careerId,
-            name: "",
-            email: "",
-            message: "",
-            cv:"",
-            phone: "",
-            formName: "applyForm",
-            page: "career",
-        });
+        setFormData(initialState);
+        resetFile();
       })
       .catch((err) => {
-        console.log(err)
-        toast.error("Something went wrong, please try again");
+        console.log(err);
+        toast.error(<ErrorToast error={fetchResponseErrors(err.response)} />);
       });
   };
   return (
@@ -51,7 +59,6 @@ function CareerModel(props) {
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
-        ref={careerCloseRef}
       >
         <div className="modal-dialog  modal-dialog-centered modal-lg modalBookMeet ">
           <div className="modal-content">
@@ -61,6 +68,11 @@ function CareerModel(props) {
                 className="bg-transparent border-0"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                ref={careerCloseRef}
+                onClick={() => {
+                  setFormData(initialState);
+                  resetFile();
+                }}
               >
                 <i className="bi bi-x-circle text-primary"></i>
               </button>
@@ -80,12 +92,20 @@ function CareerModel(props) {
                     </div>
                   </div>
                   <div className="p-3">
-                    <div className="assist-text  text-left mt-3 mb-5">
-                      <h5>
+                    <div className="agent-img mt-2">
+                      <img
+                        src="/images/videocall.jpeg"
+                        alt="Range Property"
+                        className="agent-img"
+                      />
+                    </div>
+                    <div className="col-md-12 mt-3 mb-3">
+                    <h5>
                         <strong className="need">{props.sideText}</strong>
                       </h5>
                     </div>
                   </div>
+
                 </div>
                 <div className="col-12 col-lg-7 col-md-12 ">
                   <div className=" p-4">
@@ -93,12 +113,12 @@ function CareerModel(props) {
                       <div className="">
                         <div className="row">
                           <div className="col-md-12">
-                            <h5 className="text-primary">{props.careerPosition}</h5>
+                            <h5 className="text-primary">
+                              {props.careerPosition}
+                            </h5>
                             <h6 className="text-primary">Enter Details</h6>
                             <div className="form-group">
-                              <label>
-                                Name<small className="text-danger">*</small>
-                              </label>
+                              
                               <input
                                 type="text"
                                 name="nameCon2"
@@ -117,9 +137,7 @@ function CareerModel(props) {
                               />
                             </div>
                             <div className="form-group">
-                              <label>
-                                Email<small className="text-danger">*</small>
-                              </label>
+                              
                               <input
                                 type="email"
                                 name="emailCon2"
@@ -138,13 +156,10 @@ function CareerModel(props) {
                               />
                             </div>
                             <div className="form-group">
-                              <label>
-                                Phone Number{" "}
-                                <small className="text-danger">*</small>
-                              </label>
+                              
                               <input
                                 type="tel"
-                                className="form-control mb-2"
+                                className="form-control mb-2 "
                                 id="telephoneNew3"
                                 name="phone"
                                 placeholder="Enter your Phone Number"
@@ -160,30 +175,25 @@ function CareerModel(props) {
                               />
                             </div>
                             <div className="form-group">
-                              <label>
-                               CV{" "}
-                                <small className="text-danger">*</small>
-                              </label>
                               <input
                                 type="file"
+                                // className="form-control mb-2 cntInptField"
                                 className="form-control mb-2"
                                 id="cv"
                                 name="cv"
+                                ref={fileRef}
                                 placeholder="Enter your Phone Number"
                                 onChange={(e) =>
                                   setFormData({
                                     ...formData,
-                                    cv: e.target.value,
+                                    cv: e.target.files[0],
                                   })
                                 }
                                 autoComplete="off"
-                                
                               />
                             </div>
                             <div className="form-group">
-                              <label>Message</label>
-                              <input
-                                type="text"
+                              <textarea
                                 name="messageCon2"
                                 id="messageCon2"
                                 className="form-control mb-2"
@@ -202,7 +212,7 @@ function CareerModel(props) {
                         </div>
                         <div className="modal-footer border-0">
                           <button
-                            type="submit"
+                            type="button"
                             name="submit"
                             className="btn btn-blue rounded-0 px-5 float-end btnContact2"
                             onClick={handleSubmit}

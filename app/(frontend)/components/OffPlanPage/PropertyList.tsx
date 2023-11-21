@@ -14,6 +14,7 @@ import classes from "./Properties.module.css";
 import Filters from "./Filters";
 
 const PropertyList = ({ params }) => {
+  const mapRef = useRef(null);
   const [showMap, setShowMap] = useState(true);
   const [properties, setProperties] = useState([]);
   const [originalMarkers, setOriginalMarkers] = useState([]);
@@ -26,6 +27,7 @@ const PropertyList = ({ params }) => {
     address: "",
     name: "",
     area: "",
+    unit_measure:"",
     bedrooms: "",
     bathrooms: "",
     price: "",
@@ -46,6 +48,11 @@ const PropertyList = ({ params }) => {
     const markersInsideView = originalMarkers.filter((marker) =>
       bounds.contains(new window.google.maps.LatLng(marker.lat, marker.lng))
     );
+
+    mapRef2?.current?.setCenter({
+      lat: parseFloat(originalMarkers[0].address_latitude),
+      lng: parseFloat(originalMarkers[0].address_longitude),
+  });
     // setFilteredMarkers([...markersInsideView]);
     setProperties([...markersInsideView]);
   }, [originalMarkers]);
@@ -71,8 +78,8 @@ const PropertyList = ({ params }) => {
   const onMapLoad = (map) => {
     mapRef2.current = map;
     const bounds = new google.maps.LatLngBounds();
-    filteredMarkers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
-    map.fitBounds(bounds);
+    // filteredMarkers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
+    // map.fitBounds(bounds);
   };
 
   const handleMarkerClick = (
@@ -82,6 +89,7 @@ const PropertyList = ({ params }) => {
     address,
     name,
     area,
+    unit_measure,
     bedrooms,
     bathrooms,
     price,
@@ -96,6 +104,7 @@ const PropertyList = ({ params }) => {
       address,
       name,
       area,
+      unit_measure,
       bedrooms,
       bathrooms,
       price,
@@ -169,6 +178,7 @@ const PropertyList = ({ params }) => {
                         address,
                         name,
                         area,
+                        unit_measure,
                         bedrooms,
                         bathrooms,
                         price,
@@ -193,6 +203,7 @@ const PropertyList = ({ params }) => {
                             address,
                             name,
                             area,
+                            unit_measure,
                             bedrooms,
                             bathrooms,
                             price,
@@ -232,6 +243,7 @@ const PropertyList = ({ params }) => {
                               <Property
                                 slug={infoWindowData.slug}
                                 area={infoWindowData.area}
+                                unit_measure={infoWindowData.unit_measure}
                                 bathrooms={infoWindowData.bathrooms}
                                 bedrooms={infoWindowData.bedrooms}
                                 price={infoWindowData.price}
@@ -240,7 +252,7 @@ const PropertyList = ({ params }) => {
                                 name={infoWindowData.name}
                                 accommodationName={infoWindowData.accommodationName}
                                 categoryName={infoWindowData.categoryName}
-                                completionStatusName={infoWindowData.completionStatusName}
+                                completionStatusName = {infoWindowData.completionStatusName}
                               />
                             </div>
                           </InfoWindow>
@@ -292,7 +304,7 @@ const PropertyList = ({ params }) => {
         >
           <div id="dataTable">
             <div>
-              <h5>Real Estate &amp; Homes For Sale</h5>
+              <h5>Real Estate &amp; Homes</h5>
             </div>
             <div id="PropertyResult">
               <div>
@@ -313,6 +325,7 @@ const PropertyList = ({ params }) => {
                         <Property
                           slug={property.slug}
                           area={property.area}
+                          unit_measure={property.unit_measure}
                           bathrooms={property.bathrooms}
                           bedrooms={property.bedrooms}
                           price={property.price}
@@ -321,7 +334,7 @@ const PropertyList = ({ params }) => {
                           name={property.name}
                           accommodationName={property.accommodationName}
                           categoryName={property.categoryName}
-                          completionStatusName={property.completionStatusName}
+                          completionStatusName = {property.completionStatusName}
                         />
                       </div>
                     ))}

@@ -2,6 +2,7 @@ import ContactModel from "../models/contactModel";
 import SimpleModal from "../models/simpleModal";
 function AboutDubai() {
   const contactSideText ="An esteemed award-winning real estate brokerage based in Dubai, UAE.";
+  const pageUrl ="Home"
   return (
     <>
       <section className="bg-light my-5  p-relative aboutSectionArea">
@@ -311,7 +312,7 @@ function AboutDubai() {
           </div>
         </div>
       </section>
-      <ContactModel sideText={contactSideText}></ContactModel>
+      <ContactModel sideText={contactSideText} pageUrl={pageUrl}></ContactModel>
     </>
   );
 }

@@ -2,7 +2,8 @@
 import React from "react";
 import WhyRange from "./components/WhyRange/WhyRange";
 import AboutDubai from "./components/AboutDubai/AboutDubai";
-import ProjectList from "./components/Project/ProjectList";
+
+import ProjectList from "./components/HomeProject/ProjectList";
 import LookingFor from "./components/LookingFor/LookingFor";
 import Testimonials from "./components/Testimonial/TestimonialList";
 import HomeSearch from "./components/HomeSearch/HomeSearch";

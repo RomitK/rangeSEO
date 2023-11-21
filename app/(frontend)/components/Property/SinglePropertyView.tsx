@@ -27,8 +27,10 @@ import CalenderModel from "../models/calenderModel";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 import GallaryModalImg from "@/app/(frontend)/components/models/GallaryModalImg";
 import GallaryModalVideo from "@/app/(frontend)/components/models/GallaryModalVideo";
+import SaleOfferModal from "../models/SaleOfferModal";
 import "@/public/css/single-project-view-styles.css";
 
+import MortgageCalculator from "./MortgageCalculator";
 function SinglePropertyView({ params }) {
   const slug = params.slug[0];
 
@@ -222,8 +224,8 @@ function SinglePropertyView({ params }) {
                               })}
                             </Swiper>
                             <div className="sliderModalBox">
-                                 <GallaryModalImg/>
-                                 <GallaryModalVideo/>
+                                 <GallaryModalImg images={propertyData?.floorplans}/>
+                                 <GallaryModalVideo video={propertyData?.video}/>
                             </div>
                         </div>
                   </div>
@@ -359,7 +361,7 @@ function SinglePropertyView({ params }) {
                                   <p className="text-primary fw-500 mb-1 fs-16">
                                     PROPERTY STATUS
                                   </p>
-                                  <p className="fw-500 mb-0 fs-16">For Sale</p>
+                                  <p className="fw-500 mb-0 fs-16">For {propertyData && propertyData.category}</p>
                               </div>
                           </div>
                           <div className="mdColBar">
@@ -384,7 +386,10 @@ function SinglePropertyView({ params }) {
                           </div>
                           <div className="mdColBar">
                              <div className=" py-3">
-                                  <p className="fw-500 mb-0 fs-16">AED 170, 888</p>
+                                  <p className="fw-500 mb-0 fs-16">AED {propertyData &&
+                                new Intl.NumberFormat().format(
+                                  propertyData.price
+                                )}</p>
                              </div>
                           </div>
                     </div>
@@ -426,7 +431,7 @@ function SinglePropertyView({ params }) {
                               width="30px"
                             />
                             <span className="align-text-top ms-2 fs-14 fw-500">
-                              {propertyData && propertyData.area} Sq.Ft
+                              {propertyData && propertyData.area} {propertyData?.unit_measure}
                             </span>
                           </small>
                         </li>
@@ -460,10 +465,10 @@ function SinglePropertyView({ params }) {
                         <div className="my-auto projctSpecIMg me-3 mb-3">
                           <center>
                             <img
-                              src="/images/icons/hand-over.png"
+                              src={propertyData?.agent && propertyData.agent?.image }
                               className="img-fluid"
-                              alt="range"
                               width="60"
+                              alt={propertyData?.agent && propertyData.agent?.name }
                             />
                           </center>
                         </div>
@@ -471,21 +476,14 @@ function SinglePropertyView({ params }) {
                           <div className="projectSpec  text-uppercase">
 
                                   <p className="text-primary fw-500 mb-0 fs-16">
-                                     FIRST NAME SURNAME
+                                     {propertyData?.agent && propertyData?.agent?.name }
                                   </p>
-                                  <p className="fw-500 mb-2 fs-16">Designation</p>
-                                  <a href="#" className="Probtn bg-primary">
+                                  <p className="fw-500 mb-2 fs-16">{propertyData?.agent && propertyData?.agent?.designation }</p>
+                                  <a  href={"tel:" + propertyData?.agent?.contact} className="Probtn bg-primary">
                                       <img src="/images/icons/phone.png"  className="proPhoneIcon" />
                                       CALL NOW
                                   </a>
-                            {/* <p className="mb-0">
-                              AED{" "}
-                              {propertyData &&
-                                new Intl.NumberFormat().format(
-                                  propertyData.price
-                                )}
-                            </p>
-                            <p className="text-primary mb-0 fs-20">Price</p> */}
+                            
                           </div>
                         </div>
                       </div>
@@ -493,11 +491,12 @@ function SinglePropertyView({ params }) {
                     <div className="py-3">
                       
                       <div className="BtnsflexBar mb-3">
-                            <a className="Probtn whatsappBtn wd50pr">
+                            <a className="Probtn whatsappBtn wd50pr" href={"https://wa.me/" + propertyData?.agent?.whatsapp+"?text=Hi, "+ propertyData?.agent?.name +" Please let me know more about investing in Dubai Real Estate"}>
                                <i className="fa fa-whatsapp"></i> 
                                WHATSAPP
                             </a>
-                            <a className="Probtn bg-primary wd50pr">
+                            <a className="Probtn bg-primary wd50pr" href={"mailto:" + propertyData?.agent?.email}>
+                            <i className="fa fa-envelope"></i> 
                               Email
                             </a>
                       </div>
@@ -512,10 +511,9 @@ function SinglePropertyView({ params }) {
                             SCHEDULE VIEWING
                           </a>
                       </div>
-                      <div className="text-center">
-                        <DownloadPPTModal />
-                      </div>
+                      
                     </div>
+{/*                     
                     {propertyData && (
                       <div className="py-3">
                         <div>
@@ -547,135 +545,50 @@ function SinglePropertyView({ params }) {
                           </EmailShareButton>
                         </div>
                       </div>
-                    )}
+                    )} */}
+                    
                   </div>
-                  <div className="bg-light px-3 py-2 mb-5">
-                    <div className="pt-3">
-                      <p className="text-primary fw-500 mb-0 fs-20">
-                        MORTGAGE CALCULATOR
-                      </p>
-                    </div>
-                    <div className="mortgageForm py-3">
-                      <form>
-                        <div className="mb-3">
-                          <label className="form-label fw-500">
-                            Property Value
-                          </label>
-                          <div className="input-group mb-3">
-                            <span className="input-group-text  rounded-0 border-end p-2 bg-white">
-                              AED
-                            </span>
-                            <input
-                              type="text"
-                              className="form-control border-start-0  rounded-0"
-                              placeholder="Enter amount"
-                              value={propertyPrice}
-                              onChange={(e) => setPropertyPrice(e.target.value)}
-                            />
-                          </div>
-                        </div>
-                        <div className="mb-3">
-                          <div className="d-flex justify-content-between">
-                            <label className="form-label fw-500">
-                              Down payment (
-                              {new Intl.NumberFormat().format(downpaymentMoney)}
-                              )
-                            </label>
-                            <label className="form-label fw-500">
-                              {downpaymentPer}%
-                            </label>
-                          </div>
-                          <input
-                            type="range"
-                            className="form-range mb-3"
-                            id="customRange1"
-                            min="20"
-                            max="80"
-                            value={downpaymentPer}
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <div className="d-flex justify-content-between">
-                            <label className="form-label fw-500">
-                              Loan Duration
-                            </label>
-                            <label className="form-label fw-500">
-                              {duration} Years
-                            </label>
-                          </div>
-                          <input
-                            type="range"
-                            className="form-range"
-                            id="customRange1"
-                            min="1"
-                            max="25"
-                            value={duration}
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <label className="form-label fw-500">
-                            RATE{" "}
-                            <small>
-                              (choose from the current best options)
-                            </small>
-                          </label>
-                          <div className="input-group bg-white border">
-                            <input
-                              type="text"
-                              className="form-control border-0"
-                              placeholder="4.24"
-                            />
-                            <button
-                              className="btn border border-primary text-primary px-2 py-1 rounded-circle m-1 "
-                              type="button"
-                            >
-                              <i className="bi bi-dash-lg"></i>
-                            </button>
-                            <button
-                              className="btn border border-primary text-primary px-2 py-1 rounded-circle m-1 "
-                              type="button"
-                            >
-                              <i className="bi bi-plus-lg"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <div className="p-4 my-2 bg-primary text-white text-center">
-                      <p className="fs-14 mb-2">
-                        Your monthly payable EMI will be
-                      </p>
-                      <div className="mainHead">
-                        <h4 className=" mb-2">AED 5,327</h4>
-                      </div>
-                      <div className="mb-2">
-                        <a href="" className="text-white fs-16">
-                          VIEW CLOSING COSTS
-                        </a>
-                      </div>
-                      <p className="fs-14  mb-2">
-                        Estimated monthly payment based on 800,000 AED finance
-                        amount with a 6.35% variable finance rate.
-                      </p>
-                      <p className="fs-14  mb-0">
-                        Disclaimer Rates may vary based on bank policies. T&C's
-                        apply
-                      </p>
-                    </div>
-                    <div className="py-3">
-                      <p className="text-primary fw-500 fs-20">
-                        ABOUT MY MORTGAGE
-                      </p>
+                  <MortgageCalculator property={propertyData} />
+                    <div className="border-bottom border-dark">
+                    <div className="BtnsflexBar mb-3">
 
-                      <p className="mb-0 fs-14">
-                        Leading mortgage brokerage dedicated to helping our
-                        clients achieve their dream of home ownership. Our team
-                        of experienced professionals are committed to providing
-                        exceptional customer service and personalised solutions
-                        to meet the specific needs of each of our clients
-                      </p>
+                    
+                        <DownloadPPTModal />
+                      
+                        <SaleOfferModal email={propertyData?.agent?.email} name={propertyData?.agent?.name} whatsapp={propertyData?.agent?.whatsapp}/>
+                            
+                          
+                      </div>
                     </div>
-                  </div>
+                    <div>
+                      {propertyData && (
+                        <>
+                        <p>Share this property on:</p>
+                        <div className="text-center mb-3">
+                    <WhatsappShareButton
+                            title={propertyData?.name}
+                            separator=","
+                            url={getCurrentUrl()}
+                            className=" Probtn whatsappBtn  scheduleBtn"
+                          >
+                            <i className="fa fa-whatsapp" aria-hidden="true"></i>
+                            Whatsapp
+                          
+                          </WhatsappShareButton>
+                      </div>
+                      <div className="text-center mb-3">
+
+                      <EmailShareButton url={getCurrentUrl()} className="Probtn bg-primary scheduleBtn">
+                      <i className="fa fa-envelope" aria-hidden="true"></i>
+                            Email
+                          </EmailShareButton>
+                          
+                          
+                      </div>
+                      </>
+                      )}
+                    
+                      </div>
 
                   <div className="bg-light px-3 py-2 mb-5">
                     {propertyData && propertyData.community && (

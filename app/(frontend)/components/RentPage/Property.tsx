@@ -1,6 +1,5 @@
 import Link from "next/link";
 function Property(props) {
-  console.log(props)
   return (
     <>
       <div>
@@ -74,7 +73,7 @@ function Property(props) {
                 ></i>
                 <span className="fa-sr-only"></span>
                 <span>
-                  {props.area} ft<sup>2</sup>
+                  {props.area} {props.unit_measure}
                 </span>
               </div>
             </div>

@@ -106,7 +106,7 @@ function SimpleModal() {
                                 type="text"
                                 name="nameCon2"
                                 id="nameCon2"
-                                className="form-control cntInptField mb-2"
+                                className="form-control mb-2"
                                 placeholder="Enter your name"
                                 autoComplete="off"
                                 value={formData.name}
@@ -124,7 +124,7 @@ function SimpleModal() {
                                 type="email"
                                 name="emailCon2"
                                 id="emailCon2"
-                                className="form-control cntInptField mb-2"
+                                className="form-control mb-2"
                                 placeholder="Enter your email"
                                 autoComplete="off"
                                 value={formData.email}
@@ -140,7 +140,7 @@ function SimpleModal() {
                             <div className="form-group">
                               <input
                                 type="tel"
-                                className="form-control cntInptField mb-2"
+                                className="form-control mb-2"
                                 id="telephoneNew3"
                                 name="phone"
                                 placeholder="Enter your Phone Number"
@@ -156,9 +156,7 @@ function SimpleModal() {
                               />
                             </div>
                             <div className="form-group">
-                              
-                              <input
-                                type="text"
+                              <textarea
                                 name="messageCon2"
                                 id="messageCon2"
                                 className="form-control  cntInptField mb-2"
