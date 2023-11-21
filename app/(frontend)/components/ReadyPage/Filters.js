@@ -226,7 +226,7 @@ function Filters({
             <option value="rent">Rent</option>
           </select>
         </div>
-        {
+ 
           <div className="col-md-2">
             <select
               onChange={handleChange}
