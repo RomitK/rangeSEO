@@ -224,7 +224,7 @@ function Filters({
             <option value="rent">Rent</option>
           </select>
         </div>
-        {!isCommercial && (
+        
           <div className="col-md-2">
             <select
               onChange={handleChange}
@@ -241,7 +241,7 @@ function Filters({
               ))}
             </select>
           </div>
-        )}
+        
         <div className="col-md-2">
           <div className="dropdown">
             <div
