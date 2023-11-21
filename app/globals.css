@@ -197,6 +197,20 @@ label {
   object-fit: cover;
   border-radius: 10px;
 }
+#saleSale .agent-img img {
+  width: 100%;
+  max-width: 300px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+#downlaodPPT  .agent-img img {
+  width: 100%;
+  max-width: 300px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 #bookAmeeting .agent-img img {
   width: 100%;
   max-width: 300px;
@@ -387,6 +401,10 @@ textarea {
 }
 .Link {
   text-decoration: none;
+}
+.react-share__ShareButton{
+  background-color: #64b161 !important;
+  color: white !important;
 }
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {

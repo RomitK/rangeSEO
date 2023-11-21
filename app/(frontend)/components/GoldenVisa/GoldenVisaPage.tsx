@@ -24,7 +24,7 @@ function GoldenVisaPage()
         setAnswer(value);
         setAnswers({ ...answers, [currentQuestion]: value });
     };
-
+ 
     const handleNextClicked = () => {
         if (!QUESTIONS[currentQuestion + 1]) {
             return;
