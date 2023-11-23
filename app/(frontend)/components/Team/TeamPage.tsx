@@ -7,7 +7,7 @@ function TeamPage() {
     <>
       <header>
         <img
-          src="/images/banner/team-banner.png"
+          src="/images/banner/teamBanner.webp"
           className="headerSimpleImg"
           alt="team"
         />

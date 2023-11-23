@@ -7,7 +7,7 @@ function AboutPage() {
     <>
       <header>
         <img
-          src="/images/banner/aboutbanner.webp"
+          src="/images/banner/aboutUsBanner.webp"
           className="headerSimpleImg"
           alt="header"
         />
