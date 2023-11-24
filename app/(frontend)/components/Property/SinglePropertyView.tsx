@@ -825,9 +825,9 @@ function SinglePropertyView({ params }) {
                             <GoogleMap
                               zoom={15}
                               center={{
-                                lat: parseFloat(propertyData?.default_latitude),
+                                lat: parseFloat(propertyData?.address_latitude),
                                 lng: parseFloat(
-                                  propertyData?.default_longitude
+                                  propertyData?.address_longitude
                                 ),
                               }}
                               options={{ mapId: "4504f8b37365c3d0" }}

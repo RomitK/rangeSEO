@@ -46,7 +46,7 @@ function Filters({
   });
   const [showMore, setShowMore] = useState(false);
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "properties?";
+    let getPropertiesURL = process.env.API_HOST + "/properties?";
     const formData = new FormData();
     for (let key in form) {
       if (form.hasOwnProperty(key)) {
@@ -57,7 +57,7 @@ function Filters({
         formData.append(key, form[key]);
       }
     }
-    console.log(getPropertiesURL);
+    
     fetch(getPropertiesURL)
       .then((response) => response.json())
       .then((res) => {
@@ -208,7 +208,6 @@ function Filters({
             onChange={(comm) => {
               form["community"] = comm.id;
               setForm({ ...form });
-             
             }}
           />
         </div>
