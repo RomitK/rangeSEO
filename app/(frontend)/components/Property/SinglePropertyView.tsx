@@ -646,6 +646,8 @@ function SinglePropertyView({ params }) {
                                       src={community["path"]}
                                       alt="community1"
                                       className="img-fluid"
+                                      style={{  height:"200px" }}
+                                     
                                     />
                                     <div className="communityImgOverlay">
                                       <div className="text-white"></div>
@@ -896,7 +898,7 @@ function SinglePropertyView({ params }) {
                           </p>
                         </div>
                         <div className="border-bottom border-2 py-3">
-                          <h4 className="fw-500 mb-1">METRO STATION</h4>
+                          <h4 className="fw-500 mb-1">BUS STATION</h4>
                           <Location
                             type={"bus_station"}
                             prepareRequestData={prepareRequestData}
