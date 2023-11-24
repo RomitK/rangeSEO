@@ -155,7 +155,7 @@ function SimpleModal() {
                                 required
                               />
                             </div>
-                            <div className="form-group">
+                            {/* <div className="form-group">
                               <textarea
                                 name="messageCon2"
                                 id="messageCon2"
@@ -170,7 +170,7 @@ function SimpleModal() {
                                   })
                                 }
                               />
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                         <div className="modal-footer border-0">

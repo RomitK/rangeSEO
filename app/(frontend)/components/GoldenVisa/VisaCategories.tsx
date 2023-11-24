@@ -12,7 +12,11 @@ function VisaCategories({ answers, onBackToQuestionClicked }) {
         for (const property in answers) {
             if (property) {
                 if (answers[property]) {
-                    visaCategoriesDup = [...visaCategoriesDup, ...QUESTIONS[property].visas];
+                    
+                    if(QUESTIONS[property]?.visas){
+                        visaCategoriesDup = [...visaCategoriesDup, ...QUESTIONS[property]?.visas];
+                    }
+                   
                 } else {
                     const index = visaCategories.indexOf(+property);
                     if (index !== -1) {

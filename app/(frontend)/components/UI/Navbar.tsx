@@ -225,16 +225,16 @@ function Navbar() {
                             Career
                           </Link>
                         </li>
-                        {/* <li className="nav-item py-3 border-bottom">
-                          <a className="nav-link" href="">
-                            Media
-                          </a>
-                        </li>
                         <li className="nav-item py-3 border-bottom">
-                          <a className="nav-link" href="">
+                          <Link className="nav-link" href="/medias"  onClick={() => closeRef.current.click()}>
+                            Media
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom" >
+                          <Link className="nav-link" href="/blogs" onClick={() => closeRef.current.click()}>
                             Blogs and News
-                          </a>
-                        </li> */}
+                          </Link>
+                        </li>
                         <li className="nav-item py-3 border-bottom">
                           <Link className="nav-link" href="/dubaiGuide"  onClick={() => closeRef.current.click()}>
                             Dubai Guide
@@ -522,18 +522,18 @@ function Navbar() {
                             Career
                           </Link>
                         </li>
-                        {/* <li className="nav-item py-3 border-bottom">
-                          <a className="nav-link" href="">
+                        <li className="nav-item py-3 border-bottom">
+                          <Link className="nav-link" href="/medias" onClick={() => closeRef.current.click()}>
                             Media
-                          </a>
+                          </Link>
                         </li>
                         <li className="nav-item py-3 border-bottom">
-                          <a className="nav-link" href="">
+                          <Link className="nav-link" href="/blogs" onClick={() => closeRef.current.click()}>
                             Blogs and News
-                          </a>
-                        </li> */}
+                          </Link>
+                        </li>
                         <li className="nav-item py-3 border-bottom">
-                          <Link className="nav-link" href="/dubaiGuide">
+                          <Link className="nav-link" href="/dubaiGuide" onClick={() => closeRef.current.click()}>
                             Dubai Guide
                           </Link>
                         </li>

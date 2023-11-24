@@ -49,10 +49,23 @@ function CommunityList() {
   return (
     <section className="communitiesSection">
       <div className="container">
-        <h4 className="sctionMdTitle text-primary mb-5 text-center">
+        <div className="mainHead mb-5 text-primary text-center">
+        <h4>
           COMMUNITIES
         </h4>
-        {/* <div className="row mb-5">
+
+
+        <div className="text-center mb-5">
+                       
+                        <div>
+                            <p className="mb-0">We have an array of properties available in the most sough-after communities of Dubai.</p>
+                        </div>
+
+                    </div>
+
+        </div>
+       
+        <div className="row mb-5">
           <div className="col-md-3">
             <div className="proSelectBox">
               <label>PROJECT</label>
@@ -73,7 +86,7 @@ function CommunityList() {
           <div className="col-md-3">
             <div className="proSelectBox">
               <label>DEVELOPER</label>
-              <Select options={developerOptions} className="reactSelectInput" />
+              <Select options={options} className="reactSelectInput" />
             </div>
           </div>
           <div className="col-md-3">
@@ -82,9 +95,11 @@ function CommunityList() {
               <Select options={options} className="reactSelectInput" />
             </div>
           </div>
-        </div> */}
+        </div>
 
         <div className="row">
+
+      
           {visibleCommunities?.map(function (community, index) {
             return (
               <div className="col-md-4" key={community.id}>
