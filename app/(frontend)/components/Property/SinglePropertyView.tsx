@@ -157,7 +157,8 @@ function SinglePropertyView({ params }) {
                 <div className="col-12 col-lg-8 col-md-8">
                   <div className="mb-3">
                     <Swiper
-                      observer={true}
+                      // observer={true}
+                      loop={true}
                       spaceBetween={10}
                       navigation={{
                         nextEl: ".swiper-button-next",
@@ -202,7 +203,8 @@ function SinglePropertyView({ params }) {
                         }}
                         loop={true}
                         spaceBetween={10}
-                        slidesPerView={3}
+                        slidesPerView={4}
+                        loopedSlides={4}
                         freeMode={true}
                         watchSlidesProgress={true}
                         modules={[FreeMode, Navigation, Thumbs]}
