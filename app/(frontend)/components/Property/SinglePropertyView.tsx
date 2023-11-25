@@ -149,7 +149,6 @@ function SinglePropertyView({ params }) {
 
   return (
     <>
-
       <section className="my-5">
         <div className="container">
           <div className="row justify-content-center">
@@ -164,9 +163,7 @@ function SinglePropertyView({ params }) {
                         nextEl: ".swiper-button-next",
                         prevEl: ".swiper-button-prev",
                       }}
-                      thumbs={
-                        thumbsSwiper ? { swiper: thumbsSwiper } : undefined
-                      }
+                      thumbs={{ swiper: thumbsSwiper }}
                       modules={[FreeMode, Navigation, Thumbs]}
                       onSwiper={(swiper) => {
                         PropertySwiperRef.current = swiper;
@@ -197,37 +194,37 @@ function SinglePropertyView({ params }) {
                         </span>
                       </div>
                     </Swiper>
-                      <div className="sliderThumbnailArea">
-                            <Swiper
-                              onSwiper={(swiper) => {
-                                setThumbsSwiper(swiper);
-                                PropertySwiperRef.current = swiper;
-                              }}
-                              loop={true}
-                              spaceBetween={10}
-                              slidesPerView={3}
-                              freeMode={true}
-                              watchSlidesProgress={true}
-                              modules={[FreeMode, Navigation, Thumbs]}
-                              className="swiper swiperThumb1  swiperThumbnailColm"
-                            >
-                              {propertyData?.gallery?.map((image, index) => {
-                                return (
-                                  <SwiperSlide key={image.id + index + "gallery2"}>
-                                    <img
-                                      src={image.path}
-                                      alt="range"
-                                      className="img-fluid"
-                                    />
-                                  </SwiperSlide>
-                                );
-                              })}
-                            </Swiper>
-                            <div className="sliderModalBox">
-                                 <GallaryModalImg images={propertyData?.floorplans}/>
-                                 <GallaryModalVideo video={propertyData?.video}/>
-                            </div>
-                        </div>
+                    <div className="sliderThumbnailArea">
+                      <Swiper
+                        onSwiper={(swiper) => {
+                          setThumbsSwiper(swiper);
+                          PropertySwiperRef.current = swiper;
+                        }}
+                        loop={true}
+                        spaceBetween={10}
+                        slidesPerView={3}
+                        freeMode={true}
+                        watchSlidesProgress={true}
+                        modules={[FreeMode, Navigation, Thumbs]}
+                        className="swiper swiperThumb1  swiperThumbnailColm"
+                      >
+                        {propertyData?.gallery?.map((image, index) => {
+                          return (
+                            <SwiperSlide key={image.id + index + "gallery2"}>
+                              <img
+                                src={image.path}
+                                alt="range"
+                                className="img-fluid"
+                              />
+                            </SwiperSlide>
+                          );
+                        })}
+                      </Swiper>
+                      <div className="sliderModalBox">
+                        <GallaryModalImg images={propertyData?.floorplans} />
+                        <GallaryModalVideo video={propertyData?.video} />
+                      </div>
+                    </div>
                   </div>
                   <div className="mb-3">
                     {/* <div className="py-3">
@@ -356,42 +353,46 @@ function SinglePropertyView({ params }) {
                 <div className="col-12 col-lg-4 col-md-4">
                   <div className=" px-2 py-2 mb-5">
                     <div className="rowFlexBar border-bottom border-2">
-                          <div className="mdColBar">
-                              <div className=" py-3">
-                                  <p className="text-primary fw-500 mb-1 fs-16">
-                                    PROPERTY STATUS
-                                  </p>
-                                  <p className="fw-500 mb-0 fs-16">For {propertyData && propertyData.category}</p>
-                              </div>
-                          </div>
-                          <div className="mdColBar">
-                             <div className=" py-3">
-                                <p className="text-primary fw-500 mb-1 fs-16">
-                                  PROPERTY TYPE
-                                </p>
-                                <p className="fw-500 mb-0 fs-16">
-                                  {propertyData && propertyData.accommodation}
-                                </p>
-                             </div>
-                          </div>
+                      <div className="mdColBar">
+                        <div className=" py-3">
+                          <p className="text-primary fw-500 mb-1 fs-16">
+                            PROPERTY STATUS
+                          </p>
+                          <p className="fw-500 mb-0 fs-16">
+                            For {propertyData && propertyData.category}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mdColBar">
+                        <div className=" py-3">
+                          <p className="text-primary fw-500 mb-1 fs-16">
+                            PROPERTY TYPE
+                          </p>
+                          <p className="fw-500 mb-0 fs-16">
+                            {propertyData && propertyData.accommodation}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                     <div className="rowFlexBar border-bottom border-2">
-                          <div className="mdColBar">
-                              <div className=" py-3">
-                                  <p className="text-primary fw-500 mb-1 fs-16">
-                                     PRICE
-                                  </p>
-                                  
-                              </div>
-                          </div>
-                          <div className="mdColBar">
-                             <div className=" py-3">
-                                  <p className="fw-500 mb-0 fs-16">AED {propertyData &&
-                                new Intl.NumberFormat().format(
-                                  propertyData.price
-                                )}</p>
-                             </div>
-                          </div>
+                      <div className="mdColBar">
+                        <div className=" py-3">
+                          <p className="text-primary fw-500 mb-1 fs-16">
+                            PRICE
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mdColBar">
+                        <div className=" py-3">
+                          <p className="fw-500 mb-0 fs-16">
+                            AED{" "}
+                            {propertyData &&
+                              new Intl.NumberFormat().format(
+                                propertyData.price
+                              )}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                     <div className="border-bottom border-2 py-3">
                       <ul className="list-unstyled proInfoList">
@@ -431,7 +432,8 @@ function SinglePropertyView({ params }) {
                               width="30px"
                             />
                             <span className="align-text-top ms-2 fs-14 fw-500">
-                              {propertyData && propertyData.area} {propertyData?.unit_measure}
+                              {propertyData && propertyData.area}{" "}
+                              {propertyData?.unit_measure}
                             </span>
                           </small>
                         </li>
@@ -460,60 +462,80 @@ function SinglePropertyView({ params }) {
                       </ul>
                     </div>
                     <div className="py-3 proUserBox">
-                      
                       <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
                         <div className="my-auto projctSpecIMg me-3 mb-3">
                           <center>
                             <img
-                              src={propertyData?.agent && propertyData.agent?.image }
+                              src={
+                                propertyData?.agent && propertyData.agent?.image
+                              }
                               className="img-fluid"
                               width="60"
-                              alt={propertyData?.agent && propertyData.agent?.name }
+                              alt={
+                                propertyData?.agent && propertyData.agent?.name
+                              }
                             />
                           </center>
                         </div>
                         <div className="proUserBoxContent mb-3">
                           <div className="projectSpec  text-uppercase">
-
-                                  <p className="text-primary fw-500 mb-0 fs-16">
-                                     {propertyData?.agent && propertyData?.agent?.name }
-                                  </p>
-                                  <p className="fw-500 mb-2 fs-16">{propertyData?.agent && propertyData?.agent?.designation }</p>
-                                  <a  href={"tel:" + propertyData?.agent?.contact} className="Probtn bg-primary">
-                                      <img src="/images/icons/phone.png"  className="proPhoneIcon" />
-                                      CALL NOW
-                                  </a>
-                            
+                            <p className="text-primary fw-500 mb-0 fs-16">
+                              {propertyData?.agent && propertyData?.agent?.name}
+                            </p>
+                            <p className="fw-500 mb-2 fs-16">
+                              {propertyData?.agent &&
+                                propertyData?.agent?.designation}
+                            </p>
+                            <a
+                              href={"tel:" + propertyData?.agent?.contact}
+                              className="Probtn bg-primary"
+                            >
+                              <img
+                                src="/images/icons/phone.png"
+                                className="proPhoneIcon"
+                              />
+                              CALL NOW
+                            </a>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="py-3">
-                      
                       <div className="BtnsflexBar mb-3">
-                            <a className="Probtn whatsappBtn wd50pr" href={"https://wa.me/" + propertyData?.agent?.whatsapp+"?text=Hi, "+ propertyData?.agent?.name +" Please let me know more about investing in Dubai Real Estate"}>
-                               <i className="fa fa-whatsapp"></i> 
-                               WHATSAPP
-                            </a>
-                            <a className="Probtn bg-primary wd50pr" href={"mailto:" + propertyData?.agent?.email}>
-                            <i className="fa fa-envelope"></i> 
-                              Email
-                            </a>
+                        <a
+                          className="Probtn whatsappBtn wd50pr"
+                          href={
+                            "https://wa.me/" +
+                            propertyData?.agent?.whatsapp +
+                            "?text=Hi, " +
+                            propertyData?.agent?.name +
+                            " Please let me know more about investing in Dubai Real Estate"
+                          }
+                        >
+                          <i className="fa fa-whatsapp"></i>
+                          WHATSAPP
+                        </a>
+                        <a
+                          className="Probtn bg-primary wd50pr"
+                          href={"mailto:" + propertyData?.agent?.email}
+                        >
+                          <i className="fa fa-envelope"></i>
+                          Email
+                        </a>
                       </div>
 
                       <div className="text-center mb-3">
-                          <a
-                            className="Probtn bg-primary scheduleBtn"
-                            data-bs-toggle="modal"
-                            data-bs-target="#bookAmeeting"
-                          >
-                             <i className="fa fa-calendar" aria-hidden="true"></i>
-                            SCHEDULE VIEWING
-                          </a>
+                        <a
+                          className="Probtn bg-primary scheduleBtn"
+                          data-bs-toggle="modal"
+                          data-bs-target="#bookAmeeting"
+                        >
+                          <i className="fa fa-calendar" aria-hidden="true"></i>
+                          SCHEDULE VIEWING
+                        </a>
                       </div>
-                      
                     </div>
-{/*                     
+                    {/*                     
                     {propertyData && (
                       <div className="py-3">
                         <div>
@@ -546,49 +568,52 @@ function SinglePropertyView({ params }) {
                         </div>
                       </div>
                     )} */}
-                    
                   </div>
                   <MortgageCalculator property={propertyData} />
-                    <div className="border-bottom border-dark">
+                  <div className="border-bottom border-dark">
                     <div className="BtnsflexBar mb-3">
+                      <DownloadPPTModal />
 
-                    
-                        <DownloadPPTModal />
-                      
-                        <SaleOfferModal email={propertyData?.agent?.email} name={propertyData?.agent?.name} whatsapp={propertyData?.agent?.whatsapp}/>
-                            
-                          
-                      </div>
+                      <SaleOfferModal
+                        email={propertyData?.agent?.email}
+                        name={propertyData?.agent?.name}
+                        whatsapp={propertyData?.agent?.whatsapp}
+                      />
                     </div>
-                    <div>
-                      {propertyData && (
-                        <>
+                  </div>
+                  <div>
+                    {propertyData && (
+                      <>
                         <p>Share this property on:</p>
                         <div className="text-center mb-3">
-                    <WhatsappShareButton
+                          <WhatsappShareButton
                             title={propertyData?.name}
                             separator=","
                             url={getCurrentUrl()}
                             className=" Probtn whatsappBtn  scheduleBtn"
                           >
-                            <i className="fa fa-whatsapp" aria-hidden="true"></i>
+                            <i
+                              className="fa fa-whatsapp"
+                              aria-hidden="true"
+                            ></i>
                             Whatsapp
-                          
                           </WhatsappShareButton>
-                      </div>
-                      <div className="text-center mb-3">
-
-                      <EmailShareButton url={getCurrentUrl()} className="Probtn bg-primary scheduleBtn">
-                      <i className="fa fa-envelope" aria-hidden="true"></i>
+                        </div>
+                        <div className="text-center mb-3">
+                          <EmailShareButton
+                            url={getCurrentUrl()}
+                            className="Probtn bg-primary scheduleBtn"
+                          >
+                            <i
+                              className="fa fa-envelope"
+                              aria-hidden="true"
+                            ></i>
                             Email
                           </EmailShareButton>
-                          
-                          
-                      </div>
+                        </div>
                       </>
-                      )}
-                    
-                      </div>
+                    )}
+                  </div>
 
                   <div className="bg-light px-3 py-2 mb-5">
                     {propertyData && propertyData.community && (
@@ -646,8 +671,7 @@ function SinglePropertyView({ params }) {
                                       src={community["path"]}
                                       alt="community1"
                                       className="img-fluid"
-                                      style={{  height:"200px" }}
-                                     
+                                      style={{ height: "200px" }}
                                     />
                                     <div className="communityImgOverlay">
                                       <div className="text-white"></div>
