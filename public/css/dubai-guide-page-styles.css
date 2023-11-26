@@ -18,6 +18,7 @@ justify-content: center;
 height: 100%;
 position: relative;
 overflow: hidden;
+padding: 0px !important;
 }
 .multiSilder .swiper-slide:before{
 content: "";

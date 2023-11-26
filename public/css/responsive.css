@@ -161,6 +161,12 @@ margin-bottom: 15px;
 header .headerSimpleImg{
 height: 250px;
 }
+header.aboutHeader .headerSimpleImg{
+    height: 160px ;
+}
+.aboutPgSection{
+    padding-top: 40px !important;
+}
 .TeamRow .teamCard{
 width: 100%;
 }
@@ -260,6 +266,45 @@ height: 16px;
 }
 .fixBtnContent .btnContentItem .fa-whatsapp{
 font-size: 20px;
+}
+
+
+.frmTabList .nav-link{
+    min-width: 90px;
+    font-size: 12px;
+}
+.search-input.frmSearcBar input{
+    font-size: 14px;
+    height: 44px;
+}
+.search-input.frmSearcBar .fa-search{
+ font-size: 16px;
+ top: 12px;
+}
+.headerForm{
+    width: 90%;
+}
+.navbar .container .my-auto .d-flex.justify-content-end{
+position: absolute;
+left: 10px;
+bottom: 3px;
+width: 154px
+}
+nav.navbar.bg-white{
+padding-bottom: 15px;
+}
+.clmSliderItem .carouselcontent .downloadBtn {
+    width: 206px;
+    font-size: 16px;
+}
+.clmSliderItem .carouselcontent h3{
+    font-size: 25px !important;
+}
+.sellWithRange .headConentBox{
+    max-width: 90% !important;
+}
+.wizardFooterBar button{
+    width: 70px !important;
 }
 
 }

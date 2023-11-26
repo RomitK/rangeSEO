@@ -5,7 +5,7 @@ function AboutPage() {
   const { managementsData } = useGetAllManagementData();
   return (
     <>
-      <header>
+      <header className="aboutHeader">
         <img
           src="/images/banner/aboutUsBanner.webp"
           className="headerSimpleImg"
