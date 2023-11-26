@@ -56,9 +56,10 @@ function HomeSearch() {
         <div className="p-relative">
           <video
             className="d-block w-100 videoMain"
-            muted playsInline autoPlay loop
+            muted={true} 
+            playsInline 
             preload="metadata"
-            poster="images/banner/homeBg.webp"
+            poster="videos/poster-img.png"
           >
             <source src="/videos/home4.mp4" type="video/mp4" />
             <source src="/videos/home4.mp4" type="video/mov" />
@@ -100,7 +101,7 @@ function HomeSearch() {
                                   </div>
                               </div> */}
           <div className="search-input frmSearcBar">
-            <input type="text" placeholder="Search" onChange={changeSearch} />
+            <input type="text" placeholder="Type your search..." onChange={changeSearch} />
             <i className="fa fa-search"></i>
           </div>
           <div id="suggestion-box">

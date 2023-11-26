@@ -24,19 +24,19 @@ function GallaryModalVideo(props) {
       >
         <div className="modal-dialog  modal-dialog-centered modal-lg modalBookMeet ">
           <div className="modal-content">
-            <div className="modal-header border-0 justify-content-end p-1">
+            <div className=" border-0 justify-content-end p-0">
               <button
                 type="button"
-                className="bg-transparent border-0"
+                className="bg-transparent border-0 mdlCloseBtn"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-              >
+                >
                 <i className="bi bi-x-circle text-primary"></i>
               </button>
             </div>
 
             {/* <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
-            <div className="modal-body  p-0 rounded-1 m-2">
+            <div className="modal-body  p-0 rounded-1">
               <div className="row g-0">
                 <div className="col-12 col-lg-12 col-md-12 descricalenderCol">
                   <video

@@ -1,5 +1,5 @@
 .header.careerHeader{
-    position: relative;
+position: relative;
 }
 .careerHeader .headerImgVideo{
 width: 100%;
@@ -8,18 +8,18 @@ max-height: 400px;
 object-fit: cover;
 }
 .header.careerHeader .headConentBox{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate( -50%, -50%);
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-    max-width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate( -50%, -50%);
+width: 100%;
+margin: 0 auto;
+text-align: center;
+max-width: 300px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 }
 .headTitle{
 color: #fff;
@@ -37,8 +37,9 @@ padding:12px 24px;
 text-decoration: none;
 display: flex;
 align-items: center;
-gap: 10p x;
+gap: 10px;
 width: fit-content !important;
+border: 0px;
 }
 .careerHeader .fillBtn:hover{
 background-color:#2F3C6A;
@@ -198,15 +199,15 @@ padding: 0px;
 margin: 0px;
 }
 .ulList {
-    list-style-image: url(../images/icons/tick-icon1.ico);
+list-style-image: url(../images/icons/tick-icon1.ico);
 }
 .ulList li{
-    /* font-size: 14px !important; */
-    color: #6F6D71 !important;
-    margin: 0px;
+/* font-size: 14px !important; */
+color: #6F6D71 !important;
+margin: 0px;
 }
 .ulList li {
-    margin-bottom: 5px;
+margin-bottom: 5px;
 }
 .checkListItem{
 position: relative;
@@ -242,5 +243,5 @@ right: unset  !important;
 top: unset  !important;
 }
 .ListingSection.SingleCareer{
-    border-top: 0px;
+border-top: 0px;
 }

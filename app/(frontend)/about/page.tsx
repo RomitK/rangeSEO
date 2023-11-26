@@ -2,7 +2,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { SWRProvider } from "@/app/swr-provider";
-import "@/public/css/about-styles.css";
 import Link from "next/link";
 import AboutPage from "../components/AboutPage/AboutPage";
 function About() {

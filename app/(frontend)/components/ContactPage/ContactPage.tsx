@@ -3,6 +3,8 @@ import parse from "html-react-parser";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
+import "@/public/css/style.css"
+import "@/public/css/contact-Us-styles.css"
 
 function ContactPage() {
   const { faqsData } = useGetContactFaqsData();
