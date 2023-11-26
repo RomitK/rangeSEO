@@ -59,7 +59,7 @@ function HomeSearch() {
             muted={true} 
             playsInline 
             preload="metadata"
-            poster="videos/poster-img.png"
+            poster="videos/homeSearchImage.png"
           >
             <source src="/videos/home4.mp4" type="video/mp4" />
             <source src="/videos/home4.mp4" type="video/mov" />
