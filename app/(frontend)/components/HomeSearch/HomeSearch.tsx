@@ -72,7 +72,6 @@ function HomeSearch() {
             <Link href="/buy" className="nav-link active">
               Buy
             </Link>
-
             <Link href="/rent" className="nav-link">
               Rent
             </Link>
