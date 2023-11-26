@@ -7,13 +7,13 @@ import SwiperCore, { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "@/public/css/career-page-styles.css";
-import "@/public/css/responsive.css";
 import { Pagination, Navigation } from "swiper/modules";
 import parse from "html-react-parser";
 import Link from "next/link";
 import CareerModel from "../models/careerModel";
 import ContactSection from "../ContactSection/ContactSection";
+import "@/public/css/career-page-styles.css";
+import "@/public/css/responsive.css";
 function CareerListPage() {
   const { CareersData } = useGetAllCareerData();
   const [careers, setCareers] = useState([]);

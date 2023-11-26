@@ -1,10 +1,11 @@
 "use client";
-import "@/public/css/services-styles.css";
+
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import ContactModel from "../components/models/contactModel";
+import "@/public/css/services-styles.css";
 function Services() {
   const router = useRouter();
   const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
