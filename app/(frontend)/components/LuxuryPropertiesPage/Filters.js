@@ -314,7 +314,7 @@ function Filters({
             </label>
           </div>
           <button
-            className="btn btn-primary btn-lg"
+            className="btn btn-primary"
             type="button"
             onClick={() => setShowMore(!showMore)}
           >
