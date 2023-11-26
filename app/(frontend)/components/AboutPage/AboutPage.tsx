@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useGetAllManagementData } from "@/src/services/ManagementService";
-
+import "@/public/css/about-styles.css";
 function AboutPage() {
   const { managementsData } = useGetAllManagementData();
   return (
