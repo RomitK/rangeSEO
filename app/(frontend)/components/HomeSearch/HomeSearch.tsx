@@ -56,7 +56,8 @@ function HomeSearch() {
         <div className="p-relative">
           <video
             className="d-block w-100 videoMain"
-            muted playsInline 
+            muted={true} 
+            playsInline 
             preload="metadata"
             poster="videos/poster-img.png"
           >
