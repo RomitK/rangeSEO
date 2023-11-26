@@ -175,22 +175,24 @@ function CareerModel(props) {
                               />
                             </div>
                             <div className="form-group">
-                              <input
-                                type="file"
-                                // className="form-control mb-2 cntInptField"
-                                className="form-control mb-2"
-                                id="cv"
-                                name="cv"
-                                ref={fileRef}
-                                placeholder="Enter your Phone Number"
-                                onChange={(e) =>
-                                  setFormData({
-                                    ...formData,
-                                    cv: e.target.files[0],
-                                  })
-                                }
-                                autoComplete="off"
-                              />
+                                <label className="fileChooseBar">
+                                    <p>Choose CV</p>
+                                    <input
+                                      type="file"
+                                      // className="form-control mb-2 cntInptField"
+                                      className="form-control mb-2"
+                                      id="cv"
+                                      name="cv"
+                                      ref={fileRef}
+                                      onChange={(e) =>
+                                        setFormData({
+                                          ...formData,
+                                          cv: e.target.files[0],
+                                        })
+                                      }
+                                      autoComplete="off"
+                                    />
+                                  </label>
                             </div>
                             <div className="form-group">
                               <textarea

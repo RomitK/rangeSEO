@@ -22,12 +22,12 @@ color: #fefefe !important;
 font: normal normal 700 14px Raleway;
 }
 .btn-blue {
-background-color: #2F3C6A !important;
-border-color: #2F3C6A !important;
-color: #fefefe !important;
-font: normal normal 700 14px Raleway;
-border-radius: 2px;
-padding: 12px 50px;
+    background-color: #2f3c6a!important;
+    border-color: #2f3c6a!important;
+    border-radius: 2px !important;
+    padding: 12px 50px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
 }
 .btn-white {
 background-color: #fff !important;
@@ -1548,16 +1548,19 @@ border-radius: 10px 10px 0px 0px;
 overflow: hidden;
 }
 .frmTabList .nav-link{
-background-color: #fff;
-border-radius: 0px;
+background-color: #fff !important;
+border-radius: 0px !important;
 color: #3f3f3f;
 min-width: 110px;
 text-align: center;
 font-size: 14px;
 font-weight: 600;
 }
+.frmTabList .nav-link:hover{
+ color: #117bb9  !important;   
+}
 .frmTabList .nav-link.active{
-background-color: #117bb9;
+background-color: #117bb9 !important;
 }
 .search-input.frmSearcBar .fa-search{
 position: absolute;
@@ -1780,4 +1783,26 @@ display: none;
 }
 .socialfixBar .FxBtn[aria-expanded="true"] .crossSvgIcon{
     display: block;
+    }
+    .form-check.d-none.d-sm-block .btn.btn-outline-primary:hover{
+    color: #fff !important;
+    }
+    .fileChooseBar{
+        position: relative;
+        width: 100%;
+    }
+    .fileChooseBar p{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 114px;
+        height: 38px;
+        background-color: #117bb9;
+        border-radius: 3px !important;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+
     }
