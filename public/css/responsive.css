@@ -73,6 +73,18 @@ grid-template-columns: auto auto auto !important ;
 .guideSellSection .colmBox.formBox, .guideSellSection .rowSec .colmBox{
     width: 100%;
 }
+.sliderThumbnailArea .sliderModalBox{
+    width: 200px;
+}
+.sliderThumbnailArea .gallerymodalBtn{
+    font-size: 11px;
+}
+.sliderModalBox .gallerymodalBtn i{
+    font-size: 14px;
+}
+.sliderThumbnailArea{
+height: 9vw !important;
+}
 }
 @media (max-width:768px){
 .AddressArea{
@@ -216,4 +228,38 @@ padding: 20px;
 .dashboardcontrols.wizardWrapArea{
     padding: 30px 20px !important;
 }
+.sliderThumbnailArea{
+height: unset !important;
+flex-direction: column;
+}
+.sliderThumbnailArea .swiper.swiperThumbnailColm.swiper-initialized{
+height: unset !important;
+}
+.sliderModalBox .gallerymodalBtn i{
+font-size: 18px;
+}
+.sliderThumbnailArea .gallerymodalBtn{
+font-size: 14px;
+height: 40px;
+}
+.sliderThumbnailArea .sliderModalBox{
+margin: 15px auto 10px;
+}
+.socialfixBar .fixBtnContent{
+flex-direction: column;
+justify-content: center;
+}
+.fixBtnContent .btnContentItem{
+font-size: 9px;
+padding: 10px 6px;
+gap: 6px;
+}
+.fixBtnIcon {
+width: 26px;
+height: 16px;
+}
+.fixBtnContent .btnContentItem .fa-whatsapp{
+font-size: 20px;
+}
+
 }
