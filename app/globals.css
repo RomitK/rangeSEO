@@ -406,6 +406,17 @@ textarea {
   background-color: #64b161 !important;
   color: white !important;
 }
+.projectType {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  background-color: #fff;
+  color: #2B2B2B;
+  border-radius: 0px;
+  font-weight: 700;
+  padding: 10px 20px;
+  opacity: 0.73;
+  float: right;
+}
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
 }
