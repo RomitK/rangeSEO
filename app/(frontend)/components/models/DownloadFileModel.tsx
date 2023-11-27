@@ -42,7 +42,7 @@ function DownloadFileModel(props) {
   };
   return (
     <>
-      <a href={props.downloadFile} target="_blank" ref={fileRef}>
+      <a href={props.downloadFile} target="_blank" ref={fileRef} className="text-white">
         Download
       </a>
       <div
