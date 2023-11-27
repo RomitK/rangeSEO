@@ -1020,15 +1020,15 @@ font-size: 2rem;
 font-weight: 500;
 }
 .btnNearby {
-border: 1px solid #6F6D71;
-color: #2B2B2B;
-text-transform: uppercase;
-border-radius: 0px;
+border: 1px solid #6F6D71 !important;
+color: #2B2B2B !important;
+text-transform: uppercase !important;
+border-radius: 0px !important;
 }
 .btnNearby:hover {
-border: 1px solid #136DAE;
-background-color: #136DAE;
-color: #fff;
+border: 1px solid #136DAE !important;
+background-color: #136DAE !;
+color: #fff !important;
 text-transform: uppercase;
 border-radius: 0px;
 }
