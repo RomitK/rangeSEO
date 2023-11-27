@@ -1052,8 +1052,8 @@ width: 8px !important;
 height: 8px !important;
 }
 .btnNearby.active{
-background-color: #136DAE;
-color: #fff;
+background-color: #136DAE !important;
+color: #fff !important;
 }
 .communityMainSwiper .swiper-pagination-bullet {
 background-color: #fff;
