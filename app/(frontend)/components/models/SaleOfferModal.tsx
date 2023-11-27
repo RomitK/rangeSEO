@@ -67,10 +67,10 @@ const SaleOfferModal = (prop) => {
   return (
     <>
       <a
-        className="Probtn bg-primary  text-uppercase btn-lg"
+        className="btnContentItem text-decoration-none"
         data-bs-toggle="modal"
         data-bs-target="#saleSale"
-      >
+      > <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" /> 
         CLICK FOR A SALE OFFER
       </a>
 

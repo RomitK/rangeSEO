@@ -64,9 +64,9 @@ const DownloadPPTModal = () => {
       
 
 
-      <a className="Probtn bg-primary  text-uppercase btn-lg" data-bs-toggle="modal"
+      <a className="btnContentItem text-decoration-none" data-bs-toggle="modal"
                           data-bs-target="#downlaodPPT">
-                               
+                               <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
                                CLICK FOR MORE DETAILS
                             </a>
 

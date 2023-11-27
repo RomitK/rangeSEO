@@ -572,7 +572,7 @@ function SinglePropertyView({ params }) {
                     )} */}
                   </div>
                   <MortgageCalculator property={propertyData} />
-                  <div className="border-bottom border-dark">
+                  {/* <div className="border-bottom border-dark">
                     <div className="BtnsflexBar mb-3">
                       <DownloadPPTModal />
 
@@ -582,8 +582,8 @@ function SinglePropertyView({ params }) {
                         whatsapp={propertyData?.agent?.whatsapp}
                       />
                     </div>
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     {propertyData && (
                       <>
                         <p>Share this property on:</p>
@@ -615,7 +615,7 @@ function SinglePropertyView({ params }) {
                         </div>
                       </>
                     )}
-                  </div>
+                  </div> */}
 
                   <div className="bg-light px-3 py-2 mb-5">
                     {propertyData && propertyData.community && (
@@ -983,14 +983,40 @@ function SinglePropertyView({ params }) {
                           </button>
                           <div id="fixBtn-1" className="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                <div className="fixBtnContent">
-                                     <button className="btnContentItem whatsapp">
+                                     {/* <button className="btnContentItem whatsapp">
                                            <i className="fa fa-whatsapp"></i>
                                             Share on whatsapp
-                                      </button>
+                                      </button> */}
+
+                                      <WhatsappShareButton
+                                        title={propertyData?.name}
+                                        separator=","
+                                        url={getCurrentUrl()}
+                                        className="btnContentItem whatsapp"
+                                      >
+                                        <i
+                                          className="fa fa-whatsapp"
+                                          aria-hidden="true"
+                                        ></i>
+                                        Share on whatsapp
+                                      </WhatsappShareButton>
+{/* 
                                       <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-3.png" className="fixBtnIcon" />
                                            Share on Email
-                                      </button>
+                                      </button> */}
+
+                                      <EmailShareButton
+                                      url={getCurrentUrl()}
+                                      className="btnContentItem email"
+                                    >
+                                      <i
+                                        className="fa fa-envelope"
+                                        aria-hidden="true"
+                                      ></i>
+                                      Share on Email
+                                    </EmailShareButton>
+
                                </div>
                           </div>
                       </div>
@@ -1003,14 +1029,21 @@ function SinglePropertyView({ params }) {
                           </button>
                           <div id="fixBtn-2" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                               <div className="fixBtnContent">
-                                    <button className="btnContentItem">
+                                    {/* <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
                                            download & Share Property Presentation
-                                      </button>
-                                      <button className="btnContentItem">
+                                      </button> */}
+
+                                      <DownloadPPTModal />
+                                      <SaleOfferModal
+                        email={propertyData?.agent?.email}
+                        name={propertyData?.agent?.name}
+                        whatsapp={propertyData?.agent?.whatsapp}
+                      />
+                                      {/* <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
                                             Download & Share Sale offer
-                                      </button>
+                                      </button> */}
                                </div>
                           </div>
                       </div>

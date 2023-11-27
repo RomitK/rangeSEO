@@ -115,7 +115,6 @@ function SingleProjectView({ params }) {
           </div>
         </div>
       </section>
-
       <section>
         <div className="tabsListConatiner ">
           <div className="container">
@@ -436,7 +435,7 @@ function SingleProjectView({ params }) {
                     <i className="bi bi-chevron-left fs-1"></i>
                   </span>
                 </div>
-                <div className="swiper-pagination"></div>
+               
               </Swiper>
             </div>
           </div>
