@@ -1027,10 +1027,10 @@ border-radius: 0px !important;
 }
 .btnNearby:hover {
 border: 1px solid #136DAE !important;
-background-color: #136DAE !;
+background-color: #136DAE !important;
 color: #fff !important;
-text-transform: uppercase;
-border-radius: 0px;
+text-transform: uppercase !important;
+border-radius: 0px !important;
 }
 .ratingPro small {
 font-size: 16px;
