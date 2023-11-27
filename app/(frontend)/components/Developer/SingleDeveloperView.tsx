@@ -671,6 +671,56 @@ function SingleDeveloperView({ params }) {
                                             property.communities.name}
                                         </small>
                                       </div>
+                                      <p className="fs-18 mb-2 text-primary fw-semibold">
+                                          AED{" "}
+                                          {property &&
+                                            new Intl.NumberFormat().format(
+                                              property.price
+                                            )}{" "}
+                                        </p>
+                                        <ul className="list-unstyled mb-0 d-flex justify-content-between">
+                                          <li className="d-inline">
+                                            <small>
+                                              <img
+                                                src="/images/icons/bed.png"
+                                                alt="Range"
+                                                className="img-fluid"
+                                                width="25px"
+                                              />
+                                              <span className="align-text-top ms-1">
+                                                {property.bedrooms}
+                                              </span>
+                                            </small>
+                                          </li>
+                                          <li className="d-inline">
+                                            <small>
+                                              <img
+                                                src="/images/icons/bath.png"
+                                                alt="Range"
+                                                className="img-fluid"
+                                                width="20px"
+                                              />
+                                              <span className="align-text-top ms-1">
+                                                {property.bathrooms}
+                                              </span>
+                                            </small>
+                                          </li>
+                                          <li className="d-inline">
+                                            <small>
+                                              <img
+                                                src="/images/icons/area.png"
+                                                alt="Range"
+                                                className="img-fluid"
+                                                width="20px"
+                                              />
+                                              <span className="align-text-top ms-1">
+                                                {" "}
+                                                {property.area}{" "}
+                                                {property.unit_measure}
+                                              </span>
+                                            </small>
+                                          </li>
+                                        </ul>
                                     </div>
                                   </div>
                                 </div>
