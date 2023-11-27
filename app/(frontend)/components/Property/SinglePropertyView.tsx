@@ -264,6 +264,11 @@ function SinglePropertyView({ params }) {
                       </div>
                     </div> */}
                     <div className="py-2">
+                        <div className="text-blue">
+                              <h4 className="mb-2">
+                                {propertyData && propertyData.name}
+                              </h4>
+                          </div>
                       <div>
                         <div className="fs-14">
                           {propertyData &&
