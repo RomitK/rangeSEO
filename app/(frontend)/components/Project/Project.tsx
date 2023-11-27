@@ -45,7 +45,7 @@ function Project(props) {
               <small className="text-secondary">{props.address}</small>
             </div>
             <p className="fs-18 mb-2 text-primary fw-semibold">
-              AED {props.starting_price}
+              AED {  new Intl.NumberFormat().format(props.starting_price )}
             </p>
             <div className="features">
               <div>

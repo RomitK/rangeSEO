@@ -213,6 +213,7 @@ function SingleProjectView({ params }) {
           {parse(projectData?.longDescription ?? "")}
 
           <div>
+            <br></br>
             <button
               className="btn btn-blue text-uppercase btn-lg"
               data-bs-toggle="modal"
@@ -442,7 +443,7 @@ function SingleProjectView({ params }) {
         </div>
       </section>
 
-      <section className="mt-5 bg-light py-5">
+      <section className="mt-5 bg-light py-5" id="AvailableProperties">
         <div className="container">
           <div className="row g-3 justify-content-center">
             <div className="col-12 col-lg-12 col-md-12">

@@ -22,6 +22,7 @@ function ProjectList() {
 
   const options = homeData?.newProjects;
   const projectChangeHandle = (event) => {
+    setSelectedProject(event.value);
     router.push("/projects/" + event.value);
   };
 
@@ -40,7 +41,7 @@ function ProjectList() {
     starting_price: "",
     mainImage: "",
     slug: "",
-    completionStatusName:""
+    completionStatusName: "",
   });
   const [markers, setMarkers] = useState([]);
   const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
@@ -100,7 +101,7 @@ function ProjectList() {
       starting_price,
       mainImage,
       slug,
-      completionStatusName
+      completionStatusName,
     });
     setIsOpen(true);
   };
@@ -117,108 +118,105 @@ function ProjectList() {
 
   const closeModal = () => {
     setIsOpen(false);
-        setModalOpen(false);
+    setModalOpen(false);
   };
   return (
     <>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-              
-                <div className="">
-                    {!isLoaded ? (
-                        <h1>Loading...</h1>
-                    ) : (
-                     
-<GoogleMap
-                            mapContainerClassName="map-container"
-                            onLoad={onMapLoad}
-                            onClick={() => setIsOpen(false)}
-                        >
-                            {markers.map(
-                               (
-                                {
-                                  address,
-                                  title,
-                                  area,
-                                  bedrooms,
-                                  bathrooms,
-                                  starting_price,
-                                  mainImage,
-                                  lat,
-                                  lng,
-                                  slug,
-                                  completionStatusName
-                                },
-                                ind
-                              ) => (
-                                    <MarkerF
-                                    key={ind}
-                                    position={{ lat, lng }}
-                                    onClick={() => {
-                                      handleMarkerClick(
-                                        ind,
-                                        lat,
-                                        lng,
-                                        address,
-                                        title,
-                                        area,
-                                        bedrooms,
-                                        bathrooms,
-                                        starting_price,
-                                        mainImage,
-                                        slug,
-                                        completionStatusName
-                                      );
-                                    }}
-                                    >
-                                        <OverlayView
-                              position={{ lat, lng }}
-                              mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-                            >
-                              <div
-                                style={{
-                                  backgroundColor: "white",
-                                  padding: "5px",
-                                  border: "1px solid #ccc",
-                                  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
-                                  borderRadius: "4px",
-                                  minWidth: "50px", // Set a minimum width
-                                  whiteSpace: "nowrap", // Rounded corners
-                                }}
-                              >
-                                {starting_price}
-                              </div>
-                            </OverlayView>
-                                        {isOpen &&
-                                            infoWindowData?.id === ind && (
-                                                <InfoWindow
-                                                    onCloseClick={() => {
-                                                        setIsOpen(false);
-                                                    }}
-                                                >
-                                                    <div>
-                                                        <Project
-                                    slug={infoWindowData.slug}
-                                    area={infoWindowData.area}
-                                    bathrooms={infoWindowData.bathrooms}
-                                    bedrooms={infoWindowData.bedrooms}
-                                    starting_price={infoWindowData.starting_price}
-                                    address={infoWindowData.address}
-                                    mainImage={
-                                      infoWindowData.mainImage
-                                    }
-                                    title={infoWindowData.title}
-                                    completionStatusName={infoWindowData.completionStatusName}
-                                  />
-                                                    </div>
-                                                </InfoWindow>
-                                            )}
-                                    </MarkerF>
-                                )
-                            )}
-                        </GoogleMap>
+        <div className="">
+          {!isLoaded ? (
+            <h1>Loading...</h1>
+          ) : (
+            <GoogleMap
+              mapContainerClassName="map-container"
+              onLoad={onMapLoad}
+              onClick={() => setIsOpen(false)}
+            >
+              {markers.map(
+                (
+                  {
+                    address,
+                    title,
+                    area,
+                    bedrooms,
+                    bathrooms,
+                    starting_price,
+                    mainImage,
+                    lat,
+                    lng,
+                    slug,
+                    completionStatusName,
+                  },
+                  ind
+                ) => (
+                  <MarkerF
+                    key={ind}
+                    position={{ lat, lng }}
+                    onClick={() => {
+                      handleMarkerClick(
+                        ind,
+                        lat,
+                        lng,
+                        address,
+                        title,
+                        area,
+                        bedrooms,
+                        bathrooms,
+                        starting_price,
+                        mainImage,
+                        slug,
+                        completionStatusName
+                      );
+                    }}
+                  >
+                    <OverlayView
+                      position={{ lat, lng }}
+                      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+                    >
+                      <div
+                        style={{
+                          backgroundColor: "white",
+                          padding: "5px",
+                          border: "1px solid #ccc",
+                          boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
+                          borderRadius: "4px",
+                          minWidth: "50px", // Set a minimum width
+                          whiteSpace: "nowrap", // Rounded corners
+                        }}
+                      >
+                        {starting_price}
+                      </div>
+                    </OverlayView>
+                    {isOpen && infoWindowData?.id === ind && (
+                      <InfoWindow
+                        onCloseClick={() => {
+                          setIsOpen(false);
+                        }}
+                      >
+                        <div>
+                          <Project
+                            slug={infoWindowData.slug}
+                            area={infoWindowData.area}
+                            bathrooms={infoWindowData.bathrooms}
+                            bedrooms={infoWindowData.bedrooms}
+                            starting_price={infoWindowData.starting_price}
+                            address={infoWindowData.address}
+                            mainImage={infoWindowData.mainImage}
+                            title={infoWindowData.title}
+                            completionStatusName={
+                              infoWindowData.completionStatusName
+                            }
+                          />
+                        </div>
+                      </InfoWindow>
                     )}
-                </div>
-            </Modal>
+                  </MarkerF>
+                )
+              )}
+            </GoogleMap>
+          )}
+        </div>
+      </Modal>
 
       <section className="my-5">
         <div className="container-fluid px-0">
@@ -261,85 +259,79 @@ function ProjectList() {
                       </div>
                     </div> */}
 
-                    <div className="col-10 col-lg-2 col-md-3 mx-3 my-auto" onClick={openModal}>
-                                            <div className="mapShowBg shadow">
-                                                <p className="text-primary mb-1 fw-semibold">SHOW MAP</p>
-                                            </div>
-                                        </div>
+                    <div
+                      className="col-10 col-lg-2 col-md-3 mx-3 my-auto"
+                      onClick={openModal}
+                    >
+                      <div className="mapShowBg shadow">
+                        <p className="text-primary mb-1 fw-semibold">
+                          SHOW MAP
+                        </p>
+                      </div>
+                    </div>
 
-                                        <div className="col-10 col-lg-2 col-md-3 mx-3 my-auto">
-                                            <div className="bg-white shadow  px-3 py-2">
-                                                <p className="text-primary mb-1 fw-semibold">
-                                                    PRICE RANGE
-                                                </p>
-                                                <div className="dropdown">
-                                                    <div
-                                                        className="form-select"
-                                                        data-bs-toggle="dropdown"
-                                                        aria-expanded="false"
-                                                        data-bs-auto-close="outside"
-                                                    >
-                                                        {minMaxPrice.minPrice &&
-                                                        minMaxPrice.maxPrice
-                                                            ? `${
-                                                                  minMaxPrice.minPrice
-                                                              } ${
-                                                                  minMaxPrice.minPrice &&
-                                                                  minMaxPrice.maxPrice &&
-                                                                  "-"
-                                                              } ${
-                                                                  minMaxPrice.maxPrice
-                                                              } AED`
-                                                            : "Price"}
-                                                        {}
-                                                    </div>
-                                                    <div className="dropdown-menu p-4 mt-1">
-                                                        <div className="mb-3">
-                                                            <label className="form-label">
-                                                                Minimum Price
-                                                            </label>
-                                                            <input
-                                                                type="number"
-                                                                className="form-control"
-                                                                id="minprice"
-                                                                min={0}
-                                                                placeholder="0"
-                                                                name="minprice"
-                                                                ref={
-                                                                    minPriceRef
-                                                                }
-                                                            />
-                                                        </div>
-                                                        <div className="mb-3">
-                                                            <label className="form-label">
-                                                                Maximum Price
-                                                            </label>
-                                                            <input
-                                                                type="number"
-                                                                name="maxprice"
-                                                                className="form-control"
-                                                                id="maxprice"
-                                                                placeholder="Any Price"
-                                                                ref={
-                                                                    maxPriceRef
-                                                                }
-                                                            />
-                                                        </div>
-                                                        <div className="mt-4 d-grid">
-                                                            <button
-                                                                className="btn btn-primary btn-lg"
-                                                                type="button"
-                                                                onClick={
-                                                                    handleApplyPrice
-                                                                }
-                                                            >
-                                                                Apply
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                    <div className="col-10 col-lg-2 col-md-3 mx-3 my-auto">
+                      <div className="bg-white shadow  px-3 py-2">
+                        <p className="text-primary mb-1 fw-semibold">
+                          PRICE RANGE
+                        </p>
+                        <div className="dropdown">
+                          <div
+                            className="form-select"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            data-bs-auto-close="outside"
+                          >
+                            {minMaxPrice.minPrice && minMaxPrice.maxPrice
+                              ? `${minMaxPrice.minPrice} ${
+                                  minMaxPrice.minPrice &&
+                                  minMaxPrice.maxPrice &&
+                                  "-"
+                                } ${minMaxPrice.maxPrice} AED`
+                              : "Price"}
+                            {}
+                          </div>
+                          <div className="dropdown-menu p-4 mt-1">
+                            <div className="mb-3">
+                              <label className="form-label">
+                                Minimum Price
+                              </label>
+                              <input
+                                type="number"
+                                className="form-control"
+                                id="minprice"
+                                min={0}
+                                placeholder="0"
+                                name="minprice"
+                                ref={minPriceRef}
+                              />
+                            </div>
+                            <div className="mb-3">
+                              <label className="form-label">
+                                Maximum Price
+                              </label>
+                              <input
+                                type="number"
+                                name="maxprice"
+                                className="form-control"
+                                id="maxprice"
+                                placeholder="Any Price"
+                                ref={maxPriceRef}
+                              />
+                            </div>
+                            <div className="mt-4 d-grid">
+                              <button
+                                className="btn btn-primary btn-lg"
+                                type="button"
+                                onClick={handleApplyPrice}
+                              >
+                                Apply
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 {homeData?.projects?.map((project, index) => {
