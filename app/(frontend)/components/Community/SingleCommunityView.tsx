@@ -360,7 +360,7 @@ function SinglecommunityDataView({ params }) {
                           {nearByLocations?.map((location, locIndex) => {
                             return (
                               <>
-                                {locIndex < 5 && (
+                                {locIndex < 7 && (
                                   <div
                                     className="border-bottom border-1 border-dark py-2"
                                     key={locIndex + "loc"}
