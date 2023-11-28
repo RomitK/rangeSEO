@@ -74,6 +74,9 @@ a {
   font-weight: 400;
 }
 /* common  */
+.form-control {
+  border: 1px solid #ced4da !important;
+}
 .text-primary {
   color: #136dae !important;
 }

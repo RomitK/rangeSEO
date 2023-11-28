@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
+import PhoneInput from "react-phone-number-input";
 function ContactModel(props) {
   const [formData, setFormData] = useState({
     name: "",
@@ -134,8 +135,17 @@ function ContactModel(props) {
                               />
                             </div>
                             <div className="form-group">
-                             
-                              <input
+                              <PhoneInput
+                                international
+                                countryCallingCodeEditable={false}
+                                className="form-control mb-2 fs-14 d-flex"
+                                defaultCountry="AE"
+                                placeholder="Enter Phone Number"
+                                value={formData.phone}
+                                onChange={(e) => setFormData({ ...formData, phone: e })}
+                                style={{ border: "0px" }}
+                              />
+                              {/* <input
                                 type="tel"
                                 className="form-control mb-2"
                                 id="telephoneNew3"
@@ -150,7 +160,7 @@ function ContactModel(props) {
                                 }
                                 autoComplete="off"
                                 required
-                              />
+                              /> */}
                             </div>
                             <div className="form-group">
                               

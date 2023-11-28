@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
+import PhoneInput from "react-phone-number-input";
 function DownloadFileModel(props) {
   const [formData, setFormData] = useState({
     name: "",
@@ -137,8 +138,19 @@ function DownloadFileModel(props) {
                                 required
                               />
                             </div>
+                            
                             <div className="form-group">
-                              <input
+                            <PhoneInput
+                                international
+                                countryCallingCodeEditable={false}
+                                className="form-control mb-2 fs-14 d-flex"
+                                defaultCountry="AE"
+                                placeholder="Enter Phone Number"
+                                value={formData.phone}
+                                onChange={(e) => setFormData({ ...formData, phone: e })}
+                                required
+                              />
+                              {/* <input
                                 type="tel"
                                 className="form-control mb-2"
                                 id="telephoneNew3"
@@ -153,7 +165,7 @@ function DownloadFileModel(props) {
                                 }
                                 autoComplete="off"
                                 required
-                              />
+                              /> */}
                             </div>
                             <div className="form-group">
                               <textarea

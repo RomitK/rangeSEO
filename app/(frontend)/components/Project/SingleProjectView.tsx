@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Link from "next/link";
 import parse from "html-react-parser";
+import { EmailShareButton, WhatsappShareButton } from "react-share";
 // import GoogleMapReact from "google-map-react";
 import { useMemo } from "react";
 import { useGetSingleProjectData } from "@/src/services/ProjectService";
@@ -17,6 +18,9 @@ import "@/public/css/responsive.css";
 import DownloadFileModel from "../models/DownloadFileModel";
 import PaymentPlanModel from "../models/paymentPlanModel";
 import FloorPlanModal from "../models/FloorPlanModel";
+import { getCurrentUrl } from "@/src/utils/helpers/common";
+import DownloadPPTModal from "@/app/(frontend)/components/models/DownloadPPTModal";
+import SaleOfferModal from "../models/SaleOfferModal";
 function SingleProjectView({ params }) {
   const slug = params.slug[0];
   const { projectData } = useGetSingleProjectData(slug);
@@ -345,14 +349,38 @@ function SingleProjectView({ params }) {
                           </button>
                           <div id="fixBtn-1" className="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                <div className="fixBtnContent">
-                                     <button className="btnContentItem whatsapp">
+                                     {/* <button className="btnContentItem whatsapp">
                                            <i className="fa fa-whatsapp"></i>
                                             Share on whatsapp
-                                      </button>
-                                      <button className="btnContentItem">
+                                      </button> */}
+
+                                      <WhatsappShareButton
+                                        title={projectData?.title}
+                                        separator=","
+                                        url={getCurrentUrl()}
+                                        className="btnContentItem whatsapp"
+                                      >
+                                        <i
+                                          className="fa fa-whatsapp"
+                                          aria-hidden="true"
+                                        ></i>
+                                        Share on whatsapp
+                                      </WhatsappShareButton>
+                                      {/* <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-3.png" className="fixBtnIcon" />
                                            Share on Email
-                                      </button>
+                                      </button> */}
+
+                                      <EmailShareButton
+                                        url={getCurrentUrl()}
+                                        className="btnContentItem email"
+                                      >
+                                      <i
+                                        className="fa fa-envelope"
+                                        aria-hidden="true"
+                                      ></i>
+                                      Share on Email
+                                    </EmailShareButton>
                                </div>
                           </div>
                       </div>
@@ -365,14 +393,20 @@ function SingleProjectView({ params }) {
                           </button>
                           <div id="fixBtn-2" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                               <div className="fixBtnContent">
-                                    <button className="btnContentItem">
+                                  <DownloadPPTModal />
+                                  <SaleOfferModal
+                                    email={projectData?.agent?.email}
+                                    name={projectData?.agent?.name}
+                                    whatsapp={projectData?.agent?.whatsapp}
+                                  />
+                                    {/* <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
                                            download & Share Property Presentation
                                       </button>
                                       <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
                                             Download & Share Sale offer
-                                      </button>
+                                      </button> */}
                                </div>
                           </div>
                       </div>

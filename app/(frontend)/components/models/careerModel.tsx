@@ -5,6 +5,7 @@ import { saveCareerFormApi } from "@/src/services/CareerService";
 import { saveContactFormApi2 } from "@/src/services/HomeService";
 import ErrorToast from "../toast/ErrorToast";
 import { fetchResponseErrors } from "@/src/utils/helpers/common";
+import PhoneInput from "react-phone-number-input";
 function CareerModel(props) {
   const initialState = {
     careerId: props.careerId,
@@ -156,8 +157,17 @@ function CareerModel(props) {
                               />
                             </div>
                             <div className="form-group">
-                              
-                              <input
+                            <PhoneInput
+                              international
+                              countryCallingCodeEditable={false}
+                              className="form-control mb-2 fs-14 d-flex"
+                              defaultCountry="AE"
+                              placeholder="Enter Phone Number"
+                              value={formData.phone}
+                              onChange={(e) => setFormData({ ...formData, phone: e })}
+                              style={{ border: "0px" }}
+                            />
+                              {/* <input
                                 type="tel"
                                 className="form-control mb-2 "
                                 id="telephoneNew3"
@@ -172,7 +182,7 @@ function CareerModel(props) {
                                 }
                                 autoComplete="off"
                                 required
-                              />
+                              /> */}
                             </div>
                             <div className="form-group">
                                 <label className="fileChooseBar">

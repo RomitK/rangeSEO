@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
+import PhoneInput from "react-phone-number-input";
 const DownloadPPTModal = () => {
   const [show, setShow] = useState(false);
   const contactCloseRef = useRef(null);
@@ -184,8 +185,17 @@ const DownloadPPTModal = () => {
                               />
                             </div>
                             <div className="form-group">
-                             
-                              <input
+                            <PhoneInput
+                                international
+                                countryCallingCodeEditable={false}
+                                className="form-control mb-2 fs-14 d-flex"
+                                defaultCountry="AE"
+                                placeholder="Enter Phone Number"
+                                value={formData.phone}
+                                onChange={(e) => setFormData({ ...formData, phone: e })}
+                                required
+                              />
+                              {/* <input
                                 type="tel"
                                 className="form-control mb-2"
                                 id="telephoneNew3"
@@ -200,7 +210,7 @@ const DownloadPPTModal = () => {
                                 }
                                 autoComplete="off"
                                 required
-                              />
+                              /> */}
                             </div>
                             <div className="form-group">
                               

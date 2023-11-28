@@ -1059,10 +1059,10 @@ function SinglePropertyView({ params }) {
 
                                       <DownloadPPTModal />
                                       <SaleOfferModal
-                        email={propertyData?.agent?.email}
-                        name={propertyData?.agent?.name}
-                        whatsapp={propertyData?.agent?.whatsapp}
-                      />
+                                        email={propertyData?.agent?.email}
+                                        name={propertyData?.agent?.name}
+                                        whatsapp={propertyData?.agent?.whatsapp}
+                                      />
                                       {/* <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
                                             Download & Share Sale offer
