@@ -35,10 +35,7 @@ function SingleProjectView({ params }) {
 
   useEffect(() => {
     if (projectData) {
-      let metaTitle = document.createElement("meta");
-      metaTitle.name = "title";
-      metaTitle.content = projectData?.name;
-      document.head.appendChild(metaTitle);
+      document.title = projectData?.name;
       let metaDesc = document.createElement("meta");
       metaDesc.name = "description";
       metaDesc.content = projectData?.meta_description;
