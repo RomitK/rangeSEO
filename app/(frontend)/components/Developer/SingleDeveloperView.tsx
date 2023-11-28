@@ -146,8 +146,8 @@ function SingleDeveloperView({ params }) {
                       <div className="mainHead mb-3 text-center">
                         <h4 className=" text-primary">{developerData.name}</h4>
                         {developerData &&
-                          developerData.longDescription &&
-                          parse(developerData.longDescription)}
+                          developerData.shortDescription &&
+                          parse(developerData.shortDescription)}
                       </div>
                     </div>
                   </div>
