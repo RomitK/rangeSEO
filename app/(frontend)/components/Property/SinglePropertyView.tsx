@@ -203,12 +203,12 @@ function SinglePropertyView({ params }) {
                         }}
                         loop={true}
                         spaceBetween={10}
-                        slidesPerView={4}
-                        loopedSlides={4}
+                        slidesPerView={3}
+                        loopedSlides={3}
                         freeMode={true}
                         watchSlidesProgress={true}
                         modules={[FreeMode, Navigation, Thumbs]}
-                        className="swiper   swiperThumbnailColm"
+                        className="swiper   "
                       >
                         {propertyData?.gallery?.map((image, index) => {
                           return (
