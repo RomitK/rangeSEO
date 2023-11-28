@@ -32,6 +32,24 @@ function SingleProjectView({ params }) {
   const [floorPlanFile, setFloorPlanFile] = useState(null);
 
   // const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  useEffect(() => {
+    if (projectData) {
+      let metaTitle = document.createElement("meta");
+      metaTitle.name = "title";
+      metaTitle.content = projectData?.name;
+      document.head.appendChild(metaTitle);
+      let metaDesc = document.createElement("meta");
+      metaDesc.name = "description";
+      metaDesc.content = projectData?.meta_description;
+      document.head.appendChild(metaDesc);
+      let metaKeywords = document.createElement("meta");
+      metaKeywords.name = "keywords";
+      metaKeywords.content = projectData?.meta_keywords;
+      document.head.appendChild(metaKeywords);
+    }
+  }, [projectData]);
+
   return (
     <>
       <header>
