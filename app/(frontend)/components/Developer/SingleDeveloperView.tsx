@@ -135,10 +135,7 @@ function SingleDeveloperView({ params }) {
 
   useEffect(() => {
     if (developerData) {
-      let metaTitle = document.createElement("meta");
-      metaTitle.name = "title";
-      metaTitle.content = developerData?.name;
-      document.head.appendChild(metaTitle);
+      document.title = developerData?.name;
       let metaDesc = document.createElement("meta");
       metaDesc.name = "description";
       metaDesc.content = developerData?.meta_description;

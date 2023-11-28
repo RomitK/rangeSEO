@@ -185,6 +185,7 @@ function SingleProjectView({ params }) {
             </div>
             <div className="col-md-4">
               <Swiper
+                loop={true}
                 pagination={true}
                 modules={[Pagination]}
                 onSwiper={(swiper) => {

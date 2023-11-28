@@ -100,6 +100,23 @@ function SinglecommunityDataView({ params }) {
   const amentitiesSwiperRef = useRef<SwiperCore>();
   const PropertySwiperRef = useRef<SwiperCore>();
   const nearbyCommunitiesSwiperRef = useRef<SwiperCore>();
+
+
+  useEffect(() => {
+    if (communityData) {
+      document.title = communityData?.name;
+      let metaDesc = document.createElement("meta");
+      metaDesc.name = "description";
+      metaDesc.content = communityData?.meta_description;
+      document.head.appendChild(metaDesc);
+      let metaKeywords = document.createElement("meta");
+      metaKeywords.name = "keywords";
+      metaKeywords.content = communityData?.meta_keywords;
+      document.head.appendChild(metaKeywords);
+    }
+  }, [communityData]);
+
+
   return (
     <>
       <section className="my-5">
