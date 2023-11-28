@@ -268,7 +268,7 @@ function Navbar() {
                         width="15"
                       />
                     </div>
-                    <div className="my-auto text-uppercase text-end fs-14 navMob14 text-primary">
+                    <div className="my-auto text-uppercase text-end  navMob14 fs-14 text-primary">
                       <div>
                         <span className="fw-bold">Toll free</span> 800 72 888
                       </div>
@@ -565,7 +565,7 @@ function Navbar() {
                         width="15"
                       />
                     </div>
-                    <div className="my-auto text-uppercase text-end fs-14 navMob14 text-white">
+                    <div className="my-auto text-uppercase text-end  navMob14 fs-14 text-white">
                       <div>
                         <span className="fw-bold">Toll free</span> 800 72 888
                       </div>
