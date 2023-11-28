@@ -77,7 +77,7 @@ const ContactUs = () => {
                 <PhoneInput
                   international
                   countryCallingCodeEditable={false}
-                  className="form-control rounded-0 fs-14"
+                  className="form-control rounded-0 fs-14 d-flex"
                   defaultCountry="AE"
                   placeholder="Enter Phone Number"
                   value={formData.phone}
