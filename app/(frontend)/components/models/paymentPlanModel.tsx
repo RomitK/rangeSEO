@@ -64,7 +64,7 @@ function PaymentPlanModel(props) {
             <div className="modal-body  p-0 rounded-1 m-2">
               <div className="row g-0">
                 <div className="col-12 col-lg-12 col-md-12 descricalenderCol">
-                <div className="labelFLex">
+                  <div className="labelFLex">
                     <label className="priceLabel">
                       Sizes From : {props?.project?.minPrice} To{" "}
                       {props?.maxPrice} SQFT
@@ -73,47 +73,58 @@ function PaymentPlanModel(props) {
                       Starting Price : AED {props?.project?.price}
                     </label>
                   </div>
-                  <table className="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th className="tblThText">Installments</th>
-                        <th className="tblThText">Percentage (%)</th>
-                        <th className="tblThText">Milestones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {props?.currentUnit?.paymentPlans.map((paymentPlan, index) => {
-                        return (
-                          <tr key={paymentPlan.id}>
-                            <td>
+                  {props?.project?.payment.map(function (pay, index) {
+                    return (
+                      <table
+                        className="table table-bordered"
+                        key={"payment-" + index}
+                      >
+                        <thead>
+                          <tr>
+                            <th colSpan={3} className="text-center">
                               {" "}
-                              <p className="tblTdText text-secondary">
-                                {paymentPlan?.installment}
-                              </p>
-                            </td>
-                            <td>
-                              <p className="tblTdText text-secondary">
-                                {paymentPlan?.percentage}
-                              </p>
-                            </td>
-                            <td>
-                              <p className="tblTdText text-secondary">
-                                {paymentPlan?.milestone}
-                              </p>
-                            </td>
+                              {pay.title}
+                            </th>
                           </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+                          <tr>
+                            <th className="tblThText">Installments</th>
+                            <th className="tblThText">Percentage (%)</th>
+                            <th className="tblThText">Milestones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {pay?.rows.map((paymentPlan, index) => {
+                            return (
+                              <tr key={paymentPlan.id}>
+                                <td>
+                                  {" "}
+                                  <p className="tblTdText text-secondary">
+                                    {paymentPlan?.name}
+                                  </p>
+                                </td>
+                                <td>
+                                  <p className="tblTdText text-secondary">
+                                    {paymentPlan?.key}
+                                  </p>
+                                </td>
+                                <td>
+                                  <p className="tblTdText text-secondary">
+                                    {paymentPlan?.value}
+                                  </p>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    );
+                  })}
                 </div>
-                </div>
-                </div>
-
               </div>
             </div>
           </div>
-        
+        </div>
+      </div>
     </>
   );
 }

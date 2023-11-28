@@ -137,7 +137,7 @@ function SingleProjectView({ params }) {
             </div>
             <div className="col-md-3">
               <div className="vtTextBXox">
-                <p>Area from {projectData?.areaUnit}</p>
+                <p>Area from</p>
                 <h3>{projectData?.area} </h3>
               </div>
             </div>

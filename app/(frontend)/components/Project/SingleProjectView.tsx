@@ -16,6 +16,7 @@ import "@/public/css/single-project-view-styles.css";
 import "@/public/css/responsive.css";
 import DownloadFileModel from "../models/DownloadFileModel";
 import PaymentPlanModel from "../models/paymentPlanModel";
+import FloorPlanModal from "../models/FloorPlanModel";
 function SingleProjectView({ params }) {
   const slug = params.slug[0];
   const { projectData } = useGetSingleProjectData(slug);
@@ -102,8 +103,8 @@ function SingleProjectView({ params }) {
             </div>
             <div className="col-md-3">
               <div className="vtTextBXox">
-                <p>Area from {projectData?.areaUnit}</p>
-                <h3>{projectData?.area} </h3>
+                <p>Area from </p>
+                <h3>{projectData?.area} {projectData?.areaUnit}</h3>
               </div>
             </div>
             <div className="col-md-3">
@@ -248,10 +249,10 @@ function SingleProjectView({ params }) {
                     <h5 className="tblThText text-center">Starting Price</h5>
                   </th>
                   <th>
-                    <h5 className="tblThText">Payment Plan</h5>
+                    <h5 className="tblThText text-center">Payment Plan</h5>
                   </th>
                   <th>
-                    <h5 className="tblThText">Floor Plan</h5>
+                    <h5 className="tblThText text-center">Floor Plan</h5>
                   </th>
                 </tr>
               </thead>
@@ -305,6 +306,7 @@ function SingleProjectView({ params }) {
                         >
                           view
                         </button>
+                        {/* <FloorPlanModal images={type?.floorPlan}/> */}
                       </td>
                     </tr>
                   );

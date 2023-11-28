@@ -21,7 +21,6 @@ import { useGetSingleCommunityData } from "@/src/services/CommunityService";
 function SinglecommunityDataView({ params }) {
   const slug = params.slug[0];
   const { communityData } = useGetSingleCommunityData(slug);
-  console.log(communityData)
   const [nearByLocations, setNearByLocations] = useState([]);
 
   const { isLoaded } = useLoadScript({
@@ -97,8 +96,10 @@ function SinglecommunityDataView({ params }) {
   };
 
   const swiperRef = useRef<SwiperCore>();
+  const hightlighSwiperRef = useRef<SwiperCore>();
+  const amentitiesSwiperRef = useRef<SwiperCore>();
   const PropertySwiperRef = useRef<SwiperCore>();
-
+  const nearbyCommunitiesSwiperRef = useRef<SwiperCore>();
   return (
     <>
       <section className="my-5">
@@ -258,7 +259,7 @@ function SinglecommunityDataView({ params }) {
                         }}
                         modules={[Navigation, Pagination]}
                         onSwiper={(swiper) => {
-                          swiperRef.current = swiper;
+                          hightlighSwiperRef.current = swiper;
                         }}
                         className="swiper pb-5 highlightSwiper px-5"
                       >
@@ -291,7 +292,7 @@ function SinglecommunityDataView({ params }) {
                         })}
                         <div
                           className="swiper-button-next text-primary"
-                          onClick={() => swiperRef.current?.slideNext()}
+                          onClick={() => hightlighSwiperRef.current?.slideNext()}
                         >
                           <span className="">
                             <i className="bi bi-chevron-right fs-1"></i>
@@ -299,7 +300,7 @@ function SinglecommunityDataView({ params }) {
                         </div>
                         <div
                           className="swiper-button-prev text-primary"
-                          onClick={() => swiperRef.current?.slidePrev()}
+                          onClick={() => hightlighSwiperRef.current?.slidePrev()}
                         >
                           <span className="">
                             <i className="bi bi-chevron-left fs-1"></i>
@@ -352,6 +353,7 @@ function SinglecommunityDataView({ params }) {
                     </GoogleMap>
                   )}
                 </div>
+                
                 {communityData && (
                   <div className="col-12 col-lg-6 col-md-6 bg-white">
                     <div className="p-3 p-md-5 p-lg-5">
@@ -369,7 +371,7 @@ function SinglecommunityDataView({ params }) {
                                       {location?.name}
                                     </p>
                                     <p className="text-primary fw-500 mb-0 fs-20">
-                                      {location?.distance[0].text}
+                                      {location?.distance[0]?.text}
                                     </p>
                                   </div>
                                 )}
@@ -430,7 +432,7 @@ function SinglecommunityDataView({ params }) {
                         }}
                         modules={[Navigation, Pagination]}
                         onSwiper={(swiper) => {
-                          swiperRef.current = swiper;
+                          amentitiesSwiperRef.current = swiper;
                         }}
                         className="swiper pb-5 amenitiesSwiper px-5"
                       >
@@ -461,7 +463,7 @@ function SinglecommunityDataView({ params }) {
                         })}
                         <div
                           className="swiper-button-next text-primary"
-                          onClick={() => swiperRef.current?.slideNext()}
+                          onClick={() => amentitiesSwiperRef.current?.slideNext()}
                         >
                           <span className="">
                             <i className="bi bi-chevron-right fs-1"></i>
@@ -469,7 +471,7 @@ function SinglecommunityDataView({ params }) {
                         </div>
                         <div
                           className="swiper-button-prev text-primary"
-                          onClick={() => swiperRef.current?.slidePrev()}
+                          onClick={() => amentitiesSwiperRef.current?.slidePrev()}
                         >
                           <span className="">
                             <i className="bi bi-chevron-left fs-1"></i>
@@ -798,7 +800,7 @@ function SinglecommunityDataView({ params }) {
                       }}
                       modules={[Navigation, Pagination]}
                       onSwiper={(swiper) => {
-                        PropertySwiperRef.current = swiper;
+                        nearbyCommunitiesSwiperRef.current = swiper;
                       }}
                       className="swiper pb-5 projectSlider"
                     >
@@ -847,7 +849,7 @@ function SinglecommunityDataView({ params }) {
 
                       <div
                         className="swiper-button-prev swiperUniquePrev text-primary"
-                        onClick={() => PropertySwiperRef.current?.slidePrev()}
+                        onClick={() => nearbyCommunitiesSwiperRef.current?.slidePrev()}
                       >
                         <span className="">
                           <i className="bi bi-chevron-left fs-1"></i>
@@ -855,13 +857,13 @@ function SinglecommunityDataView({ params }) {
                       </div>
                       <div
                         className="swiper-button-next swiperUniqueNext text-primary"
-                        onClick={() => PropertySwiperRef.current?.slideNext()}
+                        onClick={() => nearbyCommunitiesSwiperRef.current?.slideNext()}
                       >
                         <span className="">
                           <i className="bi bi-chevron-right fs-1"></i>
                         </span>
                       </div>
-                      <div className="swiper-pagination"></div>
+                      {/* <div className="swiper-pagination"></div> */}
                     </Swiper>
                   </div>
                 </div>
