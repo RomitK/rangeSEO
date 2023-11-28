@@ -55,6 +55,7 @@ function SingleProjectView({ params }) {
     <>
       <header>
         <Swiper
+          loop={true}
           modules={[Navigation]}
           onSwiper={(swiper) => {
             bannerSwiperRef.current = swiper;

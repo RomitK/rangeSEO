@@ -133,6 +133,24 @@ function SingleDeveloperView({ params }) {
     setModalOpen(false);
   };
 
+  useEffect(() => {
+    if (developerData) {
+      let metaTitle = document.createElement("meta");
+      metaTitle.name = "title";
+      metaTitle.content = developerData?.name;
+      document.head.appendChild(metaTitle);
+      let metaDesc = document.createElement("meta");
+      metaDesc.name = "description";
+      metaDesc.content = developerData?.meta_description;
+      document.head.appendChild(metaDesc);
+      let metaKeywords = document.createElement("meta");
+      metaKeywords.name = "keywords";
+      metaKeywords.content = developerData?.meta_keywords;
+      document.head.appendChild(metaKeywords);
+    }
+  }, [developerData]);
+
+
   return (
     <>
       {developerData && (
