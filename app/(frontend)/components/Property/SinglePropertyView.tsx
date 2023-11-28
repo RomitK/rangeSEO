@@ -275,6 +275,9 @@ function SinglePropertyView({ params }) {
                             parse(propertyData?.description ?? "")}
                         </div>
                       </div>
+                      <br></br>
+                      <p className="text-primary">Reference Number: {propertyData?.reference_number}</p>
+                      <p className="text-primary">Permit Number: {propertyData?.permit_number}</p>
                     </div>
                   </div>
                   {propertyData && propertyData.amenities && (
