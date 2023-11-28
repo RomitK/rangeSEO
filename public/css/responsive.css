@@ -174,7 +174,7 @@ width: 100%;
 grid-template-columns: auto auto !important ;
 }
 .homeHeader .videoMain{
-height: 240px;
+height: 260px;
 }
 .listCardArea .fillBtn.appleNowBtn{
     position: relative;
@@ -287,8 +287,9 @@ font-size: 20px;
 .navbar .container .my-auto .d-flex.justify-content-end{
 position: absolute;
 left: 10px;
-bottom: 3px;
-width: 154px
+bottom: 5px;
+width: 210px;
+justify-content: flex-start !important;
 }
 nav.navbar.bg-white{
 padding-bottom: 15px;
@@ -306,5 +307,14 @@ padding-bottom: 15px;
 .wizardFooterBar button{
     width: 70px !important;
 }
-
+.homeHeader .videoContainer {
+display: none;
+}
+.homeHeader{
+background-image: url("/videos/poster-img.png");
+width: 100%;
+height: 260px;
+background-size: cover;
+background-position: center;
+}
 }
