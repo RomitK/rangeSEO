@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 import { saveContactFormApi } from "@/src/services/HomeService";
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -72,15 +74,13 @@ const ContactUs = () => {
                 />
               </div>
               <div className="col-12 mb-2">
-                <input
-                  type="text"
+                <PhoneInput
                   className="form-control rounded-0 fs-14"
-                  id="phone"
-                  placeholder="Phone"
+                  defaultCountry="AE"
+                  placeholder="Enter Phone Number"
                   value={formData.phone}
-                  onChange={(e) =>
-                    setFormData({ ...formData, phone: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, phone: e })}
+                  style={{ border: "0px" }}
                 />
               </div>
               <div className="col-12 mb-2">
