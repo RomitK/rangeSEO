@@ -53,7 +53,7 @@ function HomeSearch() {
         className="mainBg  d-md-block d-lg-block d-xl-block overlayBg homeHeader"
         id="home"
       >
-        <div className="p-relative">
+        <div className="p-relative videoContainer">
           <video
             className="d-block w-100 videoMain"
             muted playsInline autoPlay loop

@@ -215,7 +215,7 @@ function SingleProjectView({ params }) {
           <div>
             <br></br>
             <button
-              className="btn btn-blue text-uppercase btn-lg"
+              className="btn btn-blue text-uppercase btn-lg btnTextWt mt-5"
               data-bs-toggle="modal"
               data-bs-target="#floorplan"
               onClick={() => setFloorPlanFile(projectData.brochure)}
@@ -316,6 +316,52 @@ function SingleProjectView({ params }) {
           </div>
         </div>
       </section>
+     
+      <div className="socialfixBar">
+                <div className="accordion" id="accordionExample">
+                      <div className="accordion-item">
+                          <button className="accordion-button FxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#fixBtn-1" aria-expanded="false" >
+                                <img src="/images/icons/btn-icon-5.png" className="fixBtnIcon" />
+                                <svg className="crossSvgIcon" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 384 512">
+                                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+                                </svg>
+                          </button>
+                          <div id="fixBtn-1" className="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                               <div className="fixBtnContent">
+                                     <button className="btnContentItem whatsapp">
+                                           <i className="fa fa-whatsapp"></i>
+                                            Share on whatsapp
+                                      </button>
+                                      <button className="btnContentItem">
+                                          <img src="/images/icons/btn-icon-3.png" className="fixBtnIcon" />
+                                           Share on Email
+                                      </button>
+                               </div>
+                          </div>
+                      </div>
+                      <div className="accordion-item">
+                          <button className="accordion-button collapsed FxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#fixBtn-2" aria-expanded="false" >
+                               <img src="/images/icons/btn-icon-4.png" className="fixBtnIcon" />
+                                <svg className="crossSvgIcon" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 384 512">
+                                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+                                </svg>
+                          </button>
+                          <div id="fixBtn-2" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                              <div className="fixBtnContent">
+                                    <button className="btnContentItem">
+                                          <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
+                                           download & Share Property Presentation
+                                      </button>
+                                      <button className="btnContentItem">
+                                          <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
+                                            Download & Share Sale offer
+                                      </button>
+                               </div>
+                          </div>
+                      </div>
+                </div>
+           </div>
+
       {projectData?.developer &&
         Object.keys(projectData.developer).length > 0 && (
           <section className="AboutDeveloper my-5 ">
