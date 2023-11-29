@@ -33,7 +33,7 @@ function SingleDeveloperView({ params }) {
   const router = useRouter();
   const { homeData } = useGetAllHomeData();
 
-  const options = homeData?.newProjects;
+  const options = developerData?.newProjects;
   const projectChangeHandle = (event) => {
     router.push("/projects/" + event.value);
   };
@@ -67,10 +67,10 @@ function SingleDeveloperView({ params }) {
   const maxPriceRef = useRef(null);
 
   useEffect(() => {
-    if (homeData?.mapProjects) {
-      setMarkers(JSON.parse(homeData?.mapProjects));
+    if (developerData?.mapProjects) {
+      setMarkers(JSON.parse(developerData?.mapProjects));
     }
-  }, [homeData]);
+  }, [developerData]);
   const handleApplyPrice = () => {
     setMinMaxPrice({
       minPrice: minPriceRef.current.value,
