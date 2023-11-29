@@ -6,14 +6,23 @@ import Select from "react-select";
 import parse from "html-react-parser";
 import { useGetAllCommunityData } from "@/src/services/CommunityService";
 import { useGetDeveloperOptions } from "@/src/services/DeveloperService";
-import { useGetAccommodationOptions} from "@/src/services/AccommodationService";
-import { useGetProjectOfferTypes, useGetProjectOptions } from "@/src/services/ProjectService"
+import { useGetAccommodationOptions } from "@/src/services/AccommodationService";
+import {
+  useGetProjectOfferTypes,
+  useGetProjectOptions,
+} from "@/src/services/ProjectService";
 type OptionType = {
   value: string;
   label: string;
 };
 function CommunityList() {
-  const { communitiesData } = useGetAllCommunityData();
+  const [form, setForm] = useState({
+    project_id: "",
+    completion_status_id: "",
+    developer_id: "",
+    accommodation_id: "",
+  });
+  const { communitiesData } = useGetAllCommunityData("", form);
   const { developerOption } = useGetDeveloperOptions();
   const { accommodationOptions } = useGetAccommodationOptions();
   const { projectOfferTypeOption } = useGetProjectOfferTypes();
@@ -24,18 +33,12 @@ function CommunityList() {
   const maxPage = Math.ceil(communities?.length / 3);
 
   const developerOptions: OptionType[] = developerOption;
-  const accommodationOptionss : OptionType[] = accommodationOptions;
+  const accommodationOptionss: OptionType[] = accommodationOptions;
   const projectOfferTypeOptions: OptionType[] = projectOfferTypeOption;
-  const projectOptions : OptionType[] = projectOption;
-  const [form, setForm] = useState({
-    project_id: "",
-    completion_status_id: "",
-    developer_id: "",
-    accommodation_id: "",
-  });
+  const projectOptions: OptionType[] = projectOption;
 
   const projectChangeHandle = (event) => {
-    setForm({ ...form, project_id: event.value})
+    setForm({ ...form, project_id: event.value });
   };
 
   const onNextPage = () => {
@@ -51,31 +54,30 @@ function CommunityList() {
     setVisibleCommunities(communitiesData?.slice(0, 9));
   }, [communitiesData]);
 
-  
-  useEffect(() => {
-    console.log(form)
-    let getPropertiesURL = process.env.API_HOST + "communities?";
-    const formData = new FormData();
-    for (let key in form) {
-      if (form.hasOwnProperty(key)) {
-        if (form[key]) {
-          getPropertiesURL += `${key}=${form[key]}&`;
-        }
+  // useEffect(() => {
+  //   console.log(form);
+  //   let getPropertiesURL = process.env.API_HOST + "/communities?";
+  //   const formData = new FormData();
+  //   for (let key in form) {
+  //     if (form.hasOwnProperty(key)) {
+  //       if (form[key]) {
+  //         getPropertiesURL += `${key}=${form[key]}&`;
+  //       }
 
-        formData.append(key, form[key]);
-      }
-    }
-    fetch(getPropertiesURL)
-    .then((response) => response.json())
-    .then((res) => {
-      if (res.success) {
-        setVisibleCommunities(res.data)
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error); // Handle the error response object
-    });
-  }, [form]);
+  //       formData.append(key, form[key]);
+  //     }
+  //   }
+  //   fetch(getPropertiesURL)
+  //     .then((response) => response.json())
+  //     .then((res) => {
+  //       if (res.success) {
+  //         setVisibleCommunities(res.data);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error); // Handle the error response object
+  //     });
+  // }, [form]);
   return (
     <section className="communitiesSection">
       <div className="container">
@@ -99,17 +101,15 @@ function CommunityList() {
               <Select
                 options={projectOptions}
                 className="reactSelectInput"
-                onChange={(e) =>
-                  setForm({ ...form, project_id: e.value })
-                }
+                onChange={(e) => setForm({ ...form, project_id: e.value })}
               />
             </div>
           </div>
           <div className="col-md-3">
             <div className="proSelectBox">
               <label>PROPERTY TYPE</label>
-              <Select 
-                options={accommodationOptionss} 
+              <Select
+                options={accommodationOptionss}
                 className="reactSelectInput"
                 onChange={(e) =>
                   setForm({ ...form, accommodation_id: e.value })
@@ -120,25 +120,23 @@ function CommunityList() {
           <div className="col-md-3">
             <div className="proSelectBox">
               <label>DEVELOPER</label>
-              <Select 
-              options={developerOptions} 
-              className="reactSelectInput" 
-              onChange={(e) =>
-                setForm({ ...form, developer_id: e.value })
-              }
+              <Select
+                options={developerOptions}
+                className="reactSelectInput"
+                onChange={(e) => setForm({ ...form, developer_id: e.value })}
               />
             </div>
           </div>
           <div className="col-md-3">
             <div className="proSelectBox">
               <label>PROJECT STATUS</label>
-              <Select 
-                options={projectOfferTypeOptions} 
-                className="reactSelectInput" 
+              <Select
+                options={projectOfferTypeOptions}
+                className="reactSelectInput"
                 onChange={(e) =>
                   setForm({ ...form, completion_status_id: e.value })
                 }
-                />
+              />
             </div>
           </div>
         </div>
