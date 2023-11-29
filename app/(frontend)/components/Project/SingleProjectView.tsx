@@ -282,7 +282,20 @@ function SingleProjectView({ params }) {
                   return (
                     <tr key={type.id}>
                       <td>
-                        <p className="tblTdText text-secondary">{type.name}</p>
+                        {
+                          type.property 
+                          ? <Link href={`/properties/${type.property}`}>
+                          <p className="tblTdText text-secondary">
+                        {type.name}
+                        
+                      </p>
+                        </Link>
+                        :
+                        <p className="tblTdText text-secondary">
+                          {type.name}
+                        </p>
+                        }
+                       
                       </td>
                       <td>
                         <p className="tblTdText text-secondary">
