@@ -687,7 +687,7 @@ function SinglePropertyView({ params }) {
                                       src={community["path"]}
                                       alt="community1"
                                       className="img-fluid"
-                                      style={{ height: "300px" }}
+                                      style={{ height: "300px", width: "500px" }}
                                     />
                                     <div className="communityImgOverlay">
                                       <div className="text-white"></div>
