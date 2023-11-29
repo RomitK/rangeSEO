@@ -62,14 +62,14 @@ const DownloadPPTModal = () => {
   };
   return (
     <>
-      
-
-
-      <a className="btnContentItem text-decoration-none" data-bs-toggle="modal"
-                          data-bs-target="#downlaodPPT">
-                               <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
-                               CLICK FOR MORE DETAILS
-                            </a>
+      {/* <a
+        className="btnContentItem text-decoration-none"
+        data-bs-toggle="modal"
+        data-bs-target="#downlaodPPT"
+      >
+        <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
+        CLICK FOR MORE DETAILS
+      </a> */}
 
       <div
         className="modal fade"
@@ -115,7 +115,10 @@ const DownloadPPTModal = () => {
                     </div>
                     <div className="col-md-12 mt-3 mb-3">
                       <h5>
-                        <strong className="need">An esteemed award-winning real estate brokerage based in Dubai, UAE.</strong>
+                        <strong className="need">
+                          An esteemed award-winning real estate brokerage based
+                          in Dubai, UAE.
+                        </strong>
                       </h5>
                     </div>
                   </div>
@@ -127,75 +130,76 @@ const DownloadPPTModal = () => {
                         <div className="row">
                           <div className="col-md-12">
                             <h6 className="text-primary">Enter Details</h6>
-                            
+
                             {showOtp ? (
-                          <div className="form-group">
-                            <label>
-                              OTP<small className="text-danger">*</small>
-                            </label>
-                            <input
-                              type="text"
-                              name="nameCon2"
-                              id="nameCon2"
-                              className="form-control mb-2"
-                              placeholder="Enter OTP code..."
-                              autoComplete="off"
-                              value={OtpCode}
-                              onChange={(e) => setOtpCode(e.target.value)}
-                              required
-                            />
-                          </div>
-                        ) : (
-                          <>
-                             <div className="form-group">
-                              <input
-                                type="text"
-                                name="nameCon2"
-                                id="nameCon2"
-                                className="form-control mb-2"
-                                placeholder="Enter your name"
-                                autoComplete="off"
-                                value={formData.name}
-                                onChange={(e) =>
-                                  setFormData({
-                                    ...formData,
-                                    name: e.target.value,
-                                  })
-                                }
-                                required
-                              />
-                            </div>
-                            <div className="form-group">
-                              
-                              <input
-                                type="email"
-                                name="emailCon2"
-                                id="emailCon2"
-                                className="form-control mb-2"
-                                placeholder="Enter your email"
-                                autoComplete="off"
-                                value={formData.email}
-                                onChange={(e) =>
-                                  setFormData({
-                                    ...formData,
-                                    email: e.target.value,
-                                  })
-                                }
-                                required
-                              />
-                            </div>
-                            <div className="form-group">
-                            <PhoneInput
-                                international
-                                countryCallingCodeEditable={false}
-                                className="form-control mb-2 fs-14 d-flex"
-                                defaultCountry="AE"
-                                placeholder="Enter Phone Number"
-                                value={formData.phone}
-                                onChange={(e) => setFormData({ ...formData, phone: e })}
-                                required
-                              />
-                              {/* <input
+                              <div className="form-group">
+                                <label>
+                                  OTP<small className="text-danger">*</small>
+                                </label>
+                                <input
+                                  type="text"
+                                  name="nameCon2"
+                                  id="nameCon2"
+                                  className="form-control mb-2"
+                                  placeholder="Enter OTP code..."
+                                  autoComplete="off"
+                                  value={OtpCode}
+                                  onChange={(e) => setOtpCode(e.target.value)}
+                                  required
+                                />
+                              </div>
+                            ) : (
+                              <>
+                                <div className="form-group">
+                                  <input
+                                    type="text"
+                                    name="nameCon2"
+                                    id="nameCon2"
+                                    className="form-control mb-2"
+                                    placeholder="Enter your name"
+                                    autoComplete="off"
+                                    value={formData.name}
+                                    onChange={(e) =>
+                                      setFormData({
+                                        ...formData,
+                                        name: e.target.value,
+                                      })
+                                    }
+                                    required
+                                  />
+                                </div>
+                                <div className="form-group">
+                                  <input
+                                    type="email"
+                                    name="emailCon2"
+                                    id="emailCon2"
+                                    className="form-control mb-2"
+                                    placeholder="Enter your email"
+                                    autoComplete="off"
+                                    value={formData.email}
+                                    onChange={(e) =>
+                                      setFormData({
+                                        ...formData,
+                                        email: e.target.value,
+                                      })
+                                    }
+                                    required
+                                  />
+                                </div>
+                                <div className="form-group">
+                                  <PhoneInput
+                                    international
+                                    countryCallingCodeEditable={false}
+                                    className="form-control mb-2 fs-14 d-flex"
+                                    defaultCountry="AE"
+                                    placeholder="Enter Phone Number"
+                                    value={formData.phone}
+                                    onChange={(e) =>
+                                      setFormData({ ...formData, phone: e })
+                                    }
+                                    required
+                                  />
+                                  {/* <input
                                 type="tel"
                                 className="form-control mb-2"
                                 id="telephoneNew3"
@@ -211,27 +215,25 @@ const DownloadPPTModal = () => {
                                 autoComplete="off"
                                 required
                               /> */}
-                            </div>
-                            <div className="form-group">
-                              
-                              <textarea
-                                name="messageCon2"
-                                id="messageCon2"
-                                className="form-control mb-2"
-                                placeholder="Message"
-                               
-                                autoComplete={"off"}
-                                value={formData.message}
-                                onChange={(e) =>
-                                  setFormData({
-                                    ...formData,
-                                    message: e.target.value,
-                                  })
-                                }
-                              />
-                            </div>
-                          </>
-                        )}
+                                </div>
+                                <div className="form-group">
+                                  <textarea
+                                    name="messageCon2"
+                                    id="messageCon2"
+                                    className="form-control mb-2"
+                                    placeholder="Message"
+                                    autoComplete={"off"}
+                                    value={formData.message}
+                                    onChange={(e) =>
+                                      setFormData({
+                                        ...formData,
+                                        message: e.target.value,
+                                      })
+                                    }
+                                  />
+                                </div>
+                              </>
+                            )}
                           </div>
                         </div>
                         <div className="modal-footer border-0">
@@ -240,7 +242,6 @@ const DownloadPPTModal = () => {
                             name="submit"
                             className="btn btn-blue rounded-0 px-5 float-end btnContact2"
                             onClick={showOtp ? handleOTP : handleSubmit}
-                           
                           >
                             Submit
                           </button>
@@ -254,7 +255,6 @@ const DownloadPPTModal = () => {
           </div>
         </div>
       </div>
-     
     </>
   );
 };

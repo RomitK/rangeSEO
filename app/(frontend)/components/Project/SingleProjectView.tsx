@@ -20,7 +20,7 @@ import PaymentPlanModel from "../models/paymentPlanModel";
 import FloorPlanModal from "../models/FloorPlanModel";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 import DownloadPPTModal from "@/app/(frontend)/components/models/DownloadPPTModal";
-import SaleOfferModal from "../models/SaleOfferModal";
+import SaleOfferModal from "@/app/(frontend)/components/models/SaleOfferModal";
 function SingleProjectView({ params }) {
   const slug = params.slug[0];
   const { projectData } = useGetSingleProjectData(slug);
@@ -393,12 +393,22 @@ function SingleProjectView({ params }) {
                           </button>
                           <div id="fixBtn-2" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                               <div className="fixBtnContent">
-                                  <DownloadPPTModal />
-                                  <SaleOfferModal
-                                    email={projectData?.agent?.email}
-                                    name={projectData?.agent?.name}
-                                    whatsapp={projectData?.agent?.whatsapp}
-                                  />
+                              <a
+        className="btnContentItem text-decoration-none"
+        data-bs-toggle="modal"
+        data-bs-target="#downlaodPPT"
+      >
+        <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
+        CLICK FOR MORE DETAILS
+      </a>
+
+      <a
+        className="btnContentItem text-decoration-none"
+        data-bs-toggle="modal"
+        data-bs-target="#saleSale"
+      > <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" /> 
+        CLICK FOR A SALE OFFER
+      </a>
                                     {/* <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
                                            download & Share Property Presentation
@@ -1111,6 +1121,9 @@ function SingleProjectView({ params }) {
         currentUnit={currentUnit}
         project={projectData}
       ></PaymentPlanModel>
+
+      <DownloadPPTModal />
+      <SaleOfferModal />
     </>
   );
 }

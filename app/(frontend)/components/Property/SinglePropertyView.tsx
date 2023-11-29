@@ -9,6 +9,7 @@ import Link from "next/link";
 import parse from "html-react-parser";
 import { EmailShareButton, WhatsappShareButton } from "react-share";
 import DownloadPPTModal from "@/app/(frontend)/components/models/DownloadPPTModal";
+import SaleOfferModal from "@/app/(frontend)/components/models/SaleOfferModal";
 import {
   GoogleMap,
   MarkerF,
@@ -27,7 +28,6 @@ import CalenderModel from "../models/calenderModel";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 import GallaryModalImg from "@/app/(frontend)/components/models/GallaryModalImg";
 import GallaryModalVideo from "@/app/(frontend)/components/models/GallaryModalVideo";
-import SaleOfferModal from "../models/SaleOfferModal";
 import "@/public/css/single-project-view-styles.css";
 
 import MortgageCalculator from "./MortgageCalculator";
@@ -47,7 +47,7 @@ function SinglePropertyView({ params }) {
     googleMapsApiKey: process.env.GOOGLE_MAP_KEY,
     libraries: ["geometry", "places", "marker"],
   });
-
+  const CommunitySwiperRef = useRef<SwiperCore>();
   const PropertySwiperRef = useRef<SwiperCore>();
   const similiarPropertySwiperRef = useRef<SwiperCore>();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -595,17 +595,7 @@ function SinglePropertyView({ params }) {
                     )} */}
                   </div>
                   <MortgageCalculator property={propertyData} />
-                  {/* <div className="border-bottom border-dark">
-                    <div className="BtnsflexBar mb-3">
-                      <DownloadPPTModal />
-
-                      <SaleOfferModal
-                        email={propertyData?.agent?.email}
-                        name={propertyData?.agent?.name}
-                        whatsapp={propertyData?.agent?.whatsapp}
-                      />
-                    </div>
-                  </div> */}
+                  
                   {/* <div>
                     {propertyData && (
                       <>
@@ -658,6 +648,7 @@ function SinglePropertyView({ params }) {
 
                     <div>
                       <Swiper
+                        loop={true}
                         slidesPerView={1}
                         spaceBetween={10}
                         navigation={{
@@ -680,7 +671,7 @@ function SinglePropertyView({ params }) {
                         }}
                         modules={[Navigation]}
                         onSwiper={(swiper) => {
-                          PropertySwiperRef.current = swiper;
+                          CommunitySwiperRef.current = swiper;
                         }}
                         className="swiper pb-5 communityProjectSwiperr"
                       >
@@ -696,7 +687,7 @@ function SinglePropertyView({ params }) {
                                       src={community["path"]}
                                       alt="community1"
                                       className="img-fluid"
-                                      style={{ height: "200px" }}
+                                      style={{ height: "300px" }}
                                     />
                                     <div className="communityImgOverlay">
                                       <div className="text-white"></div>
@@ -709,7 +700,7 @@ function SinglePropertyView({ params }) {
                         )}
                         <div
                           className="swiper-button-prev swiperUniquePrev text-white"
-                          onClick={() => PropertySwiperRef.current?.slidePrev()}
+                          onClick={() => CommunitySwiperRef.current?.slidePrev()}
                         >
                           <span className="">
                             <i className="bi bi-chevron-left fs-1"></i>
@@ -717,7 +708,7 @@ function SinglePropertyView({ params }) {
                         </div>
                         <div
                           className="swiper-button-next swiperUniqueNext text-white"
-                          onClick={() => PropertySwiperRef.current?.slideNext()}
+                          onClick={() => CommunitySwiperRef.current?.slideNext()}
                         >
                           <span className="">
                             <i className="bi bi-chevron-right fs-1"></i>
@@ -1056,13 +1047,29 @@ function SinglePropertyView({ params }) {
                                           <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
                                            download & Share Property Presentation
                                       </button> */}
+                                    <a
+        className="btnContentItem text-decoration-none"
+        data-bs-toggle="modal"
+        data-bs-target="#downlaodPPT"
+      >
+        <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
+        CLICK FOR MORE DETAILS
+      </a>
 
-                                      <DownloadPPTModal />
-                                      <SaleOfferModal
+      <a
+        className="btnContentItem text-decoration-none"
+        data-bs-toggle="modal"
+        data-bs-target="#saleSale"
+      > <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" /> 
+        CLICK FOR A SALE OFFER
+      </a>
+
+                                      {/* <DownloadPPTModal /> */}
+                                      {/* <SaleOfferModal
                                         email={propertyData?.agent?.email}
                                         name={propertyData?.agent?.name}
                                         whatsapp={propertyData?.agent?.whatsapp}
-                                      />
+                                      /> */}
                                       {/* <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
                                             Download & Share Sale offer
@@ -1256,6 +1263,9 @@ function SinglePropertyView({ params }) {
         </div>
       </section>
       <CalenderModel />
+      <DownloadPPTModal />
+      <SaleOfferModal />
+
     </>
   );
 }

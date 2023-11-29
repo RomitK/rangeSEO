@@ -67,14 +67,7 @@ const SaleOfferModal = (prop) => {
   };
   return (
     <>
-      <a
-        className="btnContentItem text-decoration-none"
-        data-bs-toggle="modal"
-        data-bs-target="#saleSale"
-      > <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" /> 
-        CLICK FOR A SALE OFFER
-      </a>
-
+      
       <div
         className="modal fade"
         id="saleSale"
@@ -176,7 +169,16 @@ const SaleOfferModal = (prop) => {
                                         required
                                     />
                                     </div>
-
+                                    <button
+                            type="button"
+                            name="submit"
+                            className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                            onClick={showOtp ? handleOTP : handleSubmit}
+                          >
+                            Submit
+                          </button>
+                                    <br/>
+                                    <br/>
                                     <br/>
                                     <h4 className="text-center">OR</h4>
                                     <h3 className="text-center text-primary">Connect to the Agent</h3>
@@ -296,14 +298,7 @@ const SaleOfferModal = (prop) => {
                           </div>
                         </div>
                         <div className="modal-footer border-0">
-                          <button
-                            type="button"
-                            name="submit"
-                            className="btn btn-blue rounded-0 px-5 float-end btnContact2"
-                            onClick={showOtp ? handleOTP : handleSubmit}
-                          >
-                            Submit
-                          </button>
+                          
                         </div>
                       </div>
                     </form>
