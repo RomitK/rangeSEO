@@ -33,7 +33,7 @@ function DubaiGuidePage() {
           }}
         >
           <SwiperSlide className="clmSliderItem">
-            <img src="/images/banner/banner-2.png" className="multiItem" alt="banner"/>
+            <img src="/images/banner/dubai-guide-banner-2.png" className="multiItem" alt="banner"/>
             <div className="carouselcontent">
               <h3>DUBAI REAL ESTATE GUIDE1</h3>
               <button className="mrAuto downloadBtn"  data-bs-toggle="modal"
@@ -41,7 +41,7 @@ function DubaiGuidePage() {
             </div>
           </SwiperSlide>
           <SwiperSlide className="clmSliderItem">
-            <img src="/images/banner/banner-3.png" className="multiItem" />
+            <img src="/images/banner/banner-3.png" className="multiItem" alt="banner"/>
             <div className="carouselcontent">
               <h3>DUBAI REAL ESTATE GUIDE2</h3>
               <button className="mrAuto downloadBtn"  data-bs-toggle="modal"
@@ -49,7 +49,7 @@ function DubaiGuidePage() {
             </div>
           </SwiperSlide>
           <SwiperSlide className="clmSliderItem">
-            <img src="/images/banner/banner-4.png" className="multiItem" />
+            <img src="/images/banner/banner-4.png" className="multiItem" alt="banner"/>
             <div className="carouselcontent">
               <h3>DUBAI REAL ESTATE GUIDE3</h3>
               <button className=" mrAuto downloadBtn"  data-bs-toggle="modal"
@@ -57,7 +57,7 @@ function DubaiGuidePage() {
             </div>
           </SwiperSlide>
           <SwiperSlide className="clmSliderItem">
-            <img src="/images/banner/banner-3.png" className="multiItem" />
+            <img src="/images/banner/banner-3.png" className="multiItem" alt="banner"/>
             <div className="carouselcontent">
               <h3>DUBAI REAL ESTATE GUIDE4</h3>
               <button className=" mrAuto downloadBtn "  data-bs-toggle="modal"
@@ -65,7 +65,7 @@ function DubaiGuidePage() {
             </div>
           </SwiperSlide>
           <SwiperSlide className="clmSliderItem">
-            <img src="/images/banner/banner-4.png" className="multiItem" />
+            <img src="/images/banner/banner-4.png" className="multiItem" alt="banner"/>
             <div className="carouselcontent">
               <h3>DUBAI REAL ESTATE GUIDE5</h3>
               <button className=" mrAuto downloadBtn "  data-bs-toggle="modal"

@@ -77,9 +77,9 @@ function Footer() {
                           </Link>
                         </li>
                         <li>
-                          <a href="" className="footLink">
-                            Insights
-                          </a>
+                        <Link href="/dubaiGuide" className="footLink">
+                           Dubai Guides
+                           </Link>
                         </li>
                         <li>
                          
