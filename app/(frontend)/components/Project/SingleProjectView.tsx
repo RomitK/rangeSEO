@@ -190,8 +190,8 @@ function SingleProjectView({ params }) {
             <div className="col-md-4">
               <Swiper
                 loop={true}
-                pagination={true}
-                modules={[Pagination]}
+                pagination={false}
+                modules={[Navigation]}
                 onSwiper={(swiper) => {
                   innerSwiperRef.current = swiper;
                 }}
@@ -200,7 +200,7 @@ function SingleProjectView({ params }) {
                 {projectData?.interiorGallery?.map((interiorGallery, index) => {
                   return (
                     <SwiperSlide key={interiorGallery.id + +"interiorGallery"}>
-                      <img src={interiorGallery.path} className="clmCoverImg" />
+                      <img src={interiorGallery.path} className="clmCoverImg" alt="interiorImage" />
                     </SwiperSlide>
                   );
                 })}
