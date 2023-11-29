@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import "@/public/css/sell-with-range.css";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
-
+import PhoneInput from "react-phone-number-input";
 import ContactModel from "../models/contactModel";
 function SellPage() {
 const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
@@ -183,7 +183,7 @@ const contactSideText =" An esteemed award-winning real estate brokerage based i
                   />
                 </div>
                 <div className="col-12 mb-2">
-                  <input
+                  {/* <input
                     className="form-control cntInptField"
                     placeholder="Contact Number"
                     type="phone"
@@ -196,7 +196,20 @@ const contactSideText =" An esteemed award-winning real estate brokerage based i
                       }
                       autoComplete="off"
                       required
-                  />
+                  /> */}
+
+                    <PhoneInput
+                                international
+                                countryCallingCodeEditable={false}
+                                className="form-control cntInptField"
+                                defaultCountry="AE"
+                                placeholder="Enter Phone Number"
+                                value={formData.phone}
+                                onChange={(e) => setFormData({ ...formData, phone: e })}
+                                style={{ border: "0px" }}
+                                required
+                              />
+
                 </div>
                 <div className="col-12">
                   <textarea
