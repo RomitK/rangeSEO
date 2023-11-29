@@ -1096,6 +1096,7 @@ function SinglePropertyView({ params }) {
                 <div className="col-12 col-lg-12 col-md-12">
                   <div className="swiper pb-5 projectSlider">
                     <Swiper
+                      loop={true}
                       slidesPerView={1}
                       spaceBetween={10}
                       navigation={{

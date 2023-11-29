@@ -436,6 +436,12 @@ textarea {
 .bg-primary {
   background-color: #136DAE !important;
   }
+  .w-auto{
+    width: auto !important;
+  }
+  .float-end{
+    float: right !important;
+  }
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
 }

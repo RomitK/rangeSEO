@@ -12,8 +12,14 @@ import {
 
 import classes from "./Properties.module.css";
 import Filters from "./Filters";
+import {
+  useGetAccommodations,
+  useGetCommunities,
+  useGetAmenities,
+} from "@/src/services/PropertyService";
 
 const PropertyList = ({ params }) => {
+  const { accommodations } = useGetAccommodations();
   const [showMap, setShowMap] = useState(true);
   const [properties, setProperties] = useState([]);
   const [originalMarkers, setOriginalMarkers] = useState([]);
@@ -22,19 +28,21 @@ const PropertyList = ({ params }) => {
   const [isOpen, setIsOpen] = useState(false);
   const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
   const mapRef = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [sorting, setSorting] = useState("");
   const [infoWindowData, setInfoWindowData] = useState({
     id: null,
     address: "",
     name: "",
     area: "",
-    unit_measure:"",
+    unit_measure: "",
     bedrooms: "",
     bathrooms: "",
     price: "",
     property_banner: "",
     slug: "",
     accommodationName: "",
-    categoryName:""
+    categoryName: "",
   });
   const [showClearMapButton, setShowClearMapButton] = useState(false);
   const mapRef2 = useRef(null);
@@ -51,7 +59,7 @@ const PropertyList = ({ params }) => {
     mapRef2?.current?.setCenter({
       lat: parseFloat(originalMarkers[0].address_latitude),
       lng: parseFloat(originalMarkers[0].address_longitude),
-  });
+    });
     // setFilteredMarkers([...markersInsideView]);
     setProperties([...markersInsideView]);
   }, [originalMarkers]);
@@ -109,7 +117,7 @@ const PropertyList = ({ params }) => {
       property_banner,
       slug,
       accommodationName,
-      categoryName
+      categoryName,
     });
     setIsOpen(true);
   };
@@ -120,6 +128,9 @@ const PropertyList = ({ params }) => {
     }
   };
 
+  const handleSortChange = (e) => {
+    setSorting(e.target.value);
+  };
   return (
     <div className="container-fluid px-0">
       <div className="row g-0">
@@ -184,7 +195,7 @@ const PropertyList = ({ params }) => {
                         lng,
                         slug,
                         accommodationName,
-                        categoryName
+                        categoryName,
                       },
                       ind
                     ) => (
@@ -225,7 +236,7 @@ const PropertyList = ({ params }) => {
                               whiteSpace: "nowrap", // Rounded corners
                             }}
                           >
-                            {  new Intl.NumberFormat().format(price )}
+                            {new Intl.NumberFormat().format(price)}
                           </div>
                         </OverlayView>
                         {isOpen && infoWindowData?.id === ind && (
@@ -245,7 +256,9 @@ const PropertyList = ({ params }) => {
                                 address={infoWindowData.address}
                                 property_banner={infoWindowData.property_banner}
                                 name={infoWindowData.name}
-                                accommodationName={infoWindowData.accommodationName}
+                                accommodationName={
+                                  infoWindowData.accommodationName
+                                }
                                 categoryName={infoWindowData.categoryName}
                               />
                             </div>
@@ -303,35 +316,61 @@ const PropertyList = ({ params }) => {
             <div id="PropertyResult">
               <div>
                 <div className="col-12 col-lg-12 col-md-12">
-                  <div className="row g-3">
-                    <div className="col-12 col-lg-12 col-md-12">
+                  {loading ? (
+                    "Loading Properties"
+                  ) : (
+                    <>
+                      <div className="row mb-3">
+                        <div className="col d-flex align-items-center">
+                          <p className="text-primary mb-0">
+                            {properties.length} results found
+                          </p>
+                        </div>
+                        <div className="col">
+                         
+                          <select
+                            onChange={handleSortChange}
+                            value={sorting}
+                            className="form-select w-auto float-end"
+                            aria-label="Size 3 select"
+                          >
+                            <option value="1">Newest</option>
+                            <option value="2">Price (Low)</option>
+                            <option value="3">Price (High)</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="row g-3">
+                        {/* <div className="col-12 col-lg-12 col-md-12">
                       <p className="text-primary mb-0">
                         {properties.length} results found
                       </p>
-                    </div>
-                    {properties.map((property, index) => (
-                      <div
-                        key={index}
-                        className={`col-12 ${
-                          showMap ? "col-lg-6" : "col-lg-3"
-                        } col-md-6`}
-                      >
-                        <Property
-                          slug={property.slug}
-                          area={property.area}
-                          unit_measure={property.unit_measure}
-                          bathrooms={property.bathrooms}
-                          bedrooms={property.bedrooms}
-                          price={property.price}
-                          address={property.address}
-                          property_banner={property.property_banner}
-                          name={property.name}
-                          accommodationName={property.accommodationName}
-                          categoryName={property.categoryName}
-                        />
+                    </div> */}
+                        {properties.map((property, index) => (
+                          <div
+                            key={index}
+                            className={`col-12 ${
+                              showMap ? "col-lg-6" : "col-lg-3"
+                            } col-md-6`}
+                          >
+                            <Property
+                              slug={property.slug}
+                              area={property.area}
+                              unit_measure={property.unit_measure}
+                              bathrooms={property.bathrooms}
+                              bedrooms={property.bedrooms}
+                              price={property.price}
+                              address={property.address}
+                              property_banner={property.property_banner}
+                              name={property.name}
+                              accommodationName={property.accommodationName}
+                              categoryName={property.categoryName}
+                            />
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
