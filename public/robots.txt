@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://range-frontend-js.vercel.app/sitemap.xml

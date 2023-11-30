@@ -19,7 +19,7 @@ function SingleCareerPage({ params }) {
     <>
                <header className="header careerHeader">
         <img
-          src="/images/banner/banner-3.png"
+          src="/images/banner/banner-3.webp"
           className="headerImgVideo"
           alt="career"
         />
