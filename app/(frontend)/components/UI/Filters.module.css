@@ -1,0 +1,20 @@
+.customDropdown {
+    text-align: start;
+    padding-right: 35px;
+}
+
+.customDropdown:hover {
+    border: 1px solid #ced4da;
+}
+
+.customDropdown:active {
+    border: 1px solid #ced4da !important;
+}
+
+.customDropdown:hover:focus {
+    border-color: #86b7fe;
+}
+
+.customDropdown::after {
+    display: none;
+}

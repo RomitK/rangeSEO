@@ -19,7 +19,6 @@ import {
 } from "@/src/services/PropertyService";
 
 const PropertyList = ({ params }) => {
-  const { accommodations } = useGetAccommodations();
   const [showMap, setShowMap] = useState(true);
   const [properties, setProperties] = useState([]);
   const [originalMarkers, setOriginalMarkers] = useState([]);
@@ -27,9 +26,6 @@ const PropertyList = ({ params }) => {
   const [trigger, setTrigger] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
-  const mapRef = useRef(null);
-  const [loading, setLoading] = useState(false);
-  const [sorting, setSorting] = useState("");
   const [infoWindowData, setInfoWindowData] = useState({
     id: null,
     address: "",
@@ -46,6 +42,14 @@ const PropertyList = ({ params }) => {
   });
   const [showClearMapButton, setShowClearMapButton] = useState(false);
   const mapRef2 = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [sorting, setSorting] = useState("");
+
+  const { accommodations } = useGetAccommodations();
+  const { communities } = useGetCommunities();
+  const { amenities } = useGetAmenities();
+
+  const mapRef = useRef(null);
 
   const getMarkersInView = useCallback(() => {
     if (!mapRef2.current) return;
@@ -142,6 +146,12 @@ const PropertyList = ({ params }) => {
               setShowMap={setShowMap}
               mapRef={mapRef2}
               setOriginalMarkers={setOriginalMarkers}
+              accomodations={accommodations}
+              communities={communities}
+              amenities={amenities}
+              setLoading={setLoading}
+              sortBy={sorting}
+
             />
           </div>
         </div>
@@ -177,7 +187,7 @@ const PropertyList = ({ params }) => {
                   mapContainerClassName="map-container"
                   onLoad={onMapLoad}
                   onClick={() => {
-                    setIsOpen(false);
+                      setIsOpen(false);
                   }}
                 >
                   {filteredMarkers.map(
