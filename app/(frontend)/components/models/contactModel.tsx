@@ -78,7 +78,7 @@ function ContactModel(props) {
                   <div className="p-3">
                     <div className="agent-img mt-2">
                       <img
-                        src="/images/videocall.jpeg"
+                        src="/images/videocall.webp"
                         alt="Range Property"
                         className="agent-img"
                       />

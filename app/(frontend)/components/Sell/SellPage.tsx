@@ -41,7 +41,7 @@ const contactSideText =" An esteemed award-winning real estate brokerage based i
   return (
     <>
       <header className="sellWithRange">
-        <img src="/images/banner/banner-4.png" className="headerImgVideo" alt="sell your property"/>
+        <img src="/images/banner/banner-4.webp" className="headerImgVideo" alt="sell your property"/>
         <div className="headConentBox">
           <h2 className="headTitle mb-3">SELL WITH RANGE</h2>
           <p className="pText">
@@ -137,7 +137,7 @@ const contactSideText =" An esteemed award-winning real estate brokerage based i
         <div className="container">
           <div className="rowSec">
             <div className="colmBox">
-              <img src="/images/banner/banner-5.png" className="colmBoxImg" alt="sell your properties"/>
+              <img src="/images/banner/banner-5.webp" className="colmBoxImg" alt="sell your properties"/>
               <div className="colmBoxContent">
                 <h2>
                   GUIDE TO SELL <br />
