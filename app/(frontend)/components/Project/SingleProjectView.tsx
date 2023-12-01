@@ -38,20 +38,6 @@ function SingleProjectView({ params }) {
 
   // const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  useEffect(() => {
-    if (projectData) {
-      document.title = projectData?.name;
-      let metaDesc = document.createElement("meta");
-      metaDesc.name = "description";
-      metaDesc.content = projectData?.meta_description;
-      document.head.appendChild(metaDesc);
-      let metaKeywords = document.createElement("meta");
-      metaKeywords.name = "keywords";
-      metaKeywords.content = projectData?.meta_keywords;
-      document.head.appendChild(metaKeywords);
-    }
-  }, [projectData]);
-
   return (
     <>
       <header>
@@ -124,7 +110,9 @@ function SingleProjectView({ params }) {
             <div className="col-md-3">
               <div className="vtTextBXox">
                 <p>Area from </p>
-                <h3>{projectData?.area} {projectData?.areaUnit}</h3>
+                <h3>
+                  {projectData?.area} {projectData?.areaUnit}
+                </h3>
               </div>
             </div>
             <div className="col-md-3">
@@ -200,7 +188,11 @@ function SingleProjectView({ params }) {
                 {projectData?.interiorGallery?.map((interiorGallery, index) => {
                   return (
                     <SwiperSlide key={interiorGallery.id + +"interiorGallery"}>
-                      <img src={interiorGallery.path} className="clmCoverImg" alt="interiorImage" />
+                      <img
+                        src={interiorGallery.path}
+                        className="clmCoverImg"
+                        alt="interiorImage"
+                      />
                     </SwiperSlide>
                   );
                 })}
@@ -282,20 +274,17 @@ function SingleProjectView({ params }) {
                   return (
                     <tr key={type.id}>
                       <td>
-                        {
-                          type.property 
-                          ? <Link href={`/properties/${type.property}`}>
+                        {type.property ? (
+                          <Link href={`/properties/${type.property}`}>
+                            <p className="tblTdText text-secondary">
+                              {type.name}
+                            </p>
+                          </Link>
+                        ) : (
                           <p className="tblTdText text-secondary">
-                        {type.name}
-                        
-                      </p>
-                        </Link>
-                        :
-                        <p className="tblTdText text-secondary">
-                          {type.name}
-                        </p>
-                        }
-                       
+                            {type.name}
+                          </p>
+                        )}
                       </td>
                       <td>
                         <p className="tblTdText text-secondary">
@@ -350,79 +339,111 @@ function SingleProjectView({ params }) {
           </div>
         </div>
       </section>
-     
+
       <div className="socialfixBar">
-                <div className="accordion" id="accordionExample">
-                      <div className="accordion-item">
-                          <button className="accordion-button FxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#fixBtn-1" aria-expanded="false" >
-                                <img src="/images/icons/btn-icon-5.png" className="fixBtnIcon" />
-                                <svg className="crossSvgIcon" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 384 512">
-                                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
-                                </svg>
-                          </button>
-                          <div id="fixBtn-1" className="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                               <div className="fixBtnContent">
-                                     {/* <button className="btnContentItem whatsapp">
+        <div className="accordion" id="accordionExample">
+          <div className="accordion-item">
+            <button
+              className="accordion-button FxBtn"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#fixBtn-1"
+              aria-expanded="false"
+            >
+              <img src="/images/icons/btn-icon-5.png" className="fixBtnIcon" />
+              <svg
+                className="crossSvgIcon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 384 512"
+              >
+                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+              </svg>
+            </button>
+            <div
+              id="fixBtn-1"
+              className="accordion-collapse collapse "
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+            >
+              <div className="fixBtnContent">
+                {/* <button className="btnContentItem whatsapp">
                                            <i className="fa fa-whatsapp"></i>
                                             Share on whatsapp
                                       </button> */}
 
-                                      <WhatsappShareButton
-                                        title={projectData?.title}
-                                        separator=","
-                                        url={getCurrentUrl()}
-                                        className="btnContentItem whatsapp"
-                                      >
-                                        <i
-                                          className="fa fa-whatsapp"
-                                          aria-hidden="true"
-                                        ></i>
-                                        Share on whatsapp
-                                      </WhatsappShareButton>
-                                      {/* <button className="btnContentItem">
+                <WhatsappShareButton
+                  title={projectData?.title}
+                  separator=","
+                  url={getCurrentUrl()}
+                  className="btnContentItem whatsapp"
+                >
+                  <i className="fa fa-whatsapp" aria-hidden="true"></i>
+                  Share on whatsapp
+                </WhatsappShareButton>
+                {/* <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-3.png" className="fixBtnIcon" />
                                            Share on Email
                                       </button> */}
 
-                                      <EmailShareButton
-                                        url={getCurrentUrl()}
-                                        className="btnContentItem email"
-                                      >
-                                      <i
-                                        className="fa fa-envelope"
-                                        aria-hidden="true"
-                                      ></i>
-                                      Share on Email
-                                    </EmailShareButton>
-                               </div>
-                          </div>
-                      </div>
-                      <div className="accordion-item">
-                          <button className="accordion-button collapsed FxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#fixBtn-2" aria-expanded="false" >
-                               <img src="/images/icons/btn-icon-4.png" className="fixBtnIcon" />
-                                <svg className="crossSvgIcon" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 384 512">
-                                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
-                                </svg>
-                          </button>
-                          <div id="fixBtn-2" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                              <div className="fixBtnContent">
-                              <a
-        className="btnContentItem text-decoration-none"
-        data-bs-toggle="modal"
-        data-bs-target="#downlaodPPT"
-      >
-        <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
-        CLICK FOR MORE DETAILS
-      </a>
+                <EmailShareButton
+                  url={getCurrentUrl()}
+                  className="btnContentItem email"
+                >
+                  <i className="fa fa-envelope" aria-hidden="true"></i>
+                  Share on Email
+                </EmailShareButton>
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <button
+              className="accordion-button collapsed FxBtn"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#fixBtn-2"
+              aria-expanded="false"
+            >
+              <img src="/images/icons/btn-icon-4.png" className="fixBtnIcon" />
+              <svg
+                className="crossSvgIcon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 384 512"
+              >
+                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+              </svg>
+            </button>
+            <div
+              id="fixBtn-2"
+              className="accordion-collapse collapse"
+              aria-labelledby="headingTwo"
+              data-bs-parent="#accordionExample"
+            >
+              <div className="fixBtnContent">
+                <a
+                  className="btnContentItem text-decoration-none"
+                  data-bs-toggle="modal"
+                  data-bs-target="#downlaodPPT"
+                >
+                  <img
+                    src="/images/icons/btn-icon-2.png"
+                    className="fixBtnIcon"
+                  />
+                  CLICK FOR MORE DETAILS
+                </a>
 
-      <a
-        className="btnContentItem text-decoration-none"
-        data-bs-toggle="modal"
-        data-bs-target="#saleSale"
-      > <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" /> 
-        CLICK FOR A SALE OFFER
-      </a>
-                                    {/* <button className="btnContentItem">
+                <a
+                  className="btnContentItem text-decoration-none"
+                  data-bs-toggle="modal"
+                  data-bs-target="#saleSale"
+                >
+                  {" "}
+                  <img
+                    src="/images/icons/btn-icon-1.png"
+                    className="fixBtnIcon"
+                  />
+                  CLICK FOR A SALE OFFER
+                </a>
+                {/* <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
                                            download & Share Property Presentation
                                       </button>
@@ -430,11 +451,11 @@ function SingleProjectView({ params }) {
                                           <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
                                             Download & Share Sale offer
                                       </button> */}
-                               </div>
-                          </div>
-                      </div>
-                </div>
-           </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {projectData?.developer &&
         Object.keys(projectData.developer).length > 0 && (
@@ -557,7 +578,6 @@ function SingleProjectView({ params }) {
                     <i className="bi bi-chevron-left fs-1"></i>
                   </span>
                 </div>
-               
               </Swiper>
             </div>
           </div>
