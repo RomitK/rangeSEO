@@ -29,16 +29,16 @@ const PropertyList = ({ params }) => {
   const [infoWindowData, setInfoWindowData] = useState({
     id: null,
     address: "",
-    name: "",
+    title: "",
     area: "",
-    unit_measure: "",
+    area_unit: "",
     bedrooms: "",
     bathrooms: "",
-    price: "",
-    property_banner: "",
+    starting_price: "",
+    mainImage: "",
     slug: "",
+    completionStatusName: "",
     accommodationName: "",
-    categoryName: "",
   });
   const [showClearMapButton, setShowClearMapButton] = useState(false);
   const mapRef2 = useRef(null);
