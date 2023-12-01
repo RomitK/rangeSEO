@@ -12,9 +12,13 @@ import {
 
 import classes from "./Project.module.css";
 import Filters from "./Filters";
+import {
+  useGetAccommodations,
+  useGetCommunities,
+  useGetAmenities,
+} from "@/src/services/PropertyService";
 
-const ProjectPageList = ({ params }) => {
- 
+const PropertyList = ({ params }) => {
   const [showMap, setShowMap] = useState(true);
   const [properties, setProperties] = useState([]);
   const [originalMarkers, setOriginalMarkers] = useState([]);
@@ -22,23 +26,30 @@ const ProjectPageList = ({ params }) => {
   const [trigger, setTrigger] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
-  const mapRef = useRef(null);
   const [infoWindowData, setInfoWindowData] = useState({
     id: null,
     address: "",
-    title: "",
+    name: "",
     area: "",
-    area_unit: "",
+    unit_measure: "",
     bedrooms: "",
     bathrooms: "",
-    starting_price: "",
-    mainImage: "",
+    price: "",
+    property_banner: "",
     slug: "",
-    completionStatusName: "",
     accommodationName: "",
+    categoryName: "",
   });
   const [showClearMapButton, setShowClearMapButton] = useState(false);
   const mapRef2 = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [sorting, setSorting] = useState("");
+
+  const { accommodations } = useGetAccommodations();
+  const { communities } = useGetCommunities();
+  const { amenities } = useGetAmenities();
+
+  const mapRef = useRef(null);
 
   const getMarkersInView = useCallback(() => {
     if (!mapRef2.current) return;
@@ -48,6 +59,7 @@ const ProjectPageList = ({ params }) => {
     const markersInsideView = originalMarkers.filter((marker) =>
       bounds.contains(new window.google.maps.LatLng(marker.lat, marker.lng))
     );
+
     mapRef2?.current?.setCenter({
       lat: parseFloat(originalMarkers[0].address_latitude),
       lng: parseFloat(originalMarkers[0].address_longitude),
@@ -76,7 +88,7 @@ const ProjectPageList = ({ params }) => {
 
   const onMapLoad = (map) => {
     mapRef2.current = map;
-    // const bounds = new google.maps.LatLngBounds();
+    const bounds = new google.maps.LatLngBounds();
     // filteredMarkers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
     // map.fitBounds(bounds);
   };
@@ -120,6 +132,9 @@ const ProjectPageList = ({ params }) => {
     }
   };
 
+  const handleSortChange = (e) => {
+    setSorting(e.target.value);
+  };
   return (
     <div className="container-fluid px-0">
       <div className="row g-0">
@@ -131,6 +146,12 @@ const ProjectPageList = ({ params }) => {
               setShowMap={setShowMap}
               mapRef={mapRef2}
               setOriginalMarkers={setOriginalMarkers}
+              accomodations={accommodations}
+              communities={communities}
+              amenities={amenities}
+              setLoading={setLoading}
+              sortBy={sorting}
+
             />
           </div>
         </div>
@@ -166,7 +187,7 @@ const ProjectPageList = ({ params }) => {
                   mapContainerClassName="map-container"
                   onLoad={onMapLoad}
                   onClick={() => {
-                    setIsOpen(false);
+                      setIsOpen(false);
                   }}
                 >
                   {filteredMarkers.map(
@@ -225,7 +246,7 @@ const ProjectPageList = ({ params }) => {
                               whiteSpace: "nowrap", // Rounded corners
                             }}
                           >
-                            {starting_price}
+                            {new Intl.NumberFormat().format(starting_price)}
                           </div>
                         </OverlayView>
                         {isOpen && infoWindowData?.id === ind && (
@@ -302,40 +323,66 @@ const ProjectPageList = ({ params }) => {
         >
           <div id="dataTable">
             <div>
-              <h5>Real Estate Project</h5>
+              <h5>Real Estate &amp; Homes</h5>
             </div>
             <div id="PropertyResult">
               <div>
                 <div className="col-12 col-lg-12 col-md-12">
-                  <div className="row g-3">
-                    <div className="col-12 col-lg-12 col-md-12">
+                  {loading ? (
+                    "Loading Properties"
+                  ) : (
+                    <>
+                      <div className="row mb-3">
+                        <div className="col d-flex align-items-center">
+                          <p className="text-primary mb-0">
+                            {properties.length} results found
+                          </p>
+                        </div>
+                        <div className="col">
+                         
+                          {/* <select
+                            onChange={handleSortChange}
+                            value={sorting}
+                            className="form-select w-auto float-end"
+                            aria-label="Size 3 select"
+                          >
+                            <option value="1">Newest</option>
+                            <option value="2">Price (Low)</option>
+                            <option value="3">Price (High)</option>
+                          </select> */}
+                        </div>
+                      </div>
+                      <div className="row g-3">
+                        {/* <div className="col-12 col-lg-12 col-md-12">
                       <p className="text-primary mb-0">
                         {properties.length} results found
                       </p>
-                    </div>
-                    {properties.map((property, index) => (
-                      <div
-                        key={index}
-                        className={`col-12 ${
-                          showMap ? "col-lg-6" : "col-lg-3"
-                        } col-md-6`}
-                      >
-                        <Project
-                          slug={property.slug}
-                          area={property.area}
-                          bathrooms={property.bathrooms}
-                          bedrooms={property.bedrooms}
-                          starting_price={property.starting_price}
-                          address={property.address}
-                          mainImage={property.mainImage}
-                          title={property.title}
-                          completionStatusName={property.completionStatusName}
-                          area_unit={property.area_unit}
-                          accommodationName={property.accommodationName}
-                        />
+                    </div> */}
+                        {properties.map((property, index) => (
+                          <div
+                            key={index}
+                            className={`col-12 ${
+                              showMap ? "col-lg-6" : "col-lg-3"
+                            } col-md-6`}
+                          >
+                            <Project
+                              slug={property.slug}
+                              area={property.area}
+                              bathrooms={property.bathrooms}
+                              bedrooms={property.bedrooms}
+                              starting_price={property.starting_price}
+                              address={property.address}
+                              mainImage={property.mainImage}
+                              title={property.title}
+                              completionStatusName={property.completionStatusName}
+                              area_unit={property.area_unit}
+                              accommodationName={property.accommodationName}
+                            />
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -345,4 +392,4 @@ const ProjectPageList = ({ params }) => {
     </div>
   );
 };
-export default ProjectPageList;
+export default PropertyList;

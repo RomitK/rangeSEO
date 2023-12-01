@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import { components } from "react-select";
 import { Dropdown, FormControl, Form } from "react-bootstrap";
 import AsyncSelect from "react-select/async";
@@ -24,10 +25,8 @@ function Filters({
   setLoading,
   sortBy,
 }) {
-
   const [form, setForm] = useState({
     accommodation_id: "",
-    community: "",
     bedrooms: "",
     minprice: "",
     maxprice: "",
@@ -35,10 +34,7 @@ function Filters({
     maxarea: "",
     amenities: "",
     bathroom: "",
-    area: "",
-    category: "rent",
-    completionStatus: "",
-    furnishing: "",
+    completion_status_id:""
   });
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
@@ -47,7 +43,6 @@ function Filters({
   const maxPriceRef = useRef(null);
   const minAreaRef = useRef(null);
   const maxAreaRef = useRef(null);
-  const [isCommercial, setIsCommercial] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const [filteredAccomodation, setFilteredAccomodation] = useState(accomodations);
   const [showNoMessage, setNoMessage] = useState(false);
@@ -55,6 +50,16 @@ function Filters({
   const [hasFocus, setHasFocus] = useState(false);
   const [showSelectedValues, setShowSelectedValues] = useState(true);
   const [ongoingRequests, setOngoingRequests] = useState([]);
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    if (searchParams.has("minprice") && searchParams.has("maxprice")) {
+      setForm({
+        ...form,
+        minprice: searchParams.get("minprice"),
+        maxprice: searchParams.get("maxprice"),
+      });
+    }
+  }, []);
 
   const Menu = ({ children, ...props }) => {
     let items = form["searchBy"];
@@ -114,58 +119,38 @@ function Filters({
   );
 
   useEffect(() => {
-    if (isCommercial) {
-      const filtered = accomodations?.filter(
-        (accomodation) =>
-          accomodation.type === "Commercial" || accomodation.type === "Both"
-      );
-      if (filtered != null) {
-        setFilteredAccomodation([...filtered]);
-      }
-    } else {
-      const filtered = accomodations?.filter(
-        (accomodation) =>
-          accomodation.type === "Residential" || accomodation.type === "Both"
-      );
-      if (filtered != null) {
-        setFilteredAccomodation([...filtered]);
-      }
-    }
-  }, [isCommercial, accomodations]);
-
-  useEffect(() => {
     if (isMobile && showMap) {
       setShowMap(false);
     }
   }, [isMobile]);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "properties?";
+    let getPropertiesURL = process.env.API_HOST + "projects?";
     let payload = { ...form };
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
-          if (payload[key]) {
-              if (key === "searchBy" && payload[key].length) {
-                  let searchBy = undefined;
-                  if (typeof payload[key] == "string") {
-                      searchBy = JSON.parse(payload[key]);
-                  } else if (Array.isArray(payload[key])) {
-                      searchBy = payload[key];
-                  } else {
-                      searchBy = [];
-                  }
-                  searchBy.forEach((element) => {
-                      delete element.id;
-                      delete element.slug;
-                  });
-                  payload[key] = JSON.stringify(searchBy);
-                  getPropertiesURL += `${key}=${payload[key]}&`;
-              } else {
-                  getPropertiesURL += `${key}=${payload[key]}&`;
-              }
+        if (payload[key]) {
+          if (key === "searchBy" && payload[key].length) {
+            let searchBy = undefined;
+            if (typeof payload[key] == "string") {
+              searchBy = JSON.parse(payload[key]);
+            } else if (Array.isArray(payload[key])) {
+              searchBy = payload[key];
+            } else {
+              searchBy = [];
+            }
+            searchBy.forEach((element) => {
+              delete element.id;
+              delete element.slug;
+            });
+            payload[key] = JSON.stringify(searchBy);
+            getPropertiesURL += `${key}=${payload[key]}&`;
+          } else {
+            getPropertiesURL += `${key}=${payload[key]}&`;
           }
+        }
       }
-  }
+    }
     setLoading(true);
     fetch(getPropertiesURL)
       .then((response) => response.json())
@@ -210,7 +195,7 @@ function Filters({
     });
     setNewArrayF(newArray3);
   }, amenities);
-  
+
   const handleChange = (e) => {
     form[e.target.name] = e.target.value;
     setForm({ ...form });
@@ -318,7 +303,8 @@ function Filters({
 
     const abortController = new AbortController();
     const abortSignal = abortController.signal;
-    const apiUrl = process.env.API_HOST + "propertyPageSearch?keyword="+ inputValue;
+    const apiUrl =
+      process.env.API_HOST + "projectPageSearch?keyword=" + inputValue;
 
     ongoingRequests.map((onGoingRequest) =>
       onGoingRequest.abortController.abort()
@@ -354,7 +340,7 @@ function Filters({
   return (
     <form action="">
       <div className="row row-gap-3">
-        <div className="col-12 col-lg-4">
+        <div className="col-12 col-lg-3">
           <AsyncSelect
             isClearable={false}
             isMulti
@@ -412,21 +398,10 @@ function Filters({
             name="searchBy"
             loadOptions={loadOptions}
             instanceId="searchBy"
+            // placeholder="Search By Developers and  Communities"
           />
         </div>
-        <div className="col-md-1">
-          <select
-            onChange={handleChange}
-            value={form.category}
-            name="category"
-            id="category"
-            className="form-select bedroomSelect"
-          >
-            <option value="buy">Buy</option>
-            <option value="rent">Rent</option>
-          </select>
-        </div>
-
+       
         <div className="col-md-2">
           <select
             onChange={handleChange}
@@ -436,14 +411,45 @@ function Filters({
             className="form-select bedroomSelect"
           >
             <option value="">Select Property Type</option>
-            {filteredAccomodation?.map((accomodation) => (
+            {accomodations?.map((accomodation) => (
               <option key={accomodation.id} value={accomodation.id}>
                 {accomodation.name}
               </option>
             ))}
           </select>
         </div>
-
+        <div className="col-md-2">
+            <select
+              onChange={handleChange}
+              value={form.bedrooms}
+              name="bedrooms"
+              id="bedrooms"
+              className="form-select bedroomSelect"
+            >
+              <option value="">Select Bedrooms</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="ST">ST</option>
+            </select>
+        </div>
+        <div className="col-md-2">
+            <select
+              onChange={handleChange}
+              value={form.completion_status_id}
+              name="completion_status_id"
+              id="completion_status_id"
+              className="form-select bedroomSelect"
+            >
+              <option value="">Project Status</option>
+              <option value="288">Upcoming</option>
+              <option value="289">Under Construction</option>
+              <option value="300">Completed</option>
+            </select>
+        </div>
         <div className="col-md-2">
           <div className="dropdown">
             <div
@@ -509,28 +515,9 @@ function Filters({
             </div>
           </div>
         </div>
+       
 
-        <div className="col-md-3 d-flex align-items-center justify-content-end">
-          <div className="form-check me-4">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
-              onChange={(e) => setIsCommercial(e.target.checked)}
-              value={isCommercial}
-            />
-            <label className="form-check-label" htmlFor="exampleCheck1">
-              Commericial
-            </label>
-          </div>
-          <button
-            className="btn btn-primary"
-            type="button"
-            onClick={() => setShowMore(!showMore)}
-          >
-            {showMore ? "Hide" : "More"}
-          </button>
-
+        <div className="col-md-1 d-flex align-items-center justify-content-end">
           <div className="form-check d-none d-sm-block">
             <div
               className="btn-group"
@@ -571,12 +558,7 @@ function Filters({
             </div>
           </div>
         </div>
-      </div>
-
-      {showMore && (
-        <div className="row mt-3">
-          {!isCommercial && (
-            <div className="col">
+        <div className="col-md-4">
               <Dropdown>
                 <Dropdown.Toggle
                   className={`dt form-control form-select ${classes.customDropdown}`}
@@ -628,71 +610,8 @@ function Filters({
                   )}
                 </Dropdown.Menu>
               </Dropdown>
-            </div>
-          )}
-          {/* {!isCommercial && (
-                        <div className="col">
-                            <select
-                                onChange={handleChange}
-                                value={form.furnishing}
-                                name="furnishing"
-                                id="furnishing"
-                                className="form-select furnishingSelect"
-                            >
-                                <option value="">Select Furnishing</option>
-                                <option value="1">Furnished</option>
-                                <option value="2">Unfurnished</option>
-                                <option value="3">Partly Furnished</option>
-                            </select>
-                        </div>
-                    )} */}
-          {form.category == "buy" && !isCommercial && (
-            <div className="col">
-              <select
-                onChange={handleChange}
-                value={form.completionStatus}
-                name="completionStatus"
-                id="completionStatus"
-                className="form-select completionStatusSelect"
-              >
-                <option value="">Select Completion Status</option>
-                <option value="1">Off-plan</option>
-                <option value="2">Ready</option>
-              </select>
-            </div>
-          )}
-          <div className="col">
-            <select
-              onChange={handleChange}
-              value={form.bedrooms}
-              name="bedrooms"
-              id="bedrooms"
-              className="form-select bedroomSelect"
-            >
-              <option value="">Select Bedrooms</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="ST">ST</option>
-            </select>
-          </div>
-          {!isCommercial && (
-            <div className="col">
-              <input
-                value={form.bathroom}
-                type="number"
-                name="bathroom"
-                onChange={handleChange}
-                className="form-control"
-                id="bathroom"
-                placeholder="Bathrooms"
-              />
-            </div>
-          )}
-          <div className="col">
+        </div>
+        <div className="col-md-2">
             <div className="dropdown">
               <div
                 className="form-select"
@@ -757,9 +676,8 @@ function Filters({
                 </div>
               </div>
             </div>
-          </div>
         </div>
-      )}
+      </div>
       <Bottombar
         item={showMap ? 0 : 1}
         callBack={(index) =>

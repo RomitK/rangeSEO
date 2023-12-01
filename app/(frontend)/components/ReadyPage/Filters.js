@@ -77,8 +77,7 @@ function Filters({
                       const filtered = comm.filter(
                         (item1) =>
                           item1.name !== selectedItem.name &&
-                          item1.type !== selectedItem.type &&
-                          item1.id !== selectedItem.id
+                          item1.type !== selectedItem.type
                       );
                       props.setValue([...filtered]);
                       setForm({ ...form, searchBy: filtered });
@@ -436,7 +435,7 @@ function Filters({
             id="accomodation"
             className="form-select bedroomSelect"
           >
-            <option value="">Select Accomodation</option>
+            <option value="">Select Property Type</option>
             {filteredAccomodation?.map((accomodation) => (
               <option key={accomodation.id} value={accomodation.id}>
                 {accomodation.name}
