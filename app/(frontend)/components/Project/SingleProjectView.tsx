@@ -21,6 +21,7 @@ import FloorPlanModal from "../models/FloorPlanModel";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 import DownloadPPTModal from "@/app/(frontend)/components/models/DownloadPPTModal";
 import SaleOfferModal from "@/app/(frontend)/components/models/SaleOfferModal";
+import GallaryModalImg from "@/app/(frontend)/components/models/GallaryModalImg";
 function SingleProjectView({ params }) {
   const slug = params.slug[0];
   const { projectData } = useGetSingleProjectData(slug);
@@ -112,7 +113,7 @@ function SingleProjectView({ params }) {
             <div className="col-md-3">
               <div className="vtTextBXox">
                 <p>Starting Price</p>
-                <h3>AED {projectData?.price}</h3>
+                <h3>AED { new Intl.NumberFormat().format(projectData?.price)}</h3>
               </div>
             </div>
             <div className="col-md-3">
@@ -160,7 +161,7 @@ function SingleProjectView({ params }) {
               </div>
               <div className="col-3 selectTitle">
                 <a className="tabTitle " href="#NearBy" aria-selected="true">
-                  Nearby
+                  Nearby PROJECTS
                 </a>
               </div>
               <div className="col-3 selectTitle">
@@ -205,7 +206,7 @@ function SingleProjectView({ params }) {
                   );
                 })}
 
-                {/* <div className="carouselArrowBar">
+                <div className="carouselArrowBar">
                         <div
                           className="swiper-button-next text-white"
                           onClick={() => innerSwiperRef.current?.slideNext()}
@@ -222,7 +223,7 @@ function SingleProjectView({ params }) {
                             <i className="bi bi-chevron-left fs-1"></i>
                           </span>
                         </div>
-                      </div> */}
+                      </div>
               </Swiper>
             </div>
           </div>
@@ -335,8 +336,10 @@ function SingleProjectView({ params }) {
                         <button
                           className="fillBtn tblBtn mrAuto"
                           data-bs-toggle="modal"
-                          data-bs-target="#floorplan"
-                          onClick={() => setFloorPlanFile(type.floorPlan)}
+                          //data-bs-target="#floorplan"
+                          data-bs-target={"#gallaryModalImg-"+type.id}
+                          
+                          // onClick={() => setFloorPlanFile(type.floorPlan)}
                         >
                           view
                         </button>
@@ -444,7 +447,7 @@ function SingleProjectView({ params }) {
                 <div className="col-md-7">
                   <div className="secContent">
                     <h4 className="sctionMdTitle text-primary mb-4">
-                      About Developer
+                      About the Developer
                     </h4>
                     <p className="fs-14 text-secondary mb-4">
                       {projectData &&
@@ -475,7 +478,7 @@ function SingleProjectView({ params }) {
           <div className="row">
             <div className="secTabCntent">
               <h4 className="sctionMdTitle text-primary">NEARBY</h4>
-              <h6 className="sctionSubTitle text-primary">OTHER PROJECTS</h6>
+              <h6 className="sctionSubTitle text-primary"> PROJECTS</h6>
             </div>
             <div className="row g-0">
               <Swiper
@@ -1122,6 +1125,61 @@ function SingleProjectView({ params }) {
           </div>
         </div>
       </section> */}
+
+      {/* <GallaryModalImg images={propertyData?.floorplans} /> */}
+
+      {projectData?.types?.map((type, index) => {
+                  return (
+      <div
+      key={"type-"+index}
+        className="modal fade"
+        tabIndex={-1}
+        aria-labelledby="exampleModalLabel"
+        id={"gallaryModalImg-"+type.id}
+        aria-hidden="true"
+      >
+        <div className="modal-dialog  modal-dialog-centered modal-lg modalBookMeet ">
+          <div className="modal-content">
+            <div className="modal-header border-0 justify-content-end p-1">
+              <button
+                type="button"
+                className="bg-transparent border-0"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <i className="bi bi-x-circle text-primary"></i>
+              </button>
+            </div>
+            <div className="modal-body  p-0 rounded-1 m-2">
+              <div className="row g-0">
+                <div className="col-12 col-lg-12 col-md-12 descricalenderCol">
+                  <Swiper
+                    pagination={{
+                      type: "fraction",
+                    }}
+                    navigation={true}
+                    modules={[Pagination, Navigation]}
+                    className="mySwiper galleryMdlSilder"
+                  >
+                    {type?.floorPlan?.map((image, index) => {
+                      return (
+                        <SwiperSlide className="sliderItem" key={image.id}>
+                          <img
+                            src={image.path}
+                            alt={image.path}
+                            className="sliderGallaryImg"
+                          />
+                        </SwiperSlide>
+                      );
+                    })}
+                  </Swiper>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+                  )})}
 
       <DownloadFileModel
         sideText={contactSideText}

@@ -357,7 +357,7 @@ function SingleProjectView({ params }) {
                 <div className="col-md-7">
                   <div className="secContent">
                     <h4 className="sctionMdTitle text-primary mb-4">
-                      About Developer
+                      About the Developer
                     </h4>
                     <p className="fs-14 text-secondary mb-4">
                       {projectData &&
@@ -388,7 +388,7 @@ function SingleProjectView({ params }) {
           <div className="row">
             <div className="secTabCntent">
               <h4 className="sctionMdTitle text-primary">NEARBY</h4>
-              <h6 className="sctionSubTitle text-primary">OTHER PROJECTS</h6>
+              <h6 className="sctionSubTitle text-primary"> PROJECTS</h6>
             </div>
             <div className="row g-0">
               <Swiper

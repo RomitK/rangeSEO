@@ -66,11 +66,10 @@ function PaymentPlanModel(props) {
                 <div className="col-12 col-lg-12 col-md-12 descricalenderCol">
                   <div className="labelFLex">
                     <label className="priceLabel">
-                      Sizes From : {props?.project?.minPrice} To{" "}
-                      {props?.maxPrice} SQFT
+                      Sizes From : {props?.project?.areaAvailable}
                     </label>
                     <label className="priceLabel">
-                      Starting Price : AED {props?.project?.price}
+                      Starting Price : AED {  new Intl.NumberFormat().format(props?.project?.price)}
                     </label>
                   </div>
                   {props?.project?.payment.map(function (pay, index) {
