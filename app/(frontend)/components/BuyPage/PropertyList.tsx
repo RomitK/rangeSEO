@@ -12,6 +12,11 @@ import {
 
 import classes from "./Properties.module.css";
 import Filters from "./Filters";
+import {
+  useGetAccommodations,
+  useGetCommunities,
+  useGetAmenities,
+} from "@/src/services/PropertyService";
 
 const PropertyList = ({ params }) => {
   const [showMap, setShowMap] = useState(true);
@@ -26,17 +31,25 @@ const PropertyList = ({ params }) => {
     address: "",
     name: "",
     area: "",
+    unit_measure: "",
     bedrooms: "",
     bathrooms: "",
     price: "",
     property_banner: "",
     slug: "",
     accommodationName: "",
-    categoryName:""
+    categoryName: "",
   });
-  const mapRef = useRef(null);
   const [showClearMapButton, setShowClearMapButton] = useState(false);
   const mapRef2 = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [sorting, setSorting] = useState("");
+
+  const { accommodations } = useGetAccommodations();
+  const { communities } = useGetCommunities();
+  const { amenities } = useGetAmenities();
+
+  const mapRef = useRef(null);
 
   const getMarkersInView = useCallback(() => {
     if (!mapRef2.current) return;
@@ -46,6 +59,11 @@ const PropertyList = ({ params }) => {
     const markersInsideView = originalMarkers.filter((marker) =>
       bounds.contains(new window.google.maps.LatLng(marker.lat, marker.lng))
     );
+
+    mapRef2?.current?.setCenter({
+      lat: parseFloat(originalMarkers[0].address_latitude),
+      lng: parseFloat(originalMarkers[0].address_longitude),
+    });
     // setFilteredMarkers([...markersInsideView]);
     setProperties([...markersInsideView]);
   }, [originalMarkers]);
@@ -71,8 +89,8 @@ const PropertyList = ({ params }) => {
   const onMapLoad = (map) => {
     mapRef2.current = map;
     const bounds = new google.maps.LatLngBounds();
-    filteredMarkers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
-    map.fitBounds(bounds);
+    // filteredMarkers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
+    // map.fitBounds(bounds);
   };
 
   const handleMarkerClick = (
@@ -82,6 +100,7 @@ const PropertyList = ({ params }) => {
     address,
     name,
     area,
+    unit_measure,
     bedrooms,
     bathrooms,
     price,
@@ -95,13 +114,14 @@ const PropertyList = ({ params }) => {
       address,
       name,
       area,
+      unit_measure,
       bedrooms,
       bathrooms,
       price,
       property_banner,
       slug,
       accommodationName,
-      categoryName
+      categoryName,
     });
     setIsOpen(true);
   };
@@ -112,6 +132,9 @@ const PropertyList = ({ params }) => {
     }
   };
 
+  const handleSortChange = (e) => {
+    setSorting(e.target.value);
+  };
   return (
     <div className="container-fluid px-0">
       <div className="row g-0">
@@ -123,6 +146,12 @@ const PropertyList = ({ params }) => {
               setShowMap={setShowMap}
               mapRef={mapRef2}
               setOriginalMarkers={setOriginalMarkers}
+              accomodations={accommodations}
+              communities={communities}
+              amenities={amenities}
+              setLoading={setLoading}
+              sortBy={sorting}
+
             />
           </div>
         </div>
@@ -158,7 +187,7 @@ const PropertyList = ({ params }) => {
                   mapContainerClassName="map-container"
                   onLoad={onMapLoad}
                   onClick={() => {
-                    setIsOpen(false);
+                      setIsOpen(false);
                   }}
                 >
                   {filteredMarkers.map(
@@ -167,6 +196,7 @@ const PropertyList = ({ params }) => {
                         address,
                         name,
                         area,
+                        unit_measure,
                         bedrooms,
                         bathrooms,
                         price,
@@ -175,7 +205,7 @@ const PropertyList = ({ params }) => {
                         lng,
                         slug,
                         accommodationName,
-                        categoryName
+                        categoryName,
                       },
                       ind
                     ) => (
@@ -190,6 +220,7 @@ const PropertyList = ({ params }) => {
                             address,
                             name,
                             area,
+                            unit_measure,
                             bedrooms,
                             bathrooms,
                             price,
@@ -215,7 +246,7 @@ const PropertyList = ({ params }) => {
                               whiteSpace: "nowrap", // Rounded corners
                             }}
                           >
-                            {  new Intl.NumberFormat().format(price )}
+                            {new Intl.NumberFormat().format(price)}
                           </div>
                         </OverlayView>
                         {isOpen && infoWindowData?.id === ind && (
@@ -228,13 +259,16 @@ const PropertyList = ({ params }) => {
                               <Property
                                 slug={infoWindowData.slug}
                                 area={infoWindowData.area}
+                                unit_measure={infoWindowData.unit_measure}
                                 bathrooms={infoWindowData.bathrooms}
                                 bedrooms={infoWindowData.bedrooms}
                                 price={infoWindowData.price}
                                 address={infoWindowData.address}
                                 property_banner={infoWindowData.property_banner}
                                 name={infoWindowData.name}
-                                accommodationName={infoWindowData.accommodationName}
+                                accommodationName={
+                                  infoWindowData.accommodationName
+                                }
                                 categoryName={infoWindowData.categoryName}
                               />
                             </div>
@@ -287,39 +321,66 @@ const PropertyList = ({ params }) => {
         >
           <div id="dataTable">
             <div>
-              <h5>Real Estate &amp; Homes For Sale</h5>
+              <h5>Real Estate &amp; Homes</h5>
             </div>
             <div id="PropertyResult">
               <div>
                 <div className="col-12 col-lg-12 col-md-12">
-                  <div className="row g-3">
-                    <div className="col-12 col-lg-12 col-md-12">
+                  {loading ? (
+                    "Loading Properties"
+                  ) : (
+                    <>
+                      <div className="row mb-3">
+                        <div className="col d-flex align-items-center">
+                          <p className="text-primary mb-0">
+                            {properties.length} results found
+                          </p>
+                        </div>
+                        <div className="col">
+                         
+                          <select
+                            onChange={handleSortChange}
+                            value={sorting}
+                            className="form-select w-auto float-end"
+                            aria-label="Size 3 select"
+                          >
+                            <option value="1">Newest</option>
+                            <option value="2">Price (Low to High)</option>
+                            <option value="3">rice (High to Low)</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="row g-3">
+                        {/* <div className="col-12 col-lg-12 col-md-12">
                       <p className="text-primary mb-0">
                         {properties.length} results found
                       </p>
-                    </div>
-                    {properties.map((property, index) => (
-                      <div
-                        key={index}
-                        className={`col-12 ${
-                          showMap ? "col-lg-6" : "col-lg-3"
-                        } col-md-6`}
-                      >
-                        <Property
-                          slug={property.slug}
-                          area={property.area}
-                          bathrooms={property.bathrooms}
-                          bedrooms={property.bedrooms}
-                          price={property.price}
-                          address={property.address}
-                          property_banner={property.property_banner}
-                          name={property.name}
-                          accommodationName={property.accommodationName}
-                          categoryName={property.categoryName}
-                        />
+                    </div> */}
+                        {properties.map((property, index) => (
+                          <div
+                            key={index}
+                            className={`col-12 ${
+                              showMap ? "col-lg-6" : "col-lg-3"
+                            } col-md-6`}
+                          >
+                            <Property
+                              slug={property.slug}
+                              area={property.area}
+                              unit_measure={property.unit_measure}
+                              bathrooms={property.bathrooms}
+                              bedrooms={property.bedrooms}
+                              price={property.price}
+                              address={property.address}
+                              property_banner={property.property_banner}
+                              name={property.name}
+                              accommodationName={property.accommodationName}
+                              categoryName={property.categoryName}
+                            />
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

@@ -347,8 +347,8 @@ const PropertyList = ({ params }) => {
                             aria-label="Size 3 select"
                           >
                             <option value="1">Newest</option>
-                            <option value="2">Price (Low)</option>
-                            <option value="3">Price (High)</option>
+                            <option value="2">rice (Low to High)</option>
+                            <option value="3">rice (High to Low)</option>
                           </select> */}
                         </div>
                       </div>
