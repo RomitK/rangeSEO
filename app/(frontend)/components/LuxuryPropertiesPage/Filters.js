@@ -464,7 +464,7 @@ function Filters({
               <option value="4">4</option>
               <option value="6">6</option>
               <option value="7">7</option>
-              <option value="ST">ST</option>
+              <option value="Studio">Studio</option>
             </select>
           </div>
           {!isCommercial && (
