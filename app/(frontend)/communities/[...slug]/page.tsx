@@ -1,15 +1,26 @@
-"use client";
 import React, { useState, useEffect } from "react";
-import "swiper/swiper-bundle.css";
-import "swiper/css/pagination";
-import { SWRProvider } from "@/app/swr-provider";
-import SingleCommunityView from "../../components/Community/SingleCommunityView";
+import type { Metadata } from "next";
+import SingleCommunityPage from "../../components/Community/SingleCommunityPage";
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
-function SingleCommunity({ params }: any) {
-  return (
-    <SWRProvider>
-      <SingleCommunityView params={params}></SingleCommunityView>
-    </SWRProvider>
-  );
+export default function SingleCommunity({ params }) {
+  return <SingleCommunityPage params={params}></SingleCommunityPage>;
 }
-export default SingleCommunity;
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const slug = params.slug;
+  const community = await fetch(`${process.env.API_HOST}communities/${slug}`).then(
+    (res) => res.json()
+  );
+
+  return {
+    title: community?.data?.name,
+    description: community?.data?.meta_description,
+    keywords: community?.data?.meta_keywords,
+  };
+};
+

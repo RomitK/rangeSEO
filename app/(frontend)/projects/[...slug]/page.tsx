@@ -13,7 +13,7 @@ export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
   const slug = params.slug;
-  const project = await fetch(`${process.env.API_HOST}/projects/${slug}`).then(
+  const project = await fetch(`${process.env.API_HOST}projects/${slug}`).then(
     (res) => res.json()
   );
 

@@ -146,22 +146,6 @@ function SinglePropertyView({ params }) {
   useEffect(() => {
     setDownpaymentMoney((downpaymentPer / 100) * propertyPrice);
   }, [downpaymentPer]);
-
-  useEffect(() => {
-    if (propertyData) {
-      document.title = propertyData?.name;
-      let metaDesc = document.createElement("meta");
-      metaDesc.name = "description";
-      metaDesc.content = propertyData?.meta_description;
-      document.head.appendChild(metaDesc);
-      let metaKeywords = document.createElement("meta");
-      metaKeywords.name = "keywords";
-      metaKeywords.content = propertyData?.meta_keywords;
-      document.head.appendChild(metaKeywords);
-    }
-  }, [propertyData]);
-
-
   return (
     <>
       <section className="my-5">

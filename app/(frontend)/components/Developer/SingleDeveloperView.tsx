@@ -133,21 +133,6 @@ function SingleDeveloperView({ params }) {
     setModalOpen(false);
   };
 
-  useEffect(() => {
-    if (developerData) {
-      document.title = developerData?.name;
-      let metaDesc = document.createElement("meta");
-      metaDesc.name = "description";
-      metaDesc.content = developerData?.meta_description;
-      document.head.appendChild(metaDesc);
-      let metaKeywords = document.createElement("meta");
-      metaKeywords.name = "keywords";
-      metaKeywords.content = developerData?.meta_keywords;
-      document.head.appendChild(metaKeywords);
-    }
-  }, [developerData]);
-
-
   return (
     <>
       {developerData && (
