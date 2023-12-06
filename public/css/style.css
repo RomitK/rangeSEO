@@ -1563,6 +1563,9 @@ font-weight: 600;
 .frmTabList .nav-link.active{
 background-color: #117bb9 !important;
 }
+.frmTabList .nav-link.active:hover{
+    color: #fff !important
+}
 .search-input.frmSearcBar .fa-search{
 position: absolute;
 right: 15px;

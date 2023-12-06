@@ -354,7 +354,7 @@ function Filters({
   return (
     <form action="">
       <div className="row row-gap-3">
-        <div className="col-12 col-lg-4">
+        <div className="col-12 col-lg-3">
           <AsyncSelect
             isClearable={false}
             isMulti
@@ -510,7 +510,7 @@ function Filters({
           </div>
         </div>
 
-        <div className="col-md-3 d-flex align-items-center justify-content-end">
+        <div className="col-md-4 d-flex align-items-center justify-content-end">
           <div className="form-check me-4">
             <input
               type="checkbox"
@@ -630,23 +630,23 @@ function Filters({
               </Dropdown>
             </div>
           )}
-          {/* {!isCommercial && (
-                        <div className="col">
-                            <select
-                                onChange={handleChange}
-                                value={form.furnishing}
-                                name="furnishing"
-                                id="furnishing"
-                                className="form-select furnishingSelect"
-                            >
-                                <option value="">Select Furnishing</option>
-                                <option value="1">Furnished</option>
-                                <option value="2">Unfurnished</option>
-                                <option value="3">Partly Furnished</option>
-                            </select>
-                        </div>
-                    )} */}
-          {form.category == "buy" && !isCommercial && (
+          {!isCommercial && (
+            <div className="col">
+              <select
+                onChange={handleChange}
+                value={form.furnishing}
+                name="furnishing"
+                id="furnishing"
+                className="form-select furnishingSelect"
+              >
+                <option value="">All Furnishings</option>
+                <option value="1">Furnished</option>
+                <option value="2">Unfurnished</option>
+                <option value="partly">Partly Furnished</option>
+              </select>
+          </div>              
+          )}
+          {/* {form.category == "buy" && !isCommercial && (
             <div className="col">
               <select
                 onChange={handleChange}
@@ -660,7 +660,7 @@ function Filters({
                 <option value="2">Ready</option>
               </select>
             </div>
-          )}
+          )} */}
           <div className="col">
             <select
               onChange={handleChange}

@@ -38,7 +38,7 @@ function Filters({
     bathroom: "",
     area: "",
     category: "buy",
-    exclusive: 1
+    exclusive: 1,
   });
   const [selectedCommunity, setselectedCommunity] = useState({
     id: "",
@@ -209,7 +209,6 @@ function Filters({
             onChange={(comm) => {
               form["community"] = comm.id;
               setForm({ ...form });
-             
             }}
           />
         </div>
@@ -225,24 +224,24 @@ function Filters({
             <option value="rent">Rent</option>
           </select>
         </div>
-        
-          <div className="col-md-2">
-            <select
-              onChange={handleChange}
-              value={form.accommodation_id}
-              name="accommodation_id"
-              id="accomodation"
-              className="form-select bedroomSelect"
-            >
-              <option value="">Select Property Type</option>
-              {accommodations?.map((accomodation) => (
-                <option key={accomodation.id} value={accomodation.id}>
-                  {accomodation.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        
+
+        <div className="col-md-2">
+          <select
+            onChange={handleChange}
+            value={form.accommodation_id}
+            name="accommodation_id"
+            id="accomodation"
+            className="form-select bedroomSelect"
+          >
+            <option value="">Select Property Type</option>
+            {accommodations?.map((accomodation) => (
+              <option key={accomodation.id} value={accomodation.id}>
+                {accomodation.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <div className="col-md-2">
           <div className="dropdown">
             <div
@@ -418,22 +417,22 @@ function Filters({
               </Dropdown>
             </div>
           )}
-          {/* {!isCommercial && (
-                        <div className="col">
-                            <select
-                                onChange={handleChange}
-                                value={form.furnishing}
-                                name="furnishing"
-                                id="furnishing"
-                                className="form-select furnishingSelect"
-                            >
-                                <option value="">Select Furnishing</option>
-                                <option value="1">Furnished</option>
-                                <option value="2">Unfurnished</option>
-                                <option value="3">Partly Furnished</option>
-                            </select>
-                        </div>
-                    )} */}
+          {!isCommercial && (
+            <div className="col">
+              <select
+                onChange={handleChange}
+                value={form.furnishing}
+                name="furnishing"
+                id="furnishing"
+                className="form-select furnishingSelect"
+              >
+                <option value="">All Furnishings</option>
+                <option value="1">Furnished</option>
+                <option value="2">Unfurnished</option>
+                <option value="partly">Partly Furnished</option>
+              </select>
+            </div>
+          )}
           {form.category == "buy" && !isCommercial && (
             <div className="col">
               <select
