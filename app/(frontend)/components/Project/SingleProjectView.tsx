@@ -112,7 +112,7 @@ function SingleProjectView({ params }) {
               <div className="vtTextBXox">
                 <p>Area from </p>
                 <h3>
-                  {projectData?.area} {projectData?.areaUnit}
+                <h3>{projectData?.areaAvailable} {projectData?.areaUnit}</h3>
                 </h3>
               </div>
             </div>
