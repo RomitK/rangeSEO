@@ -49,12 +49,12 @@ function GallaryModalVideo(props) {
                 config={{
                     youtube: {
                         playerVars: {
-                            autoplay: 1,
+                            autoplay: 0,
                             controls: 1
                         }
                     }
                 }}
-                url='https://www.youtube.com/watch?v=-6jlrq7idl8&list=PLiPk70af-7kf5A4vVxIWXr1yMaaoBTOb4' />
+                url={props.video} />
 
                 </div>
                   
