@@ -24,7 +24,7 @@ function SingleCareerPage({ params }) {
           alt="career"
         />
         <div className="headConentBox">
-            <h2 className="headTitle mb-3">JOIN RANGE</h2>
+            <h2 className="headTitle mb-3 joinRange">JOIN RANGE</h2>
             <a href="#currentOpening" className="fillBtn linkBtn">
                 SEE CURRENT OPENING
                 <img

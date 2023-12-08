@@ -356,10 +356,15 @@ textarea {
 }
 .modal-content {
   background: #fff;
-  width: 1000px;
+  /* width: 1000px; */
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.floorplans{
+  width: 100% !important;
+  height: 400px !important;
+  object-fit: contain !important;
 }
 #dropdown-basic{
   text-align: left;

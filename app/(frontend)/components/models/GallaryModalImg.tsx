@@ -56,7 +56,7 @@ function GallaryModalImg(props) {
                           <img
                             src={image.path}
                             alt={image.path}
-                            className="sliderGallaryImg"
+                            className="sliderGallaryImg floorplans"
                           />
                         </SwiperSlide>
                       );

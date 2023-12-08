@@ -13,7 +13,6 @@ import { EmailShareButton, WhatsappShareButton } from "react-share";
 // import GoogleMapReact from "google-map-react";
 import { useMemo } from "react";
 import { useGetSingleProjectData } from "@/src/services/ProjectService";
-import "@/public/css/single-project-view-styles.css";
 import "@/public/css/responsive.css";
 import DownloadFileModel from "../models/DownloadFileModel";
 import PaymentPlanModel from "../models/paymentPlanModel";
@@ -22,6 +21,7 @@ import { getCurrentUrl } from "@/src/utils/helpers/common";
 import DownloadPPTModal from "@/app/(frontend)/components/models/DownloadPPTModal";
 import SaleOfferModal from "@/app/(frontend)/components/models/SaleOfferModal";
 import GallaryModalImg from "@/app/(frontend)/components/models/GallaryModalImg";
+import "@/public/css/single-project-view-styles.css";
 function SingleProjectView({ params }) {
   const slug = params.slug[0];
   const { projectData } = useGetSingleProjectData(slug);
@@ -616,6 +616,7 @@ function SingleProjectView({ params }) {
                     </div>
                   </div>
                 </div>
+                {projectData?.rentProperties.length > 0 && (
                 <div className="col-12 col-lg-12 col-md-12">
                   <div className="swiper pb-5 projectSlider">
                     <Swiper
@@ -779,6 +780,7 @@ function SingleProjectView({ params }) {
                     </Swiper>
                   </div>
                 </div>
+                )}
 
                 <div className="row mb-5">
                   <h6 className="sctionSubTitle text-primary col-6">FOR BUY</h6>
@@ -793,6 +795,7 @@ function SingleProjectView({ params }) {
                     )}
                   </div>
                 </div>
+                {projectData?.buyProperties.length > 0 && (
                 <div className="col-12 col-lg-12 col-md-12">
                   <div className="swiper pb-5 projectSlider">
                     <Swiper
@@ -956,6 +959,7 @@ function SingleProjectView({ params }) {
                     </Swiper>
                   </div>
                 </div>
+                )}
               </div>
             </div>
           </div>
@@ -1187,7 +1191,7 @@ function SingleProjectView({ params }) {
                           <img
                             src={image.path}
                             alt={image.path}
-                            className="sliderGallaryImg"
+                            className="sliderGallaryImg floorplans" 
                           />
                         </SwiperSlide>
                       );

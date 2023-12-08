@@ -317,4 +317,80 @@ height: 260px;
 background-size: cover;
 background-position: center;
 }
+.secTabCntent {
+    padding-left: 15px !important;
+    }
+    .header.careerHeader {
+        height: auto !important;
+    }
+    .faqSection{
+        margin-top: 20px !important;
+    }
+    .location-heading {
+        font-size: 34px !important;
+    }
+    .communityImgCont img {
+        height: 400px !important;
+    }
+    .propCard .propImg {
+        height: 200px !important;
+    }
+    .sliderContentArea .sliderContent h1 {
+        font-size: 40px !important;
+    }
+    .sliderContentArea .sliderContent h5 {
+        font-size: 24px !important;
+    }
+    .sliderContentArea .sliderContent{
+        max-width: 100% !important;
+    }
+    .vtTextBXox {
+        padding: 15px 0px !important;
+    }
+    .pb-5.communitySwiper{
+        padding-bottom: 0px !important;
+    }
+    .aboutHeader{
+        height: auto !important;
+    }
+    .section.carouselSection{
+        margin-bottom: 0px !important;
+    }
+    .video iframe {
+        height: 300px !important;
+        top: 0 !important;
+    }
+    .joinRange{
+        font-size: 28px !important;
+    }
+    .swiper-slide.swiper-slide-active.clmSliderItem {
+        height: 300px !important;
+    }
+    .swiper-slide.clmSliderItem.swiper-slide-next{
+        height: 250px !important;
+    }
+    .swiper-slide.clmSliderItem.swiper-slide-prev{
+        height: 250px !important;
+    }
+    .dubaiGuideSection .mb-5{
+        margin-bottom: 0px !important;
+    }
+    .dubaiGuideSection{
+        padding-bottom: 0px !important;
+    }
+    .dubaiGuideSection .multiSilder{
+        height: 350px !important;
+    }
+    .crdImgBox .horiCrdImg {
+        height: 250px !important;
+    }
+    .horizantalCard .crdContentBox {
+        padding: 20px 10px !important;
+    }
+    .imgSection .contentBox h2 {
+        font-size: 28px !important;
+    }
+    .imgSection.overlayBgClr{
+        height: 300px !important;
+    }
 }

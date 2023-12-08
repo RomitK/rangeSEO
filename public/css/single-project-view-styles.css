@@ -74,6 +74,8 @@ margin-bottom: 0;
 max-width: 60%;
 padding:24px 0px 30px 20px;
 border-left: 2px solid #fff;
+background:#2f3c6a73;
+padding-right: 20px;
 }
 .sliderContentArea .sliderContent h5{
 color: #fff;
@@ -473,3 +475,8 @@ gap: 10px;
 padding-top: 10px;
 height: 10vw;
 }
+.floorplans{
+    width: 100% !important;
+    height: 400px !important;
+    object-fit: contain !important;
+  }
