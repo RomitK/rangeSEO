@@ -16,103 +16,52 @@ import {
   useLoadScript,
   InfoWindow,
 } from "@react-google-maps/api";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useGetSingleCommunityData } from "@/src/services/CommunityService";
-import { getFontAwesomeSvgPath } from "@/src/utils/helpers/common";
-import Location from "./Location";
-import { createRoot } from "react-dom/client";
+
 function SinglecommunityDataView({ params }) {
   const slug = params.slug[0];
   const { communityData } = useGetSingleCommunityData(slug);
   const [nearByLocations, setNearByLocations] = useState([]);
-  const [type, setType] = useState("property");
-  const [icon, setIcon] = useState("");
-  const [iconPath, setIconPath] = useState(null);
-  const mapRef = useRef(null);
-  const [map, setMap] = useState(null);
-  const [isOpen, setIsOpen] = useState(null);
-  const swiperRef = useRef<SwiperCore>();
-  const hightlighSwiperRef = useRef<SwiperCore>();
-  const amentitiesSwiperRef = useRef<SwiperCore>();
-  const PropertySwiperRef = useRef<SwiperCore>();
-  const nearbyCommunitiesSwiperRef = useRef<SwiperCore>();
-  const onMapLoad = (map) => {
-    mapRef.current = map;
-    setMap(map);
-  };
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.GOOGLE_MAP_KEY,
     libraries: ["geometry", "places", "marker"],
   });
-  const prepareRequestData = (searchType, lat, lng) => {
+
+  const onMapLoad = (map) => {
     let request = {
       location: {
-        lat: parseFloat(lat),
-        lng: parseFloat(lng),
+        lat: parseFloat(communityData?.address_latitude),
+        lng: parseFloat(communityData?.address_longitude),
       },
       radius: 5000,
-      type: searchType,
     };
-    return request;
-  };
 
-  const getNearByPlacesByTypeMap = (locType, data) => {
-    setNearByLocations([]);
-    const requestData = prepareRequestData(
-      locType,
-      data.address_latitude,
-      data.address_longitude
-    );
-    let service = new google.maps.places.PlacesService(mapRef.current);
-    service.nearbySearch(requestData, (results, status) => {
+    let service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, async (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
-        const resultData = prepareMapData(results);
-        setNearByLocations(resultData);
-        setType(locType);
+        const locationData = [];
+        for (var i = 0; i < results.length; i++) {
+          if (results[i].rating && results[i].vicinity != communityData.name) {
+            locationData.push({
+              name: results[i].name,
+              lat: results[i].geometry?.location?.lat(),
+              lng: results[i].geometry?.location?.lng(),
+              distance: await getDistanceMatrix(communityData, {
+                lat: results[i].geometry?.location?.lat(),
+                lng: results[i].geometry?.location?.lng(),
+              }),
+            });
+          }
+        }
+        locationData.sort((a, b) => {
+          return a.distance[0].value - b.distance[0].value;
+        });
+        setNearByLocations(locationData);
       }
     });
   };
-  const prepareMapData = (results, limit = null) => {
-    const locationData = [];
-    let limitIteration = limit ?? results.length;
-    for (var i = 0; i < limitIteration; i++) {
-      locationData.push({
-        name: results[i]?.name,
-        lat: results[i]?.geometry?.location?.lat(),
-        lng: results[i]?.geometry?.location?.lng(),
-        icon: results[i]?.icon,
-      });
-    }
-    return locationData;
-  };
 
-  const AdvanceMarker = ({ map, position, children, onClick }) => {
-    const rootRef = useRef(null);
-    const markerRef = useRef(null);
-
-    useEffect(() => {
-      if (!rootRef.current) {
-        const container = document.createElement("div");
-        container.classList.add("mapMarker");
-        rootRef.current = createRoot(container);
-        markerRef.current = new google.maps.marker.AdvancedMarkerElement({
-          position,
-          content: container,
-        });
-      }
-
-      return () => (markerRef.current.map = null);
-    }, []);
-
-    useEffect(() => {
-      rootRef.current.render(children);
-      markerRef.current.position = position;
-      markerRef.current.map = map;
-      const listener = markerRef.current.addListener("click", onClick);
-      return () => listener.remove();
-    }, [map, position, children, onClick]);
-    return <>{children}</>;
-  };
   const getDistanceMatrix = async (origin, destination) => {
     const distance = [];
     let requestLocation: any = {
@@ -146,7 +95,11 @@ function SinglecommunityDataView({ params }) {
     zoom: 13,
   };
 
-
+  const swiperRef = useRef<SwiperCore>();
+  const hightlighSwiperRef = useRef<SwiperCore>();
+  const amentitiesSwiperRef = useRef<SwiperCore>();
+  const PropertySwiperRef = useRef<SwiperCore>();
+  const nearbyCommunitiesSwiperRef = useRef<SwiperCore>();
 
 
   useEffect(() => {
@@ -163,11 +116,6 @@ function SinglecommunityDataView({ params }) {
     }
   }, [communityData]);
 
-  
-  useEffect(() => {
-    let path = getFontAwesomeSvgPath(icon);
-    setIconPath(path);
-  }, [icon]);
 
   return (
     <>
@@ -389,266 +337,69 @@ function SinglecommunityDataView({ params }) {
           <div className="row justify-content-center">
             <div className="col-12 col-lg-10 col-md-12">
               <div className="row g-0">
-
+                <div className="col-12 col-lg-6 col-md-6">
+                  {/* {communityData && parse(communityData?.location_iframe ?? "")} */}
+                  {/* <GoogleMapReact
+                    bootstrapURLKeys={{
+                      key: "AIzaSyAGZjmTZFO0V8_-_V_A-Dqto1I-FlBhshE",
+                    }}
+                    defaultCenter={defaultProps.center}
+                    defaultZoom={defaultProps.zoom}
+                    onGoogleApiLoaded={({ map, maps }) =>
+                      renderMarkers(map, maps)
+                    }
+                    yesIWantToUseGoogleMapApiInternals
+                  /> */}
+                  {communityData && isLoaded && (
+                    <GoogleMap
+                      center={{
+                        lat: parseFloat(communityData?.address_latitude),
+                        lng: parseFloat(communityData?.address_longitude),
+                      }}
+                      mapContainerClassName="map-container"
+                      zoom={defaultProps.zoom}
+                      onLoad={onMapLoad}
+                    >
+                      <MarkerF
+                        position={{
+                          lat: parseFloat(communityData?.address_latitude),
+                          lng: parseFloat(communityData?.address_longitude),
+                        }}
+                        title={communityData?.name}
+                      />
+                    </GoogleMap>
+                  )}
+                </div>
+                
                 {communityData && (
-                  <>
-                    <div className="col-12 col-lg-8 col-md-8">
-                      <div>
-                        <div className="py-3">
-                          <div className="mainHead text-primary">
-                            <h4 className="mb-0">NEARBY</h4>
-                          </div>
-                        </div>
-
-                        <div className="row g-1">
-                          <div className="col-6 col-lg-3 col-md-3">
-                            <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "school" ? "active" : ""
-                              }`}
-                              onClick={() => {
-                                getNearByPlacesByTypeMap(
-                                  "school",
-                                  communityData
-                                );
-                                setIcon("school");
-                              }}
-                            >
-                              School
-                            </button>
-                          </div>
-                          <div className="col-6 col-lg-3 col-md-3">
-                            <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "gym" ? "active" : ""
-                              }`}
-                              onClick={() => {
-                                getNearByPlacesByTypeMap("gym", communityData);
-                                setIcon("gym");
-                              }}
-                            >
-                              Gym
-                            </button>
-                          </div>
-                          <div className="col-6 col-lg-3 col-md-3">
-                            <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "supermarket" ? "active" : ""
-                              }`}
-                              onClick={() => {
-                                getNearByPlacesByTypeMap(
-                                  "supermarket",
-                                  communityData
-                                );
-                                setIcon("supermarket");
-                              }}
-                            >
-                              Super market
-                            </button>
-                          </div>
-                          <div className="col-6 col-lg-3 col-md-3">
-                            <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "hospital" ? "active" : ""
-                              }`}
-                              onClick={() => {
-                                getNearByPlacesByTypeMap(
-                                  "hospital",
-                                  communityData
-                                );
-                                setIcon("hospital");
-                              }}
-                            >
-                              Hospital
-                            </button>
-                          </div>
-                          <div className="col-6 col-lg-3 col-md-3">
-                            <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "pet_store" ? "active" : ""
-                              }`}
-                              onClick={() => {
-                                getNearByPlacesByTypeMap(
-                                  "pet_store",
-                                  communityData
-                                );
-                                setIcon("pet");
-                              }}
-                            >
-                              PET SHOP
-                            </button>
-                          </div>
-                          <div className="col-6 col-lg-3 col-md-3">
-                            <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "shopping_mall" ? "active" : ""
-                              }`}
-                              onClick={() => {
-                                getNearByPlacesByTypeMap(
-                                  "shopping_mall",
-                                  communityData
-                                );
-                                setIcon("mall");
-                              }}
-                            >
-                              MALL
-                            </button>
-                          </div>
-                          <div className="col-6 col-lg-3 col-md-3">
-                            <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "gas_station" ? "active" : ""
-                              }`}
-                              onClick={() => {
-                                getNearByPlacesByTypeMap(
-                                  "gas_station",
-                                  communityData
-                                );
-                                setIcon("gas_station");
-                              }}
-                            >
-                              GAS STATION
-                            </button>
-                          </div>
-                          <div className="col-6 col-lg-3 col-md-3">
-                            <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "restaurant" ? "active" : ""
-                              }`}
-                              onClick={() => {
-                                getNearByPlacesByTypeMap(
-                                  "restaurant",
-                                  communityData
-                                );
-                                setIcon("restaurant");
-                              }}
-                            >
-                              RESTAURANT
-                            </button>
-                          </div>
-                        </div>
-                        <div className="mapContainer py-3">
-                          {isLoaded && (
-                            <GoogleMap
-                              zoom={15}
-                              center={{
-                                lat: parseFloat(communityData?.address_latitude),
-                                lng: parseFloat(
-                                  communityData?.address_longitude
-                                ),
-                              }}
-                              options={{ mapId: "4504f8b37365c3d0" }}
-                              mapContainerClassName="map-container"
-                              onLoad={onMapLoad}
-                              onClick={() => {
-                                setIsOpen(null);
-                              }}
-                            >
-                              {type == "property" ? (
-                                <MarkerF
-                                  position={{
-                                    lat: parseFloat(
-                                      communityData?.address_latitude
-                                    ),
-                                    lng: parseFloat(
-                                      communityData?.address_longitude
-                                    ),
-                                  }}
-                                  title={communityData?.name}
-                                />
-                              ) : (
-                                <>
-                                  {nearByLocations.map((location, lIndex) => (
-                                    <>
-                                      <AdvanceMarker
-                                        key={lIndex + "location"}
-                                        position={{
-                                          lat: location?.lat,
-                                          lng: location?.lng,
-                                        }}
-                                        map={map}
-                                        onClick={() => setIsOpen(lIndex)}
-                                      >
-                                        <div className="icon">
-                                          <FontAwesomeIcon icon={iconPath} />
-                                        </div>
-                                      </AdvanceMarker>
-                                      {isOpen == lIndex && (
-                                        <InfoWindow
-                                          position={{
-                                            lat: location?.lat,
-                                            lng: location?.lng,
-                                          }}
-                                          onCloseClick={() => {
-                                            setIsOpen(null);
-                                          }}
-                                        >
-                                          <div>{location?.name}</div>
-                                        </InfoWindow>
-                                      )}
-                                    </>
-                                  ))}
-                                </>
-                              )}
-                            </GoogleMap>
-                          )}
-                        </div>
-                      </div>
+                  <div className="col-12 col-lg-6 col-md-6 bg-white">
+                    <div className="p-3 p-md-5 p-lg-5">
+                      {nearByLocations.length > 0 && (
+                        <>
+                          {nearByLocations?.map((location, locIndex) => {
+                            return (
+                              <>
+                                {locIndex < 7 && (
+                                  <div
+                                    className="border-bottom border-1 border-dark py-2"
+                                    key={locIndex + "loc"}
+                                  >
+                                    <p className="text-black fw-500 mb-0 fs-20">
+                                      {location?.name}
+                                    </p>
+                                    <p className="text-primary fw-500 mb-0 fs-20">
+                                      {location?.distance[0]?.text}
+                                    </p>
+                                  </div>
+                                )}
+                              </>
+                            );
+                          })}
+                        </>
+                      )}
                     </div>
-                    <div className="col-12 col-lg-4 col-md-4">
-                      <div className="bg-light px-3 py-2 h-100">
-                        <div className="py-3">
-                          <p className="text-primary fw-500 mb-1 fs-20">
-                            NEARBY LOCATION
-                          </p>
-                        </div>
-                        <div className="border-bottom border-2 py-3">
-                          <h4 className="fw-500 mb-1">BUS STATION</h4>
-                          <Location
-                            type={"bus_station"}
-                            prepareRequestData={prepareRequestData}
-                            prepareMapData={prepareMapData}
-                            property={communityData}
-                            map={map}
-                          />
-                        </div>
-
-                        <div className="border-bottom border-2 py-3">
-                          <h4 className="fw-500 mb-1">MALL</h4>
-                          <Location
-                            type={"shopping_mall"}
-                            prepareRequestData={prepareRequestData}
-                            prepareMapData={prepareMapData}
-                            property={communityData}
-                            map={map}
-                          />
-                        </div>
-                        <div className="border-bottom border-2 py-3">
-                          <h4 className="fw-500 mb-1">PARK</h4>
-                          <Location
-                            type={"park"}
-                            prepareRequestData={prepareRequestData}
-                            prepareMapData={prepareMapData}
-                            property={communityData}
-                            map={map}
-                          />
-                        </div>
-
-                        <div className="border-bottom border-2 py-3">
-                          <h4 className="fw-500 mb-1">SALON</h4>
-                          <Location
-                            type={"beauty_salon"}
-                            prepareRequestData={prepareRequestData}
-                            prepareMapData={prepareMapData}
-                            property={communityData}
-                            map={map}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </>
+                  </div>
                 )}
-
               </div>
             </div>
           </div>
