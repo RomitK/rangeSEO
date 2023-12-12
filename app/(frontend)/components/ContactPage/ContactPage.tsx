@@ -1,11 +1,11 @@
 import { useGetContactFaqsData } from "@/src/services/FaqService";
 import parse from "html-react-parser";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import "@/public/css/style.css"
 import "@/public/css/contact-Us-styles.css"
-
+import PhoneInput from "react-phone-number-input";
 function ContactPage() {
   const { faqsData } = useGetContactFaqsData();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -150,7 +150,19 @@ function ContactPage() {
                     />
                   </div>
                   <div className="col-12 mb-2">
-                    <input
+
+                  <PhoneInput
+                  international
+                  countryCallingCodeEditable={false}
+                  className="form-control rounded-0 fs-14 d-flex"
+                  defaultCountry="AE"
+                  placeholder="Enter Phone Number"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e })}
+                  style={{ border: "0px" }}
+                />
+
+                    {/* <input
                       type="phone"
                       className="form-control cntInptField"
                       placeholder="Contact Number"
@@ -163,7 +175,7 @@ function ContactPage() {
                       }
                       autoComplete="off"
                       required
-                    />
+                    /> */}
                   </div>
                   <div className="col-12">
                     <textarea
