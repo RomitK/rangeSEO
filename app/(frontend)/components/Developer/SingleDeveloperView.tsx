@@ -87,6 +87,10 @@ function SingleDeveloperView({ params }) {
     markers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
     map.fitBounds(bounds);
   };
+  const handleViewProject = () => {
+   // const searchBy = {"name":developerData.name,"type":"developer-"+developerData.id}
+    router.push(`/projects?name=${developerData.name}&type=${developerData.id}`);
+  }
 
   const handleMarkerClick = (
     id,
@@ -456,20 +460,22 @@ function SingleDeveloperView({ params }) {
                   );
                 })}
                 <div className="text-center py-3 text-primary">
-                  
-                    <Link
+                  <a className="text-primary"  onClick={handleViewProject} href="#">
+                  VIEW ALL
+                  </a>
+                    {/* <Link
                         href={`/projects`}
                         className="text-primary"
                       >
                        VIEW ALL
-                      </Link>
+                      </Link> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      {developerData && developerData.communities && (
+      {developerData && developerData.communities &&  developerData.communities.length > 0 && (
         <section className="mt-5 bg-light py-5">
           <div className="container">
             <div className="row g-3 justify-content-center">
@@ -580,7 +586,7 @@ function SingleDeveloperView({ params }) {
         </section>
       )}
 
-      {developerData && developerData.properties && (
+      {developerData && developerData.properties &&  developerData.properties.length > 0 && (
         <section className="my-5" id="properties">
           <div className="container">
             <div className="row">
