@@ -25,17 +25,7 @@ function Filters({
   setLoading,
   sortBy,
 }) {
-  const [form, setForm] = useState({
-    accommodation_id: "",
-    bedrooms: "",
-    minprice: "",
-    maxprice: "",
-    minarea: "",
-    maxarea: "",
-    amenities: "",
-    bathroom: "",
-    completion_status_id:""
-  });
+
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
   const [newArrayF, setNewArrayF] = useState([]);
@@ -48,16 +38,29 @@ function Filters({
   const [showNoMessage, setNoMessage] = useState(false);
   const selectRef = useRef();
   const [hasFocus, setHasFocus] = useState(false);
+  const [showFormReset, setShowFormReset] = useState(false);
+  const [formHasValues, setFormHasValues] = useState(false);
   const [showSelectedValues, setShowSelectedValues] = useState(true);
   const [ongoingRequests, setOngoingRequests] = useState([]);
   const searchParams = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [form, setForm] = useState({
+    accommodation_id: "",
+    bedrooms: "",
+    minprice: "",
+    maxprice: "",
+    minarea: "",
+    maxarea: "",
+    amenities: "",
+    bathroom: "",
+    completion_status_id:""
+  });
   useEffect(() => {
     if (searchParams.has("minprice") && searchParams.has("maxprice")) {
-      setForm({
-        ...form,
-        minprice: searchParams.get("minprice"),
-        maxprice: searchParams.get("maxprice"),
-      });
+      form["minprice"] = searchParams.get("minprice");
+      form["maxprice"] = searchParams.get("maxprice");
+      setForm({ ...form });
     }
   }, []);
 
@@ -233,9 +236,6 @@ function Filters({
     maxAreaRef.current.value = "";
   };
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedItems, setSelectedItems] = useState([]);
-
   const highlightMatch = (label) => {
     const index = label.toLowerCase().indexOf(searchTerm.toLowerCase());
 
@@ -337,6 +337,29 @@ function Filters({
         callback([]);
       });
   };
+  const isObjectEmpty = (objectName) => {
+    return Object.keys(objectName).length === 0
+  }
+
+  // useEffect(()=>{
+  //   for (var key in form) {
+  //     if(typeof form[key] == 'object'){
+  //       console.log(isObjectEmpty(form[key]))
+  //       if(!isObjectEmpty(form[key])){
+  //         setFormHasValues(true)
+  //       }
+  //     }else{
+  //       if (form[key] !== null && form[key] != "" ){
+  //         setFormHasValues(true)
+  //       }
+  //     }
+  //   }
+  //   if(formHasValues == true){
+  //     setShowFormReset(true)
+  //   }else{
+  //     setShowFormReset(false)
+  //   }
+  // }, [form]);
   return (
     <form action="">
       <div className="row row-gap-3">
@@ -450,8 +473,10 @@ function Filters({
               <option value="300">Completed</option>
             </select>
         </div>
+
         <div className="col-md-2">
           <div className="dropdown">
+           
             <div
               className="form-select"
               data-bs-toggle="dropdown"
@@ -558,7 +583,7 @@ function Filters({
             </div>
           </div>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-3">
               <Dropdown>
                 <Dropdown.Toggle
                   className={`dt form-control form-select ${classes.customDropdown}`}
@@ -677,6 +702,10 @@ function Filters({
               </div>
             </div>
         </div>
+        {showFormReset && (
+          <button className="col-md-1 btn btn-primary btn-md col">Reset</button>
+        )}
+        
       </div>
       <Bottombar
         item={showMap ? 0 : 1}
