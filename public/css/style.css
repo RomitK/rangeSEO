@@ -1834,3 +1834,44 @@ display: none;
     .text-uppercase.btnTextWt{
         color: #fff ;
     }
+.card .card-body small{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card .card-body{
+    min-height: 180px;
+}
+.card .card-body a.text-decoration-none h6{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.socialfixLink{
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    height:50px;
+    border-radius: 100px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+.socialfixLink.whatsapp{
+background-color: #64b161;
+}
+.socialfixLink i{
+font-size: 30px;
+color: #fff;
+}
+.socialfixLink.envelope{
+background-color: #2f3c6a;
+}
+.socialfixLink.envelope i{
+    font-size: 22px;
+}
