@@ -172,14 +172,14 @@ function LookingFor() {
         </div>
       </section>
 
-      <div className="socialfixBar">
+      {/* <div className="socialfixBar">
            <a className="socialfixLink whatsapp">
                <i className="fa fa-whatsapp" aria-hidden="true"></i>
            </a>
            <a className="socialfixLink envelope">
                <i className="fa fa-envelope" aria-hidden="true"></i>
            </a>
-      </div>
+      </div> */}
     </>
   );
 }
