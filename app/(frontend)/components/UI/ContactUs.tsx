@@ -1,38 +1,26 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { toast } from "react-toastify";
+import { useForm, Controller } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { saveContactFormApi } from "@/src/services/HomeService";
 const ContactUs = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-    phone: "",
-    formName: "footerContactForm",
-    page: "home",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    reset,
+  } = useForm();
 
-  const handleSubmit = () => {
-    if (!formData.name || !formData.email || !formData.message) {
-      return toast.error("Please fill required field");
-    }
-    saveContactFormApi(formData)
+  const onSubmit = (data) => {
+    saveContactFormApi(data)
       .then((res) => {
         toast.success(
-          "Contact form submitted successfully, out support teams contact you soon"
+          "Contact form submitted successfully, our support teams contact you soon"
         );
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-          phone: "",
-          formName: "footerContactForm",
-          page: "home",
-        });
+        reset();
       })
       .catch((err) => {
         toast.error("Something went wrong, please try again");
@@ -46,7 +34,7 @@ const ContactUs = () => {
         </div>
 
         <div className="contactForm">
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
               <div className="col-12 mb-2">
                 <input
@@ -54,47 +42,51 @@ const ContactUs = () => {
                   className="form-control rounded-0 fs-14"
                   id="name"
                   placeholder="Name"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  required
+                  {...register("name", { required: true })}
                 />
               </div>
+              {errors.name && <p className="text-danger">Name is required.</p>}
               <div className="col-12 mb-2">
                 <input
                   type="email"
                   className="form-control rounded-0 fs-14"
                   id="email"
                   placeholder="Email Address"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
+                  {...register("email", { required: true })}
                 />
               </div>
+              {errors.email && (
+                <p className="text-danger">Email is required.</p>
+              )}
               <div className="col-12 mb-2">
-                <PhoneInput
-                  international
-                  countryCallingCodeEditable={false}
-                  className="form-control rounded-0 fs-14 d-flex"
-                  defaultCountry="AE"
-                  placeholder="Enter Phone Number"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e })}
-                  style={{ border: "0px" }}
+                <Controller
+                  name="phone"
+                  control={control}
+                  rules={{ required: true }}
+                  render={({ field: { onChange, value } }) => (
+                    <PhoneInput
+                      international
+                      countryCallingCodeEditable={false}
+                      className="form-control rounded-0 fs-14 d-flex"
+                      defaultCountry="AE"
+                      placeholder="Enter Phone Number"
+                      value={value}
+                      onChange={onChange}
+                      style={{ border: "0px" }}
+                    />
+                  )}
                 />
               </div>
+              {errors.phone && (
+                <p className="text-danger">Phone is required.</p>
+              )}
               <div className="col-12 mb-2">
                 <input
                   type="text"
                   className="form-control rounded-0 fs-14"
                   id="subject"
                   placeholder="Subject"
-                  value={formData.subject}
-                  onChange={(e) =>
-                    setFormData({ ...formData, subject: e.target.value })
-                  }
+                  {...register("subject")}
                 />
               </div>
               <div className="col-12 mb-2">
@@ -103,18 +95,17 @@ const ContactUs = () => {
                   id="message"
                   rows={3}
                   placeholder="Message"
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
+                  {...register("message", { required: true })}
                 ></textarea>
               </div>
+              {errors.message && (
+                <p className="text-danger">Message is required.</p>
+              )}
               <div className="col-12 mb-2">
                 <div className="text-start">
                   <button
                     className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
-                    type="button"
-                    onClick={handleSubmit}
+                    type="submit"
                   >
                     Submit
                   </button>
