@@ -74,7 +74,45 @@ function Filters({
             ]);
         }
   }, []);
+  function isEmptyObject() {
+    const o = { ...form };
+    return Object.keys(o).every(function (x) {
+      if (Array.isArray(o[x])) {
+        return o[x].length > 0 ? false : true;
+      } else {
+        return o[x] === "" || o[x] === null;
+      }
+    });
+  }
 
+  const handleReset = () => {
+    form["minprice"] = "";
+    form["maxprice"] = "";
+    form["minarea"] = "";
+    form["maxarea"] = "";
+    form["furnishing"] = "";
+    form["bedrooms"] = "";
+    form["accommodation_id"] = "";
+    form["completion_status_id"] = "";
+    form["bathroom"] = "";
+    form["searchBy"] = "";
+    form["amenities"] ="";
+    setSelectedItems([]);
+    
+    selectRef.current.setValue([]);
+    if(minPriceRef.current != null){
+      minPriceRef.current.value = "";
+    }
+    if(maxPriceRef.current != null){
+      maxPriceRef.current.value = "";
+    }
+    if(minAreaRef.current != null){
+      minAreaRef.current.value = "";
+    }
+    if(maxAreaRef.current != null){
+      maxAreaRef.current.value = "";
+    }
+  };
   const Menu = ({ children, ...props }) => {
     let items = form["searchBy"];
     return (
@@ -348,29 +386,7 @@ function Filters({
         callback([]);
       });
   };
-  const isObjectEmpty = (objectName) => {
-    return Object.keys(objectName).length === 0
-  }
-
-  // useEffect(()=>{
-  //   for (var key in form) {
-  //     if(typeof form[key] == 'object'){
-  //       console.log(isObjectEmpty(form[key]))
-  //       if(!isObjectEmpty(form[key])){
-  //         setFormHasValues(true)
-  //       }
-  //     }else{
-  //       if (form[key] !== null && form[key] != "" ){
-  //         setFormHasValues(true)
-  //       }
-  //     }
-  //   }
-  //   if(formHasValues == true){
-  //     setShowFormReset(true)
-  //   }else{
-  //     setShowFormReset(false)
-  //   }
-  // }, [form]);
+ 
   return (
     <form action="">
       <div className="row row-gap-3">
@@ -485,6 +501,123 @@ function Filters({
             </select>
         </div>
 
+       
+       
+
+        <div className="col-md-3 d-flex align-items-center gap-2 justify-content-end">
+          
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={() => setShowMore(!showMore)}
+          >
+            {showMore ? "Hide" : "More"}
+          </button>
+          {!isEmptyObject() && (
+            <button
+              className="btn btn-sm btn-secondary"
+              type="button"
+              onClick={handleReset}
+            >
+              Reset
+            </button>
+          )}
+          <div className="form-check d-none d-sm-block">
+            <div
+              className="btn-group"
+              role="group"
+              aria-label="Basic radio toggle button group"
+            >
+              <input
+                type="radio"
+                className="btn-check"
+                name="map"
+                id="mapradio"
+                autoComplete="off"
+                onChange={handleViewChange}
+                checked={showMap}
+                onClick={() => {
+                  setShowMap(true);
+                }}
+              />
+              <label className="btn btn-outline-primary" htmlFor="mapradio">
+                Map
+              </label>
+
+              <input
+                type="radio"
+                className="btn-check"
+                name="list"
+                id="listradio"
+                autoComplete="off"
+                onChange={handleViewChange}
+                checked={!showMap}
+                onClick={() => {
+                  setShowMap(false);
+                }}
+              />
+              <label className="btn btn-outline-primary" htmlFor="listradio">
+                List
+              </label>
+            </div>
+          </div>
+        </div>
+        {showMore && (
+        <div className="row mt-3 row-gap-3">
+
+        <div className="col-md-3">
+              <Dropdown>
+                <Dropdown.Toggle
+                  className={`dt form-control form-select ${classes.customDropdown}`}
+                  variant=""
+                  id="dropdown-basic"
+                  as={CustomToggle}
+                >
+                  Amenities
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <div className="fc">
+                    <FormControl
+                      autoFocus
+                      placeholder="Search amenities..."
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      value={searchTerm}
+                    />
+                  </div>
+
+                  <div className="options-container row g-0">
+                    {filteredOptions?.map((option) => (
+                      <div key={option.value} className="col-6">
+                        <Form.Check
+                          key={option.value}
+                          type="checkbox"
+                          label={highlightMatch(option.label)}
+                          checked={selectedItems.includes(option.value)}
+                          onChange={() => handleCheckboxChange(option.value)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  {!!selectedItems.length && (
+                    <div className="my-2 d-grid fc">
+                      <div
+                        className="row justify-content-center"
+                        style={{ columnGap: "0.25rem" }}
+                      >
+                        <button
+                          className="btn btn-secondary btn-sm col-md"
+                          type="button"
+                          onClick={() => setSelectedItems([])}
+                        >
+                          Reset
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </Dropdown.Menu>
+              </Dropdown>
+        </div>
         <div className="col-md-2">
           <div className="dropdown">
            
@@ -550,102 +683,6 @@ function Filters({
               </div>
             </div>
           </div>
-        </div>
-       
-
-        <div className="col-md-1 d-flex align-items-center justify-content-end">
-          <div className="form-check d-none d-sm-block">
-            <div
-              className="btn-group"
-              role="group"
-              aria-label="Basic radio toggle button group"
-            >
-              <input
-                type="radio"
-                className="btn-check"
-                name="map"
-                id="mapradio"
-                autoComplete="off"
-                onChange={handleViewChange}
-                checked={showMap}
-                onClick={() => {
-                  setShowMap(true);
-                }}
-              />
-              <label className="btn btn-outline-primary" htmlFor="mapradio">
-                Map
-              </label>
-
-              <input
-                type="radio"
-                className="btn-check"
-                name="list"
-                id="listradio"
-                autoComplete="off"
-                onChange={handleViewChange}
-                checked={!showMap}
-                onClick={() => {
-                  setShowMap(false);
-                }}
-              />
-              <label className="btn btn-outline-primary" htmlFor="listradio">
-                List
-              </label>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3">
-              <Dropdown>
-                <Dropdown.Toggle
-                  className={`dt form-control form-select ${classes.customDropdown}`}
-                  variant=""
-                  id="dropdown-basic"
-                  as={CustomToggle}
-                >
-                  Amenities
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <div className="fc">
-                    <FormControl
-                      autoFocus
-                      placeholder="Search amenities..."
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      value={searchTerm}
-                    />
-                  </div>
-
-                  <div className="options-container row g-0">
-                    {filteredOptions?.map((option) => (
-                      <div key={option.value} className="col-6">
-                        <Form.Check
-                          key={option.value}
-                          type="checkbox"
-                          label={highlightMatch(option.label)}
-                          checked={selectedItems.includes(option.value)}
-                          onChange={() => handleCheckboxChange(option.value)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  {!!selectedItems.length && (
-                    <div className="my-2 d-grid fc">
-                      <div
-                        className="row justify-content-center"
-                        style={{ columnGap: "0.25rem" }}
-                      >
-                        <button
-                          className="btn btn-secondary btn-sm col-md"
-                          type="button"
-                          onClick={() => setSelectedItems([])}
-                        >
-                          Reset
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </Dropdown.Menu>
-              </Dropdown>
         </div>
         <div className="col-md-2">
             <div className="dropdown">
@@ -716,7 +753,8 @@ function Filters({
         {showFormReset && (
           <button className="col-md-1 btn btn-primary btn-md col">Reset</button>
         )}
-        
+         </div>
+      )}
       </div>
       <Bottombar
         item={showMap ? 0 : 1}

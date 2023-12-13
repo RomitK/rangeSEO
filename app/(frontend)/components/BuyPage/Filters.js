@@ -54,7 +54,46 @@ function Filters({
   const [hasFocus, setHasFocus] = useState(false);
   const [showSelectedValues, setShowSelectedValues] = useState(true);
   const [ongoingRequests, setOngoingRequests] = useState([]);
+  function isEmptyObject() {
+    const o = { ...form };
+    delete o.category;
+    return Object.keys(o).every(function (x) {
+      if (Array.isArray(o[x])) {
+        return o[x].length > 0 ? false : true;
+      } else {
+        return o[x] === "" || o[x] === null;
+      }
+    });
+  }
 
+  const handleReset = () => {
+    form["minprice"] = "";
+    form["maxprice"] = "";
+    form["minarea"] = "";
+    form["maxarea"] = "";
+    form["furnishing"] = "";
+    form["bedrooms"] = "";
+    form["accommodation_id"] = "";
+    form["completionStatus"] = "";
+    form["bathroom"] = "";
+    form["searchBy"] = "";
+    form["amenities"] ="";
+    setSelectedItems([]);
+    
+    selectRef.current.setValue([]);
+    if(minPriceRef.current != null){
+      minPriceRef.current.value = "";
+    }
+    if(maxPriceRef.current != null){
+      maxPriceRef.current.value = "";
+    }
+    if(minAreaRef.current != null){
+      minAreaRef.current.value = "";
+    }
+    if(maxAreaRef.current != null){
+      maxAreaRef.current.value = "";
+    }
+  };
   const Menu = ({ children, ...props }) => {
     let items = form["searchBy"];
     return (
@@ -509,7 +548,7 @@ function Filters({
           </div>
         </div>
 
-        <div className="col-md-4 d-flex align-items-center justify-content-end">
+        <div className="col-md-4 d-flex align-items-center gap-2 justify-content-end">
           <div className="form-check me-4">
             <input
               type="checkbox"
@@ -529,7 +568,15 @@ function Filters({
           >
             {showMore ? "Hide" : "More"}
           </button>
-
+          {!isEmptyObject() && (
+            <button
+              className="btn btn-sm btn-secondary"
+              type="button"
+              onClick={handleReset}
+            >
+              Reset
+            </button>
+          )}
           <div className="form-check d-none d-sm-block">
             <div
               className="btn-group"
@@ -573,9 +620,9 @@ function Filters({
       </div>
 
       {showMore && (
-        <div className="row mt-3">
+        <div className="row mt-3 row-gap-3">
           {!isCommercial && (
-            <div className="col">
+            <div className="col-lg-3">
               <Dropdown>
                 <Dropdown.Toggle
                   className={`dt form-control form-select ${classes.customDropdown}`}
@@ -630,7 +677,7 @@ function Filters({
             </div>
           )}
           {!isCommercial && (
-            <div className="col">
+            <div className="col-lg-2">
               <select
                 onChange={handleChange}
                 value={form.furnishing}
@@ -660,7 +707,7 @@ function Filters({
               </select>
             </div>
           )} */}
-          <div className="col">
+          <div className="col-lg-2">
             <select
               onChange={handleChange}
               value={form.bedrooms}
@@ -679,7 +726,7 @@ function Filters({
             </select>
           </div>
           {!isCommercial && (
-            <div className="col">
+            <div className="col-lg-2">
               <input
                 value={form.bathroom}
                 type="number"
@@ -691,7 +738,7 @@ function Filters({
               />
             </div>
           )}
-          <div className="col">
+          <div className="col-lg-3">
             <div className="dropdown">
               <div
                 className="form-select"

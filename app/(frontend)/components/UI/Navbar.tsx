@@ -54,7 +54,7 @@ function Navbar() {
                             </Link>
                           </li>
                           <li className="">
-                            <Link className="" href="/off-plan">
+                            <Link className="" href="/offplan">
                               Off-plan
                             </Link>
                           </li>
@@ -349,7 +349,7 @@ function Navbar() {
                               </Link>
                             </li>
                             <li className="">
-                              <Link className="" href="/off-plan">
+                              <Link className="" href="/offplan">
                                 Off-plan
                               </Link>
                             </li>
