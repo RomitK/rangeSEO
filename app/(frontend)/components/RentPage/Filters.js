@@ -24,7 +24,6 @@ function Filters({
   setLoading,
   sortBy,
 }) {
-
   const [form, setForm] = useState({
     accommodation_id: "",
     community: "",
@@ -49,12 +48,47 @@ function Filters({
   const maxAreaRef = useRef(null);
   const [isCommercial, setIsCommercial] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [filteredAccomodation, setFilteredAccomodation] = useState(accomodations);
+  const [filteredAccomodation, setFilteredAccomodation] =
+    useState(accomodations);
   const [showNoMessage, setNoMessage] = useState(false);
   const selectRef = useRef();
   const [hasFocus, setHasFocus] = useState(false);
   const [showSelectedValues, setShowSelectedValues] = useState(true);
   const [ongoingRequests, setOngoingRequests] = useState([]);
+
+  function isEmptyObject() {
+    const o = { ...form };
+    delete o.category;
+    return Object.keys(o).every(function (x) {
+      if (Array.isArray(o[x])) {
+        return o[x].length > 0 ? false : true;
+      } else {
+        return o[x] === "" || o[x] === null;
+      }
+    });
+  }
+
+  const handleReset = () => {
+    setForm({
+      accommodation_id: "",
+      community: "",
+      bedrooms: "",
+      minprice: "",
+      maxprice: "",
+      minarea: "",
+      maxarea: "",
+      amenities: "",
+      bathroom: "",
+      area: "",
+      category: "rent",
+      completionStatus: "",
+      furnishing: "",
+    });
+    minPriceRef.current.value = "";
+    maxPriceRef.current.value = "";
+    minAreaRef.current.value = "";
+    maxAreaRef.current.value = "";
+  };
 
   const Menu = ({ children, ...props }) => {
     let items = form["searchBy"];
@@ -144,28 +178,28 @@ function Filters({
     let payload = { ...form };
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
-          if (payload[key]) {
-              if (key === "searchBy" && payload[key].length) {
-                  let searchBy = undefined;
-                  if (typeof payload[key] == "string") {
-                      searchBy = JSON.parse(payload[key]);
-                  } else if (Array.isArray(payload[key])) {
-                      searchBy = payload[key];
-                  } else {
-                      searchBy = [];
-                  }
-                  searchBy.forEach((element) => {
-                      delete element.id;
-                      delete element.slug;
-                  });
-                  payload[key] = JSON.stringify(searchBy);
-                  getPropertiesURL += `${key}=${payload[key]}&`;
-              } else {
-                  getPropertiesURL += `${key}=${payload[key]}&`;
-              }
+        if (payload[key]) {
+          if (key === "searchBy" && payload[key].length) {
+            let searchBy = undefined;
+            if (typeof payload[key] == "string") {
+              searchBy = JSON.parse(payload[key]);
+            } else if (Array.isArray(payload[key])) {
+              searchBy = payload[key];
+            } else {
+              searchBy = [];
+            }
+            searchBy.forEach((element) => {
+              delete element.id;
+              delete element.slug;
+            });
+            payload[key] = JSON.stringify(searchBy);
+            getPropertiesURL += `${key}=${payload[key]}&`;
+          } else {
+            getPropertiesURL += `${key}=${payload[key]}&`;
           }
+        }
       }
-  }
+    }
     setLoading(true);
     fetch(getPropertiesURL)
       .then((response) => response.json())
@@ -210,7 +244,7 @@ function Filters({
     });
     setNewArrayF(newArray3);
   }, amenities);
-  
+
   const handleChange = (e) => {
     form[e.target.name] = e.target.value;
     setForm({ ...form });
@@ -318,7 +352,8 @@ function Filters({
 
     const abortController = new AbortController();
     const abortSignal = abortController.signal;
-    const apiUrl = process.env.API_HOST + "propertyPageSearch?keyword="+ inputValue;
+    const apiUrl =
+      process.env.API_HOST + "propertyPageSearch?keyword=" + inputValue;
 
     ongoingRequests.map((onGoingRequest) =>
       onGoingRequest.abortController.abort()
@@ -510,7 +545,7 @@ function Filters({
           </div>
         </div>
 
-        <div className="col-md-4 d-flex align-items-center justify-content-end">
+        <div className="col-md-4 d-flex align-items-center gap-2 justify-content-end">
           <div className="form-check me-4">
             <input
               type="checkbox"
@@ -523,6 +558,7 @@ function Filters({
               Commericial
             </label>
           </div>
+
           <button
             className="btn btn-primary"
             type="button"
@@ -530,7 +566,15 @@ function Filters({
           >
             {showMore ? "Hide" : "More"}
           </button>
-
+          {!isEmptyObject() && (
+            <button
+              className="btn btn-primary"
+              type="button"
+              onClick={handleReset}
+            >
+              Reset
+            </button>
+          )}
           <div className="form-check d-none d-sm-block">
             <div
               className="btn-group"
@@ -644,7 +688,7 @@ function Filters({
                 <option value="2">Unfurnished</option>
                 <option value="partly">Partly Furnished</option>
               </select>
-          </div>              
+            </div>
           )}
           {/* {form.category == "buy" && !isCommercial && (
             <div className="col">
