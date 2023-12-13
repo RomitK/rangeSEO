@@ -88,8 +88,7 @@ function SingleDeveloperView({ params }) {
     map.fitBounds(bounds);
   };
   const handleViewProject = () => {
-   // const searchBy = {"name":developerData.name,"type":"developer-"+developerData.id}
-    router.push(`/projects?name=${developerData.name}&type=${developerData.id}`);
+    router.push(`/projects?developer_name=${developerData.name}&developer_detail=${developerData.id}`);
   }
 
   const handleMarkerClick = (
