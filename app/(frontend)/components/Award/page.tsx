@@ -7,12 +7,13 @@ import SwiperCore, { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "@/public/css/management-styles.css";
-
 // import required modules
 import { Navigation } from "swiper/modules";
+import { useGetAllAwardData } from "@/src/services/AwardService";
 
 function AwardGallery(){
-    const testimonialSwiperRef = useRef<SwiperCore>();
+  const { AwardsData } = useGetAllAwardData();
+  const testimonialSwiperRef = useRef<SwiperCore>();
     return (
         <section className="section">
           <h4 className="sctionMdTitle text-primary mb-5">
@@ -23,34 +24,34 @@ function AwardGallery(){
             onSwiper={(swiper) => {
               testimonialSwiperRef.current = swiper;
             }}
-            slidesPerView={3}
+            onBeforeInit={(swiper) => {
+              testimonialSwiperRef.current = swiper;
+            }}
+            loop={true}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+            slidesPerView={1}
             navigation={true}
             className="mySwiper multiItemsSlider"
           >
-            <SwiperSlide>
-              <img src="/images/blogs/blog5.png" className="awardsImg" alt="dumy"/>
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/blogs/blog2.png" className="awardsImg"  alt="dumy"/>
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/blogs/blog3.png" className="awardsImg"  alt="dumy"/>
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/blogs/blog4.png" className="awardsImg"  alt="dumy"/>
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/blogs/blog4.png" className="awardsImg"  alt="dumy"/>
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/blogs/blog5.png" className="awardsImg"  alt="dumy"/>
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/blogs/blog5.png" className="awardsImg"  alt="dumy"/>
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/blogs/blog5.png" className="awardsImg"  alt="dumy"/>
-            </SwiperSlide>
+            {AwardsData &&
+              AwardsData?.map((award, index) => {
+                return (
+                  <SwiperSlide key={award.id}>
+                    <img src={award.path} className="awardsImg" alt="award iamge"/>
+                  </SwiperSlide>
+                )
+              })
+            }
           </Swiper>
         </section>
     );

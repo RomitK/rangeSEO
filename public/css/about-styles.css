@@ -88,3 +88,6 @@ color: #136DAE;
 font-size: 18px;
 font-weight: 500;
 }
+.aboutHeader{
+    height: auto !important;
+}

@@ -450,6 +450,7 @@ textarea {
   .row-gap-3{
     row-gap: 1rem!important;
   }
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
 }
@@ -461,3 +462,4 @@ textarea {
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
 }
+

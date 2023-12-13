@@ -25,17 +25,7 @@ function Filters({
   setLoading,
   sortBy,
 }) {
-  const [form, setForm] = useState({
-    accommodation_id: "",
-    bedrooms: "",
-    minprice: "",
-    maxprice: "",
-    minarea: "",
-    maxarea: "",
-    amenities: "",
-    bathroom: "",
-    completion_status_id:""
-  });
+
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
   const [newArrayF, setNewArrayF] = useState([]);
@@ -48,19 +38,81 @@ function Filters({
   const [showNoMessage, setNoMessage] = useState(false);
   const selectRef = useRef();
   const [hasFocus, setHasFocus] = useState(false);
+  const [showFormReset, setShowFormReset] = useState(false);
+  const [formHasValues, setFormHasValues] = useState(false);
   const [showSelectedValues, setShowSelectedValues] = useState(true);
   const [ongoingRequests, setOngoingRequests] = useState([]);
   const searchParams = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [form, setForm] = useState({
+    accommodation_id: "",
+    bedrooms: "",
+    minprice: "",
+    maxprice: "",
+    minarea: "",
+    maxarea: "",
+    amenities: "",
+    bathroom: "",
+    completion_status_id:""
+  });
   useEffect(() => {
     if (searchParams.has("minprice") && searchParams.has("maxprice")) {
-      setForm({
-        ...form,
-        minprice: searchParams.get("minprice"),
-        maxprice: searchParams.get("maxprice"),
-      });
+      form["minprice"] = searchParams.get("minprice");
+      form["maxprice"] = searchParams.get("maxprice");
+      setForm({ ...form });
     }
+    if (searchParams.has("developer_name") && searchParams.has("developer_detail")) {
+         setForm({
+            ...form,
+              searchBy: [
+                { type: searchParams.get("developer_detail"), name: searchParams.get("developer_name") },
+              ],
+            });
+            selectRef.current.setValue([
+              { type: searchParams.get("developer_detail"), name: searchParams.get("developer_name") },
+            ]);
+        }
   }, []);
+  function isEmptyObject() {
+    const o = { ...form };
+    return Object.keys(o).every(function (x) {
+      if (Array.isArray(o[x])) {
+        return o[x].length > 0 ? false : true;
+      } else {
+        return o[x] === "" || o[x] === null;
+      }
+    });
+  }
 
+  const handleReset = () => {
+    form["minprice"] = "";
+    form["maxprice"] = "";
+    form["minarea"] = "";
+    form["maxarea"] = "";
+    form["furnishing"] = "";
+    form["bedrooms"] = "";
+    form["accommodation_id"] = "";
+    form["completion_status_id"] = "";
+    form["bathroom"] = "";
+    form["searchBy"] = "";
+    form["amenities"] ="";
+    setSelectedItems([]);
+    
+    selectRef.current.setValue([]);
+    if(minPriceRef.current != null){
+      minPriceRef.current.value = "";
+    }
+    if(maxPriceRef.current != null){
+      maxPriceRef.current.value = "";
+    }
+    if(minAreaRef.current != null){
+      minAreaRef.current.value = "";
+    }
+    if(maxAreaRef.current != null){
+      maxAreaRef.current.value = "";
+    }
+  };
   const Menu = ({ children, ...props }) => {
     let items = form["searchBy"];
     return (
@@ -233,9 +285,6 @@ function Filters({
     maxAreaRef.current.value = "";
   };
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedItems, setSelectedItems] = useState([]);
-
   const highlightMatch = (label) => {
     const index = label.toLowerCase().indexOf(searchTerm.toLowerCase());
 
@@ -337,6 +386,7 @@ function Filters({
         callback([]);
       });
   };
+ 
   return (
     <form action="">
       <div className="row row-gap-3">
@@ -450,8 +500,127 @@ function Filters({
               <option value="300">Completed</option>
             </select>
         </div>
+
+       
+       
+
+        <div className="col-md-3 d-flex align-items-center gap-2 justify-content-end">
+          
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={() => setShowMore(!showMore)}
+          >
+            {showMore ? "Hide" : "More"}
+          </button>
+          {!isEmptyObject() && (
+            <button
+              className="btn btn-sm btn-secondary"
+              type="button"
+              onClick={handleReset}
+            >
+              Reset
+            </button>
+          )}
+          <div className="form-check d-none d-sm-block">
+            <div
+              className="btn-group"
+              role="group"
+              aria-label="Basic radio toggle button group"
+            >
+              <input
+                type="radio"
+                className="btn-check"
+                name="map"
+                id="mapradio"
+                autoComplete="off"
+                onChange={handleViewChange}
+                checked={showMap}
+                onClick={() => {
+                  setShowMap(true);
+                }}
+              />
+              <label className="btn btn-outline-primary" htmlFor="mapradio">
+                Map
+              </label>
+
+              <input
+                type="radio"
+                className="btn-check"
+                name="list"
+                id="listradio"
+                autoComplete="off"
+                onChange={handleViewChange}
+                checked={!showMap}
+                onClick={() => {
+                  setShowMap(false);
+                }}
+              />
+              <label className="btn btn-outline-primary" htmlFor="listradio">
+                List
+              </label>
+            </div>
+          </div>
+        </div>
+        {showMore && (
+        <div className="row mt-3 row-gap-3">
+
+        <div className="col-md-3">
+              <Dropdown>
+                <Dropdown.Toggle
+                  className={`dt form-control form-select ${classes.customDropdown}`}
+                  variant=""
+                  id="dropdown-basic"
+                  as={CustomToggle}
+                >
+                  Amenities
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <div className="fc">
+                    <FormControl
+                      autoFocus
+                      placeholder="Search amenities..."
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      value={searchTerm}
+                    />
+                  </div>
+
+                  <div className="options-container row g-0">
+                    {filteredOptions?.map((option) => (
+                      <div key={option.value} className="col-6">
+                        <Form.Check
+                          key={option.value}
+                          type="checkbox"
+                          label={highlightMatch(option.label)}
+                          checked={selectedItems.includes(option.value)}
+                          onChange={() => handleCheckboxChange(option.value)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  {!!selectedItems.length && (
+                    <div className="my-2 d-grid fc">
+                      <div
+                        className="row justify-content-center"
+                        style={{ columnGap: "0.25rem" }}
+                      >
+                        <button
+                          className="btn btn-secondary btn-sm col-md"
+                          type="button"
+                          onClick={() => setSelectedItems([])}
+                        >
+                          Reset
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </Dropdown.Menu>
+              </Dropdown>
+        </div>
         <div className="col-md-2">
           <div className="dropdown">
+           
             <div
               className="form-select"
               data-bs-toggle="dropdown"
@@ -514,102 +683,6 @@ function Filters({
               </div>
             </div>
           </div>
-        </div>
-       
-
-        <div className="col-md-1 d-flex align-items-center justify-content-end">
-          <div className="form-check d-none d-sm-block">
-            <div
-              className="btn-group"
-              role="group"
-              aria-label="Basic radio toggle button group"
-            >
-              <input
-                type="radio"
-                className="btn-check"
-                name="map"
-                id="mapradio"
-                autoComplete="off"
-                onChange={handleViewChange}
-                checked={showMap}
-                onClick={() => {
-                  setShowMap(true);
-                }}
-              />
-              <label className="btn btn-outline-primary" htmlFor="mapradio">
-                Map
-              </label>
-
-              <input
-                type="radio"
-                className="btn-check"
-                name="list"
-                id="listradio"
-                autoComplete="off"
-                onChange={handleViewChange}
-                checked={!showMap}
-                onClick={() => {
-                  setShowMap(false);
-                }}
-              />
-              <label className="btn btn-outline-primary" htmlFor="listradio">
-                List
-              </label>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-4">
-              <Dropdown>
-                <Dropdown.Toggle
-                  className={`dt form-control form-select ${classes.customDropdown}`}
-                  variant=""
-                  id="dropdown-basic"
-                  as={CustomToggle}
-                >
-                  Amenities
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <div className="fc">
-                    <FormControl
-                      autoFocus
-                      placeholder="Search amenities..."
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      value={searchTerm}
-                    />
-                  </div>
-
-                  <div className="options-container row g-0">
-                    {filteredOptions?.map((option) => (
-                      <div key={option.value} className="col-6">
-                        <Form.Check
-                          key={option.value}
-                          type="checkbox"
-                          label={highlightMatch(option.label)}
-                          checked={selectedItems.includes(option.value)}
-                          onChange={() => handleCheckboxChange(option.value)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  {!!selectedItems.length && (
-                    <div className="my-2 d-grid fc">
-                      <div
-                        className="row justify-content-center"
-                        style={{ columnGap: "0.25rem" }}
-                      >
-                        <button
-                          className="btn btn-secondary btn-sm col-md"
-                          type="button"
-                          onClick={() => setSelectedItems([])}
-                        >
-                          Reset
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </Dropdown.Menu>
-              </Dropdown>
         </div>
         <div className="col-md-2">
             <div className="dropdown">
@@ -677,6 +750,11 @@ function Filters({
               </div>
             </div>
         </div>
+        {showFormReset && (
+          <button className="col-md-1 btn btn-primary btn-md col">Reset</button>
+        )}
+         </div>
+      )}
       </div>
       <Bottombar
         item={showMap ? 0 : 1}

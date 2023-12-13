@@ -69,25 +69,48 @@ function Filters({
   }
 
   const handleReset = () => {
-    setForm({
-      accommodation_id: "",
-      community: "",
-      bedrooms: "",
-      minprice: "",
-      maxprice: "",
-      minarea: "",
-      maxarea: "",
-      amenities: "",
-      bathroom: "",
-      area: "",
-      category: "rent",
-      completionStatus: "",
-      furnishing: "",
-    });
-    minPriceRef.current.value = "";
-    maxPriceRef.current.value = "";
-    minAreaRef.current.value = "";
-    maxAreaRef.current.value = "";
+    // setForm({
+    //   accommodation_id: "",
+    //   community: "",
+    //   bedrooms: "",
+    //   minprice: "",
+    //   maxprice: "",
+    //   minarea: "",
+    //   maxarea: "",
+    //   amenities: "",
+    //   bathroom: "",
+    //   area: "",
+    //   category: "rent",
+    //   completionStatus: "",
+    //   furnishing: "",
+    //   searchBy: ""
+    // });
+    form["minprice"] = "";
+    form["maxprice"] = "";
+    form["minarea"] = "";
+    form["maxarea"] = "";
+    form["furnishing"] = "";
+    form["bedrooms"] = "";
+    form["accommodation_id"] = "";
+    form["completionStatus"] = "";
+    form["bathroom"] = "";
+    form["searchBy"] = "";
+    form["amenities"] ="";
+    setSelectedItems([]);
+    
+    selectRef.current.setValue([]);
+    if(minPriceRef.current != null){
+      minPriceRef.current.value = "";
+    }
+    if(maxPriceRef.current != null){
+      maxPriceRef.current.value = "";
+    }
+    if(minAreaRef.current != null){
+      minAreaRef.current.value = "";
+    }
+    if(maxAreaRef.current != null){
+      maxAreaRef.current.value = "";
+    }
   };
 
   const Menu = ({ children, ...props }) => {
@@ -174,7 +197,7 @@ function Filters({
   }, [isMobile]);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "/properties?";
+    let getPropertiesURL = process.env.API_HOST + "properties?";
     let payload = { ...form };
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
@@ -568,7 +591,7 @@ function Filters({
           </button>
           {!isEmptyObject() && (
             <button
-              className="btn btn-primary"
+              className="btn btn-sm btn-secondary"
               type="button"
               onClick={handleReset}
             >
@@ -618,9 +641,9 @@ function Filters({
       </div>
 
       {showMore && (
-        <div className="row mt-3">
+        <div className="row mt-3 row-gap-3">
           {!isCommercial && (
-            <div className="col">
+            <div className="col-lg-3">
               <Dropdown>
                 <Dropdown.Toggle
                   className={`dt form-control form-select ${classes.customDropdown}`}
@@ -675,7 +698,7 @@ function Filters({
             </div>
           )}
           {!isCommercial && (
-            <div className="col">
+            <div className="col-lg-2">
               <select
                 onChange={handleChange}
                 value={form.furnishing}
@@ -705,7 +728,7 @@ function Filters({
               </select>
             </div>
           )} */}
-          <div className="col">
+          <div className="col-lg-2">
             <select
               onChange={handleChange}
               value={form.bedrooms}
@@ -724,7 +747,7 @@ function Filters({
             </select>
           </div>
           {!isCommercial && (
-            <div className="col">
+            <div className="col-lg-2">
               <input
                 value={form.bathroom}
                 type="number"
@@ -736,7 +759,7 @@ function Filters({
               />
             </div>
           )}
-          <div className="col">
+          <div className="col-lg-3">
             <div className="dropdown">
               <div
                 className="form-select"

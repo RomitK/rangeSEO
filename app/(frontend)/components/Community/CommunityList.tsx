@@ -36,10 +36,7 @@ function CommunityList() {
   const accommodationOptionss: OptionType[] = accommodationOptions;
   const projectOfferTypeOptions: OptionType[] = projectOfferTypeOption;
   const projectOptions: OptionType[] = projectOption;
-
-  const projectChangeHandle = (event) => {
-    setForm({ ...form, project_id: event.value });
-  };
+  const [inputValue, setInputValue] = useState("");
 
   const onNextPage = () => {
     const newCommunities = communities.slice(0, visibleCommunities.length * 2);
@@ -53,31 +50,20 @@ function CommunityList() {
     setCommunities(communitiesData);
     setVisibleCommunities(communitiesData?.slice(0, 9));
   }, [communitiesData]);
+  function isEmptyObject() {
+    const o = { ...form };
+    return Object.keys(o).every(function (x) {
+      if (Array.isArray(o[x])) {
+        return o[x].length > 0 ? false : true;
+      } else {
+        return o[x] === "" || o[x] === null;
+      }
+    });
+  }
 
-  // useEffect(() => {
-  //   console.log(form);
-  //   let getPropertiesURL = process.env.API_HOST + "/communities?";
-  //   const formData = new FormData();
-  //   for (let key in form) {
-  //     if (form.hasOwnProperty(key)) {
-  //       if (form[key]) {
-  //         getPropertiesURL += `${key}=${form[key]}&`;
-  //       }
-
-  //       formData.append(key, form[key]);
-  //     }
-  //   }
-  //   fetch(getPropertiesURL)
-  //     .then((response) => response.json())
-  //     .then((res) => {
-  //       if (res.success) {
-  //         setVisibleCommunities(res.data);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error); // Handle the error response object
-  //     });
-  // }, [form]);
+  const handleReset = () => {
+    setForm({ ...form, project_id: "", completion_status_id:"", developer_id:"",accommodation_id:"" });
+  };
   return (
     <section className="communitiesSection">
       <div className="container">
@@ -131,6 +117,7 @@ function CommunityList() {
             <div className="proSelectBox">
               <label>PROJECT STATUS</label>
               <Select
+                
                 options={projectOfferTypeOptions}
                 className="reactSelectInput"
                 onChange={(e) =>
@@ -139,6 +126,18 @@ function CommunityList() {
               />
             </div>
           </div>
+          {!isEmptyObject() && (
+            <div className="col-md-12 text-center mt-3">
+              <button
+              className="btn  btn-secondary"
+              type="button"
+              onClick={handleReset}
+            >
+              Reset
+            </button>
+            </div>
+            
+          )}
         </div>
 
         <div className="row">
