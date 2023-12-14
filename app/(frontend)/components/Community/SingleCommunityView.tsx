@@ -248,7 +248,7 @@ function SinglecommunityDataView({ params }) {
                           <i className="bi bi-chevron-left fs-1"></i>
                         </span>
                       </div>
-                      <div className="swiper-pagination"></div>
+                      {/* <div className="swiper-pagination"></div> */}
                     </Swiper>
                   </div>
                 )}
