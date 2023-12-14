@@ -349,7 +349,7 @@ function SinglecommunityDataView({ params }) {
                                       />
                                     </center>
                                   </div>
-                                  <div className="card-body text-center pb-0">
+                                  <div className="card-body text-center pb-0 communityCardBody">
                                     <small className="card-title text-white text-uppercase fs-20">
                                       {highlight.name}
                                     </small>
