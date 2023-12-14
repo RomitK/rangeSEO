@@ -4,6 +4,9 @@ height: 450px;
 object-fit: cover;
 object-position: top;
 }
+#contactUsHeader{
+    height: auto !important;
+}
 .mxWdtext{
 max-width: 800px;
 width: 100%;

@@ -41,7 +41,7 @@ function ContactPage() {
   };
   return (
     <>
-      <header>
+      <header id="contactUsHeader">
         <img
           src="/images/banner/contactUsBanner.webp"
           className="headerSimpleImg"

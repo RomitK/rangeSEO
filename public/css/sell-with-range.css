@@ -1,6 +1,7 @@
 
 .sellWithRange{
 position: relative;
+height: auto !important;
 }
 .sellWithRange .headerImgVideo{
 height: 350px;
