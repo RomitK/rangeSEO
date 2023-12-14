@@ -540,7 +540,7 @@ function SingleDeveloperView({ params }) {
                                         </div>
                                       </Link>
                                     </div>
-                                    <div className="card-body rounded-3 rounded-top-0">
+                                    <div className="card-body rounded-3 rounded-top-0 developerCommunityCardBody">
                                       <Link
                                         href={`/communities/${community?.slug}`}
                                         className="text-decoration-none text-white"
