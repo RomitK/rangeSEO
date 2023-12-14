@@ -1092,7 +1092,7 @@ function SinglecommunityDataView({ params }) {
                                           </div>
                                         </Link>
                                       </div>
-                                      <div className="card-body rounded-3 rounded-top-0">
+                                      <div className="card-body rounded-3 rounded-top-0 nearByCommunityCardBody">
                                         <Link
                                           href={`/communities/${nearbyCommunity.slug}`}
                                           className="text-decoration-none"

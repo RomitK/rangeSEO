@@ -1285,6 +1285,9 @@ height:600px;
 .communityCardBody{
     min-height: auto !important;
 }
+.nearByCommunityCardBody{
+    min-height: auto !important;
+}
 .floorFormbox{
 padding: 10px;
 }
