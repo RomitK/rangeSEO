@@ -47,8 +47,8 @@ function CommunityList() {
     { value: "sale", label: "Sale" },
   ];
   useEffect(() => {
-    setCommunities(communitiesData);
-    setVisibleCommunities(communitiesData?.slice(0, 9));
+    setCommunities(communitiesData?.data);
+    setVisibleCommunities(communitiesData?.data?.slice(0, 9));
   }, [communitiesData]);
   function isEmptyObject() {
     const o = { ...form };
