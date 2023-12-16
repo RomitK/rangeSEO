@@ -9,18 +9,18 @@ type Props = {
 export default function SingleProperty({ params }) {
   return <SinglePropertyPage params={params}></SinglePropertyPage>;
 }
-export const generateMetadata = async ({
-  params,
-}: Props): Promise<Metadata> => {
-  const slug = params.slug;
-  const property = await fetch(`${process.env.API_HOST}/properties/${slug}`).then(
-    (res) => res.json()
-  );
+// export const generateMetadata = async ({
+//   params,
+// }: Props): Promise<Metadata> => {
+//   const slug = params.slug;
+//   const property = await fetch(`${process.env.API_HOST}/properties/${slug}`).then(
+//     (res) => res.json()
+//   );
 
-  return {
-    title: property?.data?.name,
-    description: property?.data?.meta_description,
-    keywords: property?.data?.meta_keywords,
-  };
-};
+//   return {
+//     title: property?.data?.name,
+//     description: property?.data?.meta_description,
+//     keywords: property?.data?.meta_keywords,
+//   };
+// };
 
