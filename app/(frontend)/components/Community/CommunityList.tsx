@@ -12,6 +12,7 @@ import {
   useGetProjectOptions,
 } from "@/src/services/ProjectService";
 import axios from "axios";
+import Loader from "../UI/Loader";
 type OptionType = {
   value: string;
   label: string;
@@ -23,7 +24,7 @@ function CommunityList() {
     developer_id: { label: "", value: "" },
     accommodation_id: { label: "", value: "" },
   });
-  const { communitiesData } = useGetAllCommunityData("", form);
+  const { communitiesData, isValidating } = useGetAllCommunityData("", form);
   const { developerOption } = useGetDeveloperOptions();
   const { accommodationOptions } = useGetAccommodationOptions();
   const { projectOfferTypeOption } = useGetProjectOfferTypes();
@@ -32,6 +33,7 @@ function CommunityList() {
   const [communities, setCommunities] = useState([]);
   const [visibleCommunities, setVisibleCommunities] = useState([]);
   const [links, setLinks] = useState(null);
+  const [isLoader, setIsLoader] = useState(false);
 
   const maxPage = Math.ceil(communities?.length / 3);
 
@@ -50,13 +52,16 @@ function CommunityList() {
         }
       }
     }
+    setIsLoader(true);
     axios
       .get(url)
       .then((res) => {
+        setIsLoader(false);
         setCommunities([...communities, ...res.data.data.data]);
         setLinks(res.data.data.links);
       })
       .catch((err) => {
+        setIsLoader(false);
         console.log(err);
       });
   };
@@ -90,110 +95,115 @@ function CommunityList() {
     });
   };
   return (
-    <section className="communitiesSection">
-      <div className="container">
-        <div className="mainHead mb-5 text-primary text-center">
-          <h4>COMMUNITIES</h4>
+    <>
+      {(isLoader || isValidating) && <Loader />}
+      <section className="communitiesSection">
+        <div className="container">
+          <div className="mainHead mb-5 text-primary text-center">
+            <h4>COMMUNITIES</h4>
 
-          <div className="text-center mb-5">
-            <div>
-              <p className="mb-0">
-                We have an array of properties available in the most sough-after
-                communities of Dubai.
-              </p>
+            <div className="text-center mb-5">
+              <div>
+                <p className="mb-0">
+                  We have an array of properties available in the most
+                  sough-after communities of Dubai.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="row mb-5">
-          <div className="col-md-3">
-            <div className="proSelectBox">
-              <label>PROJECT</label>
-              <Select
-                options={projectOptions}
-                value={form.project_id}
-                className="reactSelectInput"
-                onChange={(e) => setForm({ ...form, project_id: e })}
-              />
+          <div className="row mb-5">
+            <div className="col-md-3">
+              <div className="proSelectBox">
+                <label>PROJECT</label>
+                <Select
+                  options={projectOptions}
+                  value={form.project_id}
+                  className="reactSelectInput"
+                  onChange={(e) => setForm({ ...form, project_id: e })}
+                />
+              </div>
             </div>
+            <div className="col-md-3">
+              <div className="proSelectBox">
+                <label>PROPERTY TYPE</label>
+                <Select
+                  options={accommodationOptionss}
+                  value={form.accommodation_id}
+                  className="reactSelectInput"
+                  onChange={(e) => setForm({ ...form, accommodation_id: e })}
+                />
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="proSelectBox">
+                <label>DEVELOPER</label>
+                <Select
+                  options={developerOptions}
+                  value={form.developer_id}
+                  className="reactSelectInput"
+                  onChange={(e) => setForm({ ...form, developer_id: e })}
+                />
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="proSelectBox">
+                <label>PROJECT STATUS</label>
+                <Select
+                  options={projectOfferTypeOptions}
+                  value={form.completion_status_id}
+                  className="reactSelectInput"
+                  onChange={(e) =>
+                    setForm({ ...form, completion_status_id: e })
+                  }
+                />
+              </div>
+            </div>
+            {!isEmptyObject() && (
+              <div className="col-md-12 text-center mt-3">
+                <button
+                  className="btn  btn-secondary"
+                  type="button"
+                  onClick={handleReset}
+                >
+                  Reset
+                </button>
+              </div>
+            )}
           </div>
-          <div className="col-md-3">
-            <div className="proSelectBox">
-              <label>PROPERTY TYPE</label>
-              <Select
-                options={accommodationOptionss}
-                value={form.accommodation_id}
-                className="reactSelectInput"
-                onChange={(e) => setForm({ ...form, accommodation_id: e })}
-              />
-            </div>
+
+          <div className="row">
+            {communities?.map(function (community, index) {
+              return (
+                <div className="col-md-4" key={community.id}>
+                  <Link
+                    href={`/communities/${community.slug}`}
+                    className="cardBox"
+                  >
+                    <img
+                      src={community.mainImage}
+                      className="clmCardImage"
+                      alt={community.name}
+                    />
+                    <div className="overlay">
+                      <h5 className="crdtitle">{community.name}</h5>
+                      <p className="crdText">
+                        {community && parse(community?.description ?? "")}
+                      </p>
+                    </div>
+                  </Link>
+                </div>
+              );
+            })}
           </div>
-          <div className="col-md-3">
-            <div className="proSelectBox">
-              <label>DEVELOPER</label>
-              <Select
-                options={developerOptions}
-                value={form.developer_id}
-                className="reactSelectInput"
-                onChange={(e) => setForm({ ...form, developer_id: e })}
-              />
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div className="proSelectBox">
-              <label>PROJECT STATUS</label>
-              <Select
-                options={projectOfferTypeOptions}
-                value={form.completion_status_id}
-                className="reactSelectInput"
-                onChange={(e) => setForm({ ...form, completion_status_id: e })}
-              />
-            </div>
-          </div>
-          {!isEmptyObject() && (
-            <div className="col-md-12 text-center mt-3">
-              <button
-                className="btn  btn-secondary"
-                type="button"
-                onClick={handleReset}
-              >
-                Reset
-              </button>
-            </div>
+          {links?.next && (
+            <button className="bdrBtn mrAuto loadBtn mt-4" onClick={onNextPage}>
+              View All
+            </button>
           )}
         </div>
-
-        <div className="row">
-          {communities?.map(function (community, index) {
-            return (
-              <div className="col-md-4" key={community.id}>
-                <Link
-                  href={`/communities/${community.slug}`}
-                  className="cardBox"
-                >
-                  <img
-                    src={community.mainImage}
-                    className="clmCardImage"
-                    alt={community.name}
-                  />
-                  <div className="overlay">
-                    <h5 className="crdtitle">{community.name}</h5>
-                    <p className="crdText">
-                      {community && parse(community?.description ?? "")}
-                    </p>
-                  </div>
-                </Link>
-              </div>
-            );
-          })}
-        </div>
-        {links?.next && (
-          <button className="bdrBtn mrAuto loadBtn mt-4" onClick={onNextPage}>
-            View All
-          </button>
-        )}
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 export default CommunityList;
