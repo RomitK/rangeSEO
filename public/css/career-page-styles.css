@@ -1,5 +1,6 @@
 .header.careerHeader{
 position: relative;
+height: auto !important;
 }
 .careerHeader .headerImgVideo{
 width: 100%;

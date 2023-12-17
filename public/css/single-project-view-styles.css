@@ -480,3 +480,9 @@ height: 10vw;
     height: 400px !important;
     object-fit: contain !important;
   }
+  .width-auto-fit{
+    width: fit-content !important;
+  }
+  .similarPropertyCard{
+    max-height: auto !important;
+  }

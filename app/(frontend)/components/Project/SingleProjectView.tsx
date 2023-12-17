@@ -476,7 +476,7 @@ function SingleProjectView({ params }) {
                     </p>
                     <Link
                       href={`/developers/${projectData?.developer?.slug}`}
-                      className="text-decoration-none bdrBtn"
+                      className="text-decoration-none bdrBtn width-auto-fit"
                     >
                       View More
                     </Link>
@@ -606,7 +606,7 @@ function SingleProjectView({ params }) {
                           {projectData?.rentProperties.length > 0 && (
                             <Link
                               href={`/rent`}
-                              className="text-decoration-none bdrBtn "
+                              className="text-decoration-none bdrBtn width-auto-fit"
                             >
                               View All
                             </Link>
@@ -687,7 +687,7 @@ function SingleProjectView({ params }) {
                                           </div>
                                         </a>
                                       </div>
-                                      <div className="card-body rounded-3 rounded-top-0">
+                                      <div className="card-body rounded-3 rounded-top-0 similarPropertyCard">
                                         <Link
                                           href={`/properties/${similarProperty.slug}`}
                                           className="text-decoration-none"
@@ -788,7 +788,7 @@ function SingleProjectView({ params }) {
                     {projectData?.buyProperties.length > 0 && (
                       <Link
                         href={`/buy`}
-                        className="text-decoration-none bdrBtn "
+                        className="text-decoration-none bdrBtn width-auto-fit"
                       >
                         View All
                       </Link>

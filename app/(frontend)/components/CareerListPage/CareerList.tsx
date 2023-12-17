@@ -149,7 +149,7 @@ function CareerListPage() {
                       <h3 className="listCardTit">
                         <Link
                           href={`/careers/${career.slug}`}
-                          className="text-decoration-none"
+                          className="text-decoration-none  text-primary"
                         >
                           {career.position}
                         </Link>

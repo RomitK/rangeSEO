@@ -149,19 +149,19 @@ function SinglecommunityDataView({ params }) {
 
 
 
-  useEffect(() => {
-    if (communityData) {
-      document.title = communityData?.name;
-      let metaDesc = document.createElement("meta");
-      metaDesc.name = "description";
-      metaDesc.content = communityData?.meta_description;
-      document.head.appendChild(metaDesc);
-      let metaKeywords = document.createElement("meta");
-      metaKeywords.name = "keywords";
-      metaKeywords.content = communityData?.meta_keywords;
-      document.head.appendChild(metaKeywords);
-    }
-  }, [communityData]);
+  // useEffect(() => {
+  //   if (communityData) {
+  //     document.title = communityData?.name;
+  //     let metaDesc = document.createElement("meta");
+  //     metaDesc.name = "description";
+  //     metaDesc.content = communityData?.meta_description;
+  //     document.head.appendChild(metaDesc);
+  //     let metaKeywords = document.createElement("meta");
+  //     metaKeywords.name = "keywords";
+  //     metaKeywords.content = communityData?.meta_keywords;
+  //     document.head.appendChild(metaKeywords);
+  //   }
+  // }, [communityData]);
 
   
   useEffect(() => {
@@ -248,7 +248,7 @@ function SinglecommunityDataView({ params }) {
                           <i className="bi bi-chevron-left fs-1"></i>
                         </span>
                       </div>
-                      <div className="swiper-pagination"></div>
+                      {/* <div className="swiper-pagination"></div> */}
                     </Swiper>
                   </div>
                 )}
@@ -349,7 +349,7 @@ function SinglecommunityDataView({ params }) {
                                       />
                                     </center>
                                   </div>
-                                  <div className="card-body text-center pb-0">
+                                  <div className="card-body text-center pb-0 communityCardBody">
                                     <small className="card-title text-white text-uppercase fs-20">
                                       {highlight.name}
                                     </small>
@@ -1092,7 +1092,7 @@ function SinglecommunityDataView({ params }) {
                                           </div>
                                         </Link>
                                       </div>
-                                      <div className="card-body rounded-3 rounded-top-0">
+                                      <div className="card-body rounded-3 rounded-top-0 nearByCommunityCardBody">
                                         <Link
                                           href={`/communities/${nearbyCommunity.slug}`}
                                           className="text-decoration-none"
