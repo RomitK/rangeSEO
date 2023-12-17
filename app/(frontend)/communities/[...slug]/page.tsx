@@ -13,14 +13,20 @@ export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
   const slug = params.slug;
-  const communityMeta = await fetch(
-    `${process.env.API_HOST}/communities/${slug}/meta`,
-    { cache: "no-store" }
-  ).then((res) => res.json());
+  if (slug) {
+    const communityMeta = await fetch(
+      `${process.env.API_HOST}/communities/${slug}/meta`,
+      { cache: "no-store" }
+    )
+      .then((res) => res.json())
+      .catch((err) => {
+        console.log("err", err);
+      });
 
-  return {
-    title: communityMeta?.data?.meta_title,
-    description: communityMeta?.data?.meta_description,
-    keywords: communityMeta?.data?.meta_keywords,
-  };
+    return {
+      title: communityMeta?.data?.meta_title,
+      description: communityMeta?.data?.meta_description,
+      keywords: communityMeta?.data?.meta_keywords,
+    };
+  }
 };
