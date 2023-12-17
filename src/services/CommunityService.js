@@ -11,8 +11,8 @@ export const useGetAllCommunityData = (slug = null, form = null) => {
   let url = `/communities?`;
   for (let key in form) {
     if (form.hasOwnProperty(key)) {
-      if (form[key]) {
-        url += `${key}=${form[key]}&`;
+      if (form[key].value) {
+        url += `${key}=${form[key].value}&`;
       }
     }
   }
