@@ -16,9 +16,10 @@ export const useGetAllCommunityData = (slug = null, form = null) => {
       }
     }
   }
-  const { data: communitiesData, error, mutate } = useSWR(url);
+  const { data: communitiesData, error, mutate, isValidating } = useSWR(url);
   return {
     communitiesData: communitiesData?.data,
     communitiesDataMutate: mutate,
+     isValidating,
   };
 };
