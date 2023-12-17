@@ -13,9 +13,10 @@ export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
   const slug = params.slug;
-  const communityMeta = await fetch(`${process.env.API_HOST}communities/${slug}/meta`).then(
-    (res) => res.json()
-  );
+  const communityMeta = await fetch(
+    `${process.env.API_HOST}/communities/${slug}/meta`,
+    { cache: "no-store" }
+  ).then((res) => res.json());
 
   return {
     title: communityMeta?.data?.meta_title,
@@ -23,4 +24,3 @@ export const generateMetadata = async ({
     keywords: communityMeta?.data?.meta_keywords,
   };
 };
-
