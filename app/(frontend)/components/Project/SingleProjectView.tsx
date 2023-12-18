@@ -35,6 +35,7 @@ function SingleProjectView({ params }) {
   const hightlightSwiperRef = useRef<SwiperCore>();
   const rentSwiperRef = useRef<SwiperCore>();
   const saleSwiperRef = useRef<SwiperCore>();
+  const amentitiesSwiperRef = useRef<SwiperCore>();
   const contactSideText =
     "An esteemed award-winning real estate brokerage based in Dubai, UAE.";
   const pageUrl = "Home";
@@ -372,6 +373,109 @@ function SingleProjectView({ params }) {
           </div>
         </section>
       )}
+
+    {projectData &&
+        projectData.amenities &&
+        projectData.amenities.length > 0 && (
+          <section className="my-5" id="amenities">
+            <div className="container">
+              <div className="row">
+                <div className="col-12 col-lg-12 col-md-12">
+                  <div className="row ">
+                    <div className="col-12 col-lg-12 col-md-12">
+                      <div>
+                        <div className="mainHead mb-5 text-primary">
+                          <h4>AMENITIES</h4>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="col-12 col-lg-12 col-md-12">
+                      <Swiper
+                        slidesPerView={1}
+                        spaceBetween={50}
+                        pagination={{
+                          el: ".swiper-pagination",
+                          clickable: true,
+                        }}
+                        navigation={{
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                        }}
+                        breakpoints={{
+                          640: {
+                            slidesPerView: 2,
+                            spaceBetween: 50,
+                          },
+                          768: {
+                            slidesPerView: 4,
+                            spaceBetween: 50,
+                          },
+                          1024: {
+                            slidesPerView: 6,
+                            spaceBetween: 50,
+                          },
+                        }}
+                        modules={[Navigation, Pagination]}
+                        onSwiper={(swiper) => {
+                          amentitiesSwiperRef.current = swiper;
+                        }}
+                        onBeforeInit={(swiper) => {
+                          amentitiesSwiperRef.current = swiper;
+                        }}
+                        className="swiper pb-5 amenitiesSwiper px-5"
+                      >
+                        {projectData?.amenities?.map((amenity, index) => {
+                          return (
+                            <SwiperSlide key={amenity.id + index + "amentity"}>
+                              <div className="swiper-slide">
+                                <div className="py-3">
+                                  <div className="mb-2">
+                                    <div className="amenityImg mx-auto">
+                                      <img
+                                        src={amenity.image}
+                                        alt="Range"
+                                        className="img-fluid"
+                                        width="40px"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="text-center">
+                                    <small className="fs-20">
+                                      {amenity.name}
+                                    </small>
+                                  </div>
+                                </div>
+                              </div>
+                            </SwiperSlide>
+                          );
+                        })}
+                        <div
+                          className="swiper-button-next text-primary"
+                          onClick={() => amentitiesSwiperRef.current?.slideNext()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-right fs-1"></i>
+                          </span>
+                        </div>
+                        <div
+                          className="swiper-button-prev text-primary"
+                          onClick={() => amentitiesSwiperRef.current?.slidePrev()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-left fs-1"></i>
+                          </span>
+                        </div>
+                        <div className="swiper-pagination"></div>
+                      </Swiper>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
       {projectData && (
         <div className="socialfixBar">
           <div className="accordion" id="accordionExample">
@@ -834,7 +938,6 @@ function SingleProjectView({ params }) {
                     </div>
                   </div>
                 )}
-
                 <div className="row mb-5">
                   <h6 className="sctionSubTitle text-primary col-6">FOR SALE</h6>
                   <div className="col-6 text-end">
