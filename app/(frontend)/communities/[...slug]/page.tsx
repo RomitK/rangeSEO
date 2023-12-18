@@ -9,6 +9,11 @@ type Props = {
 export default function SingleCommunity({ params }) {
   return <SingleCommunityPage params={params}></SingleCommunityPage>;
 }
+
+export const metadata: Metadata = {
+  title: 'Home test',
+  description: 'Welcome to Next.js',
+}
 export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
@@ -20,7 +25,7 @@ export const generateMetadata = async ({
     )
       .then((res) => res.json())
       .catch((err) => {
-        
+
         console.log("err", err);
       });
 
