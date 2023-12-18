@@ -9,17 +9,19 @@ export default function SingleProject({ params }) {
   return <SingleProjectPage params={params}></SingleProjectPage>;
 }
 
-// export const generateMetadata = async ({
-//   params,
-// }: Props): Promise<Metadata> => {
-//   const slug = params.slug;
-//   const project = await fetch(`${process.env.API_HOST}projects/${slug}`).then(
-//     (res) => res.json()
-//   );
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const slug = params.slug;
+  const projectMeta = await fetch(`${process.env.API_HOST}projects/${slug}/meta`,  { cache: "no-store" }) 
+  .then((res) => res.json())
+  .catch((err) => {
+    console.log("err", err);
+  });
 
-//   return {
-//     title: project?.data?.name,
-//     description: project?.data?.meta_description,
-//     keywords: project?.data?.meta_keywords,
-//   };
-// };
+  return {
+    title: projectMeta?.data?.name,
+    description: projectMeta?.data?.meta_description,
+    keywords: projectMeta?.data?.meta_keywords,
+  };
+};

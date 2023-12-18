@@ -66,7 +66,7 @@ function PaymentPlanModel(props) {
                 <div className="col-12 col-lg-12 col-md-12 descricalenderCol">
                   <div className="labelFLex">
                     <label className="priceLabel">
-                      Sizes From : {props?.project?.areaAvailable}
+                      Sizes From : {props?.project?.areaAvailable} {props?.project?.areaUnit}
                     </label>
                     <label className="priceLabel">
                       Starting Price : AED {  new Intl.NumberFormat().format(props?.project?.price)}
