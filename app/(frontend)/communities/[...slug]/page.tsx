@@ -11,28 +11,28 @@ export default function SingleCommunity({ params }) {
 }
 
 export const metadata: Metadata = {
-  title: 'Home test',
+  title: 'Community detail title ',
   description: 'Welcome to Next.js',
 }
-export const generateMetadata = async ({
-  params,
-}: Props): Promise<Metadata> => {
-  const slug = params.slug;
-  if (slug) {
-    const communityMeta = await fetch(
-      `${process.env.API_HOST}/communities/${slug}/meta`,
-      { cache: "no-store" }
-    )
-      .then((res) => res.json())
-      .catch((err) => {
+// export const generateMetadata = async ({
+//   params,
+// }: Props): Promise<Metadata> => {
+//   const slug = params.slug;
+//   if (slug) {
+//     const communityMeta = await fetch(
+//       `${process.env.API_HOST}/communities/${slug}/meta`,
+//       { cache: "no-store" }
+//     )
+//       .then((res) => res.json())
+//       .catch((err) => {
 
-        console.log("err", err);
-      });
+//         console.log("err", err);
+//       });
 
-    return {
-      title: communityMeta?.data?.meta_title,
-      description: communityMeta?.data?.meta_description,
-      keywords: communityMeta?.data?.meta_keywords,
-    };
-  }
-};
+//     return {
+//       title: communityMeta?.data?.meta_title,
+//       description: communityMeta?.data?.meta_description,
+//       keywords: communityMeta?.data?.meta_keywords,
+//     };
+//   }
+// };
