@@ -836,7 +836,7 @@ function SingleProjectView({ params }) {
                 )}
 
                 <div className="row mb-5">
-                  <h6 className="sctionSubTitle text-primary col-6">FOR BUY</h6>
+                  <h6 className="sctionSubTitle text-primary col-6">FOR SALE</h6>
                   <div className="col-6 text-end">
                     {projectData?.buyProperties.length > 0 && (
                       <Link
