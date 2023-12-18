@@ -20,6 +20,7 @@ export const generateMetadata = async ({
     )
       .then((res) => res.json())
       .catch((err) => {
+        
         console.log("err", err);
       });
 
