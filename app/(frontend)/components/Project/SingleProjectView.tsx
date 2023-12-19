@@ -126,7 +126,7 @@ function SingleProjectView({ params }) {
               <div className="col-md-3">
                 <div className="vtTextBXox">
                   <p>Starting Price</p>
-                  <h3>
+                  <h3 className="text-primary">
                     AED {new Intl.NumberFormat().format(projectData?.price)}
                   </h3>
                 </div>
@@ -134,24 +134,24 @@ function SingleProjectView({ params }) {
               <div className="col-md-3">
                 <div className="vtTextBXox">
                   <p>Available Units</p>
-                  <h3>{projectData?.availableUnits} </h3>
+                  <h3 className="text-primary">{projectData?.availableUnits} </h3>
                 </div>
               </div>
               
               <div className="col-md-3">
                 <div className="vtTextBXox">
                   <p>Handover</p>
-                  <h3>{projectData?.handOver}</h3>
+                  <h3 className="text-primary">{projectData?.handOver}</h3>
                 </div>
               </div>
               <div className="col-md-3">
                 <div className="vtTextBXox">
                   <p>Location</p>
-                  <h3>
-                    <h3>
+                  
+                    <h3 className="text-primary">
                       {projectData?.communityName}
                     </h3>
-                  </h3>
+                  
                 </div>
               </div>
             </div>
