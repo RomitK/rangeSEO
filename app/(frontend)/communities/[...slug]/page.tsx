@@ -17,7 +17,7 @@ export const generateMetadata = async ({
   const slug = params.slug;
   if (slug) {
     const communityMeta = await fetch(
-      `${process.env.API_HOST}/communities/${slug}/meta`,
+      `${process.env.API_HOST}communities/${slug}/meta`,
       { cache: "no-store" }
     )
       .then((res) => res.json())
