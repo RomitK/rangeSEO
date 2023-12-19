@@ -17,6 +17,7 @@ import {
   useGetCommunities,
   useGetAmenities,
 } from "@/src/services/PropertyService";
+import axios from "axios";
 
 const PropertyList = ({ params }) => {
   const [showMap, setShowMap] = useState(true);
@@ -44,6 +45,7 @@ const PropertyList = ({ params }) => {
   const mapRef2 = useRef(null);
   const [loading, setLoading] = useState(false);
   const [sorting, setSorting] = useState("");
+  const [links, setLinks] = useState({ next: "", first: "" });
 
   const { accommodations } = useGetAccommodations();
   const { communities } = useGetCommunities();
@@ -68,6 +70,18 @@ const PropertyList = ({ params }) => {
     setProperties([...markersInsideView]);
   }, [originalMarkers]);
 
+  const onNextPage = () => {
+    let url = links?.next;
+    axios
+      .get(url)
+      .then((res) => {
+        setProperties([...properties, ...res.data.data.data]);
+        setLinks(res.data.data.links);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
     if (trigger) {
       setFilteredMarkers([...originalMarkers]);
@@ -151,7 +165,7 @@ const PropertyList = ({ params }) => {
               amenities={amenities}
               setLoading={setLoading}
               sortBy={sorting}
-
+              setLinks={setLinks}
             />
           </div>
         </div>
@@ -187,7 +201,7 @@ const PropertyList = ({ params }) => {
                   mapContainerClassName="map-container"
                   onLoad={onMapLoad}
                   onClick={() => {
-                      setIsOpen(false);
+                    setIsOpen(false);
                   }}
                 >
                   {filteredMarkers.map(
@@ -339,7 +353,6 @@ const PropertyList = ({ params }) => {
                           </p>
                         </div>
                         <div className="col">
-                         
                           {/* <select
                             onChange={handleSortChange}
                             value={sorting}
@@ -374,13 +387,23 @@ const PropertyList = ({ params }) => {
                               address={property.address}
                               mainImage={property.mainImage}
                               title={property.title}
-                              completionStatusName={property.completionStatusName}
+                              completionStatusName={
+                                property.completionStatusName
+                              }
                               area_unit={property.area_unit}
                               accommodationName={property.accommodationName}
                             />
                           </div>
                         ))}
                       </div>
+                      {links?.next && (
+                        <button
+                          className="bdrBtn mrAuto loadBtn mt-4"
+                          onClick={onNextPage}
+                        >
+                          View All
+                        </button>
+                      )}
                     </>
                   )}
                 </div>

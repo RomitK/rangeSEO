@@ -24,8 +24,8 @@ function Filters({
   amenities,
   setLoading,
   sortBy,
+  setLinks,
 }) {
-
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
   const [newArrayF, setNewArrayF] = useState([]);
@@ -34,7 +34,8 @@ function Filters({
   const minAreaRef = useRef(null);
   const maxAreaRef = useRef(null);
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [filteredAccomodation, setFilteredAccomodation] = useState(accomodations);
+  const [filteredAccomodation, setFilteredAccomodation] =
+    useState(accomodations);
   const [showNoMessage, setNoMessage] = useState(false);
   const selectRef = useRef();
   const [hasFocus, setHasFocus] = useState(false);
@@ -54,7 +55,7 @@ function Filters({
     maxarea: "",
     amenities: "",
     bathroom: "",
-    completion_status_id:""
+    completion_status_id: "",
   });
   useEffect(() => {
     if (searchParams.has("minprice") && searchParams.has("maxprice")) {
@@ -62,17 +63,26 @@ function Filters({
       form["maxprice"] = searchParams.get("maxprice");
       setForm({ ...form });
     }
-    if (searchParams.has("developer_name") && searchParams.has("developer_detail")) {
-         setForm({
-            ...form,
-              searchBy: [
-                { type: searchParams.get("developer_detail"), name: searchParams.get("developer_name") },
-              ],
-            });
-            selectRef.current.setValue([
-              { type: searchParams.get("developer_detail"), name: searchParams.get("developer_name") },
-            ]);
-        }
+    if (
+      searchParams.has("developer_name") &&
+      searchParams.has("developer_detail")
+    ) {
+      setForm({
+        ...form,
+        searchBy: [
+          {
+            type: searchParams.get("developer_detail"),
+            name: searchParams.get("developer_name"),
+          },
+        ],
+      });
+      selectRef.current.setValue([
+        {
+          type: searchParams.get("developer_detail"),
+          name: searchParams.get("developer_name"),
+        },
+      ]);
+    }
   }, []);
   function isEmptyObject() {
     const o = { ...form };
@@ -96,20 +106,20 @@ function Filters({
     form["completion_status_id"] = "";
     form["bathroom"] = "";
     form["searchBy"] = "";
-    form["amenities"] ="";
+    form["amenities"] = "";
     setSelectedItems([]);
-    
+
     selectRef.current.setValue([]);
-    if(minPriceRef.current != null){
+    if (minPriceRef.current != null) {
       minPriceRef.current.value = "";
     }
-    if(maxPriceRef.current != null){
+    if (maxPriceRef.current != null) {
       maxPriceRef.current.value = "";
     }
-    if(minAreaRef.current != null){
+    if (minAreaRef.current != null) {
       minAreaRef.current.value = "";
     }
-    if(maxAreaRef.current != null){
+    if (maxAreaRef.current != null) {
       maxAreaRef.current.value = "";
     }
   };
@@ -177,7 +187,7 @@ function Filters({
   }, [isMobile]);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "projectsList?";
+    let getPropertiesURL = process.env.API_HOST + "/projectsList?";
     let payload = { ...form };
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
@@ -208,9 +218,10 @@ function Filters({
       .then((response) => response.json())
       .then((res) => {
         if (res.success) {
-          const propertiesDup = res.data;
+          const propertiesDup = res.data.data;
           setProperties([...propertiesDup]);
           setOriginalMarkers([...propertiesDup]);
+          setLinks(res.data.links);
           if (propertiesDup.length) {
             mapRef?.current?.setCenter({
               lat: parseFloat(propertiesDup[0].address_latitude),
@@ -386,7 +397,7 @@ function Filters({
         callback([]);
       });
   };
- 
+
   return (
     <form action="">
       <div className="row row-gap-3">
@@ -451,7 +462,7 @@ function Filters({
             // placeholder="Search By Developers and  Communities"
           />
         </div>
-       
+
         <div className="col-md-2">
           <select
             onChange={handleChange}
@@ -469,43 +480,39 @@ function Filters({
           </select>
         </div>
         <div className="col-md-2">
-            <select
-              onChange={handleChange}
-              value={form.bedrooms}
-              name="bedrooms"
-              id="bedrooms"
-              className="form-select bedroomSelect"
-            >
-              <option value="">Select Bedrooms</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="Studio">Studio</option>
-            </select>
+          <select
+            onChange={handleChange}
+            value={form.bedrooms}
+            name="bedrooms"
+            id="bedrooms"
+            className="form-select bedroomSelect"
+          >
+            <option value="">Select Bedrooms</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="Studio">Studio</option>
+          </select>
         </div>
         <div className="col-md-2">
-            <select
-              onChange={handleChange}
-              value={form.completion_status_id}
-              name="completion_status_id"
-              id="completion_status_id"
-              className="form-select bedroomSelect"
-            >
-              <option value="">Project Status</option>
-              <option value="288">Upcoming</option>
-              <option value="289">Under Construction</option>
-              <option value="300">Completed</option>
-            </select>
+          <select
+            onChange={handleChange}
+            value={form.completion_status_id}
+            name="completion_status_id"
+            id="completion_status_id"
+            className="form-select bedroomSelect"
+          >
+            <option value="">Project Status</option>
+            <option value="288">Upcoming</option>
+            <option value="289">Under Construction</option>
+            <option value="300">Completed</option>
+          </select>
         </div>
 
-       
-       
-
         <div className="col-md-3 d-flex align-items-center gap-2 justify-content-end">
-          
           <button
             className="btn btn-primary"
             type="button"
@@ -563,9 +570,8 @@ function Filters({
           </div>
         </div>
         {showMore && (
-        <div className="row mt-3 row-gap-3">
-
-        <div className="col-md-3">
+          <div className="row mt-3 row-gap-3">
+            <div className="col-md-3">
               <Dropdown>
                 <Dropdown.Toggle
                   className={`dt form-control form-select ${classes.customDropdown}`}
@@ -617,144 +623,145 @@ function Filters({
                   )}
                 </Dropdown.Menu>
               </Dropdown>
-        </div>
-        <div className="col-md-2">
-          <div className="dropdown">
-           
-            <div
-              className="form-select"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              data-bs-auto-close="outside"
-            >
-              {form.minprice || form.maxprice
-                ? `${form.minprice} ${form.minprice && form.maxprice && "-"} ${
-                    form.maxprice
-                  } AED`
-                : "Price"}
-              {}
             </div>
-            <div className="dropdown-menu p-4">
-              <div className="mb-3">
-                <label className="form-label">Minimum Price</label>
-                <input
-                  type="number"
-                  className="form-control"
-                  id="minprice"
-                  min={0}
-                  placeholder="0"
-                  name="minprice"
-                  ref={minPriceRef}
-                />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Maximum Price</label>
-                <input
-                  type="number"
-                  name="maxprice"
-                  className="form-control"
-                  id="maxprice"
-                  placeholder="Any Price"
-                  ref={maxPriceRef}
-                />
-              </div>
-              <div className="mt-4 d-grid">
+            <div className="col-md-2">
+              <div className="dropdown">
                 <div
-                  className="row justify-content-center"
-                  style={{ columnGap: "0.25rem" }}
+                  className="form-select"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  data-bs-auto-close="outside"
                 >
-                  <button
-                    className="btn btn-primary btn-sm col"
-                    type="button"
-                    onClick={handleApplyPrice}
-                  >
-                    Apply
-                  </button>
-                  {showPriceResetButton() && (
-                    <button
-                      className="btn btn-secondary btn-sm col"
-                      type="button"
-                      onClick={resetApplyPrice}
+                  {form.minprice || form.maxprice
+                    ? `${form.minprice} ${
+                        form.minprice && form.maxprice && "-"
+                      } ${form.maxprice} AED`
+                    : "Price"}
+                  {}
+                </div>
+                <div className="dropdown-menu p-4">
+                  <div className="mb-3">
+                    <label className="form-label">Minimum Price</label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="minprice"
+                      min={0}
+                      placeholder="0"
+                      name="minprice"
+                      ref={minPriceRef}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label">Maximum Price</label>
+                    <input
+                      type="number"
+                      name="maxprice"
+                      className="form-control"
+                      id="maxprice"
+                      placeholder="Any Price"
+                      ref={maxPriceRef}
+                    />
+                  </div>
+                  <div className="mt-4 d-grid">
+                    <div
+                      className="row justify-content-center"
+                      style={{ columnGap: "0.25rem" }}
                     >
-                      Reset
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-2">
-            <div className="dropdown">
-              <div
-                className="form-select"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                data-bs-auto-close="outside"
-              >
-                {form.minarea && form.maxarea
-                  ? `${form.minarea} ${form.minarea && form.maxarea && "-"} ${
-                      form.maxarea
-                    } `
-                  : "Area(Sq.Ft)"}
-                {}
-              </div>
-              <div className="dropdown-menu p-4">
-                {" "}
-                <div className="mb-3">
-                  <label className="form-label">Minimum Area</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    id="minarea"
-                    min={0}
-                    placeholder="0"
-                    name="minarea"
-                    ref={minAreaRef}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Maximum Area</label>
-                  <input
-                    type="number"
-                    name="maxarea"
-                    className="form-control"
-                    id="maxarea"
-                    placeholder="Any Area"
-                    ref={maxAreaRef}
-                  />
-                </div>
-                <div className="mt-4 d-grid">
-                  <div
-                    className="row justify-content-center"
-                    style={{ columnGap: "0.25rem" }}
-                  >
-                    <button
-                      className="btn btn-primary btn-sm col-md"
-                      type="button"
-                      onClick={handleApplyArea}
-                    >
-                      Apply
-                    </button>
-                    {showAreaResetButton() && (
                       <button
-                        className="btn btn-secondary btn-sm col-md"
+                        className="btn btn-primary btn-sm col"
                         type="button"
-                        onClick={resetApplyArea}
+                        onClick={handleApplyPrice}
                       >
-                        Reset
+                        Apply
                       </button>
-                    )}
+                      {showPriceResetButton() && (
+                        <button
+                          className="btn btn-secondary btn-sm col"
+                          type="button"
+                          onClick={resetApplyPrice}
+                        >
+                          Reset
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-        </div>
-        {showFormReset && (
-          <button className="col-md-1 btn btn-primary btn-md col">Reset</button>
+            <div className="col-md-2">
+              <div className="dropdown">
+                <div
+                  className="form-select"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  data-bs-auto-close="outside"
+                >
+                  {form.minarea && form.maxarea
+                    ? `${form.minarea} ${form.minarea && form.maxarea && "-"} ${
+                        form.maxarea
+                      } `
+                    : "Area(Sq.Ft)"}
+                  {}
+                </div>
+                <div className="dropdown-menu p-4">
+                  {" "}
+                  <div className="mb-3">
+                    <label className="form-label">Minimum Area</label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="minarea"
+                      min={0}
+                      placeholder="0"
+                      name="minarea"
+                      ref={minAreaRef}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label">Maximum Area</label>
+                    <input
+                      type="number"
+                      name="maxarea"
+                      className="form-control"
+                      id="maxarea"
+                      placeholder="Any Area"
+                      ref={maxAreaRef}
+                    />
+                  </div>
+                  <div className="mt-4 d-grid">
+                    <div
+                      className="row justify-content-center"
+                      style={{ columnGap: "0.25rem" }}
+                    >
+                      <button
+                        className="btn btn-primary btn-sm col-md"
+                        type="button"
+                        onClick={handleApplyArea}
+                      >
+                        Apply
+                      </button>
+                      {showAreaResetButton() && (
+                        <button
+                          className="btn btn-secondary btn-sm col-md"
+                          type="button"
+                          onClick={resetApplyArea}
+                        >
+                          Reset
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {showFormReset && (
+              <button className="col-md-1 btn btn-primary btn-md col">
+                Reset
+              </button>
+            )}
+          </div>
         )}
-         </div>
-      )}
       </div>
       <Bottombar
         item={showMap ? 0 : 1}
