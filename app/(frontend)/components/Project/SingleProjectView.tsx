@@ -137,20 +137,21 @@ function SingleProjectView({ params }) {
                   <h3>{projectData?.availableUnits} </h3>
                 </div>
               </div>
-              <div className="col-md-3">
-                <div className="vtTextBXox">
-                  <p>Area</p>
-                  <h3>
-                    <h3>
-                      {projectData?.areaAvailable} {projectData?.areaUnit}
-                    </h3>
-                  </h3>
-                </div>
-              </div>
+              
               <div className="col-md-3">
                 <div className="vtTextBXox">
                   <p>Handover</p>
                   <h3>{projectData?.handOver}</h3>
+                </div>
+              </div>
+              <div className="col-md-3">
+                <div className="vtTextBXox">
+                  <p>Location</p>
+                  <h3>
+                    <h3>
+                      {projectData?.communityName}
+                    </h3>
+                  </h3>
                 </div>
               </div>
             </div>
