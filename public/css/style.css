@@ -1887,3 +1887,20 @@ background-color: #2f3c6a;
 .project-body{
     min-height: auto !important;
 }
+.bdrBtn{
+    background-color: unset;
+    border: 1.5px solid #136DAE;
+    padding: 5px 20px;
+    color: #136DAE;
+    transition: 0.3s ease;
+    display: block;
+    font-size: 16px;
+    }
+    .bdrBtn:hover{
+    background-color: #136DAE;
+    color: #fff;
+    box-shadow: 0px 3px 5px #00000052;
+    }
+    .mrAuto{
+        margin: 0 auto;
+    }

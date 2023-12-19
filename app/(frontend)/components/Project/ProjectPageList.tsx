@@ -22,6 +22,7 @@ import axios from "axios";
 const PropertyList = ({ params }) => {
   const [showMap, setShowMap] = useState(true);
   const [properties, setProperties] = useState([]);
+  const [ totalProperties, setTotalProperties] = useState(0);
   const [originalMarkers, setOriginalMarkers] = useState([]);
   const [filteredMarkers, setFilteredMarkers] = useState([]);
   const [trigger, setTrigger] = useState(0);
@@ -76,7 +77,6 @@ const PropertyList = ({ params }) => {
       .get(url)
       .then((res) => {
         setProperties([...properties, ...res.data.data.data]);
-        setLinks(res.data.data.links);
       })
       .catch((err) => {
         console.log(err);
@@ -166,6 +166,8 @@ const PropertyList = ({ params }) => {
               setLoading={setLoading}
               sortBy={sorting}
               setLinks={setLinks}
+              setTotalProperties = {setTotalProperties}
+
             />
           </div>
         </div>
@@ -343,13 +345,13 @@ const PropertyList = ({ params }) => {
               <div>
                 <div className="col-12 col-lg-12 col-md-12">
                   {loading ? (
-                    "Loading Properties"
+                    "Loading Projects"
                   ) : (
                     <>
                       <div className="row mb-3">
                         <div className="col d-flex align-items-center">
                           <p className="text-primary mb-0">
-                            {properties.length} results found
+                            {totalProperties} results found
                           </p>
                         </div>
                         <div className="col">

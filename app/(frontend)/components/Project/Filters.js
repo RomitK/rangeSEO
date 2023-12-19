@@ -25,6 +25,7 @@ function Filters({
   setLoading,
   sortBy,
   setLinks,
+  setTotalProperties
 }) {
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
@@ -187,7 +188,7 @@ function Filters({
   }, [isMobile]);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "/projectsList?";
+    let getPropertiesURL = process.env.API_HOST + "projectsList?";
     let payload = { ...form };
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
@@ -220,6 +221,7 @@ function Filters({
         if (res.success) {
           const propertiesDup = res.data.data;
           setProperties([...propertiesDup]);
+          setTotalProperties(res.data.meta.total);
           setOriginalMarkers([...propertiesDup]);
           setLinks(res.data.links);
           if (propertiesDup.length) {
