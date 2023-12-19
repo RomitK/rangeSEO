@@ -1884,3 +1884,6 @@ background-color: #2f3c6a;
 .socialfixLink.envelope i{
     font-size: 22px;
 }
+.project-body{
+    min-height: auto !important;
+}

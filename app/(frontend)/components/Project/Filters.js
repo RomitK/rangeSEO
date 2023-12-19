@@ -177,7 +177,7 @@ function Filters({
   }, [isMobile]);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "projects?";
+    let getPropertiesURL = process.env.API_HOST + "projectsList?";
     let payload = { ...form };
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
@@ -208,7 +208,7 @@ function Filters({
       .then((response) => response.json())
       .then((res) => {
         if (res.success) {
-          const propertiesDup = JSON.parse(res.data);
+          const propertiesDup = res.data;
           setProperties([...propertiesDup]);
           setOriginalMarkers([...propertiesDup]);
           if (propertiesDup.length) {
