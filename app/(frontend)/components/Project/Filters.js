@@ -208,7 +208,7 @@ function Filters({
       .then((response) => response.json())
       .then((res) => {
         if (res.success) {
-          const propertiesDup = res.data;
+          const propertiesDup = res.data.data;
           setProperties([...propertiesDup]);
           setOriginalMarkers([...propertiesDup]);
           if (propertiesDup.length) {

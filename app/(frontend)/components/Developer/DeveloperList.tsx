@@ -4,21 +4,31 @@ import { useRef } from "react";
 import Link from "next/link";
 import parse from "html-react-parser";
 import { useGetAllDeveloperData } from "@/src/services/DeveloperService";
+import axios from "axios";
 
 function DeveloperList({ params }) {
   const { developersData } = useGetAllDeveloperData();
-
+  const [links, setLinks] = useState(null);
   const [developers, setDevelopers] = useState([]);
   const [visibleDevelopers, setVisibleDevelopers] = useState([]);
 
   const onNextPage = () => {
-    const newDevelopers = developers.slice(0, visibleDevelopers.length * 2);
-    setVisibleDevelopers(newDevelopers);
+    let url = links?.next;
+    axios
+      .get(url)
+      .then((res) => {
+        setDevelopers([...developers, ...res.data.data.data]);
+        setLinks(res.data.data.links);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
-    setDevelopers(developersData);
-    setVisibleDevelopers(developersData?.slice(0, 9));
+    setDevelopers(developersData?.data);
+    setLinks(developersData?.links);
+
   }, [developersData]);
 
   return (
@@ -28,7 +38,7 @@ function DeveloperList({ params }) {
           DEVELOPERS
         </h4>
         <div className="row">
-          {visibleDevelopers?.map(function (developer, index) {
+          {developers?.map(function (developer, index) {
             return (
               <Link
                 href={`/developers/${developer?.slug}`}
@@ -46,11 +56,13 @@ function DeveloperList({ params }) {
             );
           })}
         </div>
-        {developers?.length != visibleDevelopers?.length && (
-          <button className="bdrBtn mrAuto loadBtn mt-4" onClick={onNextPage}>
-            view All
-          </button>
+
+        {links?.next && (
+            <button className="bdrBtn mrAuto loadBtn mt-4" onClick={onNextPage}>
+              View All
+            </button>
         )}
+
       </div>
     </section>
   );
