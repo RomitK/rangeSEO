@@ -19,10 +19,10 @@ type OptionType = {
 };
 function CommunityList() {
   const [form, setForm] = useState({
-    project_id: { label: "", value: "" },
-    completion_status_id: { label: "", value: "" },
-    developer_id: { label: "", value: "" },
-    accommodation_id: { label: "", value: "" },
+    project_id: { label: "All", value: "" },
+    completion_status_id: { label: "All", value: "" },
+    developer_id: { label: "All", value: "" },
+    accommodation_id: { label: "All", value: "" },
   });
   const { communitiesData, isValidating } = useGetAllCommunityData("", form);
   const { developerOption } = useGetDeveloperOptions();
@@ -52,16 +52,16 @@ function CommunityList() {
         }
       }
     }
-    setIsLoader(true);
+    //setIsLoader(true);
     axios
       .get(url)
       .then((res) => {
-        setIsLoader(false);
+       // setIsLoader(false);
         setCommunities([...communities, ...res.data.data.data]);
         setLinks(res.data.data.links);
       })
       .catch((err) => {
-        setIsLoader(false);
+        //setIsLoader(false);
         console.log(err);
       });
   };
@@ -88,15 +88,15 @@ function CommunityList() {
   const handleReset = () => {
     setForm({
       ...form,
-      project_id: { label: "", value: "" },
-      completion_status_id: { label: "", value: "" },
-      developer_id: { label: "", value: "" },
-      accommodation_id: { label: "", value: "" },
+      project_id: { label: "All", value: "" },
+      completion_status_id: { label: "All", value: "" },
+      developer_id: { label: "All", value: "" },
+      accommodation_id: { label: "All", value: "" },
     });
   };
   return (
     <>
-      {(isLoader || isValidating) && <Loader />}
+      {/* {(isLoader || isValidating) && <Loader />} */}
       <section className="communitiesSection">
         <div className="container">
           <div className="mainHead mb-5 text-primary text-center">
@@ -120,6 +120,7 @@ function CommunityList() {
                   options={projectOptions}
                   value={form.project_id}
                   className="reactSelectInput"
+                  placeholder="Select Project"
                   onChange={(e) => setForm({ ...form, project_id: e })}
                 />
               </div>
