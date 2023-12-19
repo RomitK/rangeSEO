@@ -44,6 +44,22 @@ function SingleProjectView({ params }) {
   const [loading, setLoading] = useState(false);
   // const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
+
+    useEffect(() => {
+    if (projectData) {
+      document.title = projectData?.meta_title;
+      let metaDesc = document.createElement("meta");
+      metaDesc.name = "description";
+      metaDesc.content = projectData?.meta_description;
+      document.head.appendChild(metaDesc);
+      let metaKeywords = document.createElement("meta");
+      metaKeywords.name = "keywords";
+      metaKeywords.content = projectData?.meta_keywords;
+      document.head.appendChild(metaKeywords);
+    }
+  }, [projectData]);
+
+
   return (
     <>
       {projectData?.exteriorGallery && (
@@ -151,7 +167,8 @@ function SingleProjectView({ params }) {
                   href="#Hightlights"
                   aria-selected="true"
                 >
-                  Hightlights
+                  {/* Hightlights */}
+                  Project Details
                 </a>
               </div>
               <div className="col-3 selectTitle ">
@@ -160,7 +177,8 @@ function SingleProjectView({ params }) {
                   href="#ProjectDetails"
                   aria-selected="true"
                 >
-                  Project Details
+                  {/* Project Details */}
+                  Amenities
                 </a>
               </div>
               <div className="col-3 selectTitle">
@@ -187,11 +205,20 @@ function SingleProjectView({ params }) {
             <div className="row align-items-center ">
               <div className="col-md-8">
                 <div className="secTabCntent" id="hightlight">
-                  <h4 className="sctionMdTitle text-primary">Hightlights</h4>
+                  <h4 className="sctionMdTitle text-primary">Project Details</h4>
                   <div className="text-secondary mb-4">
-                    {parse(projectData?.hightlightDescription ?? "")}
+                    {/* {parse(projectData?.hightlightDescription ?? "")} */}
+                    {parse(projectData?.longDescription ?? "")}
                   </div>
                 </div>
+                <button
+                className="btn btn-blue text-uppercase btn-lg btnTextWt"
+                data-bs-toggle="modal"
+                data-bs-target="#floorplan"
+                onClick={() => setFloorPlanFile(projectData.brochure)}
+              >
+                Download Brochure
+              </button>
               </div>
               <div className="col-md-4">
                 {projectData?.interiorGallery && (
@@ -248,11 +275,109 @@ function SingleProjectView({ params }) {
           </div>
         </section>
       )}
-      {projectData && (
+
+      {projectData &&
+        projectData.amenities &&
+        projectData.amenities.length > 0 && (
+          <section className="my-5" id="ProjectDetails">
+            <div className="container">
+              <div className="row">
+                <div className="col-12 col-lg-12 col-md-12">
+                  <div className="row ">
+                        <div className="mainHead mb-5 text-primary">
+                          <h4>AMENITIES</h4>
+                        </div>
+                        {projectData.amenities &&
+                      <Swiper
+                        slidesPerView={1}
+                        spaceBetween={50}
+                        pagination={{
+                          el: ".swiper-pagination",
+                          clickable: true,
+                        }}
+                        navigation={{
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                        }}
+                        breakpoints={{
+                          640: {
+                            slidesPerView: 2,
+                            spaceBetween: 50,
+                          },
+                          768: {
+                            slidesPerView: 4,
+                            spaceBetween: 50,
+                          },
+                          1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 50,
+                          },
+                        }}
+                        modules={[Navigation, Pagination]}
+                        onSwiper={(swiper) => {
+                          amentitiesSwiperRef.current = swiper;
+                        }}
+                        onBeforeInit={(swiper) => {
+                          amentitiesSwiperRef.current = swiper;
+                        }}
+                        className="swiper pb-5 amenitiesSwiper px-5"
+                      >
+                        {projectData?.amenities?.map((amenity, index) => {
+                          return (
+                            <SwiperSlide key={amenity.id + index + "amentity"}>
+                              <div className="swiper-slide py-3">
+                                <div className="">
+                                  <div className="mb-2">
+                                    <div className="amenityImg mx-auto">
+                                      <img
+                                        src={amenity.image}
+                                        alt="Range"
+                                        className="img-fluid"
+                                        width="40px"
+                                      />
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                                <div className="text-center ps-2">
+                                    <small className="fs-20">
+                                      {amenity.name}
+                                    </small>
+                                  </div>
+                              </div>
+                            </SwiperSlide>
+                          );
+                        })}
+                        <div
+                          className="swiper-button-next text-primary"
+                          onClick={() => amentitiesSwiperRef.current?.slideNext()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-right fs-1"></i>
+                          </span>
+                        </div>
+                        <div
+                          className="swiper-button-prev text-primary"
+                          onClick={() => amentitiesSwiperRef.current?.slidePrev()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-left fs-1"></i>
+                          </span>
+                        </div>
+                      </Swiper>
+                      }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+      )}
+
+      {/* {projectData && (
         <section id="ProjectDetails">
           <div className="container ">
-            <h4 className="sctionMdTitle text-primary my-4">Project Details</h4>
-            {parse(projectData?.longDescription ?? "")}
+            <h4 className="sctionMdTitle text-primary my-4">Amenities</h4>
+             {parse(projectData?.longDescription ?? "")}
 
             <div>
               <br></br>
@@ -267,7 +392,7 @@ function SingleProjectView({ params }) {
             </div>
           </div>
         </section>
-      )}
+      )} */}
       {projectData && (
         <section className="tableSection">
           <div className="container">
@@ -278,10 +403,10 @@ function SingleProjectView({ params }) {
                 <thead>
                   <tr>
                     <th>
-                      <h5 className="tblThText">Unit No.</h5>
+                      <h5 className="tblThText">Unit Type</h5>
                     </th>
                     <th>
-                      <h5 className="tblThText">Type</h5>
+                      <h5 className="tblThText">Property Type</h5>
                     </th>
                     <th>
                       <h5 className="tblThText">Size</h5>
@@ -374,108 +499,7 @@ function SingleProjectView({ params }) {
         </section>
       )}
 
-    {projectData &&
-        projectData.amenities &&
-        projectData.amenities.length > 0 && (
-          <section className="my-5" id="amenities">
-            <div className="container">
-              <div className="row">
-                <div className="col-12 col-lg-12 col-md-12">
-                  <div className="row ">
-                    <div className="col-12 col-lg-12 col-md-12">
-                      <div>
-                        <div className="mainHead mb-5 text-primary">
-                          <h4>AMENITIES</h4>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-12 col-lg-12 col-md-12">
-                      <Swiper
-                        slidesPerView={1}
-                        spaceBetween={50}
-                        pagination={{
-                          el: ".swiper-pagination",
-                          clickable: true,
-                        }}
-                        navigation={{
-                          nextEl: ".swiper-button-next",
-                          prevEl: ".swiper-button-prev",
-                        }}
-                        breakpoints={{
-                          640: {
-                            slidesPerView: 2,
-                            spaceBetween: 50,
-                          },
-                          768: {
-                            slidesPerView: 4,
-                            spaceBetween: 50,
-                          },
-                          1024: {
-                            slidesPerView: 6,
-                            spaceBetween: 50,
-                          },
-                        }}
-                        modules={[Navigation, Pagination]}
-                        onSwiper={(swiper) => {
-                          amentitiesSwiperRef.current = swiper;
-                        }}
-                        onBeforeInit={(swiper) => {
-                          amentitiesSwiperRef.current = swiper;
-                        }}
-                        className="swiper pb-5 amenitiesSwiper px-5"
-                      >
-                        {projectData?.amenities?.map((amenity, index) => {
-                          return (
-                            <SwiperSlide key={amenity.id + index + "amentity"}>
-                              <div className="swiper-slide">
-                                <div className="py-3">
-                                  <div className="mb-2">
-                                    <div className="amenityImg mx-auto">
-                                      <img
-                                        src={amenity.image}
-                                        alt="Range"
-                                        className="img-fluid"
-                                        width="40px"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div className="text-center">
-                                    <small className="fs-20">
-                                      {amenity.name}
-                                    </small>
-                                  </div>
-                                </div>
-                              </div>
-                            </SwiperSlide>
-                          );
-                        })}
-                        <div
-                          className="swiper-button-next text-primary"
-                          onClick={() => amentitiesSwiperRef.current?.slideNext()}
-                        >
-                          <span className="">
-                            <i className="bi bi-chevron-right fs-1"></i>
-                          </span>
-                        </div>
-                        <div
-                          className="swiper-button-prev text-primary"
-                          onClick={() => amentitiesSwiperRef.current?.slidePrev()}
-                        >
-                          <span className="">
-                            <i className="bi bi-chevron-left fs-1"></i>
-                          </span>
-                        </div>
-                        <div className="swiper-pagination"></div>
-                      </Swiper>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
+   
       {projectData && (
         <div className="socialfixBar">
           <div className="accordion" id="accordionExample">
