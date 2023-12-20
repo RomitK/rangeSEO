@@ -25,7 +25,7 @@ function Filters({
   setLoading,
   sortBy,
   setLinks,
-  setTotalProperties
+  setTotalProperties,
 }) {
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
@@ -189,7 +189,7 @@ function Filters({
   }, [isMobile]);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "projectsList?";
+    let getPropertiesURL = process.env.API_HOST + "/projectsList?";
     let payload = { ...form };
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
@@ -521,7 +521,7 @@ function Filters({
             type="button"
             onClick={() => setShowMore(!showMore)}
           >
-          {showMore ? "Hide" : "More"}
+            {showMore ? "Hide" : "More"}
           </button>
           {!isEmptyObject() && (
             <button

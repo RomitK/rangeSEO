@@ -22,7 +22,7 @@ import axios from "axios";
 const PropertyList = ({ params }) => {
   const [showMap, setShowMap] = useState(true);
   const [properties, setProperties] = useState([]);
-  const [ totalProperties, setTotalProperties] = useState(0);
+  const [totalProperties, setTotalProperties] = useState(0);
   const [originalMarkers, setOriginalMarkers] = useState([]);
   const [filteredMarkers, setFilteredMarkers] = useState([]);
   const [trigger, setTrigger] = useState(0);
@@ -70,13 +70,14 @@ const PropertyList = ({ params }) => {
     // setFilteredMarkers([...markersInsideView]);
     setProperties([...markersInsideView]);
   }, [originalMarkers]);
-
+  console.log("links", links);
   const onNextPage = () => {
     let url = links?.next;
     axios
       .get(url)
       .then((res) => {
         setProperties([...properties, ...res.data.data.data]);
+        setLinks(res.data.data.links);
       })
       .catch((err) => {
         console.log(err);
@@ -166,8 +167,7 @@ const PropertyList = ({ params }) => {
               setLoading={setLoading}
               sortBy={sorting}
               setLinks={setLinks}
-              setTotalProperties = {setTotalProperties}
-
+              setTotalProperties={setTotalProperties}
             />
           </div>
         </div>

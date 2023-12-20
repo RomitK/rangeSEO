@@ -78,18 +78,23 @@ function CalenderModel() {
         } `}
       >
         <div className="modal-content">
-        {/* <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
-        <div className="modal-header border-0 justify-content-end p-1">
+          {/* <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
+          <div className="modal-header border-0 justify-content-end p-1">
             <button
               type="button"
               className="bg-transparent border-0"
               data-bs-dismiss="modal"
               aria-label="Close"
+              onClick={() => {
+                setFormData(initialState);
+                setStartDate(null);
+                setConfirm(false);
+              }}
               ref={closeRef}
             >
               <i className="bi bi-x-circle text-primary"></i>
             </button>
-         </div>
+          </div>
           <div className="modal-body  p-0 rounded-1 m-2">
             <div className="row g-0">
               {(!startDate || confirm) && (
@@ -279,9 +284,7 @@ function CalenderModel() {
                               />
                             </div>
                             <div className="form-group">
-                              
                               <textarea
-                                
                                 name="messageCon2"
                                 id="messageCon2"
                                 className="form-control mb-2"
