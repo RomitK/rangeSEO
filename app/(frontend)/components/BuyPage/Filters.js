@@ -11,7 +11,7 @@ import CustomToggle from "../UI/CustomSelectToggle";
 import MultiValue from "../UI/ReactSelect/MultiValue";
 import IndicatorsContainer from "../UI/ReactSelect/IndicatorsContainer";
 import MultiValueContainer from "../UI/ReactSelect/MultiValueContainer";
-
+import { useSearchParams } from "next/navigation";
 function Filters({
   setShowMap,
   showMap,
@@ -23,6 +23,8 @@ function Filters({
   amenities,
   setLoading,
   sortBy,
+  setLinks,
+  setTotalProperties
 }) {
   const [form, setForm] = useState({
     accommodation_id: "",
@@ -54,6 +56,7 @@ function Filters({
   const [hasFocus, setHasFocus] = useState(false);
   const [showSelectedValues, setShowSelectedValues] = useState(true);
   const [ongoingRequests, setOngoingRequests] = useState([]);
+  const searchParams = useSearchParams();
   function isEmptyObject() {
     const o = { ...form };
     delete o.category;
@@ -176,9 +179,30 @@ function Filters({
       setShowMap(false);
     }
   }, [isMobile]);
-
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "properties?";
+    if (
+      searchParams.has("project_name") &&
+      searchParams.has("project_detail")
+    ) {
+      setForm({
+        ...form,
+        searchBy: [
+          {
+            type: searchParams.get("project_detail"),
+            name: searchParams.get("project_name"),
+          },
+        ],
+      });
+      selectRef.current.setValue([
+        {
+          type: searchParams.get("project_detail"),
+          name: searchParams.get("project_name"),
+        },
+      ]);
+    }
+  }, []);
+  useEffect(() => {
+    let getPropertiesURL = process.env.API_HOST + "propertiesList?";
     let payload = { ...form };
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
@@ -209,9 +233,11 @@ function Filters({
       .then((response) => response.json())
       .then((res) => {
         if (res.success) {
-          const propertiesDup = JSON.parse(res.data);
+          const propertiesDup = res.data.data;
           setProperties([...propertiesDup]);
           setOriginalMarkers([...propertiesDup]);
+          setLinks(res.data.links);
+          setTotalProperties(res.data.meta.total);
           if (propertiesDup.length) {
             mapRef?.current?.setCenter({
               lat: parseFloat(propertiesDup[0].address_latitude),

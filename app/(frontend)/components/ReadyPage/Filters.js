@@ -23,6 +23,8 @@ function Filters({
   amenities,
   setLoading,
   sortBy,
+  setLinks,
+  setTotalProperties
 }) {
   const [form, setForm] = useState({
     accommodation_id: "",
@@ -140,7 +142,7 @@ function Filters({
   }, [isMobile]);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "properties?";
+    let getPropertiesURL = process.env.API_HOST + "propertiesList?";
     let payload = { ...form };
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
@@ -171,9 +173,11 @@ function Filters({
       .then((response) => response.json())
       .then((res) => {
         if (res.success) {
-          const propertiesDup = JSON.parse(res.data);
+          const propertiesDup = res.data.data;
           setProperties([...propertiesDup]);
           setOriginalMarkers([...propertiesDup]);
+          setLinks(res.data.links);
+          setTotalProperties(res.data.meta.total);
           if (propertiesDup.length) {
             mapRef?.current?.setCenter({
               lat: parseFloat(propertiesDup[0].address_latitude),

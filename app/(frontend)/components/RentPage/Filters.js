@@ -4,14 +4,13 @@ import { useRouter } from "next/router";
 import { components } from "react-select";
 import { Dropdown, FormControl, Form } from "react-bootstrap";
 import AsyncSelect from "react-select/async";
-
 import classes from "./Filters.module.css";
 import Bottombar from "../UI/BottomNavigationBar";
 import CustomToggle from "../UI/CustomSelectToggle";
 import MultiValue from "../UI/ReactSelect/MultiValue";
 import IndicatorsContainer from "../UI/ReactSelect/IndicatorsContainer";
 import MultiValueContainer from "../UI/ReactSelect/MultiValueContainer";
-
+import { useSearchParams } from "next/navigation";
 function Filters({
   setShowMap,
   showMap,
@@ -23,6 +22,8 @@ function Filters({
   amenities,
   setLoading,
   sortBy,
+  setLinks,
+  setTotalProperties
 }) {
   const [form, setForm] = useState({
     accommodation_id: "",
@@ -42,10 +43,12 @@ function Filters({
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
   const [newArrayF, setNewArrayF] = useState([]);
+
   const minPriceRef = useRef(null);
   const maxPriceRef = useRef(null);
   const minAreaRef = useRef(null);
   const maxAreaRef = useRef(null);
+  const searchParams = useSearchParams();
   const [isCommercial, setIsCommercial] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const [filteredAccomodation, setFilteredAccomodation] =
@@ -67,6 +70,30 @@ function Filters({
       }
     });
   }
+
+
+  useEffect(() => {
+    if (
+      searchParams.has("project_name") &&
+      searchParams.has("project_detail")
+    ) {
+      setForm({
+        ...form,
+        searchBy: [
+          {
+            type: searchParams.get("project_detail"),
+            name: searchParams.get("project_name"),
+          },
+        ],
+      });
+      selectRef.current.setValue([
+        {
+          type: searchParams.get("project_detail"),
+          name: searchParams.get("project_name"),
+        },
+      ]);
+    }
+  }, []);
 
   const handleReset = () => {
     // setForm({
@@ -197,7 +224,7 @@ function Filters({
   }, [isMobile]);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "properties?";
+    let getPropertiesURL = process.env.API_HOST + "propertiesList?";
     let payload = { ...form };
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
@@ -228,9 +255,11 @@ function Filters({
       .then((response) => response.json())
       .then((res) => {
         if (res.success) {
-          const propertiesDup = JSON.parse(res.data);
+          const propertiesDup = res.data.data;
           setProperties([...propertiesDup]);
           setOriginalMarkers([...propertiesDup]);
+          setLinks(res.data.links);
+          setTotalProperties(res.data.meta.total);
           if (propertiesDup.length) {
             mapRef?.current?.setCenter({
               lat: parseFloat(propertiesDup[0].address_latitude),

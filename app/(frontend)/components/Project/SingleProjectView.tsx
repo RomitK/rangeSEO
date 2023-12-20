@@ -787,12 +787,12 @@ function SingleProjectView({ params }) {
                         <div className="col-6 text-end">
                           {projectData?.rentProperties.length > 0 && (
                             <Link
-                              href={`/rent`}
+                              href={`/rent?project_name=${projectData?.title}&project_detail=${projectData?.id}`}
                               className="text-decoration-none bdrBtn width-auto-fit"
                             >
                               View All
                             </Link>
-                          )}
+                           )}
                         </div>
                       </div>
                     </div>
@@ -968,7 +968,7 @@ function SingleProjectView({ params }) {
                   <div className="col-6 text-end">
                     {projectData?.buyProperties.length > 0 && (
                       <Link
-                        href={`/buy`}
+                      href={`/buy?project_name=${projectData?.title}&project_detail=${projectData?.id}`}
                         className="text-decoration-none bdrBtn width-auto-fit"
                       >
                         View All

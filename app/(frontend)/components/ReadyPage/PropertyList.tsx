@@ -17,9 +17,11 @@ import {
   useGetCommunities,
   useGetAmenities,
 } from "@/src/services/PropertyService";
-
+import axios from "axios";
 const PropertyList = ({ params }) => {
   const [showMap, setShowMap] = useState(true);
+  const [totalProperties, setTotalProperties] = useState(0);
+  const [links, setLinks] = useState({ next: "", first: "" });
   const [properties, setProperties] = useState([]);
   const [originalMarkers, setOriginalMarkers] = useState([]);
   const [filteredMarkers, setFilteredMarkers] = useState([]);
@@ -135,6 +137,19 @@ const PropertyList = ({ params }) => {
   const handleSortChange = (e) => {
     setSorting(e.target.value);
   };
+
+  const onNextPage = () => {
+    let url = links?.next;
+    axios
+      .get(url)
+      .then((res) => {
+        setProperties([...properties, ...res.data.data.data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="container-fluid px-0">
       <div className="row g-0">
@@ -151,7 +166,8 @@ const PropertyList = ({ params }) => {
               amenities={amenities}
               setLoading={setLoading}
               sortBy={sorting}
-
+              setLinks={setLinks}
+              setTotalProperties = {setTotalProperties}
             />
           </div>
         </div>
@@ -333,7 +349,7 @@ const PropertyList = ({ params }) => {
                       <div className="row mb-3">
                         <div className="col d-flex align-items-center">
                           <p className="text-primary mb-0">
-                            {properties.length} results found
+                            {totalProperties} results found
                           </p>
                         </div>
                         <div className="col">
@@ -345,8 +361,8 @@ const PropertyList = ({ params }) => {
                             aria-label="Size 3 select"
                           >
                             <option value="1">Newest</option>
-                            <option value="2">rice (Low to High)</option>
-                            <option value="3">rice (High to Low)</option>
+                            <option value="2">Price (Low to High)</option>
+                            <option value="3">Price (High to Low)</option>
                           </select>
                         </div>
                       </div>
@@ -379,6 +395,14 @@ const PropertyList = ({ params }) => {
                           </div>
                         ))}
                       </div>
+                      {links?.next && (
+                        <button
+                          className="bdrBtn mrAuto loadBtn mt-4"
+                          onClick={onNextPage}
+                        >
+                          View All
+                        </button>
+                      )}
                     </>
                   )}
                 </div>
