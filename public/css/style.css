@@ -1887,6 +1887,9 @@ background-color: #2f3c6a;
 .project-body{
     min-height: auto !important;
 }
+.communityPropertyCard{
+    min-height: auto !important;
+}
 .bdrBtn{
     background-color: unset;
     border: 1.5px solid #136DAE;

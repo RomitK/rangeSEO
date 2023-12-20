@@ -4,7 +4,7 @@ export const useGetSingleCommunityData = (slug) => {
     data: communityData,
     error,
     mutate,
-  } = useSWR(slug ? `/communities/${slug}` : null);
+  } = useSWR(slug ? `/communities/${slug}/detail` : null);
   return { communityData: communityData?.data, communityDataMutate: mutate };
 };
 export const useGetAllCommunityData = (slug = null, form = null) => {

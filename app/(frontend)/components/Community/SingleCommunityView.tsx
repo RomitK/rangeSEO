@@ -829,7 +829,7 @@ function SinglecommunityDataView({ params }) {
                                           </div>
                                         </Link>
                                       </div>
-                                      <div className="card-body rounded-3 rounded-top-0">
+                                      <div className="card-body rounded-3 rounded-top-0 communityPropertyCard">
                                         <Link
                                           href={`/properties/${property.slug}`}
                                           className="text-decoration-none"
