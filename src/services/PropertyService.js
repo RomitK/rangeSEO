@@ -8,7 +8,7 @@ export const useGetSinglePropertyData = (slug) => {
     data: propertyData,
     error,
     mutate,
-  } = useSWR(slug ? `/properties/${slug}` : null);
+  } = useSWR(slug ? `/properties/${slug}/detail` : null);
   return { propertyData: propertyData?.data, propertyDataMutate: mutate };
 };
 
