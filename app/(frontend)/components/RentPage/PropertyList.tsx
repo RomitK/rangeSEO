@@ -142,6 +142,7 @@ const PropertyList = ({ params }) => {
       .get(url)
       .then((res) => {
         setProperties([...properties, ...res.data.data.data]);
+        setLinks(res.data.data.links);
       })
       .catch((err) => {
         console.log(err);
@@ -364,11 +365,6 @@ const PropertyList = ({ params }) => {
                         </div>
                       </div>
                       <div className="row g-3">
-                        {/* <div className="col-12 col-lg-12 col-md-12">
-                      <p className="text-primary mb-0">
-                        {properties.length} results found
-                      </p>
-                    </div> */}
                         {properties.map((property, index) => (
                           <div
                             key={index}

@@ -144,6 +144,7 @@ const PropertyList = ({ params }) => {
       .get(url)
       .then((res) => {
         setProperties([...properties, ...res.data.data.data]);
+        setLinks(res.data.data.links);
       })
       .catch((err) => {
         console.log(err);

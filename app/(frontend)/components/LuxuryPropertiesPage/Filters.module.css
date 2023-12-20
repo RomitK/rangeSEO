@@ -1,0 +1,50 @@
+.customDropdown {
+    text-align: start;
+    padding-right: 35px;
+}
+
+.customDropdown:hover {
+    border: 1px solid #ced4da;
+}
+
+.customDropdown:active {
+    border: 1px solid #ced4da !important;
+}
+
+.customDropdown:hover:focus {
+    border-color: #86b7fe;
+}
+
+.customDropdown::after {
+    display: none;
+}
+
+.openItemsDiv {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    border-radius: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.openedItemContainer {
+    border-radius: 2px;
+    display: flex;
+    font-size: 85%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: #e6e6e6;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.clearItemIcon:hover {
+    background-color: #ffbdad;
+    color: #de350b;
+}
+
+.clearItemIcon {
+    height: 100%;
+}

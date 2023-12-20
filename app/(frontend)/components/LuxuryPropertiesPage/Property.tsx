@@ -1,6 +1,5 @@
 import Link from "next/link";
 function Property(props) {
-  console.log(props.unit_measure)
   return (
     <>
       <div>
@@ -31,7 +30,7 @@ function Property(props) {
               </div>
             </Link>
           </div>
-          <div className="card-body rounded-3 rounded-top-0">
+          <div className="card-body rounded-3 rounded-top-0 property-body">
             <Link
               href={`/properties/${props.slug}`}
               className="text-decoration-none"
