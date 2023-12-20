@@ -21,7 +21,6 @@ import {
   useLoadScript,
   OverlayView,
 } from "@react-google-maps/api";
-import { useGetAllHomeData } from "@/src/services/HomeService";;
 import Project from "./Project";
 
 function SingleDeveloperView({ params }) {
@@ -31,10 +30,9 @@ function SingleDeveloperView({ params }) {
   const swiperRef = useRef<SwiperCore>();
 
   const router = useRouter();
-  const { homeData } = useGetAllHomeData();
-
-  const options = developerData?.newProjects;
+  const projectOptions = developerData?.newProjects;
   const projectChangeHandle = (event) => {
+    setSelectedProject(event);
     router.push("/projects/" + event.value);
   };
 
@@ -43,6 +41,9 @@ function SingleDeveloperView({ params }) {
   });
   const [mapRef, setMapRef] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const minPriceRef = useRef(null);
+  const maxPriceRef = useRef(null);
   const [infoWindowData, setInfoWindowData] = useState({
     id: null,
     address: "",
@@ -62,13 +63,9 @@ function SingleDeveloperView({ params }) {
     minPrice: 0,
     maxPrice: 0,
   });
-
-  const minPriceRef = useRef(null);
-  const maxPriceRef = useRef(null);
-
   useEffect(() => {
-    if (developerData?.mapProjects) {
-      setMarkers(JSON.parse(developerData?.mapProjects));
+    if (developerData?.projects) {
+      setMarkers(developerData.projects);
     }
   }, [developerData]);
   const handleApplyPrice = () => {
@@ -79,7 +76,8 @@ function SingleDeveloperView({ params }) {
     const minPrice = minPriceRef.current.value ? minPriceRef.current.value : 0;
     const maxPrice = maxPriceRef.current.value ? maxPriceRef.current.value : 0;
 
-    router.push(`projects?minprice=${minPrice}&maxprice=${maxPrice}`);
+    router.push(`/projects?minprice=${minPrice}&maxprice=${maxPrice}`);
+    
   };
   const onMapLoad = (map) => {
     setMapRef(map);
@@ -90,7 +88,6 @@ function SingleDeveloperView({ params }) {
   const handleViewProject = () => {
     router.push(`/projects?developer_name=${developerData.name}&developer_detail=${developerData.id}`);
   }
-
   const handleMarkerClick = (
     id,
     lat,
@@ -125,8 +122,6 @@ function SingleDeveloperView({ params }) {
     label: "",
     value: "",
   });
-  const [isModalOpen, setModalOpen] = useState(false);
-
   const openModal = () => {
     setModalOpen(true);
   };
@@ -233,7 +228,7 @@ function SingleDeveloperView({ params }) {
         <div className="">
           {!isLoaded ? (
             <h1>Loading...</h1>
-          ) : (
+          ) : (  
             <GoogleMap
               mapContainerClassName="map-container"
               onLoad={onMapLoad}
@@ -255,7 +250,7 @@ function SingleDeveloperView({ params }) {
                     completionStatusName,
                   },
                   ind
-                ) => (
+                ) => (                 
                   <MarkerF
                     key={ind}
                     position={{ lat, lng }}
@@ -346,7 +341,7 @@ function SingleDeveloperView({ params }) {
                         <div>
                         <Select
                             onChange={projectChangeHandle}
-                            options={options}
+                            options={projectOptions}
                             className=""
                             value={selectedProject}
                           />
@@ -458,17 +453,13 @@ function SingleDeveloperView({ params }) {
                     </div>
                   );
                 })}
+                {developerData && developerData.projects &&  developerData.projects.length > 0 && (
                 <div className="text-center py-3 text-primary">
                   <a className="text-primary"  onClick={handleViewProject} href="#">
                   VIEW ALL
                   </a>
-                    {/* <Link
-                        href={`/projects`}
-                        className="text-primary"
-                      >
-                       VIEW ALL
-                      </Link> */}
                 </div>
+                )}
               </div>
             </div>
           </div>
@@ -660,7 +651,7 @@ function SingleDeveloperView({ params }) {
                                         </div>
                                       </Link>
                                     </div>
-                                    <div className="card-body rounded-3 rounded-top-0">
+                                    <div className="card-body rounded-3 rounded-top-0 developerCommunityCardBody">
                                       <Link
                                         href={`/properties/${property?.slug}`}
                                         className="text-decoration-none text-white"
@@ -696,7 +687,7 @@ function SingleDeveloperView({ params }) {
                                                 {property.bedrooms}
                                               </span>
                                             </small>
-                                          </li>
+                                          </li>   
                                           <li className="d-inline">
                                             <small>
                                               <img

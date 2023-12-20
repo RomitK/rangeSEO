@@ -63,6 +63,7 @@ function Filters({
       form["minprice"] = searchParams.get("minprice");
       form["maxprice"] = searchParams.get("maxprice");
       setForm({ ...form });
+      setShowMore(true);
     }
     if (
       searchParams.has("developer_name") &&
@@ -520,7 +521,7 @@ function Filters({
             type="button"
             onClick={() => setShowMore(!showMore)}
           >
-            {showMore ? "Hide" : "More"}
+          {showMore ? "Hide" : "More"}
           </button>
           {!isEmptyObject() && (
             <button
@@ -651,6 +652,7 @@ function Filters({
                       min={0}
                       placeholder="0"
                       name="minprice"
+                      value={form.minprice}
                       ref={minPriceRef}
                     />
                   </div>
@@ -661,6 +663,7 @@ function Filters({
                       name="maxprice"
                       className="form-control"
                       id="maxprice"
+                      value={form.maxprice}
                       placeholder="Any Price"
                       ref={maxPriceRef}
                     />

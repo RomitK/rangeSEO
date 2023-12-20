@@ -4,7 +4,7 @@ export const useGetSingleDeveloperData = (slug) => {
     data: developerData,
     error,
     mutate,
-  } = useSWR(slug ? `/developers/${slug}` : null);
+  } = useSWR(slug ? `/developers/${slug}/detail` : null);
 
   return { developerData: developerData?.data, developerDataMutate: mutate };
 };
