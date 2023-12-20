@@ -22,7 +22,7 @@ function ProjectList() {
 
   const options = homeData?.newProjects;
   const projectChangeHandle = (event) => {
-    setSelectedProject(event.value);
+    setSelectedProject(event);
     router.push("/projects/" + event.value);
   };
 
@@ -36,6 +36,7 @@ function ProjectList() {
     address: "",
     title: "",
     area: "",
+    area_unit: "",
     bedrooms: "",
     bathrooms: "",
     starting_price: "",
@@ -56,7 +57,7 @@ function ProjectList() {
 
   useEffect(() => {
     if (homeData?.mapProjects) {
-      setMarkers(JSON.parse(homeData?.mapProjects));
+      setMarkers(homeData?.mapProjects);
     }
   }, [homeData]);
   const handleApplyPrice = () => {
@@ -83,6 +84,7 @@ function ProjectList() {
     address,
     title,
     area,
+    area_unit,
     bedrooms,
     bathrooms,
     starting_price,
@@ -96,6 +98,7 @@ function ProjectList() {
       address,
       title,
       area,
+      area_unit,
       bedrooms,
       bathrooms,
       starting_price,
@@ -138,6 +141,7 @@ function ProjectList() {
                     address,
                     title,
                     area,
+                    area_unit,
                     bedrooms,
                     bathrooms,
                     starting_price,
@@ -160,6 +164,7 @@ function ProjectList() {
                         address,
                         title,
                         area,
+                        area_unit,
                         bedrooms,
                         bathrooms,
                         starting_price,
@@ -197,6 +202,7 @@ function ProjectList() {
                           <Project
                             slug={infoWindowData.slug}
                             area={infoWindowData.area}
+                            area_unit = {infoWindowData.area_unit}
                             bathrooms={infoWindowData.bathrooms}
                             bedrooms={infoWindowData.bedrooms}
                             starting_price={infoWindowData.starting_price}
@@ -370,123 +376,6 @@ function ProjectList() {
           </div>
         </div>
       </section>
-      {/* <div
-        className="modal fade"
-        id="exampleModal"
-        tabIndex={-1}
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-lg">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                Modal title
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              <div className="">
-                {!isLoaded ? (
-                  <h1>Loading...</h1>
-                ) : (
-                  <GoogleMap
-                    mapContainerClassName="map-container"
-                    onLoad={onMapLoad}
-                    onClick={() => setIsOpen(false)}
-                    center={centerRef.current}
-                   
-                  >
-                    {markers?.map(
-                      (
-                        {
-                          address,
-                          title,
-                          area,
-                          bedrooms,
-                          bathrooms,
-                          price,
-                          mainImage,
-                          lat,
-                          lng,
-                          slug,
-                        },
-                        ind
-                      ) => (
-                        <MarkerF
-                          key={ind}
-                          position={{ lat, lng }}
-                          onClick={() => {
-                            handleMarkerClick(
-                              ind,
-                              lat,
-                              lng,
-                              address,
-                              title,
-                              area,
-                              bedrooms,
-                              bathrooms,
-                              price,
-                              mainImage,
-                              slug
-                            );
-                          }}
-                        >
-                          <OverlayView
-                            position={{ lat, lng }}
-                            mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-                          >
-                            <div
-                              style={{
-                                backgroundColor: "white",
-                                padding: "5px",
-                                border: "1px solid #ccc",
-                                boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
-                                borderRadius: "4px",
-                                minWidth: "50px", // Set a minimum width
-                                whiteSpace: "nowrap", // Rounded corners
-                              }}
-                            >
-                              {price}
-                            </div>
-                          </OverlayView>
-                          {isOpen && infoWindowData?.id === ind && (
-                            <InfoWindow
-                              onCloseClick={() => {
-                                setIsOpen(false);
-                              }}
-                            >
-                              <div>
-                                <Project
-                                  slug={infoWindowData.slug}
-                                  area={infoWindowData.area}
-                                  bathrooms={infoWindowData.bathrooms}
-                                  bedrooms={infoWindowData.bedrooms}
-                                  price={infoWindowData.price}
-                                  address={infoWindowData.address}
-                                  mainImage={
-                                    infoWindowData.mainImage
-                                  }
-                                  title={infoWindowData.title}
-                                />
-                              </div>
-                            </InfoWindow>
-                          )}
-                        </MarkerF>
-                      )
-                    )}
-                  </GoogleMap>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 }

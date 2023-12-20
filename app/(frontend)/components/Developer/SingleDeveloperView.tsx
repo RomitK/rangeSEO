@@ -49,6 +49,7 @@ function SingleDeveloperView({ params }) {
     address: "",
     title: "",
     area: "",
+    area_unit: "",
     bedrooms: "",
     bathrooms: "",
     starting_price: "",
@@ -82,8 +83,10 @@ function SingleDeveloperView({ params }) {
   const onMapLoad = (map) => {
     setMapRef(map);
     const bounds = new google.maps.LatLngBounds();
+    console.log(markers)
     markers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
     map.fitBounds(bounds);
+
   };
   const handleViewProject = () => {
     router.push(`/projects?developer_name=${developerData.name}&developer_detail=${developerData.id}`);
@@ -95,6 +98,7 @@ function SingleDeveloperView({ params }) {
     address,
     title,
     area,
+    area_unit,
     bedrooms,
     bathrooms,
     starting_price,
@@ -108,6 +112,7 @@ function SingleDeveloperView({ params }) {
       address,
       title,
       area,
+      area_unit,
       bedrooms,
       bathrooms,
       starting_price,
@@ -240,6 +245,7 @@ function SingleDeveloperView({ params }) {
                     address,
                     title,
                     area,
+                    area_unit,
                     bedrooms,
                     bathrooms,
                     starting_price,
@@ -262,6 +268,7 @@ function SingleDeveloperView({ params }) {
                         address,
                         title,
                         area,
+                        area_unit,
                         bedrooms,
                         bathrooms,
                         starting_price,
@@ -299,6 +306,7 @@ function SingleDeveloperView({ params }) {
                           <Project
                             slug={infoWindowData.slug}
                             area={infoWindowData.area}
+                            area_unit = {infoWindowData.area_unit}
                             bathrooms={infoWindowData.bathrooms}
                             bedrooms={infoWindowData.bedrooms}
                             starting_price={infoWindowData.starting_price}

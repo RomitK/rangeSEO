@@ -27,7 +27,7 @@ function Project(props) {
               </div>
             </Link>
           </div>
-          <div className="card-body rounded-3 rounded-top-0">
+          <div className="card-body rounded-3 rounded-top-0 project-body">
             <Link
               href={`/projects/${props.slug}`}
               className="text-decoration-none"
@@ -67,7 +67,7 @@ function Project(props) {
                 ></i>
                 <span className="fa-sr-only"></span>
                 <span>
-                  {props.area} ft<sup>2</sup>
+                  {props.area} {props.area_unit}
                 </span>
               </div>
             </div>
