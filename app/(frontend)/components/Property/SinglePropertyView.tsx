@@ -50,6 +50,7 @@ function SinglePropertyView({ params }) {
   const CommunitySwiperRef = useRef<SwiperCore>();
   const PropertySwiperRef = useRef<SwiperCore>();
   const similiarPropertySwiperRef = useRef<SwiperCore>();
+  const amentitiesSwiperRef = useRef<SwiperCore>();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const onMapLoad = (map) => {
@@ -155,7 +156,9 @@ function SinglePropertyView({ params }) {
               <div className="row">
                 <div className="col-12 col-lg-8 col-md-8">
                   <div className="mb-3">
-                    <Swiper
+                    {
+                      propertyData?.gallery &&
+                      <Swiper
                       // observer={true}
                       loop={true}
                       spaceBetween={10}
@@ -193,34 +196,38 @@ function SinglePropertyView({ params }) {
                           <i className="bi bi-chevron-left fs-1"></i>
                         </span>
                       </div>
-                    </Swiper>
-                    <div className="sliderThumbnailArea">
-                      <Swiper
-                        onSwiper={(swiper) => {
-                          setThumbsSwiper(swiper);
-                          PropertySwiperRef.current = swiper;
-                        }}
-                        loop={true}
-                        spaceBetween={10}
-                        slidesPerView={3}
-                        loopedSlides={3}
-                        freeMode={true}
-                        watchSlidesProgress={true}
-                        modules={[FreeMode, Navigation, Thumbs]}
-                        className="swiper   "
-                      >
-                        {propertyData?.gallery?.map((image, index) => {
-                          return (
-                            <SwiperSlide key={image.id + index + "gallery2"}>
-                              <img
-                                src={image.path}
-                                alt="range"
-                                className="img-fluid"
-                              />
-                            </SwiperSlide>
-                          );
-                        })}
                       </Swiper>
+                    }
+                    
+                    <div className="sliderThumbnailArea">
+                      {propertyData?.gallery && 
+                       <Swiper
+                       onSwiper={(swiper) => {
+                         setThumbsSwiper(swiper);
+                         PropertySwiperRef.current = swiper;
+                       }}
+                       loop={true}
+                       spaceBetween={10}
+                       slidesPerView={3}
+                       loopedSlides={3}
+                       freeMode={true}
+                       watchSlidesProgress={true}
+                       modules={[FreeMode, Navigation, Thumbs]}
+                       className="swiper   "
+                     >
+                       {propertyData?.gallery?.map((image, index) => {
+                         return (
+                           <SwiperSlide key={image.id + index + "gallery2"}>
+                             <img
+                               src={image.path}
+                               alt="range"
+                               className="img-fluid"
+                             />
+                           </SwiperSlide>
+                         );
+                       })}
+                     </Swiper>
+                     }
                       <div className="sliderModalBox">
                         <GallaryModalImg images={propertyData?.floorplans} />
                         <GallaryModalVideo video={propertyData?.youtube_video} />
@@ -288,32 +295,85 @@ function SinglePropertyView({ params }) {
                       </div>
                       <div className="">
                         <div className="row">
-                          {propertyData?.amenities?.map((amenity, index) => {
-                            return (
-                              <div
-                                className="col-6 col-lg-3 col-md-4 my-auto"
-                                key={amenity.id + index + "amenities"}
-                              >
-                                <div className="pb-3">
-                                  <div className="mb-2">
-                                    <div className="amenityImg mx-auto">
-                                      <img
-                                        src={amenity.image}
-                                        alt={amenity.name}
-                                        className="img-fluid"
-                                        width="40px"
-                                      />
+                          
+
+                          <div className="col-12 col-lg-12 col-md-12">
+                            <Swiper
+                            slidesPerView={1}
+                            spaceBetween={50}
+                            pagination={{
+                              el: ".swiper-pagination",
+                              clickable: true,
+                            }}
+                            navigation={{
+                              nextEl: ".swiper-button-next",
+                              prevEl: ".swiper-button-prev",
+                            }}
+                            breakpoints={{
+                              640: {
+                                slidesPerView: 2,
+                                spaceBetween: 50,
+                              },
+                              768: {
+                                slidesPerView: 2,
+                                spaceBetween: 50,
+                              },
+                              1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 50,
+                              },
+                            }}
+                            modules={[Navigation]}
+                            onSwiper={(swiper) => {
+                              amentitiesSwiperRef.current = swiper;
+                            }}
+                            className="swiper pb-5 amenitiesSwiper px-5"
+                          >
+                            {propertyData?.amenities?.map((amenity, index) => {
+                              return (
+                                <SwiperSlide key={amenity.id + index + "amentity"}>
+                                  <div className="swiper-slide">
+                                    <div className="py-3">
+                                      <div className="mb-2">
+                                        <div className="amenityImg mx-auto">
+                                          <img
+                                            src={amenity.image}
+                                            alt="Range"
+                                            className="img-fluid"
+                                            width="40px"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div className="text-center">
+                                        <small className="fs-20">
+                                          {amenity.name}
+                                        </small>
+                                      </div>
                                     </div>
                                   </div>
-                                  <div className="text-center px-0 px-lg-5 px-md-3">
-                                    <small className="fs-20">
-                                      {amenity.name}
-                                    </small>
-                                  </div>
-                                </div>
-                              </div>
-                            );
-                          })}
+                                </SwiperSlide>
+                              );
+                            })}
+                            <div
+                              className="swiper-button-next text-primary"
+                              onClick={() => amentitiesSwiperRef.current?.slideNext()}
+                            >
+                              <span className="">
+                                <i className="bi bi-chevron-right fs-1"></i>
+                              </span>
+                            </div>
+                            <div
+                              className="swiper-button-prev text-primary"
+                              onClick={() => amentitiesSwiperRef.current?.slidePrev()}
+                            >
+                              <span className="">
+                                <i className="bi bi-chevron-left fs-1"></i>
+                              </span>
+                            </div>
+                            
+                            </Swiper>
+                          </div>
+
                         </div>
                       </div>
                     </div>
@@ -631,74 +691,77 @@ function SinglePropertyView({ params }) {
                     )}
 
                     <div>
+                      {propertyData?.community["gallery"] && 
                       <Swiper
-                        loop={true}
-                        slidesPerView={1}
-                        spaceBetween={10}
-                        navigation={{
-                          nextEl: ".swiper-button-next",
-                          prevEl: ".swiper-button-prev",
-                        }}
-                        breakpoints={{
-                          640: {
-                            slidesPerView: 1,
-                            spaceBetween: 10,
-                          },
-                          768: {
-                            slidesPerView: 1,
-                            spaceBetween: 10,
-                          },
-                          1024: {
-                            slidesPerView: 1,
-                            spaceBetween: 10,
-                          },
-                        }}
-                        modules={[Navigation]}
-                        onSwiper={(swiper) => {
-                          CommunitySwiperRef.current = swiper;
-                        }}
-                        className="swiper pb-5 communityProjectSwiperr"
-                      >
-                        {propertyData?.community["gallery"].map(
-                          (community, index) => {
-                            return (
-                              <SwiperSlide
-                                key={community.id + index + "community"}
-                              >
-                                <div className="swiper-slide">
-                                  <div className="communityImgCont">
-                                    <img
-                                      src={community["path"]}
-                                      alt="community1"
-                                      className="img-fluid"
-                                      style={{ height: "300px", width: "500px" }}
-                                    />
-                                    <div className="communityImgOverlay">
-                                      <div className="text-white"></div>
-                                    </div>
+                      loop={true}
+                      slidesPerView={1}
+                      spaceBetween={10}
+                      navigation={{
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                      }}
+                      breakpoints={{
+                        640: {
+                          slidesPerView: 1,
+                          spaceBetween: 10,
+                        },
+                        768: {
+                          slidesPerView: 1,
+                          spaceBetween: 10,
+                        },
+                        1024: {
+                          slidesPerView: 1,
+                          spaceBetween: 10,
+                        },
+                      }}
+                      modules={[Navigation]}
+                      onSwiper={(swiper) => {
+                        CommunitySwiperRef.current = swiper;
+                      }}
+                      className="swiper pb-5 communityProjectSwiperr"
+                    >
+                      {propertyData?.community["gallery"].map(
+                        (community, index) => {
+                          return (
+                            <SwiperSlide
+                              key={community.id + index + "community"}
+                            >
+                              <div className="swiper-slide">
+                                <div className="communityImgCont">
+                                  <img
+                                    src={community["path"]}
+                                    alt="community1"
+                                    className="img-fluid"
+                                    style={{ height: "300px", width: "500px" }}
+                                  />
+                                  <div className="communityImgOverlay">
+                                    <div className="text-white"></div>
                                   </div>
                                 </div>
-                              </SwiperSlide>
-                            );
-                          }
-                        )}
-                        <div
-                          className="swiper-button-prev swiperUniquePrev text-white"
-                          onClick={() => CommunitySwiperRef.current?.slidePrev()}
-                        >
-                          <span className="">
-                            <i className="bi bi-chevron-left fs-1"></i>
-                          </span>
-                        </div>
-                        <div
-                          className="swiper-button-next swiperUniqueNext text-white"
-                          onClick={() => CommunitySwiperRef.current?.slideNext()}
-                        >
-                          <span className="">
-                            <i className="bi bi-chevron-right fs-1"></i>
-                          </span>
-                        </div>
-                      </Swiper>
+                              </div>
+                            </SwiperSlide>
+                          );
+                        }
+                      )}
+                      <div
+                        className="swiper-button-prev swiperUniquePrev text-white"
+                        onClick={() => CommunitySwiperRef.current?.slidePrev()}
+                      >
+                        <span className="">
+                          <i className="bi bi-chevron-left fs-1"></i>
+                        </span>
+                      </div>
+                      <div
+                        className="swiper-button-next swiperUniqueNext text-white"
+                        onClick={() => CommunitySwiperRef.current?.slideNext()}
+                      >
+                        <span className="">
+                          <i className="bi bi-chevron-right fs-1"></i>
+                        </span>
+                      </div>
+                    </Swiper>
+                    }
+                      
                     </div>
                     <div className="">
                       <p className="mb-0 fs-14">
@@ -1079,167 +1142,169 @@ function SinglePropertyView({ params }) {
                 </div>
                 <div className="col-12 col-lg-12 col-md-12">
                   <div className="swiper pb-5 projectSlider">
+                    { propertyData?.similarProperties && 
                     <Swiper
-                      loop={true}
-                      slidesPerView={1}
-                      spaceBetween={10}
-                      navigation={{
-                        nextEl: ".swiperUniqueNext",
-                        prevEl: ".swiperUniquePrev",
-                      }}
-                      breakpoints={{
-                        640: {
-                          slidesPerView: 2,
-                          spaceBetween: 10,
-                        },
-                        768: {
-                          slidesPerView: 3,
-                          spaceBetween: 10,
-                        },
-                        1024: {
-                          slidesPerView: 4,
-                          spaceBetween: 10,
-                        },
-                      }}
-                      modules={[Navigation]}
-                      onSwiper={(swiper) => {
-                        similiarPropertySwiperRef.current = swiper;
-                      }}
-                      className="swiper pb-5"
-                    >
-                      {propertyData?.similarProperties.map(
-                        (similarProperty, index) => {
-                          return (
-                            <SwiperSlide
-                              key={
-                                similarProperty.id + index + "similarProperty"
-                              }
-                            >
-                              <div className="swiper-slide">
-                                <div>
-                                  <div className="card propCard rounded-0">
-                                    <div>
-                                      <div className="">
-                                        <a
-                                          href=""
-                                          className="text-decoration-none"
-                                        >
-                                          <div className="projectImgCont">
-                                            <img
-                                              src={
-                                                similarProperty.property_banner
-                                              }
-                                              alt="project1"
-                                              className="img-fluid propImg"
-                                            />
-                                            <div className="projectImgOverlay">
-                                              <div></div>
-                                              <div>
-                                                <span className="badge float-start fs-10 projectType">
-                                                  {
-                                                    similarProperty.accommodation
-                                                  }
-                                                </span>
-                                              </div>
+                    loop={true}
+                    slidesPerView={1}
+                    spaceBetween={10}
+                    navigation={{
+                      nextEl: ".swiperUniqueNext",
+                      prevEl: ".swiperUniquePrev",
+                    }}
+                    breakpoints={{
+                      640: {
+                        slidesPerView: 2,
+                        spaceBetween: 10,
+                      },
+                      768: {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                      },
+                      1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 10,
+                      },
+                    }}
+                    modules={[Navigation]}
+                    onSwiper={(swiper) => {
+                      similiarPropertySwiperRef.current = swiper;
+                    }}
+                    className="swiper pb-5"
+                  >
+                    {propertyData?.similarProperties.map(
+                      (similarProperty, index) => {
+                        return (
+                          <SwiperSlide
+                            key={
+                              similarProperty.id + index + "similarProperty"
+                            }
+                          >
+                            <div className="swiper-slide">
+                              <div>
+                                <div className="card propCard rounded-0">
+                                  <div>
+                                    <div className="">
+                                      <a
+                                        href=""
+                                        className="text-decoration-none"
+                                      >
+                                        <div className="projectImgCont">
+                                          <img
+                                            src={
+                                              similarProperty.property_banner
+                                            }
+                                            alt="project1"
+                                            className="img-fluid propImg"
+                                          />
+                                          <div className="projectImgOverlay">
+                                            <div></div>
+                                            <div>
+                                              <span className="badge float-start fs-10 projectType">
+                                                {
+                                                  similarProperty.accommodation
+                                                }
+                                              </span>
                                             </div>
                                           </div>
-                                        </a>
-                                      </div>
-                                      <div className="card-body rounded-3 rounded-top-0">
-                                        <Link
-                                          href={`/properties/${similarProperty.slug}`}
-                                          className="text-decoration-none"
-                                        >
-                                          <h6 className="text-black fs-16 fw-semibold mb-0">
-                                            {similarProperty.name}
-                                          </h6>
-                                        </Link>
-                                        <div className="mb-1">
-                                          <small className="text-secondary">
-                                            {similarProperty.communityName}
-                                          </small>
                                         </div>
-                                        <p className="fs-18 mb-2 text-primary fw-semibold">
-                                          AED{" "}
-                                          {similarProperty &&
-                                            new Intl.NumberFormat().format(
-                                              similarProperty.price
-                                            )}{" "}
-                                        </p>
-                                        <ul className="list-unstyled mb-0 d-flex justify-content-between">
-                                          <li className="d-inline">
-                                            <small>
-                                              <img
-                                                src="/images/icons/bed.png"
-                                                alt="Range"
-                                                className="img-fluid"
-                                                width="25px"
-                                              />
-                                              <span className="align-text-top ms-1">
-                                                {similarProperty.bedrooms}
-                                              </span>
-                                            </small>
-                                          </li>
-                                          <li className="d-inline">
-                                            <small>
-                                              <img
-                                                src="/images/icons/bath.png"
-                                                alt="Range"
-                                                className="img-fluid"
-                                                width="20px"
-                                              />
-                                              <span className="align-text-top ms-1">
-                                                {similarProperty.bathrooms}
-                                              </span>
-                                            </small>
-                                          </li>
-                                          <li className="d-inline">
-                                            <small>
-                                              <img
-                                                src="/images/icons/area.png"
-                                                alt="Range"
-                                                className="img-fluid"
-                                                width="20px"
-                                              />
-                                              <span className="align-text-top ms-1">
-                                                {" "}
-                                                {similarProperty.area}{" "}
-                                                {similarProperty.unit_measure}
-                                              </span>
-                                            </small>
-                                          </li>
-                                        </ul>
+                                      </a>
+                                    </div>
+                                    <div className="card-body rounded-3 rounded-top-0">
+                                      <Link
+                                        href={`/properties/${similarProperty.slug}`}
+                                        className="text-decoration-none"
+                                      >
+                                        <h6 className="text-black fs-16 fw-semibold mb-0">
+                                          {similarProperty.name}
+                                        </h6>
+                                      </Link>
+                                      <div className="mb-1">
+                                        <small className="text-secondary">
+                                          {similarProperty.communityName}
+                                        </small>
                                       </div>
+                                      <p className="fs-18 mb-2 text-primary fw-semibold">
+                                        AED{" "}
+                                        {similarProperty &&
+                                          new Intl.NumberFormat().format(
+                                            similarProperty.price
+                                          )}{" "}
+                                      </p>
+                                      <ul className="list-unstyled mb-0 d-flex justify-content-between">
+                                        <li className="d-inline">
+                                          <small>
+                                            <img
+                                              src="/images/icons/bed.png"
+                                              alt="Range"
+                                              className="img-fluid"
+                                              width="25px"
+                                            />
+                                            <span className="align-text-top ms-1">
+                                              {similarProperty.bedrooms}
+                                            </span>
+                                          </small>
+                                        </li>
+                                        <li className="d-inline">
+                                          <small>
+                                            <img
+                                              src="/images/icons/bath.png"
+                                              alt="Range"
+                                              className="img-fluid"
+                                              width="20px"
+                                            />
+                                            <span className="align-text-top ms-1">
+                                              {similarProperty.bathrooms}
+                                            </span>
+                                          </small>
+                                        </li>
+                                        <li className="d-inline">
+                                          <small>
+                                            <img
+                                              src="/images/icons/area.png"
+                                              alt="Range"
+                                              className="img-fluid"
+                                              width="20px"
+                                            />
+                                            <span className="align-text-top ms-1">
+                                              {" "}
+                                              {similarProperty.area}{" "}
+                                              {similarProperty.unit_measure}
+                                            </span>
+                                          </small>
+                                        </li>
+                                      </ul>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </SwiperSlide>
-                          );
-                        }
-                      )}
+                            </div>
+                          </SwiperSlide>
+                        );
+                      }
+                    )}
 
-                      <div
-                        className="swiper-button-next swiperUniqueNext text-primary"
-                        onClick={() =>
-                          similiarPropertySwiperRef.current?.slidePrev()
-                        }
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-right fs-1"></i>
-                        </span>
-                      </div>
-                      <div
-                        className="swiper-button-prev swiperUniquePrev text-primary"
-                        onClick={() =>
-                          similiarPropertySwiperRef.current?.slideNext()
-                        }
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-left fs-1"></i>
-                        </span>
-                      </div>
-                    </Swiper>
+                    <div
+                      className="swiper-button-next swiperUniqueNext text-primary"
+                      onClick={() =>
+                        similiarPropertySwiperRef.current?.slidePrev()
+                      }
+                    >
+                      <span className="">
+                        <i className="bi bi-chevron-right fs-1"></i>
+                      </span>
+                    </div>
+                    <div
+                      className="swiper-button-prev swiperUniquePrev text-primary"
+                      onClick={() =>
+                        similiarPropertySwiperRef.current?.slideNext()
+                      }
+                    >
+                      <span className="">
+                        <i className="bi bi-chevron-left fs-1"></i>
+                      </span>
+                    </div>
+                  </Swiper>
+                  }  
                   </div>
                 </div>
               </div>
