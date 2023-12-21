@@ -23,6 +23,7 @@
     "react-bootstrap": "^2.9.1",
     "react-datepicker": "^4.21.0",
     "react-dom": "^18",
+    "react-hook-form": "^7.49.2",
     "react-phone-number-input": "^3.3.7",
     "react-player": "^2.13.0",
     "react-responsive": "^9.0.2",
