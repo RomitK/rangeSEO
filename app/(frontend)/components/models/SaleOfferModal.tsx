@@ -52,7 +52,7 @@ const SaleOfferModal = (prop) => {
     if (!OtpCode) {
       return toast.error("Please fill required field");
     }
-    setAgentCode(true)
+    setAgentCode(true);
     setShowOtp(false);
 
     // saveContactFormApi(formData)
@@ -67,7 +67,6 @@ const SaleOfferModal = (prop) => {
   };
   return (
     <>
-      
       <div
         className="modal fade"
         id="saleSale"
@@ -127,88 +126,89 @@ const SaleOfferModal = (prop) => {
                         <div className="row">
                           <div className="col-md-12">
                             <h6 className="text-primary">Enter Details</h6>
-                            { showOtp && 
-                                (
+                            {showOtp && (
+                              <div className="form-group">
+                                <label>
+                                  OTP<small className="text-danger">*</small>
+                                </label>
+                                <input
+                                  type="text"
+                                  name="nameCon2"
+                                  id="nameCon2"
+                                  className="form-control mb-2"
+                                  placeholder="Enter OTP code..."
+                                  autoComplete="off"
+                                  value={OtpCode}
+                                  onChange={(e) => setOtpCode(e.target.value)}
+                                  required
+                                />
+                              </div>
+                            )}
+                            {showAgentCode && (
+                              <>
+                                <div className="form-group">
+                                  <label>
+                                    Enter Agent Code
+                                    <small className="text-danger">*</small>
+                                  </label>
+                                  <input
+                                    type="text"
+                                    name="nameCon2"
+                                    id="nameCon2"
+                                    className="form-control mb-2"
+                                    placeholder="Enter Enter Agent Code..."
+                                    autoComplete="off"
+                                    value={agentCodeValue}
+                                    onChange={(e) =>
+                                      setAgentCodeValue(e.target.value)
+                                    }
+                                    required
+                                  />
+                                </div>
+                                <button
+                                  type="button"
+                                  name="submit"
+                                  className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                                  onClick={showOtp ? handleOTP : handleSubmit}
+                                >
+                                  Submit
+                                </button>
+                                <br />
+                                <br />
+                                <br />
+                                <h4 className="text-center">OR</h4>
+                                <h3 className="text-center text-primary">
+                                  Connect to the Agent
+                                </h3>
+                                <div className="py-3">
+                                  <div className="BtnsflexBar mb-3">
+                                    <a
+                                      className="Probtn whatsappBtn wd50pr"
+                                      href={
+                                        "https://wa.me/" +
+                                        prop?.whatsapp +
+                                        "?text=Hi, " +
+                                        prop?.name +
+                                        " Please let me know more about investing in Dubai Real Estate"
+                                      }
+                                    >
+                                      <i className="fa fa-whatsapp"></i>
+                                      WHATSAPP
+                                    </a>
 
-
-                                    <div className="form-group">
-                                    <label>
-                                        OTP<small className="text-danger">*</small>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="nameCon2"
-                                        id="nameCon2"
-                                        className="form-control mb-2"
-                                        placeholder="Enter OTP code..."
-                                        autoComplete="off"
-                                        value={OtpCode}
-                                        onChange={(e) => setOtpCode(e.target.value)}
-                                        required
-                                    />
-                                    </div>
-                                )
-                            }
-                            {
-                                showAgentCode && (
-                                    <>
-
-<div className="form-group">
-                                    <label>
-                                        Enter Agent Code<small className="text-danger">*</small>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="nameCon2"
-                                        id="nameCon2"
-                                        className="form-control mb-2"
-                                        placeholder="Enter Enter Agent Code..."
-                                        autoComplete="off"
-                                        value={agentCodeValue}
-                                        onChange={(e) => setAgentCodeValue(e.target.value)}
-                                        required
-                                    />
-                                    </div>
-                                    <button
-                            type="button"
-                            name="submit"
-                            className="btn btn-blue rounded-0 px-5 float-end btnContact2"
-                            onClick={showOtp ? handleOTP : handleSubmit}
-                          >
-                            Submit
-                          </button>
-                                    <br/>
-                                    <br/>
-                                    <br/>
-                                    <h4 className="text-center">OR</h4>
-                                    <h3 className="text-center text-primary">Connect to the Agent</h3>
-                                    <div className="py-3">
-                      
-                      <div className="BtnsflexBar mb-3">
-                           
-                      <a className="Probtn whatsappBtn wd50pr" href={"https://wa.me/" + prop?.whatsapp+"?text=Hi, "+ prop?.name +" Please let me know more about investing in Dubai Real Estate"}>
-                               <i className="fa fa-whatsapp"></i> 
-                               WHATSAPP
-                            </a>
-
-                            <a className="Probtn bg-primary wd50pr" href={"mailto:" + prop?.email}>
-                                <i className="fa fa-envelope"></i>
-                              Email
-                            </a>
-                      </div>
-
-                    
-                    </div>
-                                    </>
-                                    
-
-                                    
-
-                                )
-                            }
-                            {
-                                !showOtp && !showAgentCode && (
-                                    <>
+                                    <a
+                                      className="Probtn bg-primary wd50pr"
+                                      href={"mailto:" + prop?.email}
+                                    >
+                                      <i className="fa fa-envelope"></i>
+                                      Email
+                                    </a>
+                                  </div>
+                                </div>
+                              </>
+                            )}
+                            {!showOtp && !showAgentCode && (
+                              <>
                                 <div className="form-group">
                                   <input
                                     type="text"
@@ -246,16 +246,18 @@ const SaleOfferModal = (prop) => {
                                   />
                                 </div>
                                 <div className="form-group">
-                                <PhoneInput
-                                international
-                                countryCallingCodeEditable={false}
-                                className="form-control mb-2 fs-14 d-flex"
-                                defaultCountry="AE"
-                                placeholder="Enter Phone Number"
-                                value={formData.phone}
-                                onChange={(e) => setFormData({ ...formData, phone: e })}
-                                required
-                              />
+                                  <PhoneInput
+                                    international
+                                    countryCallingCodeEditable={false}
+                                    className="form-control mb-2 fs-14 d-flex"
+                                    defaultCountry="AE"
+                                    placeholder="Enter Phone Number"
+                                    value={formData.phone}
+                                    onChange={(e) =>
+                                      setFormData({ ...formData, phone: e })
+                                    }
+                                    required
+                                  />
                                   {/* <input
                                     type="tel"
                                     className="form-control mb-2"
@@ -290,15 +292,18 @@ const SaleOfferModal = (prop) => {
                                   />
                                 </div>
                               </>
-                                )
-                            }
-
-
-                            
+                            )}
                           </div>
                         </div>
                         <div className="modal-footer border-0">
-                          
+                          <button
+                            type="button"
+                            name="submit"
+                            className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                            onClick={showOtp ? handleOTP : handleSubmit}
+                          >
+                            Submit
+                          </button>
                         </div>
                       </div>
                     </form>

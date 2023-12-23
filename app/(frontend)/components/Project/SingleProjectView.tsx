@@ -24,6 +24,7 @@ import { getCurrentUrl } from "@/src/utils/helpers/common";
 import DownloadPPTModal from "@/app/(frontend)/components/models/DownloadPPTModal";
 import SaleOfferModal from "@/app/(frontend)/components/models/SaleOfferModal";
 import GallaryModalImg from "@/app/(frontend)/components/models/GallaryModalImg";
+import DownloadBrochure from "@/app/(frontend)/components/models/DownloadBrochure";
 import "@/public/css/single-project-view-styles.css";
 function SingleProjectView({ params }) {
   const slug = params.slug[0];
@@ -43,7 +44,6 @@ function SingleProjectView({ params }) {
   const [floorPlanFile, setFloorPlanFile] = useState(null);
   const [loading, setLoading] = useState(false);
   // const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
 
     useEffect(() => {
     if (projectData) {
@@ -212,14 +212,16 @@ function SingleProjectView({ params }) {
                     {parse(projectData?.longDescription ?? "")}
                   </div>
                 </div>
-                <button
+                {/* <button
                 className="btn btn-blue text-uppercase btn-lg btnTextWt"
                 data-bs-toggle="modal"
                 data-bs-target="#floorplan"
                 onClick={() => setFloorPlanFile(projectData.brochure)}
               >
                 Download Brochure
-              </button>
+              </button> */}
+
+              <DownloadBrochure brochureLink={projectData.brochureLink} fileName={projectData.title+" Brochure.pdf"}></DownloadBrochure>
               </div>
               <div className="col-md-4">
                 {projectData?.interiorGallery && (
@@ -1212,6 +1214,7 @@ function SingleProjectView({ params }) {
       ></PaymentPlanModel>
       <DownloadPPTModal />
       <SaleOfferModal />
+      
     </>
   );
 }

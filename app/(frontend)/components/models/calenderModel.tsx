@@ -4,6 +4,7 @@ import $ from "jquery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
+import PhoneInput from "react-phone-number-input";
 
 function CalenderModel() {
   const initialState = {
@@ -14,7 +15,7 @@ function CalenderModel() {
     date: "",
     time: "",
     formName: "bookACall",
-    page: "home",
+    page: window.location.href,
   };
   const [startDate, setStartDate] = useState(null);
   const [minDate, setMinDate] = useState(new Date());
@@ -63,7 +64,6 @@ function CalenderModel() {
         toast.error("Something went wrong, please try again");
       });
   };
-
   return (
     <div
       className="modal fade"
@@ -118,19 +118,13 @@ function CalenderModel() {
                       />
                     </div>
                     <div className="col-md-12 mt-3 mb-3">
-                      <h4 className="fs-18">Live meeting with our team</h4>
-
-                      <p>
+                    <h4 className="fs-18">Spend a Day with Range</h4>
+                      {/* <p>
                         <i className="fa fa-clock-o" aria-hidden="true"></i> 30
                         Min
-                      </p>
-
-                      <p>
-                        <i
-                          className="fa fa-video-camera"
-                          aria-hidden="true"
-                        ></i>{" "}
-                        Web conferencing details provided upon confirmation.
+                      </p> */}
+                      <p>          
+                        An experience its exclusive concierge service
                       </p>
                     </div>
                   </div>
@@ -229,12 +223,12 @@ function CalenderModel() {
                         <div className="row">
                           <div className="col-md-12">
                             <h6 className="text-primary">Enter Details</h6>
-                            <div className="form-group">
+                            <div className="form-group mb-2">
                               <input
                                 type="text"
                                 name="nameCon2"
                                 id="nameCon2"
-                                className="form-control mb-2"
+                                className="form-control"
                                 placeholder="Enter your name"
                                 autoComplete="off"
                                 value={formData.name}
@@ -247,12 +241,12 @@ function CalenderModel() {
                                 required
                               />
                             </div>
-                            <div className="form-group">
+                            <div className="form-group mb-2">
                               <input
                                 type="email"
                                 name="emailCon2"
                                 id="emailCon2"
-                                className="form-control mb-2"
+                                className="form-control"
                                 placeholder="Enter your email"
                                 autoComplete="off"
                                 value={formData.email}
@@ -265,29 +259,25 @@ function CalenderModel() {
                                 required
                               />
                             </div>
-                            <div className="form-group">
-                              <input
-                                type="tel"
-                                className="form-control mb-2"
-                                id="telephoneNew3"
-                                name="phone"
-                                placeholder="Enter your Phone Number"
+                            <div className="form-group mb-2">
+                              
+                              <PhoneInput
+                                international
+                                countryCallingCodeEditable={false}
+                                className="form-control "
+                                defaultCountry="AE"
+                                placeholder="Enter Phone Number"
                                 value={formData.phone}
-                                onChange={(e) =>
-                                  setFormData({
-                                    ...formData,
-                                    phone: e.target.value,
-                                  })
-                                }
-                                autoComplete="off"
+                                onChange={(e) => setFormData({ ...formData, phone: e })}
+                                style={{ border: "0px" }}
                                 required
                               />
                             </div>
-                            <div className="form-group">
+                            <div className="form-group mb-2">
                               <textarea
                                 name="messageCon2"
                                 id="messageCon2"
-                                className="form-control mb-2"
+                                className="form-control "
                                 placeholder="Message"
                                 autoComplete={"off"}
                                 value={formData.message}

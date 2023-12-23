@@ -6,6 +6,7 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { saveContactFormApi } from "@/src/services/HomeService";
 const ContactUs = () => {
+  
   const {
     register,
     handleSubmit,
@@ -13,12 +14,12 @@ const ContactUs = () => {
     control,
     reset,
   } = useForm();
-
+  const currentPageURL = window.location.href;
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
         toast.success(
-          "Contact form submitted successfully, our support teams contact you soon"
+          "Thank you, Our team will get back to you soon"
         );
         reset();
       })
@@ -44,8 +45,9 @@ const ContactUs = () => {
                   placeholder="Name"
                   {...register("name", { required: true })}
                 />
+                {errors.name && <small className="text-danger">Name is required.</small>}
               </div>
-              {errors.name && <p className="text-danger">Name is required.</p>}
+              
               <div className="col-12 mb-2">
                 <input
                   type="email"
@@ -54,10 +56,9 @@ const ContactUs = () => {
                   placeholder="Email Address"
                   {...register("email", { required: true })}
                 />
+                {errors.email && <small className="text-danger">Email is required.</small>}
               </div>
-              {errors.email && (
-                <p className="text-danger">Email is required.</p>
-              )}
+              
               <div className="col-12 mb-2">
                 <Controller
                   name="phone"
@@ -76,31 +77,24 @@ const ContactUs = () => {
                     />
                   )}
                 />
+
+                {errors.phone && <small className="text-danger">Phone is required.</small>}
               </div>
-              {errors.phone && (
-                <p className="text-danger">Phone is required.</p>
-              )}
-              <div className="col-12 mb-2">
-                <input
-                  type="text"
-                  className="form-control rounded-0 fs-14"
-                  id="subject"
-                  placeholder="Subject"
-                  {...register("subject")}
-                />
-              </div>
+              
               <div className="col-12 mb-2">
                 <textarea
                   className="form-control rounded-0 fs-14"
                   id="message"
                   rows={3}
                   placeholder="Message"
-                  {...register("message", { required: true })}
+                  {...register("message", { required: false })}
                 ></textarea>
-              </div>
-              {errors.message && (
-                <p className="text-danger">Message is required.</p>
+                {errors.message && (
+                <small className="text-danger">Message is required.</small>
               )}
+              </div>
+              <input type="hidden" value="ContactForm" {...register("formName", { required: false })}/>
+              <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
               <div className="col-12 mb-2">
                 <div className="text-start">
                   <button
