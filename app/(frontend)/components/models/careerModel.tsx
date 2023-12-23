@@ -185,7 +185,7 @@ function CareerModel(props) {
                             </h6>
                             </div>
                             <div className="form-group  mb-2">
-                              <input type="text" value={props.careerId}  {...register("career_id", { required: true })}/>
+                              <input type="hidden" value={props.careerId}  {...register("career_id", { required: true })}/>
                               <input
                                 type="text"
                                 name="nameCon2"
