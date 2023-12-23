@@ -248,7 +248,9 @@ function CareerModel(props) {
                                   autoComplete="off"
                                 />
                               </label>
-                              {errors.cv && <small className="text-danger">{errors.cv.message}</small>}
+                              {/* {errors.cv && <small className="text-danger">{errors.cv.message}</small>} */}
+
+                              {errors.cv && <small className="text-danger">CV is Invalid</small>}
                             </div>
                             <div className="form-group  mb-2">
                               <textarea
