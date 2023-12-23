@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import PhoneInput from "react-phone-number-input";
-
+import { getCurrentUrl } from "@/src/utils/helpers/common";
 function CalenderModel() {
   const initialState = {
     name: "",
@@ -15,7 +15,7 @@ function CalenderModel() {
     date: "",
     time: "",
     formName: "bookACall",
-    page: window.location.href,
+    page: getCurrentUrl(),
   };
   const [startDate, setStartDate] = useState(null);
   const [minDate, setMinDate] = useState(new Date());

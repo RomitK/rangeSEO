@@ -32,7 +32,7 @@ export const getFontAwesomeSvgPath = (icon) => {
 };
 
 export const getCurrentUrl = () => {
-  return window.location.href;
+  return typeof window !== 'undefined' ? window.location.href : '';
 };
 
 export function fetchResponseErrors(response) {

@@ -3,12 +3,37 @@ import parse from "html-react-parser";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
+import { useForm, Controller } from "react-hook-form";
 import "@/public/css/style.css"
 import "@/public/css/contact-Us-styles.css"
 import PhoneInput from "react-phone-number-input";
+import { getCurrentUrl } from "@/src/utils/helpers/common";
 function ContactPage() {
   const { faqsData } = useGetContactFaqsData();
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    reset,
+  } = useForm();
+  const currentPageURL = getCurrentUrl();
+
+  const onSubmit = (data) => {
+    saveContactFormApi(data)
+      .then((res) => {
+        toast.success(
+          "Thank you, Our team will get back to you soon"
+        );
+        reset();
+      })
+      .catch((err) => {
+        toast.error("Something went wrong, please try again");
+      });
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,28 +42,28 @@ function ContactPage() {
     formName: "contactForm",
     page: "contact",
   });
-  const handleSubmit = () => {
-    if (!formData.name || !formData.email || !formData.phone) {
-      return toast.error("Please fill required field");
-    }
-    saveContactFormApi(formData)
-      .then((res) => {
-        toast.success(
-          "Enquire form submitted successfully, out support teams contact you soon"
-        );
-        setFormData({
-          name: "",
-          email: "",
-          message: "",
-          phone: "",
-          formName: "contactForm",
-          page: "contact",
-        });
-      })
-      .catch((err) => {
-        toast.error("Something went wrong, please try again");
-      });
-  };
+  // const handleSubmit = () => {
+  //   if (!formData.name || !formData.email || !formData.phone) {
+  //     return toast.error("Please fill required field");
+  //   }
+  //   saveContactFormApi(formData)
+  //     .then((res) => {
+  //       toast.success(
+  //         "Enquire form submitted successfully, out support teams contact you soon"
+  //       );
+  //       setFormData({
+  //         name: "",
+  //         email: "",
+  //         message: "",
+  //         phone: "",
+  //         formName: "contactForm",
+  //         page: "contact",
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       toast.error("Something went wrong, please try again");
+  //     });
+  // };
   return (
     <>
       <header id="contactUsHeader">
@@ -119,49 +144,49 @@ function ContactPage() {
               <p>Please fill up the form</p>
               <div className="addressBoxContent">
                 <div className="row ">
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="col-12 mb-2">
+                    <input type="hidden" value="CallBackRequestForm" {...register("formName", { required: false })}/>
+                    <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
                     <input
                       type="text"
                       className="form-control cntInptField"
                       placeholder="Name"
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          name: e.target.value,
-                        })
-                      }
+                      {...register("name", { required: true })}
                       required
                     />
+                    {errors.name && <small className="text-danger">Name is required.</small>}
                   </div>
                   <div className="col-12 mb-2">
                     <input
                       type="email"
                       className="form-control cntInptField"
                       placeholder="Email Address"
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          email: e.target.value,
-                        })
-                      }
+                      {...register("email", { required: true })}
                       required
                     />
+                    {errors.email && <small className="text-danger">Email is required.</small>}
                   </div>
                   <div className="col-12 mb-2">
+                    <Controller
+                      name="phone"
+                      control={control}
+                      rules={{ required: true }}
+                      render={({ field: { onChange, value } }) => (
+                        <PhoneInput
+                          international
+                          countryCallingCodeEditable={false}
+                          className="form-control rounded-0 fs-14 d-flex"
+                          defaultCountry="AE"
+                          placeholder="Enter Phone Number"
+                          value={value}
+                          onChange={onChange}
+                          style={{ border: "0px" }}
+                        />
+                      )}
+                    />
 
-                  <PhoneInput
-                  international
-                  countryCallingCodeEditable={false}
-                  className="form-control rounded-0 fs-14 d-flex"
-                  defaultCountry="AE"
-                  placeholder="Enter Phone Number"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e })}
-                  style={{ border: "0px" }}
-                />
-
+                    {errors.phone && <small className="text-danger">Phone is required.</small>}
                     {/* <input
                       type="phone"
                       className="form-control cntInptField"
@@ -182,20 +207,15 @@ function ContactPage() {
                       className="form-control cntInptField textareaField"
                       placeholder="Message"
                       value={formData.message}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          message: e.target.value,
-                        })
-                      }
+                      {...register("message", { required: false })}
                     ></textarea>
                   </div>
                   <input
                     type="submit"
                     className="fillBtn submitBtn"
                     value="Submit"
-                    onClick={handleSubmit}
                   />
+                  </form>
                 </div>
               </div>
             </div>
@@ -271,7 +291,7 @@ function ContactPage() {
           </div>
         </div>
       </section>
-      <section className="sectionBanner">
+      {/* <section className="sectionBanner">
         <div className="container">
           <div className="row">
             <div className="col-md-8">
@@ -292,7 +312,7 @@ function ContactPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }

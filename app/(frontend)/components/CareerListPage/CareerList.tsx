@@ -72,6 +72,7 @@ function CareerListPage() {
               opportunities in Dubai's dynamic real estate market.
             </span>
           </p>
+          {CareersData?.counters &&
           <Swiper
             slidesPerView={4}
             spaceBetween={0}
@@ -127,6 +128,7 @@ function CareerListPage() {
               </span>
             </div>
           </Swiper>
+          }
         </div>
       </section>
       <section className="ListingSection" id="currentOpening">
@@ -209,7 +211,7 @@ function CareerListPage() {
           careerPosition={currentCareerPosition}
         ></CareerModel>
       </section>
-      <ContactSection></ContactSection>
+      {/* <ContactSection></ContactSection> */}
     </>
   );
 }

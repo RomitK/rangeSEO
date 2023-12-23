@@ -6,7 +6,44 @@ import { saveContactFormApi2 } from "@/src/services/HomeService";
 import ErrorToast from "../toast/ErrorToast";
 import { fetchResponseErrors } from "@/src/utils/helpers/common";
 import PhoneInput from "react-phone-number-input";
+import { useForm, Controller } from "react-hook-form";
+import { getCurrentUrl } from "@/src/utils/helpers/common";
+
 function CareerModel(props) {
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    reset,
+  } = useForm();
+  const onSubmit = (data) => {
+
+    const formData = new FormData();
+    formData.append('career_id', data.career_id);
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('contact_number', data.phone);
+    formData.append('cv', data.cv[0]); // Append the file to FormData
+    formData.append('message', data.message);
+
+    saveCareerFormApi(formData)
+      .then((res) => {
+        toast.success(
+          "Thank you, Our team will get back to you soon"
+        );
+        reset();
+        careerCloseRef.current.click();
+        //setFormData(initialState);
+        //resetFile();
+
+      })
+      .catch((err) => {
+        toast.error(<ErrorToast error={fetchResponseErrors(err.response)} />);
+        //toast.error("Something went wrong, please try again");
+      });
+  };
   const initialState = {
     careerId: props.careerId,
     name: "",
@@ -29,29 +66,49 @@ function CareerModel(props) {
     fileRef.current.value = "";
   };
 
-  const handleSubmit = () => {
-    if (!formData.name || !formData.email || !formData.phone || !formData.cv) {
-      return toast.error("Please fill required field");
+  // const handleSubmit = () => {
+  //   if (!formData.name || !formData.email || !formData.phone || !formData.cv) {
+  //     return toast.error("Please fill required field");
+  //   }
+  //   const frmData = new FormData();
+  //   frmData.append("career_id", formData.careerId);
+  //   frmData.append("name", formData.name);
+  //   frmData.append("email", formData.email);
+  //   frmData.append("contact_number", formData.phone);
+  //   frmData.append("cv", formData.cv);
+  //   frmData.append("message", formData.message);
+  //   saveCareerFormApi(frmData)
+  //     .then((res) => {
+  //       toast.success(res.data.message);
+  //       careerCloseRef.current.click();
+  //       setFormData(initialState);
+  //       resetFile();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       toast.error(<ErrorToast error={fetchResponseErrors(err.response)} />);
+  //     });
+  // };
+
+  const validatePDF = (file) => {
+    if (!file || !file[0]) {
+      return 'File is required';
     }
-    const frmData = new FormData();
-    frmData.append("career_id", formData.careerId);
-    frmData.append("name", formData.name);
-    frmData.append("email", formData.email);
-    frmData.append("contact_number", formData.phone);
-    frmData.append("cv", formData.cv);
-    frmData.append("message", formData.message);
-    saveCareerFormApi(frmData)
-      .then((res) => {
-        toast.success(res.data.message);
-        careerCloseRef.current.click();
-        setFormData(initialState);
-        resetFile();
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error(<ErrorToast error={fetchResponseErrors(err.response)} />);
-      });
+
+    const validTypes = ['application/pdf'];
+    const maxSize = 1024 * 1024; // 1MB in bytes
+
+    if (!validTypes.includes(file[0]?.type)) {
+      return 'Only PDF files are allowed';
+    }
+
+    if (file[0]?.size > maxSize) {
+      return 'File size should be less than 1MB';
+    }
+
+    return true; // File meets validation criteria
   };
+
   return (
     <>
       <div
@@ -61,7 +118,7 @@ function CareerModel(props) {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog  modal-dialog-centered modal-lg modalBookMeet ">
+        <div className="modal-dialog  modal-dialog-centered modal-md modalBookMeet ">
           <div className="modal-content">
             <div className="modal-header border-0 justify-content-end p-1">
               <button
@@ -71,8 +128,9 @@ function CareerModel(props) {
                 aria-label="Close"
                 ref={careerCloseRef}
                 onClick={() => {
-                  setFormData(initialState);
-                  resetFile();
+                  reset();
+                  // setFormData(initialState);
+                  // resetFile();
                 }}
               >
                 <i className="bi bi-x-circle text-primary"></i>
@@ -81,7 +139,7 @@ function CareerModel(props) {
 
             <div className="modal-body  p-0 rounded-1 m-2">
               <div className="row g-0">
-                <div className="col-12 col-lg-5 col-md-12 border-end descricalenderCol">
+                {/* <div className="col-12 col-lg-5 col-md-12 border-end descricalenderCol">
                   <div className="border-bottom">
                     <div className="p-3">
                       <img
@@ -107,127 +165,108 @@ function CareerModel(props) {
                     </div>
                   </div>
 
-                </div>
-                <div className="col-12 col-lg-7 col-md-12 ">
-                  <div className=" p-4">
-                    <form action="" method="POST">
+                </div> */}
+                <div className="col-12 col-lg-12 col-md-12 ">
+                  <div className="">
+                    <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
                       <div className="">
                         <div className="row">
                           <div className="col-md-12">
-                            <h5 className="text-primary">
+                            <div className=" text-center">
+                              <img
+                                src="/images/logo_blue.png"
+                                alt="Range Property"
+                                className="img-fluid"
+                                width="150"
+                              />
+                              <h6 className="text-primary py-2">
+                              SHARE YOUR CV WITH US <br/>
                               {props.careerPosition}
-                            </h5>
-                            <h6 className="text-primary">Enter Details</h6>
-                            <div className="form-group">
-                              
+                            </h6>
+                            </div>
+                            <div className="form-group  mb-2">
+                              <input type="text" value={props.careerId}  {...register("career_id", { required: true })}/>
                               <input
                                 type="text"
                                 name="nameCon2"
                                 id="nameCon2"
-                                className="form-control mb-2"
+                                className="form-control"
                                 placeholder="Enter your name"
                                 autoComplete="off"
-                                value={formData.name}
-                                onChange={(e) =>
-                                  setFormData({
-                                    ...formData,
-                                    name: e.target.value,
-                                  })
-                                }
-                                required
+                                {...register("name", { required: true })}
+                                
                               />
+                              {errors.name && <small className="text-danger">Name is required.</small>}
                             </div>
-                            <div className="form-group">
+                            <div className="form-group  mb-2">
                               
                               <input
                                 type="email"
                                 name="emailCon2"
                                 id="emailCon2"
-                                className="form-control mb-2"
+                                className="form-control"
                                 placeholder="Enter your email"
                                 autoComplete="off"
-                                value={formData.email}
-                                onChange={(e) =>
-                                  setFormData({
-                                    ...formData,
-                                    email: e.target.value,
-                                  })
-                                }
-                                required
+                                {...register("email", { required: true })}
+                                
                               />
+                              {errors.email && <small className="text-danger">Email is required.</small>}
                             </div>
-                            <div className="form-group">
-                            <PhoneInput
-                              international
-                              countryCallingCodeEditable={false}
-                              className="form-control mb-2 fs-14 d-flex"
-                              defaultCountry="AE"
-                              placeholder="Enter Phone Number"
-                              value={formData.phone}
-                              onChange={(e) => setFormData({ ...formData, phone: e })}
-                              style={{ border: "0px" }}
-                            />
-                              {/* <input
-                                type="tel"
-                                className="form-control mb-2 "
-                                id="telephoneNew3"
+                            <div className="form-group  mb-2">
+                              <Controller
                                 name="phone"
-                                placeholder="Enter your Phone Number"
-                                value={formData.phone}
-                                onChange={(e) =>
-                                  setFormData({
-                                    ...formData,
-                                    phone: e.target.value,
-                                  })
-                                }
-                                autoComplete="off"
-                                required
-                              /> */}
+                                control={control}
+                                rules={{ required: true }}
+                                render={({ field: { onChange, value } }) => (
+                                  <PhoneInput
+                                    international
+                                    countryCallingCodeEditable={false}
+                                    className="form-control  fs-14 d-flex"
+                                    defaultCountry="AE"
+                                    placeholder="Enter Phone Number"
+                                    value={value}
+                                    onChange={onChange}
+                                    style={{ border: "0px" }}
+                                  />
+                                )}
+                              />
+                              {errors.phone && <small className="text-danger">Phone is required.</small>}
                             </div>
-                            <div className="form-group">
-                                <label className="fileChooseBar">
-                                    <p>Choose CV</p>
-                                    <input
-                                      type="file"
-                                      // className="form-control mb-2 cntInptField"
-                                      className="form-control mb-2"
-                                      id="cv"
-                                      name="cv"
-                                      ref={fileRef}
-                                      onChange={(e) =>
-                                        setFormData({
-                                          ...formData,
-                                          cv: e.target.files[0],
-                                        })
-                                      }
-                                      autoComplete="off"
-                                    />
-                                  </label>
+                            <div className="form-group  mb-2">
+                              <label className="fileChooseBar">
+                                <p>Choose CV</p>
+                                <input
+                                  type="file"
+                                  accept=".pdf" // Specify accepted file types (only PDF)
+                                  {...register('cv', {
+                                    required: 'CV is required', // Example: Required validation
+                                    validate: validatePDF, // File validation function
+                                  })}
+                                  className="form-control"
+                                  id="cv"
+                                  name="cv"
+                                  autoComplete="off"
+                                />
+                              </label>
+                              {errors.cv && <small className="text-danger">{errors.cv.message}</small>}
                             </div>
-                            <div className="form-group">
+                            <div className="form-group  mb-2">
                               <textarea
                                 name="messageCon2"
                                 id="messageCon2"
-                                className="form-control mb-2"
+                                className="form-control"
                                 placeholder="Message"
                                 autoComplete={"off"}
-                                value={formData.message}
-                                onChange={(e) =>
-                                  setFormData({
-                                    ...formData,
-                                    message: e.target.value,
-                                  })
-                                }
+                                {...register("message", { required: false })}
                               />
                             </div>
                           </div>
                         </div>
                         <div className="modal-footer border-0">
                           <button
-                            type="button"
+                            type="submit"
                             name="submit"
                             className="btn btn-blue rounded-0 px-5 float-end btnContact2"
-                            onClick={handleSubmit}
                           >
                             Submit
                           </button>

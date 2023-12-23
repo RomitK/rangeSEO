@@ -5,6 +5,8 @@ import { saveContactFormApi } from "@/src/services/HomeService";
 import PhoneInput from "react-phone-number-input";
 import { useForm, Controller } from "react-hook-form";
 import Loader from "../UI/Loader";
+import { getCurrentUrl } from "@/src/utils/helpers/common";
+
 function DownloadBrochure(props) {
   const [formData, setFormData] = useState({
     name: "",
@@ -18,7 +20,7 @@ function DownloadBrochure(props) {
   const fileRef = useRef(null);
   const [showOtp, setShowOtp] = useState(false);
   const [OtpCode, setOtpCode] = useState(null);
-  const currentPageURL = window.location.href;
+  const currentPageURL = getCurrentUrl();
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,

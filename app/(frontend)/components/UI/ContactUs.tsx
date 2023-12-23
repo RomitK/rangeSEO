@@ -5,6 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { saveContactFormApi } from "@/src/services/HomeService";
+import { getCurrentUrl } from "@/src/utils/helpers/common";
 const ContactUs = () => {
   
   const {
@@ -14,7 +15,7 @@ const ContactUs = () => {
     control,
     reset,
   } = useForm();
-  const currentPageURL = window.location.href;
+  const currentPageURL = getCurrentUrl();
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
