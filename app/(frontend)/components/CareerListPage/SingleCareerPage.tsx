@@ -13,7 +13,6 @@ function SingleCareerPage({ params }) {
   const { CareerData } = useGetSingleCareerData(slug);
   const [currentCareerId, setCurrentCareerId] = useState(0);
   const [currentCareerPosition, setCurrentCareerName] = useState(null);
-  
   const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
   return (
     <>
@@ -72,22 +71,6 @@ function SingleCareerPage({ params }) {
                     {CareerData && parse(CareerData?.responsibilities ?? "")}
                   </div>
                 </div>
-
-                {/* 
-                 <ul className="ulList">
-                 <li className="fs-14 text-secondary checkListItem">
-                      <img
-                        src="/images/icons/tick-icon.png"
-                        className="tikIcon"
-                      />
-                      <p className="fs-14 text-secondary">
-                        Develop strategies and tactics to get the word out about
-                        our company and drive qualified traffic to our front
-                        door
-                      </p>
-                    </li>
-                    </ul> */}
-
                 <div className="CarearInfoList">
                   <h4 className="listTitle mb-5">
                     Qualification and Skills required:

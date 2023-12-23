@@ -13,14 +13,17 @@ export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
   const slug = params.slug;
-  const developerMeta = await fetch(`${process.env.API_HOST}developers/${slug}/meta`).then(
-    (res) => res.json()
-  );
-
-  return {
-    title: developerMeta?.data?.name,
-    description: developerMeta?.data?.meta_description,
-    keywords: developerMeta?.data?.meta_keywords,
-  };
+  if (slug) {
+    const developerMeta = await fetch(`${process.env.API_HOST}developers/${slug}/meta`, { cache: "no-store" })
+        .then((res) => res.json())
+        .catch((err) => {
+          console.log("err", err);
+        });
+    return {
+      title: developerMeta?.data?.name,
+      description: developerMeta?.data?.meta_description,
+      keywords: developerMeta?.data?.meta_keywords,
+    };
+  }
 };
 
