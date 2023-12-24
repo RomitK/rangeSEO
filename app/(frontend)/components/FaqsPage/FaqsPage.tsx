@@ -77,7 +77,7 @@ function FaqsPage() {
           </div>
         </div>
       </section>
-      <section className="sectionBanner">
+      {/* <section className="sectionBanner">
         <div className="container">
           <div className="row">
             <div className="col-md-8">
@@ -98,7 +98,7 @@ function FaqsPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }
