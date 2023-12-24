@@ -49,7 +49,7 @@ function GoldenVisaPage() {
         <div className="container">
           <div className="">
             <div className=" ">
-              <h1 className="sctionMdTitle text-primary text-center mb-4">
+              <h1 className="sctionMdTitle text-primary text-center">
                 Check Your Eligibility
               </h1>
             </div>
