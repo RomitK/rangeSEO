@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import ContactModel from "../components/models/contactModel";
+import ServiceModel from '@/app/(frontend)/components/models/ServiceModel';
+
 import "@/public/css/services-styles.css";
 function Services() {
   const router = useRouter();
@@ -253,7 +255,7 @@ function Services() {
           </button>
         </div>
       </section>
-      <ContactModel sideText={contactSideText} pageUrl={pageUrl}></ContactModel>
+      <ServiceModel></ServiceModel>
     </>
   );
 }
