@@ -4,9 +4,33 @@ import { useRouter } from "next/router";
 import Script from "next/script";
 import ContactUs from "./ContactUs";
 import parse from "html-react-parser";
+import { getCurrentUrl } from "@/src/utils/helpers/common";
+import { useForm } from "react-hook-form";
+import { saveContactFormApi } from "@/src/services/HomeService";
+import { toast } from "react-toastify";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    reset,
+  } = useForm();
+  const currentPageURL = getCurrentUrl();
+  const onSubmit = (data) => {
+    saveContactFormApi(data)
+      .then((res) => {
+        toast.success(
+          "Thank you, Our team will get back to you soon"
+        );
+        reset();
+      })
+      .catch((err) => {
+        toast.error("Something went wrong, please try again");
+      });
+  };
   return (
     <>
       <footer className="pt-5 bg-blue">
@@ -150,18 +174,21 @@ function Footer() {
                       </p>
                     </div>
                     <div className="subscribeCont">
-                      <form action="" method="post">
+                      <form action="" method="post" onSubmit={handleSubmit(onSubmit)}>
                         <div className="input-group">
                           <div className="form-outline">
+                            <input type="hidden" value="EmailerForm" {...register("formName", { required: false })}/>
+                            <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
                             <input
                               type="search"
                               id="form1"
                               className="form-control fs-14 form-control-lg rounded-0 border-0"
                               placeholder="Email address"
+                              {...register("email", { required: true })}
                             />
                           </div>
                           <button
-                            type="button"
+                            type="submit"
                             className="btn btn-primary  rounded-0 "
                           >
                             <i className="bi bi-check2"></i>
