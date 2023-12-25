@@ -10,6 +10,7 @@ import parse from "html-react-parser";
 import { EmailShareButton, WhatsappShareButton } from "react-share";
 import DownloadPPTModal from "@/app/(frontend)/components/models/DownloadPPTModal";
 import SaleOfferModal from "@/app/(frontend)/components/models/SaleOfferModal";
+import DownloadBrochure from "@/app/(frontend)/components/models/DownloadBrochure";
 import {
   GoogleMap,
   MarkerF,
@@ -284,6 +285,12 @@ function SinglePropertyView({ params }) {
                       <br></br>
                       <p className="text-primary">Reference Number: {propertyData?.reference_number}</p>
                       <p className="text-primary">Permit Number: {propertyData?.permit_number}</p>
+                      <br></br>
+                      {
+                        propertyData && 
+                        <DownloadBrochure brochureLink={propertyData.brochureLink} fileName={propertyData.name+" Brochure.pdf"}></DownloadBrochure>
+                      }
+                     
                     </div>
                   </div>
                   {propertyData && propertyData.amenities && (

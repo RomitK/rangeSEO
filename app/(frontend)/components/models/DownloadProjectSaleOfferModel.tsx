@@ -7,7 +7,7 @@ import { useForm, Controller } from "react-hook-form";
 import Loader from "../UI/Loader";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 
-function DownloadSaleOfferModel(props) {
+function DownloadProjectSaleOfferModel(props) {
     console.log(props)
   const [formData, setFormData] = useState({
     name: "",
@@ -23,6 +23,7 @@ function DownloadSaleOfferModel(props) {
   const [OtpCode, setOtpCode] = useState(null);
   const currentPageURL = getCurrentUrl();
   const [isLoading, setIsLoading] = useState(false);
+  const [ UserAs, setUserAs] = useState(null);
   const {
     register,
     handleSubmit,
@@ -31,6 +32,8 @@ function DownloadSaleOfferModel(props) {
     reset,
     clearErrors
   } = useForm();
+
+
   const downloadFile = async () => {
     setIsLoading(true);
     try {
@@ -83,10 +86,10 @@ function DownloadSaleOfferModel(props) {
   return (
     <>
     {isLoading && <Loader />}
-        
+  
       <div
         className="modal fade"
-        id="downloadNow"
+        id="projectSaleOffer"
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -121,13 +124,31 @@ function DownloadSaleOfferModel(props) {
                         width="150"
                       />
                     </div>
+                    {
+                        !UserAs && 
                     <div className=" p-4">
+                      
+                      <div className="col-6 col-lg-12 col-md-6">
+                        <button className="btn btn-bluee rounded-0 px-5 float-end btnContact2" 
+                          onClick={() =>
+                            setUserAs('Visitor')
+                          }>As a Visiter</button>
+                      </div>
+                      <div className="col-6 col-lg-6 col-md-6">
+                        <button className="btn btn-primary rounded-0 px-5 float-end btnContact2"
+                        onClick={() =>
+                          setUserAs('Employee')
+                        }
+                        >As a Employee</button>
+                      </div>
+                    </div>} 
+                      {
+                        UserAs && UserAs == 'Visitor' &&
                         <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
-                        <div className="">
+                          <div className="">
                             <div className="row">
                             <div className="col-md-12">
-                                <h6 className="text-primary text-center">Enter Details For Downloding Sell Guide</h6>
-
+                                <h6 className="text-primary text-center">Enter Details For Downloding Sale Offer</h6>
                                 {/* {showOtp && (
                                 <div className="form-group">
                                     <label>
@@ -196,21 +217,11 @@ function DownloadSaleOfferModel(props) {
                                     />
                                     {errors.phone && <small className="text-danger">Phone is required.</small>}
                                 </div>
-
-                                <div className="form-group mb-2">
-                                <textarea
-                                    className="form-control"
-                                    placeholder="Message"
-                                    {...register("message", { required: false })}
-                                    
-                                ></textarea>
-                                </div>
-
                                 </>)}
                             </div>
                             </div>
                             <div className="modal-footer border-0">
-                                <input type="hidden" value="sellerGuideDownloadForm" {...register("formName", { required: false })}/>
+                                <input type="hidden" value="projectSaleOfferDownloadForm" {...register("formName", { required: false })}/>
                                 <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
                                 <button
                                 type="submit"
@@ -220,16 +231,58 @@ function DownloadSaleOfferModel(props) {
                                 {isLoading ? 'Downloading...' : 'Submit'}
                                 </button>
                             </div>
-                        </div>
+                          </div>
                         </form>
+                      }
+                      {
+                         UserAs && UserAs == 'Employee' && 
+                         <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
+                           <div className="">
+                             <div className="row">
+                             <div className="col-md-12">
+                                 <h6 className="text-primary text-center">Enter Employee Id For Downloding Sale Offer</h6>
+                                
+                                 {!showOtp && (
+                                 <>
+                                 <div className="form-group mb-2">
+                                 <input
+                                     type="text"
+                                     name="nameCon2"
+                                     id="nameCon2"
+                                     className="form-control "
+                                     placeholder="Enter Employee Id"
+                                     autoComplete="off"
+                                     {...register("employeeId", { required: true })}
+                                     
+                                 />
+                                 {errors.employeeId && <small className="text-danger">Employee Id is required.</small>}
+                                 </div>
+                                 </>)}
+                             </div>
+                             </div>
+                             <div className="modal-footer border-0">
+                                 <input type="hidden" value="projectSaleOfferDownloadForm" {...register("formName", { required: false })}/>
+                                 <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
+                                 <button
+                                 type="submit"
+                                 name="submit"
+                                 className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                                 >
+                                 {isLoading ? 'Downloading...' : 'Submit'}
+                                 </button>
+                             </div>
+                           </div>
+                         </form>
+                      }
+                      
                     </div>
                 </div>
               </div>
             </div>
-          </div>
+          
         </div>
       </div>
     </>
   );
 }
-export default DownloadSaleOfferModel;
+export default DownloadProjectSaleOfferModel;

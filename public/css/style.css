@@ -30,6 +30,14 @@ font: normal normal 700 14px Raleway;
     font-weight: 600 !important;
     color: #fff !important;
 }
+
+.btn-bluee {
+    background-color: #2f3c6a !important;
+    border-color: #2f3c6a !important;
+    color: #fefefe !important;
+    font: normal normal 700 14px Raleway;
+}
+
 .btn-white {
 background-color: #fff !important;
 border-color: #fff !important;

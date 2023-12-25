@@ -28,7 +28,7 @@ function DownloadProjectPPTModal(props) {
     formState: { errors },
     control,
     reset,
-    clearErrors
+    clearErrors,
   } = useForm();
 
   const downloadFile = async () => {
@@ -39,16 +39,16 @@ function DownloadProjectPPTModal(props) {
 
       const url = URL.createObjectURL(blob);
 
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = url;
-      link.setAttribute('download', props.fileName); // Set the desired filename
+      link.setAttribute("download", props.fileName); // Set the desired filename
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
 
       URL.revokeObjectURL(url);
     } catch (error) {
-      console.error('Error downloading file:', error);
+      console.error("Error downloading file:", error);
     } finally {
       setIsLoading(false);
       brochureCloseRef.current.click();
@@ -58,10 +58,8 @@ function DownloadProjectPPTModal(props) {
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
-        toast.success(
-          "Please Wait until details is being download"
-        );
-        downloadFile()
+        toast.success("Please Wait until details is being download");
+        downloadFile();
         reset();
       })
       .catch((err) => {
@@ -111,25 +109,20 @@ function DownloadProjectPPTModal(props) {
     //     toast.error("Something went wrong, please try again");
     //   });
   };
-  
+
   return (
     <>
-    {isLoading && <Loader />}
-    
-
+      {isLoading && <Loader />}
 
       <a
-                    className="btnContentItem text-decoration-none"
-                    data-bs-toggle="modal"
-                    data-bs-target="#downloadBrochure"
-                  >
-                    <img
-                      src="/images/icons/btn-icon-2.png"
-                      className="fixBtnIcon"
-                    />
-                    CLICK FOR MORE DETAILS
-                  </a>
-                  
+        className="btnContentItem text-decoration-none"
+        data-bs-toggle="modal"
+        data-bs-target="#downloadBrochure"
+      >
+        <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
+        CLICK FOR MORE DETAILS
+      </a>
+
       <div
         className="modal fade"
         id="downloadDetailForm"
@@ -147,11 +140,11 @@ function DownloadProjectPPTModal(props) {
                 aria-label="Close"
                 ref={brochureCloseRef}
                 onClick={() => {
+                  reset();
                   clearErrors("name");
                   clearErrors("email");
                   clearErrors("phone");
                 }}
-
               >
                 <i className="bi bi-x-circle text-primary"></i>
               </button>
@@ -160,22 +153,28 @@ function DownloadProjectPPTModal(props) {
             <div className="modal-body  p-0 rounded-1 m-2">
               <div className="row g-0">
                 <div className="col-12 col-lg-12 col-md-12 ">
-                    <div className=" text-center">
-                      <img
-                        src="/images/logo_blue.png"
-                        alt="Range Property"
-                        className="img-fluid"
-                        width="150"
-                      />
-                    </div>
-                    <div className=" p-4">
-                        <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
-                        <div className="">
-                            <div className="row">
-                            <div className="col-md-12">
-                                <h6 className="text-primary text-center">Enter Details For Downloding Brochure</h6>
+                  <div className=" text-center">
+                    <img
+                      src="/images/logo_blue.png"
+                      alt="Range Property"
+                      className="img-fluid"
+                      width="150"
+                    />
+                  </div>
+                  <div className=" p-4">
+                    <form
+                      action=""
+                      method="POST"
+                      onSubmit={handleSubmit(onSubmit)}
+                    >
+                      <div className="">
+                        <div className="row">
+                          <div className="col-md-12">
+                            <h6 className="text-primary text-center">
+                              Enter Details For Downloding Brochure
+                            </h6>
 
-                                {/* {showOtp && (
+                            {/* {showOtp && (
                                 <div className="form-group">
                                     <label>
                                     OTP<small className="text-danger">*</small>
@@ -193,10 +192,10 @@ function DownloadProjectPPTModal(props) {
                                     />
                                 </div>
                                 )} */}
-                                {!showOtp && (
-                                <>
+                            {!showOtp && (
+                              <>
                                 <div className="form-group mb-2">
-                                <input
+                                  <input
                                     type="text"
                                     name="nameCon2"
                                     id="nameCon2"
@@ -204,50 +203,62 @@ function DownloadProjectPPTModal(props) {
                                     placeholder="Enter your name"
                                     autoComplete="off"
                                     {...register("name", { required: true })}
-                                    
-                                />
-                                {errors.name && <small className="text-danger">Name is required.</small>}
+                                  />
+                                  {errors.name && (
+                                    <small className="text-danger">
+                                      Name is required.
+                                    </small>
+                                  )}
                                 </div>
                                 <div className="form-group mb-2">
-                                <input
+                                  <input
                                     type="email"
                                     name="emailCon2"
                                     id="emailCon2"
                                     className="form-control"
                                     placeholder="Enter your email"
                                     autoComplete="off"
-                                    
                                     {...register("email", { required: true })}
+                                  />
+                                  {errors.email && (
+                                    <small className="text-danger">
+                                      Email is required.
+                                    </small>
+                                  )}
+                                </div>
 
-                                />
-                                {errors.email && <small className="text-danger">Email is required.</small>}
-                                </div>
-                                
                                 <div className="form-group mb-2">
-                                    <Controller
-                                      name="phone"
-                                      control={control}
-                                      rules={{ required: true }}
-                                      render={({ field: { onChange, value } }) => (
-                                        <PhoneInput
-                                          international
-                                          countryCallingCodeEditable={false}
-                                          className="form-control rounded-0 fs-14 d-flex"
-                                          defaultCountry="AE"
-                                          placeholder="Enter Phone Number"
-                                          value={value}
-                                          onChange={onChange}
-                                          style={{ border: "0px" }}
-                                        />
-                                      )}
-                                    />
-                                    {errors.phone && <small className="text-danger">Phone is required.</small>}
+                                  <Controller
+                                    name="phone"
+                                    control={control}
+                                    rules={{ required: true }}
+                                    render={({
+                                      field: { onChange, value },
+                                    }) => (
+                                      <PhoneInput
+                                        international
+                                        countryCallingCodeEditable={false}
+                                        className="form-control rounded-0 fs-14 d-flex"
+                                        defaultCountry="AE"
+                                        placeholder="Enter Phone Number"
+                                        value={value}
+                                        onChange={onChange}
+                                        style={{ border: "0px" }}
+                                      />
+                                    )}
+                                  />
+                                  {errors.phone && (
+                                    <small className="text-danger">
+                                      Phone is required.
+                                    </small>
+                                  )}
                                 </div>
-                                </>)}
-                            </div>
-                            </div>
-                            <div className="modal-footer border-0">
-                                {/* <button
+                              </>
+                            )}
+                          </div>
+                        </div>
+                        <div className="modal-footer border-0">
+                          {/* <button
                                 type="button"
                                 name="submit"
                                 className="btn btn-blue rounded-0 px-5 float-end btnContact2"
@@ -255,20 +266,27 @@ function DownloadProjectPPTModal(props) {
                                 >
                                 Submit
                                 </button> */}
-                                <input type="hidden" value="downloadDetailForm" {...register("formName", { required: false })}/>
-                                <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
-                                <button
-                                type="submit"
-                                name="submit"
-                                className="btn btn-blue rounded-0 px-5 float-end btnContact2"
-                                >
-                               
-                                {isLoading ? 'Downloading...' : 'Submit'}
-                                </button>
-                            </div>
+                          <input
+                            type="hidden"
+                            value="downloadDetailForm"
+                            {...register("formName", { required: false })}
+                          />
+                          <input
+                            type="hidden"
+                            value={currentPageURL}
+                            {...register("page", { required: false })}
+                          />
+                          <button
+                            type="submit"
+                            name="submit"
+                            className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                          >
+                            {isLoading ? "Downloading..." : "Submit"}
+                          </button>
                         </div>
-                        </form>
-                    </div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>

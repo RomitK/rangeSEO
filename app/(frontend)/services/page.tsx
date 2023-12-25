@@ -50,8 +50,8 @@ function Services() {
   return (
     <>
       <header>
-        {/* <img src="/images/banner/homeBg.webp" className="headerImg" /> */}
-        <div className="p-relative">
+        <img src="/images/banner/homeBg.webp" className="headerImg" />
+        {/* <div className="p-relative">
           <video
             className="d-block w-100 videoMain"
             autoPlay
@@ -65,7 +65,7 @@ function Services() {
             Sorry, your browser doesn't support videos.
           </video>
           <div className="videoOverlay"></div>
-        </div>
+        </div> */}
       </header>
       <section className="servicePageSec">
         <div className="container">

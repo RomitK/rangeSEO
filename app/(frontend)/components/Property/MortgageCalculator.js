@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ContactModel from "../models/contactModel";
+import MortgageModel from "../models/MortgageModel";
 function MortgageCalculator({ property }) {
 
     const [price, setPrice] = useState(property?.price);
@@ -249,7 +250,7 @@ function MortgageCalculator({ property }) {
                     personalised solutions to meet the specific needs of each of our clients
                 </p>
             </div>
-            <ContactModel sideText={contactSideText} pageUrl={pageUrl}></ContactModel>
+            <MortgageModel></MortgageModel>
         </div>
     );
 }

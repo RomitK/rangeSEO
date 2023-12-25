@@ -26,7 +26,7 @@ import SaleOfferModal from "@/app/(frontend)/components/models/SaleOfferModal";
 import GallaryModalImg from "@/app/(frontend)/components/models/GallaryModalImg";
 import DownloadBrochure from "@/app/(frontend)/components/models/DownloadBrochure";
 import DownloadProjectPPTModal from "../models/DownloadProjectPPTModal";
-import DownloadSaleOfferModel from '@/app/(frontend)/components/models/DownloadSaleOfferModel'
+import DownloadProjectSaleOfferModel from '@/app/(frontend)/components/models/DownloadProjectSaleOfferModel'
 
 import "@/public/css/single-project-view-styles.css";
 function SingleProjectView({ params }) {
@@ -594,10 +594,12 @@ function SingleProjectView({ params }) {
                 <div className="fixBtnContent">
                   
                   <DownloadProjectPPTModal />
-                  <a
+
+                  
+                 {/* <a
                     className="btnContentItem text-decoration-none"
                     data-bs-toggle="modal"
-                    data-bs-target="#saleSale"
+                    data-bs-target="#projectSaleOffer"
                   >
                     {" "}
                     <img
@@ -605,7 +607,7 @@ function SingleProjectView({ params }) {
                       className="fixBtnIcon"
                     />
                     CLICK FOR A SALE OFFER
-                  </a>
+                  </a> */}
                   {/* <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
                                            download & Share Property Presentation
@@ -1207,6 +1209,7 @@ function SingleProjectView({ params }) {
       ></PaymentPlanModel>
       
       <SaleOfferModal />
+      <DownloadProjectSaleOfferModel/>
     </>
   );
 }
