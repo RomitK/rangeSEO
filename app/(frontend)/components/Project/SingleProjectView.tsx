@@ -25,6 +25,9 @@ import DownloadPPTModal from "@/app/(frontend)/components/models/DownloadPPTModa
 import SaleOfferModal from "@/app/(frontend)/components/models/SaleOfferModal";
 import GallaryModalImg from "@/app/(frontend)/components/models/GallaryModalImg";
 import DownloadBrochure from "@/app/(frontend)/components/models/DownloadBrochure";
+import DownloadProjectPPTModal from "../models/DownloadProjectPPTModal";
+import DownloadSaleOfferModel from '@/app/(frontend)/components/models/DownloadSaleOfferModel'
+
 import "@/public/css/single-project-view-styles.css";
 function SingleProjectView({ params }) {
   const slug = params.slug[0];
@@ -589,18 +592,8 @@ function SingleProjectView({ params }) {
                 data-bs-parent="#accordionExample"
               >
                 <div className="fixBtnContent">
-                  <a
-                    className="btnContentItem text-decoration-none"
-                    data-bs-toggle="modal"
-                    data-bs-target="#downlaodPPT"
-                  >
-                    <img
-                      src="/images/icons/btn-icon-2.png"
-                      className="fixBtnIcon"
-                    />
-                    CLICK FOR MORE DETAILS
-                  </a>
-
+                  
+                  <DownloadProjectPPTModal />
                   <a
                     className="btnContentItem text-decoration-none"
                     data-bs-toggle="modal"
@@ -1212,9 +1205,8 @@ function SingleProjectView({ params }) {
         currentUnit={currentUnit}
         project={projectData}
       ></PaymentPlanModel>
-      <DownloadPPTModal />
-      <SaleOfferModal />
       
+      <SaleOfferModal />
     </>
   );
 }

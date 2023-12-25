@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function LookingFor() {
   return (
     <>
@@ -72,7 +74,7 @@ function LookingFor() {
           <div className="d-flex circleCardsRow">
             {/* Circle box Start */}
             <div className="proCircleCard">
-              <a href="#" className="proCircleBox">
+              <Link className="proCircleBox" href="/buy">
                 <div className="circleContent">
                   <img
                     src="/images/icons/interest1.png"
@@ -82,7 +84,7 @@ function LookingFor() {
                   />
                   <p className="text">Buying/Renting</p>
                 </div>
-              </a>
+              </Link>
               <div className="nbrCircle">
                 <h6>01</h6>
               </div>
@@ -91,7 +93,7 @@ function LookingFor() {
 
             {/* Circle box Start */}
             <div className="proCircleCard">
-              <a href="#" className="proCircleBox">
+              <Link className="proCircleBox" href="/sell">
                 <div className="circleContent">
                   <img
                     src="/images/icons/interest2.png"
@@ -101,7 +103,7 @@ function LookingFor() {
                   />
                   <p className="text">Selling</p>
                 </div>
-              </a>
+              </Link>
               <div className="nbrCircle">
                 <h6>02</h6>
               </div>
@@ -110,7 +112,7 @@ function LookingFor() {
 
             {/* Circle box Start */}
             <div className="proCircleCard">
-              <a href="#" className="proCircleBox">
+              <Link className="proCircleBox" href="/services">
                 <div className="circleContent">
                   <img
                     src="/images/icons/interest2.png"
@@ -120,7 +122,7 @@ function LookingFor() {
                   />
                   <p className="text">Property Management</p>
                 </div>
-              </a>
+              </Link>
               <div className="nbrCircle">
                 <h6>03</h6>
               </div>
@@ -129,7 +131,7 @@ function LookingFor() {
 
             {/* Circle box Start */}
             <div className="proCircleCard">
-              <a href="#" className="proCircleBox">
+              <Link className="proCircleBox" href="/services">
                 <div className="circleContent">
                   <img
                     src="/images/icons/interest3.png"
@@ -139,7 +141,7 @@ function LookingFor() {
                   />
                   <p className="text">Holiday Homes</p>
                 </div>
-              </a>
+              </Link>
               <div className="nbrCircle">
                 <h6>04</h6>
               </div>
@@ -148,7 +150,7 @@ function LookingFor() {
 
             {/* Circle box Start */}
             <div className="proCircleCard">
-              <a href="#" className="proCircleBox">
+              <Link className="proCircleBox" href="/services">
                 <div className="circleContent">
                   <img
                     src="/images/icons/interest4.png"
@@ -156,9 +158,9 @@ function LookingFor() {
                     alt="range"
                     width="80px"
                   />
-                  <p className="text">	Mortgage </p>
+                  <p className="text"> Mortgage </p>
                 </div>
-              </a>
+              </Link>
               <div className="nbrCircle">
                 <h6>05</h6>
               </div>
