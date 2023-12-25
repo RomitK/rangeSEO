@@ -87,7 +87,7 @@ function AboutPage() {
                         <p className="crdText">{management.designation}</p>
                         <Link
                           href={`/managements/${management?.slug}`}
-                          className="fillBtn  crdReadMorebtn mrAuto"
+                          className="fillBtn crdReadMorebtn mrAuto managementReadMore"
                         >
                           READ MORE
                         </Link>

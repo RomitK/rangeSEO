@@ -7,11 +7,17 @@ import "@/public/css/dubai-guide-page-styles.css";
 import "@/public/css/responsive.css";
 import { Pagination, Navigation } from "swiper/modules";
 import ContactModel from "../models/contactModel";
-
+import { useGetDubaiGuideData } from "@/src/services/DubaiGuideService"
+import DubaiGuideModel from "../models/DubaiGuideModel";
 function DubaiGuidePage() {
     const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
     const pageUrl ="Dubai Guide"
     const swiperRef = useRef<SwiperCore>();
+    const { dubaiGuideData } = useGetDubaiGuideData();
+    const [ downloadLink, setDownloadLink] = useState(null);
+    const [ fileName, setFileName] = useState(null);
+    const [ formName, setFormName] = useState(null);
+    const [ title, setTitle] = useState(null);
     return (
     <>
       <header className="header dubaiGuideSection">
@@ -35,41 +41,36 @@ function DubaiGuidePage() {
           <SwiperSlide className="clmSliderItem">
             <img src="/images/banner/dubai-guide-banner.webp" className="multiItem" alt="banner"/>
             <div className="carouselcontent">
-              <h3>DUBAI REAL ESTATE GUIDE1</h3>
-              <button className="mrAuto downloadBtn"  data-bs-toggle="modal"
-                    data-bs-target="#enquireNow">DOWNLOAD NOW</button>
+              <h3>GOLDEN VISA</h3>
+              <button className="mrAuto downloadBtn" onClick={() => window.location.href = '#goldenVisa'}>DOWNLOAD NOW</button>
             </div>
           </SwiperSlide>
           <SwiperSlide className="clmSliderItem">
             <img src="/images/banner/banner-3.webp" className="multiItem" alt="banner"/>
             <div className="carouselcontent">
-              <h3>DUBAI REAL ESTATE GUIDE2</h3>
-              <button className="mrAuto downloadBtn"  data-bs-toggle="modal"
-                    data-bs-target="#enquireNow">DOWNLOAD NOW</button>
+              <h3>LUXURY PROPERTIES</h3>
+              <button className="mrAuto downloadBtn" onClick={() => window.location.href = '#luxuryProperties'}>DOWNLOAD NOW</button>
             </div>
           </SwiperSlide>
           <SwiperSlide className="clmSliderItem">
             <img src="/images/banner/banner-4.webp" className="multiItem" alt="banner"/>
             <div className="carouselcontent">
-              <h3>DUBAI REAL ESTATE GUIDE3</h3>
-              <button className=" mrAuto downloadBtn"  data-bs-toggle="modal"
-                    data-bs-target="#enquireNow">DOWNLOAD NOW</button>
+              <h3> BUYER GUIDE</h3>
+              <button className="mrAuto downloadBtn" onClick={() => window.location.href = '#buyerGuide'}>DOWNLOAD NOW</button>
             </div>
           </SwiperSlide>
           <SwiperSlide className="clmSliderItem">
             <img src="/images/banner/banner-3.webp" className="multiItem" alt="banner"/>
             <div className="carouselcontent">
-              <h3>DUBAI REAL ESTATE GUIDE4</h3>
-              <button className=" mrAuto downloadBtn "  data-bs-toggle="modal"
-                    data-bs-target="#enquireNow">DOWNLOAD NOW</button>
+              <h3>LUXURY PROPERTIES</h3>
+              <button className="mrAuto downloadBtn" onClick={() => window.location.href = '#luxuryProperties'}>DOWNLOAD NOW</button>
             </div>
           </SwiperSlide>
           <SwiperSlide className="clmSliderItem">
             <img src="/images/banner/banner-4.webp" className="multiItem" alt="banner"/>
             <div className="carouselcontent">
-              <h3>DUBAI REAL ESTATE GUIDE5</h3>
-              <button className=" mrAuto downloadBtn "  data-bs-toggle="modal"
-                    data-bs-target="#enquireNow">DOWNLOAD NOW</button>
+              <h3>GOLDEN VISA</h3>
+              <button className="mrAuto downloadBtn"  onClick={() => window.location.href = '#goldenVisa'}>DOWNLOAD NOW</button>
             </div>
           </SwiperSlide>
 
@@ -93,7 +94,7 @@ function DubaiGuidePage() {
       </header>
       <section className="guidsSection">
         <div className="container">
-          <div className="sectionArea">
+          <div className="sectionArea" id="goldenVisa">
             <h4 className="sctionMdTitle text-primary  mb-4">GOLDEN VISA</h4>
             <div className="row horizantalCard">
               <div className="col-md-6 ">
@@ -113,13 +114,21 @@ function DubaiGuidePage() {
                     requirements and benefits of the Golden visa and digital
                     services to apply for it.
                   </p>
-                  <button className=" mrAuto downloadBtn"  data-bs-toggle="modal"
-                    data-bs-target="#enquireNow">DOWNLOAD NOW</button>
+                  <button className=" mrAuto downloadBtn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#downloadNow" 
+                    onClick={() => {
+                      setFormName('GoldenVisaForm');
+                      setFileName('GoldenVisa.pdf');
+                      setDownloadLink(dubaiGuideData?.goldenVisaGuide);
+                      setTitle('Golen Visa')
+                    }}
+                  >DOWNLOAD NOW</button>
                 </div>
               </div>
             </div>
           </div>
-          <div className="sectionArea">
+          <div className="sectionArea" id="buyerGuide">
             <h4 className="sctionMdTitle text-primary mb-4">BUYER GUIDE</h4>
             <div className="row horizantalCard">
               <div className="col-md-6">
@@ -134,8 +143,15 @@ function DubaiGuidePage() {
                     in Dubai's dynamic real estate landscape. Download the
                     report for more information.
                   </p>
-                  <button className=" mrAuto downloadBtn"  data-bs-toggle="modal"
-                    data-bs-target="#enquireNow">DOWNLOAD NOW</button>
+                  <button className=" mrAuto downloadBtn"  
+                  data-bs-toggle="modal"
+                  data-bs-target="#downloadNow" 
+                    onClick={() => {
+                      setFormName('BuyerGudieForm');
+                      setFileName('BuyerGuide.pdf');
+                      setDownloadLink(dubaiGuideData?.buyerGuide);
+                      setTitle('Buyer Guide')
+                    }}>DOWNLOAD NOW</button>
                 </div>
               </div>
               <div className="col-md-6 ">
@@ -145,7 +161,7 @@ function DubaiGuidePage() {
               </div>
             </div>
           </div>
-          <div className="sectionArea">
+          <div className="sectionArea" id="luxuryProperties">
             <h4 className="sctionMdTitle text-primary mb-4">
               LUXURY PROPERTIES
             </h4>
@@ -167,14 +183,29 @@ function DubaiGuidePage() {
                     showcases opulent penthouses, waterfront villas, and more.
                     Download the report to explore Dubai’s luxury real estate.
                   </p>
-                  <button className="mrAuto downloadBtn"  data-bs-toggle="modal"
-                    data-bs-target="#enquireNow">DOWNLOAD NOW</button>
+                  <button className="mrAuto downloadBtn" data-bs-toggle="modal"
+                  data-bs-target="#downloadNow" 
+                    onClick={() => {
+                      setFormName('LuxuryPropertiesForm');
+                      setFileName('LuxuryProperties.pdf');
+                      setDownloadLink(dubaiGuideData?.luxuryPropertiesGuide);
+                      setTitle('LUXURY PROPERTIES')
+                    }}>DOWNLOAD NOW</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <ContactModel sideText={contactSideText} pageUrl={pageUrl}></ContactModel>
+        {
+        dubaiGuideData && 
+        <DubaiGuideModel 
+          downloadLink={downloadLink} 
+          fileName={fileName}
+          formName = {formName}
+          title ={title}
+          ></DubaiGuideModel>
+      }
       </section>
     </>
   );

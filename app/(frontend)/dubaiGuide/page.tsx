@@ -8,7 +8,7 @@ function DubaiGuide()
 {
     return (
         <SWRProvider>
-        <DubaiGuidePage></DubaiGuidePage>
+            <DubaiGuidePage></DubaiGuidePage>
         </SWRProvider>
     );
 }

@@ -91,3 +91,6 @@ font-weight: 500;
 .aboutHeader{
     height: auto !important;
 }
+.managementReadMore:hover{
+    color: #136DAE !important;
+}
