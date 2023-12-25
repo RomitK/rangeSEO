@@ -9,7 +9,7 @@ export const generateMetadata = async ({
 params,
 }: Props): Promise<Metadata> => {
 
-  const HomeMeta = await fetch(`${process.env.API_HOST}homePage/meta`).then(
+  const HomeMeta = await fetch(`${process.env.API_HOST}/homePage/meta`).then(
     (res) => res.json()
   );
   return {
