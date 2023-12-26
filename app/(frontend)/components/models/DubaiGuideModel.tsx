@@ -16,7 +16,7 @@ function DubaiGuideModel(props) {
     formName: "downloadBrochureForm",
     page: props.pageUrl,
   });
-  const sellerCloseRef = useRef(null);
+  const closeRef = useRef(null);
   const fileRef = useRef(null);
   const [showOtp, setShowOtp] = useState(false);
   const [OtpCode, setOtpCode] = useState(null);
@@ -50,13 +50,13 @@ function DubaiGuideModel(props) {
 
       // Once the download starts, hide the loading indicator and close the modal
       setIsLoading(false);
-      sellerCloseRef.current.click();
+      closeRef.current.click();
     } catch (error) {
       console.error("Error downloading file:", error);
 
       // Handle errors by hiding the loading indicator and closing the modal
       setIsLoading(false);
-      sellerCloseRef.current.click();
+      closeRef.current.click();
     }
   };
 
@@ -67,6 +67,7 @@ function DubaiGuideModel(props) {
           "Please Wait until your " + props.title + " is being download"
         );
         download_file(props?.downloadLink, props?.title);
+        closeRef.current.click();
         reset();
       })
       .catch((err) => {
@@ -99,7 +100,7 @@ function DubaiGuideModel(props) {
                 className="bg-transparent border-0"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-                ref={sellerCloseRef}
+                ref={closeRef}
                 onClick={() => {
                   clearErrors("name");
                   clearErrors("email");
