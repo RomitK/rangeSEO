@@ -2,11 +2,19 @@ import React, { useState, useRef, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import $ from "jquery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useForm, Controller } from "react-hook-form";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import PhoneInput from "react-phone-number-input";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 function CalenderModel() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    reset,
+  } = useForm();
   const initialState = {
     name: "",
     email: "",
@@ -45,20 +53,21 @@ function CalenderModel() {
 
   const [formData, setFormData] = useState(initialState);
 
-  const handleSubmit = () => {
-    console.log(formData);
-    if (!formData.name || !formData.email || !formData.phone) {
-      return toast.error("Please fill required field");
-    }
-    closeRef.current.click();
-    saveContactFormApi(formData)
+  const onSubmit = (data) => {
+    data.date = formData.date;
+    data.time = formData.time;
+    data.formName = formData.formName;
+    data.page = formData.page;
+    saveContactFormApi(data)
       .then((res) => {
         setFormData(initialState);
         setStartDate(null);
         setConfirm(false);
+        reset();
         toast.success(
           "Enquire form submitted successfully, out support teams contact you soon"
         );
+        closeRef.current.click();
       })
       .catch((err) => {
         toast.error("Something went wrong, please try again");
@@ -118,14 +127,12 @@ function CalenderModel() {
                       />
                     </div>
                     <div className="col-md-12 mt-3 mb-3">
-                    <h4 className="fs-18">Spend a Day with Range</h4>
+                      <h4 className="fs-18">Spend a Day with Range</h4>
                       {/* <p>
                         <i className="fa fa-clock-o" aria-hidden="true"></i> 30
                         Min
                       </p> */}
-                      <p>          
-                        An experience its exclusive concierge service
-                      </p>
+                      <p>An experience its exclusive concierge service</p>
                     </div>
                   </div>
                 </div>
@@ -137,7 +144,7 @@ function CalenderModel() {
                 }  col-md-12 calenderCol `}
               >
                 <div className="calenderDiv p-4">
-                  <form id="bookAviewing" action="" method="POST">
+                  <form id="bookAviewing" onSubmit={handleSubmit(onSubmit)}>
                     <input
                       id="formFrom"
                       name="formFrom"
@@ -164,7 +171,7 @@ function CalenderModel() {
                               selected={startDate ?? new Date()}
                               onChange={(date) => {
                                 setStartDate(date);
-                                setFormData({ ...formData, date: startDate });
+                                setFormData({ ...formData, date: date });
                               }}
                             />
                           </div>
@@ -226,20 +233,17 @@ function CalenderModel() {
                             <div className="form-group mb-2">
                               <input
                                 type="text"
-                                name="nameCon2"
                                 id="nameCon2"
                                 className="form-control"
                                 placeholder="Enter your name"
                                 autoComplete="off"
-                                value={formData.name}
-                                onChange={(e) =>
-                                  setFormData({
-                                    ...formData,
-                                    name: e.target.value,
-                                  })
-                                }
-                                required
+                                {...register("name", { required: true })}
                               />
+                              {errors.name && (
+                                <small className="text-danger">
+                                  Name is required.
+                                </small>
+                              )}
                             </div>
                             <div className="form-group mb-2">
                               <input
@@ -249,29 +253,37 @@ function CalenderModel() {
                                 className="form-control"
                                 placeholder="Enter your email"
                                 autoComplete="off"
-                                value={formData.email}
-                                onChange={(e) =>
-                                  setFormData({
-                                    ...formData,
-                                    email: e.target.value,
-                                  })
-                                }
-                                required
+                                {...register("email", { required: true })}
                               />
+                              {errors.email && (
+                                <small className="text-danger">
+                                  Email is required.
+                                </small>
+                              )}
                             </div>
                             <div className="form-group mb-2">
-                              
-                              <PhoneInput
-                                international
-                                countryCallingCodeEditable={false}
-                                className="form-control "
-                                defaultCountry="AE"
-                                placeholder="Enter Phone Number"
-                                value={formData.phone}
-                                onChange={(e) => setFormData({ ...formData, phone: e })}
-                                style={{ border: "0px" }}
-                                required
+                              <Controller
+                                name="phone"
+                                control={control}
+                                rules={{ required: true }}
+                                render={({ field: { onChange, value } }) => (
+                                  <PhoneInput
+                                    international
+                                    countryCallingCodeEditable={false}
+                                    className="form-control "
+                                    defaultCountry="AE"
+                                    placeholder="Enter Phone Number"
+                                    value={value}
+                                    onChange={onChange}
+                                    style={{ border: "0px" }}
+                                  />
+                                )}
                               />
+                              {errors.phone && (
+                                <small className="text-danger">
+                                  Phone is required.
+                                </small>
+                              )}
                             </div>
                             <div className="form-group mb-2">
                               <textarea
@@ -280,23 +292,21 @@ function CalenderModel() {
                                 className="form-control "
                                 placeholder="Message"
                                 autoComplete={"off"}
-                                value={formData.message}
-                                onChange={(e) =>
-                                  setFormData({
-                                    ...formData,
-                                    message: e.target.value,
-                                  })
-                                }
+                                {...register("message", { required: false })}
                               />
+                              {errors.message && (
+                                <small className="text-danger">
+                                  Message is required.
+                                </small>
+                              )}
                             </div>
                           </div>
                         </div>
                         <div className="modal-footer border-0">
                           <button
-                            type="button"
+                            type="submit"
                             name="submit"
                             className="btn btn-blue rounded-0 px-5 float-end"
-                            onClick={handleSubmit}
                           >
                             Book A Meeting
                           </button>
