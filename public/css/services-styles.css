@@ -1,4 +1,6 @@
-
+.serviceHeader{
+    height: auto !important;
+}
 .headerImg{
 width: 100%;
 object-fit: cover;

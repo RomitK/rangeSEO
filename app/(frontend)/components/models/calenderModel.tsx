@@ -65,7 +65,7 @@ function CalenderModel() {
         setConfirm(false);
         reset();
         toast.success(
-          "Enquire form submitted successfully, out support teams contact you soon"
+          "Thank you, Our team will get back to you soon"
         );
         closeRef.current.click();
       })
@@ -98,6 +98,7 @@ function CalenderModel() {
                 setFormData(initialState);
                 setStartDate(null);
                 setConfirm(false);
+                reset();
               }}
               ref={closeRef}
             >

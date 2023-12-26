@@ -1,5 +1,6 @@
 import ContactModel from "../models/contactModel";
 import SimpleModal from "../models/simpleModal";
+import AboutDubaiModel from '@/app/(frontend)/components/models/AboutDubaiModel'
 function AboutDubai() {
   const contactSideText ="An esteemed award-winning real estate brokerage based in Dubai, UAE.";
   const pageUrl ="Home"
@@ -312,7 +313,6 @@ function AboutDubai() {
           </div>
         </div>
       </section>
-      <ContactModel sideText={contactSideText} pageUrl={pageUrl}></ContactModel>
     </>
   );
 }
