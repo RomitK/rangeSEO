@@ -29,6 +29,8 @@ import CalenderModel from "../models/calenderModel";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 import GallaryModalImg from "@/app/(frontend)/components/models/GallaryModalImg";
 import GallaryModalVideo from "@/app/(frontend)/components/models/GallaryModalVideo";
+import DownloadProjectPPTModal from "../models/DownloadProjectPPTModal";
+import DownloadProjectSaleOfferModel from '@/app/(frontend)/components/models/DownloadProjectSaleOfferModel'
 import "@/public/css/single-project-view-styles.css";
 
 import MortgageCalculator from "./MortgageCalculator";
@@ -1109,22 +1111,24 @@ function SinglePropertyView({ params }) {
                                           <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
                                            download & Share Property Presentation
                                       </button> */}
-                                    <a
-        className="btnContentItem text-decoration-none"
-        data-bs-toggle="modal"
-        data-bs-target="#downlaodPPT"
-      >
-        <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
-        CLICK FOR MORE DETAILS
-      </a>
 
-      <a
-        className="btnContentItem text-decoration-none"
-        data-bs-toggle="modal"
-        data-bs-target="#saleSale"
-      > <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" /> 
-        CLICK FOR A SALE OFFER
-      </a>
+                                    <DownloadProjectPPTModal />
+                                    {/* <a
+                                      className="btnContentItem text-decoration-none"
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#downlaodPPT"
+                                    >
+                                      <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
+                                      CLICK FOR MORE DETAILS
+                                    </a> */}
+
+                                    <a
+                                      className="btnContentItem text-decoration-none"
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#projectSaleOffer"
+                                    > <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" /> 
+                                      CLICK FOR A SALE OFFER
+                                    </a>
 
                                       {/* <DownloadPPTModal /> */}
                                       {/* <SaleOfferModal
@@ -1330,7 +1334,7 @@ function SinglePropertyView({ params }) {
       <CalenderModel />
       <DownloadPPTModal />
       <SaleOfferModal />
-
+      <DownloadProjectSaleOfferModel brochureLink={propertyData?.saleOfferLink} fileName={propertyData?.name+" Brochure.pdf"}/>
     </>
   );
 }
