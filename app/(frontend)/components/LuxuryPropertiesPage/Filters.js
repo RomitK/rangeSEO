@@ -446,6 +446,7 @@ function Filters({
           <AsyncSelect
             isClearable={false}
             isMulti
+            placeholder="Search..."
             onChange={(comm, { action }) => {
               if (comm != form["searchBy"]) {
                 form["searchBy"] = comm;
