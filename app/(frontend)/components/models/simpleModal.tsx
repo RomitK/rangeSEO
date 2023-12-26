@@ -1,75 +1,95 @@
-
 import React, { useState, useRef, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import PhoneInput from "react-phone-number-input";
-import ErrorToast from "../toast/ErrorToast";
-import { fetchResponseErrors } from "@/src/utils/helpers/common";
 import { useForm, Controller } from "react-hook-form";
-import { getCurrentUrl } from "@/src/utils/helpers/common";
-import { toast } from "react-toastify";
+import Loader from "../UI/Loader";
+import { download_file, getCurrentUrl } from "@/src/utils/helpers/common";
 
-function SimpleModal() {
-    const closeRef = useRef(null);
+function SimpleModal(props) {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+    phone: "",
+    formName: "downloadBrochureForm",
+    page: props.pageUrl,
+  });
+  const closeRef = useRef(null);
+  const fileRef = useRef(null);
+  const [showOtp, setShowOtp] = useState(false);
+  const [OtpCode, setOtpCode] = useState(null);
+  const currentPageURL = getCurrentUrl();
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    reset,
+    clearErrors,
+  } = useForm();
+  const simpleModal = async () => {
+    setIsLoading(true);
 
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-      control,
-      reset,
-    } = useForm();
-    const currentPageURL = getCurrentUrl();
-    const onSubmit = (data) => {
-      saveContactFormApi(data)
-        .then((res) => {
-          toast.success(
-            "Thank you, Our team will get back to you soon"
-          );
-          reset();
-          closeRef.current.click();
-        })
-        .catch((err) => {
-          toast.error(<ErrorToast error={fetchResponseErrors(err.response)} />);
-          //toast.error("Something went wrong, please try again");
-        });
-    };
+    try {
+      const response = await fetch(props.sellerLink);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
 
-    // const initialState = {
-    //     name: "",
-    //     email: "",
-    //     message: "",
-    //     phone: "",
-    //     date: "",
-    //     time: "",
-    //     formName: "bookACall",
-    //     page: "home",
-    //   };
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", props.fileName);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
-    // const [formData, setFormData] = useState(initialState);
-    // const handleSubmit = () => {
-    //     console.log(formData);
-    //     if (!formData.name || !formData.email || !formData.phone) {
-    //       return toast.error("Please fill required field");
-    //     }
-    //     closeRef.current.click();
-    //     saveContactFormApi(formData)
-    //       .then((res) => {
-    //         setFormData(initialState);
-    //         toast.success(
-    //           "Enquire form submitted successfully, out support teams contact you soon"
-    //         );
-    //       })
-    //       .catch((err) => {
-    //         toast.error("Something went wrong, please try again");
-    //       });
-    //   };
+      // Once the download starts, hide the loading indicator and close the modal
+      setIsLoading(false);
+      closeRef.current.click();
+    } catch (error) {
+      console.error("Error downloading file:", error);
+
+      // Handle errors by hiding the loading indicator and closing the modal
+      setIsLoading(false);
+      closeRef.current.click();
+    }
+  };
+
+  const onSubmit = (data) => {
+    saveContactFormApi(data)
+      .then((res) => {
+        toast.success(
+          "Please Wait until your Brochure is being download"
+        );
+        download_file(props.brochure, "Brochure");
+        closeRef.current.click();
+        reset();
+      })
+      .catch((err) => {
+        toast.error("Something went wrong, please try again");
+      });
+  };
+  const handleOTP = () => {
+    if (!OtpCode) {
+      return toast.error("Please fill required field");
+    }
+    setShowOtp(false);
+  };
+
   return (
     <>
-    <div className="modalArea">
+      {isLoading && <Loader />}
+      <div className="modalArea">
                 <button type="button" className="btn btn-blue text-uppercase btn-lg broucherBtn" data-bs-toggle="modal" data-bs-target="#simpleModal">
                     DOWNLOAD BROCHURE
                     </button>
-                    <div
+                   
+      <div
         className="modal fade"
         id="simpleModal"
         tabIndex={-1}
@@ -86,93 +106,138 @@ function SimpleModal() {
                 aria-label="Close"
                 ref={closeRef}
                 onClick={() => {
-                  reset();
-                  // setFormData(initialState);
-                  // resetFile();
+                  clearErrors("name");
+                  clearErrors("email");
+                  clearErrors("phone");
                 }}
               >
                 <i className="bi bi-x-circle text-primary"></i>
               </button>
             </div>
-
             <div className="modal-body  p-0 rounded-1 m-2">
               <div className="row g-0">
                 <div className="col-12 col-lg-12 col-md-12 ">
-                  <div className="">
-                    <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
-                    <input type="hidden" value="aboutDubaiBrochureForm" {...register("formName", { required: false })}/>
-                    <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
+                  <div className=" text-center">
+                    <img
+                      src="/images/logo_blue.png"
+                      alt="Range Property"
+                      className="img-fluid"
+                      width="150"
+                    />
+                  </div>
+                  <div className=" p-4">
+                    <form
+                      action=""
+                      method="POST"
+                      onSubmit={handleSubmit(onSubmit)}
+                    >
                       <div className="">
                         <div className="row">
                           <div className="col-md-12">
-                            <div className=" text-center">
-                              <img
-                                src="/images/logo_blue.png"
-                                alt="Range Property"
-                                className="img-fluid"
-                                width="150"
-                              />
-                              <h6 className="text-primary py-2">
+                            <h6 className="text-primary text-center">
                               Enter Details For Downloding Brochure
                             </h6>
-                            </div>
-                            <div className="form-group  mb-2">
-                              
-                              <input
-                                type="text"
-                                name="nameCon2"
-                                id="nameCon2"
-                                className="form-control"
-                                placeholder="Enter your name"
-                                autoComplete="off"
-                                {...register("name", { required: true })}
-                                
-                              />
-                              {errors.name && <small className="text-danger">Name is required.</small>}
-                            </div>
-                            <div className="form-group  mb-2">
-                              
-                              <input
-                                type="email"
-                                name="emailCon2"
-                                id="emailCon2"
-                                className="form-control"
-                                placeholder="Enter your email"
-                                autoComplete="off"
-                                {...register("email", { required: true })}
-                                
-                              />
-                              {errors.email && <small className="text-danger">Email is required.</small>}
-                            </div>
-                            <div className="form-group  mb-2">
-                              <Controller
-                                name="phone"
-                                control={control}
-                                rules={{ required: true }}
-                                render={({ field: { onChange, value } }) => (
-                                  <PhoneInput
-                                    international
-                                    countryCallingCodeEditable={false}
-                                    className="form-control  fs-14 d-flex"
-                                    defaultCountry="AE"
-                                    placeholder="Enter Phone Number"
-                                    value={value}
-                                    onChange={onChange}
-                                    style={{ border: "0px" }}
+
+                            {/* {showOtp && (
+                                <div className="form-group">
+                                    <label>
+                                    OTP<small className="text-danger">*</small>
+                                    </label>
+                                    <input
+                                    type="text"
+                                    name="nameCon2"
+                                    id="nameCon2"
+                                    className="form-control mb-2"
+                                    placeholder="Enter OTP code..."
+                                    autoComplete="off"
+                                    value={OtpCode}
+                                    onChange={(e) => setOtpCode(e.target.value)}
+                                    required
+                                    />
+                                </div>
+                                )} */}
+                            {!showOtp && (
+                              <>
+                                <div className="form-group mb-2">
+                                  <input
+                                    type="text"
+                                    name="nameCon2"
+                                    id="nameCon2"
+                                    className="form-control "
+                                    placeholder="Enter your name"
+                                    autoComplete="off"
+                                    {...register("name", { required: true })}
                                   />
-                                )}
-                              />
-                              {errors.phone && <small className="text-danger">Phone is required.</small>}
-                            </div>
+                                  {errors.name && (
+                                    <small className="text-danger">
+                                      Name is required.
+                                    </small>
+                                  )}
+                                </div>
+                                <div className="form-group mb-2">
+                                  <input
+                                    type="email"
+                                    name="emailCon2"
+                                    id="emailCon2"
+                                    className="form-control"
+                                    placeholder="Enter your email"
+                                    autoComplete="off"
+                                    {...register("email", { required: true })}
+                                  />
+                                  {errors.email && (
+                                    <small className="text-danger">
+                                      Email is required.
+                                    </small>
+                                  )}
+                                </div>
+
+                                <div className="form-group mb-2">
+                                  <Controller
+                                    name="phone"
+                                    control={control}
+                                    rules={{ required: true }}
+                                    render={({
+                                      field: { onChange, value },
+                                    }) => (
+                                      <PhoneInput
+                                        international
+                                        countryCallingCodeEditable={false}
+                                        className="form-control fs-14 d-flex"
+                                        defaultCountry="AE"
+                                        placeholder="Enter Phone Number"
+                                        value={value}
+                                        onChange={onChange}
+                                        style={{ border: "0px" }}
+                                      />
+                                    )}
+                                  />
+                                  {errors.phone && (
+                                    <small className="text-danger">
+                                      Phone is required.
+                                    </small>
+                                  )}
+                                </div>
+                              </>
+                            )}
                           </div>
                         </div>
                         <div className="modal-footer border-0">
+                          <input
+                            type="hidden"
+                            value="homeBrochure"
+                            {...register("formName", { required: false })}
+                          />
+                          <input
+                            type="hidden"
+                            value={currentPageURL}
+                            {...register("page", { required: false })}
+                          />
                           <button
                             type="submit"
                             name="submit"
                             className="btn btn-blue rounded-0 px-5 float-end btnContact2"
                           >
-                            Submit
+                            {isLoading ? "Downloading..." : "Submit"}
                           </button>
                         </div>
                       </div>
@@ -184,8 +249,7 @@ function SimpleModal() {
           </div>
         </div>
       </div>
-    </div>
-
+      </div>
     </>
   );
 }
