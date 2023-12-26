@@ -5,7 +5,7 @@ import { saveContactFormApi } from "@/src/services/HomeService";
 import PhoneInput from "react-phone-number-input";
 import { useForm, Controller } from "react-hook-form";
 import Loader from "../UI/Loader";
-import { getCurrentUrl } from "@/src/utils/helpers/common";
+import { download_file, getCurrentUrl } from "@/src/utils/helpers/common";
 
 function DubaiGuideModel(props) {
   const [formData, setFormData] = useState({
@@ -28,46 +28,45 @@ function DubaiGuideModel(props) {
     formState: { errors },
     control,
     reset,
-    clearErrors
+    clearErrors,
   } = useForm();
   const downloadFile = async () => {
     setIsLoading(true);
-  
+
     try {
       const response = await fetch(props.downloadLink);
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
-  
+
       const blob = await response.blob();
       const url = window.URL.createObjectURL(new Blob([blob]));
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = url;
-      link.setAttribute('download', props.fileName);
+      link.setAttribute("download", props.fileName);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-  
+
       // Once the download starts, hide the loading indicator and close the modal
       setIsLoading(false);
       sellerCloseRef.current.click();
     } catch (error) {
-      console.error('Error downloading file:', error);
-  
+      console.error("Error downloading file:", error);
+
       // Handle errors by hiding the loading indicator and closing the modal
       setIsLoading(false);
       sellerCloseRef.current.click();
     }
   };
-  
 
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
         toast.success(
-          "Please Wait until your "+props.title+" is being download"
+          "Please Wait until your " + props.title + " is being download"
         );
-        downloadFile()
+        download_file(props?.downloadLink, props?.title);
         reset();
       })
       .catch((err) => {
@@ -80,11 +79,11 @@ function DubaiGuideModel(props) {
     }
     setShowOtp(false);
   };
-  
+
   return (
     <>
-    {isLoading && <Loader />}
-        
+      {isLoading && <Loader />}
+
       <div
         className="modal fade"
         id="downloadNow"
@@ -106,7 +105,6 @@ function DubaiGuideModel(props) {
                   clearErrors("email");
                   clearErrors("phone");
                 }}
-
               >
                 <i className="bi bi-x-circle text-primary"></i>
               </button>
@@ -114,22 +112,28 @@ function DubaiGuideModel(props) {
             <div className="modal-body  p-0 rounded-1 m-2">
               <div className="row g-0">
                 <div className="col-12 col-lg-12 col-md-12 ">
-                    <div className=" text-center">
-                      <img
-                        src="/images/logo_blue.png"
-                        alt="Range Property"
-                        className="img-fluid"
-                        width="150"
-                      />
-                    </div>
-                    <div className=" p-4">
-                        <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
-                        <div className="">
-                            <div className="row">
-                            <div className="col-md-12">
-                                <h6 className="text-primary text-center">Enter Details For Downloding {props.title}</h6>
+                  <div className=" text-center">
+                    <img
+                      src="/images/logo_blue.png"
+                      alt="Range Property"
+                      className="img-fluid"
+                      width="150"
+                    />
+                  </div>
+                  <div className=" p-4">
+                    <form
+                      action=""
+                      method="POST"
+                      onSubmit={handleSubmit(onSubmit)}
+                    >
+                      <div className="">
+                        <div className="row">
+                          <div className="col-md-12">
+                            <h6 className="text-primary text-center">
+                              Enter Details For Downloding {props.title}
+                            </h6>
 
-                                {/* {showOtp && (
+                            {/* {showOtp && (
                                 <div className="form-group">
                                     <label>
                                     OTP<small className="text-danger">*</small>
@@ -147,10 +151,10 @@ function DubaiGuideModel(props) {
                                     />
                                 </div>
                                 )} */}
-                                {!showOtp && (
-                                <>
+                            {!showOtp && (
+                              <>
                                 <div className="form-group mb-2">
-                                <input
+                                  <input
                                     type="text"
                                     name="nameCon2"
                                     id="nameCon2"
@@ -158,72 +162,92 @@ function DubaiGuideModel(props) {
                                     placeholder="Enter your name"
                                     autoComplete="off"
                                     {...register("name", { required: true })}
-                                    
-                                />
-                                {errors.name && <small className="text-danger">Name is required.</small>}
+                                  />
+                                  {errors.name && (
+                                    <small className="text-danger">
+                                      Name is required.
+                                    </small>
+                                  )}
                                 </div>
                                 <div className="form-group mb-2">
-                                <input
+                                  <input
                                     type="email"
                                     name="emailCon2"
                                     id="emailCon2"
                                     className="form-control"
                                     placeholder="Enter your email"
                                     autoComplete="off"
-                                    
                                     {...register("email", { required: true })}
-
-                                />
-                                {errors.email && <small className="text-danger">Email is required.</small>}
-                                </div>
-                                
-                                <div className="form-group mb-2">
-                                    <Controller
-                                      name="phone"
-                                      control={control}
-                                      rules={{ required: true }}
-                                      render={({ field: { onChange, value } }) => (
-                                        <PhoneInput
-                                          international
-                                          countryCallingCodeEditable={false}
-                                          className="form-control fs-14 d-flex"
-                                          defaultCountry="AE"
-                                          placeholder="Enter Phone Number"
-                                          value={value}
-                                          onChange={onChange}
-                                          style={{ border: "0px" }}
-                                        />
-                                      )}
-                                    />
-                                    {errors.phone && <small className="text-danger">Phone is required.</small>}
+                                  />
+                                  {errors.email && (
+                                    <small className="text-danger">
+                                      Email is required.
+                                    </small>
+                                  )}
                                 </div>
 
                                 <div className="form-group mb-2">
-                                <textarea
+                                  <Controller
+                                    name="phone"
+                                    control={control}
+                                    rules={{ required: true }}
+                                    render={({
+                                      field: { onChange, value },
+                                    }) => (
+                                      <PhoneInput
+                                        international
+                                        countryCallingCodeEditable={false}
+                                        className="form-control fs-14 d-flex"
+                                        defaultCountry="AE"
+                                        placeholder="Enter Phone Number"
+                                        value={value}
+                                        onChange={onChange}
+                                        style={{ border: "0px" }}
+                                      />
+                                    )}
+                                  />
+                                  {errors.phone && (
+                                    <small className="text-danger">
+                                      Phone is required.
+                                    </small>
+                                  )}
+                                </div>
+
+                                <div className="form-group mb-2">
+                                  <textarea
                                     className="form-control"
                                     placeholder="Message"
-                                    {...register("message", { required: false })}
-                                    
-                                ></textarea>
+                                    {...register("message", {
+                                      required: false,
+                                    })}
+                                  ></textarea>
                                 </div>
-
-                                </>)}
-                            </div>
-                            </div>
-                            <div className="modal-footer border-0">
-                                <input type="hidden" value={props.formName} {...register("formName", { required: false })}/>
-                                <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
-                                <button
-                                type="submit"
-                                name="submit"
-                                className="btn btn-blue rounded-0 px-5 float-end btnContact2"
-                                >
-                                {isLoading ? 'Downloading...' : 'Submit'}
-                                </button>
-                            </div>
+                              </>
+                            )}
+                          </div>
                         </div>
-                        </form>
-                    </div>
+                        <div className="modal-footer border-0">
+                          <input
+                            type="hidden"
+                            value={props.formName}
+                            {...register("formName", { required: false })}
+                          />
+                          <input
+                            type="hidden"
+                            value={currentPageURL}
+                            {...register("page", { required: false })}
+                          />
+                          <button
+                            type="submit"
+                            name="submit"
+                            className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                          >
+                            {isLoading ? "Downloading..." : "Submit"}
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
