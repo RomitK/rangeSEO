@@ -436,6 +436,10 @@ function SinglePropertyView({ params }) {
                           </p>
                           <p className="fw-500 mb-0 fs-16">
                             For {propertyData && propertyData.category}
+                            {
+                              propertyData?.category === 'Rent' && 
+                              <small> ({propertyData?.rental_period}) </small>
+                            }
                           </p>
                         </div>
                       </div>
@@ -645,7 +649,11 @@ function SinglePropertyView({ params }) {
                       </div>
                     )} */}
                   </div>
-                  <MortgageCalculator property={propertyData} />
+                  {
+                    propertyData?.category != 'Rent' &&
+                    <MortgageCalculator property={propertyData} />
+                  }
+                  
                   
                   {/* <div>
                     {propertyData && (
