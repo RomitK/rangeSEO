@@ -5,7 +5,8 @@ import { saveContactFormApi } from "@/src/services/HomeService";
 import PhoneInput from "react-phone-number-input";
 import { useForm, Controller } from "react-hook-form";
 import Loader from "../UI/Loader";
-import { download_file, getCurrentUrl } from "@/src/utils/helpers/common";
+import { getCurrentUrl } from "@/src/utils/helpers/common";
+import JsFileDownloader from "js-file-downloader";
 
 function DubaiGuideModel(props) {
   const [formData, setFormData] = useState({
@@ -66,7 +67,16 @@ function DubaiGuideModel(props) {
         toast.success(
           "Please Wait until your " + props.title + " is being download"
         );
-        download_file(props?.downloadLink, props?.title);
+        new JsFileDownloader({
+          url: props.downloadLink,
+        })
+          .then(function () {
+            toast.success(`${props.title} has been downloaded successfully`);
+          })
+          .catch(function (error) {
+            toast.error(`Download failed Something went wrong!`);
+          });
+       
         reset();
       })
       .catch((err) => {
@@ -83,7 +93,7 @@ function DubaiGuideModel(props) {
   return (
     <>
       {isLoading && <Loader />}
-
+   
       <div
         className="modal fade"
         id="downloadNow"
