@@ -335,8 +335,8 @@ function SinglecommunityDataView({ params }) {
                             <SwiperSlide
                               key={highlight.id + index + "hightlight"}
                             >
-                              <div className="swiper-slide">
-                                <div className="card border-0 rounded-0 bg-primary p-5">
+                              <div className="swiper-slide p-3 bg-primary ">
+                                <div className="card border-0 rounded-0 bg-primary ">
                                   <div className="">
                                     <center>
                                       <img
@@ -347,12 +347,15 @@ function SinglecommunityDataView({ params }) {
                                       />
                                     </center>
                                   </div>
-                                  <div className="card-body text-center pb-0 communityCardBody">
-                                    <p className="card-title text-white text-uppercase fs-18">
+                                  
+                                </div>
+                                <div className="card border-0 rounded-0 bg-primary">
+                                <div className="card-body pb-0 communityhightCardBody">
+                                    <p className="text-white  text-center text-uppercase fs-18">
                                       {highlight.name}
                                     </p>
                                   </div>
-                                </div>
+                                  </div>
                               </div>
                             </SwiperSlide>
                           );
@@ -457,7 +460,7 @@ function SinglecommunityDataView({ params }) {
                                 setIcon("hospital");
                               }}
                             >
-                              Hospital
+                              Hospital/Clinic
                             </button>
                           </div>
                           

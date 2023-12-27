@@ -862,7 +862,7 @@ function SinglePropertyView({ params }) {
                                 setIcon("hospital");
                               }}
                             >
-                              Hospital
+                              Hospital/Clinic
                             </button>
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
