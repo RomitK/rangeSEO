@@ -1,7 +1,10 @@
 body{
 overflow-x: hidden;
 }
-
+.PhoneInput {
+    display: flex !important;
+    align-items: center !important;
+}
 .fw-800 {
 font-weight: 800 !important;
 }
