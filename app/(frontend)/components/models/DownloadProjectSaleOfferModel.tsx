@@ -6,6 +6,9 @@ import PhoneInput from "react-phone-number-input";
 import { useForm, Controller } from "react-hook-form";
 import Loader from "../UI/Loader";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
+import {checkEmployeeIdApi } from  "@/src/services/TeamService";
+import ErrorToast from "../toast/ErrorToast";
+import { fetchResponseErrors } from "@/src/utils/helpers/common";
 
 function DownloadProjectSaleOfferModel(props) {
     console.log(props)
@@ -17,7 +20,7 @@ function DownloadProjectSaleOfferModel(props) {
     formName: "downloadBrochureForm",
     page: props.pageUrl,
   });
-  const sellerCloseRef = useRef(null);
+  const closeRef = useRef(null);
   const fileRef = useRef(null);
   const [showOtp, setShowOtp] = useState(false);
   const [OtpCode, setOtpCode] = useState(null);
@@ -37,37 +40,32 @@ function DownloadProjectSaleOfferModel(props) {
   const downloadFile = async () => {
     setIsLoading(true);
     try {
-        fetch(props.sellerLink)
-        .then(response => response.blob())
-        .then(blob => {
-            const url = window.URL.createObjectURL(new Blob([blob]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', props.fileName);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            setIsLoading(false);
-            sellerCloseRef.current.click();
-        })
-        .catch(error => {
-            console.error('Error downloading file:', error);
-            setIsLoading(false);
-            sellerCloseRef.current.click();
-        });
-            setIsLoading(false);
-        } catch (error) {
-            console.error('Error downloading file:', error);
-            setIsLoading(false);
-            sellerCloseRef.current.click();
-        }
+      const response = await fetch(props.brochureLink);
+      const blob = await response.blob();
+
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', props.fileName); // Set the desired filename
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+    } finally {
+      setIsLoading(false);
+      closeRef.current.click();
+    }
   };
 
-  const onSubmit = (data) => {
+  const onSubmitVisitorForm = (data) => {
     saveContactFormApi(data)
       .then((res) => {
         toast.success(
-          "Please Wait until your seller guide is being download"
+          "Please Wait until your sell offer is being download"
         );
         downloadFile()
         reset();
@@ -76,6 +74,29 @@ function DownloadProjectSaleOfferModel(props) {
         toast.error("Something went wrong, please try again");
       });
   };
+
+  const onSubmitEmployeeForm = (data) => {
+    checkEmployeeIdApi(data)
+      .then((res) => {
+        console.log(res.data.data)
+        if(res.data.data === true){
+          toast.success(
+            "Please Wait until your sell offer is being download"
+          );
+          downloadFile()
+          reset();
+        }else{
+          toast.error(
+            "Your Employee Id is not correct"
+          );
+        }
+      })
+      .catch((err) => {
+        toast.error(<ErrorToast error={fetchResponseErrors(err.response)} />);
+        //toast.error("Something went wrong, please try again");
+      });
+  };
+
   const handleOTP = () => {
     if (!OtpCode) {
       return toast.error("Please fill required field");
@@ -102,11 +123,12 @@ function DownloadProjectSaleOfferModel(props) {
                 className="bg-transparent border-0"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-                ref={sellerCloseRef}
+                ref={closeRef}
                 onClick={() => {
                   clearErrors("name");
                   clearErrors("email");
                   clearErrors("phone");
+                  setUserAs(null);
                 }}
 
               >
@@ -144,11 +166,11 @@ function DownloadProjectSaleOfferModel(props) {
                     </div>} 
                       {
                         UserAs && UserAs == 'Visitor' &&
-                        <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
+                        <form action="" method="POST" onSubmit={handleSubmit(onSubmitVisitorForm)}>
                           <div className="">
                             <div className="row">
                             <div className="col-md-12">
-                                <h6 className="text-primary text-center">Enter Details For Downloding Sale Offer</h6>
+                                <h6 className="text-primary text-center p-2">Enter Details For Downloding Sale Offer</h6>
                                 {/* {showOtp && (
                                 <div className="form-group">
                                     <label>
@@ -221,7 +243,7 @@ function DownloadProjectSaleOfferModel(props) {
                             </div>
                             </div>
                             <div className="modal-footer border-0">
-                                <input type="hidden" value="projectSaleOfferDownloadForm" {...register("formName", { required: false })}/>
+                                <input type="hidden" value="propertySaleOfferDownloadForm" {...register("formName", { required: false })}/>
                                 <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
                                 <button
                                 type="submit"
@@ -236,15 +258,17 @@ function DownloadProjectSaleOfferModel(props) {
                       }
                       {
                          UserAs && UserAs == 'Employee' && 
-                         <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
+                         <form action="" method="POST" onSubmit={handleSubmit(onSubmitEmployeeForm)}>
                            <div className="">
                              <div className="row">
                              <div className="col-md-12">
-                                 <h6 className="text-primary text-center">Enter Employee Id For Downloding Sale Offer</h6>
+                                 <h6 className="text-primary text-center p-2">Enter Employee Id For Downloding Sale Offer</h6>
                                 
                                  {!showOtp && (
                                  <>
                                  <div className="form-group mb-2">
+                                 <input type="hidden" value="propertySaleOfferDownloadForm" {...register("formName", { required: false })}/>
+                                 <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
                                  <input
                                      type="text"
                                      name="nameCon2"
@@ -261,7 +285,7 @@ function DownloadProjectSaleOfferModel(props) {
                              </div>
                              </div>
                              <div className="modal-footer border-0">
-                                 <input type="hidden" value="projectSaleOfferDownloadForm" {...register("formName", { required: false })}/>
+                                 <input type="hidden" value="propertySaleOfferDownloadForm" {...register("formName", { required: false })}/>
                                  <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
                                  <button
                                  type="submit"

@@ -28,7 +28,7 @@ const HomePage = () => {
         <HomeSearch></HomeSearch>
         <LookingFor></LookingFor>
         <WhyRange></WhyRange>
-        <AboutDubai></AboutDubai>
+        <AboutDubai brochure={homeData?.brochure}></AboutDubai>
         <ProjectList></ProjectList>
         <div>
           <section className="my-5">

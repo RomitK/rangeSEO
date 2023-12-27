@@ -3,12 +3,13 @@ import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Swiper as SwiperType } from "swiper";
 import "swiper/css/navigation";
-import "@/public/css/dubai-guide-page-styles.css";
-import "@/public/css/responsive.css";
+
 import { Pagination, Navigation } from "swiper/modules";
 import ContactModel from "../models/contactModel";
 import { useGetDubaiGuideData } from "@/src/services/DubaiGuideService"
 import DubaiGuideModel from "../models/DubaiGuideModel";
+import "@/public/css/responsive.css";
+import "@/public/css/dubai-guide-page-styles.css";
 function DubaiGuidePage() {
     const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
     const pageUrl ="Dubai Guide"

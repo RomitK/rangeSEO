@@ -1,6 +1,6 @@
 import ContactModel from "../models/contactModel";
 import SimpleModal from "../models/simpleModal";
-function AboutDubai() {
+function AboutDubai(props) {
   const contactSideText ="An esteemed award-winning real estate brokerage based in Dubai, UAE.";
   const pageUrl ="Home"
   return (
@@ -298,7 +298,7 @@ function AboutDubai() {
                       </div>
                     </div>
                     <div className="">
-                    <SimpleModal/>
+                    <SimpleModal brochure={props.brochure}/>
                     </div>
                   </div>
                 </div>
@@ -312,7 +312,6 @@ function AboutDubai() {
           </div>
         </div>
       </section>
-      <ContactModel sideText={contactSideText} pageUrl={pageUrl}></ContactModel>
     </>
   );
 }
