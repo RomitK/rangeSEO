@@ -232,7 +232,11 @@ function SinglePropertyView({ params }) {
                      </Swiper>
                      }
                       <div className="sliderModalBox">
-                        <GallaryModalImg images={propertyData?.floorplans} />
+                        {
+                          propertyData?.floorplans &&
+                          <GallaryModalImg images={propertyData?.floorplans} />
+                        }
+                       
                         <GallaryModalVideo video={propertyData?.youtube_video} />
                       </div>
                     </div>
