@@ -11,7 +11,7 @@ function GallaryModalImg(props) {
   return (
     <>
     {
-      props && (
+      Array.isArray(props.images) && props.images.length > 0 && (
         <>
         <button
         className="gallerymodalBtn"
