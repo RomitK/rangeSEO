@@ -49,7 +49,7 @@ function DubaiGuidePage() {
           <SwiperSlide className="clmSliderItem">
             <img src="/images/banner/banner-3.webp" className="multiItem" alt="banner"/>
             <div className="carouselcontent">
-              <h3>LUXURY PROPERTIES</h3>
+              <h3>INVESTMENT GUIDE</h3>
               <button className="mrAuto downloadBtn" onClick={() => window.location.href = '#luxuryProperties'}>DOWNLOAD NOW</button>
             </div>
           </SwiperSlide>
@@ -63,7 +63,7 @@ function DubaiGuidePage() {
           <SwiperSlide className="clmSliderItem">
             <img src="/images/banner/banner-3.webp" className="multiItem" alt="banner"/>
             <div className="carouselcontent">
-              <h3>LUXURY PROPERTIES</h3>
+              <h3>INVESTMENT GUIDE</h3>
               <button className="mrAuto downloadBtn" onClick={() => window.location.href = '#luxuryProperties'}>DOWNLOAD NOW</button>
             </div>
           </SwiperSlide>
@@ -164,7 +164,7 @@ function DubaiGuidePage() {
           </div>
           <div className="sectionArea" id="luxuryProperties">
             <h4 className="sctionMdTitle text-primary mb-4">
-              LUXURY PROPERTIES
+            INVESTMENT GUIDE
             </h4>
             <div className="row horizantalCard">
               <div className="col-md-6 ">
