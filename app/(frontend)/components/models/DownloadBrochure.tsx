@@ -115,8 +115,11 @@ function DownloadBrochure(props) {
   return (
     <>
     {isLoading && <Loader />}
-    
-      <a
+    {
+      props &&
+      (
+        <>
+        <a
         className="btn btn-blue text-uppercase btn-lg btnTextWt" 
         data-bs-toggle="modal"
         data-bs-target="#downloadBrochure">
@@ -267,6 +270,10 @@ function DownloadBrochure(props) {
           </div>
         </div>
       </div>
+      </>
+      )
+    }
+      
     </>
   );
 }

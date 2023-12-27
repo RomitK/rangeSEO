@@ -10,7 +10,10 @@ import { Pagination, Navigation } from "swiper/modules";
 function GallaryModalImg(props) {
   return (
     <>
-      <button
+    {
+      props && (
+        <>
+        <button
         className="gallerymodalBtn"
         data-bs-toggle="modal"
         data-bs-target="#gallaryModalImg"
@@ -42,7 +45,9 @@ function GallaryModalImg(props) {
             <div className="modal-body  p-0 rounded-1 m-2">
               <div className="row g-0">
                 <div className="col-12 col-lg-12 col-md-12 descricalenderCol">
-                  <Swiper
+                  {
+                    Array.isArray(props.images) && props.images.length > 0 && (
+                    <Swiper
                     pagination={{
                       type: "fraction",
                     }}
@@ -62,12 +67,19 @@ function GallaryModalImg(props) {
                       );
                     })}
                   </Swiper>
+                     )
+                  }
+                  
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+        </>
+      )
+    }
+      
     </>
   );
 }

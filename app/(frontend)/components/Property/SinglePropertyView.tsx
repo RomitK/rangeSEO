@@ -294,7 +294,7 @@ function SinglePropertyView({ params }) {
                       <br></br>
                       {
                         propertyData && 
-                        <DownloadBrochure brochureLink={propertyData.brochureLink} fileName={propertyData.name+" Brochure.pdf"}></DownloadBrochure>
+                        <DownloadBrochure brochureLink={propertyData?.brochureLink} fileName={propertyData?.name+" Brochure.pdf"}></DownloadBrochure>
                       }
                      
                     </div>
