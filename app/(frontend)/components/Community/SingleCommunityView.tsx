@@ -212,9 +212,7 @@ function SinglecommunityDataView({ params }) {
                         },
                       }}
                       modules={[Navigation, Pagination]}
-                      onBeforeInit={(swiper) => {
-                        swiperRef.current = swiper;
-                      }}
+                      
                       className="swiper communityDataMainSwiper"
                     >
                       {communityData?.imageGallery?.map((img, index) => {
