@@ -198,7 +198,7 @@ const PropertyList = ({ params }) => {
                   zoom={10}
                   center={centerRef.current}
                   onCenterChanged={handleCenterChanged}
-                  mapContainerClassName="map-container"
+                  mapContainerClassName="list-map-container"
                   onLoad={onMapLoad}
                   onClick={() => {
                       setIsOpen(false);

@@ -131,7 +131,7 @@ function ProjectList() {
             <h1>Loading...</h1>
           ) : (
             <GoogleMap
-              mapContainerClassName="map-container"
+              mapContainerClassName="list-map-container"
               onLoad={onMapLoad}
               onClick={() => setIsOpen(false)}
             >
