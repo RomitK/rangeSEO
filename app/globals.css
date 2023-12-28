@@ -346,9 +346,13 @@ textarea {
   }
   .propCard .propImg {
     width: 100%;
-    height: 400px;
+    /* height: 400px; */
+    height: 300px !important;
     object-fit: cover;
     object-position: center;
+}
+.text-end {
+text-align: -webkit-right !important;
 }
 .modal-overlay {
   position: fixed;

@@ -93,6 +93,29 @@ function Filters({
         },
       ]);
     }
+
+    if (
+      searchParams.has("community_name") &&
+      searchParams.has("community_detail")
+    ) {
+      setForm({
+        ...form,
+        searchBy: [
+          {
+            type: searchParams.get("community_detail"),
+            name: searchParams.get("community_name"),
+          },
+        ],
+      });
+      selectRef.current.setValue([
+        {
+          type: searchParams.get("community_detail"),
+          name: searchParams.get("community_name"),
+        },
+      ]);
+    }
+
+    
   }, []);
 
   const handleReset = () => {

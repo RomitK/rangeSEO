@@ -516,6 +516,14 @@ justify-content: center;
 flex-direction: column;
 text-align: center;
 }
+.sctionCommunitySubTitle {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.width-auto-fit{
+    width: fit-content !important;
+  }
 .projectImgCont {
 position: relative;
 border: 1px solid white;
@@ -524,7 +532,8 @@ border: 1px solid white;
 width: 100%;
 object-fit: cover;
 object-position: center;
-height: 250px;
+/* height: 250px; */
+height: 300px !important;
 }
 .projectImgCont .projectImgOverlay {
 position: absolute;

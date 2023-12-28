@@ -721,15 +721,15 @@ function SinglePropertyView({ params }) {
                     {propertyData && propertyData.community && (
                       <div className="py-3">
                         <p className="text-primary fw-500 mb-0 fs-20">
-                          {/* <Link
+                          <Link
                             href={`/communities/${propertyData.community["slug"]}`}
                             className="text-decoration-none"
                           >
                             {propertyData &&
                               propertyData.community &&
                               propertyData.community["name"]}
-                          </Link> */}
-                          Community
+                          </Link>
+                          {/* Community */}
                         </p>
                       </div>
                     )}
@@ -784,9 +784,9 @@ function SinglePropertyView({ params }) {
                                     className="img-fluid"
                                     style={{ height: "300px", width: "500px" }}
                                   />
-                                  <div className="communityImgOverlay">
+                                  {/* <div className="communityImgOverlay"> */}
                                     <div className="text-white">{propertyData.community["name"]}</div>
-                                  </div>
+                                  {/* </div> */}
                           </Link>
 
                                   
