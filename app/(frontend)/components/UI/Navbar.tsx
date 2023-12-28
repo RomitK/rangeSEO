@@ -33,7 +33,7 @@ function Navbar() {
                 <ul className="navMainPc d-none d-lg-flex d-md-flex navMenu my-auto me-3">
                   <li className="dropdown navDropMain nav-item">
                     <a
-                      href="/properties"
+                     
                       className="dropdown-toggle nav-link "
                       data-toggle="dropdown"
                     >
@@ -43,7 +43,7 @@ function Navbar() {
                       <li className="dropdown navDropSub dropdown-submenu">
                         <a
                           className="dropdown-toggle mainLink"
-                          data-toggle="dropdown"
+                          data-toggle="dropdown" href="/buy"
                         >
                           Buy
                         </a>
@@ -123,7 +123,7 @@ function Navbar() {
                   <li className="dropdown navDropMain nav-item">
                     <a
                       className="dropdown-toggle nav-link "
-                      data-toggle="dropdown"
+                      data-toggle="dropdown" ref="/about"
                     >
                       About<b className="caret"></b>
                     </a>
@@ -150,7 +150,7 @@ function Navbar() {
                   <li className="dropdown navDropMain nav-item">
                     <a
                       className="dropdown-toggle nav-link "
-                      data-toggle="dropdown"
+                      data-toggle="dropdown" href="/contactUs"
                     >
                       Contact<b className="caret"></b>
                     </a>
@@ -328,9 +328,9 @@ function Navbar() {
                   {!expandPropertyDropdown && (
                     <li className="dropdown navDropMain nav-item">
                       <a
-                        href="properties') }}"
                         className="dropdown-toggle nav-link "
                         data-toggle="dropdown"
+                       
                       >
                         Properties <b className="caret"></b>
                       </a>
@@ -338,7 +338,7 @@ function Navbar() {
                         <li className="dropdown navDropSub dropdown-submenu">
                           <a
                             className="dropdown-toggle mainLink"
-                            data-toggle="dropdown"
+                            data-toggle="dropdown" href="/buy"
                           >
                             Buy
                           </a>
@@ -421,7 +421,7 @@ function Navbar() {
                   <li className="dropdown navDropMain nav-item">
                     <a
                       className="dropdown-toggle nav-link "
-                      data-toggle="dropdown"
+                      data-toggle="dropdown" href="/about"
                     >
                       About<b className="caret"></b>
                     </a>
@@ -448,7 +448,7 @@ function Navbar() {
                   <li className="dropdown navDropMain nav-item">
                     <a
                       className="dropdown-toggle nav-link "
-                      data-toggle="dropdown"
+                      data-toggle="dropdown" href="/contactUs"
                     >
                       Contact<b className="caret"></b>
                     </a>
