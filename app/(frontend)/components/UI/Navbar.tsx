@@ -123,7 +123,7 @@ function Navbar() {
                   <li className="dropdown navDropMain nav-item">
                     <a
                       className="dropdown-toggle nav-link "
-                      data-toggle="dropdown" ref="/about"
+                      data-toggle="dropdown" href="/about"
                     >
                       About<b className="caret"></b>
                     </a>
