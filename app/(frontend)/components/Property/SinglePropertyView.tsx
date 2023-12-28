@@ -240,6 +240,7 @@ function SinglePropertyView({ params }) {
                         <GallaryModalVideo video={propertyData?.youtube_video} />
                       </div>
                     </div>
+                    
                   </div>
                   <div className="mb-3">
                     {/* <div className="py-3">
@@ -299,6 +300,7 @@ function SinglePropertyView({ params }) {
                      
                     </div>
                   </div>
+                 
                   {propertyData && propertyData.amenities && (
                     <div className="mb-3">
                       <div className="py-3">
@@ -431,7 +433,50 @@ function SinglePropertyView({ params }) {
                         </div>
                       </div>
                     )}
+
+
+                    <div>
+                       <div className="row">
+                            <div className="col-lg-7">
+                                <div className="proColImgBox">
+                                    <img src="/images/properties/p5.png" className="" alt="range"  />
+                                </div>
+                            </div>
+                            <div className="col-lg-5">
+                                <div className="clBoxList">
+                                       <div className="clBoxitem">
+                                             <div className="circleImgBox">
+                                                  <img src="/images/icons/pro-icon-1.png" className="iconImg"/>
+                                             </div>
+                                             <div className="clBoxitemitem">
+                                                   <h5>Q4 2027</h5>
+                                                   <p>HANDOVER</p>
+                                             </div>
+                                       </div>
+                                       <div className="clBoxitem">
+                                             <div className="circleImgBox">
+                                                  <img src="/images/icons/pro-icon-2.png" className="iconImg"/>
+                                             </div>
+                                             <div className="clBoxitemitem">
+                                                   <h5>Q4 2027</h5>
+                                                   <p>HANDOVER</p>
+                                             </div>
+                                       </div>
+                                       <div className="clBoxitem">
+                                             <div className="circleImgBox">
+                                                  <img src="/images/icons/pro-icon-3.png" className="iconImg"/>
+                                             </div>
+                                             <div className="clBoxitemitem">
+                                                   <h5>Q4 2027</h5>
+                                                   <p>HANDOVER</p>
+                                             </div>
+                                       </div>
+                                </div>
+                            </div>
+                       </div>
+                  </div>
                 </div>
+                
                 <div className="col-12 col-lg-4 col-md-4">
                   <div className=" px-2 py-2 mb-5">
                     <div className="rowFlexBar border-bottom border-2">
@@ -712,7 +757,7 @@ function SinglePropertyView({ params }) {
                     )}
 
                     <div>
-                      {propertyData?.community["gallery"] && 
+                      {/* {propertyData?.community["gallery"] && 
                       <Swiper
                       loop={true}
                       slidesPerView={1}
@@ -780,9 +825,9 @@ function SinglePropertyView({ params }) {
                           <i className="bi bi-chevron-right fs-1"></i>
                         </span>
                       </div>
-                    </Swiper>
+                      </Swiper>
                     }
-                      
+                       */}
                     </div>
                     <div className="">
                       <p className="mb-0 fs-14">
