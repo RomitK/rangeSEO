@@ -217,14 +217,17 @@ function SinglecommunityDataView({ params }) {
                     >
                       {communityData?.imageGallery?.map((img, index) => {
                         return (
-                          <SwiperSlide key={img.id + index + "gallery"}>
+                          <SwiperSlide key={img.id + "gallery"}>
                             <div className="swiper-slide">
                               <div className="communityImgCont">
+                              <h1>{index}</h1>
                                 <img
                                   src={img.path}
-                                  alt="communityData1"
+                                  alt="communityData"
                                   className="img-fluid communityGalleryImage"
                                 />
+                                
+                                
                               </div>
                             </div>
                           </SwiperSlide>

@@ -64,14 +64,15 @@ function DubaiGuideModel(props) {
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
-        toast.success(
-          "Please Wait until your " + props.title + " is being download"
-        );
+        // toast.success(
+        //   "Please Wait until your " + props.title + " is being download"
+        // );
         new JsFileDownloader({
           url: props.downloadLink,
         })
           .then(function () {
             toast.success(`${props.title} has been downloaded successfully`);
+            "Please Wait until your " + props.title + " is being download"
           })
           .catch(function (error) {
             toast.error(`Download failed Something went wrong!`);

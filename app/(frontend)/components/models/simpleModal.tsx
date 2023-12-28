@@ -5,7 +5,8 @@ import { saveContactFormApi } from "@/src/services/HomeService";
 import PhoneInput from "react-phone-number-input";
 import { useForm, Controller } from "react-hook-form";
 import Loader from "../UI/Loader";
-import { download_file, getCurrentUrl } from "@/src/utils/helpers/common";
+import { getCurrentUrl } from "@/src/utils/helpers/common";
+import JsFileDownloader from "js-file-downloader";
 
 function SimpleModal(props) {
   const [formData, setFormData] = useState({
@@ -60,20 +61,44 @@ function SimpleModal(props) {
     }
   };
 
+  // const onSubmit = (data) => {
+  //   saveContactFormApi(data)
+  //     .then((res) => {
+  //       toast.success(
+  //         "Please Wait until your Brochure is being download"
+  //       );
+  //       download_file(props.brochure, "Brochure");
+  //       closeRef.current.click();
+  //       reset();
+  //     })
+  //     .catch((err) => {
+  //       toast.error("Something went wrong, please try again");
+  //     });
+  // };
+
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
-        toast.success(
-          "Please Wait until your Brochure is being download"
-        );
-        download_file(props.brochure, "Brochure");
-        closeRef.current.click();
+        // toast.success(
+        //   "Please Wait until your " + props.title + " is being download"
+        // );
+        new JsFileDownloader({
+          url: props.brochure,
+        })
+          .then(function () {
+            toast.success("Please Wait until your Brochure is being download");
+          })
+          .catch(function (error) {
+            toast.error(`Download failed Something went wrong!`);
+          });
+       
         reset();
       })
       .catch((err) => {
         toast.error("Something went wrong, please try again");
       });
   };
+  
   const handleOTP = () => {
     if (!OtpCode) {
       return toast.error("Please fill required field");

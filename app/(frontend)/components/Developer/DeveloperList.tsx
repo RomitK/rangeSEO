@@ -59,7 +59,7 @@ function DeveloperList({ params }) {
 
         {links?.next && (
             <button className="bdrBtn mrAuto loadBtn mt-4" onClick={onNextPage}>
-              View All
+              View More
             </button>
         )}
 
