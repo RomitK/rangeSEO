@@ -716,9 +716,9 @@ function SinglePropertyView({ params }) {
                       </>
                     )}
                   </div> */}
-
+                {propertyData && propertyData.community && (
                   <div className="bg-light px-3 py-2 mb-5">
-                    {propertyData && propertyData.community && (
+
                       <div className="py-3">
                         <p className="text-primary fw-500 mb-0 fs-20">
                           <Link
@@ -732,7 +732,7 @@ function SinglePropertyView({ params }) {
                           {/* Community */}
                         </p>
                       </div>
-                    )}
+                    
 
                     <div>
                       {propertyData?.community["gallery"] && 
@@ -824,7 +824,9 @@ function SinglePropertyView({ params }) {
                       </p>
                     </div>
                   </div>
+                  )}
                 </div>
+              
                 {propertyData && (
                   <>
                     <div className="col-12 col-lg-12 col-md-8">
