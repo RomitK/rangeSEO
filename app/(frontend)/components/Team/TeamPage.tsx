@@ -5,7 +5,7 @@ function TeamPage() {
   const { teamsData } = useGetAllTeamData();
   return (
     <>
-      <header>
+      <header className="aboutHeader">
         <img
           src="/images/banner/teamBanner.webp"
           className="headerSimpleImg"

@@ -13,24 +13,24 @@ export default function SingleManagement({ params }) {
 }
 
 
-export const generateMetadata = async ({
-  params,
-}: Props): Promise<Metadata> => {
-  const slug = params.slug;
-  if (slug) {
-    const managementMeta = await fetch(
-      `${process.env.API_HOST}managements/${slug}/meta`,
-      { cache: "no-store" }
-    )
-      .then((res) => res.json())
-      .catch((err) => {
-        console.log("err", err);
-      });
+// export const generateMetadata = async ({
+//   params,
+// }: Props): Promise<Metadata> => {
+//   const slug = params.slug;
+//   if (slug) {
+//     const managementMeta = await fetch(
+//       `${process.env.API_HOST}managements/${slug}/meta`,
+//       { cache: "no-store" }
+//     )
+//       .then((res) => res.json())
+//       .catch((err) => {
+//         console.log("err", err);
+//       });
 
-    return {
-      title: managementMeta?.data?.meta_title,
-      description: managementMeta?.data?.meta_description,
-      keywords: managementMeta?.data?.meta_keywords,
-    };
-  }
-};
+//     return {
+//       title: managementMeta?.data?.meta_title,
+//       description: managementMeta?.data?.meta_description,
+//       keywords: managementMeta?.data?.meta_keywords,
+//     };
+//   }
+// };

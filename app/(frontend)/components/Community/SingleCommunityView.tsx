@@ -256,6 +256,9 @@ function SinglecommunityDataView({ params }) {
                       parse(communityData?.longDescription ?? "")}
                   </div>
                 </div>
+                {communityData &&
+                communityData.amenities &&
+                communityData.amenities.length > 0 && (
                 <div className="col-12 col-lg-4 col-md-3">
                   <a href="#highlight" className="text-decoration-none">
                     <div className="communityTab">
@@ -263,6 +266,10 @@ function SinglecommunityDataView({ params }) {
                     </div>
                   </a>
                 </div>
+               )}
+               {communityData &&
+        communityData.amenities &&
+        communityData.amenities.length > 0 && (
                 <div className="col-12 col-lg-4 col-md-3">
                   <a href="#amenities" className="text-decoration-none">
                     <div className="communityTab">
@@ -270,6 +277,10 @@ function SinglecommunityDataView({ params }) {
                     </div>
                   </a>
                 </div>
+        )}
+        {communityData &&
+        communityData.properties &&
+        communityData.properties.length > 0 && (
                 <div className="col-12 col-lg-4 col-md-3">
                   <a href="#properties" className="text-decoration-none">
                     <div className="communityTab">
@@ -277,6 +288,7 @@ function SinglecommunityDataView({ params }) {
                     </div>
                   </a>
                 </div>
+        )}
               </div>
             </div>
           </div>
