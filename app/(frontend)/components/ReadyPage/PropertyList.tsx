@@ -401,7 +401,7 @@ const PropertyList = ({ params }) => {
                           className="bdrBtn mrAuto loadBtn mt-4"
                           onClick={onNextPage}
                         >
-                          View All
+                          View More
                         </button>
                       )}
                     </>

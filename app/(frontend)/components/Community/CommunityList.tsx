@@ -199,7 +199,7 @@ function CommunityList() {
           </div>
           {links?.next && (
             <button className="bdrBtn mrAuto loadBtn mt-4" onClick={onNextPage}>
-              View All
+              View More
             </button>
           )}
         </div>
