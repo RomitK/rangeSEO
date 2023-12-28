@@ -179,7 +179,7 @@ function SinglePropertyView({ params }) {
                       {propertyData?.gallery?.map((image, index) => {
                         return (
                           <SwiperSlide key={image.id + index + "gallery"}>
-                            <img src={image.path} alt="range" style={{ height: "400px" }}/>
+                            <img src={image.path} alt="range" style={{ height: "500px" }}/>
                           </SwiperSlide>
                         );
                       })}
