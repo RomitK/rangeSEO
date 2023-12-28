@@ -190,7 +190,7 @@ function SingleDeveloperView({ params }) {
                             <SwiperSlide key={img.id + "gallery"}>
                               <div className="swiper-slide">
                                 <div className="communityImgCont">
-                                  {index}
+                                  <p className="text-white">{index}</p>
                                   <img
                                     src={img.path}
                                     alt="community1"
