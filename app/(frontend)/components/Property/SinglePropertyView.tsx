@@ -785,7 +785,7 @@ function SinglePropertyView({ params }) {
                                     style={{ height: "300px", width: "500px" }}
                                   />
                                   {/* <div className="communityImgOverlay"> */}
-                                    <div className="text-white">{propertyData.community["name"]}</div>
+                                    {/* <div className="text-white"></div> */}
                                   {/* </div> */}
                           </Link>
 
