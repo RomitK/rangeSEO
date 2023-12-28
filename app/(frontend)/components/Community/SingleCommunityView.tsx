@@ -220,7 +220,6 @@ function SinglecommunityDataView({ params }) {
                           <SwiperSlide key={img.id + "gallery"}>
                             <div className="swiper-slide">
                               <div className="communityImgCont">
-                              <h1>{index}</h1>
                                 <img
                                   src={img.path}
                                   alt="communityData"

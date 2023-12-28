@@ -179,7 +179,7 @@ function SinglePropertyView({ params }) {
                       {propertyData?.gallery?.map((image, index) => {
                         return (
                           <SwiperSlide key={image.id + index + "gallery"}>
-                            <img src={image.path} alt="range" />
+                            <img src={image.path} alt="range" style={{ height: "400px" }}/>
                           </SwiperSlide>
                         );
                       })}
@@ -291,12 +291,12 @@ function SinglePropertyView({ params }) {
                       <br></br>
                       <p className="text-primary">Reference Number: {propertyData?.reference_number}</p>
                       <p className="text-primary">Permit Number: {propertyData?.permit_number}</p>
-                      <br></br>
+                      {/* <br></br>
                       {
                         propertyData && 
                         <DownloadBrochure brochureLink={propertyData?.brochureLink} fileName={propertyData?.name+" Brochure.pdf"}></DownloadBrochure>
                       }
-                     
+                      */}
                     </div>
                   </div>
                   {propertyData && propertyData.amenities && (
@@ -332,7 +332,7 @@ function SinglePropertyView({ params }) {
                                 spaceBetween: 50,
                               },
                               1024: {
-                                slidesPerView: 3,
+                                slidesPerView: 4,
                                 spaceBetween: 50,
                               },
                             }}
@@ -411,6 +411,25 @@ function SinglePropertyView({ params }) {
                                 />
                               </div>
                             </div>
+{/*
+                            <div className="col-12 col-lg-5 my-auto">
+                              
+
+
+
+                             <div className="py-3">
+                                  <div className="mb-2">
+                                    <div className="amenityImg mx-auto">
+                                      
+                                    </div>
+                                  </div>
+                                  <div className="text-center">
+                                    
+                                  </div>
+                              </div>     
+
+
+                            </div>*/}
                           </div>
                         </div>
                         <div className="py-2">
@@ -433,7 +452,7 @@ function SinglePropertyView({ params }) {
                     )}
                 </div>
                 <div className="col-12 col-lg-4 col-md-4">
-                  <div className=" px-2 py-2 mb-5">
+                  <div className=" px-2 py-2">
                     <div className="rowFlexBar border-bottom border-2">
                       <div className="mdColBar">
                         <div className=" py-3">
@@ -525,7 +544,7 @@ function SinglePropertyView({ params }) {
                         </li>
                         {propertyData &&
                           propertyData.developer &&
-                          Object.keys(propertyData.developer).length > 0 && (
+                          
                             <li className="liBar">
                               <small>
                                 <img
@@ -536,56 +555,59 @@ function SinglePropertyView({ params }) {
                                 />
                                 <span className="align-text-top ms-2 fs-16 fw-500">
                                   <Link
-                                    href={`/developers/${propertyData.developer.slug}`}
+                                    href={`/developers/${propertyData?.developer.slug}`}
                                     className="text-decoration-none"
                                   >
-                                    {propertyData.developer.name}
+                                    {propertyData?.developer.name}
                                   </Link>
                                 </span>
                               </small>
                             </li>
-                          )}
+                          }
                       </ul>
                     </div>
+                    {propertyData?.agent && 
                     <div className="py-3 proUserBox">
-                      <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
-                        <div className="my-auto projctSpecIMg me-3 mb-3">
-                          <center>
+                    <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
+                      <div className="my-auto projctSpecIMg me-3 mb-3">
+                        <center>
+                          <img
+                            src={
+                              propertyData?.agent && propertyData.agent?.image
+                            }
+                            className="img-fluid"
+                            width="60"
+                            alt={
+                              propertyData?.agent && propertyData.agent?.name
+                            }
+                          />
+                        </center>
+                      </div>
+                      <div className="proUserBoxContent mb-3">
+                        <div className="projectSpec  text-uppercase">
+                          <p className="text-primary fw-500 mb-0 fs-16">
+                            {propertyData?.agent && propertyData?.agent?.name}
+                          </p>
+                          <p className="fw-500 mb-2 fs-16">
+                            {propertyData?.agent &&
+                              propertyData?.agent?.designation}
+                          </p>
+                          <a
+                            href={"tel:" + propertyData?.agent?.contact}
+                            className="Probtn bg-primary"
+                          >
                             <img
-                              src={
-                                propertyData?.agent && propertyData.agent?.image
-                              }
-                              className="img-fluid"
-                              width="60"
-                              alt={
-                                propertyData?.agent && propertyData.agent?.name
-                              }
+                              src="/images/icons/phone.png"
+                              className="proPhoneIcon"
                             />
-                          </center>
-                        </div>
-                        <div className="proUserBoxContent mb-3">
-                          <div className="projectSpec  text-uppercase">
-                            <p className="text-primary fw-500 mb-0 fs-16">
-                              {propertyData?.agent && propertyData?.agent?.name}
-                            </p>
-                            <p className="fw-500 mb-2 fs-16">
-                              {propertyData?.agent &&
-                                propertyData?.agent?.designation}
-                            </p>
-                            <a
-                              href={"tel:" + propertyData?.agent?.contact}
-                              className="Probtn bg-primary"
-                            >
-                              <img
-                                src="/images/icons/phone.png"
-                                className="proPhoneIcon"
-                              />
-                              CALL NOW
-                            </a>
-                          </div>
+                            CALL NOW
+                          </a>
                         </div>
                       </div>
                     </div>
+                  </div>
+                  }
+                    
                     <div className="py-3">
                       <div className="BtnsflexBar mb-3">
                         <a
@@ -699,14 +721,15 @@ function SinglePropertyView({ params }) {
                     {propertyData && propertyData.community && (
                       <div className="py-3">
                         <p className="text-primary fw-500 mb-0 fs-20">
-                          <Link
+                          {/* <Link
                             href={`/communities/${propertyData.community["slug"]}`}
                             className="text-decoration-none"
                           >
                             {propertyData &&
                               propertyData.community &&
                               propertyData.community["name"]}
-                          </Link>
+                          </Link> */}
+                          Community
                         </p>
                       </div>
                     )}
@@ -748,17 +771,26 @@ function SinglePropertyView({ params }) {
                               key={community.id + index + "community"}
                             >
                               <div className="swiper-slide">
-                                <div className="communityImgCont">
-                                  <img
+                               
+
+
+                                <Link
+                            href={`/communities/${propertyData.community["slug"]}`}
+                            className="text-decoration-none communityImgCont"
+                          >
+                            <img
                                     src={community["path"]}
                                     alt="community1"
                                     className="img-fluid"
                                     style={{ height: "300px", width: "500px" }}
                                   />
                                   <div className="communityImgOverlay">
-                                    <div className="text-white"></div>
+                                    <div className="text-white">{propertyData.community["name"]}</div>
                                   </div>
-                                </div>
+                          </Link>
+
+                                  
+                               
                               </div>
                             </SwiperSlide>
                           );
@@ -1164,7 +1196,7 @@ function SinglePropertyView({ params }) {
                 <div className="col-12 col-lg-12 col-md-12">
                   <div>
                     <div className="mainHead mb-5 text-primary">
-                      <h4>SIMILAR {propertyData?.category}</h4>
+                      <h4>SIMILAR PROPERTIES</h4>
                     </div>
                   </div>
                 </div>
