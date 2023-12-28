@@ -308,9 +308,32 @@ function SinglePropertyView({ params }) {
                       </div>
                       <div className="">
                         <div className="row">
-                          
+                        
+                            {propertyData?.amenities?.slice(0, 8).map((amenity, index) => {
+                                  return (
+                                      <div className="col-md-3">
+                                        <div className="py-3">
+                                          <div className="mb-2">
+                                            <div className="amenityImg mx-auto">
+                                              <img
+                                                src={amenity.image}
+                                                alt="Range"
+                                                className="img-fluid"
+                                                width="40px"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div className="text-center">
+                                            <small className="fs-20">
+                                              {amenity.name}
+                                            </small>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  )
+                            })}
 
-                          <div className="col-12 col-lg-12 col-md-12">
+                          {/* <div className="col-12 col-lg-12 col-md-12">
                             <Swiper
                             slidesPerView={1}
                             spaceBetween={50}
@@ -385,7 +408,7 @@ function SinglePropertyView({ params }) {
                             </div>
                             
                             </Swiper>
-                          </div>
+                          </div> */}
 
                         </div>
                       </div>
