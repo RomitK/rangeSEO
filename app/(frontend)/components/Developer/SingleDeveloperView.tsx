@@ -28,7 +28,7 @@ function SingleDeveloperView({ params }) {
   const { developerData } = useGetSingleDeveloperData(slug);
   const PropertySwiperRef = useRef<SwiperCore>();
   const swiperRef = useRef<SwiperCore>();
-  const gallerySwiperRef = useRef<SwiperCore>();
+  const gallerySwiperRef1 = useRef<SwiperCore>();
   const router = useRouter();
   const projectOptions = developerData?.newProjects;
   const projectChangeHandle = (event) => {
@@ -182,9 +182,7 @@ function SingleDeveloperView({ params }) {
                           },
                         }}
                         modules={[Navigation, Pagination]}
-                        onSwiper={(swiper) => {
-                          gallerySwiperRef.current = swiper;
-                        }}
+                       
                         className="swiper communityMainSwiper"
                       >
                         {developerData?.imageGallery?.map((img, index) => {
@@ -192,6 +190,7 @@ function SingleDeveloperView({ params }) {
                             <SwiperSlide key={img.id + "gallery"}>
                               <div className="swiper-slide">
                                 <div className="communityImgCont">
+                                  {index}
                                   <img
                                     src={img.path}
                                     alt="community1"
@@ -204,7 +203,7 @@ function SingleDeveloperView({ params }) {
                         })}
                         <div
                           className="swiper-button-next text-white"
-                          onClick={() => gallerySwiperRef.current?.slideNext()}
+                          onClick={() => gallerySwiperRef1.current?.slideNext()}
                         >
                           <span className="">
                             <i className="bi bi-chevron-right fs-1"></i>
@@ -212,7 +211,7 @@ function SingleDeveloperView({ params }) {
                         </div>
                         <div
                           className="swiper-button-prev text-white"
-                          onClick={() => gallerySwiperRef.current?.slidePrev()}
+                          onClick={() => gallerySwiperRef1.current?.slidePrev()}
                         >
                           <span className="">
                             <i className="bi bi-chevron-left fs-1"></i>
