@@ -17,7 +17,7 @@ function AboutDubai(props) {
                     </div>
                     <div className="pb-4">
                       <p className="text-secondary mb-0">
-                      Range International Property Investments is an esteemed award-winning real estate brokerage based in Dubai, UAE. With over two decades of unmatched experience, we have established ourselves as industry leaders, renowned for our exceptional services and deep knowledge of the real estate market locally and internationally.
+                      Dubai is a thriving city that embodies the pinnacle of ambition and innovation. Located at the heart of the United Arab Emirates, this city has risen from the desert to become a global hub of commerce and luxury. In Dubai, you'll find a dynamic blend of tradition and modernity, offering unparalleled investment opportunities and a lifestyle that redefines luxury. From its iconic skyline to pristine beaches, Dubai stands as a testament to human ingenuity, welcoming investors and those seeking a world where success knows no bounds.
                       </p>
                     </div>
                     <div className="pb-4">
@@ -60,7 +60,7 @@ function AboutDubai(props) {
                                         </div>
                                         <div className="my-auto">
                                           <small className="text-dark">
-                                            100% Property ownership
+                                            100% Property Ownership
                                           </small>
                                         </div>
                                       </div>
