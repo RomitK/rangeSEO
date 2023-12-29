@@ -86,13 +86,14 @@ function SimpleModal(props) {
           url: props.brochure,
         })
           .then(function () {
-            toast.success("Please Wait until your Brochure is being download");
+            closeRef.current.click();
+            reset();
+            toast.success("Thank you, your document is downloading");
           })
           .catch(function (error) {
             toast.error(`Download failed Something went wrong!`);
           });
-       
-        reset();
+          reset();
       })
       .catch((err) => {
         toast.error("Something went wrong, please try again");
