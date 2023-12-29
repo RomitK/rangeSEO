@@ -113,7 +113,7 @@ function AboutDubai(props) {
                                         </div>
                                         <div className="my-auto">
                                           <small className="text-dark">
-                                            Permanent Residency
+                                           Tax Free Income
                                           </small>
                                         </div>
                                       </div>
