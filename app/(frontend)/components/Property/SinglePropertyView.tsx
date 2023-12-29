@@ -441,7 +441,7 @@ function SinglePropertyView({ params }) {
                                 <div className="clBoxList">
                                        <div className="clBoxitem">
                                              <div className="circleImgBox">
-                                                  <img src="/images/icons/pro-icon-1.png" className="iconImg"/>
+                                                  <img src="/images/icons/pro-icon-1.webp" className="iconImg"/>
                                              </div>
                                              <div className="clBoxitemitem">
                                                    <h5>Q4 2027</h5>
@@ -450,7 +450,7 @@ function SinglePropertyView({ params }) {
                                        </div>
                                        <div className="clBoxitem">
                                              <div className="circleImgBox">
-                                                  <img src="/images/icons/pro-icon-2.png" className="iconImg"/>
+                                                  <img src="/images/icons/pro-icon-2.webp" className="iconImg"/>
                                              </div>
                                              <div className="clBoxitemitem">
                                                    <h5>{propertyData?.developer.name}</h5>
@@ -459,7 +459,7 @@ function SinglePropertyView({ params }) {
                                        </div>
                                        <div className="clBoxitem">
                                              <div className="circleImgBox">
-                                                  <img src="/images/icons/pro-icon-3.png" className="iconImg"/>
+                                                  <img src="/images/icons/pro-icon-3.webp" className="iconImg"/>
                                              </div>
                                              <div className="clBoxitemitem">
                                                    <h5>{propertyData?.community["name"]}</h5>
