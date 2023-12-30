@@ -6,12 +6,12 @@ import PhoneInput from "react-phone-number-input";
 import { useForm, Controller } from "react-hook-form";
 import Loader from "../UI/Loader";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
-import { checkEmployeeIdApi } from "@/src/services/TeamService";
+import {checkEmployeeIdApi } from  "@/src/services/TeamService";
 import ErrorToast from "../toast/ErrorToast";
 import { fetchResponseErrors } from "@/src/utils/helpers/common";
 
 function DownloadProjectSaleOfferModel(props) {
-  console.log(props);
+    console.log(props)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,15 +26,16 @@ function DownloadProjectSaleOfferModel(props) {
   const [OtpCode, setOtpCode] = useState(null);
   const currentPageURL = getCurrentUrl();
   const [isLoading, setIsLoading] = useState(false);
-  const [UserAs, setUserAs] = useState(null);
+  const [ UserAs, setUserAs] = useState(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
     reset,
-    clearErrors,
+    clearErrors
   } = useForm();
+
 
   const downloadFile = async () => {
     setIsLoading(true);
@@ -44,16 +45,16 @@ function DownloadProjectSaleOfferModel(props) {
 
       const url = URL.createObjectURL(blob);
 
-      const link = document.createElement("a");
+      const link = document.createElement('a');
       link.href = url;
-      link.setAttribute("download", props.fileName); // Set the desired filename
+      link.setAttribute('download', props.fileName); // Set the desired filename
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
 
       URL.revokeObjectURL(url);
     } catch (error) {
-      console.error("Error downloading file:", error);
+      console.error('Error downloading file:', error);
     } finally {
       setIsLoading(false);
       closeRef.current.click();
@@ -63,8 +64,10 @@ function DownloadProjectSaleOfferModel(props) {
   const onSubmitVisitorForm = (data) => {
     saveContactFormApi(data)
       .then((res) => {
-        toast.success("Please Wait until your sell offer is being download");
-        downloadFile();
+        toast.success(
+          "Please Wait until your sell offer is being download"
+        );
+        downloadFile()
         reset();
       })
       .catch((err) => {
@@ -75,13 +78,17 @@ function DownloadProjectSaleOfferModel(props) {
   const onSubmitEmployeeForm = (data) => {
     checkEmployeeIdApi(data)
       .then((res) => {
-        console.log(res.data.data);
-        if (res.data.data === true) {
-          toast.success("Please Wait until your sell offer is being download");
-          downloadFile();
+        console.log(res.data.data)
+        if(res.data.data === true){
+          toast.success(
+            "Please Wait until your sell offer is being download"
+          );
+          downloadFile()
           reset();
-        } else {
-          toast.error("Your Employee Id is not correct");
+        }else{
+          toast.error(
+            "Your Employee Id is not correct"
+          );
         }
       })
       .catch((err) => {
@@ -96,11 +103,11 @@ function DownloadProjectSaleOfferModel(props) {
     }
     setShowOtp(false);
   };
-
+  
   return (
     <>
-      {isLoading && <Loader />}
-
+    {isLoading && <Loader />}
+  
       <div
         className="modal fade"
         id="projectSaleOffer"
@@ -123,6 +130,7 @@ function DownloadProjectSaleOfferModel(props) {
                   clearErrors("phone");
                   setUserAs(null);
                 }}
+
               >
                 <i className="bi bi-x-circle text-primary"></i>
               </button>
@@ -130,7 +138,6 @@ function DownloadProjectSaleOfferModel(props) {
             <div className="modal-body  p-0 rounded-1 m-2">
               <div className="row g-0">
                 <div className="col-12 col-lg-12 col-md-12 ">
-                  <div className=" p-4">
                     <div className=" text-center">
                       <img
                         src="/images/logo_blue.png"
@@ -139,39 +146,32 @@ function DownloadProjectSaleOfferModel(props) {
                         width="150"
                       />
                     </div>
-                    {!UserAs && (
-                      <>
-                        <div className="col-6 col-lg-12 col-md-6">
-                          <button
-                            className="btn btn-bluee rounded-0 px-5 float-end btnContact2"
-                            onClick={() => setUserAs("Visitor")}
-                          >
-                            As a Visiter
-                          </button>
-                        </div>
-                        <div className="col-6 col-lg-6 col-md-6">
-                          <button
-                            className="btn btn-primary rounded-0 px-5 float-end btnContact2"
-                            onClick={() => setUserAs("Employee")}
-                          >
-                            As a Employee
-                          </button>
-                        </div>
-                      </>
-                    )}
-                    {UserAs && UserAs == "Visitor" && (
-                      <form
-                        action=""
-                        method="POST"
-                        onSubmit={handleSubmit(onSubmitVisitorForm)}
-                      >
-                        <div className="">
-                          <div className="row">
+                    {
+                        !UserAs && 
+                    <div className=" p-4">
+                      
+                      <div className="col-6 col-lg-12 col-md-6">
+                        <button className="btn btn-sm btn-bluee rounded-0 px-5 float-end btnContact2" 
+                          onClick={() =>
+                            setUserAs('Visitor')
+                          }>As a Visiter</button>
+                      </div>
+                      <div className="col-6 col-lg-6 col-md-6">
+                        <button className="btn btn-sm btn-primary rounded-0 px-5 float-end btnContact2"
+                        onClick={() =>
+                          setUserAs('Employee')
+                        }
+                        >As a Employee</button>
+                      </div>
+                    </div>} 
+                      {
+                        UserAs && UserAs == 'Visitor' &&
+                        <form action="" method="POST" onSubmit={handleSubmit(onSubmitVisitorForm)}>
+                          <div className="">
+                            <div className="row">
                             <div className="col-md-12">
-                              <h6 className="text-primary text-center p-2">
-                                Enter Details For Downloding Sale Offer
-                              </h6>
-                              {/* {showOtp && (
+                                <h6 className="text-primary text-center p-2">Enter Details For Downloding Sale Offer</h6>
+                                {/* {showOtp && (
                                 <div className="form-group">
                                     <label>
                                     OTP<small className="text-danger">*</small>
@@ -189,49 +189,42 @@ function DownloadProjectSaleOfferModel(props) {
                                     />
                                 </div>
                                 )} */}
-                              {!showOtp && (
+                                {!showOtp && (
                                 <>
-                                  <div className="form-group mb-2">
-                                    <input
-                                      type="text"
-                                      name="nameCon2"
-                                      id="nameCon2"
-                                      className="form-control "
-                                      placeholder="Enter your name"
-                                      autoComplete="off"
-                                      {...register("name", { required: true })}
-                                    />
-                                    {errors.name && (
-                                      <small className="text-danger">
-                                        Name is required.
-                                      </small>
-                                    )}
-                                  </div>
-                                  <div className="form-group mb-2">
-                                    <input
-                                      type="email"
-                                      name="emailCon2"
-                                      id="emailCon2"
-                                      className="form-control"
-                                      placeholder="Enter your email"
-                                      autoComplete="off"
-                                      {...register("email", { required: true })}
-                                    />
-                                    {errors.email && (
-                                      <small className="text-danger">
-                                        Email is required.
-                                      </small>
-                                    )}
-                                  </div>
+                                <div className="form-group mb-2">
+                                <input
+                                    type="text"
+                                    name="nameCon2"
+                                    id="nameCon2"
+                                    className="form-control "
+                                    placeholder="Enter your name"
+                                    autoComplete="off"
+                                    {...register("name", { required: true })}
+                                    
+                                />
+                                {errors.name && <small className="text-danger">Name is required.</small>}
+                                </div>
+                                <div className="form-group mb-2">
+                                <input
+                                    type="email"
+                                    name="emailCon2"
+                                    id="emailCon2"
+                                    className="form-control"
+                                    placeholder="Enter your email"
+                                    autoComplete="off"
+                                    
+                                    {...register("email", { required: true })}
 
-                                  <div className="form-group mb-2">
+                                />
+                                {errors.email && <small className="text-danger">Email is required.</small>}
+                                </div>
+                                
+                                <div className="form-group mb-2">
                                     <Controller
                                       name="phone"
                                       control={control}
                                       rules={{ required: true }}
-                                      render={({
-                                        field: { onChange, value },
-                                      }) => (
+                                      render={({ field: { onChange, value } }) => (
                                         <PhoneInput
                                           international
                                           countryCallingCodeEditable={false}
@@ -244,114 +237,73 @@ function DownloadProjectSaleOfferModel(props) {
                                         />
                                       )}
                                     />
-                                    {errors.phone && (
-                                      <small className="text-danger">
-                                        Phone is required.
-                                      </small>
-                                    )}
-                                  </div>
-                                </>
-                              )}
+                                    {errors.phone && <small className="text-danger">Phone is required.</small>}
+                                </div>
+                                </>)}
+                            </div>
+                            </div>
+                            <div className="modal-footer border-0">
+                                <input type="hidden" value="propertySaleOfferDownloadForm" {...register("formName", { required: false })}/>
+                                <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
+                                <button
+                                type="submit"
+                                name="submit"
+                                className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                                >
+                                {isLoading ? 'Downloading...' : 'Submit'}
+                                </button>
                             </div>
                           </div>
-                          <div className="modal-footer border-0">
-                            <input
-                              type="hidden"
-                              value="propertySaleOfferDownloadForm"
-                              {...register("formName", { required: false })}
-                            />
-                            <input
-                              type="hidden"
-                              value={currentPageURL}
-                              {...register("page", { required: false })}
-                            />
-                            <button
-                              type="submit"
-                              name="submit"
-                              className="btn btn-blue rounded-0 px-5 float-end btnContact2"
-                            >
-                              {isLoading ? "Downloading..." : "Submit"}
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    )}
-                    {UserAs && UserAs == "Employee" && (
-                      <form
-                        action=""
-                        method="POST"
-                        onSubmit={handleSubmit(onSubmitEmployeeForm)}
-                      >
-                        <div className="">
-                          <div className="row">
-                            <div className="col-md-12">
-                              <h6 className="text-primary text-center p-2">
-                                Enter Employee Id For Downloding Sale Offer
-                              </h6>
-
-                              {!showOtp && (
-                                <>
-                                  <div className="form-group mb-2">
-                                    <input
-                                      type="hidden"
-                                      value="propertySaleOfferDownloadForm"
-                                      {...register("formName", {
-                                        required: false,
-                                      })}
-                                    />
-                                    <input
-                                      type="hidden"
-                                      value={currentPageURL}
-                                      {...register("page", { required: false })}
-                                    />
-                                    <input
-                                      type="text"
-                                      name="nameCon2"
-                                      id="nameCon2"
-                                      className="form-control "
-                                      placeholder="Enter Employee Id"
-                                      autoComplete="off"
-                                      {...register("employeeId", {
-                                        required: true,
-                                      })}
-                                    />
-                                    {errors.employeeId && (
-                                      <small className="text-danger">
-                                        Employee Id is required.
-                                      </small>
-                                    )}
-                                  </div>
-                                </>
-                              )}
-                            </div>
-                          </div>
-                          <div className="modal-footer border-0">
-                            <input
-                              type="hidden"
-                              value="propertySaleOfferDownloadForm"
-                              {...register("formName", { required: false })}
-                            />
-                            <input
-                              type="hidden"
-                              value={currentPageURL}
-                              {...register("page", { required: false })}
-                            />
-                            <button
-                              type="submit"
-                              name="submit"
-                              className="btn btn-blue rounded-0 px-5 float-end btnContact2"
-                            >
-                              {isLoading ? "Downloading..." : "Submit"}
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    )}
-                  </div>
+                        </form>
+                      }
+                      {
+                         UserAs && UserAs == 'Employee' && 
+                         <form action="" method="POST" onSubmit={handleSubmit(onSubmitEmployeeForm)}>
+                           <div className="">
+                             <div className="row">
+                             <div className="col-md-12">
+                                 <h6 className="text-primary text-center p-2">Enter Employee Id For Downloding Sale Offer</h6>
+                                
+                                 {!showOtp && (
+                                 <>
+                                 <div className="form-group mb-2">
+                                 <input type="hidden" value="propertySaleOfferDownloadForm" {...register("formName", { required: false })}/>
+                                 <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
+                                 <input
+                                     type="text"
+                                     name="nameCon2"
+                                     id="nameCon2"
+                                     className="form-control "
+                                     placeholder="Enter Employee Id"
+                                     autoComplete="off"
+                                     {...register("employeeId", { required: true })}
+                                     
+                                 />
+                                 {errors.employeeId && <small className="text-danger">Employee Id is required.</small>}
+                                 </div>
+                                 </>)}
+                             </div>
+                             </div>
+                             <div className="modal-footer border-0">
+                                 <input type="hidden" value="propertySaleOfferDownloadForm" {...register("formName", { required: false })}/>
+                                 <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
+                                 <button
+                                 type="submit"
+                                 name="submit"
+                                 className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                                 >
+                                 {isLoading ? 'Downloading...' : 'Submit'}
+                                 </button>
+                             </div>
+                           </div>
+                         </form>
+                      }
+                      
+                    </div>
                 </div>
               </div>
             </div>
-          </div>
+          
         </div>
       </div>
     </>

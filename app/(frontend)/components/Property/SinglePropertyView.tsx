@@ -666,7 +666,7 @@ function SinglePropertyView({ params }) {
                           <p className="text-primary fw-500 mb-0 fs-16">
                             {propertyData?.agent && propertyData?.agent?.name}
                           </p>
-                          <p className="fw-500 mb-2 fs-16">
+                          <p className="fw-500 mb-2 fs-14">
                             {propertyData?.agent &&
                               propertyData?.agent?.designation}
                           </p>
