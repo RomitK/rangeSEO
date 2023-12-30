@@ -9,6 +9,7 @@ function Navbar() {
   const expandPropertyDropdown = [
     "/properties",
     "/ready",
+    "/buy",
     "/rent",
     "/offplan",
     "/luxuryProperties",
@@ -33,9 +34,8 @@ function Navbar() {
                 <ul className="navMainPc d-none d-lg-flex d-md-flex navMenu my-auto me-3">
                   <li className="dropdown navDropMain nav-item">
                     <a
-                     
                       className="dropdown-toggle nav-link "
-                      data-toggle="dropdown"
+                      data-toggle="dropdown" href="/properties"
                     >
                       Properties <b className="caret"></b>
                     </a>
@@ -329,7 +329,7 @@ function Navbar() {
                     <li className="dropdown navDropMain nav-item">
                       <a
                         className="dropdown-toggle nav-link "
-                        data-toggle="dropdown"
+                        data-toggle="dropdown" href="/properties"
                        
                       >
                         Properties <b className="caret"></b>

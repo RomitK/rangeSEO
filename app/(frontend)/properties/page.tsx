@@ -2,9 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { SWRProvider } from "@/app/swr-provider";
-import PropertyList from "../components/ReadyPage/PropertyList";
-
-const properties = ({ params }) => {
+import PropertyList from "@/app/(frontend)/components/Properties/PropertyList";
+const OffPlan = ({ params }) => {
   return (
     <SWRProvider>
       <PropertyList params={params}></PropertyList>
@@ -12,4 +11,4 @@ const properties = ({ params }) => {
   );
 };
 
-export default properties;
+export default OffPlan;

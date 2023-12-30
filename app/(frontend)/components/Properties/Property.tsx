@@ -1,6 +1,5 @@
 import Link from "next/link";
 function Property(props) {
-  console.log(props)
   return (
     <>
       <div>
@@ -18,7 +17,7 @@ function Property(props) {
                   className="img-fluid propImg"
                 />
                 <div className="projectImgOverlay">
-                  <div>
+                  <div >
                     <span className="badge float-start fs-10 projectType">
                       {props.categoryName}
                     </span>
@@ -28,7 +27,6 @@ function Property(props) {
                         {props.completionStatusName}
                       </span>
                     }
-                    
                   </div>
                   <div>
                     <span className="badge float-start fs-10 projectType">

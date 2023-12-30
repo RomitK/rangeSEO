@@ -122,11 +122,14 @@ function SingleDeveloperView({ params }) {
     });
     setIsOpen(true);
   };
-  const [selectedProject, setSelectedProject] = useState({
-    id: "",
-    label: "",
-    value: "",
-  });
+  // const [selectedProject, setSelectedProject] = useState({
+  //   id: "",
+  //   label: "",
+  //   value: "",
+  // });
+
+  const [selectedProject, setSelectedProject] = useState(null);
+
   const openModal = () => {
     setModalOpen(true);
   };
@@ -288,7 +291,7 @@ function SingleDeveloperView({ params }) {
                           border: "1px solid #ccc",
                           boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
                           borderRadius: "4px",
-                          minWidth: "50px", // Set a minimum width
+                          minWidth: "fit-content", // Set a minimum width
                           whiteSpace: "nowrap", // Rounded corners
                         }}
                       >
@@ -326,152 +329,156 @@ function SingleDeveloperView({ params }) {
           )}
         </div>
       </Modal>
-      <section className="my-5">
-        <div className="container-fluid px-0">
-          <div className="row g-0">
-            <div className="col-12 col-lg-12 col-md-12">
-              <div className="row g-0">
-                <div className="col-12 col-lg-12 col-md-12">
-                  <div>
-                    <div className="mainHead mb-5 text-center text-primary">
-                      <h4>LATEST PROJECTS</h4>
+
+      {developerData && developerData.projects &&  developerData.projects.length > 0 && (
+        <section className="my-5">
+          <div className="container-fluid px-0">
+            <div className="row g-0">
+              <div className="col-12 col-lg-12 col-md-12">
+                <div className="row g-0">
+                  <div className="col-12 col-lg-12 col-md-12">
+                    <div>
+                      <div className="mainHead mb-5 text-center text-primary">
+                        <h4>LATEST PROJECTS</h4>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="col-12 col-lg-12 col-md-12">
-                  <div className="row g-0 justify-content-center mb-4">
-                    <div className="col-10 col-lg-2 col-md-3  mx-3 my-auto">
-                      <div className="bg-white shadow px-3 py-2">
-                        <p className="text-primary mb-1 fw-semibold">
-                          NEW PROJECTS
-                        </p>
-                        <div>
-                        <Select
-                            onChange={projectChangeHandle}
-                            options={projectOptions}
-                            className=""
-                            value={selectedProject}
-                          />
+                  <div className="col-12 col-lg-12 col-md-12">
+                    <div className="row g-0 justify-content-center mb-4">
+                      <div className="col-10 col-lg-2 col-md-3  mx-3 my-auto">
+                        <div className="bg-white shadow px-3 py-2">
+                          <p className="text-primary mb-1 fw-semibold">
+                            NEW PROJECTS
+                          </p>
+                          <div>
+                          <Select
+                              onChange={projectChangeHandle}
+                              options={projectOptions}
+                              className=""
+                              placeholder="Select Project"
+                              value={selectedProject}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="col-10 col-lg-2 col-md-3 mx-3 my-auto"
+                        onClick={openModal}
+                      >
+                        <div className="mapShowBg shadow">
+                          <p className="text-primary mb-1 fw-semibold">
+                            SHOW MAP
+                          </p>
+                        </div>
+                      </div>
+                      <div className="col-10 col-lg-2 col-md-3 mx-3 my-auto">
+                        <div className="bg-white shadow  px-3 py-2">
+                          <p className="text-primary mb-1 fw-semibold">
+                            PRICE RANGE
+                          </p>
+                          <div className="dropdown">
+                            <div
+                              className="form-select"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                              data-bs-auto-close="outside"
+                            >
+                              {minMaxPrice.minPrice && minMaxPrice.maxPrice
+                                ? `${minMaxPrice.minPrice} ${
+                                    minMaxPrice.minPrice &&
+                                    minMaxPrice.maxPrice &&
+                                    "-"
+                                  } ${minMaxPrice.maxPrice} AED`
+                                : "Price"}
+                              {}
+                            </div>
+                            <div className="dropdown-menu p-4 mt-1">
+                              <div className="mb-3">
+                                <label className="form-label">
+                                  Minimum Price
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  id="minprice"
+                                  min={0}
+                                  placeholder="0"
+                                  name="minprice"
+                                  ref={minPriceRef}
+                                />
+                              </div>
+                              <div className="mb-3">
+                                <label className="form-label">
+                                  Maximum Price
+                                </label>
+                                <input
+                                  type="number"
+                                  name="maxprice"
+                                  className="form-control"
+                                  id="maxprice"
+                                  placeholder="Any Price"
+                                  ref={maxPriceRef}
+                                />
+                              </div>
+                              <div className="mt-4 d-grid">
+                                <button
+                                  className="btn btn-primary btn-lg"
+                                  type="button"
+                                  onClick={handleApplyPrice}
+                                >
+                                  Apply
+                                </button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div
-                      className="col-10 col-lg-2 col-md-3 mx-3 my-auto"
-                      onClick={openModal}
-                    >
-                      <div className="mapShowBg shadow">
-                        <p className="text-primary mb-1 fw-semibold">
-                          SHOW MAP
-                        </p>
-                      </div>
-                    </div>
-                    <div className="col-10 col-lg-2 col-md-3 mx-3 my-auto">
-                      <div className="bg-white shadow  px-3 py-2">
-                        <p className="text-primary mb-1 fw-semibold">
-                          PRICE RANGE
-                        </p>
-                        <div className="dropdown">
-                          <div
-                            className="form-select"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                            data-bs-auto-close="outside"
+                  </div>
+                  {developerData?.projects?.map((project, index) => {
+                    return (
+                      <div
+                        className="col-12 col-lg-3 col-md-3"
+                        key={project.id + index}
+                      >
+                        <div className="projectImgCont">
+                          <Link
+                            href={`/projects/${project?.slug}`}
+                            className="text-decoration-none text-white"
                           >
-                            {minMaxPrice.minPrice && minMaxPrice.maxPrice
-                              ? `${minMaxPrice.minPrice} ${
-                                  minMaxPrice.minPrice &&
-                                  minMaxPrice.maxPrice &&
-                                  "-"
-                                } ${minMaxPrice.maxPrice} AED`
-                              : "Price"}
-                            {}
-                          </div>
-                          <div className="dropdown-menu p-4 mt-1">
-                            <div className="mb-3">
-                              <label className="form-label">
-                                Minimum Price
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                id="minprice"
-                                min={0}
-                                placeholder="0"
-                                name="minprice"
-                                ref={minPriceRef}
-                              />
+                            <img
+                              src={project.mainImage}
+                              alt={project.title}
+                              className="img-fluid"
+                            />
+                            <div className="projectImgOverlay">
+                              <div>
+                                <span className="badge projectType">
+                                  {project.accommodation}
+                                </span>
+                              </div>
+                              <div className="text-white">
+                                <p className="fw-bold mb-1">{project.title}</p>
+                              </div>
                             </div>
-                            <div className="mb-3">
-                              <label className="form-label">
-                                Maximum Price
-                              </label>
-                              <input
-                                type="number"
-                                name="maxprice"
-                                className="form-control"
-                                id="maxprice"
-                                placeholder="Any Price"
-                                ref={maxPriceRef}
-                              />
-                            </div>
-                            <div className="mt-4 d-grid">
-                              <button
-                                className="btn btn-primary btn-lg"
-                                type="button"
-                                onClick={handleApplyPrice}
-                              >
-                                Apply
-                              </button>
-                            </div>
-                          </div>
+                          </Link>
                         </div>
                       </div>
-                    </div>
+                    );
+                  })}
+                  {developerData && developerData.projects &&  developerData.projects.length > 0 && (
+                  <div className="text-center py-3 text-primary">
+                    <a className="text-primary"  onClick={handleViewProject} href="#">
+                    VIEW ALL
+                    </a>
                   </div>
+                  )}
                 </div>
-                {developerData?.projects?.map((project, index) => {
-                  return (
-                    <div
-                      className="col-12 col-lg-3 col-md-3"
-                      key={project.id + index}
-                    >
-                      <div className="projectImgCont">
-                        <Link
-                          href={`/projects/${project?.slug}`}
-                          className="text-decoration-none text-white"
-                        >
-                          <img
-                            src={project.mainImage}
-                            alt={project.title}
-                            className="img-fluid"
-                          />
-                          <div className="projectImgOverlay">
-                            <div>
-                              <span className="badge projectType">
-                                {project.accommodation}
-                              </span>
-                            </div>
-                            <div className="text-white">
-                              <p className="fw-bold mb-1">{project.title}</p>
-                            </div>
-                          </div>
-                        </Link>
-                      </div>
-                    </div>
-                  );
-                })}
-                {developerData && developerData.projects &&  developerData.projects.length > 0 && (
-                <div className="text-center py-3 text-primary">
-                  <a className="text-primary"  onClick={handleViewProject} href="#">
-                  VIEW ALL
-                  </a>
-                </div>
-                )}
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       {developerData && developerData.communities &&  developerData.communities.length > 0 && (
         <section className="mt-5 bg-light py-5">
           <div className="container">

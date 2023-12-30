@@ -108,11 +108,14 @@ function ProjectList() {
     });
     setIsOpen(true);
   };
-  const [selectedProject, setSelectedProject] = useState({
-    id: "",
-    label: "",
-    value: "",
-  });
+  // const [selectedProject, setSelectedProject] = useState({
+  //   id: "",
+  //   label: "",
+  //   value: "",
+  // });
+
+  const [selectedProject, setSelectedProject] = useState(null);
+
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -185,7 +188,7 @@ function ProjectList() {
                           border: "1px solid #ccc",
                           boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
                           borderRadius: "4px",
-                          minWidth: "50px", // Set a minimum width
+                          minWidth: "fit-content", // Set a minimum width
                           whiteSpace: "nowrap", // Rounded corners
                         }}
                       >
@@ -248,6 +251,7 @@ function ProjectList() {
                             onChange={projectChangeHandle}
                             options={options}
                             className=""
+                            placeholder="Select Project"
                             value={selectedProject}
                           />
                         </div>

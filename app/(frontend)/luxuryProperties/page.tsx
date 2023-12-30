@@ -2,14 +2,15 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { SWRProvider } from "@/app/swr-provider";
-import PropertyList from "../components/LuxuryPropertiesPage/PropertyList";
+import PropertyList from "@/app/(frontend)/components/Properties/PropertyList";
 
-const Ready = ({ params }) => {
+const LuxuryProperties = ({ params }) => {
+  params = { "isLuxury": true}
   return (
     <SWRProvider>
-      <PropertyList params={params}></PropertyList>
+      <PropertyList params={params} ></PropertyList>
     </SWRProvider>
   );
 };
 
-export default Ready;
+export default LuxuryProperties;

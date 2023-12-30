@@ -74,7 +74,7 @@ function LookingFor() {
           <div className="d-flex circleCardsRow">
             {/* Circle box Start */}
             <div className="proCircleCard">
-              <Link className="proCircleBox" href="/buy">
+              <Link className="proCircleBox" href="/properties">
                 <div className="circleContent">
                   <img
                     src="/images/icons/interest1.png"

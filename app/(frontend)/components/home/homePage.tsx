@@ -198,7 +198,7 @@ const HomePage = () => {
                                     <span className="fa fa-star"></span>
                                   </div>
                                   <div>
-                                    <p className="fs-14 my-1">
+                                    <p className="fs-14 my-1 testimonal-line-ellipsis">
                                       {testimonial.feedback}
                                     </p>
                                   </div>

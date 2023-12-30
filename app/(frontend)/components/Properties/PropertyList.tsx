@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef, useState, useCallback } from "react";
-import Project from "./Project";
 import {
   GoogleMap,
   InfoWindow,
@@ -9,9 +8,6 @@ import {
   OverlayView,
   DrawingManagerF,
 } from "@react-google-maps/api";
-
-import classes from "./Project.module.css";
-import Filters from "./Filters";
 import {
   useGetAccommodations,
   useGetCommunities,
@@ -19,10 +15,28 @@ import {
 } from "@/src/services/PropertyService";
 import axios from "axios";
 
+import classes from "@/app/(frontend)/components/Properties/Properties.module.css";
+import Filters from "@/app/(frontend)/components/Properties/Filters/Filters";
+import LuxuryPropertyFilters from "@/app/(frontend)/components/Properties/Filters/LuxuryPropertyFilters";
+import RentFilters from "@/app/(frontend)/components/Properties/Filters/RentFilters";
+import BuyFilters from "@/app/(frontend)/components/Properties/Filters/Buy/BuyFilters";
+import ReadyFilters from "@/app/(frontend)/components/Properties/Filters/Buy/ReadyFilters";
+import OffPlanFilters from "@/app/(frontend)/components/Properties/Filters/Buy/OffPlanFilters";
+
+import Property from "@/app/(frontend)/components/Properties/Property";
 const PropertyList = ({ params }) => {
+
+  //console.log(params);
+  const isLuxuryProperties = Object.hasOwn(params, 'isLuxury');
+  const isRentPage =  Object.hasOwn(params, 'rent');
+  const isBuyPage = Object.hasOwn(params, "buy");
+  const isReadyPage = Object.hasOwn(params, "ready");
+  const isOffPlanPage = Object.hasOwn(params, "offplan");
+  
   const [showMap, setShowMap] = useState(true);
-  const [properties, setProperties] = useState([]);
   const [totalProperties, setTotalProperties] = useState(0);
+  const [links, setLinks] = useState({ next: "", first: "" });
+  const [properties, setProperties] = useState([]);
   const [originalMarkers, setOriginalMarkers] = useState([]);
   const [filteredMarkers, setFilteredMarkers] = useState([]);
   const [trigger, setTrigger] = useState(0);
@@ -31,27 +45,25 @@ const PropertyList = ({ params }) => {
   const [infoWindowData, setInfoWindowData] = useState({
     id: null,
     address: "",
-    title: "",
+    name: "",
     area: "",
-    area_unit: "",
+    unit_measure: "",
     bedrooms: "",
     bathrooms: "",
-    starting_price: "",
-    mainImage: "",
+    price: "",
+    property_banner: "",
     slug: "",
-    completionStatusName: "",
     accommodationName: "",
+    categoryName: "",
+    completionStatusName:""
   });
   const [showClearMapButton, setShowClearMapButton] = useState(false);
   const mapRef2 = useRef(null);
   const [loading, setLoading] = useState(false);
   const [sorting, setSorting] = useState("");
-  const [links, setLinks] = useState({ next: "", first: "" });
-
   const { accommodations } = useGetAccommodations();
   const { communities } = useGetCommunities();
   const { amenities } = useGetAmenities();
-
   const mapRef = useRef(null);
 
   const getMarkersInView = useCallback(() => {
@@ -71,19 +83,7 @@ const PropertyList = ({ params }) => {
     setProperties([...markersInsideView]);
     setTotalProperties(markersInsideView.length);
   }, [originalMarkers]);
-  console.log("links", links);
-  const onNextPage = () => {
-    let url = links?.next;
-    axios
-      .get(url)
-      .then((res) => {
-        setProperties([...properties, ...res.data.data.data]);
-        setLinks(res.data.data.links);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+
   useEffect(() => {
     if (trigger) {
       setFilteredMarkers([...originalMarkers]);
@@ -114,30 +114,32 @@ const PropertyList = ({ params }) => {
     lat,
     lng,
     address,
-    title,
+    name,
     area,
-    area_unit,
+    unit_measure,
     bedrooms,
     bathrooms,
-    starting_price,
-    mainImage,
+    price,
+    property_banner,
     slug,
-    completionStatusName,
-    accommodationName
+    accommodationName,
+    categoryName,
+    completionStatusName
   ) => {
     setInfoWindowData({
       id,
       address,
-      title,
+      name,
       area,
-      area_unit,
+      unit_measure,
       bedrooms,
       bathrooms,
-      starting_price,
-      mainImage,
+      price,
+      property_banner,
       slug,
-      completionStatusName,
       accommodationName,
+      categoryName,
+      completionStatusName
     });
     setIsOpen(true);
   };
@@ -151,25 +153,126 @@ const PropertyList = ({ params }) => {
   const handleSortChange = (e) => {
     setSorting(e.target.value);
   };
+
+  const onNextPage = () => {
+    let url = links?.next;
+    axios
+      .get(url)
+      .then((res) => {
+        setProperties([...properties, ...res.data.data.data]);
+        setLinks(res.data.data.links);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="container-fluid px-0">
       <div className="row g-0">
         <div className="col-12 col-lg-12 col-md-12">
           <div className="p-3 shadow-sm">
-            <Filters
-              setProperties={setProperties}
-              showMap={showMap}
-              setShowMap={setShowMap}
-              mapRef={mapRef2}
-              setOriginalMarkers={setOriginalMarkers}
-              accomodations={accommodations}
-              communities={communities}
-              amenities={amenities}
-              setLoading={setLoading}
-              sortBy={sorting}
-              setLinks={setLinks}
-              setTotalProperties={setTotalProperties}
-            />
+            {
+              isLuxuryProperties && 
+                <LuxuryPropertyFilters
+                setProperties={setProperties}
+                showMap={showMap}
+                setShowMap={setShowMap}
+                mapRef={mapRef2}
+                setOriginalMarkers={setOriginalMarkers}
+                accomodations={accommodations}
+                communities={communities}
+                amenities={amenities}
+                setLoading={setLoading}
+                sortBy={sorting}
+                setLinks={setLinks}
+                setTotalProperties = {setTotalProperties}
+              />
+            }
+            {
+              isRentPage && 
+              <RentFilters 
+                setProperties={setProperties}
+                showMap={showMap}
+                setShowMap={setShowMap}
+                mapRef={mapRef2}
+                setOriginalMarkers={setOriginalMarkers}
+                accomodations={accommodations}
+                communities={communities}
+                amenities={amenities}
+                setLoading={setLoading}
+                sortBy={sorting}
+                setLinks={setLinks}
+                setTotalProperties = {setTotalProperties}
+              />
+            }
+            {
+              isBuyPage && 
+              <BuyFilters 
+                setProperties={setProperties}
+                showMap={showMap}
+                setShowMap={setShowMap}
+                mapRef={mapRef2}
+                setOriginalMarkers={setOriginalMarkers}
+                accomodations={accommodations}
+                communities={communities}
+                amenities={amenities}
+                setLoading={setLoading}
+                sortBy={sorting}
+                setLinks={setLinks}
+                setTotalProperties = {setTotalProperties}
+              />
+            }
+            {isReadyPage && 
+              <ReadyFilters 
+                setProperties={setProperties}
+                showMap={showMap}
+                setShowMap={setShowMap}
+                mapRef={mapRef2}
+                setOriginalMarkers={setOriginalMarkers}
+                accomodations={accommodations}
+                communities={communities}
+                amenities={amenities}
+                setLoading={setLoading}
+                sortBy={sorting}
+                setLinks={setLinks}
+                setTotalProperties = {setTotalProperties}
+              />
+            }
+            {
+              isOffPlanPage && 
+              <OffPlanFilters 
+                setProperties={setProperties}
+                showMap={showMap}
+                setShowMap={setShowMap}
+                mapRef={mapRef2}
+                setOriginalMarkers={setOriginalMarkers}
+                accomodations={accommodations}
+                communities={communities}
+                amenities={amenities}
+                setLoading={setLoading}
+                sortBy={sorting}
+                setLinks={setLinks}
+                setTotalProperties = {setTotalProperties}
+              />
+            }
+            {
+              !isLuxuryProperties && !isRentPage && !isBuyPage && !isReadyPage && !isOffPlanPage && 
+                <Filters
+                  setProperties={setProperties}
+                  showMap={showMap}
+                  setShowMap={setShowMap}
+                  mapRef={mapRef2}
+                  setOriginalMarkers={setOriginalMarkers}
+                  accomodations={accommodations}
+                  communities={communities}
+                  amenities={amenities}
+                  setLoading={setLoading}
+                  sortBy={sorting}
+                  setLinks={setLinks}
+                  setTotalProperties = {setTotalProperties}
+                />
+            }
           </div>
         </div>
         {showMap && (
@@ -204,25 +307,26 @@ const PropertyList = ({ params }) => {
                   mapContainerClassName="list-map-container"
                   onLoad={onMapLoad}
                   onClick={() => {
-                    setIsOpen(false);
+                      setIsOpen(false);
                   }}
                 >
                   {filteredMarkers.map(
                     (
                       {
                         address,
-                        title,
+                        name,
                         area,
-                        area_unit,
+                        unit_measure,
                         bedrooms,
                         bathrooms,
-                        starting_price,
-                        mainImage,
+                        price,
+                        property_banner,
                         lat,
                         lng,
                         slug,
-                        completionStatusName,
                         accommodationName,
+                        categoryName,
+                        completionStatusName
                       },
                       ind
                     ) => (
@@ -235,16 +339,17 @@ const PropertyList = ({ params }) => {
                             lat,
                             lng,
                             address,
-                            title,
+                            name,
                             area,
-                            area_unit,
+                            unit_measure,
                             bedrooms,
                             bathrooms,
-                            starting_price,
-                            mainImage,
+                            price,
+                            property_banner,
                             slug,
-                            completionStatusName,
-                            accommodationName
+                            accommodationName,
+                            categoryName,
+                            completionStatusName
                           );
                         }}
                       >
@@ -263,7 +368,7 @@ const PropertyList = ({ params }) => {
                               whiteSpace: "nowrap", // Rounded corners
                             }}
                           >
-                            {new Intl.NumberFormat().format(starting_price)}
+                            {new Intl.NumberFormat().format(price)}
                           </div>
                         </OverlayView>
                         {isOpen && infoWindowData?.id === ind && (
@@ -273,22 +378,21 @@ const PropertyList = ({ params }) => {
                             }}
                           >
                             <div>
-                              <Project
+                              <Property
                                 slug={infoWindowData.slug}
                                 area={infoWindowData.area}
+                                unit_measure={infoWindowData.unit_measure}
                                 bathrooms={infoWindowData.bathrooms}
                                 bedrooms={infoWindowData.bedrooms}
-                                starting_price={infoWindowData.starting_price}
+                                price={infoWindowData.price}
                                 address={infoWindowData.address}
-                                mainImage={infoWindowData.mainImage}
-                                title={infoWindowData.title}
-                                completionStatusName={
-                                  infoWindowData.completionStatusName
-                                }
-                                area_unit={infoWindowData.area_unit}
+                                property_banner={infoWindowData.property_banner}
+                                name={infoWindowData.name}
                                 accommodationName={
                                   infoWindowData.accommodationName
                                 }
+                                categoryName={infoWindowData.categoryName}
+                                completionStatusName = {infoWindowData.completionStatusName}
                               />
                             </div>
                           </InfoWindow>
@@ -340,13 +444,13 @@ const PropertyList = ({ params }) => {
         >
           <div id="dataTable">
             <div>
-              <h5>Real Estate Projects</h5>
+              <h5>Real Estate &amp; Homes</h5>
             </div>
             <div id="PropertyResult">
               <div>
                 <div className="col-12 col-lg-12 col-md-12">
                   {loading ? (
-                    "Loading Projects"
+                    "Loading Properties"
                   ) : (
                     <>
                       <div className="row mb-3">
@@ -356,16 +460,17 @@ const PropertyList = ({ params }) => {
                           </p>
                         </div>
                         <div className="col">
-                          {/* <select
+                         
+                          <select
                             onChange={handleSortChange}
                             value={sorting}
                             className="form-select w-auto float-end"
                             aria-label="Size 3 select"
                           >
                             <option value="1">Newest</option>
-                            <option value="2">rice (Low to High)</option>
-                            <option value="3">rice (High to Low)</option>
-                          </select> */}
+                            <option value="2">Price (Low to High)</option>
+                            <option value="3">Price (High to Low)</option>
+                          </select>
                         </div>
                       </div>
                       <div className="row g-3">
@@ -381,20 +486,19 @@ const PropertyList = ({ params }) => {
                               showMap ? "col-lg-6" : "col-lg-3"
                             } col-md-6`}
                           >
-                            <Project
+                            <Property
                               slug={property.slug}
                               area={property.area}
+                              unit_measure={property.unit_measure}
                               bathrooms={property.bathrooms}
                               bedrooms={property.bedrooms}
-                              starting_price={property.starting_price}
+                              price={property.price}
                               address={property.address}
-                              mainImage={property.mainImage}
-                              title={property.title}
-                              completionStatusName={
-                                property.completionStatusName
-                              }
-                              area_unit={property.area_unit}
+                              property_banner={property.property_banner}
+                              name={property.name}
                               accommodationName={property.accommodationName}
+                              categoryName={property.categoryName}
+                              completionStatusName = {property.completionStatusName}
                             />
                           </div>
                         ))}

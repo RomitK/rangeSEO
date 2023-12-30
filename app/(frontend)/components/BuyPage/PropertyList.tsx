@@ -42,6 +42,7 @@ const PropertyList = ({ params }) => {
     slug: "",
     accommodationName: "",
     categoryName: "",
+    completionStatusName:""
   });
   const [showClearMapButton, setShowClearMapButton] = useState(false);
   const mapRef2 = useRef(null);
@@ -110,7 +111,8 @@ const PropertyList = ({ params }) => {
     property_banner,
     slug,
     accommodationName,
-    categoryName
+    categoryName,
+    completionStatusName
   ) => {
     setInfoWindowData({
       id,
@@ -125,6 +127,7 @@ const PropertyList = ({ params }) => {
       slug,
       accommodationName,
       categoryName,
+      completionStatusName
     });
     setIsOpen(true);
   };
@@ -223,6 +226,7 @@ const PropertyList = ({ params }) => {
                         slug,
                         accommodationName,
                         categoryName,
+                        completionStatusName
                       },
                       ind
                     ) => (
@@ -244,7 +248,8 @@ const PropertyList = ({ params }) => {
                             property_banner,
                             slug,
                             accommodationName,
-                            categoryName
+                            categoryName,
+                            completionStatusName
                           );
                         }}
                       >
@@ -259,7 +264,7 @@ const PropertyList = ({ params }) => {
                               border: "1px solid #ccc",
                               boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
                               borderRadius: "4px",
-                              minWidth: "50px", // Set a minimum width
+                              minWidth: "fit-content", // Set a minimum width
                               whiteSpace: "nowrap", // Rounded corners
                             }}
                           >
@@ -287,6 +292,7 @@ const PropertyList = ({ params }) => {
                                   infoWindowData.accommodationName
                                 }
                                 categoryName={infoWindowData.categoryName}
+                                completionStatusName={infoWindowData.completionStatusName}
                               />
                             </div>
                           </InfoWindow>
@@ -392,6 +398,7 @@ const PropertyList = ({ params }) => {
                               name={property.name}
                               accommodationName={property.accommodationName}
                               categoryName={property.categoryName}
+                              completionStatusName = {property.completionStatusName}
                             />
                           </div>
                         ))}

@@ -6,17 +6,17 @@ import PhoneInput from "react-phone-number-input";
 import { useForm, Controller } from "react-hook-form";
 import Loader from "../UI/Loader";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
-import JsFileDownloader from "js-file-downloader";
-function SellModel(props) {
+
+function DownloadPropertyPPTModal(props) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
     phone: "",
-    formName: "downloadBrochureForm",
+    formName: "downloadDetailForm",
     page: props.pageUrl,
   });
-  const closeRef = useRef(null);
+  const brochureCloseRef = useRef(null);
   const fileRef = useRef(null);
   const [showOtp, setShowOtp] = useState(false);
   const [OtpCode, setOtpCode] = useState(null);
@@ -30,68 +30,36 @@ function SellModel(props) {
     reset,
     clearErrors,
   } = useForm();
+
   const downloadFile = async () => {
     setIsLoading(true);
-
     try {
-      const response = await fetch(props.sellerLink);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
+      const response = await fetch(props.brochureLink);
       const blob = await response.blob();
-      const url = window.URL.createObjectURL(new Blob([blob]));
+
+      const url = URL.createObjectURL(blob);
+
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", props.fileName);
+      link.setAttribute("download", props.fileName); // Set the desired filename
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
 
-      // Once the download starts, hide the loading indicator and close the modal
-      setIsLoading(false);
-      closeRef.current.click();
+      URL.revokeObjectURL(url);
     } catch (error) {
       console.error("Error downloading file:", error);
-
-      // Handle errors by hiding the loading indicator and closing the modal
+    } finally {
       setIsLoading(false);
-      closeRef.current.click();
+      brochureCloseRef.current.click();
     }
   };
-
-  // const onSubmit = (data) => {
-  //   saveContactFormApi(data)
-  //     .then((res) => {
-  //       toast.success(
-  //         "Please Wait until your seller guide is being download"
-  //       );
-  //       download_file(props?.sellerLink, "Seller Guide");
-  //       closeRef.current.click();
-  //       reset();
-  //     })
-  //     .catch((err) => {
-  //       toast.error("Something went wrong, please try again");
-  //     });
-  // };
 
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
-        // toast.success(
-        //   "Please Wait until your " + props.title + " is being download"
-        // );
-        new JsFileDownloader({
-          url: props.sellerLink,
-        })
-          .then(function () {
-            toast.success( "Please Wait until your seller guide is being download");
-           
-          })
-          .catch(function (error) {
-            toast.error(`Download failed Something went wrong!`);
-          });
-       
+        toast.success("Please Wait until details is being download");
+        downloadFile();
         reset();
       })
       .catch((err) => {
@@ -99,20 +67,55 @@ function SellModel(props) {
       });
   };
 
+  // const handleSubmit = () => {
+  //   if (!formData.name || !formData.email || !formData.phone) {
+  //     return toast.error("Please fill required field");
+  //   }
+  //   saveContactFormApi(formData)
+  //     .then((res) => {
+  //       toast.success(
+  //         "Enquire form submitted successfully, out support teams contact you soon"
+  //       );
+  //       setShowOtp(true);
+  //       //brochureCloseRef.current.click();
+  //       setFormData({
+  //         name: "",
+  //         email: "",
+  //         message: "",
+  //         phone: "",
+  //         formName: "downloadBrochureForm",
+  //         page: props.pageUrl,
+  //       });
+  //       //fileRef.current.click();
+  //     })
+  //     .catch((err) => {
+  //       toast.error("Something went wrong, please try again");
+  //     });
+  // };
+
   const handleOTP = () => {
     if (!OtpCode) {
       return toast.error("Please fill required field");
     }
     setShowOtp(false);
+
+    // saveContactFormApi(formData)
+    //   .then((res) => {
+    //     setShowOtp(false);
+    //     setOtpCode(null);
+    //     handleClose();
+    //   })
+    //   .catch((err) => {
+    //     toast.error("Something went wrong, please try again");
+    //   });
   };
 
   return (
     <>
       {isLoading && <Loader />}
-
       <div
         className="modal fade"
-        id="downloadNow"
+        id="downloadBrochure"
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -125,8 +128,9 @@ function SellModel(props) {
                 className="bg-transparent border-0"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-                ref={closeRef}
+                ref={brochureCloseRef}
                 onClick={() => {
+                  reset();
                   clearErrors("name");
                   clearErrors("email");
                   clearErrors("phone");
@@ -135,6 +139,7 @@ function SellModel(props) {
                 <i className="bi bi-x-circle text-primary"></i>
               </button>
             </div>
+
             <div className="modal-body  p-0 rounded-1 m-2">
               <div className="row g-0">
                 <div className="col-12 col-lg-12 col-md-12 ">
@@ -156,7 +161,7 @@ function SellModel(props) {
                         <div className="row">
                           <div className="col-md-12">
                             <h6 className="text-primary text-center">
-                              Enter Details For Downloding {props.title}
+                              Enter Details For Downloding Brochure
                             </h6>
 
                             {/* {showOtp && (
@@ -223,7 +228,7 @@ function SellModel(props) {
                                       <PhoneInput
                                         international
                                         countryCallingCodeEditable={false}
-                                        className="form-control fs-14 d-flex"
+                                        className="form-control rounded-0 fs-14 d-flex"
                                         defaultCountry="AE"
                                         placeholder="Enter Phone Number"
                                         value={value}
@@ -238,24 +243,22 @@ function SellModel(props) {
                                     </small>
                                   )}
                                 </div>
-{/* 
-                                <div className="form-group mb-2">
-                                  <textarea
-                                    className="form-control"
-                                    placeholder="Message"
-                                    {...register("message", {
-                                      required: false,
-                                    })}
-                                  ></textarea>
-                                </div> */}
                               </>
                             )}
                           </div>
                         </div>
                         <div className="modal-footer border-0">
+                          {/* <button
+                                type="button"
+                                name="submit"
+                                className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                                onClick={showOtp ? handleOTP : handleSubmit}
+                                >
+                                Submit
+                                </button> */}
                           <input
                             type="hidden"
-                            value={props.formName}
+                            value="downloadDetailForm"
                             {...register("formName", { required: false })}
                           />
                           <input
@@ -283,4 +286,4 @@ function SellModel(props) {
     </>
   );
 }
-export default SellModel;
+export default DownloadPropertyPPTModal;

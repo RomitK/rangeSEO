@@ -596,6 +596,27 @@ flex-direction: column;
 justify-content: flex-end;
 background: transparent linear-gradient(180deg, #00000000 80%, #2D3347 100%) 0% 0% no-repeat padding-box;
 }
+.testimonal-line-ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 7; /* Number of lines you want to display */
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .testimonial-container > div {
+    display: flex;
+    align-items: center; /* This will vertically center the content of each div */
+}
+
+/* Additional styles for specific elements */
+.testimonial-icon {
+    justify-content: center; /* Horizontally center for icons */
+}
+
+.testimonial-text {
+    flex-grow: 1; /* Allows the text to take the available space */
+}
+
 .swiper-pagination-bullet {
 width: 15px !important;
 height: 15px !important;

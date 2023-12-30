@@ -10,6 +10,7 @@ import parse from "html-react-parser";
 import { EmailShareButton, WhatsappShareButton } from "react-share";
 import DownloadPPTModal from "@/app/(frontend)/components/models/DownloadPPTModal";
 import SaleOfferModal from "@/app/(frontend)/components/models/SaleOfferModal";
+import DownloadPropertyPPTModal from "../models/DownloadPropertyPPTModal";
 import DownloadBrochure from "@/app/(frontend)/components/models/DownloadBrochure";
 import {
   GoogleMap,
@@ -290,8 +291,7 @@ function SinglePropertyView({ params }) {
                         </div>
                       </div>
                       <br></br>
-                      <p className="text-primary">Reference Number: {propertyData?.reference_number}</p>
-                      <p className="text-primary">Permit Number: {propertyData?.permit_number}</p>
+                      
                       {/* <br></br>
                       {
                         propertyData && 
@@ -444,8 +444,8 @@ function SinglePropertyView({ params }) {
                                                   <img src="/images/icons/pro-icon-1.webp" className="iconImg"/>
                                              </div>
                                              <div className="clBoxitemitem">
-                                                   <h5>Q4 2027</h5>
-                                                   <p>{propertyData?.project?.handOver}</p>
+                                                   <h5>{propertyData?.project?.handOver}</h5>
+                                                   <p>HANDOVER</p>
                                              </div>
                                        </div>
                                        <div className="clBoxitem">
@@ -505,6 +505,32 @@ function SinglePropertyView({ params }) {
                 
                 <div className="col-12 col-lg-4 col-md-4">
                   <div className=" px-2">
+
+                 
+                    
+                      <div className="rowFlexBar border-bottom border-2">
+                        <div className="mdColBar">
+                          <div className=" py-3">
+                            <p className="text-primary fw-500 mb-1 fs-16">
+                            REFERENCE NUMBER
+                            </p>
+                            <p className="fw-500 mb-0 fs-16">
+                              {propertyData && propertyData?.reference_number}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="mdColBar">
+                          <div className=" py-3">
+                            <p className="text-primary fw-500 mb-1 fs-16">
+                              PERMIT NUMBER
+                            </p>
+                            <p className="fw-500 mb-0 fs-16">
+                              {propertyData && propertyData.permit_number}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
                     <div className="rowFlexBar border-bottom border-2">
                       <div className="mdColBar">
                         <div className=" py-3">
@@ -1206,7 +1232,15 @@ function SinglePropertyView({ params }) {
                                            download & Share Property Presentation
                                       </button> */}
 
-                                    <DownloadProjectPPTModal />
+                                    
+                                    <a
+                                      className="btnContentItem text-decoration-none"
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#downloadBrochure"
+                                    >
+                                      <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
+                                      DOWNLOAD BROCHURE
+                                    </a>
                                     {/* <a
                                       className="btnContentItem text-decoration-none"
                                       data-bs-toggle="modal"
@@ -1427,9 +1461,9 @@ function SinglePropertyView({ params }) {
         </div>
       </section>
       <CalenderModel />
-      <DownloadPPTModal />
+      <DownloadPropertyPPTModal brochureLink={propertyData?.brochureLink} fileName={propertyData?.name+" Brochure.pdf"}/>
       <SaleOfferModal />
-      <DownloadProjectSaleOfferModel brochureLink={propertyData?.saleOfferLink} fileName={propertyData?.name+" Brochure.pdf"}/>
+      <DownloadProjectSaleOfferModel brochureLink={propertyData?.saleOfferLink} fileName={propertyData?.name+" SaleOffer.pdf"}/>
     </>
   );
 }

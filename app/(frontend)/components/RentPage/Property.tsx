@@ -20,6 +20,12 @@ function Property(props) {
                     <span className="badge float-start fs-10 projectType">
                       {props.categoryName}
                     </span>
+                    {
+                      props.completionStatusName && props.categoryName !="Rent" &&
+                      <span className="badge float-end fs-10 projectType">
+                        {props.completionStatusName}
+                      </span>
+                    }
                   </div>
                   <div>
                     <span className="badge float-start fs-10 projectType">

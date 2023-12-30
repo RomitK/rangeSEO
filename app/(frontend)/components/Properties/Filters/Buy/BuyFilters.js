@@ -4,14 +4,15 @@ import { useRouter } from "next/router";
 import { components } from "react-select";
 import { Dropdown, FormControl, Form } from "react-bootstrap";
 import AsyncSelect from "react-select/async";
-import classes from "./Filters.module.css";
-import Bottombar from "../UI/BottomNavigationBar";
-import CustomToggle from "../UI/CustomSelectToggle";
-import MultiValue from "../UI/ReactSelect/MultiValue";
-import IndicatorsContainer from "../UI/ReactSelect/IndicatorsContainer";
-import MultiValueContainer from "../UI/ReactSelect/MultiValueContainer";
-import { useSearchParams } from "next/navigation";
-function Filters({
+import classes from "@/app/(frontend)/components/Properties/Filters/Filters.module.css";
+import Bottombar from "@/app/(frontend)/components/UI/BottomNavigationBar";
+import CustomToggle from "@/app/(frontend)/components/UI/CustomSelectToggle";
+import MultiValue from "@/app/(frontend)/components/UI/ReactSelect/MultiValue";
+import IndicatorsContainer from "@/app/(frontend)/components/UI/ReactSelect/IndicatorsContainer";
+import MultiValueContainer from "@/app/(frontend)/components/UI/ReactSelect/MultiValueContainer";
+
+
+function BuyFilters({
   setShowMap,
   showMap,
   setProperties,
@@ -36,19 +37,17 @@ function Filters({
     amenities: "",
     bathroom: "",
     area: "",
-    category: "rent",
-    completionStatus: "",
+    category: "buy",
+    completion_status_id: '',
     furnishing: "",
   });
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
   const [newArrayF, setNewArrayF] = useState([]);
-
   const minPriceRef = useRef(null);
   const maxPriceRef = useRef(null);
   const minAreaRef = useRef(null);
   const maxAreaRef = useRef(null);
-  const searchParams = useSearchParams();
   const [isCommercial, setIsCommercial] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const [filteredAccomodation, setFilteredAccomodation] =
@@ -58,110 +57,6 @@ function Filters({
   const [hasFocus, setHasFocus] = useState(false);
   const [showSelectedValues, setShowSelectedValues] = useState(true);
   const [ongoingRequests, setOngoingRequests] = useState([]);
-
-  function isEmptyObject() {
-    const o = { ...form };
-    delete o.category;
-    return Object.keys(o).every(function (x) {
-      if (Array.isArray(o[x])) {
-        return o[x].length > 0 ? false : true;
-      } else {
-        return o[x] === "" || o[x] === null;
-      }
-    });
-  }
-
-
-  useEffect(() => {
-    if (
-      searchParams.has("project_name") &&
-      searchParams.has("project_detail")
-    ) {
-      setForm({
-        ...form,
-        searchBy: [
-          {
-            type: searchParams.get("project_detail"),
-            name: searchParams.get("project_name"),
-          },
-        ],
-      });
-      selectRef.current.setValue([
-        {
-          type: searchParams.get("project_detail"),
-          name: searchParams.get("project_name"),
-        },
-      ]);
-    }
-
-    if (
-      searchParams.has("community_name") &&
-      searchParams.has("community_detail")
-    ) {
-      setForm({
-        ...form,
-        searchBy: [
-          {
-            type: searchParams.get("community_detail"),
-            name: searchParams.get("community_name"),
-          },
-        ],
-      });
-      selectRef.current.setValue([
-        {
-          type: searchParams.get("community_detail"),
-          name: searchParams.get("community_name"),
-        },
-      ]);
-    }
-
-    
-  }, []);
-
-  const handleReset = () => {
-    // setForm({
-    //   accommodation_id: "",
-    //   community: "",
-    //   bedrooms: "",
-    //   minprice: "",
-    //   maxprice: "",
-    //   minarea: "",
-    //   maxarea: "",
-    //   amenities: "",
-    //   bathroom: "",
-    //   area: "",
-    //   category: "rent",
-    //   completionStatus: "",
-    //   furnishing: "",
-    //   searchBy: ""
-    // });
-    form["minprice"] = "";
-    form["maxprice"] = "";
-    form["minarea"] = "";
-    form["maxarea"] = "";
-    form["furnishing"] = "";
-    form["bedrooms"] = "";
-    form["accommodation_id"] = "";
-    form["completionStatus"] = "";
-    form["bathroom"] = "";
-    form["searchBy"] = "";
-    form["amenities"] ="";
-    setSelectedItems([]);
-    
-    selectRef.current.setValue([]);
-    if(minPriceRef.current != null){
-      minPriceRef.current.value = "";
-    }
-    if(maxPriceRef.current != null){
-      maxPriceRef.current.value = "";
-    }
-    if(minAreaRef.current != null){
-      minAreaRef.current.value = "";
-    }
-    if(maxAreaRef.current != null){
-      maxAreaRef.current.value = "";
-    }
-  };
 
   const Menu = ({ children, ...props }) => {
     let items = form["searchBy"];
@@ -197,7 +92,6 @@ function Filters({
                       viewBox="0 0 20 20"
                       aria-hidden="true"
                       focusable="false"
-                      
                       className={classes.clearItemIcon}
                     >
                       <path d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"></path>
@@ -248,8 +142,10 @@ function Filters({
   }, [isMobile]);
 
   useEffect(() => {
+
     let getPropertiesURL = process.env.API_HOST + "propertiesList?";
     let payload = { ...form };
+
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
         if (payload[key]) {
@@ -286,10 +182,11 @@ function Filters({
           setTotalProperties(res.data.meta.total);
           if (propertiesDup.length) {
             mapRef?.current?.setCenter({
-              lat: parseFloat(propertiesDup[0].address_latitude),
-              lng: parseFloat(propertiesDup[0].address_longitude),
+              lat: parseFloat(propertiesDup[0].lat),
+              lng: parseFloat(propertiesDup[0].lng),
             });
           }
+         
         }
       })
       .catch((error) => {
@@ -298,6 +195,7 @@ function Filters({
       .finally(() => {
         setLoading(false);
       });
+
   }, [form]);
 
   useEffect(() => {
@@ -312,17 +210,75 @@ function Filters({
     });
     setNewArrayF(newArray3);
   }, []);
-  useEffect(() => {
-    const newArray3 = amenities?.map((originalObject, index) => {
-      const label = originalObject.name;
-      const value = originalObject.id;
-      return { label, value };
-    });
-    setNewArrayF(newArray3);
-  }, amenities);
+//   useEffect(() => {
+//     const newArray3 = amenities?.map((originalObject, index) => {
+//       const label = originalObject.name;
+//       const value = originalObject.id;
+//       return { label, value };
+//     });
+//     setNewArrayF(newArray3);
+//   }, amenities);
 
+
+  useEffect(() => {
+    const newArray3 = amenities?.map(originalObject => ({
+      label: originalObject.name,
+      value: originalObject.id,
+    }));
+    setNewArrayF(newArray3);
+  }, [JSON.stringify(amenities)]); // Using JSON.stringify
+
+  function isEmptyObject() {
+    const o = { ...form };
+    if(o.category === "buy"){
+
+        delete o.category;
+    }else{
+      
+    }
+    
+    return Object.keys(o).every(function (x) {
+      if (Array.isArray(o[x])) {
+        return o[x].length > 0 ? false : true;
+      } else {
+        return o[x] === "" || o[x] === null;
+      }
+    });
+  }
+
+  const handleReset = () => {
+    form["minprice"] = "";
+    form["maxprice"] = "";
+    form["minarea"] = "";
+    form["maxarea"] = "";
+    form["furnishing"] = "";
+    form["bedrooms"] = "";
+    form["accommodation_id"] = "";
+    form["completion_status_id"] = "";
+    form["bathroom"] = "";
+    form["searchBy"] = "";
+    form["amenities"] ="";
+    form["category"] = "buy";
+    setSelectedItems([]);
+    selectRef.current.setValue([]);
+    if(minPriceRef.current != null){
+      minPriceRef.current.value = "";
+    }
+    if(maxPriceRef.current != null){
+      maxPriceRef.current.value = "";
+    }
+    if(minAreaRef.current != null){
+      minAreaRef.current.value = "";
+    }
+    if(maxAreaRef.current != null){
+      maxAreaRef.current.value = "";
+    }
+  };
   const handleChange = (e) => {
     form[e.target.name] = e.target.value;
+    if(form.category == "rent" || form.category == "all"){
+        form.completion_status_id = ""
+    }
     setForm({ ...form });
   };
 
@@ -526,7 +482,7 @@ function Filters({
             instanceId="searchBy"
           />
         </div>
-        <div className="col-md-1">
+        <div  className={`base-class ${form.category && form.category != 'all' ? 'col-md-1' : 'col-md-2'}`}>
           <select
             onChange={handleChange}
             value={form.category}
@@ -534,18 +490,19 @@ function Filters({
             id="category"
             className="form-select bedroomSelect"
           >
+            <option value="all">Buy/Rent</option>
             <option value="buy">Buy</option>
             <option value="rent">Rent</option>
           </select>
         </div>
         {
-          form.category != 'rent' &&
+         form.category && form.category == 'buy' &&
           <div className="col-md-2">
           <select
             onChange={handleChange}
             value={form.completion_status_id}
-            name="category"
-            id="category"
+            name="completion_status_id"
+            id="completion_status_id"
             className="form-select bedroomSelect"
           >
             <option value="">Completion Status</option>
@@ -562,7 +519,7 @@ function Filters({
             id="accomodation"
             className="form-select bedroomSelect"
           >
-            <option value="">Select Property Type</option>
+            <option value=""> Property Type</option>
             {filteredAccomodation?.map((accomodation) => (
               <option key={accomodation.id} value={accomodation.id}>
                 {accomodation.name}
@@ -571,7 +528,7 @@ function Filters({
           </select>
         </div>
 
-        <div  className={`base-class ${form.category != 'rent' ? 'col-md-1' : 'col-md-2'}`}>
+        <div className={`base-class ${form.category && form.category === 'buy' ? 'col-md-1' : 'col-md-2'}`}>
           <div className="dropdown">
             <div
               className="form-select"
@@ -637,8 +594,8 @@ function Filters({
           </div>
         </div>
 
-        <div className="col-md-3 d-flex align-items-center gap-2 justify-content-end">
-          <div className="form-check me-4">
+        <div  className={`base-class ${form.category && form.category === 'buy' ? 'col-md-3' : 'col-md-3'} d-flex align-items-center gap-2 justify-content-end`}>
+          <div className="form-check">
             <input
               type="checkbox"
               className="form-check-input"
@@ -650,7 +607,6 @@ function Filters({
               Commericial
             </label>
           </div>
-
           <button
             className="btn btn-primary"
             type="button"
@@ -782,21 +738,7 @@ function Filters({
               </select>
             </div>
           )}
-          {/* {form.category == "buy" && !isCommercial && (
-            <div className="col">
-              <select
-                onChange={handleChange}
-                value={form.completionStatus}
-                name="completionStatus"
-                id="completionStatus"
-                className="form-select completionStatusSelect"
-              >
-                <option value="">Select Completion Status</option>
-                <option value="1">Off-plan</option>
-                <option value="2">Ready</option>
-              </select>
-            </div>
-          )} */}
+
           <div className="col-lg-2">
             <select
               onChange={handleChange}
@@ -905,5 +847,4 @@ function Filters({
     </form>
   );
 }
-
-export default Filters;
+export default BuyFilters;

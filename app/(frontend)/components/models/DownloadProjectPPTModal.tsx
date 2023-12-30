@@ -120,12 +120,12 @@ function DownloadProjectPPTModal(props) {
         data-bs-target="#downloadBrochure"
       >
         <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
-        CLICK FOR MORE DETAILS
+        DOWNLOAD BROCHURE
       </a>
 
       <div
         className="modal fade"
-        id="downloadDetailForm"
+        id="downloadBrochure"
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"

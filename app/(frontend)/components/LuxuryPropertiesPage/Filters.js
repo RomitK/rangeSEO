@@ -515,7 +515,22 @@ function Filters({
             <option value="rent">Rent</option>
           </select>
         </div>
-
+        {
+          form.category != 'rent' &&
+          <div className="col-md-2">
+          <select
+            onChange={handleChange}
+            value={form.completion_status_id}
+            name="category"
+            id="category"
+            className="form-select bedroomSelect"
+          >
+            <option value="">Completion Status</option>
+            <option value="286">Ready</option>
+            <option value="287">OffPlan</option>
+          </select>
+        </div>
+        }
         <div className="col-md-2">
           <select
             onChange={handleChange}
@@ -533,7 +548,7 @@ function Filters({
           </select>
         </div>
 
-        <div className="col-md-2">
+        <div  className={`base-class ${form.category != 'rent' ? 'col-md-1' : 'col-md-2'}`}>
           <div className="dropdown">
             <div
               className="form-select"
@@ -599,7 +614,7 @@ function Filters({
           </div>
         </div>
 
-        <div className="col-md-4 d-flex align-items-center gap-2 justify-content-end">
+        <div className="col-md-3 d-flex align-items-center gap-2 justify-content-end">
           <div className="form-check me-4">
             <input
               type="checkbox"
