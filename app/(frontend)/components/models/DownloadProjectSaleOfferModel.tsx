@@ -11,7 +11,6 @@ import ErrorToast from "../toast/ErrorToast";
 import { fetchResponseErrors } from "@/src/utils/helpers/common";
 
 function DownloadProjectSaleOfferModel(props) {
-    console.log(props)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
