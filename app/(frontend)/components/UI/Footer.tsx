@@ -241,7 +241,8 @@ function Footer() {
                       target="_blanket"
                     >
                       <span className="iconRoundBlack">
-                        <i className="fa fa-twitter"></i>
+                        {/* <i className="fa fa-twitter"></i> */}
+                        <img src="/images/icons/twitter-icon.png" className="twitterIcon"/>
                       </span>
                     </a>
                   </div>
