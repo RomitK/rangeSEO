@@ -435,7 +435,7 @@ function SingleDeveloperView({ params }) {
                       </div>
                     </div>
                   </div>
-                  {developerData?.projects?.map((project, index) => {
+                  {developerData?.projects?.slice(0, 8)?.map((project, index) => {
                     return (
                       <div
                         className="col-12 col-lg-3 col-md-3"
