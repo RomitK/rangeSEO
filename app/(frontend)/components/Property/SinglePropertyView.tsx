@@ -30,7 +30,7 @@ import { getCurrentUrl } from "@/src/utils/helpers/common";
 import GallaryModalImg from "@/app/(frontend)/components/models/GallaryModalImg";
 import GallaryModalVideo from "@/app/(frontend)/components/models/GallaryModalVideo";
 import DownloadProjectPPTModal from "../models/DownloadProjectPPTModal";
-import DownloadProjectSaleOfferModel from '@/app/(frontend)/components/models/DownloadProjectSaleOfferModel'
+import DownloadProjectSaleOfferModel from "@/app/(frontend)/components/models/DownloadProjectSaleOfferModel";
 import "@/public/css/single-project-view-styles.css";
 
 import MortgageCalculator from "./MortgageCalculator";
@@ -159,88 +159,91 @@ function SinglePropertyView({ params }) {
               <div className="row">
                 <div className="col-12 col-lg-8 col-md-8">
                   <div className="mb-3">
-                    {
-                      propertyData?.gallery &&
+                    {propertyData?.gallery && (
                       <Swiper
-                      // observer={true}
-                      loop={true}
-                      spaceBetween={10}
-                      navigation={{
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
-                      }}
-                      thumbs={{ swiper: thumbsSwiper }}
-                      modules={[FreeMode, Navigation, Thumbs]}
-                      onSwiper={(swiper) => {
-                        PropertySwiperRef.current = swiper;
-                      }}
-                      className="swiper swiperThumb2"
-                    >
-                      {propertyData?.gallery?.map((image, index) => {
-                        return (
-                          <SwiperSlide key={image.id + index + "gallery"}>
-                            <img src={image.path} alt="range" style={{ height: "500px" }}/>
-                          </SwiperSlide>
-                        );
-                      })}
-                      <div
-                        className="swiper-button-next text-white"
-                        onClick={() => PropertySwiperRef.current?.slideNext()}
+                        // observer={true}
+                        loop={true}
+                        spaceBetween={10}
+                        navigation={{
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                        }}
+                        thumbs={{ swiper: thumbsSwiper }}
+                        modules={[FreeMode, Navigation, Thumbs]}
+                        onSwiper={(swiper) => {
+                          PropertySwiperRef.current = swiper;
+                        }}
+                        className="swiper swiperThumb2"
                       >
-                        <span className="">
-                          <i className="bi bi-chevron-right fs-1"></i>
-                        </span>
-                      </div>
-                      <div
-                        className="swiper-button-prev text-white"
-                        onClick={() => PropertySwiperRef.current?.slidePrev()}
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-left fs-1"></i>
-                        </span>
-                      </div>
+                        {propertyData?.gallery?.map((image, index) => {
+                          return (
+                            <SwiperSlide key={image.id + index + "gallery"}>
+                              <img
+                                src={image.path}
+                                alt="range"
+                                style={{ height: "500px" }}
+                              />
+                            </SwiperSlide>
+                          );
+                        })}
+                        <div
+                          className="swiper-button-next text-white"
+                          onClick={() => PropertySwiperRef.current?.slideNext()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-right fs-1"></i>
+                          </span>
+                        </div>
+                        <div
+                          className="swiper-button-prev text-white"
+                          onClick={() => PropertySwiperRef.current?.slidePrev()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-left fs-1"></i>
+                          </span>
+                        </div>
                       </Swiper>
-                    }
-                    
+                    )}
+
                     <div className="sliderThumbnailArea">
-                      {propertyData?.gallery && 
-                       <Swiper
-                       onSwiper={(swiper) => {
-                         setThumbsSwiper(swiper);
-                         PropertySwiperRef.current = swiper;
-                       }}
-                       loop={true}
-                       spaceBetween={10}
-                       slidesPerView={3}
-                       loopedSlides={3}
-                       freeMode={true}
-                       watchSlidesProgress={true}
-                       modules={[FreeMode, Navigation, Thumbs]}
-                       className="swiper   "
-                     >
-                       {propertyData?.gallery?.map((image, index) => {
-                         return (
-                           <SwiperSlide key={image.id + index + "gallery2"}>
-                             <img
-                               src={image.path}
-                               alt="range"
-                               className="img-fluid"
-                             />
-                           </SwiperSlide>
-                         );
-                       })}
-                     </Swiper>
-                     }
+                      {propertyData?.gallery && (
+                        <Swiper
+                          onSwiper={(swiper) => {
+                            setThumbsSwiper(swiper);
+                            PropertySwiperRef.current = swiper;
+                          }}
+                          loop={true}
+                          spaceBetween={10}
+                          slidesPerView={3}
+                          loopedSlides={3}
+                          freeMode={true}
+                          watchSlidesProgress={true}
+                          modules={[FreeMode, Navigation, Thumbs]}
+                          className="swiper   "
+                        >
+                          {propertyData?.gallery?.map((image, index) => {
+                            return (
+                              <SwiperSlide key={image.id + index + "gallery2"}>
+                                <img
+                                  src={image.path}
+                                  alt="range"
+                                  className="img-fluid"
+                                />
+                              </SwiperSlide>
+                            );
+                          })}
+                        </Swiper>
+                      )}
                       <div className="sliderModalBox">
-                        {
-                          propertyData?.floorplans &&
+                        {propertyData?.floorplans && (
                           <GallaryModalImg images={propertyData?.floorplans} />
-                        }
-                       
-                        <GallaryModalVideo video={propertyData?.youtube_video} />
+                        )}
+
+                        <GallaryModalVideo
+                          video={propertyData?.youtube_video}
+                        />
                       </div>
                     </div>
-                    
                   </div>
                   <div className="mb-3">
                     {/* <div className="py-3">
@@ -278,11 +281,11 @@ function SinglePropertyView({ params }) {
                       </div>
                     </div> */}
                     <div className="py-2">
-                        <div className="text-blue">
-                              <h4 className="mb-2">
-                                {propertyData && propertyData.name}
-                              </h4>
-                          </div>
+                      <div className="text-blue">
+                        <h4 className="mb-2">
+                          {propertyData && propertyData.name}
+                        </h4>
+                      </div>
                       <div>
                         <div className="fs-14">
                           {propertyData &&
@@ -290,8 +293,12 @@ function SinglePropertyView({ params }) {
                         </div>
                       </div>
                       <br></br>
-                      <p className="text-primary">Reference Number: {propertyData?.reference_number}</p>
-                      <p className="text-primary">Permit Number: {propertyData?.permit_number}</p>
+                      <p className="text-primary">
+                        Reference Number: {propertyData?.reference_number}
+                      </p>
+                      <p className="text-primary">
+                        Permit Number: {propertyData?.permit_number}
+                      </p>
                       {/* <br></br>
                       {
                         propertyData && 
@@ -300,7 +307,7 @@ function SinglePropertyView({ params }) {
                       */}
                     </div>
                   </div>
-                 
+
                   {propertyData && propertyData.amenities && (
                     <div className="mb-3">
                       <div className="py-3">
@@ -310,29 +317,33 @@ function SinglePropertyView({ params }) {
                       </div>
                       <div className="">
                         <div className="row">
-                        
-                            {propertyData?.amenities?.slice(0, 8).map((amenity, index) => {
-                                  return (
-                                      <div className="col-md-3">
-                                        <div className="py-3">
-                                          <div className="mb-2">
-                                            <div className="amenityImg mx-auto">
-                                              <img
-                                                src={amenity.image}
-                                                alt="Range"
-                                                className="img-fluid"
-                                                width="40px"
-                                              />
-                                            </div>
-                                          </div>
-                                          <div className="text-center">
-                                            <small className="fs-20">
-                                              {amenity.name}
-                                            </small>
-                                          </div>
-                                        </div>
+                          {propertyData?.amenities
+                            ?.slice(0, 8)
+                            .map((amenity, index) => {
+                              return (
+                                <div
+                                  className="col-md-3"
+                                  key={index + "amenity"}
+                                >
+                                  <div className="py-3">
+                                    <div className="mb-2">
+                                      <div className="amenityImg mx-auto">
+                                        <img
+                                          src={amenity.image}
+                                          alt="Range"
+                                          className="img-fluid"
+                                          width="40px"
+                                        />
                                       </div>
-                                  )
+                                    </div>
+                                    <div className="text-center">
+                                      <small className="fs-20">
+                                        {amenity.name}
+                                      </small>
+                                    </div>
+                                  </div>
+                                </div>
+                              );
                             })}
 
                           {/* <div className="col-12 col-lg-12 col-md-12">
@@ -411,7 +422,6 @@ function SinglePropertyView({ params }) {
                             
                             </Swiper>
                           </div> */}
-
                         </div>
                       </div>
                     </div>
@@ -425,52 +435,59 @@ function SinglePropertyView({ params }) {
                             <h4 className="mb-0">ABOUT PROJECT</h4>
                           </div>
                         </div>
-                        
-                          
-                        <div className="row">
-                            <div className="col-lg-7">
-                                <div className="proColImgBox">
-                                <img
-                                  src={propertyData?.project?.image}
-                                  alt={propertyData?.project?.name}
-                                  className="img-fluid"
-                                />
-                                </div>
-                            </div>
-                            <div className="col-lg-5">
-                                <div className="clBoxList">
-                                       <div className="clBoxitem">
-                                             <div className="circleImgBox">
-                                                  <img src="/images/icons/pro-icon-1.png" className="iconImg"/>
-                                             </div>
-                                             <div className="clBoxitemitem">
-                                                   <h5>Q4 2027</h5>
-                                                   <p>{propertyData?.project?.handOver}</p>
-                                             </div>
-                                       </div>
-                                       <div className="clBoxitem">
-                                             <div className="circleImgBox">
-                                                  <img src="/images/icons/pro-icon-2.png" className="iconImg"/>
-                                             </div>
-                                             <div className="clBoxitemitem">
-                                                   <h5>{propertyData?.developer.name}</h5>
-                                                   <p>DEVELOPER</p>
-                                             </div>
-                                       </div>
-                                       <div className="clBoxitem">
-                                             <div className="circleImgBox">
-                                                  <img src="/images/icons/pro-icon-3.png" className="iconImg"/>
-                                             </div>
-                                             <div className="clBoxitemitem">
-                                                   <h5>{propertyData?.community["name"]}</h5>
-                                                   <p>COMMUNITY</p>
-                                             </div>
-                                       </div>
-                                </div>
-                            </div>
-                       
 
-                            {/* <div className="col-12 col-lg-12 my-auto">
+                        <div className="row">
+                          <div className="col-lg-7">
+                            <div className="proColImgBox">
+                              <img
+                                src={propertyData?.project?.image}
+                                alt={propertyData?.project?.name}
+                                className="img-fluid"
+                              />
+                            </div>
+                          </div>
+                          <div className="col-lg-5">
+                            <div className="clBoxList">
+                              <div className="clBoxitem">
+                                <div className="circleImgBox">
+                                  <img
+                                    src="/images/icons/pro-icon-1.png"
+                                    className="iconImg"
+                                  />
+                                </div>
+                                <div className="clBoxitemitem">
+                                  <h5>Q4 2027</h5>
+                                  <p>{propertyData?.project?.handOver}</p>
+                                </div>
+                              </div>
+                              <div className="clBoxitem">
+                                <div className="circleImgBox">
+                                  <img
+                                    src="/images/icons/pro-icon-2.png"
+                                    className="iconImg"
+                                  />
+                                </div>
+                                <div className="clBoxitemitem">
+                                  <h5>{propertyData?.developer.name}</h5>
+                                  <p>DEVELOPER</p>
+                                </div>
+                              </div>
+                              <div className="clBoxitem">
+                                <div className="circleImgBox">
+                                  <img
+                                    src="/images/icons/pro-icon-3.png"
+                                    className="iconImg"
+                                  />
+                                </div>
+                                <div className="clBoxitemitem">
+                                  <h5>{propertyData?.community["name"]}</h5>
+                                  <p>COMMUNITY</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* <div className="col-12 col-lg-12 my-auto">
                               <div className="aboutProImg">
                                 <img
                                   src={propertyData?.project?.image}
@@ -479,9 +496,8 @@ function SinglePropertyView({ params }) {
                                 />
                               </div>
                             </div> */}
-
                         </div>
-                       
+
                         <div className="">
                           <h5 className="mainHead text-primary">
                             <Link
@@ -500,9 +516,8 @@ function SinglePropertyView({ params }) {
                         </div>
                       </div>
                     )}
-                    
                 </div>
-                
+
                 <div className="col-12 col-lg-4 col-md-4">
                   <div className=" px-2">
                     <div className="rowFlexBar border-bottom border-2">
@@ -513,10 +528,9 @@ function SinglePropertyView({ params }) {
                           </p>
                           <p className="fw-500 mb-0 fs-16">
                             For {propertyData && propertyData.category}
-                            {
-                              propertyData?.category === 'Rent' && 
+                            {propertyData?.category === "Rent" && (
                               <small> ({propertyData?.rental_period}) </small>
-                            }
+                            )}
                           </p>
                         </div>
                       </div>
@@ -594,72 +608,73 @@ function SinglePropertyView({ params }) {
                             </span>
                           </small>
                         </li>
-                        {propertyData &&
-                          propertyData.developer &&
-                          
-                            <li className="liBar">
-                              <small>
-                                <img
-                                  src="/images/icons/building.png"
-                                  alt="Range"
-                                  className="img-fluid"
-                                  width="30px"
-                                />
-                                <span className="align-text-top ms-2 fs-16 fw-500">
-                                  <Link
-                                    href={`/developers/${propertyData?.developer.slug}`}
-                                    className="text-decoration-none"
-                                  >
-                                    {propertyData?.developer.name}
-                                  </Link>
-                                </span>
-                              </small>
-                            </li>
-                          }
+                        {propertyData && propertyData.developer && (
+                          <li className="liBar">
+                            <small>
+                              <img
+                                src="/images/icons/building.png"
+                                alt="Range"
+                                className="img-fluid"
+                                width="30px"
+                              />
+                              <span className="align-text-top ms-2 fs-16 fw-500">
+                                <Link
+                                  href={`/developers/${propertyData?.developer.slug}`}
+                                  className="text-decoration-none"
+                                >
+                                  {propertyData?.developer.name}
+                                </Link>
+                              </span>
+                            </small>
+                          </li>
+                        )}
                       </ul>
                     </div>
-                    {propertyData?.agent && 
-                    <div className="py-3 proUserBox">
-                    <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
-                      <div className="my-auto projctSpecIMg me-3 mb-3">
-                        <center>
-                          <img
-                            src={
-                              propertyData?.agent && propertyData.agent?.image
-                            }
-                            className="img-fluid"
-                            width="60"
-                            alt={
-                              propertyData?.agent && propertyData.agent?.name
-                            }
-                          />
-                        </center>
-                      </div>
-                      <div className="proUserBoxContent mb-3">
-                        <div className="projectSpec  text-uppercase">
-                          <p className="text-primary fw-500 mb-0 fs-16">
-                            {propertyData?.agent && propertyData?.agent?.name}
-                          </p>
-                          <p className="fw-500 mb-2 fs-16">
-                            {propertyData?.agent &&
-                              propertyData?.agent?.designation}
-                          </p>
-                          <a
-                            href={"tel:" + propertyData?.agent?.contact}
-                            className="Probtn bg-primary"
-                          >
-                            <img
-                              src="/images/icons/phone.png"
-                              className="proPhoneIcon"
-                            />
-                            CALL NOW
-                          </a>
+                    {propertyData?.agent && (
+                      <div className="py-3 proUserBox">
+                        <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
+                          <div className="my-auto projctSpecIMg me-3 mb-3">
+                            <center>
+                              <img
+                                src={
+                                  propertyData?.agent &&
+                                  propertyData.agent?.image
+                                }
+                                className="img-fluid"
+                                width="60"
+                                alt={
+                                  propertyData?.agent &&
+                                  propertyData.agent?.name
+                                }
+                              />
+                            </center>
+                          </div>
+                          <div className="proUserBoxContent mb-3">
+                            <div className="projectSpec  text-uppercase">
+                              <p className="text-primary fw-500 mb-0 fs-16">
+                                {propertyData?.agent &&
+                                  propertyData?.agent?.name}
+                              </p>
+                              <p className="fw-500 mb-2 fs-16">
+                                {propertyData?.agent &&
+                                  propertyData?.agent?.designation}
+                              </p>
+                              <a
+                                href={"tel:" + propertyData?.agent?.contact}
+                                className="Probtn bg-primary"
+                              >
+                                <img
+                                  src="/images/icons/phone.png"
+                                  className="proPhoneIcon"
+                                />
+                                CALL NOW
+                              </a>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  }
-                    
+                    )}
+
                     <div className="py-3">
                       <div className="BtnsflexBar mb-3">
                         <a
@@ -729,12 +744,10 @@ function SinglePropertyView({ params }) {
                       </div>
                     )} */}
                   </div>
-                  {
-                    propertyData?.category != 'Rent' &&
+                  {propertyData?.category != "Rent" && (
                     <MortgageCalculator property={propertyData} />
-                  }
-                  
-                  
+                  )}
+
                   {/* <div>
                     {propertyData && (
                       <>
@@ -768,9 +781,8 @@ function SinglePropertyView({ params }) {
                       </>
                     )}
                   </div> */}
-                {propertyData && propertyData.community && (
-                  <div className="bg-light px-3 py-2 mb-5">
-
+                  {propertyData && propertyData.community && (
+                    <div className="bg-light px-3 py-2 mb-5">
                       <div className="py-3">
                         <p className="text-primary fw-500 mb-0 fs-20">
                           <Link
@@ -784,101 +796,100 @@ function SinglePropertyView({ params }) {
                           {/* Community */}
                         </p>
                       </div>
-                    
 
-                    <div>
-                       {propertyData?.community["gallery"] && 
-                      <Swiper
-                      loop={true}
-                      slidesPerView={1}
-                      spaceBetween={10}
-                      navigation={{
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
-                      }}
-                      breakpoints={{
-                        640: {
-                          slidesPerView: 1,
-                          spaceBetween: 10,
-                        },
-                        768: {
-                          slidesPerView: 1,
-                          spaceBetween: 10,
-                        },
-                        1024: {
-                          slidesPerView: 1,
-                          spaceBetween: 10,
-                        },
-                      }}
-                      modules={[Navigation]}
-                      onSwiper={(swiper) => {
-                        CommunitySwiperRef.current = swiper;
-                      }}
-                      className="swiper pb-5 communityProjectSwiperr"
-                    >
-                      {propertyData?.community["gallery"].map(
-                        (community, index) => {
-                          return (
-                            <SwiperSlide
-                              key={community.id + index + "community"}
+                      <div>
+                        {propertyData?.community["gallery"] && (
+                          <Swiper
+                            loop={true}
+                            slidesPerView={1}
+                            spaceBetween={10}
+                            navigation={{
+                              nextEl: ".swiper-button-next",
+                              prevEl: ".swiper-button-prev",
+                            }}
+                            breakpoints={{
+                              640: {
+                                slidesPerView: 1,
+                                spaceBetween: 10,
+                              },
+                              768: {
+                                slidesPerView: 1,
+                                spaceBetween: 10,
+                              },
+                              1024: {
+                                slidesPerView: 1,
+                                spaceBetween: 10,
+                              },
+                            }}
+                            modules={[Navigation]}
+                            onSwiper={(swiper) => {
+                              CommunitySwiperRef.current = swiper;
+                            }}
+                            className="swiper pb-5 communityProjectSwiperr"
+                          >
+                            {propertyData?.community["gallery"].map(
+                              (community, index) => {
+                                return (
+                                  <SwiperSlide
+                                    key={community.id + index + "community"}
+                                  >
+                                    <div className="swiper-slide">
+                                      <Link
+                                        href={`/communities/${propertyData.community["slug"]}`}
+                                        className="text-decoration-none communityImgCont"
+                                      >
+                                        <img
+                                          src={community["path"]}
+                                          alt="community1"
+                                          className="img-fluid"
+                                          style={{
+                                            height: "300px",
+                                            width: "500px",
+                                          }}
+                                        />
+                                        {/* <div className="communityImgOverlay"> */}
+                                        {/* <div className="text-white"></div> */}
+                                        {/* </div> */}
+                                      </Link>
+                                    </div>
+                                  </SwiperSlide>
+                                );
+                              }
+                            )}
+                            <div
+                              className="swiper-button-prev swiperUniquePrev text-white"
+                              onClick={() =>
+                                CommunitySwiperRef.current?.slidePrev()
+                              }
                             >
-                              <div className="swiper-slide">
-                               
-
-
-                                <Link
-                                  href={`/communities/${propertyData.community["slug"]}`}
-                                  className="text-decoration-none communityImgCont"
-                                >
-                            <img
-                                    src={community["path"]}
-                                    alt="community1"
-                                    className="img-fluid"
-                                    style={{ height: "300px", width: "500px" }}
-                                  />
-                                  {/* <div className="communityImgOverlay"> */}
-                                    {/* <div className="text-white"></div> */}
-                                  {/* </div> */}
-                          </Link>
-
-                                  
-                               
-                              </div>
-                            </SwiperSlide>
-                          );
-                        }
-                      )}
-                      <div
-                        className="swiper-button-prev swiperUniquePrev text-white"
-                        onClick={() => CommunitySwiperRef.current?.slidePrev()}
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-left fs-1"></i>
-                        </span>
+                              <span className="">
+                                <i className="bi bi-chevron-left fs-1"></i>
+                              </span>
+                            </div>
+                            <div
+                              className="swiper-button-next swiperUniqueNext text-white"
+                              onClick={() =>
+                                CommunitySwiperRef.current?.slideNext()
+                              }
+                            >
+                              <span className="">
+                                <i className="bi bi-chevron-right fs-1"></i>
+                              </span>
+                            </div>
+                          </Swiper>
+                        )}
                       </div>
-                      <div
-                        className="swiper-button-next swiperUniqueNext text-white"
-                        onClick={() => CommunitySwiperRef.current?.slideNext()}
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-right fs-1"></i>
-                        </span>
+                      <div className="">
+                        <p className="mb-0 fs-14">
+                          {propertyData &&
+                            propertyData.community &&
+                            parse(propertyData.community["description"] ?? "")}
+                        </p>
                       </div>
-                      </Swiper>
-                    }
-                       
                     </div>
-                    <div className="">
-                      <p className="mb-0 fs-14">
-                        {propertyData &&
-                          propertyData.community &&
-                          parse(propertyData.community["description"] ?? "")}
-                      </p>
-                    </div>
-                  </div>
                   )}
                 </div>
-              
+
                 {propertyData && (
                   <>
                     <div className="col-12 col-lg-12 col-md-8">
@@ -951,7 +962,6 @@ function SinglePropertyView({ params }) {
                               Hospital/Clinic
                             </button>
                           </div>
-                          
                         </div>
                         <div className="mapContainer py-3">
                           {isLoaded && (
@@ -1020,7 +1030,6 @@ function SinglePropertyView({ params }) {
                           )}
                         </div>
                         <div className="row g-1">
-                          
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
                               className={`btn btnNearby w-100 h-100 ${
@@ -1144,70 +1153,99 @@ function SinglePropertyView({ params }) {
               </div>
             </div>
           </div>
-           <div className="socialfixBar">
-                <div className="accordion" id="accordionExample">
-                      <div className="accordion-item">
-                          <button className="accordion-button FxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#fixBtn-1" aria-expanded="false" >
-                                <img src="/images/icons/btn-icon-5.png" className="fixBtnIcon" />
-                                <svg className="crossSvgIcon" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 384 512">
-                                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
-                                </svg>
-                          </button>
-                          <div id="fixBtn-1" className="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                               <div className="fixBtnContent">
-                                     {/* <button className="btnContentItem whatsapp">
+          <div className="socialfixBar">
+            <div className="accordion" id="accordionExample">
+              <div className="accordion-item">
+                <button
+                  className="accordion-button FxBtn"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#fixBtn-1"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="/images/icons/btn-icon-5.png"
+                    className="fixBtnIcon"
+                  />
+                  <svg
+                    className="crossSvgIcon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 384 512"
+                  >
+                    <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                  </svg>
+                </button>
+                <div
+                  id="fixBtn-1"
+                  className="accordion-collapse collapse "
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div className="fixBtnContent">
+                    {/* <button className="btnContentItem whatsapp">
                                            <i className="fa fa-whatsapp"></i>
                                             Share on whatsapp
                                       </button> */}
 
-                                      <WhatsappShareButton
-                                        title={propertyData?.name}
-                                        separator=","
-                                        url={getCurrentUrl()}
-                                        className="btnContentItem whatsapp"
-                                      >
-                                        <i
-                                          className="fa fa-whatsapp"
-                                          aria-hidden="true"
-                                        ></i>
-                                        Share on whatsapp
-                                      </WhatsappShareButton>
-{/* 
+                    <WhatsappShareButton
+                      title={propertyData?.name}
+                      separator=","
+                      url={getCurrentUrl()}
+                      className="btnContentItem whatsapp"
+                    >
+                      <i className="fa fa-whatsapp" aria-hidden="true"></i>
+                      Share on whatsapp
+                    </WhatsappShareButton>
+                    {/* 
                                       <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-3.png" className="fixBtnIcon" />
                                            Share on Email
                                       </button> */}
 
-                                      <EmailShareButton
-                                      url={getCurrentUrl()}
-                                      className="btnContentItem email"
-                                    >
-                                      <i
-                                        className="fa fa-envelope"
-                                        aria-hidden="true"
-                                      ></i>
-                                      Share on Email
-                                    </EmailShareButton>
-
-                               </div>
-                          </div>
-                      </div>
-                      <div className="accordion-item">
-                          <button className="accordion-button collapsed FxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#fixBtn-2" aria-expanded="false" >
-                               <img src="/images/icons/btn-icon-4.png" className="fixBtnIcon" />
-                                <svg className="crossSvgIcon" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 384 512">
-                                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
-                                </svg>
-                          </button>
-                          <div id="fixBtn-2" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                              <div className="fixBtnContent">
-                                    {/* <button className="btnContentItem">
+                    <EmailShareButton
+                      url={getCurrentUrl()}
+                      className="btnContentItem email"
+                    >
+                      <i className="fa fa-envelope" aria-hidden="true"></i>
+                      Share on Email
+                    </EmailShareButton>
+                  </div>
+                </div>
+              </div>
+              <div className="accordion-item">
+                <button
+                  className="accordion-button collapsed FxBtn"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#fixBtn-2"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="/images/icons/btn-icon-4.png"
+                    className="fixBtnIcon"
+                  />
+                  <svg
+                    className="crossSvgIcon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 384 512"
+                  >
+                    <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                  </svg>
+                </button>
+                <div
+                  id="fixBtn-2"
+                  className="accordion-collapse collapse"
+                  aria-labelledby="headingTwo"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div className="fixBtnContent">
+                    {/* <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
                                            download & Share Property Presentation
                                       </button> */}
 
-                                    <DownloadProjectPPTModal />
-                                    {/* <a
+                    <DownloadProjectPPTModal />
+                    {/* <a
                                       className="btnContentItem text-decoration-none"
                                       data-bs-toggle="modal"
                                       data-bs-target="#downlaodPPT"
@@ -1216,32 +1254,37 @@ function SinglePropertyView({ params }) {
                                       CLICK FOR MORE DETAILS
                                     </a> */}
 
-                                    <a
-                                      className="btnContentItem text-decoration-none"
-                                      data-bs-toggle="modal"
-                                      data-bs-target="#projectSaleOffer"
-                                    > <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" /> 
-                                      CLICK FOR A SALE OFFER
-                                    </a>
+                    <a
+                      className="btnContentItem text-decoration-none"
+                      data-bs-toggle="modal"
+                      data-bs-target="#projectSaleOffer"
+                    >
+                      {" "}
+                      <img
+                        src="/images/icons/btn-icon-1.png"
+                        className="fixBtnIcon"
+                      />
+                      CLICK FOR A SALE OFFER
+                    </a>
 
-                                      {/* <DownloadPPTModal /> */}
-                                      {/* <SaleOfferModal
+                    {/* <DownloadPPTModal /> */}
+                    {/* <SaleOfferModal
                                         email={propertyData?.agent?.email}
                                         name={propertyData?.agent?.name}
                                         whatsapp={propertyData?.agent?.whatsapp}
                                       /> */}
-                                      {/* <button className="btnContentItem">
+                    {/* <button className="btnContentItem">
                                           <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
                                             Download & Share Sale offer
                                       </button> */}
-                               </div>
-                          </div>
-                      </div>
+                  </div>
                 </div>
-           </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-      
+
       <section className="mt-5 bg-light py-5">
         <div className="container">
           <div className="row g-3 justify-content-center">
@@ -1256,169 +1299,169 @@ function SinglePropertyView({ params }) {
                 </div>
                 <div className="col-12 col-lg-12 col-md-12">
                   <div className="swiper pb-5 projectSlider">
-                    { propertyData?.similarProperties && 
-                    <Swiper
-                    loop={true}
-                    slidesPerView={1}
-                    spaceBetween={10}
-                    navigation={{
-                      nextEl: ".swiperUniqueNext",
-                      prevEl: ".swiperUniquePrev",
-                    }}
-                    breakpoints={{
-                      640: {
-                        slidesPerView: 2,
-                        spaceBetween: 10,
-                      },
-                      768: {
-                        slidesPerView: 3,
-                        spaceBetween: 10,
-                      },
-                      1024: {
-                        slidesPerView: 4,
-                        spaceBetween: 10,
-                      },
-                    }}
-                    modules={[Navigation]}
-                    onSwiper={(swiper) => {
-                      similiarPropertySwiperRef.current = swiper;
-                    }}
-                    className="swiper pb-5"
-                  >
-                    {propertyData?.similarProperties.map(
-                      (similarProperty, index) => {
-                        return (
-                          <SwiperSlide
-                            key={
-                              similarProperty.id + index + "similarProperty"
-                            }
-                          >
-                            <div className="swiper-slide">
-                              <div>
-                                <div className="card propCard rounded-0">
+                    {propertyData?.similarProperties && (
+                      <Swiper
+                        loop={true}
+                        slidesPerView={1}
+                        spaceBetween={10}
+                        navigation={{
+                          nextEl: ".swiperUniqueNext",
+                          prevEl: ".swiperUniquePrev",
+                        }}
+                        breakpoints={{
+                          640: {
+                            slidesPerView: 2,
+                            spaceBetween: 10,
+                          },
+                          768: {
+                            slidesPerView: 3,
+                            spaceBetween: 10,
+                          },
+                          1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 10,
+                          },
+                        }}
+                        modules={[Navigation]}
+                        onSwiper={(swiper) => {
+                          similiarPropertySwiperRef.current = swiper;
+                        }}
+                        className="swiper pb-5"
+                      >
+                        {propertyData?.similarProperties.map(
+                          (similarProperty, index) => {
+                            return (
+                              <SwiperSlide
+                                key={
+                                  similarProperty.id + index + "similarProperty"
+                                }
+                              >
+                                <div className="swiper-slide">
                                   <div>
-                                    <div className="">
-                                      <a
-                                        href=""
-                                        className="text-decoration-none"
-                                      >
-                                        <div className="projectImgCont">
-                                          <img
-                                            src={
-                                              similarProperty.property_banner
-                                            }
-                                            alt="project1"
-                                            className="img-fluid propImg"
-                                          />
-                                          <div className="projectImgOverlay">
-                                            <div></div>
-                                            <div>
-                                              <span className="badge float-start fs-10 projectType">
-                                                {
-                                                  similarProperty.accommodation
+                                    <div className="card propCard rounded-0">
+                                      <div>
+                                        <div className="">
+                                          <a
+                                            href=""
+                                            className="text-decoration-none"
+                                          >
+                                            <div className="projectImgCont">
+                                              <img
+                                                src={
+                                                  similarProperty.property_banner
                                                 }
-                                              </span>
+                                                alt="project1"
+                                                className="img-fluid propImg"
+                                              />
+                                              <div className="projectImgOverlay">
+                                                <div></div>
+                                                <div>
+                                                  <span className="badge float-start fs-10 projectType">
+                                                    {
+                                                      similarProperty.accommodation
+                                                    }
+                                                  </span>
+                                                </div>
+                                              </div>
                                             </div>
-                                          </div>
+                                          </a>
                                         </div>
-                                      </a>
-                                    </div>
-                                    <div className="card-body rounded-3 rounded-top-0">
-                                      <Link
-                                        href={`/properties/${similarProperty.slug}`}
-                                        className="text-decoration-none"
-                                      >
-                                        <h6 className="text-black fs-16 fw-semibold mb-0">
-                                          {similarProperty.name}
-                                        </h6>
-                                      </Link>
-                                      <div className="mb-1">
-                                        <small className="text-secondary">
-                                          {similarProperty.communityName}
-                                        </small>
+                                        <div className="card-body rounded-3 rounded-top-0">
+                                          <Link
+                                            href={`/properties/${similarProperty.slug}`}
+                                            className="text-decoration-none"
+                                          >
+                                            <h6 className="text-black fs-16 fw-semibold mb-0">
+                                              {similarProperty.name}
+                                            </h6>
+                                          </Link>
+                                          <div className="mb-1">
+                                            <small className="text-secondary">
+                                              {similarProperty.communityName}
+                                            </small>
+                                          </div>
+                                          <p className="fs-18 mb-2 text-primary fw-semibold">
+                                            AED{" "}
+                                            {similarProperty &&
+                                              new Intl.NumberFormat().format(
+                                                similarProperty.price
+                                              )}{" "}
+                                          </p>
+                                          <ul className="list-unstyled mb-0 d-flex justify-content-between">
+                                            <li className="d-inline">
+                                              <small>
+                                                <img
+                                                  src="/images/icons/bed.png"
+                                                  alt="Range"
+                                                  className="img-fluid"
+                                                  width="25px"
+                                                />
+                                                <span className="align-text-top ms-1">
+                                                  {similarProperty.bedrooms}
+                                                </span>
+                                              </small>
+                                            </li>
+                                            <li className="d-inline">
+                                              <small>
+                                                <img
+                                                  src="/images/icons/bath.png"
+                                                  alt="Range"
+                                                  className="img-fluid"
+                                                  width="20px"
+                                                />
+                                                <span className="align-text-top ms-1">
+                                                  {similarProperty.bathrooms}
+                                                </span>
+                                              </small>
+                                            </li>
+                                            <li className="d-inline">
+                                              <small>
+                                                <img
+                                                  src="/images/icons/area.png"
+                                                  alt="Range"
+                                                  className="img-fluid"
+                                                  width="20px"
+                                                />
+                                                <span className="align-text-top ms-1">
+                                                  {" "}
+                                                  {similarProperty.area}{" "}
+                                                  {similarProperty.unit_measure}
+                                                </span>
+                                              </small>
+                                            </li>
+                                          </ul>
+                                        </div>
                                       </div>
-                                      <p className="fs-18 mb-2 text-primary fw-semibold">
-                                        AED{" "}
-                                        {similarProperty &&
-                                          new Intl.NumberFormat().format(
-                                            similarProperty.price
-                                          )}{" "}
-                                      </p>
-                                      <ul className="list-unstyled mb-0 d-flex justify-content-between">
-                                        <li className="d-inline">
-                                          <small>
-                                            <img
-                                              src="/images/icons/bed.png"
-                                              alt="Range"
-                                              className="img-fluid"
-                                              width="25px"
-                                            />
-                                            <span className="align-text-top ms-1">
-                                              {similarProperty.bedrooms}
-                                            </span>
-                                          </small>
-                                        </li>
-                                        <li className="d-inline">
-                                          <small>
-                                            <img
-                                              src="/images/icons/bath.png"
-                                              alt="Range"
-                                              className="img-fluid"
-                                              width="20px"
-                                            />
-                                            <span className="align-text-top ms-1">
-                                              {similarProperty.bathrooms}
-                                            </span>
-                                          </small>
-                                        </li>
-                                        <li className="d-inline">
-                                          <small>
-                                            <img
-                                              src="/images/icons/area.png"
-                                              alt="Range"
-                                              className="img-fluid"
-                                              width="20px"
-                                            />
-                                            <span className="align-text-top ms-1">
-                                              {" "}
-                                              {similarProperty.area}{" "}
-                                              {similarProperty.unit_measure}
-                                            </span>
-                                          </small>
-                                        </li>
-                                      </ul>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                        );
-                      }
-                    )}
+                              </SwiperSlide>
+                            );
+                          }
+                        )}
 
-                    <div
-                      className="swiper-button-next swiperUniqueNext text-primary"
-                      onClick={() =>
-                        similiarPropertySwiperRef.current?.slidePrev()
-                      }
-                    >
-                      <span className="">
-                        <i className="bi bi-chevron-right fs-1"></i>
-                      </span>
-                    </div>
-                    <div
-                      className="swiper-button-prev swiperUniquePrev text-primary"
-                      onClick={() =>
-                        similiarPropertySwiperRef.current?.slideNext()
-                      }
-                    >
-                      <span className="">
-                        <i className="bi bi-chevron-left fs-1"></i>
-                      </span>
-                    </div>
-                  </Swiper>
-                  }  
+                        <div
+                          className="swiper-button-next swiperUniqueNext text-primary"
+                          onClick={() =>
+                            similiarPropertySwiperRef.current?.slidePrev()
+                          }
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-right fs-1"></i>
+                          </span>
+                        </div>
+                        <div
+                          className="swiper-button-prev swiperUniquePrev text-primary"
+                          onClick={() =>
+                            similiarPropertySwiperRef.current?.slideNext()
+                          }
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-left fs-1"></i>
+                          </span>
+                        </div>
+                      </Swiper>
+                    )}
                   </div>
                 </div>
               </div>
@@ -1429,7 +1472,10 @@ function SinglePropertyView({ params }) {
       <CalenderModel />
       <DownloadPPTModal />
       <SaleOfferModal />
-      <DownloadProjectSaleOfferModel brochureLink={propertyData?.saleOfferLink} fileName={propertyData?.name+" Brochure.pdf"}/>
+      <DownloadProjectSaleOfferModel
+        brochureLink={propertyData?.saleOfferLink}
+        fileName={propertyData?.name + " Brochure.pdf"}
+      />
     </>
   );
 }

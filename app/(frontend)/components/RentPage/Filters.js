@@ -248,7 +248,7 @@ function Filters({
   }, [isMobile]);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "propertiesList?";
+    let getPropertiesURL = process.env.API_HOST + "/propertiesList?";
     let payload = { ...form };
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
