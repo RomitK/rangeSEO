@@ -230,6 +230,7 @@ function BuyFilters({
 
   function isEmptyObject() {
     const o = { ...form };
+    delete o.sortBy;
     if(o.category === "buy"){
 
         delete o.category;

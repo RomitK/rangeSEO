@@ -230,6 +230,7 @@ function RentFilters({
 
   function isEmptyObject() {
     const o = { ...form };
+    delete o.sortBy;
     if(o.category === "rent"){
 
         delete o.category;

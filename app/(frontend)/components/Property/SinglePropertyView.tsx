@@ -290,9 +290,8 @@ function SinglePropertyView({ params }) {
                             parse(propertyData?.description ?? "")}
                         </div>
                       </div>
-                      <br></br>
                       
-                      {/* <br></br>
+                      {/*
                       {
                         propertyData && 
                         <DownloadBrochure brochureLink={propertyData?.brochureLink} fileName={propertyData?.name+" Brochure.pdf"}></DownloadBrochure>
@@ -1275,7 +1274,7 @@ function SinglePropertyView({ params }) {
            </div>
         </div>
       </section>
-      
+      {propertyData && propertyData.similarProperties &&  propertyData.similarProperties.length > 0 && (
       <section className="mt-5 bg-light py-5">
         <div className="container">
           <div className="row g-3 justify-content-center">
@@ -1460,6 +1459,7 @@ function SinglePropertyView({ params }) {
           </div>
         </div>
       </section>
+      )}
       <CalenderModel />
       <DownloadPropertyPPTModal brochureLink={propertyData?.brochureLink} fileName={propertyData?.name+" Brochure.pdf"}/>
       <SaleOfferModal />

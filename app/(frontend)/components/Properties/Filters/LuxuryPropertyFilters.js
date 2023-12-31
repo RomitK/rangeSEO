@@ -217,6 +217,7 @@ function LuxuryPropertyFilters({
   function isEmptyObject() {
     const o = { ...form };
     delete o.exclusive;
+    delete o.sortBy;
     return Object.keys(o).every(function (x) {
       if (Array.isArray(o[x])) {
         return o[x].length > 0 ? false : true;
