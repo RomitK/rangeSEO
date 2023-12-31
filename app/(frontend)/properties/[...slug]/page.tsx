@@ -16,7 +16,7 @@ export const generateMetadata = async ({
   const slug = params.slug;
   if (slug) {
     const propertyMeta = await fetch(
-      `${process.env.API_HOST}properties/${slug}/meta`,
+      `${process.env.API_HOST}/properties/${slug}/meta`,
       { cache: "no-store" }
     )
       .then((res) => res.json())

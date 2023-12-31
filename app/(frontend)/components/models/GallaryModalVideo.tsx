@@ -1,19 +1,22 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "@/public/css/gallery-modal-styles.css";
 import { Pagination, Navigation } from "swiper/modules";
-import ReactPlayer from 'react-player/lazy'
+import ReactPlayer from "react-player/lazy";
 function GallaryModalVideo(props) {
+  const [play, setPlay] = useState(false);
+
   return (
     <>
       <button
         className="gallerymodalBtn"
         data-bs-toggle="modal"
         data-bs-target="#gallaryModalVideo"
+        onClick={() => setPlay(true)}
       >
         <i className="fa fa-play" aria-hidden="true"></i>
-       PLAY VIDEO
+        PLAY VIDEO
       </button>
 
       <div
@@ -31,6 +34,7 @@ function GallaryModalVideo(props) {
                 className="bg-transparent border-0"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                onClick={() => setPlay(false)}
               >
                 <i className="bi bi-x-circle text-primary"></i>
               </button>
@@ -40,24 +44,23 @@ function GallaryModalVideo(props) {
             <div className="modal-body  p-0 rounded-1 m-2">
               <div className="row g-0">
                 <div className="col-12 col-lg-12 col-md-12 descricalenderCol">
-                 
-
-                <div className="d-block w-100">
-                <ReactPlayer className='player-wrapper'
-                 width='100%'
-                onEnded={props.onEnd}
-                config={{
-                    youtube: {
-                        playerVars: {
+                  <div className="d-block w-100">
+                    <ReactPlayer
+                      className="player-wrapper"
+                      width="100%"
+                      onEnded={props.onEnd}
+                      playing={play}
+                      config={{
+                        youtube: {
+                          playerVars: {
                             autoplay: 0,
-                            controls: 1
-                        }
-                    }
-                }}
-                url={props.video} />
-
-                </div>
-                  
+                            controls: 1,
+                          },
+                        },
+                      }}
+                      url={props.video}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
