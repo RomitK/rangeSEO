@@ -518,7 +518,7 @@ function Filters({
 
         <div className="col-md-3 d-flex align-items-center gap-2 justify-content-end">
           <button
-            className="btn btn-sm btn-primary"
+            className="btn btn-primary"
             type="button"
             onClick={() => setShowMore(!showMore)}
           >
