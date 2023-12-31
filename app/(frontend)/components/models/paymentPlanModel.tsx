@@ -72,7 +72,7 @@ function PaymentPlanModel(props) {
                       Starting Price : AED {  new Intl.NumberFormat().format(props?.project?.price)}
                     </label>
                   </div>
-                  {props?.project?.payment.map(function (pay, index) {
+                  {props?.project?.payment?.map(function (pay, index) {
                     return (
                       <table
                         className="table table-bordered"

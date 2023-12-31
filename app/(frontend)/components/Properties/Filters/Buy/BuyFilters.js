@@ -10,7 +10,7 @@ import CustomToggle from "@/app/(frontend)/components/UI/CustomSelectToggle";
 import MultiValue from "@/app/(frontend)/components/UI/ReactSelect/MultiValue";
 import IndicatorsContainer from "@/app/(frontend)/components/UI/ReactSelect/IndicatorsContainer";
 import MultiValueContainer from "@/app/(frontend)/components/UI/ReactSelect/MultiValueContainer";
-
+import { useSearchParams } from "next/navigation";
 
 function BuyFilters({
   setShowMap,
@@ -48,6 +48,7 @@ function BuyFilters({
   const maxPriceRef = useRef(null);
   const minAreaRef = useRef(null);
   const maxAreaRef = useRef(null);
+  const searchParams = useSearchParams();
   const [isCommercial, setIsCommercial] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const [filteredAccomodation, setFilteredAccomodation] =
@@ -140,7 +141,50 @@ function BuyFilters({
       setShowMap(false);
     }
   }, [isMobile]);
+  useEffect(() => {
+    if (
+      searchParams.has("project_name") &&
+      searchParams.has("project_detail")
+    ) {
+      setForm({
+        ...form,
+        searchBy: [
+          {
+            type: searchParams.get("project_detail"),
+            name: searchParams.get("project_name"),
+          },
+        ],
+      });
+      selectRef.current.setValue([
+        {
+          type: searchParams.get("project_detail"),
+          name: searchParams.get("project_name"),
+        },
+      ]);
+    }
 
+    
+    if (
+      searchParams.has("community_name") &&
+      searchParams.has("community_detail")
+    ) {
+      setForm({
+        ...form,
+        searchBy: [
+          {
+            type: searchParams.get("community_detail"),
+            name: searchParams.get("community_name"),
+          },
+        ],
+      });
+      selectRef.current.setValue([
+        {
+          type: searchParams.get("community_detail"),
+          name: searchParams.get("community_name"),
+        },
+      ]);
+    }
+  }, []);
   useEffect(() => {
 
     let getPropertiesURL = process.env.API_HOST + "propertiesList?";

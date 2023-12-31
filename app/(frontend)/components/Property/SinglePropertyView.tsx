@@ -643,8 +643,9 @@ function SinglePropertyView({ params }) {
                           }
                       </ul>
                     </div>
-                    {propertyData?.agent && 
-                    <div className="py-3 proUserBox">
+                    {propertyData?.agent && (
+                      <>
+                      <div className="py-3 proUserBox">
                     <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
                       <div className="my-auto projctSpecIMg me-3 mb-3">
                         <center>
@@ -683,9 +684,8 @@ function SinglePropertyView({ params }) {
                       </div>
                     </div>
                   </div>
-                  }
-                    
-                    <div className="py-3">
+                  
+                      <div className="py-3">
                       <div className="BtnsflexBar mb-3">
                         <a
                           className="Probtn whatsappBtn wd50pr"
@@ -694,7 +694,7 @@ function SinglePropertyView({ params }) {
                             propertyData?.agent?.whatsapp +
                             "?text=Hi, " +
                             propertyData?.agent?.name +
-                            " Please let me know more about investing in Dubai Real Estate"
+                            " Please let me know more about the following property "+getCurrentUrl() 
                           }
                         >
                           <i className="fa fa-whatsapp"></i>
@@ -720,6 +720,10 @@ function SinglePropertyView({ params }) {
                         </a>
                       </div>
                     </div>
+                      </>
+                    
+                    )}
+                    
                     {/*                     
                     {propertyData && (
                       <div className="py-3">
@@ -839,7 +843,7 @@ function SinglePropertyView({ params }) {
                       onSwiper={(swiper) => {
                         CommunitySwiperRef.current = swiper;
                       }}
-                      className="swiper pb-5 communityProjectSwiperr"
+                      className="swiper pb-2 communityProjectSwiperr"
                     >
                       {propertyData?.community["gallery"].map(
                         (community, index) => {
@@ -848,14 +852,11 @@ function SinglePropertyView({ params }) {
                               key={community.id + index + "community"}
                             >
                               <div className="swiper-slide">
-                               
-
-
                                 <Link
                                   href={`/communities/${propertyData.community["slug"]}`}
                                   className="text-decoration-none communityImgCont"
                                 >
-                            <img
+                                <img
                                     src={community["path"]}
                                     alt="community1"
                                     className="img-fluid"
@@ -864,10 +865,7 @@ function SinglePropertyView({ params }) {
                                   {/* <div className="communityImgOverlay"> */}
                                     {/* <div className="text-white"></div> */}
                                   {/* </div> */}
-                          </Link>
-
-                                  
-                               
+                                </Link>
                               </div>
                             </SwiperSlide>
                           );

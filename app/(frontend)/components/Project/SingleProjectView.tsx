@@ -765,7 +765,7 @@ function SingleProjectView({ params }) {
           </div>
         </section>
       
-
+      {projectData && (projectData?.rentProperties?.length > 0 || projectData?.buyProperties?.length > 0) && (
       <section className="mt-5 bg-light py-5" id="AvailableProperties">
         <div className="container">
           <div className="row g-3 justify-content-center">
@@ -777,21 +777,23 @@ function SingleProjectView({ params }) {
                       <h4 className="sctionMdTitle text-primary">
                         AVAILABLE PROPERTIES
                       </h4>
+                      {projectData?.rentProperties.length > 0 && (
                       <div className="row">
                         <h6 className="sctionSubTitle text-primary col-6">
                           FOR RENT
                         </h6>
                         <div className="col-6 text-end">
-                          {projectData?.rentProperties.length > 0 && (
+                          
                             <Link
                               href={`/rent?project_name=${projectData?.title}&project_detail=${projectData?.id}`}
                               className="text-decoration-none bdrBtn width-auto-fit"
                             >
                               View All
                             </Link>
-                           )}
+                           
                         </div>
                       </div>
+                    )}
                     </div>
                   </div>
                 </div>
@@ -960,20 +962,21 @@ function SingleProjectView({ params }) {
                     </div>
                   </div>
                 )}
-                <div className="row mb-5">
+                {projectData?.buyProperties.length > 0 && (
+                  <>
+                  <div className="row mb-5">
                   <h6 className="sctionSubTitle text-primary col-6">FOR SALE</h6>
                   <div className="col-6 text-end">
-                    {projectData?.buyProperties.length > 0 && (
+                    
                       <Link
                       href={`/buy?project_name=${projectData?.title}&project_detail=${projectData?.id}`}
                         className="text-decoration-none bdrBtn width-auto-fit"
                       >
                         View All
                       </Link>
-                    )}
+                    
                   </div>
                 </div>
-                {projectData?.buyProperties.length > 0 && (
                   <div className="col-12 col-lg-12 col-md-12">
                     <div className="swiper pb-5 projectSlider">
                       <Swiper
@@ -1137,12 +1140,15 @@ function SingleProjectView({ params }) {
                       </Swiper>
                     </div>
                   </div>
+                  </>
+                
                 )}
               </div>
             </div>
           </div>
         </div>
       </section>
+      )}
       {projectData?.types?.map((type, index) => {
         return (
           <div
