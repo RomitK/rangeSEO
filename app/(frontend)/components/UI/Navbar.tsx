@@ -254,6 +254,24 @@ function Navbar() {
                             FAQ's
                           </Link>
                         </li>
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/faqs"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            CHECK 1
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/faqs"
+                            onClick={() => closeRef.current.click()}
+                          >
+                             CHECK 2
+                          </Link>
+                        </li>
                       </ul>
                     </div>
                   </div>
