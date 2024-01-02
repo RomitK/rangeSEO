@@ -207,6 +207,60 @@ function Navbar() {
                     </div>
                     <div className="offcanvas-body">
                       <ul className="list-unstyled dropList">
+
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/properties"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            Properties
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/projects"
+                            onClick={() => closeRef.current.click()}
+                          >
+                             Projects
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/communities"
+                            onClick={() => closeRef.current.click()}
+                          >
+                             Communities
+                          </Link>
+                        </li>
+
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/developers"
+                            onClick={() => closeRef.current.click()}
+                          >
+                             Developers
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/teams"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            Meet the Team
+                          </Link>
+                        </li>
+
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link className="nav-link" href="/about" onClick={() => closeRef.current.click()}>
+                            About Range
+                          </Link>
+                        </li>
+
                         <li className="nav-item py-3 border-bottom">
                           <Link
                             className="nav-link"
@@ -255,24 +309,7 @@ function Navbar() {
                             FAQ's
                           </Link>
                         </li>
-                        <li className="nav-item py-3 border-bottom mobItemLink">
-                          <Link
-                            className="nav-link"
-                            href="/faqs"
-                            onClick={() => closeRef.current.click()}
-                          >
-                            CHECK 1
-                          </Link>
-                        </li>
-                        <li className="nav-item py-3 border-bottom mobItemLink">
-                          <Link
-                            className="nav-link"
-                            href="/faqs"
-                            onClick={() => closeRef.current.click()}
-                          >
-                             CHECK 2
-                          </Link>
-                        </li>
+                        
                       </ul>
                     </div>
                   </div>
@@ -523,7 +560,60 @@ function Navbar() {
                     </div>
                     <div className="offcanvas-body">
                       <ul className="list-unstyled dropList">
-                      <li className="nav-item py-3 border-bottom">
+                      <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/properties"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            Properties
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/projects"
+                            onClick={() => closeRef.current.click()}
+                          >
+                             Projects
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/communities"
+                            onClick={() => closeRef.current.click()}
+                          >
+                             Communities
+                          </Link>
+                        </li>
+
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/developers"
+                            onClick={() => closeRef.current.click()}
+                          >
+                             Developers
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/teams"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            Meet the Team
+                          </Link>
+                        </li>
+
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link className="nav-link" href="/about" onClick={() => closeRef.current.click()}>
+                            About Range
+                          </Link>
+                        </li>
+                        
+                        <li className="nav-item py-3 border-bottom">
                           <Link
                             className="nav-link"
                             href="/goldenVisa"
