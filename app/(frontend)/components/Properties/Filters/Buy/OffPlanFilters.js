@@ -606,7 +606,7 @@ function OffPlanFilters({
             </label>
           </div>
           <button
-            className="btn btn-primary"
+            className="btn btn-sm btn-primary"
             type="button"
             onClick={() => setShowMore(!showMore)}
           >
