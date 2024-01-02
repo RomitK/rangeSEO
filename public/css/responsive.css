@@ -13,12 +13,12 @@ min-height: 90px;
 justify-content: center;
 }
 .bgAboutDubai{
-    position: absolute;
-    bottom: 0;
-    left: 0;
+position: absolute;
+bottom: 0;
+left: 0;
 }
 .broucherBtn{
-    margin-bottom: 40px;
+margin-bottom: 40px;
 }
 }
 @media (max-width:992px){
@@ -67,20 +67,20 @@ padding:20px 0px;
 grid-template-columns: auto auto auto !important ;
 }
 .rowSec{
- flex-direction: column;
- width: 100%;
+flex-direction: column;
+width: 100%;
 }
 .guideSellSection .colmBox.formBox, .guideSellSection .rowSec .colmBox{
-    width: 100%;
+width: 100%;
 }
 .sliderThumbnailArea .sliderModalBox{
-    width: 200px;
+width: 200px;
 }
 .sliderThumbnailArea .gallerymodalBtn{
-    font-size: 11px;
+font-size: 11px;
 }
 .sliderModalBox .gallerymodalBtn i{
-    font-size: 14px;
+font-size: 14px;
 }
 .sliderThumbnailArea{
 height: 9vw !important;
@@ -162,10 +162,10 @@ header .headerSimpleImg{
 height: 250px;
 }
 header.aboutHeader .headerSimpleImg{
-    height: 160px ;
+height: 160px ;
 }
 .aboutPgSection{
-    padding-top: 40px !important;
+padding-top: 40px !important;
 }
 .TeamRow .teamCard{
 width: 100%;
@@ -177,62 +177,62 @@ grid-template-columns: auto auto !important ;
 height: 260px;
 }
 .listCardArea .fillBtn.appleNowBtn{
-    position: relative;
-    top: unset;
-    right: unset;
+position: relative;
+top: unset;
+right: unset;
 }
 .headerImgVideo{
-    height: 500PX;
+height: 500PX;
 }
 .headTitle{
-    font-size: 36px;
+font-size: 36px;
 }
 .listCardArea.SingleCareerSec{
-    padding-left: 20px;
-    border-left: 6px solid #136DAE !important;
+padding-left: 20px;
+border-left: 6px solid #136DAE !important;
 }
 .listCardTit{
-    font-size: 30px;
-    margin-bottom: 10px;
+font-size: 30px;
+margin-bottom: 10px;
 }
 .arrrowIconImg{
-    display: none;
+display: none;
 }
 .guideSellSection .colmBoxContent h2{
-    font-size: 30px;
+font-size: 30px;
 }
 .guideSellSection .colmBoxImg{
-    height: 400px;
+height: 400px;
 }
 .guideSellSection .colmBox.formBox{
 padding: 20px;
 }
 .sellWithRange .headerImgVideo{
-    height: 480px !important;
+height: 480px !important;
 }
 .sellWithRange .headTitle{
-    font-size: 24px;
-    font-weight: 500;
+font-size: 24px;
+font-weight: 500;
 }
 .rowArea .colmBox h5{
-    font-size: 16px;
+font-size: 16px;
 }
 .sectionSec .rowArea .colmBox .iconImg {
-    width: 60px;
-    height: 60px;
+width: 60px;
+height: 60px;
 }
 .videoSectionContiner .videoBox .videoMain{
-    height: 200px;
+height: 200px;
 }
 .bgAboutDubai{
-    position: relative;
+position: relative;
 }
 .bgAboutDubai{
-    width: 100%;
-    height: 280px;
+width: 100%;
+height: 280px;
 }
 .dashboardcontrols.wizardWrapArea{
-    padding: 30px 20px !important;
+padding: 30px 20px !important;
 }
 .sliderThumbnailArea{
 height: unset !important;
@@ -270,19 +270,19 @@ font-size: 20px;
 
 
 .frmTabList .nav-link{
-    min-width: 90px;
-    font-size: 12px;
+min-width: 90px;
+font-size: 12px;
 }
 .search-input.frmSearcBar input{
-    font-size: 14px;
-    height: 44px;
+font-size: 14px;
+height: 44px;
 }
 .search-input.frmSearcBar .fa-search{
- font-size: 16px;
- top: 12px;
+font-size: 16px;
+top: 12px;
 }
 .headerForm{
-    width: 90%;
+width: 90%;
 }
 .navbar .container .my-auto .d-flex.justify-content-end{
 position: absolute;
@@ -295,17 +295,17 @@ nav.navbar.bg-white{
 padding-bottom: 15px;
 }
 .clmSliderItem .carouselcontent .downloadBtn {
-    width: 206px;
-    font-size: 16px;
+width: 206px;
+font-size: 16px;
 }
 .clmSliderItem .carouselcontent h3{
-    font-size: 25px !important;
+font-size: 25px !important;
 }
 .sellWithRange .headConentBox{
-    max-width: 90% !important;
+max-width: 90% !important;
 }
 .wizardFooterBar button{
-    width: 70px !important;
+width: 70px !important;
 }
 .homeHeader .videoContainer {
 display: none;
@@ -318,87 +318,93 @@ background-size: cover;
 background-position: center;
 }
 .secTabCntent {
-    padding-left: 15px !important;
-    }
-    .header.careerHeader {
-        height: auto !important;
-    }
-    .faqSection{
-        margin-top: 20px !important;
-    }
-    .location-heading {
-        font-size: 34px !important;
-    }
-    .communityImgCont img {
-        height: 400px !important;
-    }
-    .propCard .propImg {
-        height: 200px !important;
-    }
-    .sliderContentArea .sliderContent h1 {
-        font-size: 40px !important;
-    }
-    .sliderContentArea .sliderContent h5 {
-        font-size: 24px !important;
-    }
-    .sliderContentArea .sliderContent{
-        max-width: 100% !important;
-    }
-    .vtTextBXox {
-        padding: 15px 0px !important;
-    }
-    .pb-5.communitySwiper{
-        padding-bottom: 0px !important;
-    }
-    .aboutHeader{
-        height: auto !important;
-    }
-    .section.carouselSection{
-        margin-bottom: 0px !important;
-    }
-    .video iframe {
-        height: 300px !important;
-        top: 0 !important;
-    }
-    .joinRange{
-        font-size: 28px !important;
-    }
-    .swiper-slide.swiper-slide-active.clmSliderItem {
-        height: 300px !important;
-    }
-    .swiper-slide.clmSliderItem.swiper-slide-next{
-        height: 250px !important;
-    }
-    .swiper-slide.clmSliderItem.swiper-slide-prev{
-        height: 250px !important;
-    }
-    .dubaiGuideSection .mb-5{
-        margin-bottom: 0px !important;
-    }
-    .dubaiGuideSection{
-        padding-bottom: 0px !important;
-    }
-    .dubaiGuideSection .multiSilder{
-        height: 350px !important;
-    }
-    .crdImgBox .horiCrdImg {
-        height: 250px !important;
-    }
-    .horizantalCard .crdContentBox {
-        padding: 20px 10px !important;
-    }
-    .imgSection .contentBox h2 {
-        font-size: 28px !important;
-    }
-    .imgSection.overlayBgClr{
-        height: 300px !important;
-    }
-    .socialLinkNav .iconRoundBlack{
-        width: 28px;
-        height: 28px;
-        display: flex;
-        align-items: center;
-        padding: 0;
-        justify-content: center;
-    }
+padding-left: 15px !important;
+}
+.header.careerHeader {
+height: auto !important;
+}
+.faqSection{
+margin-top: 20px !important;
+}
+.location-heading {
+font-size: 34px !important;
+}
+.communityImgCont img {
+height: 400px !important;
+}
+.propCard .propImg {
+height: 200px !important;
+}
+.sliderContentArea .sliderContent h1 {
+font-size: 40px !important;
+}
+.sliderContentArea .sliderContent h5 {
+font-size: 24px !important;
+}
+.sliderContentArea .sliderContent{
+max-width: 100% !important;
+}
+.vtTextBXox {
+padding: 15px 0px !important;
+}
+.pb-5.communitySwiper{
+padding-bottom: 0px !important;
+}
+.aboutHeader{
+height: auto !important;
+}
+.section.carouselSection{
+margin-bottom: 0px !important;
+}
+.video iframe {
+height: 300px !important;
+top: 0 !important;
+}
+.joinRange{
+font-size: 28px !important;
+}
+.swiper-slide.swiper-slide-active.clmSliderItem {
+height: 300px !important;
+}
+.swiper-slide.clmSliderItem.swiper-slide-next{
+height: 250px !important;
+}
+.swiper-slide.clmSliderItem.swiper-slide-prev{
+height: 250px !important;
+}
+.dubaiGuideSection .mb-5{
+margin-bottom: 0px !important;
+}
+.dubaiGuideSection{
+padding-bottom: 0px !important;
+}
+.dubaiGuideSection .multiSilder{
+height: 350px !important;
+}
+.crdImgBox .horiCrdImg {
+height: 250px !important;
+}
+.horizantalCard .crdContentBox {
+padding: 20px 10px !important;
+}
+.imgSection .contentBox h2 {
+font-size: 28px !important;
+}
+.imgSection.overlayBgClr{
+height: 300px !important;
+}
+.socialLinkNav .iconRoundBlack{
+width: 28px;
+height: 28px;
+display: flex;
+align-items: center;
+padding: 0;
+justify-content: center;
+}
+.offcanvas-body .mobItemLink{
+display: block   !important;
+}
+.dubaiGuideSection .clmSliderItem .carouselcontent .downloadBtn {
+width: 200px !important;
+}
 }

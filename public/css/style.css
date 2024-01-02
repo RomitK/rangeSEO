@@ -1967,3 +1967,6 @@ background-color: #2f3c6a;
         height: 15px;
         object-fit: contain;
     }
+    .offcanvas-body .mobItemLink{
+        display: none;
+    }
