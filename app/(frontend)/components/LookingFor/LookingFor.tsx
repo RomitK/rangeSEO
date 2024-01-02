@@ -77,7 +77,7 @@ function LookingFor() {
               </div>
             </div>
           </div>
-          <div className="d-flex circleCardsRow lookingForDesktopItem">
+          <div className="d-flex circleCardsRow">
             {/* Circle box Start */}
             <div className="proCircleCard">
               <Link className="proCircleBox" href="/properties">
@@ -173,7 +173,7 @@ function LookingFor() {
             </div>
             {/* Circle box End */}
           </div>
-          <div className="lookingForMobileItem">
+          {/* <div className="lookingForMobileItem">
           <Swiper
                     slidesPerView={1}
                     spaceBetween={10}
@@ -221,7 +221,7 @@ function LookingFor() {
                       </div>
                     </SwiperSlide>
                     <SwiperSlide className="lookingMobileCard">
-                      {/* Circle box Start */}
+                       Circle box Start 
                       <div className="proCircleCard mb-2">
                         <Link className="proCircleBox lookingSingleMobileCard" href="/sell">
                           <div className="circleContent">
@@ -238,10 +238,10 @@ function LookingFor() {
                           <h6>02</h6>
                         </div>
                       </div>
-                      {/* Circle box End */}
+                       Circle box End 
                     </SwiperSlide>
                     <SwiperSlide className="lookingMobileCard">
-                      {/* Circle box Start */}
+                      Circle box Start 
                       <div className="proCircleCard mb-2 ">
                         <Link className="proCircleBox lookingSingleMobileCard" href="/services">
                           <div className="circleContent">
@@ -258,10 +258,10 @@ function LookingFor() {
                           <h6>03</h6>
                         </div>
                       </div>
-                      {/* Circle box End */}
+                       Circle box End 
                     </SwiperSlide>
                     <SwiperSlide className="lookingMobileCard">
-                     {/* Circle box Start */}
+                     Circle box Start 
                     <div className="proCircleCard mb-2 ">
                       <Link className="proCircleBox lookingSingleMobileCard" href="/services">
                         <div className="circleContent">
@@ -278,10 +278,10 @@ function LookingFor() {
                         <h6>04</h6>
                       </div>
                     </div>
-                    {/* Circle box End */}
+                    Circle box End
                     </SwiperSlide>
                     <SwiperSlide className="lookingMobileCard">
-                      {/* Circle box Start */}
+                      
                       <div className="proCircleCard mb-2">
                         <Link className="proCircleBox lookingSingleMobileCard" href="/services">
                           <div className="circleContent">
@@ -298,7 +298,7 @@ function LookingFor() {
                           <h6>05</h6>
                         </div>
                       </div>
-                      {/* Circle box End */}
+                      
                     </SwiperSlide>
 
                     <div
@@ -319,7 +319,7 @@ function LookingFor() {
                     </div>
             </Swiper>
           </div>
-            
+             */}
           
           <div className="col-12 col-lg-12 col-md-12">
             <div className="borderBottom"></div>

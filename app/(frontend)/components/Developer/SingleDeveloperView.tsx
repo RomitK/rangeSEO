@@ -149,7 +149,7 @@ function SingleDeveloperView({ params }) {
                 <div className="row g-3 justify-content-center">
                   <div className="col-12 col-lg-12 col-md-12">
                     <div>
-                      <div className="mainHead mb-3 text-center">
+                      <div className="mainHead mb-2 text-center">
                         <h4 className=" text-primary">{developerData.name}</h4>
                         {developerData &&
                           developerData.shortDescription &&

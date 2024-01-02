@@ -224,7 +224,7 @@ function SingleProjectView({ params }) {
                 Download Brochure
               </button> */}
 
-              <DownloadBrochure brochureLink={projectData.brochureLink} fileName={projectData.title+" Brochure.pdf"}></DownloadBrochure>
+              {/* <DownloadBrochure brochureLink={projectData.brochureLink} fileName={projectData.title+" Brochure.pdf"}></DownloadBrochure> */}
               </div>
               <div className="col-md-4">
                 {projectData?.interiorGallery && (
@@ -326,12 +326,12 @@ function SingleProjectView({ params }) {
                         onBeforeInit={(swiper) => {
                           amentitiesSwiperRef.current = swiper;
                         }}
-                        className="swiper pb-5 amenitiesSwiper px-5"
+                        className="swiper amenitiesSwiper px-5"
                       >
                         {projectData?.amenities?.map((amenity, index) => {
                           return (
                             <SwiperSlide key={amenity.id + index + "amentity"}>
-                              <div className="swiper-slide py-3">
+                              <div className="swiper-slide">
                                 <div className="">
                                   <div className="mb-2">
                                     <div className="amenityImg mx-auto">
@@ -585,6 +585,7 @@ function SingleProjectView({ params }) {
                   <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
                 </svg>
               </button>
+
               <div
                 id="fixBtn-2"
                 className="accordion-collapse collapse"
@@ -592,8 +593,16 @@ function SingleProjectView({ params }) {
                 data-bs-parent="#accordionExample"
               >
                 <div className="fixBtnContent">
+                <a
+        className="btnContentItem text-decoration-none"
+        data-bs-toggle="modal"
+        data-bs-target="#downloadBrochure"
+      >
+        <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
+        DOWNLOAD BROCHURE
+      </a>
+
                   
-                  <DownloadProjectPPTModal />
 
                   
                  {/* <a
@@ -766,7 +775,7 @@ function SingleProjectView({ params }) {
         </section>
       
       {projectData && (projectData?.rentProperties?.length > 0 || projectData?.buyProperties?.length > 0) && (
-      <section className="mt-5 bg-light py-5" id="AvailableProperties">
+      <section className="mt-5 bg-light py-3" id="AvailableProperties">
         <div className="container">
           <div className="row g-3 justify-content-center">
             <div className="col-12 col-lg-12 col-md-12">
@@ -799,7 +808,7 @@ function SingleProjectView({ params }) {
                 </div>
                 {projectData?.rentProperties.length > 0 && (
                   <div className="col-12 col-lg-12 col-md-12">
-                    <div className="swiper pb-5 projectSlider">
+                    <div className="swiper pb-3 projectSlider">
                       <Swiper
                         loop
                         slidesPerView={1}
@@ -964,7 +973,7 @@ function SingleProjectView({ params }) {
                 )}
                 {projectData?.buyProperties.length > 0 && (
                   <>
-                  <div className="row mb-5">
+                  <div className="row mb-3">
                   <h6 className="sctionSubTitle text-primary col-6">FOR SALE</h6>
                   <div className="col-6 text-end">
                     
@@ -978,7 +987,7 @@ function SingleProjectView({ params }) {
                   </div>
                 </div>
                   <div className="col-12 col-lg-12 col-md-12">
-                    <div className="swiper pb-5 projectSlider">
+                    <div className="swiper pb-3 projectSlider">
                       <Swiper
                         loop
                         slidesPerView={1}
@@ -1216,6 +1225,7 @@ function SingleProjectView({ params }) {
       
       <SaleOfferModal />
       <DownloadProjectSaleOfferModel/>
+      <DownloadProjectPPTModal />
     </>
   );
 }

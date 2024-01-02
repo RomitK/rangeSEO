@@ -114,15 +114,7 @@ function DownloadProjectPPTModal(props) {
     <>
       {isLoading && <Loader />}
 
-      <a
-        className="btnContentItem text-decoration-none"
-        data-bs-toggle="modal"
-        data-bs-target="#downloadBrochure"
-      >
-        <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
-        DOWNLOAD BROCHURE
-      </a>
-
+      
       <div
         className="modal fade"
         id="downloadBrochure"

@@ -429,4 +429,7 @@ width: 200px !important;
     height:50% !important;
     text-align:-webkit-center
 }
+.priceTable thead .tblThText {
+    font-size: 12px !important; 
+}
 }

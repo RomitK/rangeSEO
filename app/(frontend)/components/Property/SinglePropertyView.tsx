@@ -729,7 +729,7 @@ function SinglePropertyView({ params }) {
                             onSwiper={(swiper) => {
                               amentitiesSwiperRef.current = swiper;
                             }}
-                            className="swiper pb-5 amenitiesSwiper px-5"
+                            className="swiper amenitiesSwiper px-5"
                           >
                             {propertyData?.amenities?.slice(0, 8)?.map((amenity, index) => {
                               return (
@@ -796,11 +796,16 @@ function SinglePropertyView({ params }) {
                         <div className="row">
                             <div className="col-lg-7">
                                 <div className="proColImgBox">
+                                <Link
+                              href={`/projects/${propertyData?.project?.slug}`}
+                              className="text-decoration-none"
+                            >
                                 <img
                                   src={propertyData?.project?.image}
                                   alt={propertyData?.project?.name}
                                   className="img-fluid"
                                 />
+                                </Link>
                                 </div>
                             </div>
                             <div className="col-lg-5">
@@ -1640,7 +1645,7 @@ function SinglePropertyView({ params }) {
         </div>
       </section>
       {propertyData && propertyData.similarProperties &&  propertyData.similarProperties.length > 0 && (
-      <section className="mt-5 bg-light py-5">
+      <section className="mt-5 bg-light">
         <div className="container">
           <div className="row g-3 justify-content-center">
             <div className="col-12 col-lg-12 col-md-12">
@@ -1653,7 +1658,7 @@ function SinglePropertyView({ params }) {
                   </div>
                 </div>
                 <div className="col-12 col-lg-12 col-md-12">
-                  <div className="swiper pb-5 projectSlider">
+                  <div className="swiper pb-2 projectSlider">
                     { propertyData?.similarProperties && 
                     <Swiper
                     loop={true}

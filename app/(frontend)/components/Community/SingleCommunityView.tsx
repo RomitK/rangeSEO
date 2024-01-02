@@ -255,7 +255,7 @@ function SinglecommunityDataView({ params }) {
                   </div>
                 )}
                 <div className="col-12 col-lg-10 col-md-11">
-                  <div className="text-center my-5">
+                  <div className="text-center my-2">
                     {communityData &&
                       parse(communityData?.longDescription ?? "")}
                   </div>
@@ -344,7 +344,7 @@ function SinglecommunityDataView({ params }) {
                         onSwiper={(swiper) => {
                           hightlighSwiperRef.current = swiper;
                         }}
-                        className="swiper pb-5 highlightSwiper px-5"
+                        className="swiper highlightSwiper px-5"
                       >
                         {communityData?.highlights?.map((highlight, index) => {
                           return (
@@ -722,7 +722,7 @@ function SinglecommunityDataView({ params }) {
                         onSwiper={(swiper) => {
                           amentitiesSwiperRef.current = swiper;
                         }}
-                        className="swiper pb-5 amenitiesSwiper px-5"
+                        className="swiper amenitiesSwiper px-5"
                       >
                         {communityData?.amenities?.map((amenity, index) => {
                           return (
