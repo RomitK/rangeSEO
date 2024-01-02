@@ -120,7 +120,7 @@ function ContactPage() {
                 <h5>WhatsApp</h5>
                 <a
                   href={
-                    "https://wa.me/+971507672643?text=Hi, Please let me know more about investing in Dubai Real Estate"
+                    "https://wa.me/+971506337953?text=Hi, Please let me know more about investing in Dubai Real Estate"
                   }
                   className="textFlexBar"
                 >
@@ -129,7 +129,7 @@ function ContactPage() {
                     className="contact-icon"
                     alt="whatsapp"
                   />
-                  <p>+971507672643</p>
+                  <p>+971 50 633 7953</p>
                 </a>
               </div>
             </div>
