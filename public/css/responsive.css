@@ -404,6 +404,12 @@ justify-content: center;
 .offcanvas-body .mobItemLink{
 display: block   !important;
 }
+.propertyMobItemLink{
+    display: block   !important;
+}
+.propertyDesktopItemLink{
+    display: none   !important;
+}
 .dubaiGuideSection .clmSliderItem .carouselcontent .downloadBtn {
 width: 200px !important;
 }

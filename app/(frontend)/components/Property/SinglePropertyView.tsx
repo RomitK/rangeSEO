@@ -299,6 +299,368 @@ function SinglePropertyView({ params }) {
                       */}
                     </div>
                   </div>
+
+                  <div className="col-12 col-lg-4 col-md-4 propertyMobItemLink">
+                    <div className=" px-2">
+                        <div className="rowFlexBar border-bottom border-2">
+                          <div className="mdColBar">
+                            <div className=" py-3">
+                              <p className="text-primary fw-500 mb-1 fs-16">
+                              REFERENCE NUMBER
+                              </p>
+                              <p className="fw-500 mb-0 fs-16">
+                                {propertyData && propertyData?.reference_number}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="mdColBar">
+                            <div className=" py-3">
+                              <p className="text-primary fw-500 mb-1 fs-16">
+                                PERMIT NUMBER
+                              </p>
+                              <p className="fw-500 mb-0 fs-16">
+                                {propertyData && propertyData.permit_number}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                      <div className="rowFlexBar border-bottom border-2">
+                        <div className="mdColBar">
+                          <div className=" py-3">
+                            <p className="text-primary fw-500 mb-1 fs-16">
+                              PROPERTY STATUS
+                            </p>
+                            <p className="fw-500 mb-0 fs-16">
+                              For {propertyData && propertyData.category}
+                              {
+                                propertyData?.category === 'Rent' && 
+                                <small> ({propertyData?.rental_period}) </small>
+                              }
+                            </p>
+                          </div>
+                        </div>
+                        <div className="mdColBar">
+                          <div className=" py-3">
+                            <p className="text-primary fw-500 mb-1 fs-16">
+                              PROPERTY TYPE
+                            </p>
+                            <p className="fw-500 mb-0 fs-16">
+                              {propertyData && propertyData.accommodation}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="rowFlexBar border-bottom border-2">
+                        <div className="mdColBar">
+                          <div className=" py-3">
+                            <p className="text-primary fw-500 mb-1 fs-16">
+                              PRICE
+                            </p>
+                          </div>
+                        </div>
+                        <div className="mdColBar">
+                          <div className=" py-3">
+                            <p className="fw-500 mb-0 fs-16">
+                              AED{" "}
+                              {propertyData &&
+                                new Intl.NumberFormat().format(
+                                  propertyData.price
+                                )}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="border-bottom border-2 py-3">
+                        <ul className="list-unstyled proInfoList">
+                          <li className="liBar">
+                            <small>
+                              <img
+                                src="/images/icons/bed-blue.png"
+                                alt="Range"
+                                className="img-fluid"
+                                width="30px"
+                              />
+                              <span className="align-text-top ms-2 fs-14 fw-500">
+                                {propertyData && propertyData.bedrooms}
+                              </span>
+                            </small>
+                          </li>
+                          <li className="liBar">
+                            <small>
+                              <img
+                                src="/images/icons/bath-blue.png"
+                                alt="Range"
+                                className="img-fluid"
+                                width="30px"
+                              />
+                              <span className="align-text-top ms-2 fs-14 fw-500">
+                                {propertyData && propertyData.bathrooms}
+                              </span>
+                            </small>
+                          </li>
+
+                          <li className="liBar">
+                            <small>
+                              <img
+                                src="/images/icons/area-blue.png"
+                                alt="Range"
+                                className="img-fluid"
+                                width="30px"
+                              />
+                              <span className="align-text-top ms-2 fs-14 fw-500">
+                                {propertyData && propertyData.area}{" "}
+                                {propertyData?.unit_measure}
+                              </span>
+                            </small>
+                          </li>
+                          {propertyData &&
+                            propertyData.developer &&
+                            
+                              <li className="liBar">
+                                <small>
+                                  <img
+                                    src="/images/icons/building.png"
+                                    alt="Range"
+                                    className="img-fluid"
+                                    width="30px"
+                                  />
+                                  <span className="align-text-top ms-2 fs-16 fw-500">
+                                    <Link
+                                      href={`/developers/${propertyData?.developer.slug}`}
+                                      className="text-decoration-none"
+                                    >
+                                      {propertyData?.developer.name}
+                                    </Link>
+                                  </span>
+                                </small>
+                              </li>
+                            }
+                        </ul>
+                      </div>
+                      {propertyData?.agent && (
+                        <>
+                        <div className="py-3 proUserBox">
+                      <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
+                        <div className="my-auto projctSpecIMg me-3 mb-3">
+                          <center>
+                            <img
+                              src={
+                                propertyData?.agent && propertyData.agent?.image
+                              }
+                              className="img-fluid"
+                              width="60"
+                              alt={
+                                propertyData?.agent && propertyData.agent?.name
+                              }
+                            />
+                          </center>
+                        </div>
+                        <div className="proUserBoxContent mb-3">
+                          <div className="projectSpec  text-uppercase">
+                            <p className="text-primary fw-500 mb-0 fs-16">
+                              {propertyData?.agent && propertyData?.agent?.name}
+                            </p>
+                            <p className="fw-500 mb-2 fs-14">
+                              {propertyData?.agent &&
+                                propertyData?.agent?.designation}
+                            </p>
+                            <a
+                              href={"tel:" + propertyData?.agent?.contact}
+                              className="Probtn bg-primary"
+                            >
+                              <img
+                                src="/images/icons/phone.png"
+                                className="proPhoneIcon"
+                              />
+                              CALL NOW
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                        <div className="py-3">
+                        <div className="BtnsflexBar mb-3">
+                          <a
+                            className="Probtn whatsappBtn wd50pr"
+                            href={
+                              "https://wa.me/" +
+                              propertyData?.agent?.whatsapp +
+                              "?text=Hi, " +
+                              propertyData?.agent?.name +
+                              " Please let me know more about the following property "+getCurrentUrl() 
+                            }
+                          >
+                            <i className="fa fa-whatsapp"></i>
+                            WHATSAPP
+                          </a>
+                          <a
+                            className="Probtn bg-primary wd50pr"
+                            href={"mailto:" + propertyData?.agent?.email}
+                          >
+                            <i className="fa fa-envelope"></i>
+                            Email
+                          </a>
+                        </div>
+
+                        <div className="text-center mb-3">
+                          <a
+                            className="Probtn bg-primary scheduleBtn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#bookAmeeting"
+                          >
+                            <i className="fa fa-calendar" aria-hidden="true"></i>
+                            SCHEDULE VIEWING
+                          </a>
+                        </div>
+                      </div>
+                        </>
+                      
+                      )}
+                      
+                      {/*                     
+                      {propertyData && (
+                        <div className="py-3">
+                          <div>
+                            Share on:&nbsp;
+                            <WhatsappShareButton
+                              title={propertyData?.name}
+                              separator=","
+                              url={getCurrentUrl()}
+                              className="text-decoration-none  text-black"
+                            >
+                              <small>
+                                <img
+                                  src="/images/icons/whatsapp.png"
+                                  alt="Range"
+                                  className="img-fluid"
+                                  width="25px"
+                                />
+                              </small>
+                            </WhatsappShareButton>
+                            <EmailShareButton url={getCurrentUrl()}>
+                              <small>
+                                <img
+                                  src="/images/icons/gmail.png"
+                                  alt="Range"
+                                  className="img-fluid"
+                                  width="25px"
+                                />
+                              </small>
+                            </EmailShareButton>
+                          </div>
+                        </div>
+                      )} */}
+                    </div>
+                    {
+                      propertyData?.category != 'Rent' &&
+                      <MortgageCalculator property={propertyData} />
+                    }
+                  {propertyData && propertyData.community && (
+                    <div className="bg-light px-3 py-2 mb-5">
+
+                        <div className="py-3">
+                          <p className="text-primary fw-500 mb-0 fs-20">
+                            <Link
+                              href={`/communities/${propertyData.community["slug"]}`}
+                              className="text-decoration-none"
+                            >
+                              {propertyData &&
+                                propertyData.community &&
+                                propertyData.community["name"]}
+                            </Link>
+                            {/* Community */}
+                          </p>
+                        </div>
+                      
+
+                      <div>
+                        {propertyData?.community["gallery"] && 
+                        <Swiper
+                        loop={true}
+                        slidesPerView={1}
+                        spaceBetween={10}
+                        navigation={{
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                        }}
+                        breakpoints={{
+                          640: {
+                            slidesPerView: 1,
+                            spaceBetween: 10,
+                          },
+                          768: {
+                            slidesPerView: 1,
+                            spaceBetween: 10,
+                          },
+                          1024: {
+                            slidesPerView: 1,
+                            spaceBetween: 10,
+                          },
+                        }}
+                        modules={[Navigation]}
+                        onSwiper={(swiper) => {
+                          CommunitySwiperRef.current = swiper;
+                        }}
+                        className="swiper pb-2 communityProjectSwiperr"
+                      >
+                        {propertyData?.community["gallery"].map(
+                          (community, index) => {
+                            return (
+                              <SwiperSlide
+                                key={community.id + index + "community"}
+                              >
+                                <div className="swiper-slide">
+                                  <Link
+                                    href={`/communities/${propertyData.community["slug"]}`}
+                                    className="text-decoration-none communityImgCont"
+                                  >
+                                  <img
+                                      src={community["path"]}
+                                      alt="community1"
+                                      className="img-fluid"
+                                      style={{ height: "300px", width: "500px" }}
+                                    />
+                                    {/* <div className="communityImgOverlay"> */}
+                                      {/* <div className="text-white"></div> */}
+                                    {/* </div> */}
+                                  </Link>
+                                </div>
+                              </SwiperSlide>
+                            );
+                          }
+                        )}
+                        <div
+                          className="swiper-button-prev swiperUniquePrev text-white"
+                          onClick={() => CommunitySwiperRef.current?.slidePrev()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-left fs-1"></i>
+                          </span>
+                        </div>
+                        <div
+                          className="swiper-button-next swiperUniqueNext text-white"
+                          onClick={() => CommunitySwiperRef.current?.slideNext()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-right fs-1"></i>
+                          </span>
+                        </div>
+                        </Swiper>
+                      }
+                        
+                      </div>
+                      <div className="">
+                        <p className="mb-0 fs-14">
+                          {propertyData &&
+                            propertyData.community &&
+                            parse(propertyData.community["description"] ?? "")}
+                        </p>
+                      </div>
+                    </div>
+                    )}
+                  </div>
                  
                   {propertyData && propertyData.amenities && (
                     <div className="mb-3">
@@ -309,7 +671,7 @@ function SinglePropertyView({ params }) {
                       </div>
                       <div className="">
                         <div className="row">
-                        
+                          <div className="row propertyDesktopItemLink">
                             {propertyData?.amenities?.slice(0, 8).map((amenity, index) => {
                                   return (
                                       <div className="col-md-3" key={amenity.id + index + "amentity"}>
@@ -333,8 +695,11 @@ function SinglePropertyView({ params }) {
                                       </div>
                                   )
                             })}
+                            </div>
 
-                          {/* <div className="col-12 col-lg-12 col-md-12">
+
+
+                          <div className="col-12 col-lg-12 col-md-12 propertyMobItemLink">
                             <Swiper
                             slidesPerView={1}
                             spaceBetween={50}
@@ -366,7 +731,7 @@ function SinglePropertyView({ params }) {
                             }}
                             className="swiper pb-5 amenitiesSwiper px-5"
                           >
-                            {propertyData?.amenities?.map((amenity, index) => {
+                            {propertyData?.amenities?.slice(0, 8)?.map((amenity, index) => {
                               return (
                                 <SwiperSlide key={amenity.id + index + "amentity"}>
                                   <div className="swiper-slide">
@@ -409,12 +774,14 @@ function SinglePropertyView({ params }) {
                             </div>
                             
                             </Swiper>
-                          </div> */}
+                          </div>
 
                         </div>
                       </div>
                     </div>
                   )}
+
+
                   {propertyData &&
                     propertyData.project &&
                     Object.keys(propertyData.project).length > 0 && (
@@ -502,7 +869,7 @@ function SinglePropertyView({ params }) {
                     
                 </div>
                 
-                <div className="col-12 col-lg-4 col-md-4">
+                <div className="col-12 col-lg-4 col-md-4 propertyDesktopItemLink">
                   <div className=" px-2">
 
                  

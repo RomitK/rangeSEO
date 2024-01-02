@@ -1970,3 +1970,6 @@ background-color: #2f3c6a;
     .offcanvas-body .mobItemLink{
         display: none;
     }
+    .propertyMobItemLink{
+        display: none;
+    }
