@@ -410,7 +410,23 @@ display: block   !important;
 .propertyDesktopItemLink{
     display: none   !important;
 }
+
+.lookingForMobileItem{
+    display: block   !important;
+}
+.lookingForDesktopItem{
+    display: none   !important;
+}
+
 .dubaiGuideSection .clmSliderItem .carouselcontent .downloadBtn {
 width: 200px !important;
+}
+.lookingMobileCard{
+    text-align:-webkit-center !important
+}
+.lookingSingleMobileCard{
+    width:50% !important;
+    height:50% !important;
+    text-align:-webkit-center
 }
 }

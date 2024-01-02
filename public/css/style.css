@@ -1973,3 +1973,6 @@ background-color: #2f3c6a;
     .propertyMobItemLink{
         display: none;
     }
+    .lookingForMobileItem{
+        display: none;
+    }
