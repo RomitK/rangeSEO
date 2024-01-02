@@ -34,8 +34,9 @@ function Navbar() {
                 <ul className="navMainPc d-none d-lg-flex d-md-flex navMenu my-auto me-3">
                   <li className="dropdown navDropMain nav-item">
                     <a
+                      href="/properties"
                       className="dropdown-toggle nav-link "
-                      data-toggle="dropdown" href="/properties"
+                      data-toggle="dropdown" 
                     >
                       Properties <b className="caret"></b>
                     </a>

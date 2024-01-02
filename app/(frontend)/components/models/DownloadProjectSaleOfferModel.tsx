@@ -64,9 +64,8 @@ function DownloadProjectSaleOfferModel(props) {
     saveContactFormApi(data)
       .then((res) => {
         toast.success(
-          "Please Wait until your sell offer is being download"
-        );
-        downloadFile()
+          "Thank you, Our team will get back to you soon");
+        // downloadFile()
         reset();
       })
       .catch((err) => {
