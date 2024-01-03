@@ -1636,6 +1636,9 @@ margin: 0 auto;
 transform: translate(-50%, -50%);
 z-index: 9;
 }
+.goldenVisa:hover{
+    color: #136dae !important;
+}
 .frmTabList{
 display: flex;
 justify-content: flex-start;
