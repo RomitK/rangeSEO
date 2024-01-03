@@ -27,7 +27,7 @@ function SingleDeveloperView({ params }) {
   const slug = params.slug[0];
   const { developerData } = useGetSingleDeveloperData(slug);
   const PropertySwiperRef = useRef<SwiperCore>();
-  const swiperRef = useRef<SwiperCore>();
+  const communitySwiperRef = useRef<SwiperCore>();
   const gallerySwiperRef1 = useRef<SwiperCore>();
   const router = useRouter();
   const projectOptions = developerData?.newProjects;
@@ -496,10 +496,7 @@ function SingleDeveloperView({ params }) {
                     <Swiper
                       slidesPerView={1}
                       spaceBetween={10}
-                      pagination={{
-                        el: ".swiper-pagination",
-                        clickable: true,
-                      }}
+                     
                       navigation={{
                         nextEl: ".swiper-button-next",
                         prevEl: ".swiper-button-prev",
@@ -520,7 +517,7 @@ function SingleDeveloperView({ params }) {
                       }}
                       modules={[Navigation, Pagination]}
                       onSwiper={(swiper) => {
-                        swiperRef.current = swiper;
+                        communitySwiperRef.current = swiper;
                       }}
                       className="swiper pb-5 projectSlider"
                     >
@@ -566,7 +563,7 @@ function SingleDeveloperView({ params }) {
                       })}
                       <div
                         className=""
-                        onClick={() => swiperRef.current?.slideNext()}
+                        onClick={() => communitySwiperRef.current?.slideNext()}
                       >
                         <span className="swiper-button-prev swiperUniquePrev text-primary">
                           <i className="bi bi-chevron-left fs-1"></i>
@@ -574,13 +571,13 @@ function SingleDeveloperView({ params }) {
                       </div>
                       <div
                         className="swiper-button-next swiperUniqueNext text-primary "
-                        onClick={() => swiperRef.current?.slidePrev()}
+                        onClick={() => communitySwiperRef.current?.slidePrev()}
                       >
                         <span className="">
                           <i className="bi bi-chevron-right fs-1"></i>
                         </span>
                       </div>
-                      <div className="swiper-pagination"></div>
+                      {/* <div className="swiper-pagination"></div> */}
                     </Swiper>
                   </div>
                 </div>
@@ -756,7 +753,7 @@ function SingleDeveloperView({ params }) {
                           <i className="bi bi-chevron-right fs-1"></i>
                         </span>
                       </div>
-                      <div className="swiper-pagination"></div>
+                      {/* <div className="swiper-pagination"></div> */}
                     </Swiper>
                   </div>
                 </div>

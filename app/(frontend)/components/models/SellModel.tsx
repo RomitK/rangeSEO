@@ -76,6 +76,7 @@ function SellModel(props) {
   // };
 
   const onSubmit = (data) => {
+    setIsLoading(true);
     saveContactFormApi(data)
       .then((res) => {
         // toast.success(
@@ -85,6 +86,8 @@ function SellModel(props) {
           url: props.sellerLink,
         })
           .then(function () {
+            setIsLoading(false);
+            closeRef.current.click();
             toast.success( "Please Wait until your seller guide is being download");
            
           })

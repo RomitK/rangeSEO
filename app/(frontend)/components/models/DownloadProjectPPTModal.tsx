@@ -41,7 +41,7 @@ function DownloadProjectPPTModal(props) {
 
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", props.fileName); // Set the desired filename
+      link.setAttribute("download", props.fileName+" Brochure"); // Set the desired filename
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

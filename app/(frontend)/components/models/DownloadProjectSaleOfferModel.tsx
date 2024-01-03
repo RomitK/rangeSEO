@@ -63,6 +63,7 @@ function DownloadProjectSaleOfferModel(props) {
   const onSubmitVisitorForm = (data) => {
     saveContactFormApi(data)
       .then((res) => {
+        closeRef.current.click();
         toast.success(
           "Thank you, Our team will get back to you soon");
         // downloadFile()

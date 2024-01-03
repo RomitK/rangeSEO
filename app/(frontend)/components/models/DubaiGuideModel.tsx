@@ -62,6 +62,7 @@ function DubaiGuideModel(props) {
   };
 
   const onSubmit = (data) => {
+    setIsLoading(false);
     saveContactFormApi(data)
       .then((res) => {
         // toast.success(
@@ -71,6 +72,7 @@ function DubaiGuideModel(props) {
           url: props.downloadLink,
         })
           .then(function () {
+            setIsLoading(false);
             toast.success(`${props.title} has been downloaded successfully`);
             "Please Wait until your " + props.title + " is being download"
           })
@@ -79,6 +81,7 @@ function DubaiGuideModel(props) {
           });
        
         reset();
+        closeRef.current.click();
       })
       .catch((err) => {
         toast.error("Something went wrong, please try again");

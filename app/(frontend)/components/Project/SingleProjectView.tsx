@@ -1225,7 +1225,7 @@ function SingleProjectView({ params }) {
       
       <SaleOfferModal />
       <DownloadProjectSaleOfferModel/>
-      <DownloadProjectPPTModal />
+      <DownloadProjectPPTModal  brochureLink={projectData?.brochureLink} fileName={projectData?.title} />
     </>
   );
 }

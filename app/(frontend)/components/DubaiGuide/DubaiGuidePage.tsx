@@ -22,10 +22,11 @@ function DubaiGuidePage() {
     return (
     <>
       <header className="header dubaiGuideSection">
-        <h4 className="sctionMdTitle text-primary text-center mb-5">
+        <h4 className="sctionMdTitle text-primary text-center mb-2">
           DUBAI GUIDES
         </h4>
         <Swiper
+          id="multiSilder"
           modules={[Navigation]}
           className="multiSilder"
           slidesPerView={3}

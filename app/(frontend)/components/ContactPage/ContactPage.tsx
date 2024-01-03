@@ -206,7 +206,7 @@ function ContactPage() {
                     <textarea
                       className="form-control cntInptField textareaField"
                       placeholder="Message"
-                      value={formData.message}
+                     
                       {...register("message", { required: false })}
                     ></textarea>
                   </div>

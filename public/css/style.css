@@ -1976,3 +1976,9 @@ background-color: #2f3c6a;
     .lookingForMobileItem{
         display: none;
     }
+    #multiSilder .swiper-slide:before {
+        background-color: unset !important;
+    }
+    .largeCloseBtn{
+        font-size: larger;
+    }

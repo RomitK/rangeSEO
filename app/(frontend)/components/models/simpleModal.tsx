@@ -77,6 +77,7 @@ function SimpleModal(props) {
   // };
 
   const onSubmit = (data) => {
+    setIsLoading(true);
     saveContactFormApi(data)
       .then((res) => {
         // toast.success(
@@ -86,6 +87,7 @@ function SimpleModal(props) {
           url: props.brochure,
         })
           .then(function () {
+            setIsLoading(false);
             closeRef.current.click();
             reset();
             toast.success("Thank you, your document is downloading");
