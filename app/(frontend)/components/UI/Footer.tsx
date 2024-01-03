@@ -8,11 +8,25 @@ import { getCurrentUrl } from "@/src/utils/helpers/common";
 import { useForm } from "react-hook-form";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import { toast } from "react-toastify";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faInstagram, faYoutubeSquare, faTiktok, faLinkedin, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import {
+  faFacebook,
+  faInstagram,
+  faYoutubeSquare,
+  faTiktok,
+  faLinkedin,
+  faTwitter,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+  const faFacebookIcon = faFacebook as IconProp;
+  const faInstagramIcon = faInstagram as IconProp;
+  const faTiktokIcon = faTiktok as IconProp;
+  const faLinkedinIcon = faLinkedin as IconProp;
+  const faYoutubeIcon = faYoutube as IconProp;
   const {
     register,
     handleSubmit,
@@ -24,9 +38,7 @@ function Footer() {
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
-        toast.success(
-          "Thank you for subscribing to our mailing list."
-        );
+        toast.success("Thank you for subscribing to our mailing list.");
         reset();
       })
       .catch((err) => {
@@ -62,31 +74,35 @@ function Footer() {
                     </p>
                   </div>
                   <div className="mb-1">
-                    <p className=" mb-0 font-weight-bold"><b>Quick Link</b></p>
+                    <p className=" mb-0 font-weight-bold">
+                      <b>Quick Link</b>
+                    </p>
                   </div>
                   <div className="row">
                     <div className="col-12 col-lg-6 col-md-6">
                       <ul className="mb-0 list-unstyled footNav ">
                         <li>
-                        <Link className="footLink text-dark" href="/buy">
-                        Buy
-                        </Link>  
-                         
+                          <Link className="footLink text-dark" href="/buy">
+                            Buy
+                          </Link>
                         </li>
                         <li>
-                        <Link className="footLink text-dark" href="/rent">
+                          <Link className="footLink text-dark" href="/rent">
                             Rent
-                            </Link>  
+                          </Link>
                         </li>
                         <li>
-                        <Link className="footLink text-dark" href="/offplan">
+                          <Link className="footLink text-dark" href="/offplan">
                             Off-Plan
-                            </Link>  
+                          </Link>
                         </li>
                         <li>
-                        <Link href="/luxuryProperties" className="footLink text-dark">
+                          <Link
+                            href="/luxuryProperties"
+                            className="footLink text-dark"
+                          >
                             Luxury Properties
-                            </Link>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -103,17 +119,17 @@ function Footer() {
                           </Link>
                         </li>
                         <li>
-                        <Link href="/dubaiGuide" className="footLink text-dark">
-                           Dubai Guides
-                           </Link>
+                          <Link
+                            href="/dubaiGuide"
+                            className="footLink text-dark"
+                          >
+                            Dubai Guides
+                          </Link>
                         </li>
                         <li>
-                         
-
                           <Link className="footLink text-dark" href="/about">
-                        About
-                        </Link>
-
+                            About
+                          </Link>
                         </li>
                         <li>
                           <Link
@@ -132,7 +148,9 @@ function Footer() {
                 <div className="col-12 col-lg-4 col-md-4">
                   <div className="text-start">
                     <div className="mb-1">
-                      <p className=" mb-0 font-weight-bold"><b>CONTACT INFO</b></p>
+                      <p className=" mb-0 font-weight-bold">
+                        <b>CONTACT INFO</b>
+                      </p>
                     </div>
                     <div className="mb-3">
                       <ul className="list-unstyled">
@@ -167,7 +185,9 @@ function Footer() {
                       </ul>
                     </div>
                     <div className="mb-1">
-                      <p className="text-dark mb-0 font-weight-bold"><b>MAILING LIST</b></p>
+                      <p className="text-dark mb-0 font-weight-bold">
+                        <b>MAILING LIST</b>
+                      </p>
                     </div>
                     <div className="mb-3">
                       <p className="text-dark fs-12 mb-0">
@@ -176,11 +196,23 @@ function Footer() {
                       </p>
                     </div>
                     <div className="subscribeCont">
-                      <form action="" method="post" onSubmit={handleSubmit(onSubmit)}>
+                      <form
+                        action=""
+                        method="post"
+                        onSubmit={handleSubmit(onSubmit)}
+                      >
                         <div className="input-group">
                           <div className="form-outline">
-                            <input type="hidden" value="EmailerForm" {...register("formName", { required: false })}/>
-                            <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
+                            <input
+                              type="hidden"
+                              value="EmailerForm"
+                              {...register("formName", { required: false })}
+                            />
+                            <input
+                              type="hidden"
+                              value={currentPageURL}
+                              {...register("page", { required: false })}
+                            />
                             <input
                               type="search"
                               id="form1"
@@ -210,15 +242,17 @@ function Footer() {
             <div className="col-12 col-lg-12 col-md-12">
               <div className="row g-0">
                 <div className="col-2 col-lg-2 my-auto iconRoundBlack">
-                  <div className="text-center  p-3" >
+                  <div className="text-center  p-3">
                     <a
                       href={process.env.FACEBOOK_LINK}
                       className="text-decoration-none"
                       target="_blanket"
-                      
                     >
                       <span className="iconBox">
-                      <FontAwesomeIcon icon={faFacebook} style={{ color: '#1877F2',  fontSize:"30px" }}/>
+                        <FontAwesomeIcon
+                          icon={faFacebookIcon}
+                          style={{ color: "#1877F2", fontSize: "30px" }}
+                        />
                       </span>
                     </a>
                   </div>
@@ -229,11 +263,12 @@ function Footer() {
                       href={process.env.INSTAGRAM_LINK}
                       className="text-decoration-none"
                       target="_blanket"
-                      
                     >
                       <span className="">
-                      <FontAwesomeIcon icon={faInstagram}  style={{ color: '#E4405F', fontSize:"30px" }}/>
-                      
+                        <FontAwesomeIcon
+                          icon={faInstagramIcon}
+                          style={{ color: "#E4405F", fontSize: "30px" }}
+                        />
                       </span>
                     </a>
                   </div>
@@ -244,13 +279,20 @@ function Footer() {
                       href={process.env.TWITTER_LINK}
                       className="text-decoration-none"
                       target="_blanket"
-                      
                     >
                       <span className="">
                         {/* <i className="fa fa-twitter"></i>
                         <img src="/images/icons/twitter-icon.png" className="twitterIcon"/> */}
-                      <svg viewBox="0 0 24 24" aria-hidden="true" style={{height:"30px"}} className="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp r-18jsvk2 r-16y2uox r-8kz0gk"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
-                        
+                        <svg
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          style={{ height: "30px" }}
+                          className="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp r-18jsvk2 r-16y2uox r-8kz0gk"
+                        >
+                          <g>
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                          </g>
+                        </svg>
                       </span>
                     </a>
                   </div>
@@ -261,11 +303,12 @@ function Footer() {
                       href={process.env.LINKEDIN_LINK}
                       className="text-decoration-none"
                       target="_blanket"
-                      
                     >
                       <span className="">
-                        
-                        <FontAwesomeIcon icon={faLinkedin} style={{ color: '#0A66C2', fontSize:"30px" }} />
+                        <FontAwesomeIcon
+                          icon={faLinkedinIcon}
+                          style={{ color: "#0A66C2", fontSize: "30px" }}
+                        />
                       </span>
                     </a>
                   </div>
@@ -276,11 +319,12 @@ function Footer() {
                       href={process.env.YOUTUBE_LINK}
                       className="text-decoration-none"
                       target="_blanket"
-                      
                     >
                       <span className="">
-                        
-                        <FontAwesomeIcon icon={faYoutube } style={{ color: '#FF0000', fontSize:"30px" }}/>
+                        <FontAwesomeIcon
+                          icon={faYoutubeIcon}
+                          style={{ color: "#FF0000", fontSize: "30px" }}
+                        />
                       </span>
                     </a>
                   </div>
@@ -291,11 +335,12 @@ function Footer() {
                       href={process.env.TIKTOK_LINK}
                       className="text-decoration-none"
                       target="_blanket"
-                      
                     >
                       <span className="">
-                      <FontAwesomeIcon icon={ faTiktok} style={{ color: '#000000', fontSize:"30px" }}/>
-                        
+                        <FontAwesomeIcon
+                          icon={faTiktokIcon}
+                          style={{ color: "#000000", fontSize: "30px" }}
+                        />
                       </span>
                     </a>
                   </div>
