@@ -283,6 +283,7 @@ top: 12px;
 }
 .headerForm{
 width: 90%;
+top: 80% !important;
 }
 .navbar .container .my-auto .d-flex.justify-content-end{
 position: absolute;
