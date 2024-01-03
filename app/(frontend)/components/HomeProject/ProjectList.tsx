@@ -192,7 +192,8 @@ function ProjectList() {
                           whiteSpace: "nowrap", // Rounded corners
                         }}
                       >
-                        {starting_price}
+                        {new Intl.NumberFormat().format(starting_price)}
+                        
                       </div>
                     </OverlayView>
                     {isOpen && infoWindowData?.id === ind && (

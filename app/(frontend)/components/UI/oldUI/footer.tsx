@@ -2,14 +2,12 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import ContactUs from "./ContactUs";
+import ContactUs from "../ContactUs";
 import parse from "html-react-parser";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 import { useForm } from "react-hook-form";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import { toast } from "react-toastify";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faInstagram, faYoutubeSquare, faTiktok, faLinkedin, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -35,7 +33,7 @@ function Footer() {
   };
   return (
     <>
-      <footer className="pt-3 text-dark footer">
+      <footer className="pt-5 bg-blue">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12 col-lg-12 col-md-12">
@@ -44,7 +42,7 @@ function Footer() {
                   <div className="mb-3">
                     <Link href={{ pathname: "/" }}>
                       <img
-                        src="/images/logo.png"
+                        src="/images/logo_white.png"
                         alt="Range Internation Property Investments"
                         className="img-fluid"
                         width="175"
@@ -52,7 +50,7 @@ function Footer() {
                     </Link>
                   </div>
                   <div className="mb-3">
-                    <p className=" fs-12 mb-0">
+                    <p className="text-white fs-12 mb-0">
                       Range International Property Investments is an esteemed
                       award-winning real estate brokerage based in Dubai, UAE.
                       With over two decades of unmatched experience, we have
@@ -62,29 +60,29 @@ function Footer() {
                     </p>
                   </div>
                   <div className="mb-1">
-                    <p className=" mb-0 font-weight-bold"><b>Quick Link</b></p>
+                    <p className="text-white fs-16 mb-0">Quick Link</p>
                   </div>
                   <div className="row">
                     <div className="col-12 col-lg-6 col-md-6">
-                      <ul className="mb-0 list-unstyled footNav ">
+                      <ul className="mb-0 list-unstyled footNav">
                         <li>
-                        <Link className="footLink text-dark" href="/buy">
+                        <Link className="footLink" href="/buy">
                         Buy
                         </Link>  
                          
                         </li>
                         <li>
-                        <Link className="footLink text-dark" href="/rent">
+                        <Link className="footLink" href="/rent">
                             Rent
                             </Link>  
                         </li>
                         <li>
-                        <Link className="footLink text-dark" href="/offplan">
+                        <Link className="footLink" href="/offplan">
                             Off-Plan
                             </Link>  
                         </li>
                         <li>
-                        <Link href="/luxuryProperties" className="footLink text-dark">
+                        <Link href="/luxuryProperties" className="footLink">
                             Luxury Properties
                             </Link>
                         </li>
@@ -94,7 +92,7 @@ function Footer() {
                       <ul className="mb-0 list-unstyled footNav">
                         <li>
                           <Link
-                            className="footLink text-dark"
+                            className="footLink"
                             href={{
                               pathname: "/services",
                             }}
@@ -103,21 +101,21 @@ function Footer() {
                           </Link>
                         </li>
                         <li>
-                        <Link href="/dubaiGuide" className="footLink text-dark">
+                        <Link href="/dubaiGuide" className="footLink">
                            Dubai Guides
                            </Link>
                         </li>
                         <li>
                          
 
-                          <Link className="footLink text-dark" href="/about">
+                          <Link className="footLink" href="/about">
                         About
                         </Link>
 
                         </li>
                         <li>
                           <Link
-                            className="footLink text-dark"
+                            className="footLink"
                             href={{
                               pathname: "/contactUs",
                             }}
@@ -132,13 +130,13 @@ function Footer() {
                 <div className="col-12 col-lg-4 col-md-4">
                   <div className="text-start">
                     <div className="mb-1">
-                      <p className=" mb-0 font-weight-bold"><b>CONTACT INFO</b></p>
+                      <p className="text-white fs-16 mb-0">CONTACT INFO</p>
                     </div>
                     <div className="mb-3">
                       <ul className="list-unstyled">
                         <li>
                           <a
-                            className="text-decoration-none text-dark fs-14"
+                            className="text-decoration-none text-white fs-14"
                             href="tel:80072888"
                           >
                             <i className="bi bi-telephone-fill text-primary"></i>
@@ -147,7 +145,7 @@ function Footer() {
                         </li>
                         <li>
                           <a
-                            className="text-decoration-none text-dark fs-14"
+                            className="text-decoration-none text-white fs-14"
                             href="mailto:info@range.ae"
                           >
                             <i className="bi bi-envelope-fill text-primary"></i>
@@ -156,7 +154,7 @@ function Footer() {
                         </li>
                         <li>
                           <a
-                            className="text-decoration-none text-dark fs-14"
+                            className="text-decoration-none text-white fs-14"
                             href="#"
                           >
                             <i className="bi bi-geo-alt-fill text-primary"></i>
@@ -167,10 +165,10 @@ function Footer() {
                       </ul>
                     </div>
                     <div className="mb-1">
-                      <p className="text-dark mb-0 font-weight-bold"><b>MAILING LIST</b></p>
+                      <p className="text-white fs-16 mb-0">MAILING LIST</p>
                     </div>
                     <div className="mb-3">
-                      <p className="text-dark fs-12 mb-0">
+                      <p className="text-white fs-12 mb-0">
                         Sign up for our mailing list to get latest updates and
                         offers.
                       </p>
@@ -209,93 +207,81 @@ function Footer() {
           <div className="row g-0 justify-content-center">
             <div className="col-12 col-lg-12 col-md-12">
               <div className="row g-0">
-                <div className="col-2 col-lg-2 my-auto iconRoundBlack">
-                  <div className="text-center  p-3" >
+                <div className="col-2 col-lg-2 my-auto">
+                  <div className="text-center socialLinkNav p-3">
                     <a
                       href={process.env.FACEBOOK_LINK}
                       className="text-decoration-none"
                       target="_blanket"
-                      
                     >
-                      <span className="iconBox">
-                      <FontAwesomeIcon icon={faFacebook} style={{ color: '#1877F2',  fontSize:"30px" }}/>
+                      <span className="iconRoundBlack">
+                        <i className="fa fa-facebook"></i>
                       </span>
                     </a>
                   </div>
                 </div>
-                <div className="col-2 col-lg-2 my-auto iconRoundBlack">
-                  <div className="text-center  p-3">
+                <div className="col-2 col-lg-2 my-auto">
+                  <div className="text-center socialLinkNav p-3">
                     <a
                       href={process.env.INSTAGRAM_LINK}
                       className="text-decoration-none"
                       target="_blanket"
-                      
                     >
-                      <span className="">
-                      <FontAwesomeIcon icon={faInstagram}  style={{ color: '#E4405F', fontSize:"30px" }}/>
-                      
+                      <span className="iconRoundBlack">
+                        <i className="fa fa-instagram"></i>
                       </span>
                     </a>
                   </div>
                 </div>
-                <div className="col-2 col-lg-2 my-auto iconRoundBlack">
-                  <div className="text-center  p-3">
+                <div className="col-2 col-lg-2 my-auto">
+                  <div className="text-center socialLinkNav p-3">
                     <a
                       href={process.env.TWITTER_LINK}
                       className="text-decoration-none"
                       target="_blanket"
-                      
                     >
-                      <span className="">
-                        {/* <i className="fa fa-twitter"></i>
-                        <img src="/images/icons/twitter-icon.png" className="twitterIcon"/> */}
-                      <svg viewBox="0 0 24 24" aria-hidden="true" style={{height:"30px"}} className="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp r-18jsvk2 r-16y2uox r-8kz0gk"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
-                        
+                      <span className="iconRoundBlack">
+                        {/* <i className="fa fa-twitter"></i> */}
+                        <img src="/images/icons/twitter-icon.png" className="twitterIcon"/>
                       </span>
                     </a>
                   </div>
                 </div>
-                <div className="col-2 col-lg-2 my-auto iconRoundBlack">
-                  <div className="text-center  p-3">
+                <div className="col-2 col-lg-2 my-auto">
+                  <div className="text-center socialLinkNav p-3">
                     <a
                       href={process.env.LINKEDIN_LINK}
                       className="text-decoration-none"
                       target="_blanket"
-                      
                     >
-                      <span className="">
-                        
-                        <FontAwesomeIcon icon={faLinkedin} style={{ color: '#0A66C2', fontSize:"30px" }} />
+                      <span className="iconRoundBlack">
+                        <i className="fa fa-linkedin"></i>
                       </span>
                     </a>
                   </div>
                 </div>
-                <div className="col-2 col-lg-2 my-auto iconRoundBlack">
-                  <div className="text-center  p-3">
+                <div className="col-2 col-lg-2 my-auto">
+                  <div className="text-center socialLinkNav p-3">
                     <a
                       href={process.env.YOUTUBE_LINK}
                       className="text-decoration-none"
                       target="_blanket"
-                      
                     >
-                      <span className="">
-                        
-                        <FontAwesomeIcon icon={faYoutube } style={{ color: '#FF0000', fontSize:"30px" }}/>
+                      <span className="iconRoundBlack">
+                        <i className="bi bi-youtube"></i>
                       </span>
                     </a>
                   </div>
                 </div>
-                <div className="col-2 col-lg-2 my-auto iconRoundBlack">
-                  <div className="text-center  p-3">
+                <div className="col-2 col-lg-2 my-auto">
+                  <div className="text-center socialLinkNav p-3">
                     <a
                       href={process.env.TIKTOK_LINK}
                       className="text-decoration-none"
                       target="_blanket"
-                      
                     >
-                      <span className="">
-                      <FontAwesomeIcon icon={ faTiktok} style={{ color: '#000000', fontSize:"30px" }}/>
-                        
+                      <span className="iconRoundBlack">
+                        <i className="bi bi-tiktok"></i>
                       </span>
                     </a>
                   </div>
@@ -304,7 +290,7 @@ function Footer() {
             </div>
             <div className="col-12 col-lg-12">
               <div className="pt-3">
-                <p className="fs-12 mb-0  text-center">
+                <p className="fs-12 mb-0 text-white text-center">
                   All Rights Reserved {currentYear} @ Range International
                   Property Investments
                 </p>
