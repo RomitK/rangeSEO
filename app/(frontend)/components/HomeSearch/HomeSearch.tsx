@@ -25,7 +25,8 @@ function HomeSearch() {
 
         // Parse the response JSON
         const data = await response.json();
-        const data2 = data.data.slice(0, 7);
+        //const data2 = data.data.slice(0, 7);
+        const data2 = data.data;
         for (let i = 0; i < data2.length; i++) {
           const originalText = data2[i].name;
           const formattedText = originalText.replace(
@@ -35,12 +36,14 @@ function HomeSearch() {
           //console.log(formattedText);
           data2[i].name = formattedText;
         }
-        if (e.target.value.trim() === "") {
+        if (e.target.value.trim() === "" || data2.length === 0 ) {
+          setShowSuggestion(false);
         } else {
+
           setShowSuggestion(true);
         }
         setSuggestion(data2);
-        console.log(data2);
+        //console.log(data2);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -102,7 +105,7 @@ function HomeSearch() {
             <input type="text" placeholder="Type your search..." onChange={changeSearch} />
             <i className="fa fa-search"></i>
           </div>
-          <div id="suggestion-box">
+          <div id="suggestion-box" style={{height: "200px",overflow: "auto"}}>
             {showSuggestion && (
               <div id="suggestion">
                 {suggestion.map((sug, index) => (
