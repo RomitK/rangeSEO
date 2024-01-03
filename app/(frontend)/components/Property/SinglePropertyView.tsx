@@ -12,6 +12,7 @@ import DownloadPPTModal from "@/app/(frontend)/components/models/DownloadPPTModa
 import SaleOfferModal from "@/app/(frontend)/components/models/SaleOfferModal";
 import DownloadPropertyPPTModal from "../models/DownloadPropertyPPTModal";
 import DownloadBrochure from "@/app/(frontend)/components/models/DownloadBrochure";
+import MortgageModel from "../models/MortgageModel";
 import {
   GoogleMap,
   MarkerF,
@@ -1830,6 +1831,7 @@ function SinglePropertyView({ params }) {
         </div>
       </section>
       )}
+      <MortgageModel></MortgageModel>
       <CalenderModel />
       <DownloadPropertyPPTModal brochureLink={propertyData?.brochureLink} fileName={propertyData?.name+" Brochure.pdf"}/>
       <SaleOfferModal />

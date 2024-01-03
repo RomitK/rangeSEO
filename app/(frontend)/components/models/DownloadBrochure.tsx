@@ -59,7 +59,7 @@ function DownloadBrochure(props) {
     saveContactFormApi(data)
       .then((res) => {
         toast.success(
-          "Please Wait until your brochure is being download"
+          "Thank you. Your document is downloading."
         );
         downloadFile()
         reset();

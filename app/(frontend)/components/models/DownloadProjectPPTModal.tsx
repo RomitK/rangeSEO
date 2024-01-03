@@ -58,7 +58,7 @@ function DownloadProjectPPTModal(props) {
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
-        toast.success("Please Wait until details is being download");
+        toast.success("Thank you. Your document is downloading.");
         downloadFile();
         reset();
       })

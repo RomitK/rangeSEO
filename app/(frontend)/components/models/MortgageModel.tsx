@@ -41,7 +41,7 @@ function MortgageModel(props) {
     <>
       <div
         className="modal fade"
-        id="enquireNow"
+        id="mortageModel"
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"

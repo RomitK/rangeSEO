@@ -23,7 +23,7 @@ function Footer() {
     saveContactFormApi(data)
       .then((res) => {
         toast.success(
-          "Thank you for subscribing to our mailing list"
+          "Thank you for subscribing to our mailing list."
         );
         reset();
       })

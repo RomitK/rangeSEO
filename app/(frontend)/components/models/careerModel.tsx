@@ -31,7 +31,7 @@ function CareerModel(props) {
     saveCareerFormApi(formData)
       .then((res) => {
         toast.success(
-          "Thank you, Our team will get back to you soon"
+          "Thank you, Our team will get back to you soon."
         );
         reset();
         careerCloseRef.current.click();

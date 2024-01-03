@@ -64,8 +64,7 @@ function DownloadProjectSaleOfferModel(props) {
     saveContactFormApi(data)
       .then((res) => {
         closeRef.current.click();
-        toast.success(
-          "Thank you, Our team will get back to you soon");
+        toast.success("Thank you. Our team will get back to you soon.");
         // downloadFile()
         reset();
       })
@@ -79,9 +78,7 @@ function DownloadProjectSaleOfferModel(props) {
       .then((res) => {
         console.log(res.data.data)
         if(res.data.data === true){
-          toast.success(
-            "Please Wait until your sell offer is being download"
-          );
+          toast.success("Please wait, the Sale Offer is downloading.");
           downloadFile()
           reset();
         }else{

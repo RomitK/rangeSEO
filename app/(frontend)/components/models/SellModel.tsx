@@ -88,7 +88,7 @@ function SellModel(props) {
           .then(function () {
             setIsLoading(false);
             closeRef.current.click();
-            toast.success( "Please Wait until your seller guide is being download");
+            toast.success( "Please wait, the Seller's Guide is downloading.");
            
           })
           .catch(function (error) {

@@ -232,7 +232,7 @@ function MortgageCalculator({ property }) {
                 </div>
                 <div className="mb-2">
                     <a href="" className="text-white fs-16"  data-bs-toggle="modal"
-                    data-bs-target="#enquireNow">
+                    data-bs-target="#mortageModel">
                         VIEW CLOSING COSTS
                     </a>
                 </div>
@@ -250,7 +250,7 @@ function MortgageCalculator({ property }) {
                     personalised solutions to meet the specific needs of each of our clients
                 </p>
             </div>
-            <MortgageModel></MortgageModel>
+            
         </div>
     );
 }

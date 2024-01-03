@@ -73,8 +73,8 @@ function DubaiGuideModel(props) {
         })
           .then(function () {
             setIsLoading(false);
-            toast.success(`${props.title} has been downloaded successfully`);
-            "Please Wait until your " + props.title + " is being download"
+            // toast.success(`${props.title} has been downloaded successfully`);
+            toast.success("Thank you. your document is downloading.")
           })
           .catch(function (error) {
             toast.error(`Download failed Something went wrong!`);
