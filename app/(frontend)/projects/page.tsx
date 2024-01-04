@@ -1,14 +1,14 @@
+"use client";
+import React, { useEffect, useRef, useState } from "react";
 
+import { SWRProvider } from "@/app/swr-provider";
 
-
-
-import ProjectPageList from "../components/Project/ProjectPageList";
-
+import PropertyList from "@/app/(frontend)/components/Project/ProjectPageList"
 const Projects = ({ params }) => {
   return (
-  
-      <ProjectPageList params={params}></ProjectPageList>
-    
+    <SWRProvider>
+      <PropertyList params={params}></PropertyList>
+    </SWRProvider>
   );
 };
 

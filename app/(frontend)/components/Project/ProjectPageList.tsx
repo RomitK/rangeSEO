@@ -71,7 +71,7 @@ const PropertyList = ({ params }) => {
     setProperties([...markersInsideView]);
     setTotalProperties(markersInsideView.length);
   }, [originalMarkers]);
-  console.log("links", links);
+  // console.log("links", links);
   const onNextPage = () => {
     let url = links?.next;
     axios
