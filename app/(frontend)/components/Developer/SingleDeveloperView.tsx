@@ -490,7 +490,7 @@ function SingleDeveloperView({ params }) {
                   <div className="col-12 col-lg-12 col-md-12">
                     <div>
                       <div className="mainHead mb-5 text-primary text-center">
-                        <h4>DEVELOPMENT BY {developerData.name}</h4>
+                        <h4> {developerData.name}'s Presence in UAE</h4>
                       </div>
                     </div>
                   </div>
