@@ -1285,9 +1285,9 @@ function SinglecommunityDataView({ params }) {
                           return (
                             <SwiperSlide key={nearbyCommunity.id + index}>
                               <div className="swiper-slide">
-                                <div>
+                                
                                   <div className="card propCard rounded-0">
-                                    <div>
+                                    
                                       <div className="">
                                         <Link
                                           href={`/communities/${nearbyCommunity.slug}`}
@@ -1314,9 +1314,9 @@ function SinglecommunityDataView({ params }) {
                                           </div>
                                         </Link>
                                       </div>
-                                    </div>
+                                    
                                   </div>
-                                </div>
+                                
                               </div>
                             </SwiperSlide>
                           );
