@@ -134,7 +134,7 @@ function CareerListPage() {
       <section className="ListingSection" id="currentOpening">
         <div className="container">
           <div className="text-center mb-2  row g-3 justify-content-center">
-            <h4 className=" text-primary">OPEN ROLE</h4>
+            <h4 className=" text-primary">OPEN ROLES</h4>
             <p className="fs-14 text-secondary mb-2">
               We are currently hiring for the below mentioned roles. Please
               click on the role to view the full job description and apply with

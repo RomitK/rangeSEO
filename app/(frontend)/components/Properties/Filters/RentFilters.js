@@ -142,6 +142,28 @@ function RentFilters({
     }
   }, [isMobile]);
   useEffect(() => {
+
+    if (
+      searchParams.has("developer_name") &&
+      searchParams.has("developer_detail")
+    ) {
+      setForm({
+        ...form,
+        searchBy: [
+          {
+            type: searchParams.get("developer_detail"),
+            name: searchParams.get("developer_name"),
+          },
+        ],
+      });
+      selectRef.current.setValue([
+        {
+          type: searchParams.get("developer_detail"),
+          name: searchParams.get("developer_name"),
+        },
+      ]);
+    }
+    
     if (
       searchParams.has("project_name") &&
       searchParams.has("project_detail")
