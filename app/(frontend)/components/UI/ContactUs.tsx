@@ -32,7 +32,7 @@ const ContactUs = () => {
     <div className="col-12 col-lg-4 col-md-4">
       <div className="text-start">
         <div className="mb-3">
-          <p className="text-dark mb-0"><b>CONTACT US</b></p>
+          <p className="text-dark mb-0"><b>WRITE TO US</b></p>
         </div>
 
         <div className="contactForm">
