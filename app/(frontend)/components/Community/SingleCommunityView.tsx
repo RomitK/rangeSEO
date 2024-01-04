@@ -431,7 +431,7 @@ function SinglecommunityDataView({ params }) {
                                 setIcon("school");
                               }}
                             >
-                              School
+                              Education
                             </button>
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">

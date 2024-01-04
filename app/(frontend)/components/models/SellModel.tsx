@@ -159,7 +159,7 @@ function SellModel(props) {
                         <div className="row">
                           <div className="col-md-12">
                             <h6 className="text-primary text-center">
-                              Enter Details For Downloding {props.title}
+                              Enter Details For Downloading {props.title}
                             </h6>
 
                             {/* {showOtp && (

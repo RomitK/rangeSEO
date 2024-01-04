@@ -163,7 +163,7 @@ function DownloadProjectPPTModal(props) {
                         <div className="row">
                           <div className="col-md-12">
                             <h6 className="text-primary text-center">
-                              Enter Details For Downloding Brochure
+                              Enter Details For Downloading Brochure
                             </h6>
 
                             {/* {showOtp && (
