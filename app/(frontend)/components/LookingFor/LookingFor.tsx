@@ -102,7 +102,7 @@ function LookingFor() {
               <Link className="proCircleBox" href="/sell">
                 <div className="circleContent">
                   <img
-                    src="/images/icons/interest2.png"
+                    src="/images/icons/sell.png"
                     className="proCricleImg"
                     alt="range"
                     width="80px"
@@ -156,7 +156,7 @@ function LookingFor() {
 
             {/* Circle box Start */}
             <div className="proCircleCard">
-              <Link className="proCircleBox" href="/services">
+              <a className="proCircleBox" href="https://mymortgage.ae/" target="_blanket">
                 <div className="circleContent">
                   <img
                     src="/images/icons/interest4.png"
@@ -166,7 +166,7 @@ function LookingFor() {
                   />
                   <p className="text"> Mortgage </p>
                 </div>
-              </Link>
+              </a>
               <div className="nbrCircle">
                 <h6>05</h6>
               </div>

@@ -231,8 +231,9 @@ function MortgageCalculator({ property }) {
                     <h4 className=" mb-2">AED {payableEMI ? payableEMI : ""}</h4>
                 </div>
                 <div className="mb-2">
-                    <a href="" className="text-white fs-16"  data-bs-toggle="modal"
-                    data-bs-target="#mortageModel">
+                    {/* <a href="" className="text-white fs-16"  data-bs-toggle="modal"
+                    data-bs-target="#mortageModel"> */}
+                    <a href="https://mymortgage.ae/" className="text-white fs-16" target="_blanket">
                         VIEW CLOSING COSTS
                     </a>
                 </div>
