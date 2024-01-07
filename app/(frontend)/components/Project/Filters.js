@@ -510,7 +510,6 @@ function Filters({
             className="form-select bedroomSelect"
           >
             <option value="">Project Status</option>
-            <option value="288">Upcoming</option>
             <option value="289">Under Construction</option>
             <option value="300">Completed</option>
           </select>
