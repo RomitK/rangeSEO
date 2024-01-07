@@ -187,7 +187,7 @@ function SingleProjectView({ params }) {
               </div>
               <div className="col-3 selectTitle">
                 <a className="tabTitle " href="#NearBy" aria-selected="true">
-                  Nearby PROJECTS
+                similar PROJECTS
                 </a>
               </div>
               <div className="col-3 selectTitle">
@@ -674,7 +674,7 @@ function SingleProjectView({ params }) {
           <div className="container">
             <div className="row">
               <div className="secTabCntent">
-                <h4 className="sctionMdTitle text-primary">NEARBY</h4>
+                <h4 className="sctionMdTitle text-primary">similar</h4>
                 <h6 className="sctionSubTitle text-primary"> PROJECTS</h6>
               </div>
               <div className="row g-0">
