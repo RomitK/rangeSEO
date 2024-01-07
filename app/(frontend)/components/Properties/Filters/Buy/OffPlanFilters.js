@@ -41,6 +41,7 @@ function OffPlanFilters({
     category: "buy",
     completion_status_id: 287,
     furnishing: "",
+    isCommercial:"",
   });
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
@@ -118,6 +119,8 @@ function OffPlanFilters({
 
   useEffect(() => {
     if (isCommercial) {
+      form['isCommercial'] = 1;
+      setForm({ ...form });
       const filtered = accomodations?.filter(
         (accomodation) =>
           accomodation.type === "Commercial" || accomodation.type === "Both"
@@ -126,6 +129,9 @@ function OffPlanFilters({
         setFilteredAccomodation([...filtered]);
       }
     } else {
+      setIsCommercial(false)      
+      form['isCommercial'] = "";
+      setForm({ ...form });
       const filtered = accomodations?.filter(
         (accomodation) =>
           accomodation.type === "Residential" || accomodation.type === "Both"
@@ -242,6 +248,12 @@ function OffPlanFilters({
   }
 
   const handleReset = () => {
+    setIsCommercial(false);
+    setForm(prevForm => ({
+      ...prevForm,
+      isCommercial: ""
+    }));
+
     form["minprice"] = "";
     form["maxprice"] = "";
     form["minarea"] = "";
@@ -255,6 +267,7 @@ function OffPlanFilters({
     form["amenities"] ="";
     form["category"] = "buy";
     form["completion_status_id"] = 287;
+    form["isCommercial"] ="";
     setSelectedItems([]);
     selectRef.current.setValue([]);
     if(minPriceRef.current != null){
@@ -599,7 +612,7 @@ function OffPlanFilters({
               className="form-check-input"
               id="exampleCheck1"
               onChange={(e) => setIsCommercial(e.target.checked)}
-              value={isCommercial}
+              checked={isCommercial}
             />
             <label className="form-check-label" htmlFor="exampleCheck1">
               Commericial

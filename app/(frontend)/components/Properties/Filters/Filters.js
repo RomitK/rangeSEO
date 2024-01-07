@@ -40,6 +40,7 @@ function Filters({
     category: "",
     completion_status_id: '',
     furnishing: "",
+    isCommercial:"",
   });
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
@@ -118,6 +119,9 @@ function Filters({
 
   useEffect(() => {
     if (isCommercial) {
+      form['isCommercial'] = 1;
+      setForm({ ...form });
+
       const filtered = accomodations?.filter(
         (accomodation) =>
           accomodation.type === "Commercial" || accomodation.type === "Both"
@@ -126,6 +130,10 @@ function Filters({
         setFilteredAccomodation([...filtered]);
       }
     } else {
+      setIsCommercial(false)      
+      form['isCommercial'] = "";
+      setForm({ ...form });
+
       const filtered = accomodations?.filter(
         (accomodation) =>
           accomodation.type === "Residential" || accomodation.type === "Both"
@@ -280,6 +288,12 @@ function Filters({
   }
 
   const handleReset = () => {
+
+    setIsCommercial(false);
+    setForm(prevForm => ({
+      ...prevForm,
+      isCommercial: ""
+    }));
     form["minprice"] = "";
     form["maxprice"] = "";
     form["minarea"] = "";
@@ -292,6 +306,8 @@ function Filters({
     form["bathroom"] = "";
     form["searchBy"] = "";
     form["amenities"] ="";
+    form["isCommercial"] ="";
+    
     setSelectedItems([]);
     selectRef.current.setValue([]);
     if(minPriceRef.current != null){
@@ -634,7 +650,7 @@ function Filters({
               className="form-check-input"
               id="exampleCheck1"
               onChange={(e) => setIsCommercial(e.target.checked)}
-              value={isCommercial}
+              checked={isCommercial}
             />
             <label className="form-check-label" htmlFor="exampleCheck1">
               Commericial
@@ -650,7 +666,7 @@ function Filters({
           {!isEmptyObject() && (
             <button
               className="btn btn-sm btn-secondary"
-              type="button"
+              type="button"             
               onClick={handleReset}
             >
               Reset
