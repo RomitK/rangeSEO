@@ -47,6 +47,7 @@ function Filters({
   const searchParams = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
+  const [isCommercial, setIsCommercial] = useState(false);
   const [form, setForm] = useState({
     accommodation_id: "",
     bedrooms: "",
@@ -57,7 +58,34 @@ function Filters({
     amenities: "",
     bathroom: "",
     completion_status_id: "",
+    isCommercial:"",
   });
+  useEffect(() => {
+    if (isCommercial) {
+      form['isCommercial'] = 1;
+      setForm({ ...form });
+
+      const filtered = accomodations?.filter(
+        (accomodation) =>
+          accomodation.type === "Commercial" || accomodation.type === "Both"
+      );
+      if (filtered != null) {
+        setFilteredAccomodation([...filtered]);
+      }
+    } else {
+      setIsCommercial(false)      
+      form['isCommercial'] = "";
+      setForm({ ...form });
+
+      const filtered = accomodations?.filter(
+        (accomodation) =>
+          accomodation.type === "Residential" || accomodation.type === "Both"
+      );
+      if (filtered != null) {
+        setFilteredAccomodation([...filtered]);
+      }
+    }
+  }, [isCommercial, accomodations]);
   useEffect(() => {
     if (searchParams.has("minprice") && searchParams.has("maxprice")) {
       form["minprice"] = searchParams.get("minprice");
@@ -98,6 +126,11 @@ function Filters({
   }
 
   const handleReset = () => {
+    setIsCommercial(false);
+    setForm(prevForm => ({
+      ...prevForm,
+      isCommercial: ""
+    }));
     form["minprice"] = "";
     form["maxprice"] = "";
     form["minarea"] = "";
@@ -109,6 +142,7 @@ function Filters({
     form["bathroom"] = "";
     form["searchBy"] = "";
     form["amenities"] = "";
+    form["isCommercial"] ="";
     setSelectedItems([]);
 
     selectRef.current.setValue([]);
@@ -475,8 +509,8 @@ function Filters({
             id="accomodation"
             className="form-select bedroomSelect"
           >
-            <option value="">Select Property Type</option>
-            {accomodations?.map((accomodation) => (
+            <option value=""> Property Type</option>
+            {filteredAccomodation?.map((accomodation) => (
               <option key={accomodation.id} value={accomodation.id}>
                 {accomodation.name}
               </option>
@@ -516,6 +550,19 @@ function Filters({
         </div>
 
         <div className="col-md-3 d-flex align-items-center gap-2 justify-content-end">
+        <div className="form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="exampleCheck1"
+              onChange={(e) => setIsCommercial(e.target.checked)}
+              checked={isCommercial}
+            />
+            <label className="form-check-label" htmlFor="exampleCheck1">
+              Commericial
+            </label>
+          </div>
+
           <button
             className="btn btn-sm btn-primary"
             type="button"
