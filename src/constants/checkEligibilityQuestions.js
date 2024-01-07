@@ -1,7 +1,7 @@
 const QUESTIONS = [
     {
         id: 1,
-        question: "Are you in the UAE?",
+        question: "Are you a resident of the UAE?",
     },
     {
         id: 2,
