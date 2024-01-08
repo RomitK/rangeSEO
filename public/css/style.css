@@ -1990,6 +1990,10 @@ background-color: #2f3c6a;
 .communityPropertyCard{
     min-height: auto !important;
 }
+.projectPropertyCard{
+    min-height: auto !important;
+    text-align: left;
+}
 .bdrBtn{
     background-color: unset;
     border: 1.5px solid #136DAE;

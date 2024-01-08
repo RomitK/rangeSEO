@@ -1783,11 +1783,11 @@ function SinglePropertyView({ params }) {
                           >
                             <div className="swiper-slide">
                               <div>
-                                <div className="card propCard rounded-0">
+                                <div className="card propCard rounded-0  projectPropertyCard">
                                   <div>
                                     <div className="">
                                       <a
-                                        href=""
+                                        href={`/properties/${similarProperty.slug}`}
                                         className="text-decoration-none"
                                       >
                                         <div className="projectImgCont">

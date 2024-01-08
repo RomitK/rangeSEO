@@ -54,6 +54,7 @@ function SingleDeveloperView({ params }) {
     area_unit: "",
     bedrooms: "",
     bathrooms: "",
+    handOver : "",
     starting_price: "",
     mainImage: "",
     slug: "",
@@ -104,6 +105,7 @@ function SingleDeveloperView({ params }) {
     bedrooms,
     bathrooms,
     starting_price,
+    handOver,
     mainImage,
     slug,
     completionStatusName
@@ -118,6 +120,7 @@ function SingleDeveloperView({ params }) {
       bedrooms,
       bathrooms,
       starting_price,
+      handOver,
       mainImage,
       slug,
       completionStatusName,
@@ -253,6 +256,7 @@ function SingleDeveloperView({ params }) {
                     bedrooms,
                     bathrooms,
                     starting_price,
+                    handOver,
                     mainImage,
                     lat,
                     lng,
@@ -276,6 +280,7 @@ function SingleDeveloperView({ params }) {
                         bedrooms,
                         bathrooms,
                         starting_price,
+                        handOver,
                         mainImage,
                         slug,
                         completionStatusName
@@ -313,6 +318,7 @@ function SingleDeveloperView({ params }) {
                             area_unit = {infoWindowData.area_unit}
                             bathrooms={infoWindowData.bathrooms}
                             bedrooms={infoWindowData.bedrooms}
+                            handOver = {infoWindowData.handOver}
                             starting_price={infoWindowData.starting_price}
                             address={infoWindowData.address}
                             mainImage={infoWindowData.mainImage}

@@ -853,11 +853,11 @@ function SingleProjectView({ params }) {
                               >
                                 <div className="swiper-slide">
                                   <div>
-                                    <div className="card propCard rounded-0">
+                                    <div className="card propCard rounded-0 projectPropertyCard">
                                       <div>
                                         <div className="">
                                           <a
-                                            href=""
+                                            href={`/properties/${similarProperty.slug}`}
                                             className="text-decoration-none"
                                           >
                                             <div className="projectImgCont">
@@ -1036,7 +1036,7 @@ function SingleProjectView({ params }) {
                                       <div>
                                         <div className="">
                                           <a
-                                            href=""
+                                            href={`/properties/${similarProperty.slug}`}
                                             className="text-decoration-none"
                                           >
                                             <div className="projectImgCont">
@@ -1058,7 +1058,7 @@ function SingleProjectView({ params }) {
                                             </div>
                                           </a>
                                         </div>
-                                        <div className="card-body rounded-3 rounded-top-0">
+                                        <div className="card-body rounded-3 rounded-top-0 projectPropertyCard">
                                           <Link
                                             href={`/properties/${similarProperty.slug}`}
                                             className="text-decoration-none"

@@ -39,6 +39,7 @@ const PropertyList = ({ params }) => {
     starting_price: "",
     mainImage: "",
     slug: "",
+    handOver:"",
     completionStatusName: "",
     accommodationName: "",
   });
@@ -120,6 +121,7 @@ const PropertyList = ({ params }) => {
     bedrooms,
     bathrooms,
     starting_price,
+    handOver,
     mainImage,
     slug,
     completionStatusName,
@@ -134,6 +136,7 @@ const PropertyList = ({ params }) => {
       bedrooms,
       bathrooms,
       starting_price,
+      handOver,
       mainImage,
       slug,
       completionStatusName,
@@ -217,6 +220,7 @@ const PropertyList = ({ params }) => {
                         bedrooms,
                         bathrooms,
                         starting_price,
+                        handOver,
                         mainImage,
                         lat,
                         lng,
@@ -241,6 +245,7 @@ const PropertyList = ({ params }) => {
                             bedrooms,
                             bathrooms,
                             starting_price,
+                            handOver,
                             mainImage,
                             slug,
                             completionStatusName,
@@ -393,6 +398,7 @@ const PropertyList = ({ params }) => {
                               completionStatusName={
                                 property.completionStatusName
                               }
+                              handOver={property.handOver}
                               area_unit={property.area_unit}
                               accommodationName={property.accommodationName}
                             />

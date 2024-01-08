@@ -40,7 +40,7 @@ function Project(props) {
               <small className="text-secondary">{props.address}</small>
             </div>
             <p className="fs-18 mb-2 text-primary fw-semibold">
-              AED {  new Intl.NumberFormat().format(props.starting_price )}
+              Starting Price AED {  new Intl.NumberFormat().format(props.starting_price )}
             </p>
             <div className="features">
               <div>
@@ -58,7 +58,7 @@ function Project(props) {
                   title="bathroom"
                 ></i>
                 <span>{props.bathrooms}</span>
-              </div> */}
+              </div> 
               <div>
                 <i
                   aria-hidden="true"
@@ -69,7 +69,16 @@ function Project(props) {
                 <span>
                   {props.area} {props.area_unit}
                 </span>
+              </div>*/}
+
+              <div>
+              <img src="/images/icons/hand-over-bg.png" className="iconImg" height={10}/>
+                <span className="fa-sr-only"></span>
+                <span>
+                  {props.handOver}
+                </span>
               </div>
+
             </div>
           </div>
         </div>
