@@ -335,7 +335,7 @@ function BuyFilters({
     form["accommodation_id"] = "";
     form["completion_status_id"] = "";
     form["bathroom"] = "";
-    form["searchBy"] = "";
+    form["searchBy"] = [];
     form["amenities"] ="";
     form["category"] = "buy";
     form["isCommercial"] ="";

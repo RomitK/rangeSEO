@@ -165,7 +165,7 @@ function SingleProjectView({ params }) {
         <div className="tabsListConatiner ">
           <div className="container">
             <div className="row">
-              <div className="col-3 selectTitle">
+              <div className="col selectTitle">
                 <a
                   className="tabTitle active"
                   href="#Hightlights"
@@ -175,7 +175,7 @@ function SingleProjectView({ params }) {
                   Project Details
                 </a>
               </div>
-              <div className="col-3 selectTitle ">
+              <div className="col selectTitle ">
                 <a
                   className="tabTitle"
                   href="#ProjectDetails"
@@ -185,12 +185,13 @@ function SingleProjectView({ params }) {
                   Amenities
                 </a>
               </div>
-              <div className="col-3 selectTitle">
+              <div className="col selectTitle">
                 <a className="tabTitle " href="#NearBy" aria-selected="true">
                 similar PROJECTS
                 </a>
               </div>
-              <div className="col-3 selectTitle">
+              {projectData && (projectData?.rentProperties?.length > 0 || projectData?.buyProperties?.length > 0) && (
+              <div className="col selectTitle">
                 <a
                   className="tabTitle"
                   href="#AvailableProperties"
@@ -199,6 +200,7 @@ function SingleProjectView({ params }) {
                   Available Properties
                 </a>
               </div>
+              )}
             </div>
           </div>
         </div>
