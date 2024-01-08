@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useGetAllTeamData } from "@/src/services/TeamService";
-
+import "@/public/css/about-styles.css";
 function TeamPage() {
   const { teamsData } = useGetAllTeamData();
   return (
@@ -32,7 +32,7 @@ function TeamPage() {
             {teamsData &&
               teamsData.map(function (team, index) {
                 return (
-                  <div className="teamCard" key={team.id}>
+                  <div className="teamCard" key={team.id} >
                     <div className="imgBox">
                       <img
                         src={team?.image}
@@ -54,7 +54,7 @@ function TeamPage() {
                             target="_blanket"
                           >
                             <img
-                              src="/images/icons/phone-icon.png"
+                              src="/images/icons/team-call.png"
                               className="crdSocialIcon"
                               alt="phone"
                             />
@@ -67,7 +67,7 @@ function TeamPage() {
                             target="_blanket"
                           >
                             <img
-                              src="/images/icons/mail-icon.png"
+                              src="/images/icons/team-mail.png"
                               className="crdSocialIcon"
                               alt="mail"
                             />
@@ -81,7 +81,8 @@ function TeamPage() {
                             target="_blanket"
                           >
                             <img
-                              src="/images/icons/whatsapp-icon.png"
+                              // src="/images/icons/team-whatsapp1.png"
+                              src="/images/icons/team-whatsapp.png"
                               className="crdSocialIcon"
                               alt="whatsapp"
                             />
