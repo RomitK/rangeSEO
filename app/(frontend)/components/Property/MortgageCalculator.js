@@ -29,7 +29,8 @@ function MortgageCalculator({ property }) {
         let n = yearsToMonths(mortgageTerm);
         n = n + parseInt(mortgageTermMonths);
         const pmt = (r * amountBorrowed) / (1 - Math.pow(1 + r, -n));
-        setPayableEMI(parseFloat(pmt.toFixed(2)));
+        // setPayableEMI(parseFloat(pmt.toFixed(2)));
+        setPayableEMI(parseFloat(Math.trunc(pmt)));
     }
 
     const yearsToMonths = (termYears) => {
