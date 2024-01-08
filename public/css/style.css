@@ -1639,6 +1639,13 @@ z-index: 9;
 .goldenVisa:hover{
     color: #136dae !important;
 }
+.vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ensure the container takes the full height of its parent */
+}
+
 .frmTabList{
 display: flex;
 justify-content: flex-start;
