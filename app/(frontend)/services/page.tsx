@@ -197,11 +197,7 @@ function Services() {
                 <div className="serCardContent ">
                   <h3 className="cardTitle text-center">Mortgage Services</h3>
                   <p className="fs-14 text-secondary mb-4">
-                    Our team of mortgage advisors works closely with clients
-                    across the UAE and globally, for effective mortgage
-                    management. Our specialized home finance team provides
-                    comprehensive solutions for property purchases in Dubai and
-                    other Emirates.
+                  My mortgage brokerage is dedicated to helping our clients achieve their dream of home ownership. Our team of experienced professionals are committed to providing exceptional customer service and personalised solutions to meet the specific needs of each of our clients.
                   </p>
                   <button
                     className="fillBtn  mrAuto cardBtn"
