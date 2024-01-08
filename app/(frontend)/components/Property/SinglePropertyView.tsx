@@ -333,11 +333,16 @@ function SinglePropertyView({ params }) {
                               PROPERTY STATUS
                             </p>
                             <p className="fw-500 mb-0 fs-16">
-                              For {propertyData && propertyData.category}
+                              {propertyData && propertyData.category}
                               {
                                 propertyData?.category === 'Rent' && 
                                 <small> ({propertyData?.rental_period}) </small>
                               }
+                              {
+                                propertyData?.category === 'Buy' && 
+                                <small> ({propertyData?.completionStatus}) </small>
+                              }
+                              
                             </p>
                           </div>
                         </div>
@@ -911,10 +916,14 @@ function SinglePropertyView({ params }) {
                           </p>
                           <p className="fw-500 mb-0 fs-16">
                             For {propertyData && propertyData.category}
-                            {
-                              propertyData?.category === 'Rent' && 
-                              <small> ({propertyData?.rental_period}) </small>
-                            }
+                              {
+                                propertyData?.category === 'Rent' && 
+                                <small> ({propertyData?.rental_period}) </small>
+                              }
+                              {
+                                propertyData?.category === 'Buy' && 
+                                <small> ({propertyData?.completionStatus}) </small>
+                              }
                           </p>
                         </div>
                       </div>
