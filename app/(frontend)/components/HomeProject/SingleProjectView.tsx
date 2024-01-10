@@ -470,7 +470,7 @@ function SingleProjectView({ params }) {
                     <i className="bi bi-chevron-left fs-1"></i>
                   </span>
                 </div>
-                <div className="swiper-pagination"></div>
+                {/* <div className="swiper-pagination"></div> */}
               </Swiper>
             </div>
           </div>
@@ -566,7 +566,7 @@ function SingleProjectView({ params }) {
                     <i className="bi bi-chevron-left fs-1"></i>
                   </span>
                 </div>
-                <div className="swiper-pagination"></div>
+                {/* <div className="swiper-pagination"></div> */}
               </Swiper>
             </div>
 
@@ -653,7 +653,7 @@ function SingleProjectView({ params }) {
                     <i className="bi bi-chevron-left fs-1"></i>
                   </span>
                 </div>
-                <div className="swiper-pagination"></div>
+                {/* <div className="swiper-pagination"></div> */}
               </Swiper>
             </div>
           </div>

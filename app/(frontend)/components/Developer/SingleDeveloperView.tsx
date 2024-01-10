@@ -955,7 +955,7 @@ function SingleDeveloperView({ params }) {
                             <i className="bi bi-chevron-right fs-1"></i>
                           </span>
                         </div>
-                        <div className="swiper-pagination"></div>
+                        {/* <div className="swiper-pagination"></div> */}
                       </Swiper>
                     </div>
                     )}
