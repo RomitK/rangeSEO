@@ -84,7 +84,7 @@ function SingleProjectView({ params }) {
                   className="swiperSilderItem"
                   key={exteriorGallery.id + "exteriorGallery" + index}
                 >
-                  <img src={exteriorGallery.path} className="sliderCoverImg" />
+                  <img src={exteriorGallery.path} alt={exteriorGallery.title ?exteriorGallery.title: projectData.title} className="sliderCoverImg" />
                   <div className=" sliderContainer">
                     <div className="sliderContentArea">
                       <div className="sliderContent">
@@ -251,7 +251,7 @@ function SingleProjectView({ params }) {
                             <img
                               src={interiorGallery.path}
                               className="clmCoverImg"
-                              alt="interiorImage"
+                              alt={interiorGallery.title ? interiorGallery.title : projectData.title}
                             />
                           </SwiperSlide>
                         );
@@ -339,7 +339,7 @@ function SingleProjectView({ params }) {
                                     <div className="amenityImg mx-auto">
                                       <img
                                         src={amenity.image}
-                                        alt="Range"
+                                        alt={amenity.name}
                                         className="img-fluid"
                                         width="40px"
                                       />
@@ -662,6 +662,7 @@ function SingleProjectView({ params }) {
                       <div className="colmImgBox">
                         <img
                           src={projectData.developer.logo}
+                          alt={projectData.developer.name}
                           className="clmContainImg"
                         />
                       </div>
@@ -863,7 +864,7 @@ function SingleProjectView({ params }) {
                                             <div className="projectImgCont">
                                               <img
                                                 src={similarProperty.mainImage}
-                                                alt="project1"
+                                                alt={similarProperty.name}
                                                 className="img-fluid propImg"
                                               />
                                               <div className="projectImgOverlay">
@@ -1042,7 +1043,7 @@ function SingleProjectView({ params }) {
                                             <div className="projectImgCont">
                                               <img
                                                 src={similarProperty.mainImage}
-                                                alt="project1"
+                                                alt={similarProperty.name}
                                                 className="img-fluid propImg"
                                               />
                                               <div className="projectImgOverlay">

@@ -182,7 +182,7 @@ function SinglePropertyView({ params }) {
                       {propertyData?.gallery?.map((image, index) => {
                         return (
                           <SwiperSlide key={image.id + index + "gallery"}>
-                            <img src={image.path} alt="range" style={{ height: "500px" }}/>
+                            <img src={image.path} alt={image.title ? image.title : propertyData.name} style={{ height: "500px" }}/>
                           </SwiperSlide>
                         );
                       })}
@@ -226,7 +226,7 @@ function SinglePropertyView({ params }) {
                            <SwiperSlide key={image.id + index + "gallery2"}>
                              <img
                                src={image.path}
-                               alt="range"
+                               alt={image.title ? image.title : propertyData.name}
                                className="img-fluid"
                              />
                            </SwiperSlide>
@@ -629,7 +629,7 @@ function SinglePropertyView({ params }) {
                                   >
                                   <img
                                       src={community["path"]}
-                                      alt="community1"
+                                      alt={community["title"]}
                                       className="img-fluid"
                                       style={{ height: "300px", width: "500px" }}
                                     />
@@ -691,7 +691,7 @@ function SinglePropertyView({ params }) {
                                             <div className="amenityImg mx-auto">
                                               <img
                                                 src={amenity.image}
-                                                alt="Range"
+                                                alt={amenity.name}
                                                 className="img-fluid"
                                                 width="40px"
                                               />
@@ -748,7 +748,7 @@ function SinglePropertyView({ params }) {
                                         <div className="amenityImg mx-auto">
                                           <img
                                             src={amenity.image}
-                                            alt="Range"
+                                            alt={amenity.name}
                                             className="img-fluid"
                                             width="40px"
                                           />
@@ -1303,10 +1303,10 @@ function SinglePropertyView({ params }) {
                       className="swiper pb-2 communityProjectSwiperr"
                     >
                       {propertyData?.community["gallery"].map(
-                        (community, index) => {
+                        (gallery, index) => {
                           return (
                             <SwiperSlide
-                              key={community.id + index + "community"}
+                              key={gallery.id + index + "community"}
                             >
                               <div className="swiper-slide">
                                 <Link
@@ -1314,8 +1314,8 @@ function SinglePropertyView({ params }) {
                                   className="text-decoration-none communityImgCont"
                                 >
                                 <img
-                                    src={community["path"]}
-                                    alt="community1"
+                                    src={gallery["path"]}
+                                    alt={gallery["path"] ? gallery["title"] : propertyData.community["name"]}
                                     className="img-fluid"
                                     style={{ height: "300px", width: "500px" }}
                                   />
@@ -1795,7 +1795,9 @@ function SinglePropertyView({ params }) {
                                             src={
                                               similarProperty.property_banner
                                             }
-                                            alt="project1"
+                                            alt={
+                                              similarProperty.name
+                                            }
                                             className="img-fluid propImg"
                                           />
                                           <div className="projectImgOverlay">

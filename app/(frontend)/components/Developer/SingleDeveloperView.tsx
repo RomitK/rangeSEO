@@ -201,7 +201,7 @@ function SingleDeveloperView({ params }) {
                                   <p className="text-white">{index}</p>
                                   <img
                                     src={img.path}
-                                    alt="community1"
+                                    alt={img.title ? img.title: developerData.name }
                                     className="img-fluid communityGalleryImage"
                                   />
                                 </div>
@@ -444,7 +444,7 @@ function SingleDeveloperView({ params }) {
                       </div>
                     </div>
                   </div>
-                  {developerData?.projects?.slice(0, 8)?.map((project, index) => {
+                  {developerData?.projects?.slice(0, 12)?.map((project, index) => {
                     return (
                       <div
                         className="col-12 col-lg-3 col-md-3"
@@ -850,7 +850,7 @@ function SingleDeveloperView({ params }) {
                                           <div className="projectImgCont">
                                             <img
                                               src={property.property_banner}
-                                              alt="project1"
+                                              alt={property.name}
                                               className="img-fluid propImg"
                                             />
                                             <div className="projectImgOverlay">
@@ -1023,7 +1023,7 @@ function SingleDeveloperView({ params }) {
                                           <div className="projectImgCont">
                                             <img
                                               src={property.property_banner}
-                                              alt="project1"
+                                              alt={property.name}
                                               className="img-fluid propImg"
                                             />
                                             <div className="projectImgOverlay">

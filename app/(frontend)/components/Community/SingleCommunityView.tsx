@@ -224,11 +224,9 @@ function SinglecommunityDataView({ params }) {
                               <div className="communityImgCont">
                                 <img
                                   src={img.path}
-                                  alt="communityData"
+                                  alt={img.title ? img.title : communityData.name}
                                   className="img-fluid communityGalleryImage"
                                 />
-                                
-                                
                               </div>
                             </div>
                           </SwiperSlide>
@@ -358,7 +356,7 @@ function SinglecommunityDataView({ params }) {
                                       <img
                                         src={highlight.image}
                                         className="img-fluid"
-                                        alt="range"
+                                        alt={highlight.name}
                                         width="80px"
                                       />
                                     </center>
@@ -733,7 +731,7 @@ function SinglecommunityDataView({ params }) {
                                     <div className="amenityImg mx-auto">
                                       <img
                                         src={amenity.image}
-                                        alt="Range"
+                                        alt={amenity.name}
                                         className="img-fluid"
                                         width="40px"
                                       />
@@ -851,7 +849,7 @@ function SinglecommunityDataView({ params }) {
                                           <div className="projectImgCont">
                                             <img
                                               src={property.property_banner}
-                                              alt="project1"
+                                              alt={property.name}
                                               className="img-fluid propImg"
                                             />
                                             <div className="projectImgOverlay">
@@ -1024,7 +1022,7 @@ function SinglecommunityDataView({ params }) {
                                           <div className="projectImgCont">
                                             <img
                                               src={property.property_banner}
-                                              alt="project1"
+                                              alt={property.name}
                                               className="img-fluid propImg"
                                             />
                                             <div className="projectImgOverlay">
