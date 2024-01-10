@@ -12,7 +12,6 @@ function ProjectList() {
   const [selectedProject, setSelectedProjectName] = useState();
   const options = homeData?.newProjects;
   const projectChangeHandle = (event) => {
-    console.log(event.value);
     router.push("/projects/" + event.value);
   };
   return (

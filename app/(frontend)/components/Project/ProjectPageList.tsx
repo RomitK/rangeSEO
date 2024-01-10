@@ -12,11 +12,8 @@ import {
 
 import classes from "./Project.module.css";
 import Filters from "./Filters";
-import {
-  useGetAccommodations,
-  useGetCommunities,
-  useGetAmenities,
-} from "@/src/services/PropertyService";
+import { useGetProjectAccommodations} from "@/src/services/AccommodationService";
+import { useGetProjectAmenities } from "@/src/services/AmenityService"
 import axios from "axios";
 
 const PropertyList = ({ params }) => {
@@ -49,10 +46,8 @@ const PropertyList = ({ params }) => {
   const [sorting, setSorting] = useState("");
   const [links, setLinks] = useState({ next: "", first: "" });
 
-  const { accommodations } = useGetAccommodations();
-  const { communities } = useGetCommunities();
-  const { amenities } = useGetAmenities();
-
+  const { projectAccommodations } = useGetProjectAccommodations();
+  const { projectAmenities } = useGetProjectAmenities();
   const mapRef = useRef(null);
 
   const getMarkersInView = useCallback(() => {
@@ -63,10 +58,12 @@ const PropertyList = ({ params }) => {
     const markersInsideView = originalMarkers.filter((marker) =>
       bounds.contains(new window.google.maps.LatLng(marker.lat, marker.lng))
     );
-
     mapRef2?.current?.setCenter({
-      lat: parseFloat(originalMarkers[0].address_latitude),
-      lng: parseFloat(originalMarkers[0].address_longitude),
+       lat: parseFloat(originalMarkers[0].address_latitude),
+       lng: parseFloat(originalMarkers[0].address_longitude),
+      // lat: 23.4241, // Latitude for UAE
+      // lng: 53.8478, // Longitude for UAE
+
     });
     // setFilteredMarkers([...markersInsideView]);
     setProperties([...markersInsideView]);
@@ -165,9 +162,8 @@ const PropertyList = ({ params }) => {
               setShowMap={setShowMap}
               mapRef={mapRef2}
               setOriginalMarkers={setOriginalMarkers}
-              accomodations={accommodations}
-              communities={communities}
-              amenities={amenities}
+              accomodations={projectAccommodations}
+              amenities={projectAmenities}
               setLoading={setLoading}
               sortBy={sorting}
               setLinks={setLinks}
@@ -283,6 +279,7 @@ const PropertyList = ({ params }) => {
                                 area={infoWindowData.area}
                                 bathrooms={infoWindowData.bathrooms}
                                 bedrooms={infoWindowData.bedrooms}
+                                handOver = {infoWindowData.handOver}
                                 starting_price={infoWindowData.starting_price}
                                 address={infoWindowData.address}
                                 mainImage={infoWindowData.mainImage}

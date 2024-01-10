@@ -54,7 +54,7 @@ function Project(props) {
                   className="fa fa-bed fa-lg bed"
                   title="bedroom"
                 ></i>
-                <span>{props.bedrooms}</span>
+                <span>{props.bedrooms} {props.handOver}</span>
               </div>
               {/* <div>
                 <i

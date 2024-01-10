@@ -19,7 +19,6 @@ function RentFilters({
   setOriginalMarkers,
   mapRef,
   accomodations,
-  communities,
   amenities,
   setLoading,
   sortBy,
@@ -42,6 +41,7 @@ function RentFilters({
     furnishing: "",
     isCommercial:"",
   });
+  const [projectAmenities, setProjectAmenities] = useState(amenities);
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
   const [newArrayF, setNewArrayF] = useState([]);
@@ -215,7 +215,7 @@ function RentFilters({
   }, []);
   useEffect(() => {
 
-    let getPropertiesURL = process.env.API_HOST + "propertiesList?";
+    let getPropertiesURL = process.env.API_HOST + "properties?";
     let payload = { ...form };
 
     for (let key in payload) {
@@ -247,18 +247,19 @@ function RentFilters({
       .then((response) => response.json())
       .then((res) => {
         if (res.success) {
-          const propertiesDup = res.data.data;
+          const propertiesDup = res.data.properties.data;
           setProperties([...propertiesDup]);
+          setProjectAmenities(res.data.amenities);
+          setTotalProperties(res.data.properties.meta.total);
           setOriginalMarkers([...propertiesDup]);
-          setLinks(res.data.links);
-          setTotalProperties(res.data.meta.total);
+          setLinks(res.data.projects.links);
+          
           if (propertiesDup.length) {
             mapRef?.current?.setCenter({
-              lat: parseFloat(propertiesDup[0].lat),
-              lng: parseFloat(propertiesDup[0].lng),
+              lat: parseFloat(propertiesDup[0].address_latitude),
+              lng: parseFloat(propertiesDup[0].address_longitude),
             });
           }
-         
         }
       })
       .catch((error) => {
@@ -292,14 +293,22 @@ function RentFilters({
 //   }, amenities);
 
 
-  useEffect(() => {
-    const newArray3 = amenities?.map(originalObject => ({
-      label: originalObject.name,
-      value: originalObject.id,
-    }));
-    setNewArrayF(newArray3);
-  }, [JSON.stringify(amenities)]); // Using JSON.stringify
-
+useEffect(() => {
+  const newArray3 = projectAmenities?.map((originalObject, index) => {
+    const label = originalObject.name;
+    const value = originalObject.id;
+    return { label, value };
+  });
+  setNewArrayF(newArray3);
+}, []);
+useEffect(() => {
+  const newArray3 = projectAmenities?.map((originalObject, index) => {
+    const label = originalObject.name;
+    const value = originalObject.id;
+    return { label, value };
+  });
+  setNewArrayF(newArray3);
+}, projectAmenities);
   function isEmptyObject() {
     const o = { ...form };
     delete o.sortBy;
@@ -644,6 +653,7 @@ function RentFilters({
                   id="maxprice"
                   placeholder="Any Price"
                   ref={maxPriceRef}
+                  min={0}
                 />
               </div>
               <div className="mt-4 d-grid">

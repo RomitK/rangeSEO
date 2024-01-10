@@ -333,6 +333,7 @@ function ProjectList() {
                                 className="form-control"
                                 id="maxprice"
                                 placeholder="Any Price"
+                                min={0}
                                 ref={maxPriceRef}
                               />
                             </div>
