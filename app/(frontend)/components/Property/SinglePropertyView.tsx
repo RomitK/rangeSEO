@@ -337,14 +337,14 @@ function SinglePropertyView({ params }) {
                             {
                               propertyData?.category === 'Rent' && 
                               (<>
-                                For {propertyData && propertyData.category}<small> ({propertyData?.rental_period}) </small>
+                                 {propertyData && propertyData.category}<small> ({propertyData?.rental_period}) </small>
                               </>
                               )
                             }
                             {
                               propertyData?.category === 'Buy' && 
                               (<>
-                                For {propertyData && propertyData?.completionStatus}
+                                 {propertyData && propertyData?.completionStatus}
                               </>
                               )
                             }
@@ -988,14 +988,14 @@ function SinglePropertyView({ params }) {
                           {
                             propertyData?.category === 'Rent' && 
                             (<>
-                              For {propertyData && propertyData.category}<small> ({propertyData?.rental_period}) </small>
+                               {propertyData && propertyData.category}<small> ({propertyData?.rental_period}) </small>
                             </>
                             )
                           }
                           {
                             propertyData?.category === 'Buy' && 
                             (<>
-                              For {propertyData && propertyData?.completionStatus}
+                               {propertyData && propertyData?.completionStatus}
                             </>
                             )
                           }
