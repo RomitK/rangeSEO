@@ -534,10 +534,10 @@ function SingleDeveloperView({ params }) {
                         return (
                           <SwiperSlide key={community.id + index}>
                             <div className="swiper-slide">
-                              <div>
+                              
                                 <div className="card propCard rounded-0">
-                                  <div>
-                                    <div className="">
+                                  
+                                    
                                       <Link
                                         href={`/communities/${community?.slug}`}
                                         className="text-decoration-none text-white"
@@ -550,7 +550,7 @@ function SingleDeveloperView({ params }) {
                                           />
                                         </div>
                                       </Link>
-                                    </div>
+                                   
                                     <div className="card-body rounded-3 rounded-top-0 developerCommunityCardBody">
                                       <Link
                                         href={`/communities/${community?.slug}`}
@@ -563,9 +563,9 @@ function SingleDeveloperView({ params }) {
                                         </div>
                                       </Link>
                                     </div>
-                                  </div>
+                                  
                                 </div>
-                              </div>
+                              
                             </div>
                           </SwiperSlide>
                         );
