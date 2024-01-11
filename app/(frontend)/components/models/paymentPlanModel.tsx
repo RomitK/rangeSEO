@@ -86,31 +86,36 @@ function PaymentPlanModel(props) {
                             </th>
                           </tr>
                           <tr>
-                            <th className="tblThText">Installments</th>
+                            <th className="tblThText">Payments</th>
                             <th className="tblThText">Percentage (%)</th>
-                            <th className="tblThText">Milestones</th>
+                            {/* <th className="tblThText">Milestones</th> */}
                           </tr>
                         </thead>
                         <tbody>
                           {pay?.rows.map((paymentPlan, index) => {
                             return (
                               <tr key={paymentPlan.id}>
-                                <td>
-                                  {" "}
+                                 <td>
                                   <p className="tblTdText text-secondary">
-                                    {paymentPlan?.name}
+                                    {paymentPlan?.value}
                                   </p>
                                 </td>
+
                                 <td>
                                   <p className="tblTdText text-secondary">
                                     {paymentPlan?.key}
                                   </p>
                                 </td>
-                                <td>
+                                
+                               
+                                {/* <td>
+                                  {" "}
                                   <p className="tblTdText text-secondary">
-                                    {paymentPlan?.value}
+                                    {paymentPlan?.name}
                                   </p>
-                                </td>
+                                </td> */}
+                                
+                                
                               </tr>
                             );
                           })}
