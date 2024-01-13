@@ -477,7 +477,9 @@ function SingleDeveloperView({ params }) {
                   })}
                   {developerData && developerData.projects &&  developerData.projects.length > 0 && (
                   <div className="text-center py-3 text-primary">
-                    <a className="text-primary"  onClick={handleViewProject} href="#">
+                    <a className="text-primary"
+                     href={`/projects?developer_name=${developerData.name}&developer_detail=${developerData.id}&lisiting`}
+                    >
                     VIEW ALL
                     </a>
                   </div>

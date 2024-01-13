@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useMediaQuery } from "react-responsive";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { components } from "react-select";
 import { Dropdown, FormControl, Form } from "react-bootstrap";
@@ -47,7 +47,8 @@ function Filters({
   const maxAreaRef = useRef(null);
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const [projectAmenities, setProjectAmenities] = useState(amenities);
-
+  const [showListing, setShowListing] = useState(false);
+  const router = useRouter();
   const [form, setForm] = useState({
     accommodation_id: "",
     bedrooms: "",
@@ -59,6 +60,7 @@ function Filters({
     bathroom: "",
     completion_status_id: "",
     isCommercial:"",
+    lastUpdated:""
   });
   useEffect(() => {
     if (isCommercial) {
@@ -121,6 +123,9 @@ function Filters({
           name: searchParams.get("developer_name"),
         },
       ]);
+      if(searchParams.has('lisiting')){
+        setShowListing(true)
+      }
     }
   }, []);
   function isEmptyObject() {
@@ -245,6 +250,7 @@ function Filters({
   }, [isMobile]);
 
   useEffect(() => {
+
     let getPropertiesURL = process.env.API_HOST + "projects?";
     let payload = { ...form };
     for (let key in payload) {
@@ -319,10 +325,40 @@ function Filters({
     });
     setNewArrayF(newArray3);
   }, projectAmenities);
+  const redirectListing = (e) =>{
+    if(showListing && form.lastUpdated !== 'completion_status_id'){
 
+      const searchParams = new URLSearchParams({
+        accommodation_id: form.accommodation_id,
+        bedrooms: form.bedrooms,
+        minprice: form.minprice,
+        maxprice: form.maxprice,
+        minarea: form.minarea,
+        maxarea: form.maxarea,
+        amenities: form.amenities,
+        bathroom: form.bathroom,
+        searchBy:JSON.stringify(form.searchBy)
+      }).toString();
+      
+      const url = `/properties?${searchParams}`;
+      router.push(url);
+    }
+  }
+
+  useEffect(() => {
+    if (showListing) {
+      redirectListing(form);
+    }
+  }, [form.minprice, form.maxprice, form.minarea, form.maxarea]);
+  
   const handleChange = (e) => {
     form[e.target.name] = e.target.value;
+    
     setForm({ ...form });
+    if(showListing){
+      form['lastUpdated'] =e.target.name;
+      redirectListing(form);
+    }
   };
 
   const handleViewChange = (e) => {};
@@ -333,6 +369,9 @@ function Filters({
       minprice: minPriceRef.current.value,
       maxprice: maxPriceRef.current.value,
     });
+    if(showListing){
+      redirectListing(form);
+    }
   };
   const resetApplyPrice = () => {
     form["minprice"] = "";
@@ -572,7 +611,7 @@ function Filters({
           >
             <option value="">Project Status</option>
             <option value="289">Under Construction</option>
-            <option value="300">Completed</option>
+            <option value="290">Completed</option>
           </select>
         </div>
 

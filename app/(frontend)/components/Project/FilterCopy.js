@@ -1,33 +1,60 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useMediaQuery } from "react-responsive";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { components } from "react-select";
 import { Dropdown, FormControl, Form } from "react-bootstrap";
 import AsyncSelect from "react-select/async";
-import classes from "@/app/(frontend)/components/Properties/Filters/Filters.module.css";
-import Bottombar from "@/app/(frontend)/components/UI/BottomNavigationBar";
-import CustomToggle from "@/app/(frontend)/components/UI/CustomSelectToggle";
-import MultiValue from "@/app/(frontend)/components/UI/ReactSelect/MultiValue";
-import IndicatorsContainer from "@/app/(frontend)/components/UI/ReactSelect/IndicatorsContainer";
-import MultiValueContainer from "@/app/(frontend)/components/UI/ReactSelect/MultiValueContainer";
+import qs from 'qs';
+import classes from "./Filters.module.css";
+import Bottombar from "../UI/BottomNavigationBar";
+import CustomToggle from "../UI/CustomSelectToggle";
+import MultiValue from "../UI/ReactSelect/MultiValue";
+import IndicatorsContainer from "../UI/ReactSelect/IndicatorsContainer";
+import MultiValueContainer from "../UI/ReactSelect/MultiValueContainer";
 
-
-function ReadyFilters({
+function Filters({
   setShowMap,
   showMap,
   setProperties,
   setOriginalMarkers,
   mapRef,
   accomodations,
-  amenities,
   setLoading,
   sortBy,
   setLinks,
-  setTotalProperties
+  setTotalProperties,
+  setType,
+  type
 }) {
+
+  const [showMore, setShowMore] = useState(false);
+  const [newArray, setNewArray] = useState([]);
+  const [newArrayF, setNewArrayF] = useState([]);
+  const [filteredAccomodation, setFilteredAccomodation] = useState(accomodations);
+
+  const [showNoMessage, setNoMessage] = useState(false);
+  const [hasFocus, setHasFocus] = useState(false);
+  const [showFormReset, setShowFormReset] = useState(false);
+  const [showListing, setShowListing] = useState(false);
+  const [lisitingStep, setListingStep] = useState(0);
+  const [formHasValues, setFormHasValues] = useState(false);
+  const [showSelectedValues, setShowSelectedValues] = useState(true);
+  const [ongoingRequests, setOngoingRequests] = useState([]);
+  const searchParams = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [isCommercial, setIsCommercial] = useState(false);
+  const selectRef = useRef();
+  const minPriceRef = useRef(null);
+  const maxPriceRef = useRef(null);
+  const minAreaRef = useRef(null);
+  const maxAreaRef = useRef(null);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const [projectAmenities, setProjectAmenities] = useState([]);
+  const router = useRouter();
   const [form, setForm] = useState({
     accommodation_id: "",
-    community: "",
     bedrooms: "",
     minprice: "",
     maxprice: "",
@@ -35,30 +62,146 @@ function ReadyFilters({
     maxarea: "",
     amenities: "",
     bathroom: "",
-    area: "",
-    category: "buy",
-    completion_status_id: 286,
-    furnishing: "",
+    completion_status_id: "",
     isCommercial:"",
+    category: "",
   });
-  const [projectAmenities, setProjectAmenities] = useState(amenities);
-  const [showMore, setShowMore] = useState(false);
-  const [newArray, setNewArray] = useState([]);
-  const [newArrayF, setNewArrayF] = useState([]);
-  const minPriceRef = useRef(null);
-  const maxPriceRef = useRef(null);
-  const minAreaRef = useRef(null);
-  const maxAreaRef = useRef(null);
-  const [isCommercial, setIsCommercial] = useState(false);
-  const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [filteredAccomodation, setFilteredAccomodation] =
-    useState(accomodations);
-  const [showNoMessage, setNoMessage] = useState(false);
-  const selectRef = useRef();
-  const [hasFocus, setHasFocus] = useState(false);
-  const [showSelectedValues, setShowSelectedValues] = useState(true);
-  const [ongoingRequests, setOngoingRequests] = useState([]);
+  useEffect(() => {
+    if (isCommercial) {
+      form['isCommercial'] = 1;
+      form['accommodation_id'] = "";
+      setForm({ ...form });
 
+      const filtered = accomodations?.filter(
+        (accomodation) =>
+          accomodation.type === "Commercial" || accomodation.type === "Both"
+      );
+      if (filtered != null) {
+        setFilteredAccomodation([...filtered]);
+      }
+    } else {
+      setIsCommercial(false)      
+      form['isCommercial'] = "";
+      form['accommodation_id'] = "";
+      setForm({ ...form });
+
+      const filtered = accomodations?.filter(
+        (accomodation) =>
+          accomodation.type === "Residential" || accomodation.type === "Both"
+      );
+      if (filtered != null) {
+        setFilteredAccomodation([...filtered]);
+      }
+    }
+  }, [isCommercial, accomodations]);
+  useEffect(() => {
+    if (searchParams.has("minprice") && searchParams.has("maxprice")) {
+      form["minprice"] = searchParams.get("minprice");
+      form["maxprice"] = searchParams.get("maxprice");
+
+      if (minPriceRef.current != null) {
+        minPriceRef.current.value = searchParams.get("minprice") || '';
+      }
+      if (maxPriceRef.current != null) {
+        maxPriceRef.current.value = searchParams.get("maxprice") || '';
+      }
+      setForm({ ...form });
+      setShowMore(true);
+    }
+    if (
+      searchParams.has("developer_name") &&
+      searchParams.has("developer_detail")
+    ) {
+      setForm({
+        ...form,
+        searchBy: [
+          {
+            type: searchParams.get("developer_detail"),
+            name: searchParams.get("developer_name"),
+          },
+          {
+            type: "developer-15",
+            name: "Emaar",
+          },
+        ],
+      });
+      selectRef.current.setValue([
+        {
+          type: searchParams.get("developer_detail"),
+          name: searchParams.get("developer_name"),
+        },
+        {
+          type: "developer-15",
+          name: "Emaar",
+        },
+      ]);
+    }
+    if(searchParams.has('lisiting')){
+      setShowListing(true)
+    }
+  }, []);
+  function isEmptyObject() {
+    const o = { ...form };
+    return Object.keys(o).every(function (x) {
+      if (Array.isArray(o[x])) {
+        return o[x].length > 0 ? false : true;
+      } else {
+        return o[x] === "" || o[x] === null;
+      }
+    });
+  }
+
+  const handleReset = () => {
+    setType('project')
+    router.push(`/projects`);
+    setIsCommercial(false);
+    setForm(prevForm => ({
+      ...prevForm,
+      isCommercial: ""
+    }));
+    setForm(prevForm => ({
+      ...prevForm,
+      maxprice: ""
+    }));
+    setForm(prevForm => ({
+      ...prevForm,
+      minprice: ""
+    }));
+
+    setForm(prevForm => ({
+      ...prevForm,
+      minarea: ""
+    }));
+    setForm(prevForm => ({
+      ...prevForm,
+      maxarea: ""
+    }));
+    form["furnishing"] = "";
+    form["bedrooms"] = "";
+    form["accommodation_id"] = "";
+    form["completion_status_id"] = "";
+    form["bathroom"] = "";
+    form["searchBy"] = "";
+    form["amenities"] = "";
+    form["isCommercial"] ="";
+    setSelectedItems([]);
+    setListingStep(0)
+    setShowListing(false)
+    selectRef.current.setValue([]);
+    if (minPriceRef.current != null) {
+      minPriceRef.current.value = "";
+    }
+    if (maxPriceRef.current != null) {
+      maxPriceRef.current.value = "";
+    }
+    if (minAreaRef.current != null) {
+      minAreaRef.current.value = "";
+    }
+    if (maxAreaRef.current != null) {
+      maxAreaRef.current.value = "";
+    }
+
+  };
   const Menu = ({ children, ...props }) => {
     let items = form["searchBy"];
     return (
@@ -117,92 +260,69 @@ function ReadyFilters({
   );
 
   useEffect(() => {
-    if (isCommercial) {
-      form['isCommercial'] = 1;
-      setForm({ ...form });
-      const filtered = accomodations?.filter(
-        (accomodation) =>
-          accomodation.type === "Commercial" || accomodation.type === "Both"
-      );
-      if (filtered != null) {
-        setFilteredAccomodation([...filtered]);
-      }
-    } else {
-      setIsCommercial(false)      
-      form['isCommercial'] = "";
-      setForm({ ...form });
-      const filtered = accomodations?.filter(
-        (accomodation) =>
-          accomodation.type === "Residential" || accomodation.type === "Both"
-      );
-      if (filtered != null) {
-        setFilteredAccomodation([...filtered]);
-      }
-    }
-  }, [isCommercial, accomodations]);
-
-  useEffect(() => {
     if (isMobile && showMap) {
       setShowMap(false);
     }
   }, [isMobile]);
 
   useEffect(() => {
-
-    let getPropertiesURL = process.env.API_HOST + "properties?";
-    let payload = { ...form };
-
-    for (let key in payload) {
-      if (payload.hasOwnProperty(key)) {
-        if (payload[key]) {
-          if (key === "searchBy" && payload[key].length) {
-            let searchBy = undefined;
-            if (typeof payload[key] == "string") {
-              searchBy = JSON.parse(payload[key]);
-            } else if (Array.isArray(payload[key])) {
-              searchBy = payload[key];
+    if(lisitingStep > 0){
+      setType('property');
+      console.log('lll')
+    }
+    console.log(type == "property" && lisitingStep > 0)
+    let getPropertiesURL = new URL(process.env.API_HOST + (lisitingStep > 0  ? "properties?" : "projects?"));
+      let payload = { ...form };
+      for (let key in payload) {
+        if (payload.hasOwnProperty(key)) {
+          if (payload[key]) {
+            if (key === "searchBy" && payload[key].length) {
+              let searchBy = undefined;
+              if (typeof payload[key] == "string") {
+                searchBy = JSON.parse(payload[key]);
+              } else if (Array.isArray(payload[key])) {
+                searchBy = payload[key];
+              } else {
+                searchBy = [];
+              }
+              searchBy.forEach((element) => {
+                delete element.id;
+                delete element.slug;
+              });
+              payload[key] = JSON.stringify(searchBy);
+              getPropertiesURL += `${key}=${payload[key]}&`;
             } else {
-              searchBy = [];
+              getPropertiesURL += `${key}=${payload[key]}&`;
             }
-            searchBy.forEach((element) => {
-              delete element.id;
-              delete element.slug;
-            });
-            payload[key] = JSON.stringify(searchBy);
-            getPropertiesURL += `${key}=${payload[key]}&`;
-          } else {
-            getPropertiesURL += `${key}=${payload[key]}&`;
           }
         }
       }
-    }
-    setLoading(true);
-    fetch(getPropertiesURL)
+      setLoading(true);
+      fetch(getPropertiesURL)
       .then((response) => response.json())
       .then((res) => {
-        if (res.success) {
-          const propertiesDup = res.data.properties.data;
-          setProperties([...propertiesDup]);
-          setProjectAmenities(res.data.amenities);
-          setTotalProperties(res.data.properties.meta.total);
-          setOriginalMarkers([...propertiesDup]);
-          setLinks(res.data.properties.links);
-          
-          if (propertiesDup.length) {
-            mapRef?.current?.setCenter({
-              lat: parseFloat(propertiesDup[0].address_latitude),
-              lng: parseFloat(propertiesDup[0].address_longitude),
-            });
+          if (res.success) {
+            const propertiesDup = res.data.properties.data;
+            setProperties([...propertiesDup]);
+            setProjectAmenities(res.data.amenities);
+            setTotalProperties(res.data.properties.meta.total);
+            setOriginalMarkers([...propertiesDup]);
+            setLinks(res.data.properties.links);
+            
+            if (propertiesDup.length) {
+              mapRef?.current?.setCenter({
+                lat: parseFloat(propertiesDup[0].address_latitude),
+                lng: parseFloat(propertiesDup[0].address_longitude),
+              });
+            }
           }
-        }
-      })
+        })
       .catch((error) => {
         console.error("Error:", error); // Handle the error response object
       })
       .finally(() => {
         setLoading(false);
-      });
-
+      });    
   }, [form]);
 
   useEffect(() => {
@@ -218,77 +338,25 @@ function ReadyFilters({
     setNewArrayF(newArray3);
   }, []);
   useEffect(() => {
-    const newArray3 = projectAmenities?.map(originalObject => ({
-      label: originalObject.name,
-      value: originalObject.id,
-    }));
-    setNewArrayF(newArray3);
-  }, [JSON.stringify(projectAmenities)]); // Using JSON.stringify
-
-  function isEmptyObject() {
-    const o = { ...form };
-    delete o.sortBy;
-    if(o.category === "buy"){
-        delete o.category;
-    }else{
-      
-    }
-
-    if(o.completion_status_id === 286){
-        delete o.completion_status_id;
-    }else{
-      
-    }
-    
-    return Object.keys(o).every(function (x) {
-      if (Array.isArray(o[x])) {
-        return o[x].length > 0 ? false : true;
-      } else {
-        return o[x] === "" || o[x] === null;
-      }
+    const newArray3 = projectAmenities?.map((originalObject, index) => {
+      const label = originalObject.name;
+      const value = originalObject.id;
+      return { label, value };
     });
-  }
+    setNewArrayF(newArray3);
+  }, projectAmenities);
 
-  const handleReset = () => {
-    setIsCommercial(false);
-    setForm(prevForm => ({
-      ...prevForm,
-      isCommercial: ""
-    }));
-    form["minprice"] = "";
-    form["maxprice"] = "";
-    form["minarea"] = "";
-    form["maxarea"] = "";
-    form["furnishing"] = "";
-    form["bedrooms"] = "";
-    form["accommodation_id"] = "";
-    form["completion_status_id"] = "";
-    form["bathroom"] = "";
-    form["searchBy"] = "";
-    form["amenities"] ="";
-    form["category"] = "buy";
-    form["completion_status_id"] = 286;
-    form["isCommercial"] ="";
-    setSelectedItems([]);
-    selectRef.current.setValue([]);
-    if(minPriceRef.current != null){
-      minPriceRef.current.value = "";
-    }
-    if(maxPriceRef.current != null){
-      maxPriceRef.current.value = "";
-    }
-    if(minAreaRef.current != null){
-      minAreaRef.current.value = "";
-    }
-    if(maxAreaRef.current != null){
-      maxAreaRef.current.value = "";
-    }
-  };
   const handleChange = (e) => {
-    form[e.target.name] = e.target.value;
-    if(form.category == "rent" || form.category == "all"){
+
+    if(type=="property"){
+      if(form.category == "rent" || form.category == ""){
         form.completion_status_id = ""
+      }  
     }
+    if(showListing){
+      setListingStep(prevStep => prevStep + 1);
+    }
+    form[e.target.name] = e.target.value;
     setForm({ ...form });
   };
 
@@ -323,9 +391,6 @@ function ReadyFilters({
     minAreaRef.current.value = "";
     maxAreaRef.current.value = "";
   };
-
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedItems, setSelectedItems] = useState([]);
 
   const highlightMatch = (label) => {
     const index = label.toLowerCase().indexOf(searchTerm.toLowerCase());
@@ -395,7 +460,7 @@ function ReadyFilters({
     const abortController = new AbortController();
     const abortSignal = abortController.signal;
     const apiUrl =
-      process.env.API_HOST + "propertyPageSearch?keyword=" + inputValue;
+      process.env.API_HOST + "projectPageSearch?keyword=" + inputValue;
 
     ongoingRequests.map((onGoingRequest) =>
       onGoingRequest.abortController.abort()
@@ -428,7 +493,12 @@ function ReadyFilters({
         callback([]);
       });
   };
+  const handlePositiveChange = (e) => {
+    const numericValue = e.target.value.replace(/[^0-9]/g, '');
+    e.target.value = numericValue;
+  };
   return (
+    
     <form action="">
       <div className="row row-gap-3">
         <div className="col-12 col-lg-3">
@@ -490,9 +560,12 @@ function ReadyFilters({
             name="searchBy"
             loadOptions={loadOptions}
             instanceId="searchBy"
+            // placeholder="Search By Developers and  Communities"
           />
         </div>
-        <div  className={`base-class ${form.category && form.category != 'all' ? 'col-md-1' : 'col-md-2'}`}>
+        {
+          type == 'property' && <>
+          <div  className="base-class col-md-1 ">
           <select
             onChange={handleChange}
             value={form.category}
@@ -500,13 +573,13 @@ function ReadyFilters({
             id="category"
             className="form-select bedroomSelect"
           >
-            <option value="all">Buy/Rent</option>
+            <option value="">Buy/Rent</option>
             <option value="buy">Buy</option>
             <option value="rent">Rent</option>
           </select>
         </div>
         {
-         form.category && form.category == 'buy' &&
+         form.category && form.category != 'rent' &&
           <div className="col-md-2">
           <select
             onChange={handleChange}
@@ -515,12 +588,15 @@ function ReadyFilters({
             id="completion_status_id"
             className="form-select bedroomSelect"
           >
-            <option value="all">Completion Status</option>
+            <option value="">Completion Status</option>
             <option value="286">Ready</option>
             <option value="287">OffPlan</option>
           </select>
         </div>
         }
+        </>
+        }
+        
         <div className="col-md-2">
           <select
             onChange={handleChange}
@@ -537,76 +613,44 @@ function ReadyFilters({
             ))}
           </select>
         </div>
-
-        <div className={`base-class ${form.category && form.category === 'buy' ? 'col-md-1' : 'col-md-2'}`}>
-          <div className="dropdown">
-            <div
-              className="form-select"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              data-bs-auto-close="outside"
-            >
-              {form.minprice || form.maxprice
-                ? `${form.minprice} ${form.minprice && form.maxprice && "-"} ${
-                    form.maxprice
-                  } AED`
-                : "Price"}
-              {}
-            </div>
-            <div className="dropdown-menu p-4">
-              <div className="mb-3">
-                <label className="form-label">Minimum Price</label>
-                <input
-                  type="number"
-                  className="form-control"
-                  id="minprice"
-                  min={0}
-                  placeholder="0"
-                  name="minprice"
-                  ref={minPriceRef}
-                />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Maximum Price</label>
-                <input
-                  type="number"
-                  name="maxprice"
-                  className="form-control"
-                  id="maxprice"
-                  placeholder="Any Price"
-                  ref={maxPriceRef}
-                  min={0}
-                />
-              </div>
-              <div className="mt-4 d-grid">
-                <div
-                  className="row justify-content-center"
-                  style={{ columnGap: "0.25rem" }}
-                >
-                  <button
-                    className="btn btn-primary btn-sm col"
-                    type="button"
-                    onClick={handleApplyPrice}
-                  >
-                    Apply
-                  </button>
-                  {showPriceResetButton() && (
-                    <button
-                      className="btn btn-secondary btn-sm col"
-                      type="button"
-                      onClick={resetApplyPrice}
-                    >
-                      Reset
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="col-md-2">
+          <select
+            onChange={handleChange}
+            value={form.bedrooms}
+            name="bedrooms"
+            id="bedrooms"
+            className="form-select bedroomSelect"
+          >
+            <option value="">Select Bedrooms</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="Studio">Studio</option>
+          </select>
         </div>
+        {
+          type=="project" &&
+            <div className="col-md-2">
+                <select
+                onChange={handleChange}
+                value={form.completion_status_id}
+                name="completion_status_id"
+                id="completion_status_id"
+                className="form-select bedroomSelect"
+              >
+                <option value="">Project Status</option>
+                <option value="289">Under Construction</option>
+                <option value="300">Completed</option>
+              </select> 
+            </div>
+       
+      }
 
-        <div  className={`base-class ${form.category && form.category === 'buy' ? 'col-md-3' : 'col-md-3'} d-flex align-items-center gap-2 justify-content-end`}>
-          <div className="form-check">
+        <div className="col-md-3 d-flex align-items-center gap-2 justify-content-end">
+        <div className="form-check">
             <input
               type="checkbox"
               className="form-check-input"
@@ -618,6 +662,7 @@ function ReadyFilters({
               Commericial
             </label>
           </div>
+
           <button
             className="btn btn-sm btn-primary"
             type="button"
@@ -674,12 +719,9 @@ function ReadyFilters({
             </div>
           </div>
         </div>
-      </div>
-
-      {showMore && (
-        <div className="row mt-3 row-gap-3">
-          {!isCommercial && (
-            <div className="col-lg-3">
+        {showMore && (
+          <div className="row mt-3 row-gap-3">
+            <div className="col-md-3">
               <Dropdown>
                 <Dropdown.Toggle
                   className={`dt form-control form-select ${classes.customDropdown}`}
@@ -732,123 +774,152 @@ function ReadyFilters({
                 </Dropdown.Menu>
               </Dropdown>
             </div>
-          )}
-          {!isCommercial && (
-            <div className="col-lg-2">
-              <select
-                onChange={handleChange}
-                value={form.furnishing}
-                name="furnishing"
-                id="furnishing"
-                className="form-select furnishingSelect"
-              >
-                <option value="">All Furnishings</option>
-                <option value="1">Furnished</option>
-                <option value="2">Unfurnished</option>
-                <option value="partly">Partly Furnished</option>
-              </select>
-            </div>
-          )}
-
-          <div className="col-lg-2">
-            <select
-              onChange={handleChange}
-              value={form.bedrooms}
-              name="bedrooms"
-              id="bedrooms"
-              className="form-select bedroomSelect"
-            >
-              <option value="">Select Bedrooms</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="Studio">Studio</option>
-            </select>
-          </div>
-          {!isCommercial && (
-            <div className="col-lg-2">
-              <input
-                value={form.bathroom}
-                type="number"
-                name="bathroom"
-                onChange={handleChange}
-                className="form-control"
-                id="bathroom"
-                placeholder="Bathrooms"
-              />
-            </div>
-          )}
-          <div className="col-lg-3">
-            <div className="dropdown">
-              <div
-                className="form-select"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                data-bs-auto-close="outside"
-              >
-                {form.minarea && form.maxarea
-                  ? `${form.minarea} ${form.minarea && form.maxarea && "-"} ${
-                      form.maxarea
-                    } `
-                  : "Area(Sq.Ft)"}
-                {}
-              </div>
-              <div className="dropdown-menu p-4">
-                {" "}
-                <div className="mb-3">
-                  <label className="form-label">Minimum Area</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    id="minarea"
-                    min={0}
-                    placeholder="0"
-                    name="minarea"
-                    ref={minAreaRef}
-                  />
+            <div className="col-md-2">
+              <div className="dropdown">
+                <div
+                  className="form-select"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  data-bs-auto-close="outside"
+                >
+                  {form.minprice || form.maxprice
+                    ? `${form.minprice} ${
+                        form.minprice && form.maxprice && "-"
+                      } ${form.maxprice} AED`
+                    : "Price"}
+                  {}
                 </div>
-                <div className="mb-3">
-                  <label className="form-label">Maximum Area</label>
-                  <input
-                    type="number"
-                    name="maxarea"
-                    className="form-control"
-                    id="maxarea"
-                    placeholder="Any Area"
-                    ref={maxAreaRef}
-                  />
-                </div>
-                <div className="mt-4 d-grid">
-                  <div
-                    className="row justify-content-center"
-                    style={{ columnGap: "0.25rem" }}
-                  >
-                    <button
-                      className="btn btn-primary btn-sm col-md"
-                      type="button"
-                      onClick={handleApplyArea}
+                <div className="dropdown-menu p-4">
+                  <div className="mb-3">
+                    <label className="form-label">Minimum Price</label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="minprice"
+                      min={0}
+                      placeholder="0"
+                      name="minprice"
+                      
+                      ref={minPriceRef}
+                      
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label">Maximum Price</label>
+                    <input
+                      type="number"
+                      name="maxprice"
+                      className="form-control"
+                      id="maxprice"
+                      min={0}
+                      placeholder="Any Price"
+                      ref={maxPriceRef}
+                      
+                    />
+                  </div>
+                  <div className="mt-4 d-grid">
+                    <div
+                      className="row justify-content-center"
+                      style={{ columnGap: "0.25rem" }}
                     >
-                      Apply
-                    </button>
-                    {showAreaResetButton() && (
                       <button
-                        className="btn btn-secondary btn-sm col-md"
+                        className="btn btn-primary btn-sm col"
                         type="button"
-                        onClick={resetApplyArea}
+                        onClick={handleApplyPrice}
                       >
-                        Reset
+                        Apply
                       </button>
-                    )}
+                      {showPriceResetButton() && (
+                        <button
+                          className="btn btn-secondary btn-sm col"
+                          type="button"
+                          onClick={resetApplyPrice}
+                        >
+                          Reset
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <div className="col-md-2">
+              <div className="dropdown">
+                <div
+                  className="form-select"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  data-bs-auto-close="outside"
+                >
+                  {form.minarea && form.maxarea
+                    ? `${form.minarea} ${form.minarea && form.maxarea && "-"} ${
+                        form.maxarea
+                      } `
+                    : "Area(Sq.Ft)"}
+                  {}
+                </div>
+                <div className="dropdown-menu p-4">
+                  {" "}
+                  <div className="mb-3">
+                    <label className="form-label">Minimum Area</label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="minarea"
+                      min={0}
+                      placeholder="0"
+                      name="minarea"
+                      ref={minAreaRef}
+                      onChange={handlePositiveChange}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label">Maximum Area</label>
+                    <input
+                      type="number"
+                      name="maxarea"
+                      min={0}
+                      className="form-control"
+                      id="maxarea"
+                      placeholder="Any Area"
+                      ref={maxAreaRef}
+                      onChange={handlePositiveChange}
+                    />
+                  </div>
+                  <div className="mt-4 d-grid">
+                    <div
+                      className="row justify-content-center"
+                      style={{ columnGap: "0.25rem" }}
+                    >
+                      <button
+                        className="btn btn-primary btn-sm col-md"
+                        type="button"
+                        onClick={handleApplyArea}
+                      >
+                        Apply
+                      </button>
+                      {showAreaResetButton() && (
+                        <button
+                          className="btn btn-secondary btn-sm col-md"
+                          type="button"
+                          onClick={resetApplyArea}
+                        >
+                          Reset
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {showFormReset && (
+              <button className="col-md-1 btn btn-primary btn-md col">
+                Reset
+              </button>
+            )}
           </div>
-        </div>
-      )}
+        )}
+      </div>
       <Bottombar
         item={showMap ? 0 : 1}
         callBack={(index) =>
@@ -858,4 +929,5 @@ function ReadyFilters({
     </form>
   );
 }
-export default ReadyFilters;
+
+export default Filters;

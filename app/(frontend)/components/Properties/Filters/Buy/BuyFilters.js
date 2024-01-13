@@ -253,7 +253,7 @@ function BuyFilters({
           setProjectAmenities(res.data.amenities);
           setTotalProperties(res.data.properties.meta.total);
           setOriginalMarkers([...propertiesDup]);
-          setLinks(res.data.projects.links);
+          setLinks(res.data.properties.links);
           
           if (propertiesDup.length) {
             mapRef?.current?.setCenter({

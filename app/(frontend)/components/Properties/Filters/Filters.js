@@ -11,6 +11,7 @@ import MultiValue from "@/app/(frontend)/components/UI/ReactSelect/MultiValue";
 import IndicatorsContainer from "@/app/(frontend)/components/UI/ReactSelect/IndicatorsContainer";
 import MultiValueContainer from "@/app/(frontend)/components/UI/ReactSelect/MultiValueContainer";
 import { useSearchParams } from "next/navigation";
+import { useLocation } from 'react-router-dom';
 
 function Filters({
   setShowMap,
@@ -41,6 +42,7 @@ function Filters({
     furnishing: "",
     isCommercial:"",
   });
+  
   const [projectAmenities, setProjectAmenities] = useState(amenities);
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
@@ -201,6 +203,56 @@ function Filters({
         },
       ]);
     }
+    if(searchParams.has("accommodation_id")){
+      form['accommodation_id'] =searchParams.get("accommodation_id");
+      setForm({ ...form })
+    }
+    if(searchParams.has("bedrooms")){
+      form['bedrooms'] =searchParams.get("bedrooms");
+      setForm({ ...form })
+      if(form['bedrooms']){
+        setShowMore(true)
+      }
+    }
+
+    if(searchParams.has("minprice")){
+      form['minprice'] =searchParams.get("minprice");
+      setForm({ ...form })
+      if(form['minprice']){
+        setShowMore(true)
+      }
+    }
+
+    if(searchParams.has("maxprice")){
+      form['maxprice'] =searchParams.get("maxprice");
+      setForm({ ...form })
+      if(form['maxprice']){
+        setShowMore(true)
+      }
+    }
+
+    if(searchParams.has("minarea")){
+      form['minarea'] =searchParams.get("minarea");
+      setForm({ ...form })
+      if(form['minarea']){
+        setShowMore(true)
+      }
+    }
+
+
+    if(searchParams.has("maxarea")){
+      form['maxarea'] =searchParams.get("maxarea");
+      setForm({ ...form })
+      if(form['maxarea']){
+        setShowMore(true)
+      }
+    }
+    if(searchParams.has('searchBy')){
+      console.log(searchParams.get('searchBy'))
+      form['searchBy'] =searchParams.get("searchBy");
+      selectRef.current.setValue(JSON.parse(searchParams.get('searchBy')))
+      setForm({ ...form })
+    }
   }, []);
   useEffect(() => {
     let getPropertiesURL = process.env.API_HOST + "properties?";
@@ -239,7 +291,7 @@ function Filters({
           setProjectAmenities(res.data.amenities);
           setTotalProperties(res.data.properties.meta.total);
           setOriginalMarkers([...propertiesDup]);
-          setLinks(res.data.projects.links);
+          setLinks(res.data.properties.links);
           
           if (propertiesDup.length) {
             mapRef?.current?.setCenter({

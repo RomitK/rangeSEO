@@ -13,7 +13,7 @@ function Property(props) {
               <div className="projectImgCont">
                 <img
                   src={props.property_banner}
-                  alt="project1"
+                  alt={props.name}
                   className="img-fluid propImg"
                 />
                 <div className="projectImgOverlay">
