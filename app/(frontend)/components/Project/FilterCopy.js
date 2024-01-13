@@ -66,34 +66,34 @@ function Filters({
     isCommercial:"",
     category: "",
   });
-  useEffect(() => {
-    if (isCommercial) {
-      form['isCommercial'] = 1;
-      form['accommodation_id'] = "";
-      setForm({ ...form });
+  // useEffect(() => {
+  //   if (isCommercial) {
+  //     form['isCommercial'] = 1;
+  //     form['accommodation_id'] = "";
+  //     setForm({ ...form });
 
-      const filtered = accomodations?.filter(
-        (accomodation) =>
-          accomodation.type === "Commercial" || accomodation.type === "Both"
-      );
-      if (filtered != null) {
-        setFilteredAccomodation([...filtered]);
-      }
-    } else {
-      setIsCommercial(false)      
-      form['isCommercial'] = "";
-      form['accommodation_id'] = "";
-      setForm({ ...form });
+  //     const filtered = accomodations?.filter(
+  //       (accomodation) =>
+  //         accomodation.type === "Commercial" || accomodation.type === "Both"
+  //     );
+  //     if (filtered != null) {
+  //       setFilteredAccomodation([...filtered]);
+  //     }
+  //   } else {
+  //     setIsCommercial(false)      
+  //     form['isCommercial'] = "";
+  //     form['accommodation_id'] = "";
+  //     setForm({ ...form });
 
-      const filtered = accomodations?.filter(
-        (accomodation) =>
-          accomodation.type === "Residential" || accomodation.type === "Both"
-      );
-      if (filtered != null) {
-        setFilteredAccomodation([...filtered]);
-      }
-    }
-  }, [isCommercial, accomodations]);
+  //     const filtered = accomodations?.filter(
+  //       (accomodation) =>
+  //         accomodation.type === "Residential" || accomodation.type === "Both"
+  //     );
+  //     if (filtered != null) {
+  //       setFilteredAccomodation([...filtered]);
+  //     }
+  //   }
+  // }, [isCommercial, accomodations]);
   useEffect(() => {
     if (searchParams.has("minprice") && searchParams.has("maxprice")) {
       form["minprice"] = searchParams.get("minprice");
