@@ -219,3 +219,44 @@ font-size: 20px;
 color: #2f3c6a;
 font-weight: 600;
 }
+
+.blogCard .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 0%;
+    transition: .5s ease;
+    padding: 15px 15px;
+    background: linear-gradient(0deg, #1a2038, #0000000d);
+    visibility: hidden;
+}
+.blogCard .overlay P{
+    color: #FFF;
+    font-size: 14px;
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.blogCard:hover .overlay{
+    height: 30%;
+    visibility: visible;
+}
+.multiCarouselItem .blogCard .overlay P{
+    color: #FFF;
+    font-size: 14px;
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;  
+}
+
+.multiCarouselItem .blogCard:hover .overlay{
+    height: 40%;
+    visibility: visible;
+}

@@ -48,6 +48,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -60,6 +67,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -72,6 +86,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -84,6 +105,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -96,6 +124,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -108,11 +143,18 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                                                         </p>       
-                                                        <span className="text-primary">11 january 2024</span>                                              
+                                                        <span className="text-primary">11 january 2024</span>  
                                                     </a>
                                               </div>
                                               <div className="col-md-4">
@@ -120,6 +162,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -138,6 +187,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -150,6 +206,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -162,6 +225,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -174,6 +244,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -192,6 +269,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -204,6 +288,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -235,6 +326,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -247,6 +345,14 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
+                                                            
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -265,6 +371,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -277,6 +390,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -295,6 +415,13 @@ function Medias(){
                                                         <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                             <span className="cdTagBtn"> News</span>
+                                                            <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,  established in early 2018 within Dubai Harbour,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 

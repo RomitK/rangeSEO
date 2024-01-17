@@ -129,9 +129,15 @@ function Blogs(){
                                                             >
                                                             <SwiperSlide className="multiCarouselItem">
                                                                         <a href="#" className="blogCard">
-                                                                            <div className="bCardHead">
+                                                                                <div className="bCardHead">
                                                                                     <img src="/images/services/service1.webp" className="crlcardImg"/>
                                                                                     <span className="cdTagBtn"> News</span>
+                                                                                    <div className="overlay">
+                                                                                        <p className="crdText">
+                                                                                            Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                                            Emaar Beachfront,
+                                                                                        </p>
+                                                                                    </div>
                                                                                 </div> 
                                                                                 <p>
                                                                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -144,7 +150,13 @@ function Blogs(){
                                                                             <div className="bCardHead">
                                                                                     <img src="/images/services/service1.webp" className="crlcardImg"/>
                                                                                     <span className="cdTagBtn"> News</span>
-                                                                                </div> 
+                                                                                    <div className="overlay">
+                                                                                        <p className="crdText">
+                                                                                            Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                                            Emaar Beachfront,
+                                                                                        </p>
+                                                                                    </div>
+                                                                             </div> 
                                                                                 <p>
                                                                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                                                                                 </p>       
@@ -154,8 +166,14 @@ function Blogs(){
                                                             <SwiperSlide className="multiCarouselItem">
                                                                         <a href="#" className="blogCard">
                                                                                 <div className="bCardHead">
-                                                                                    <img src="/images/services/service1.webp" className="crlcardImg"/>
+                                                                                    <img src="/images/services/service1.webp" className="crlcardImg" />
                                                                                     <span className="cdTagBtn"> News</span>
+                                                                                    <div className="overlay">
+                                                                                        <p className="crdText">
+                                                                                            Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                                            Emaar Beachfront,
+                                                                                        </p>
+                                                                                    </div>
                                                                                 </div> 
                                                                                 <p>
                                                                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -168,6 +186,12 @@ function Blogs(){
                                                                                 <div className="bCardHead">
                                                                                     <img src="/images/services/service1.webp" className="crlcardImg"/>
                                                                                     <span className="cdTagBtn"> News</span>
+                                                                                    <div className="overlay">
+                                                                                        <p className="crdText">
+                                                                                            Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                                            Emaar Beachfront,
+                                                                                        </p>
+                                                                                    </div>
                                                                                 </div> 
                                                                                 <p>
                                                                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -226,6 +250,13 @@ function Blogs(){
                                                        <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                              <span className="cdTagBtn"> News</span>
+                                                             <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                           Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -236,6 +267,13 @@ function Blogs(){
                                                        <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                              <span className="cdTagBtn"> News</span>
+                                                             <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                           Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -246,6 +284,13 @@ function Blogs(){
                                                        <div className="bCardHead">
                                                             <img src="/images/services/service1.webp" className="eventCardImg"/>
                                                              <span className="cdTagBtn"> News</span>
+                                                             <div className="overlay">
+                                                                <p className="crdText">
+                                                                    Emaar Beachfront, established in early 2018 within Dubai Harbour,
+                                                                   Emaar Beachfront, established in early 2018 within Dubai Harbour, 
+                                                                   Emaar Beachfront,
+                                                                 </p>
+                                                            </div>
                                                         </div> 
                                                         <p>
                                                           Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
