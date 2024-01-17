@@ -26,6 +26,7 @@ function DownloadProjectSaleOfferModel(props) {
     page: props.pageUrl,
   });
   const visiorFormRef = useRef(null);
+  const submitBtnRef = useRef(null);
   const [otpSent, setOtpSent] = useState(false);
   const [countdown, setCountdown] = useState(120); // 2 minutes in seconds
 
@@ -55,10 +56,10 @@ function DownloadProjectSaleOfferModel(props) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [optPhoneNumber, setOptPhoneNumber] = useState("");
   const [timer, setTimer] = useState(20);
-  console.log(timer)
+  console.log(timer);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   useEffect(() => {
-    console.log(timer)
+    console.log(timer);
     let interval;
     if (showOtp && timer > 0) {
       interval = setInterval(() => {
@@ -68,11 +69,10 @@ function DownloadProjectSaleOfferModel(props) {
     return () => clearInterval(interval);
   }, [showOtp, timer]);
 
-const resendOTP = () => {
-
-  setTimer(60);
-  setIsButtonDisabled(true);
-};
+  const resendOTP = () => {
+    setTimer(60);
+    setIsButtonDisabled(true);
+  };
   const {
     register,
     handleSubmit,
@@ -129,12 +129,12 @@ const resendOTP = () => {
     setIsLoading(true);
     verifyOTPApi(data)
       .then((res) => {
-        console.log(res.data)
-        if(res.data.verify){
+        console.log(res.data);
+        if (res.data.verify) {
           setShowOtp(true);
           setOtpSent(true);
           reset();
-        }else{
+        } else {
           toast.error("Invalid OTP");
         }
         setIsLoading(false);
@@ -151,10 +151,11 @@ const resendOTP = () => {
         setShowOtp(true);
         setOtpSent(true);
         setIsLoading(false);
+        setValue("otp", "");
         // closeRef.current.click();
         // toast.success("Thank you. Our team will get back to you soon.");
         // downloadFile()
-       // reset();
+        // reset();
       })
       .catch((err) => {
         setIsLoading(false);
@@ -262,21 +263,33 @@ const resendOTP = () => {
                             <h6 className="text-primary text-center p-2">
                               Enter Details For Downloading Sale Offer
                             </h6>
-                            
-                              <div className="form-group">
-                                <label>
-                                  OTP <small className="text-danger"> {timer > 0 && <span>(Valid for: {timer} seconds)</span>} *</small>
-                                </label>
-                                <input
-                                  type="text"
-                                  name="nameCon2"
-                                  id="nameCon2"
-                                  className="form-control mb-2"
-                                  placeholder="Enter OTP code..."
-                                  autoComplete="off"
-                                  {...register("otp", { required: true })}
-                                />
-                              </div>
+
+                            <div className="form-group">
+                              <label>
+                                OTP{" "}
+                                <small className="text-danger">
+                                  {" "}
+                                  {timer > 0 && (
+                                    <span>(Valid for: {timer} seconds)</span>
+                                  )}{" "}
+                                  *
+                                </small>
+                              </label>
+                              <input
+                                type="text"
+                                name="nameCon2"
+                                id="nameCon2"
+                                className="form-control mb-2"
+                                placeholder="Enter OTP code..."
+                                autoComplete="off"
+                                {...register("otp", { required: false })}
+                              />
+                              {errors.otp && (
+                                <small className="text-danger">
+                                  OTP is required.
+                                </small>
+                              )}
+                            </div>
                           </div>
                         </div>
                         <div className="modal-footer border-0">
@@ -287,44 +300,56 @@ const resendOTP = () => {
                             {...register("phoneNumber", { required: false })}
                           />
 
-                        
                           {timer === 0 ? (
                             <div className="row">
                               <div className="col-md-6">
-                                <button type="button" className="btn btn-sm btn-bluee rounded-0 px-5 float-end btnContact" onClick={() => {
-            if (visiorFormRef.current) {
-              visiorFormRef.current.submit();
-            }
-          }}
->Resend OTP</button>
+                                <button
+                                  type="button"
+                                  className="btn btn-sm btn-bluee rounded-0 px-5 float-end btnContact"
+                                  onClick={() => {
+                                    if (submitBtnRef.current) {
+                                      setTimer(60);
+                                      submitBtnRef.current.click();
+                                    }
+                                  }}
+                                >
+                                  Resend OTP
+                                </button>
                               </div>
                               <div className="col-md-6">
-                                <button type="button" className="btn btn-sm btn-primary rounded-0 px-5 float-end btnContact2" onClick={() => {
+                                <button
+                                  type="button"
+                                  className="btn btn-sm btn-primary rounded-0 px-5 float-end btnContact2"
+                                  onClick={() => {
                                     setShowOtp(false);
                                     setTimer(60);
-                                  }}>Change Number</button>
+                                  }}
+                                >
+                                  Change Number
+                                </button>
                               </div>
                             </div>
-                         ) : (
-                          <button
-                            type="submit"
-                            name="submit"
-                            className="btn btn-blue rounded-0 px-5 float-end btnContact2"
-                          >
-                            {isLoading ? "Sending..." : "Verify OTP"}
-                          </button> 
-                          )}                       
+                          ) : (
+                            <button
+                              type="submit"
+                              name="submit"
+                              className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                            >
+                              {isLoading ? "Sending..." : "Verify OTP"}
+                            </button>
+                          )}
                         </div>
                       </div>
                     </form>
                   )}
 
-                  {UserAs && UserAs == "Visitor" && !showOtp && (
+                  {UserAs && UserAs == "Visitor" && (
                     <form
                       ref={visiorFormRef}
                       action=""
                       method="POST"
                       onSubmit={handleSubmit(onSubmitVisitorForm)}
+                      style={{ display: `${!showOtp ? "block" : "none"}` }}
                     >
                       <div className="row">
                         <div className="col-md-12">
@@ -379,7 +404,7 @@ const resendOTP = () => {
                                       className="form-control"
                                       defaultCountry="AE"
                                       placeholder="Enter Phone Number"
-                                      value={phoneNumber}
+                                      value={value}
                                       onChange={(phone) => {
                                         handlePhoneChange(phone);
                                         onChange(phone); // keep react-hook-form's onChange in sync
@@ -418,6 +443,7 @@ const resendOTP = () => {
                         <button
                           type="submit"
                           name="submit"
+                          ref={submitBtnRef}
                           className="btn btn-blue rounded-0 px-5 float-end btnContact2"
                         >
                           {isLoading ? "sending..." : "Submit"}
