@@ -18,7 +18,7 @@ function LuxuryPropertyFilters({
   setOriginalMarkers,
   mapRef,
   accomodations,
-  communities,
+
   amenities,
   setLoading,
   sortBy,
@@ -39,8 +39,10 @@ function LuxuryPropertyFilters({
     category: "",
     completion_status_id: '',
     furnishing: "",
+    isCommercial:"",
     exclusive: 1,
   });
+  const [projectAmenities, setProjectAmenities] = useState(amenities);
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
   const [newArrayF, setNewArrayF] = useState([]);
@@ -117,6 +119,8 @@ function LuxuryPropertyFilters({
 
   useEffect(() => {
     if (isCommercial) {
+      form['isCommercial'] = 1;
+      setForm({ ...form });
       const filtered = accomodations?.filter(
         (accomodation) =>
           accomodation.type === "Commercial" || accomodation.type === "Both"
@@ -125,6 +129,9 @@ function LuxuryPropertyFilters({
         setFilteredAccomodation([...filtered]);
       }
     } else {
+      setIsCommercial(false)      
+      form['isCommercial'] = "";
+      setForm({ ...form });
       const filtered = accomodations?.filter(
         (accomodation) =>
           accomodation.type === "Residential" || accomodation.type === "Both"
@@ -142,7 +149,7 @@ function LuxuryPropertyFilters({
   }, [isMobile]);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "propertiesList?";
+    let getPropertiesURL = process.env.API_HOST + "properties?";
     let payload = { ...form };
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
@@ -173,15 +180,17 @@ function LuxuryPropertyFilters({
       .then((response) => response.json())
       .then((res) => {
         if (res.success) {
-          const propertiesDup = res.data.data;
+          const propertiesDup = res.data.properties.data;
           setProperties([...propertiesDup]);
+          setProjectAmenities(res.data.amenities);
+          setTotalProperties(res.data.properties.meta.total);
           setOriginalMarkers([...propertiesDup]);
-          setLinks(res.data.links);
-          setTotalProperties(res.data.meta.total);
+          setLinks(res.data.properties.links);
+          
           if (propertiesDup.length) {
             mapRef?.current?.setCenter({
-                lat: parseFloat(propertiesDup[0].lat),
-                lng: parseFloat(propertiesDup[0].lng),
+              lat: parseFloat(propertiesDup[0].address_latitude),
+              lng: parseFloat(propertiesDup[0].address_longitude),
             });
           }
         }
@@ -199,7 +208,7 @@ function LuxuryPropertyFilters({
   }, [sortBy]);
 
   useEffect(() => {
-    const newArray3 = amenities?.map((originalObject, index) => {
+    const newArray3 = projectAmenities?.map((originalObject, index) => {
       const label = originalObject.name;
       const value = originalObject.id;
       return { label, value };
@@ -207,13 +216,13 @@ function LuxuryPropertyFilters({
     setNewArrayF(newArray3);
   }, []);
   useEffect(() => {
-    const newArray3 = amenities?.map((originalObject, index) => {
+    const newArray3 = projectAmenities?.map((originalObject, index) => {
       const label = originalObject.name;
       const value = originalObject.id;
       return { label, value };
     });
     setNewArrayF(newArray3);
-  }, amenities);
+  }, projectAmenities);
   function isEmptyObject() {
     const o = { ...form };
     delete o.exclusive;
@@ -228,6 +237,11 @@ function LuxuryPropertyFilters({
   }
 
   const handleReset = () => {
+    setIsCommercial(false);
+    setForm(prevForm => ({
+      ...prevForm,
+      isCommercial: ""
+    }));
     form["minprice"] = "";
     form["maxprice"] = "";
     form["minarea"] = "";
@@ -240,6 +254,7 @@ function LuxuryPropertyFilters({
     form["bathroom"] = "";
     form["searchBy"] = "";
     form["amenities"] ="";
+    form["isCommercial"] ="";
     setSelectedItems([]);
     selectRef.current.setValue([]);
     if(minPriceRef.current != null){
@@ -546,6 +561,7 @@ function LuxuryPropertyFilters({
                   id="maxprice"
                   placeholder="Any Price"
                   ref={maxPriceRef}
+                  min={0}
                 />
               </div>
               <div className="mt-4 d-grid">
@@ -582,7 +598,7 @@ function LuxuryPropertyFilters({
               className="form-check-input"
               id="exampleCheck1"
               onChange={(e) => setIsCommercial(e.target.checked)}
-              value={isCommercial}
+              checked={isCommercial}
             />
             <label className="form-check-label" htmlFor="exampleCheck1">
               Commericial

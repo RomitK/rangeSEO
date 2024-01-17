@@ -49,9 +49,9 @@ function Services() {
   };
   return (
     <>
-      <header className="serviceHeader">
+      {/*<header className="serviceHeader">
         <img src="/images/banner/service-banner.webp" className="headerImg" />
-        {/* <div className="p-relative">
+         <div className="p-relative">
           <video
             className="d-block w-100 videoMain"
             autoPlay
@@ -65,8 +65,8 @@ function Services() {
             Sorry, your browser doesn't support videos.
           </video>
           <div className="videoOverlay"></div>
-        </div> */}
-      </header>
+        </div> 
+      </header>*/}
       <section className="servicePageSec">
         <div className="container">
           <h4 className="sctionMdTitle text-primary text-center mb-4">
@@ -197,11 +197,7 @@ function Services() {
                 <div className="serCardContent ">
                   <h3 className="cardTitle text-center">Mortgage Services</h3>
                   <p className="fs-14 text-secondary mb-4">
-                    Our team of mortgage advisors works closely with clients
-                    across the UAE and globally, for effective mortgage
-                    management. Our specialized home finance team provides
-                    comprehensive solutions for property purchases in Dubai and
-                    other Emirates.
+                  My mortgage brokerage is dedicated to helping our clients achieve their dream of home ownership. Our team of experienced professionals are committed to providing exceptional customer service and personalised solutions to meet the specific needs of each of our clients.
                   </p>
                   <button
                     className="fillBtn  mrAuto cardBtn"

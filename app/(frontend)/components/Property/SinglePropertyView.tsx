@@ -52,6 +52,7 @@ function SinglePropertyView({ params }) {
     googleMapsApiKey: process.env.GOOGLE_MAP_KEY,
     libraries: ["geometry", "places", "marker"],
   });
+  const projectSwiperRef = useRef<SwiperCore>();
   const CommunitySwiperRef = useRef<SwiperCore>();
   const PropertySwiperRef = useRef<SwiperCore>();
   const similiarPropertySwiperRef = useRef<SwiperCore>();
@@ -181,7 +182,7 @@ function SinglePropertyView({ params }) {
                       {propertyData?.gallery?.map((image, index) => {
                         return (
                           <SwiperSlide key={image.id + index + "gallery"}>
-                            <img src={image.path} alt="range" style={{ height: "500px" }}/>
+                            <img src={image.path} alt={image.title ? image.title : propertyData.name} style={{ height: "500px" }}/>
                           </SwiperSlide>
                         );
                       })}
@@ -225,7 +226,7 @@ function SinglePropertyView({ params }) {
                            <SwiperSlide key={image.id + index + "gallery2"}>
                              <img
                                src={image.path}
-                               alt="range"
+                               alt={image.title ? image.title : propertyData.name}
                                className="img-fluid"
                              />
                            </SwiperSlide>
@@ -333,12 +334,21 @@ function SinglePropertyView({ params }) {
                               PROPERTY STATUS
                             </p>
                             <p className="fw-500 mb-0 fs-16">
-                              For {propertyData && propertyData.category}
-                              {
-                                propertyData?.category === 'Rent' && 
-                                <small> ({propertyData?.rental_period}) </small>
-                              }
-                            </p>
+                            {
+                              propertyData?.category === 'Rent' && 
+                              (<>
+                                 {propertyData && propertyData.category}<small> ({propertyData?.rental_period}) </small>
+                              </>
+                              )
+                            }
+                            {
+                              propertyData?.category === 'Buy' && 
+                              (<>
+                                 {propertyData && propertyData?.completionStatus}
+                              </>
+                              )
+                            }
+                          </p>
                           </div>
                         </div>
                         <div className="mdColBar">
@@ -619,7 +629,7 @@ function SinglePropertyView({ params }) {
                                   >
                                   <img
                                       src={community["path"]}
-                                      alt="community1"
+                                      alt={community["title"]}
                                       className="img-fluid"
                                       style={{ height: "300px", width: "500px" }}
                                     />
@@ -681,7 +691,7 @@ function SinglePropertyView({ params }) {
                                             <div className="amenityImg mx-auto">
                                               <img
                                                 src={amenity.image}
-                                                alt="Range"
+                                                alt={amenity.name}
                                                 className="img-fluid"
                                                 width="40px"
                                               />
@@ -697,9 +707,6 @@ function SinglePropertyView({ params }) {
                                   )
                             })}
                             </div>
-
-
-
                           <div className="col-12 col-lg-12 col-md-12 propertyMobItemLink">
                             <Swiper
                             slidesPerView={1}
@@ -741,7 +748,7 @@ function SinglePropertyView({ params }) {
                                         <div className="amenityImg mx-auto">
                                           <img
                                             src={amenity.image}
-                                            alt="Range"
+                                            alt={amenity.name}
                                             className="img-fluid"
                                             width="40px"
                                           />
@@ -786,27 +793,103 @@ function SinglePropertyView({ params }) {
                   {propertyData &&
                     propertyData.project &&
                     Object.keys(propertyData.project).length > 0 && (
-                      <div className="mb-3">
-                        <div className="py-3">
+                      <div className="">
+                        <div className="py-1">
                           <div className="mainHead text-primary">
                             <h4 className="mb-0">ABOUT PROJECT</h4>
                           </div>
                         </div>
-                        
-                          
-                        <div className="row">
+                        <div className="row align-items-center">
                             <div className="col-lg-7">
                                 <div className="proColImgBox">
-                                <Link
-                              href={`/projects/${propertyData?.project?.slug}`}
-                              className="text-decoration-none"
-                            >
-                                <img
-                                  src={propertyData?.project?.image}
-                                  alt={propertyData?.project?.name}
-                                  className="img-fluid"
-                                />
-                                </Link>
+                                  {/* <Link
+                                    href={`/projects/${propertyData?.project?.slug}`}
+                                    className="text-decoration-none"
+                                  >
+                                    <img
+                                      src={propertyData?.project?.image}
+                                      alt={propertyData?.project?.name}
+                                      className="img-fluid"
+                                    />
+                                  </Link> */}
+                                  {propertyData && propertyData.project && propertyData?.project?.ExteriorGallery &&  (
+                                    <div className="vertical-center">
+                                      {propertyData?.project?.ExteriorGallery && 
+                                      <Swiper
+                                      loop={true}
+                                      slidesPerView={1}
+                                      spaceBetween={10}
+                                      navigation={{
+                                        nextEl: ".swiper-button-next",
+                                        prevEl: ".swiper-button-prev",
+                                      }}
+                                      breakpoints={{
+                                        640: {
+                                          slidesPerView: 1,
+                                          spaceBetween: 10,
+                                        },
+                                        768: {
+                                          slidesPerView: 1,
+                                          spaceBetween: 10,
+                                        },
+                                        1024: {
+                                          slidesPerView: 1,
+                                          spaceBetween: 10,
+                                        },
+                                      }}
+                                      modules={[Navigation]}
+                                      onSwiper={(swiper) => {
+                                        projectSwiperRef.current = swiper;
+                                      }}
+                                      className="swiper pb-2 communityProjectSwiperr"
+                                    >
+                                      {propertyData?.project?.ExteriorGallery.map(
+                                        (project, index) => {
+                                          return (
+                                            <SwiperSlide
+                                              key={project.id + index + "project"}
+                                            >
+                                              <div className="swiper-slide">
+                                                <Link
+                                                  href={`/projects/${propertyData.project["slug"]}`}
+                                                  className="text-decoration-none communityImgCont"
+                                                >
+                                                <img
+                                                    src={project["path"]}
+                                                    alt={project["title"] ? project["title"] : propertyData.project['name']}
+                                                    className="img-fluid"
+                                                    
+                                                  />
+                                                
+                                                </Link>
+                                              </div>
+                                            </SwiperSlide>
+                                          );
+                                        }
+                                      )}
+                                      <div
+                                        className="swiper-button-prev swiperUniquePrev text-white"
+                                        onClick={() => projectSwiperRef.current?.slidePrev()}
+                                      >
+                                        <span className="">
+                                          <i className="bi bi-chevron-left fs-1"></i>
+                                        </span>
+                                      </div>
+                                      <div
+                                        className="swiper-button-next swiperUniqueNext text-white"
+                                        onClick={() => projectSwiperRef.current?.slideNext()}
+                                      >
+                                        <span className="">
+                                          <i className="bi bi-chevron-right fs-1"></i>
+                                        </span>
+                                      </div>
+                                      </Swiper>
+                                    }
+                                      
+                                    </div>
+                                  )}
+                                
+
                                 </div>
                             </div>
                             <div className="col-lg-5">
@@ -840,17 +923,6 @@ function SinglePropertyView({ params }) {
                                        </div>
                                 </div>
                             </div>
-                       
-
-                            {/* <div className="col-12 col-lg-12 my-auto">
-                              <div className="aboutProImg">
-                                <img
-                                  src={propertyData?.project?.image}
-                                  alt={propertyData?.project?.name}
-                                  className="img-fluid"
-                                />
-                              </div>
-                            </div> */}
 
                         </div>
                        
@@ -858,7 +930,7 @@ function SinglePropertyView({ params }) {
                           <h5 className="mainHead text-primary">
                             <Link
                               href={`/projects/${propertyData?.project?.slug}`}
-                              className="text-decoration-none"
+                              className="text-decoration-none text-primary"
                             >
                               {propertyData?.project?.name}
                             </Link>
@@ -870,6 +942,12 @@ function SinglePropertyView({ params }) {
                             </div>
                           </div>
                         </div>
+                          <Link
+                              href={`/projects/${propertyData.project["slug"]}`}
+                              className="text-decoration-none bdrBtn width-auto-fit"
+                          >
+                            View More
+                          </Link>
                       </div>
                     )}
                     
@@ -877,9 +955,6 @@ function SinglePropertyView({ params }) {
                 
                 <div className="col-12 col-lg-4 col-md-4 propertyDesktopItemLink">
                   <div className=" px-2">
-
-                 
-                    
                       <div className="rowFlexBar border-bottom border-2">
                         <div className="mdColBar">
                           <div className=" py-3">
@@ -910,11 +985,20 @@ function SinglePropertyView({ params }) {
                             PROPERTY STATUS
                           </p>
                           <p className="fw-500 mb-0 fs-16">
-                            For {propertyData && propertyData.category}
-                            {
-                              propertyData?.category === 'Rent' && 
-                              <small> ({propertyData?.rental_period}) </small>
-                            }
+                          {
+                            propertyData?.category === 'Rent' && 
+                            (<>
+                               {propertyData && propertyData.category}<small> ({propertyData?.rental_period}) </small>
+                            </>
+                            )
+                          }
+                          {
+                            propertyData?.category === 'Buy' && 
+                            (<>
+                               {propertyData && propertyData?.completionStatus}
+                            </>
+                            )
+                          }
                           </p>
                         </div>
                       </div>
@@ -1177,7 +1261,7 @@ function SinglePropertyView({ params }) {
                         <p className="text-primary fw-500 mb-0 fs-20">
                           <Link
                             href={`/communities/${propertyData.community["slug"]}`}
-                            className="text-decoration-none"
+                            className="text-decoration-none text-primary"
                           >
                             {propertyData &&
                               propertyData.community &&
@@ -1219,10 +1303,10 @@ function SinglePropertyView({ params }) {
                       className="swiper pb-2 communityProjectSwiperr"
                     >
                       {propertyData?.community["gallery"].map(
-                        (community, index) => {
+                        (gallery, index) => {
                           return (
                             <SwiperSlide
-                              key={community.id + index + "community"}
+                              key={gallery.id + index + "community"}
                             >
                               <div className="swiper-slide">
                                 <Link
@@ -1230,8 +1314,8 @@ function SinglePropertyView({ params }) {
                                   className="text-decoration-none communityImgCont"
                                 >
                                 <img
-                                    src={community["path"]}
-                                    alt="community1"
+                                    src={gallery["path"]}
+                                    alt={gallery["path"] ? gallery["title"] : propertyData.community["name"]}
                                     className="img-fluid"
                                     style={{ height: "300px", width: "500px" }}
                                   />
@@ -1299,7 +1383,7 @@ function SinglePropertyView({ params }) {
                                 setIcon("school");
                               }}
                             >
-                              School
+                              Education
                             </button>
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
@@ -1699,11 +1783,11 @@ function SinglePropertyView({ params }) {
                           >
                             <div className="swiper-slide">
                               <div>
-                                <div className="card propCard rounded-0">
+                                <div className="card propCard rounded-0  projectPropertyCard">
                                   <div>
                                     <div className="">
                                       <a
-                                        href=""
+                                        href={`/properties/${similarProperty.slug}`}
                                         className="text-decoration-none"
                                       >
                                         <div className="projectImgCont">
@@ -1711,7 +1795,9 @@ function SinglePropertyView({ params }) {
                                             src={
                                               similarProperty.property_banner
                                             }
-                                            alt="project1"
+                                            alt={
+                                              similarProperty.name
+                                            }
                                             className="img-fluid propImg"
                                           />
                                           <div className="projectImgOverlay">

@@ -33,7 +33,7 @@ function WhyRange(){
                                         </div>
                                         <div className="my-auto">
                                             <div className="mainHead text-primary text-uppercase">
-                                                <h4 className="fw-800 mb-0">AED 20B+</h4>
+                                                <h4 className="fw-800 mb-0">AED 4.5B+</h4>
                                                 <p className="text-dark mb-0 fs-20">PROPERTY SALES</p>
                                             </div>
                                         </div>

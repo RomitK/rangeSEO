@@ -29,6 +29,8 @@ function SingleDeveloperView({ params }) {
   const PropertySwiperRef = useRef<SwiperCore>();
   const communitySwiperRef = useRef<SwiperCore>();
   const gallerySwiperRef1 = useRef<SwiperCore>();
+  const PropertySaleSwiperRef = useRef<SwiperCore>();
+  const PropertyRentSwiperRef = useRef<SwiperCore>();
   const router = useRouter();
   const projectOptions = developerData?.newProjects;
   const projectChangeHandle = (event) => {
@@ -52,6 +54,7 @@ function SingleDeveloperView({ params }) {
     area_unit: "",
     bedrooms: "",
     bathrooms: "",
+    handOver : "",
     starting_price: "",
     mainImage: "",
     slug: "",
@@ -102,6 +105,7 @@ function SingleDeveloperView({ params }) {
     bedrooms,
     bathrooms,
     starting_price,
+    handOver,
     mainImage,
     slug,
     completionStatusName
@@ -116,6 +120,7 @@ function SingleDeveloperView({ params }) {
       bedrooms,
       bathrooms,
       starting_price,
+      handOver,
       mainImage,
       slug,
       completionStatusName,
@@ -196,7 +201,7 @@ function SingleDeveloperView({ params }) {
                                   <p className="text-white">{index}</p>
                                   <img
                                     src={img.path}
-                                    alt="community1"
+                                    alt={img.title ? img.title: developerData.name }
                                     className="img-fluid communityGalleryImage"
                                   />
                                 </div>
@@ -251,6 +256,7 @@ function SingleDeveloperView({ params }) {
                     bedrooms,
                     bathrooms,
                     starting_price,
+                    handOver,
                     mainImage,
                     lat,
                     lng,
@@ -274,6 +280,7 @@ function SingleDeveloperView({ params }) {
                         bedrooms,
                         bathrooms,
                         starting_price,
+                        handOver,
                         mainImage,
                         slug,
                         completionStatusName
@@ -311,6 +318,7 @@ function SingleDeveloperView({ params }) {
                             area_unit = {infoWindowData.area_unit}
                             bathrooms={infoWindowData.bathrooms}
                             bedrooms={infoWindowData.bedrooms}
+                            handOver = {infoWindowData.handOver}
                             starting_price={infoWindowData.starting_price}
                             address={infoWindowData.address}
                             mainImage={infoWindowData.mainImage}
@@ -417,6 +425,7 @@ function SingleDeveloperView({ params }) {
                                   className="form-control"
                                   id="maxprice"
                                   placeholder="Any Price"
+                                  min={0}
                                   ref={maxPriceRef}
                                 />
                               </div>
@@ -435,7 +444,7 @@ function SingleDeveloperView({ params }) {
                       </div>
                     </div>
                   </div>
-                  {developerData?.projects?.slice(0, 8)?.map((project, index) => {
+                  {developerData?.projects?.slice(0, 12)?.map((project, index) => {
                     return (
                       <div
                         className="col-12 col-lg-3 col-md-3"
@@ -468,7 +477,9 @@ function SingleDeveloperView({ params }) {
                   })}
                   {developerData && developerData.projects &&  developerData.projects.length > 0 && (
                   <div className="text-center py-3 text-primary">
-                    <a className="text-primary"  onClick={handleViewProject} href="#">
+                    <a className="text-primary"
+                     href={`/projects?developer_name=${developerData.name}&developer_detail=${developerData.id}&lisiting`}
+                    >
                     VIEW ALL
                     </a>
                   </div>
@@ -488,7 +499,7 @@ function SingleDeveloperView({ params }) {
                   <div className="col-12 col-lg-12 col-md-12">
                     <div>
                       <div className="mainHead mb-5 text-primary text-center">
-                        <h4>DEVELOPMENT BY {developerData.name}</h4>
+                        <h4> {developerData.name}'s Presence in UAE</h4>
                       </div>
                     </div>
                   </div>
@@ -525,10 +536,10 @@ function SingleDeveloperView({ params }) {
                         return (
                           <SwiperSlide key={community.id + index}>
                             <div className="swiper-slide">
-                              <div>
+                              
                                 <div className="card propCard rounded-0">
-                                  <div>
-                                    <div className="">
+                                  
+                                    
                                       <Link
                                         href={`/communities/${community?.slug}`}
                                         className="text-decoration-none text-white"
@@ -541,7 +552,7 @@ function SingleDeveloperView({ params }) {
                                           />
                                         </div>
                                       </Link>
-                                    </div>
+                                   
                                     <div className="card-body rounded-3 rounded-top-0 developerCommunityCardBody">
                                       <Link
                                         href={`/communities/${community?.slug}`}
@@ -554,9 +565,9 @@ function SingleDeveloperView({ params }) {
                                         </div>
                                       </Link>
                                     </div>
-                                  </div>
+                                  
                                 </div>
-                              </div>
+                              
                             </div>
                           </SwiperSlide>
                         );
@@ -587,7 +598,7 @@ function SingleDeveloperView({ params }) {
         </section>
       )}
 
-      {developerData && developerData.properties &&  developerData.properties.length > 0 && (
+      {/* {developerData && developerData.properties &&  developerData.properties.length > 0 && (
         <section className="my-5" id="properties">
           <div className="container">
             <div className="row">
@@ -753,7 +764,7 @@ function SingleDeveloperView({ params }) {
                           <i className="bi bi-chevron-right fs-1"></i>
                         </span>
                       </div>
-                      {/* <div className="swiper-pagination"></div> */}
+                      
                     </Swiper>
                   </div>
                 </div>
@@ -761,7 +772,375 @@ function SingleDeveloperView({ params }) {
             </div>
           </div>
         </section>
-      )}
+      )} */}
+
+
+{developerData &&
+        (developerData?.rentProperties.length > 0 ||  developerData?.saleProperties.length > 0)  &&(
+          <section className="my-5" id="properties">
+            <div className="container">
+              <div className="row">
+                <div className="col-12 col-lg-12 col-md-12">
+                  <div className="row">
+                    <div className="col-12 col-lg-12 col-md-12">
+                      <div>
+                        <div className="mainHead mb-5 text-center text-primary">
+                          <h4>AVAILABLE PROPERTIES</h4>
+                        </div>
+                      </div>
+                    </div>
+                    {developerData?.rentProperties.length > 0 && (
+                    <div className="col-12 col-lg-12 col-md-12">
+                      <div className="row mb-5">
+                        <h6 className="sctionCommunitySubTitle text-primary col-6">
+                          FOR RENT
+                        </h6>
+                        <div className="col-6 text-end">
+                          {developerData?.rentProperties.length > 0 && (
+                            <Link
+                              href={`/rent?developer_name=${developerData?.name}&developer_detail=${developerData?.id}`}
+                              className="text-decoration-none bdrBtn width-auto-fit"  style={{width: "fit-content"}}
+                            >
+                              View All
+                            </Link>
+                           )}
+                        </div>
+                      </div>      
+                      <Swiper
+                        slidesPerView={1}
+                        spaceBetween={10}
+                        pagination={{
+                          el: ".swiper-pagination",
+                          clickable: true,
+                        }}
+                        navigation={{
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                        }}
+                        breakpoints={{
+                          640: {
+                            slidesPerView: 2,
+                            spaceBetween: 10,
+                          },
+                          768: {
+                            slidesPerView: 3,
+                            spaceBetween: 10,
+                          },
+                          1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 10,
+                          },
+                        }}
+                        modules={[Navigation, Pagination]}
+                        onSwiper={(swiper) => {
+                          PropertyRentSwiperRef.current = swiper;
+                        }}
+                        className="swiper pb-5 projectSlider"
+                      >
+                        {developerData?.rentProperties?.map((property, index) => {
+                          return (
+                            <SwiperSlide key={property.id + +"property"}>
+                              <div className="swiper-slide">
+                                <div>
+                                  <div className="card propCard rounded-0">
+                                    <div>
+                                      <div className="">
+                                        <Link
+                                          href={`/properties/${property.slug}`}
+                                          className="text-decoration-none"
+                                        >
+                                          <div className="projectImgCont">
+                                            <img
+                                              src={property.property_banner}
+                                              alt={property.name}
+                                              className="img-fluid propImg"
+                                            />
+                                            <div className="projectImgOverlay">
+                                              <div></div>
+                                              <div>
+                                                <span className="badge float-start fs-10 projectType">
+                                                  {property.accommodation}
+                                                </span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </Link>
+                                      </div>
+                                      <div className="card-body rounded-3 rounded-top-0 communityPropertyCard">
+                                        <Link
+                                          href={`/properties/${property.slug}`}
+                                          className="text-decoration-none"
+                                        >
+                                          <h6 className="text-black fs-16 fw-semibold mb-0">
+                                            {property.name}
+                                          </h6>
+                                        </Link>
+                                        <div className="mb-1">
+                                          <small className="text-secondary">
+                                            {property &&
+                                              property.communities &&
+                                              property.communities.name}
+                                          </small>
+                                        </div>
+                                        <p className="fs-18 mb-2 text-primary fw-semibold">
+                                          AED{" "}
+                                          {property &&
+                                            new Intl.NumberFormat().format(
+                                              property.price
+                                            )}{" "}
+                                        </p>
+                                        <ul className="list-unstyled mb-0 d-flex justify-content-between">
+                                          <li className="d-inline">
+                                            <small>
+                                              <img
+                                                src="/images/icons/bed.png"
+                                                alt="Range"
+                                                className="img-fluid"
+                                                width="25px"
+                                              />
+                                              <span className="align-text-top ms-1">
+                                                {property.bedrooms}
+                                              </span>
+                                            </small>
+                                          </li>
+                                          <li className="d-inline">
+                                            <small>
+                                              <img
+                                                src="/images/icons/bath.png"
+                                                alt="Range"
+                                                className="img-fluid"
+                                                width="20px"
+                                              />
+                                              <span className="align-text-top ms-1">
+                                                {property.bathrooms}
+                                              </span>
+                                            </small>
+                                          </li>
+                                          <li className="d-inline">
+                                            <small>
+                                              <img
+                                                src="/images/icons/area.png"
+                                                alt="Range"
+                                                className="img-fluid"
+                                                width="20px"
+                                              />
+                                              <span className="align-text-top ms-1">
+                                                {" "}
+                                                {property.area}{" "}
+                                                {property.unit_measure}
+                                              </span>
+                                            </small>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </SwiperSlide>
+                          );
+                        })}
+
+                        <div
+                          className="swiper-button-prev swiperUniquePrev text-primary"
+                          onClick={() => PropertyRentSwiperRef.current?.slidePrev()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-left fs-1"></i>
+                          </span>
+                        </div>
+                        <div
+                          className="swiper-button-next swiperUniqueNext text-primary"
+                          onClick={() => PropertyRentSwiperRef.current?.slideNext()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-right fs-1"></i>
+                          </span>
+                        </div>
+                        {/* <div className="swiper-pagination"></div> */}
+                      </Swiper>
+                    </div>
+                    )}
+                    {developerData?.saleProperties.length > 0 && (
+                    <div className="col-12 col-lg-12 col-md-12">
+                    <div className="row mb-5">
+                        <h6 className="sctionCommunitySubTitle text-primary col-6">
+                          FOR SALE
+                        </h6>
+                        <div className="col-6 text-end">
+                          {developerData?.saleProperties.length > 0 && (
+                            <Link
+                              href={`/buy?developer_name=${developerData?.name}&developer_detail=${developerData?.id}`}
+                              className="text-decoration-none bdrBtn width-auto-fit"
+                              style={{width: "fit-content"}}
+                            >
+                              View All
+                            </Link>
+                           )}
+                        </div>
+                      </div>
+                      <Swiper
+                        slidesPerView={1}
+                        spaceBetween={10}
+                        pagination={{
+                          el: ".swiper-pagination",
+                          clickable: true,
+                        }}
+                        navigation={{
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                        }}
+                        breakpoints={{
+                          640: {
+                            slidesPerView: 2,
+                            spaceBetween: 10,
+                          },
+                          768: {
+                            slidesPerView: 3,
+                            spaceBetween: 10,
+                          },
+                          1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 10,
+                          },
+                        }}
+                        modules={[Navigation, Pagination]}
+                        onSwiper={(swiper) => {
+                          PropertySaleSwiperRef.current = swiper;
+                        }}
+                        className="swiper pb-5 projectSlider"
+                      >
+                        {developerData?.saleProperties?.map((property, index) => {
+                          return (
+                            <SwiperSlide key={property.id + +"property"}>
+                              <div className="swiper-slide">
+                                <div>
+                                  <div className="card propCard rounded-0">
+                                    <div>
+                                      <div className="">
+                                        <Link
+                                          href={`/properties/${property.slug}`}
+                                          className="text-decoration-none"
+                                        >
+                                          <div className="projectImgCont">
+                                            <img
+                                              src={property.property_banner}
+                                              alt={property.name}
+                                              className="img-fluid propImg"
+                                            />
+                                            <div className="projectImgOverlay">
+                                              <div></div>
+                                              <div>
+                                                <span className="badge float-start fs-10 projectType">
+                                                  {property.accommodation}
+                                                </span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </Link>
+                                      </div>
+                                      <div className="card-body rounded-3 rounded-top-0 communityPropertyCard">
+                                        <Link
+                                          href={`/properties/${property.slug}`}
+                                          className="text-decoration-none"
+                                        >
+                                          <h6 className="text-black fs-16 fw-semibold mb-0">
+                                            {property.name}
+                                          </h6>
+                                        </Link>
+                                        <div className="mb-1">
+                                          <small className="text-secondary">
+                                            {property &&
+                                              property.communities &&
+                                              property.communities.name}
+                                          </small>
+                                        </div>
+                                        <p className="fs-18 mb-2 text-primary fw-semibold">
+                                          AED{" "}
+                                          {property &&
+                                            new Intl.NumberFormat().format(
+                                              property.price
+                                            )}{" "}
+                                        </p>
+                                        <ul className="list-unstyled mb-0 d-flex justify-content-between">
+                                          <li className="d-inline">
+                                            <small>
+                                              <img
+                                                src="/images/icons/bed.png"
+                                                alt="Range"
+                                                className="img-fluid"
+                                                width="25px"
+                                              />
+                                              <span className="align-text-top ms-1">
+                                                {property.bedrooms}
+                                              </span>
+                                            </small>
+                                          </li>
+                                          <li className="d-inline">
+                                            <small>
+                                              <img
+                                                src="/images/icons/bath.png"
+                                                alt="Range"
+                                                className="img-fluid"
+                                                width="20px"
+                                              />
+                                              <span className="align-text-top ms-1">
+                                                {property.bathrooms}
+                                              </span>
+                                            </small>
+                                          </li>
+                                          <li className="d-inline">
+                                            <small>
+                                              <img
+                                                src="/images/icons/area.png"
+                                                alt="Range"
+                                                className="img-fluid"
+                                                width="20px"
+                                              />
+                                              <span className="align-text-top ms-1">
+                                                {" "}
+                                                {property.area}{" "}
+                                                {property.unit_measure}
+                                              </span>
+                                            </small>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </SwiperSlide>
+                          );
+                        })}
+
+                        <div
+                          className="swiper-button-prev swiperUniquePrev text-primary"
+                          onClick={() => PropertySaleSwiperRef.current?.slidePrev()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-left fs-1"></i>
+                          </span>
+                        </div>
+                        <div
+                          className="swiper-button-next swiperUniqueNext text-primary"
+                          onClick={() => PropertySaleSwiperRef.current?.slideNext()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-right fs-1"></i>
+                          </span>
+                        </div>
+                        
+                      </Swiper>
+                    </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
     </>
   );
 }

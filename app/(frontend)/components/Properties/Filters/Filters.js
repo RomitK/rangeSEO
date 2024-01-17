@@ -11,6 +11,7 @@ import MultiValue from "@/app/(frontend)/components/UI/ReactSelect/MultiValue";
 import IndicatorsContainer from "@/app/(frontend)/components/UI/ReactSelect/IndicatorsContainer";
 import MultiValueContainer from "@/app/(frontend)/components/UI/ReactSelect/MultiValueContainer";
 import { useSearchParams } from "next/navigation";
+import { useLocation } from 'react-router-dom';
 
 function Filters({
   setShowMap,
@@ -19,7 +20,6 @@ function Filters({
   setOriginalMarkers,
   mapRef,
   accomodations,
-  communities,
   amenities,
   setLoading,
   sortBy,
@@ -40,7 +40,10 @@ function Filters({
     category: "",
     completion_status_id: '',
     furnishing: "",
+    isCommercial:"",
   });
+  
+  const [projectAmenities, setProjectAmenities] = useState(amenities);
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
   const [newArrayF, setNewArrayF] = useState([]);
@@ -118,6 +121,9 @@ function Filters({
 
   useEffect(() => {
     if (isCommercial) {
+      form['isCommercial'] = 1;
+      setForm({ ...form });
+
       const filtered = accomodations?.filter(
         (accomodation) =>
           accomodation.type === "Commercial" || accomodation.type === "Both"
@@ -126,6 +132,10 @@ function Filters({
         setFilteredAccomodation([...filtered]);
       }
     } else {
+      setIsCommercial(false)      
+      form['isCommercial'] = "";
+      setForm({ ...form });
+
       const filtered = accomodations?.filter(
         (accomodation) =>
           accomodation.type === "Residential" || accomodation.type === "Both"
@@ -193,9 +203,59 @@ function Filters({
         },
       ]);
     }
+    if(searchParams.has("accommodation_id")){
+      form['accommodation_id'] =searchParams.get("accommodation_id");
+      setForm({ ...form })
+    }
+    if(searchParams.has("bedrooms")){
+      form['bedrooms'] =searchParams.get("bedrooms");
+      setForm({ ...form })
+      if(form['bedrooms']){
+        setShowMore(true)
+      }
+    }
+
+    if(searchParams.has("minprice")){
+      form['minprice'] =searchParams.get("minprice");
+      setForm({ ...form })
+      if(form['minprice']){
+        setShowMore(true)
+      }
+    }
+
+    if(searchParams.has("maxprice")){
+      form['maxprice'] =searchParams.get("maxprice");
+      setForm({ ...form })
+      if(form['maxprice']){
+        setShowMore(true)
+      }
+    }
+
+    if(searchParams.has("minarea")){
+      form['minarea'] =searchParams.get("minarea");
+      setForm({ ...form })
+      if(form['minarea']){
+        setShowMore(true)
+      }
+    }
+
+
+    if(searchParams.has("maxarea")){
+      form['maxarea'] =searchParams.get("maxarea");
+      setForm({ ...form })
+      if(form['maxarea']){
+        setShowMore(true)
+      }
+    }
+    if(searchParams.has('searchBy')){
+      console.log(searchParams.get('searchBy'))
+      form['searchBy'] =searchParams.get("searchBy");
+      selectRef.current.setValue(JSON.parse(searchParams.get('searchBy')))
+      setForm({ ...form })
+    }
   }, []);
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "propertiesList?";
+    let getPropertiesURL = process.env.API_HOST + "properties?";
     let payload = { ...form };
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
@@ -226,11 +286,13 @@ function Filters({
       .then((response) => response.json())
       .then((res) => {
         if (res.success) {
-          const propertiesDup = res.data.data;
+          const propertiesDup = res.data.properties.data;
           setProperties([...propertiesDup]);
+          setProjectAmenities(res.data.amenities);
+          setTotalProperties(res.data.properties.meta.total);
           setOriginalMarkers([...propertiesDup]);
-          setLinks(res.data.links);
-          setTotalProperties(res.data.meta.total);
+          setLinks(res.data.properties.links);
+          
           if (propertiesDup.length) {
             mapRef?.current?.setCenter({
               lat: parseFloat(propertiesDup[0].address_latitude),
@@ -252,21 +314,21 @@ function Filters({
   }, [sortBy]);
 
   useEffect(() => {
-    const newArray3 = amenities?.map((originalObject, index) => {
+    const newArray3 = projectAmenities?.map((originalObject, index) => {
       const label = originalObject.name;
       const value = originalObject.id;
       return { label, value };
     });
-    setNewArrayF(newArray3);
+    setNewArrayF(projectAmenities);
   }, []);
   useEffect(() => {
-    const newArray3 = amenities?.map((originalObject, index) => {
+    const newArray3 = projectAmenities?.map((originalObject, index) => {
       const label = originalObject.name;
       const value = originalObject.id;
       return { label, value };
     });
     setNewArrayF(newArray3);
-  }, amenities);
+  }, projectAmenities);
   function isEmptyObject() {
     const o = { ...form };
     delete o.sortBy;
@@ -280,6 +342,12 @@ function Filters({
   }
 
   const handleReset = () => {
+
+    setIsCommercial(false);
+    setForm(prevForm => ({
+      ...prevForm,
+      isCommercial: ""
+    }));
     form["minprice"] = "";
     form["maxprice"] = "";
     form["minarea"] = "";
@@ -292,6 +360,8 @@ function Filters({
     form["bathroom"] = "";
     form["searchBy"] = "";
     form["amenities"] ="";
+    form["isCommercial"] ="";
+    
     setSelectedItems([]);
     selectRef.current.setValue([]);
     if(minPriceRef.current != null){
@@ -597,6 +667,7 @@ function Filters({
                   className="form-control"
                   id="maxprice"
                   placeholder="Any Price"
+                  min={0}
                   ref={maxPriceRef}
                 />
               </div>
@@ -634,7 +705,7 @@ function Filters({
               className="form-check-input"
               id="exampleCheck1"
               onChange={(e) => setIsCommercial(e.target.checked)}
-              value={isCommercial}
+              checked={isCommercial}
             />
             <label className="form-check-label" htmlFor="exampleCheck1">
               Commericial
@@ -650,7 +721,7 @@ function Filters({
           {!isEmptyObject() && (
             <button
               className="btn btn-sm btn-secondary"
-              type="button"
+              type="button"             
               onClick={handleReset}
             >
               Reset

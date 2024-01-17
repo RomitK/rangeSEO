@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useMediaQuery } from "react-responsive";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { components } from "react-select";
 import { Dropdown, FormControl, Form } from "react-bootstrap";
@@ -20,7 +20,6 @@ function Filters({
   setOriginalMarkers,
   mapRef,
   accomodations,
-  communities,
   amenities,
   setLoading,
   sortBy,
@@ -30,15 +29,8 @@ function Filters({
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
   const [newArrayF, setNewArrayF] = useState([]);
-  const minPriceRef = useRef(null);
-  const maxPriceRef = useRef(null);
-  const minAreaRef = useRef(null);
-  const maxAreaRef = useRef(null);
-  const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [filteredAccomodation, setFilteredAccomodation] =
-    useState(accomodations);
+  const [filteredAccomodation, setFilteredAccomodation] = useState(accomodations);
   const [showNoMessage, setNoMessage] = useState(false);
-  const selectRef = useRef();
   const [hasFocus, setHasFocus] = useState(false);
   const [showFormReset, setShowFormReset] = useState(false);
   const [formHasValues, setFormHasValues] = useState(false);
@@ -47,6 +39,16 @@ function Filters({
   const searchParams = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
+  const [isCommercial, setIsCommercial] = useState(false);
+  const selectRef = useRef();
+  const minPriceRef = useRef(null);
+  const maxPriceRef = useRef(null);
+  const minAreaRef = useRef(null);
+  const maxAreaRef = useRef(null);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const [projectAmenities, setProjectAmenities] = useState(amenities);
+  const [showListing, setShowListing] = useState(false);
+  const router = useRouter();
   const [form, setForm] = useState({
     accommodation_id: "",
     bedrooms: "",
@@ -57,11 +59,48 @@ function Filters({
     amenities: "",
     bathroom: "",
     completion_status_id: "",
+    isCommercial:"",
+    lastUpdated:""
   });
+  useEffect(() => {
+    if (isCommercial) {
+      form['isCommercial'] = 1;
+      form['accommodation_id'] = "";
+      setForm({ ...form });
+
+      const filtered = accomodations?.filter(
+        (accomodation) =>
+          accomodation.type === "Commercial" || accomodation.type === "Both"
+      );
+      if (filtered != null) {
+        setFilteredAccomodation([...filtered]);
+      }
+    } else {
+      setIsCommercial(false)      
+      form['isCommercial'] = "";
+      form['accommodation_id'] = "";
+      setForm({ ...form });
+
+      const filtered = accomodations?.filter(
+        (accomodation) =>
+          accomodation.type === "Residential" || accomodation.type === "Both"
+      );
+      if (filtered != null) {
+        setFilteredAccomodation([...filtered]);
+      }
+    }
+  }, [isCommercial, accomodations]);
   useEffect(() => {
     if (searchParams.has("minprice") && searchParams.has("maxprice")) {
       form["minprice"] = searchParams.get("minprice");
       form["maxprice"] = searchParams.get("maxprice");
+
+      if (minPriceRef.current != null) {
+        minPriceRef.current.value = searchParams.get("minprice") || '';
+      }
+      if (maxPriceRef.current != null) {
+        maxPriceRef.current.value = searchParams.get("maxprice") || '';
+      }
       setForm({ ...form });
       setShowMore(true);
     }
@@ -84,6 +123,9 @@ function Filters({
           name: searchParams.get("developer_name"),
         },
       ]);
+      if(searchParams.has('lisiting')){
+        setShowListing(true)
+      }
     }
   }, []);
   function isEmptyObject() {
@@ -98,10 +140,28 @@ function Filters({
   }
 
   const handleReset = () => {
-    form["minprice"] = "";
-    form["maxprice"] = "";
-    form["minarea"] = "";
-    form["maxarea"] = "";
+    setIsCommercial(false);
+    setForm(prevForm => ({
+      ...prevForm,
+      isCommercial: ""
+    }));
+    setForm(prevForm => ({
+      ...prevForm,
+      maxprice: ""
+    }));
+    setForm(prevForm => ({
+      ...prevForm,
+      minprice: ""
+    }));
+
+    setForm(prevForm => ({
+      ...prevForm,
+      minarea: ""
+    }));
+    setForm(prevForm => ({
+      ...prevForm,
+      maxarea: ""
+    }));
     form["furnishing"] = "";
     form["bedrooms"] = "";
     form["accommodation_id"] = "";
@@ -109,6 +169,7 @@ function Filters({
     form["bathroom"] = "";
     form["searchBy"] = "";
     form["amenities"] = "";
+    form["isCommercial"] ="";
     setSelectedItems([]);
 
     selectRef.current.setValue([]);
@@ -189,7 +250,8 @@ function Filters({
   }, [isMobile]);
 
   useEffect(() => {
-    let getPropertiesURL = process.env.API_HOST + "projectsList?";
+
+    let getPropertiesURL = process.env.API_HOST + "projects?";
     let payload = { ...form };
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
@@ -220,11 +282,13 @@ function Filters({
       .then((response) => response.json())
       .then((res) => {
         if (res.success) {
-          const propertiesDup = res.data.data;
+          const propertiesDup = res.data.projects.data;
           setProperties([...propertiesDup]);
-          setTotalProperties(res.data.meta.total);
+          setProjectAmenities(res.data.amenities);
+          setTotalProperties(res.data.projects.meta.total);
           setOriginalMarkers([...propertiesDup]);
-          setLinks(res.data.links);
+          setLinks(res.data.projects.links);
+          
           if (propertiesDup.length) {
             mapRef?.current?.setCenter({
               lat: parseFloat(propertiesDup[0].address_latitude),
@@ -246,7 +310,7 @@ function Filters({
   }, [sortBy]);
 
   useEffect(() => {
-    const newArray3 = amenities?.map((originalObject, index) => {
+    const newArray3 = projectAmenities?.map((originalObject, index) => {
       const label = originalObject.name;
       const value = originalObject.id;
       return { label, value };
@@ -254,17 +318,47 @@ function Filters({
     setNewArrayF(newArray3);
   }, []);
   useEffect(() => {
-    const newArray3 = amenities?.map((originalObject, index) => {
+    const newArray3 = projectAmenities?.map((originalObject, index) => {
       const label = originalObject.name;
       const value = originalObject.id;
       return { label, value };
     });
     setNewArrayF(newArray3);
-  }, amenities);
+  }, projectAmenities);
+  const redirectListing = (e) =>{
+    if(showListing && form.lastUpdated !== 'completion_status_id'){
 
+      const searchParams = new URLSearchParams({
+        accommodation_id: form.accommodation_id,
+        bedrooms: form.bedrooms,
+        minprice: form.minprice,
+        maxprice: form.maxprice,
+        minarea: form.minarea,
+        maxarea: form.maxarea,
+        amenities: form.amenities,
+        bathroom: form.bathroom,
+        searchBy:JSON.stringify(form.searchBy)
+      }).toString();
+      
+      const url = `/properties?${searchParams}`;
+      router.push(url);
+    }
+  }
+
+  useEffect(() => {
+    if (showListing) {
+      redirectListing(form);
+    }
+  }, [form.minprice, form.maxprice, form.minarea, form.maxarea]);
+  
   const handleChange = (e) => {
     form[e.target.name] = e.target.value;
+    
     setForm({ ...form });
+    if(showListing){
+      form['lastUpdated'] =e.target.name;
+      redirectListing(form);
+    }
   };
 
   const handleViewChange = (e) => {};
@@ -275,6 +369,9 @@ function Filters({
       minprice: minPriceRef.current.value,
       maxprice: maxPriceRef.current.value,
     });
+    if(showListing){
+      redirectListing(form);
+    }
   };
   const resetApplyPrice = () => {
     form["minprice"] = "";
@@ -400,7 +497,10 @@ function Filters({
         callback([]);
       });
   };
-
+  const handlePositiveChange = (e) => {
+    const numericValue = e.target.value.replace(/[^0-9]/g, '');
+    e.target.value = numericValue;
+  };
   return (
     <form action="">
       <div className="row row-gap-3">
@@ -475,8 +575,8 @@ function Filters({
             id="accomodation"
             className="form-select bedroomSelect"
           >
-            <option value="">Select Property Type</option>
-            {accomodations?.map((accomodation) => (
+            <option value=""> Property Type</option>
+            {filteredAccomodation?.map((accomodation) => (
               <option key={accomodation.id} value={accomodation.id}>
                 {accomodation.name}
               </option>
@@ -510,13 +610,25 @@ function Filters({
             className="form-select bedroomSelect"
           >
             <option value="">Project Status</option>
-            <option value="288">Upcoming</option>
             <option value="289">Under Construction</option>
-            <option value="300">Completed</option>
+            <option value="290">Completed</option>
           </select>
         </div>
 
         <div className="col-md-3 d-flex align-items-center gap-2 justify-content-end">
+        <div className="form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="exampleCheck1"
+              onChange={(e) => setIsCommercial(e.target.checked)}
+              checked={isCommercial}
+            />
+            <label className="form-check-label" htmlFor="exampleCheck1">
+              Commericial
+            </label>
+          </div>
+
           <button
             className="btn btn-sm btn-primary"
             type="button"
@@ -653,8 +765,9 @@ function Filters({
                       min={0}
                       placeholder="0"
                       name="minprice"
-                      value={form.minprice}
+                      
                       ref={minPriceRef}
+                      
                     />
                   </div>
                   <div className="mb-3">
@@ -664,9 +777,10 @@ function Filters({
                       name="maxprice"
                       className="form-control"
                       id="maxprice"
-                      value={form.maxprice}
+                      min={0}
                       placeholder="Any Price"
                       ref={maxPriceRef}
+                      
                     />
                   </div>
                   <div className="mt-4 d-grid">
@@ -722,6 +836,7 @@ function Filters({
                       placeholder="0"
                       name="minarea"
                       ref={minAreaRef}
+                      onChange={handlePositiveChange}
                     />
                   </div>
                   <div className="mb-3">
@@ -729,10 +844,12 @@ function Filters({
                     <input
                       type="number"
                       name="maxarea"
+                      min={0}
                       className="form-control"
                       id="maxarea"
                       placeholder="Any Area"
                       ref={maxAreaRef}
+                      onChange={handlePositiveChange}
                     />
                   </div>
                   <div className="mt-4 d-grid">

@@ -20,7 +20,7 @@ export const generateMetadata = async ({
           console.log("err", err);
         });
     return {
-      title: developerMeta?.data?.name,
+      title: developerMeta?.data?.meta_title,
       description: developerMeta?.data?.meta_description,
       keywords: developerMeta?.data?.meta_keywords,
     };

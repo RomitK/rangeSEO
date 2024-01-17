@@ -585,6 +585,7 @@ function Filters({
                   id="maxprice"
                   placeholder="Any Price"
                   ref={maxPriceRef}
+                  min={0}
                 />
               </div>
               <div className="mt-4 d-grid">

@@ -84,7 +84,7 @@ function SingleProjectView({ params }) {
                   className="swiperSilderItem"
                   key={exteriorGallery.id + "exteriorGallery" + index}
                 >
-                  <img src={exteriorGallery.path} className="sliderCoverImg" />
+                  <img src={exteriorGallery.path} alt={exteriorGallery.title ?exteriorGallery.title: projectData.title} className="sliderCoverImg" />
                   <div className=" sliderContainer">
                     <div className="sliderContentArea">
                       <div className="sliderContent">
@@ -165,7 +165,7 @@ function SingleProjectView({ params }) {
         <div className="tabsListConatiner ">
           <div className="container">
             <div className="row">
-              <div className="col-3 selectTitle">
+              <div className="col selectTitle">
                 <a
                   className="tabTitle active"
                   href="#Hightlights"
@@ -175,7 +175,7 @@ function SingleProjectView({ params }) {
                   Project Details
                 </a>
               </div>
-              <div className="col-3 selectTitle ">
+              <div className="col selectTitle ">
                 <a
                   className="tabTitle"
                   href="#ProjectDetails"
@@ -185,12 +185,13 @@ function SingleProjectView({ params }) {
                   Amenities
                 </a>
               </div>
-              <div className="col-3 selectTitle">
+              <div className="col selectTitle">
                 <a className="tabTitle " href="#NearBy" aria-selected="true">
-                  Nearby PROJECTS
+                similar PROJECTS
                 </a>
               </div>
-              <div className="col-3 selectTitle">
+              {projectData && (projectData?.rentProperties?.length > 0 || projectData?.buyProperties?.length > 0) && (
+              <div className="col selectTitle">
                 <a
                   className="tabTitle"
                   href="#AvailableProperties"
@@ -199,6 +200,7 @@ function SingleProjectView({ params }) {
                   Available Properties
                 </a>
               </div>
+              )}
             </div>
           </div>
         </div>
@@ -249,7 +251,7 @@ function SingleProjectView({ params }) {
                             <img
                               src={interiorGallery.path}
                               className="clmCoverImg"
-                              alt="interiorImage"
+                              alt={interiorGallery.title ? interiorGallery.title : projectData.title}
                             />
                           </SwiperSlide>
                         );
@@ -337,7 +339,7 @@ function SingleProjectView({ params }) {
                                     <div className="amenityImg mx-auto">
                                       <img
                                         src={amenity.image}
-                                        alt="Range"
+                                        alt={amenity.name}
                                         className="img-fluid"
                                         width="40px"
                                       />
@@ -660,6 +662,7 @@ function SingleProjectView({ params }) {
                       <div className="colmImgBox">
                         <img
                           src={projectData.developer.logo}
+                          alt={projectData.developer.name}
                           className="clmContainImg"
                         />
                       </div>
@@ -674,7 +677,7 @@ function SingleProjectView({ params }) {
           <div className="container">
             <div className="row">
               <div className="secTabCntent">
-                <h4 className="sctionMdTitle text-primary">NEARBY</h4>
+                <h4 className="sctionMdTitle text-primary">similar</h4>
                 <h6 className="sctionSubTitle text-primary"> PROJECTS</h6>
               </div>
               <div className="row g-0">
@@ -851,17 +854,17 @@ function SingleProjectView({ params }) {
                               >
                                 <div className="swiper-slide">
                                   <div>
-                                    <div className="card propCard rounded-0">
+                                    <div className="card propCard rounded-0 projectPropertyCard">
                                       <div>
                                         <div className="">
                                           <a
-                                            href=""
+                                            href={`/properties/${similarProperty.slug}`}
                                             className="text-decoration-none"
                                           >
                                             <div className="projectImgCont">
                                               <img
                                                 src={similarProperty.mainImage}
-                                                alt="project1"
+                                                alt={similarProperty.name}
                                                 className="img-fluid propImg"
                                               />
                                               <div className="projectImgOverlay">
@@ -1034,13 +1037,13 @@ function SingleProjectView({ params }) {
                                       <div>
                                         <div className="">
                                           <a
-                                            href=""
+                                            href={`/properties/${similarProperty.slug}`}
                                             className="text-decoration-none"
                                           >
                                             <div className="projectImgCont">
                                               <img
                                                 src={similarProperty.mainImage}
-                                                alt="project1"
+                                                alt={similarProperty.name}
                                                 className="img-fluid propImg"
                                               />
                                               <div className="projectImgOverlay">
@@ -1056,7 +1059,7 @@ function SingleProjectView({ params }) {
                                             </div>
                                           </a>
                                         </div>
-                                        <div className="card-body rounded-3 rounded-top-0">
+                                        <div className="card-body rounded-3 rounded-top-0 projectPropertyCard">
                                           <Link
                                             href={`/properties/${similarProperty.slug}`}
                                             className="text-decoration-none"

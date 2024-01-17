@@ -224,11 +224,9 @@ function SinglecommunityDataView({ params }) {
                               <div className="communityImgCont">
                                 <img
                                   src={img.path}
-                                  alt="communityData"
+                                  alt={img.title ? img.title : communityData.name}
                                   className="img-fluid communityGalleryImage"
                                 />
-                                
-                                
                               </div>
                             </div>
                           </SwiperSlide>
@@ -358,7 +356,7 @@ function SinglecommunityDataView({ params }) {
                                       <img
                                         src={highlight.image}
                                         className="img-fluid"
-                                        alt="range"
+                                        alt={highlight.name}
                                         width="80px"
                                       />
                                     </center>
@@ -431,7 +429,7 @@ function SinglecommunityDataView({ params }) {
                                 setIcon("school");
                               }}
                             >
-                              School
+                              Education
                             </button>
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
@@ -733,7 +731,7 @@ function SinglecommunityDataView({ params }) {
                                     <div className="amenityImg mx-auto">
                                       <img
                                         src={amenity.image}
-                                        alt="Range"
+                                        alt={amenity.name}
                                         className="img-fluid"
                                         width="40px"
                                       />
@@ -851,7 +849,7 @@ function SinglecommunityDataView({ params }) {
                                           <div className="projectImgCont">
                                             <img
                                               src={property.property_banner}
-                                              alt="project1"
+                                              alt={property.name}
                                               className="img-fluid propImg"
                                             />
                                             <div className="projectImgOverlay">
@@ -956,7 +954,7 @@ function SinglecommunityDataView({ params }) {
                             <i className="bi bi-chevron-right fs-1"></i>
                           </span>
                         </div>
-                        <div className="swiper-pagination"></div>
+                        {/* <div className="swiper-pagination"></div> */}
                       </Swiper>
                     </div>
                     )}
@@ -1024,7 +1022,7 @@ function SinglecommunityDataView({ params }) {
                                           <div className="projectImgCont">
                                             <img
                                               src={property.property_banner}
-                                              alt="project1"
+                                              alt={property.name}
                                               className="img-fluid propImg"
                                             />
                                             <div className="projectImgOverlay">
@@ -1285,9 +1283,9 @@ function SinglecommunityDataView({ params }) {
                           return (
                             <SwiperSlide key={nearbyCommunity.id + index}>
                               <div className="swiper-slide">
-                                <div>
+                                
                                   <div className="card propCard rounded-0">
-                                    <div>
+                                    
                                       <div className="">
                                         <Link
                                           href={`/communities/${nearbyCommunity.slug}`}
@@ -1314,9 +1312,9 @@ function SinglecommunityDataView({ params }) {
                                           </div>
                                         </Link>
                                       </div>
-                                    </div>
+                                    
                                   </div>
-                                </div>
+                                
                               </div>
                             </SwiperSlide>
                           );

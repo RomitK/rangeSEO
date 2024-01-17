@@ -84,7 +84,7 @@ function AboutPage() {
                       />
                       <div className="cardContent ">
                         <h5 className="crdTitle">{management.name}</h5>
-                        <p className="crdText">{management.designation}</p>
+                        <p className="">{management.designation}</p>
                         <Link
                           href={`/managements/${management?.slug}`}
                           className="fillBtn crdReadMorebtn mrAuto managementReadMore"

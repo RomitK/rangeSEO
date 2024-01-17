@@ -19,7 +19,6 @@ function OffPlanFilters({
   setOriginalMarkers,
   mapRef,
   accomodations,
-  communities,
   amenities,
   setLoading,
   sortBy,
@@ -41,7 +40,9 @@ function OffPlanFilters({
     category: "buy",
     completion_status_id: 287,
     furnishing: "",
+    isCommercial:"",
   });
+  const [projectAmenities, setProjectAmenities] = useState(amenities);
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
   const [newArrayF, setNewArrayF] = useState([]);
@@ -118,6 +119,8 @@ function OffPlanFilters({
 
   useEffect(() => {
     if (isCommercial) {
+      form['isCommercial'] = 1;
+      setForm({ ...form });
       const filtered = accomodations?.filter(
         (accomodation) =>
           accomodation.type === "Commercial" || accomodation.type === "Both"
@@ -126,6 +129,9 @@ function OffPlanFilters({
         setFilteredAccomodation([...filtered]);
       }
     } else {
+      setIsCommercial(false)      
+      form['isCommercial'] = "";
+      setForm({ ...form });
       const filtered = accomodations?.filter(
         (accomodation) =>
           accomodation.type === "Residential" || accomodation.type === "Both"
@@ -144,7 +150,7 @@ function OffPlanFilters({
 
   useEffect(() => {
 
-    let getPropertiesURL = process.env.API_HOST + "propertiesList?";
+    let getPropertiesURL = process.env.API_HOST + "properties?";
     let payload = { ...form };
 
     for (let key in payload) {
@@ -176,18 +182,19 @@ function OffPlanFilters({
       .then((response) => response.json())
       .then((res) => {
         if (res.success) {
-          const propertiesDup = res.data.data;
+          const propertiesDup = res.data.properties.data;
           setProperties([...propertiesDup]);
+          setProjectAmenities(res.data.amenities);
+          setTotalProperties(res.data.properties.meta.total);
           setOriginalMarkers([...propertiesDup]);
-          setLinks(res.data.links);
-          setTotalProperties(res.data.meta.total);
+          setLinks(res.data.properties.links);
+          
           if (propertiesDup.length) {
             mapRef?.current?.setCenter({
-              lat: parseFloat(propertiesDup[0].lat),
-              lng: parseFloat(propertiesDup[0].lng),
+              lat: parseFloat(propertiesDup[0].address_latitude),
+              lng: parseFloat(propertiesDup[0].address_longitude),
             });
           }
-         
         }
       })
       .catch((error) => {
@@ -204,7 +211,7 @@ function OffPlanFilters({
   }, [sortBy]);
 
   useEffect(() => {
-    const newArray3 = amenities?.map((originalObject, index) => {
+    const newArray3 = projectAmenities?.map((originalObject, index) => {
       const label = originalObject.name;
       const value = originalObject.id;
       return { label, value };
@@ -212,12 +219,12 @@ function OffPlanFilters({
     setNewArrayF(newArray3);
   }, []);
   useEffect(() => {
-    const newArray3 = amenities?.map(originalObject => ({
+    const newArray3 = projectAmenities?.map(originalObject => ({
       label: originalObject.name,
       value: originalObject.id,
     }));
     setNewArrayF(newArray3);
-  }, [JSON.stringify(amenities)]); // Using JSON.stringify
+  }, [JSON.stringify(projectAmenities)]); // Using JSON.stringify
 
   function isEmptyObject() {
     const o = { ...form };
@@ -242,6 +249,12 @@ function OffPlanFilters({
   }
 
   const handleReset = () => {
+    setIsCommercial(false);
+    setForm(prevForm => ({
+      ...prevForm,
+      isCommercial: ""
+    }));
+
     form["minprice"] = "";
     form["maxprice"] = "";
     form["minarea"] = "";
@@ -255,6 +268,7 @@ function OffPlanFilters({
     form["amenities"] ="";
     form["category"] = "buy";
     form["completion_status_id"] = 287;
+    form["isCommercial"] ="";
     setSelectedItems([]);
     selectRef.current.setValue([]);
     if(minPriceRef.current != null){
@@ -563,6 +577,7 @@ function OffPlanFilters({
                   id="maxprice"
                   placeholder="Any Price"
                   ref={maxPriceRef}
+                  min={0}
                 />
               </div>
               <div className="mt-4 d-grid">
@@ -599,7 +614,7 @@ function OffPlanFilters({
               className="form-check-input"
               id="exampleCheck1"
               onChange={(e) => setIsCommercial(e.target.checked)}
-              value={isCommercial}
+              checked={isCommercial}
             />
             <label className="form-check-label" htmlFor="exampleCheck1">
               Commericial

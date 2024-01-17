@@ -8,13 +8,11 @@ import {
   OverlayView,
   DrawingManagerF,
 } from "@react-google-maps/api";
-import {
-  useGetAccommodations,
-  useGetCommunities,
-  useGetAmenities,
-} from "@/src/services/PropertyService";
-import axios from "axios";
 
+import { useGetPropertyAccommodations} from "@/src/services/AccommodationService";
+import { useGetPropertyAmenities } from "@/src/services/AmenityService"
+
+import axios from "axios";
 import classes from "@/app/(frontend)/components/Properties/Properties.module.css";
 import Filters from "@/app/(frontend)/components/Properties/Filters/Filters";
 import LuxuryPropertyFilters from "@/app/(frontend)/components/Properties/Filters/LuxuryPropertyFilters";
@@ -22,7 +20,6 @@ import RentFilters from "@/app/(frontend)/components/Properties/Filters/RentFilt
 import BuyFilters from "@/app/(frontend)/components/Properties/Filters/Buy/BuyFilters";
 import ReadyFilters from "@/app/(frontend)/components/Properties/Filters/Buy/ReadyFilters";
 import OffPlanFilters from "@/app/(frontend)/components/Properties/Filters/Buy/OffPlanFilters";
-
 import Property from "@/app/(frontend)/components/Properties/Property";
 const PropertyList = ({ params }) => {
 
@@ -33,6 +30,8 @@ const PropertyList = ({ params }) => {
   const isReadyPage = Object.hasOwn(params, "ready");
   const isOffPlanPage = Object.hasOwn(params, "offplan");
   
+
+  const { propertyAccommodations } = useGetPropertyAccommodations();
   const [showMap, setShowMap] = useState(true);
   const [totalProperties, setTotalProperties] = useState(0);
   const [links, setLinks] = useState({ next: "", first: "" });
@@ -61,9 +60,6 @@ const PropertyList = ({ params }) => {
   const mapRef2 = useRef(null);
   const [loading, setLoading] = useState(false);
   const [sorting, setSorting] = useState("");
-  const { accommodations } = useGetAccommodations();
-  const { communities } = useGetCommunities();
-  const { amenities } = useGetAmenities();
   const mapRef = useRef(null);
 
   const getMarkersInView = useCallback(() => {
@@ -180,9 +176,8 @@ const PropertyList = ({ params }) => {
                 setShowMap={setShowMap}
                 mapRef={mapRef2}
                 setOriginalMarkers={setOriginalMarkers}
-                accomodations={accommodations}
-                communities={communities}
-                amenities={amenities}
+                accomodations={propertyAccommodations}
+                amenities={propertyAccommodations}
                 setLoading={setLoading}
                 sortBy={sorting}
                 setLinks={setLinks}
@@ -197,9 +192,8 @@ const PropertyList = ({ params }) => {
                 setShowMap={setShowMap}
                 mapRef={mapRef2}
                 setOriginalMarkers={setOriginalMarkers}
-                accomodations={accommodations}
-                communities={communities}
-                amenities={amenities}
+                accomodations={propertyAccommodations}
+                amenities={propertyAccommodations}
                 setLoading={setLoading}
                 sortBy={sorting}
                 setLinks={setLinks}
@@ -214,9 +208,8 @@ const PropertyList = ({ params }) => {
                 setShowMap={setShowMap}
                 mapRef={mapRef2}
                 setOriginalMarkers={setOriginalMarkers}
-                accomodations={accommodations}
-                communities={communities}
-                amenities={amenities}
+                accomodations={propertyAccommodations}
+                amenities={propertyAccommodations}
                 setLoading={setLoading}
                 sortBy={sorting}
                 setLinks={setLinks}
@@ -230,9 +223,8 @@ const PropertyList = ({ params }) => {
                 setShowMap={setShowMap}
                 mapRef={mapRef2}
                 setOriginalMarkers={setOriginalMarkers}
-                accomodations={accommodations}
-                communities={communities}
-                amenities={amenities}
+                accomodations={propertyAccommodations}
+                amenities={propertyAccommodations}
                 setLoading={setLoading}
                 sortBy={sorting}
                 setLinks={setLinks}
@@ -247,9 +239,8 @@ const PropertyList = ({ params }) => {
                 setShowMap={setShowMap}
                 mapRef={mapRef2}
                 setOriginalMarkers={setOriginalMarkers}
-                accomodations={accommodations}
-                communities={communities}
-                amenities={amenities}
+                accomodations={propertyAccommodations}
+                amenities={propertyAccommodations}
                 setLoading={setLoading}
                 sortBy={sorting}
                 setLinks={setLinks}
@@ -264,9 +255,8 @@ const PropertyList = ({ params }) => {
                   setShowMap={setShowMap}
                   mapRef={mapRef2}
                   setOriginalMarkers={setOriginalMarkers}
-                  accomodations={accommodations}
-                  communities={communities}
-                  amenities={amenities}
+                  accomodations={propertyAccommodations}
+                  amenities={propertyAccommodations}
                   setLoading={setLoading}
                   sortBy={sorting}
                   setLinks={setLinks}

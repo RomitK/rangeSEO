@@ -19,7 +19,6 @@ function RentFilters({
   setOriginalMarkers,
   mapRef,
   accomodations,
-  communities,
   amenities,
   setLoading,
   sortBy,
@@ -40,7 +39,9 @@ function RentFilters({
     category: "rent",
     completion_status_id: '',
     furnishing: "",
+    isCommercial:"",
   });
+  const [projectAmenities, setProjectAmenities] = useState(amenities);
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
   const [newArrayF, setNewArrayF] = useState([]);
@@ -118,6 +119,8 @@ function RentFilters({
 
   useEffect(() => {
     if (isCommercial) {
+      form['isCommercial'] = 1;
+      setForm({ ...form });
       const filtered = accomodations?.filter(
         (accomodation) =>
           accomodation.type === "Commercial" || accomodation.type === "Both"
@@ -126,6 +129,9 @@ function RentFilters({
         setFilteredAccomodation([...filtered]);
       }
     } else {
+      setIsCommercial(false)      
+      form['isCommercial'] = "";
+      setForm({ ...form });
       const filtered = accomodations?.filter(
         (accomodation) =>
           accomodation.type === "Residential" || accomodation.type === "Both"
@@ -142,6 +148,28 @@ function RentFilters({
     }
   }, [isMobile]);
   useEffect(() => {
+
+    if (
+      searchParams.has("developer_name") &&
+      searchParams.has("developer_detail")
+    ) {
+      setForm({
+        ...form,
+        searchBy: [
+          {
+            type: searchParams.get("developer_detail"),
+            name: searchParams.get("developer_name"),
+          },
+        ],
+      });
+      selectRef.current.setValue([
+        {
+          type: searchParams.get("developer_detail"),
+          name: searchParams.get("developer_name"),
+        },
+      ]);
+    }
+    
     if (
       searchParams.has("project_name") &&
       searchParams.has("project_detail")
@@ -187,7 +215,7 @@ function RentFilters({
   }, []);
   useEffect(() => {
 
-    let getPropertiesURL = process.env.API_HOST + "propertiesList?";
+    let getPropertiesURL = process.env.API_HOST + "properties?";
     let payload = { ...form };
 
     for (let key in payload) {
@@ -219,18 +247,19 @@ function RentFilters({
       .then((response) => response.json())
       .then((res) => {
         if (res.success) {
-          const propertiesDup = res.data.data;
+          const propertiesDup = res.data.properties.data;
           setProperties([...propertiesDup]);
+          setProjectAmenities(res.data.amenities);
+          setTotalProperties(res.data.properties.meta.total);
           setOriginalMarkers([...propertiesDup]);
-          setLinks(res.data.links);
-          setTotalProperties(res.data.meta.total);
+          setLinks(res.data.properties.links);
+          
           if (propertiesDup.length) {
             mapRef?.current?.setCenter({
-              lat: parseFloat(propertiesDup[0].lat),
-              lng: parseFloat(propertiesDup[0].lng),
+              lat: parseFloat(propertiesDup[0].address_latitude),
+              lng: parseFloat(propertiesDup[0].address_longitude),
             });
           }
-         
         }
       })
       .catch((error) => {
@@ -264,14 +293,22 @@ function RentFilters({
 //   }, amenities);
 
 
-  useEffect(() => {
-    const newArray3 = amenities?.map(originalObject => ({
-      label: originalObject.name,
-      value: originalObject.id,
-    }));
-    setNewArrayF(newArray3);
-  }, [JSON.stringify(amenities)]); // Using JSON.stringify
-
+useEffect(() => {
+  const newArray3 = projectAmenities?.map((originalObject, index) => {
+    const label = originalObject.name;
+    const value = originalObject.id;
+    return { label, value };
+  });
+  setNewArrayF(newArray3);
+}, []);
+useEffect(() => {
+  const newArray3 = projectAmenities?.map((originalObject, index) => {
+    const label = originalObject.name;
+    const value = originalObject.id;
+    return { label, value };
+  });
+  setNewArrayF(newArray3);
+}, projectAmenities);
   function isEmptyObject() {
     const o = { ...form };
     delete o.sortBy;
@@ -292,6 +329,11 @@ function RentFilters({
   }
 
   const handleReset = () => {
+    setIsCommercial(false);
+    setForm(prevForm => ({
+      ...prevForm,
+      isCommercial: ""
+    }));
     form["minprice"] = "";
     form["maxprice"] = "";
     form["minarea"] = "";
@@ -301,9 +343,10 @@ function RentFilters({
     form["accommodation_id"] = "";
     form["completion_status_id"] = "";
     form["bathroom"] = "";
-    form["searchBy"] = "";
+    form["searchBy"] = [];
     form["amenities"] ="";
     form["category"] = "rent";
+    form["isCommercial"] ="";
     setSelectedItems([]);
     selectRef.current.setValue([]);
     if(minPriceRef.current != null){
@@ -610,6 +653,7 @@ function RentFilters({
                   id="maxprice"
                   placeholder="Any Price"
                   ref={maxPriceRef}
+                  min={0}
                 />
               </div>
               <div className="mt-4 d-grid">
@@ -646,7 +690,7 @@ function RentFilters({
               className="form-check-input"
               id="exampleCheck1"
               onChange={(e) => setIsCommercial(e.target.checked)}
-              value={isCommercial}
+              checked={isCommercial}
             />
             <label className="form-check-label" htmlFor="exampleCheck1">
               Commericial

@@ -17,7 +17,7 @@ function Navbar() {
   return (
     <>
         <nav className="navbar  bg-white">
-          <div className="container py-2">
+          <div className="container py-3">
             <div className="my-auto">
               <Link href={{ pathname: "/" }} className="navbar-brand">
                 <img

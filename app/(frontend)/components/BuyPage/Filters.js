@@ -586,6 +586,7 @@ function Filters({
                   name="maxprice"
                   className="form-control"
                   id="maxprice"
+                  min={0}
                   placeholder="Any Price"
                   ref={maxPriceRef}
                 />

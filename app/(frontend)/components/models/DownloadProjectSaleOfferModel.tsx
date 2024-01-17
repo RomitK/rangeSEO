@@ -150,14 +150,14 @@ function DownloadProjectSaleOfferModel(props) {
                         <button className="btn btn-sm btn-bluee rounded-0 px-5 float-end btnContact2" 
                           onClick={() =>
                             setUserAs('Visitor')
-                          }>As a Visiter</button>
+                          }> I am a Buyer</button>
                       </div>
                       <div className="col-6 col-lg-6 col-md-6">
                         <button className="btn btn-sm btn-primary rounded-0 px-5 float-end btnContact2"
                         onClick={() =>
                           setUserAs('Employee')
                         }
-                        >As a Employee</button>
+                        >I am an Agent</button>
                       </div>
                     </div>} 
                       {
@@ -166,7 +166,7 @@ function DownloadProjectSaleOfferModel(props) {
                           <div className="">
                             <div className="row">
                             <div className="col-md-12">
-                                <h6 className="text-primary text-center p-2">Enter Details For Downloding Sale Offer</h6>
+                                <h6 className="text-primary text-center p-2">Enter Details For Downloading Sale Offer</h6>
                                 {/* {showOtp && (
                                 <div className="form-group">
                                     <label>
@@ -258,7 +258,7 @@ function DownloadProjectSaleOfferModel(props) {
                            <div className="">
                              <div className="row">
                              <div className="col-md-12">
-                                 <h6 className="text-primary text-center p-2">Enter Employee Id For Downloding Sale Offer</h6>
+                                 <h6 className="text-primary text-center p-2">Enter Employee Id For Downloading Sale Offer</h6>
                                 
                                  {!showOtp && (
                                  <>

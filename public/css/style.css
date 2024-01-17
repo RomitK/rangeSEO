@@ -1636,6 +1636,16 @@ margin: 0 auto;
 transform: translate(-50%, -50%);
 z-index: 9;
 }
+.goldenVisa:hover{
+    color: #136dae !important;
+}
+.vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ensure the container takes the full height of its parent */
+}
+
 .frmTabList{
 display: flex;
 justify-content: flex-start;
@@ -1979,6 +1989,10 @@ background-color: #2f3c6a;
 }
 .communityPropertyCard{
     min-height: auto !important;
+}
+.projectPropertyCard{
+    min-height: auto !important;
+    text-align: left;
 }
 .bdrBtn{
     background-color: unset;

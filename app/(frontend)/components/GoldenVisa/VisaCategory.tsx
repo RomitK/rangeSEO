@@ -20,7 +20,7 @@ function VisaCategory({ visaCategory }) {
                 </div>
                 <div className="col-md-12 text-center">
                 <button
-                    className="fillBtn  mrAuto cardBtn"
+                    className="fillBtn  mrAuto cardBtn goldenVisa"
                     data-bs-toggle="modal"
                     data-bs-target="#enquireNow"
                   >

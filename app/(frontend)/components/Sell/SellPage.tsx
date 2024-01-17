@@ -101,7 +101,7 @@ function SellPage() {
           <div className="rowArea">
             <div className="colmBox">
               <img
-                src="/images/icons/icon-5.png"
+                src="/images/icons/property.png"
                 className="iconImg"
                 alt="PROPERTY VALUATION"
               />

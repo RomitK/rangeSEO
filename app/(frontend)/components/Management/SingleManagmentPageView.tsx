@@ -26,7 +26,7 @@ function SingleManagmentPageView({ params }) {
                   managementData.message &&
                   parse(managementData?.message ?? "")}
               </p>
-              <div>
+              {/* <div>
                 Email :
                 <a
                   href={"mailto:" + managementData?.email}
@@ -46,7 +46,7 @@ function SingleManagmentPageView({ params }) {
                   {" "}
                   {managementData?.contact}
                 </a>
-              </div>
+              </div> */}
             </div>
             <div className="col-md-4">
               <img

@@ -18,6 +18,7 @@ import {
   faLinkedin,
   faTwitter,
   faYoutube,
+  faTelegram
 } from "@fortawesome/free-brands-svg-icons";
 
 function Footer() {
@@ -27,6 +28,7 @@ function Footer() {
   const faTiktokIcon = faTiktok as IconProp;
   const faLinkedinIcon = faLinkedin as IconProp;
   const faYoutubeIcon = faYoutube as IconProp;
+  const faTelegramIcon = faTelegram as IconProp;
   const {
     register,
     handleSubmit,
@@ -241,12 +243,13 @@ function Footer() {
           <div className="row g-0 justify-content-center">
             <div className="col-12 col-lg-12 col-md-12">
               <div className="row g-0">
-                <div className="col-2 col-lg-2 my-auto iconRoundBlack">
-                  <div className="text-center  p-3">
+                <div className=" col my-auto iconRoundBlack">
+                  <div className="text-center  p-2">
                     <a
                       href={process.env.FACEBOOK_LINK}
                       className="text-decoration-none"
                       target="_blanket"
+                      aria-label={`Follow us on Facebook`}
                     >
                       <span className="iconBox">
                         <FontAwesomeIcon
@@ -257,12 +260,13 @@ function Footer() {
                     </a>
                   </div>
                 </div>
-                <div className="col-2 col-lg-2 my-auto iconRoundBlack">
-                  <div className="text-center  p-3">
+                <div className="col my-auto iconRoundBlack">
+                  <div className="text-center  p-2">
                     <a
                       href={process.env.INSTAGRAM_LINK}
                       className="text-decoration-none"
                       target="_blanket"
+                      aria-label={`Follow us on Instagram`}
                     >
                       <span className="">
                         <FontAwesomeIcon
@@ -273,12 +277,13 @@ function Footer() {
                     </a>
                   </div>
                 </div>
-                <div className="col-2 col-lg-2 my-auto iconRoundBlack">
-                  <div className="text-center  p-3">
+                <div className="col my-auto iconRoundBlack">
+                  <div className="text-center p-2">
                     <a
                       href={process.env.TWITTER_LINK}
                       className="text-decoration-none"
                       target="_blanket"
+                      aria-label={`Follow us on Twitter`}
                     >
                       <span className="">
                         {/* <i className="fa fa-twitter"></i>
@@ -297,12 +302,13 @@ function Footer() {
                     </a>
                   </div>
                 </div>
-                <div className="col-2 col-lg-2 my-auto iconRoundBlack">
-                  <div className="text-center  p-3">
+                <div className=" col my-auto iconRoundBlack">
+                  <div className="text-center  p-2">
                     <a
                       href={process.env.LINKEDIN_LINK}
                       className="text-decoration-none"
                       target="_blanket"
+                      aria-label={`Follow us on Linkedin`}
                     >
                       <span className="">
                         <FontAwesomeIcon
@@ -313,12 +319,13 @@ function Footer() {
                     </a>
                   </div>
                 </div>
-                <div className="col-2 col-lg-2 my-auto iconRoundBlack">
-                  <div className="text-center  p-3">
+                <div className="col my-auto iconRoundBlack">
+                  <div className="text-center  p-2">
                     <a
                       href={process.env.YOUTUBE_LINK}
                       className="text-decoration-none"
                       target="_blanket"
+                      aria-label={`Follow us on Youtube`}
                     >
                       <span className="">
                         <FontAwesomeIcon
@@ -329,12 +336,13 @@ function Footer() {
                     </a>
                   </div>
                 </div>
-                <div className="col-2 col-lg-2 my-auto iconRoundBlack">
-                  <div className="text-center  p-3">
+                <div className="col my-auto iconRoundBlack">
+                  <div className="text-center p-2">
                     <a
                       href={process.env.TIKTOK_LINK}
                       className="text-decoration-none"
                       target="_blanket"
+                      aria-label={`Follow us on Tiktok`}
                     >
                       <span className="">
                         <FontAwesomeIcon
@@ -345,6 +353,24 @@ function Footer() {
                     </a>
                   </div>
                 </div>
+                <div className="col my-auto iconRoundBlack">
+                  <div className="text-center p-2">
+                    <a
+                      href={process.env.TELEGRAM_LINK}
+                      className="text-decoration-none"
+                      target="_blanket"
+                      aria-label={`Follow us on Telegram`}
+                    >
+                      <span className="">
+                        <FontAwesomeIcon
+                          icon={faTelegramIcon}
+                          style={{ color: "#000000", fontSize: "30px" }}
+                        />
+                      </span>
+                    </a>
+                  </div>
+                </div>
+
               </div>
             </div>
             <div className="col-12 col-lg-12">
