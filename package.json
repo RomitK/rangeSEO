@@ -20,6 +20,7 @@
     "html-react-parser": "^4.2.8",
     "jquery": "^3.7.1",
     "js-file-downloader": "^1.1.25",
+    "libphonenumber-js": "^1.10.53",
     "next": "13.5.5",
     "qs": "^6.11.2",
     "react": "^18",
