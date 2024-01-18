@@ -309,7 +309,7 @@ max-width: 90% !important;
 width: 70px !important;
 }
 .homeHeader .videoContainer {
-display: none;
+/* display: none; */
 }
 .homeHeader{
 background-image: url("/images/poster-img.png");
