@@ -20,7 +20,29 @@ import { useRouter } from "next/navigation";
 import { useGetSingleMediaData } from "@/src/services/MediaService";
 import ReactPlayer from "react-player/lazy";
 
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import {
+  faFacebook,
+  faInstagram,
+  faYoutubeSquare,
+  faTiktok,
+  faLinkedin,
+  faTwitter,
+  faYoutube,
+  faTelegram
+} from "@fortawesome/free-brands-svg-icons";
+
 function SingleMediaView({ params }) {
+
+    const faFacebookIcon = faFacebook as IconProp;
+    const faInstagramIcon = faInstagram as IconProp;
+    const faTiktokIcon = faTiktok as IconProp;
+    const faLinkedinIcon = faLinkedin as IconProp;
+    const faYoutubeIcon = faYoutube as IconProp;
+    const faTelegramIcon = faTelegram as IconProp;
+
     const mediaSwiperRef = useRef<SwiperCore>();
     const allmediaSwiperRef = useRef<SwiperCore>();
     const slug = params.slug[0];
@@ -232,48 +254,53 @@ function SingleMediaView({ params }) {
                     <p className="text-primary">Share: </p>
                     <div className="socialIconsList">
                       <a href="#">
-                        <img
-                          src="/images/icons/whatsapp-icon.png"
-                          className="socialIcon"
+                        <FontAwesomeIcon
+                          icon={faFacebookIcon}
+                          style={{ color: "#1877F2", fontSize: "30px" }}
                         />
                       </a>
                       <a href="#">
-                        <img
-                          src="/images/icons/whatsapp-icon.png"
-                          className="socialIcon"
+                        <FontAwesomeIcon
+                          icon={faInstagramIcon}
+                          style={{ color: "#E4405F", fontSize: "30px" }}
                         />
                       </a>
                       <a href="#">
-                        <img
-                          src="/images/icons/whatsapp-icon.png"
-                          className="socialIcon"
-                        />
+                        <span className="">
+                        {/* <i className="fa fa-twitter"></i>
+                        <img src="/images/icons/twitter-icon.png" className="twitterIcon"/> */}
+                        <svg
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          style={{ height: "30px" }}
+                          className="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp r-18jsvk2 r-16y2uox r-8kz0gk"
+                        >
+                          <g>
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                          </g>
+                        </svg>
+                      </span>
                       </a>
                       <a href="#">
-                        <img
-                          src="/images/icons/whatsapp-icon.png"
-                          className="socialIcon"
+                      <FontAwesomeIcon
+                          icon={faLinkedinIcon}
+                          style={{ color: "#0A66C2", fontSize: "30px" }}
                         />
                       </a>
                     </div>
                   </div>
                 </div>
                 <div className="btnFlxClm mrb">
-                  <a href="#" className="cnLinkBtn">
-                    <img
-                      src="/images/icons/whatsapp-icon.png"
-                      className="socialIcon"
-                    />
+                  <a href="#" className="cnLinkBtn whatsappBtn">
+                    <i className="fa fa-whatsapp"></i>
                     Whatsapp
                   </a>
-                  <a href="#" className="cnLinkBtn bg-2">
-                    <img
-                      src="/images/icons/whatsapp-icon.png"
-                      className="socialIcon"
-                    />
+                  <a href="#" className="cnLinkBtn bg-2 whatsappBtn">
+                  <i className="fa fa-envelope"></i>
                     Email
                   </a>
                 </div>
+
                 { mediaData?.similarMedia && mediaData?.similarMedia.length > 0 &&(
                 <div className="eventsCardArea">
                   <h3 className="eventTitle">More Events:</h3>
