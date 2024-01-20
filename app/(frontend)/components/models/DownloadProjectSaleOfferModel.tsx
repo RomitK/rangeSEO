@@ -208,6 +208,7 @@ function DownloadProjectSaleOfferModel(props) {
                 aria-label="Close"
                 ref={closeRef}
                 onClick={() => {
+                  reset();
                   clearErrors("name");
                   clearErrors("email");
                   clearErrors("phone");
@@ -419,7 +420,7 @@ function DownloadProjectSaleOfferModel(props) {
                                 )}
                               </div>
                               <input
-                                type="text"
+                                type="hidden"
                                 name="countryCode"
                                 {...register("countryCode", {
                                   required: false,
