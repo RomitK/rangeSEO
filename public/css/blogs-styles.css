@@ -101,8 +101,8 @@ display: flex;
 align-items: center;
 gap: 10px;
 }
-.socialIconsList a{
-text-decoration: none;
+.socialIconsList .react-share__ShareButton{
+background: unset !important;
 }
 .socialIconsList .socialIcon{
 width: 30px;
