@@ -22,13 +22,56 @@ function MortgageCalculator({ property }) {
         calculateMortgage();
         return 0;
     };
+    // async function calculateMortgageAPI(propertyValue, downPayment, interestRate, termYears, termMonths) {
+    //     const endpoint = process.env.NEXT_PUBLIC_API_ENDPOINT + 'emi-calculator'; // Adjust the endpoint as necessary
+    //     const authToken = process.env.AUTH_TOKEN; // Your Auth Token
+    
+    //     const formData = new FormData();
+    //     formData.append('property_value', propertyValue);
+    //     formData.append('down_payment', downPayment);
+    //     formData.append('interest_rate', interestRate);
+    //     formData.append('mortgage_term_years', termYears);
+    //     formData.append('mortgage_term_months', termMonths);
+    
+    //     try {
+    //         const response = await fetch(endpoint, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Auth-Token': authToken,
+    //             },
+    //             body: formData,
+    //         });
+    
+    //         if (!response.ok) {
+    //             throw new Error(`HTTP error! Status: ${response.status}`);
+    //         }
+    
+    //         return await response.json();
+    //     } catch (error) {
+    //         console.error('Error in calculateMortgage:', error);
+    //         throw error; // Rethrow error for handling in calling context
+    //     }
+    // }
+    
+    
 
     function calculateMortgage() {
+        
         const amountBorrowed = price - downPayment;
         const r = percentToDecimal(interestRate);
         let n = yearsToMonths(mortgageTerm);
         n = n + parseInt(mortgageTermMonths);
         const pmt = (r * amountBorrowed) / (1 - Math.pow(1 + r, -n));
+
+        // calculateMortgageAPI(price, downPayment, interestRate, mortgageTerm, mortgageTermMonths)
+        // .then(data => {
+        //     console.log('Mortgage Calculation Result:', data);
+        // })
+        // .catch(error => {
+        //     console.error('Mortgage Calculation Failed:', error);
+        // });
+
         // setPayableEMI(parseFloat(pmt.toFixed(2)));
         setPayableEMI(parseFloat(Math.trunc(pmt)));
     }
