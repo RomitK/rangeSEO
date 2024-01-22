@@ -277,12 +277,12 @@ function SingleMediaView({ params }) {
                             style={{ color: "#1877F2", fontSize: "30px" }}
                           />
                         </FacebookShareButton>
-                        <InstapaperShareButton url={getCurrentUrl()}>
+                        {/* <InstapaperShareButton url={getCurrentUrl()}>
                           <FontAwesomeIcon
                             icon={faInstagramIcon}
                             style={{ color: "#E4405F", fontSize: "30px" }}
                           />
-                        </InstapaperShareButton>
+                        </InstapaperShareButton> */}
                         <a href="#"></a>
                         <TwitterShareButton url={getCurrentUrl()}>
                           <span className="">
@@ -309,17 +309,17 @@ function SingleMediaView({ params }) {
                     </div>
                   </div>
                   <div className="btnFlxClm mrb">
-                    <WhatsappShareButton url={getCurrentUrl()}>
-                      <a href="#" className="cnLinkBtn whatsappBtn">
+                    <WhatsappShareButton url={getCurrentUrl()}  className="cnLinkBtn whatsappBtn">
+                      
                         <i className="fa fa-whatsapp"></i>
                         Whatsapp
-                      </a>
+                      
                     </WhatsappShareButton>
-                    <EmailShareButton url={getCurrentUrl()}>
-                      <a href="#" className="cnLinkBtn bg-2 whatsappBtn">
+                    <EmailShareButton url={getCurrentUrl()} className="cnLinkBtn email" id="email2" style={{ "backgroundColor": "#283975 !important" }}> 
+                      
                         <i className="fa fa-envelope"></i>
                         Email
-                      </a>
+                      
                     </EmailShareButton>
                   </div>
 

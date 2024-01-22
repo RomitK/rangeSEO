@@ -131,8 +131,8 @@ width: 24px;
 height: 24px;
 object-fit: contain;
 }
-.cnLinkBtn.bg-2{
-background-color: #283975;
+#email2{
+background-color: #283975 !important;
 }
 .btnFlxClm{
 display:flex;
