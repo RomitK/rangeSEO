@@ -55,7 +55,7 @@ function DownloadProjectSaleOfferModel(props) {
   const [countryCode, setCountryCode] = useState("+971");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [optPhoneNumber, setOptPhoneNumber] = useState("");
-  const [timer, setTimer] = useState(20);
+  const [timer, setTimer] = useState(60);
   console.log(timer);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   useEffect(() => {
