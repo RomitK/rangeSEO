@@ -433,4 +433,17 @@ width: 200px !important;
 .priceTable thead .tblThText {
     font-size: 12px !important; 
 }
+.blogDetail .imgcardBox .overlayText h5{
+font-size: 24px;
+}
+.blogCard .eventCardImg{
+    height: 250px;
+}
+.sliderArea .bSliderImg{
+    height: 330px;
+}
+.proGalleryArea .nav-tabs .nav-item .nav-link{
+margin: 0px 10px !important;
+font-size: 14px !important;
+}
 }
