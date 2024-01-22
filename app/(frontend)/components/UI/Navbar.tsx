@@ -319,11 +319,11 @@ function Navbar() {
                             Media
                           </Link>
                         </li>
-                        <li className="nav-item py-3 border-bottom" >
+                        {/* <li className="nav-item py-3 border-bottom" >
                           <Link className="nav-link" href="/blogs" onClick={() => closeRef.current.click()}>
                             Blogs and News
                           </Link>
-                        </li>
+                        </li> */}
                         <li className="nav-item py-3 border-bottom">
                           <Link className="nav-link" href="/dubaiGuide"  onClick={() => closeRef.current.click()}>
                             Dubai Guide

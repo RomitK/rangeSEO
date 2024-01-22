@@ -340,7 +340,7 @@ function Filters({
         searchBy:JSON.stringify(form.searchBy)
       }).toString();
       
-      const url = `/properties?${searchParams}`;
+      const url = `properties?${searchParams}`;
       router.push(url);
     }
   }

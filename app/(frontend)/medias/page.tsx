@@ -1,15 +1,16 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { SWRProvider } from "@/app/swr-provider";
-import FaqsPage from "../components/FaqsPage/FaqsPage";
-import CareerListPage from "../components/CareerListPage/CareerList";
-function Medias(){
+import MediaPage from "../components/MediaPage/MediaPage";
+import "@/public/css/medias-Styles.css";
+
+function Medias({ params }) {
     return (
-        <>
+      <>
         <SWRProvider>
-        <h1>Medias</h1>
+          <MediaPage params={params}></MediaPage>
         </SWRProvider>
-        </>
+      </>
     );
-}
+  }
 export default Medias;
