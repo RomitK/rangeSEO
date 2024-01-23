@@ -64,7 +64,8 @@ function MortgageCalculator({ property }) {
         let n = yearsToMonths(mortgageTerm);
         n = n + parseInt(mortgageTermMonths);
         const pmt = (r * amountBorrowed) / (1 - Math.pow(1 + r, -n));
-        if(price && downPayment && interestRate && mortgageTerm && mortgageTermMonths){
+        
+        if(price > 0 && downPayment > 0 && interestRate > 0){
             calculateMortgageAPI(price, downPayment, interestRate, mortgageTerm, mortgageTermMonths)
             .then(data => {
                 if(data.message == "success"){
