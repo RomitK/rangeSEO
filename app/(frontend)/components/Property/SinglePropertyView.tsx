@@ -564,8 +564,8 @@ function SinglePropertyView({ params }) {
                         </div>
                       )} */}
                     </div>
-                    {
-                      propertyData?.category != 'Rent' &&
+                    { propertyData &&
+                      propertyData?.category != 'Rent' && propertyData?.completionStatus !="Off-Plan" &&
                       <MortgageCalculator property={propertyData} />
                     }
                   {propertyData && propertyData.community && (
@@ -1479,8 +1479,8 @@ function SinglePropertyView({ params }) {
                       </div>
                     )} */}
                   </div>
-                  {
-                    propertyData?.category != 'Rent' &&
+                  { propertyData &&
+                    propertyData?.category != 'Rent' && propertyData?.completionStatus !="Off-Plan" &&
                     <MortgageCalculator property={propertyData} />
                   }
                   
