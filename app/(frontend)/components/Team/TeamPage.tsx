@@ -5,13 +5,13 @@ function TeamPage() {
   const { teamsData } = useGetAllTeamData();
   return (
     <>
-      <header className="aboutHeader">
+      {/* <header className="aboutHeader">
         <img
           src="/images/banner/teamBanner.webp"
           className="headerSimpleImg"
           alt="team"
         />
-      </header>
+      </header> */}
       <section className="section meetOurTeam">
         <div className="container">
           <h4 className="sctionMdTitle text-primary text-center mb-5">
