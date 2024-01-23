@@ -158,6 +158,9 @@ margin-bottom: 30px;
 .contactBox h5{
 margin-bottom: 15px;
 }
+#headerSimpleImg{
+    height: auto;
+    }
 header .headerSimpleImg{
 height: 250px;
 }

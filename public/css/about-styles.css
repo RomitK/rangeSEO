@@ -1,6 +1,10 @@
 #aboutHeader{
     height: auto !important;
 }
+#headerSimpleImg{
+object-fit: contain;
+height: auto !important;
+}
 .headerSimpleImg{
 width: 100%;
 height: 450px;
@@ -31,7 +35,7 @@ object-fit: contain;
 margin-bottom: 12px;
 }
 .aboutPgSection{
-padding:80px 0px 60px 0px;
+padding:50px 0px 60px 0px;
 }
 .userCard{
 padding: 22px;
