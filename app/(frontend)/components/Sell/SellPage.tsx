@@ -301,7 +301,7 @@ function SellPage() {
       </section>
       {
         sellerGuideData && 
-        <SellModel sellerLink={sellerGuideData?.sellerGuide} fileName="Seller Guide.pdf"></SellModel>
+        <SellModel sellerLink={sellerGuideData?.sellerGuide} fileName="Seller Guide.pdf" title="Sell Guide"></SellModel>
       }
       
     </>

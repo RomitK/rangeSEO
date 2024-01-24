@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import PhoneInput from "react-phone-number-input";
 import { useForm, Controller } from "react-hook-form";
-import Loader from "../UI/Loader";
+import Loader from "../../UI/Loader";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 import JsFileDownloader from "js-file-downloader";
 import { parsePhoneNumberFromString, AsYouType } from "libphonenumber-js";
@@ -13,8 +13,7 @@ import {
   verifyOTPApi,
 } from "@/src/services/HomeService";
 
-function DownloadProjectPPTModal(props) {
-
+function ModelBuyer(props) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -251,7 +250,7 @@ function DownloadProjectPPTModal(props) {
       {isLoading && <Loader />}              
       <div
         className="modal fade"
-        id="downloadBrochure"
+        id="downloadNowBuyer"
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -298,7 +297,7 @@ function DownloadProjectPPTModal(props) {
                         <div className="row">
                           <div className="col-md-12">
                             <h6 className="text-primary text-center p-2">
-                              Enter Details For Downloading Brochure
+                              Enter Details For Downloading {props.title} {props.formName}
                             </h6>
 
                             <div className="form-group">
@@ -467,13 +466,8 @@ function DownloadProjectPPTModal(props) {
                       <div className="modal-footer border-0">
                         <input
                           type="text"
-                          value="projectBrochure"
+                          value="BuyerGudieForm"
                           {...register("formName", { required: true })}
-                        />
-                        <input
-                          type="text"
-                          value={props.slug}
-                          {...register("project", { required: true })}
                         />
                         <input
                           type="hidden"
@@ -502,4 +496,4 @@ function DownloadProjectPPTModal(props) {
     </>
   );
 }
-export default DownloadProjectPPTModal;
+export default ModelBuyer;

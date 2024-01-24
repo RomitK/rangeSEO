@@ -25,21 +25,7 @@ function SimpleModal(props) {
   const visiorFormRef = useRef(null);
   const submitBtnRef = useRef(null);
   const [otpSent, setOtpSent] = useState(false);
-  const [countdown, setCountdown] = useState(120); // 2 minutes in seconds
-
-  useEffect(() => {
-    let interval = null;
-    if (otpSent && countdown > 0) {
-      interval = setInterval(() => {
-        setCountdown((countdown) => countdown - 1);
-      }, 1000);
-    } else if (countdown === 0) {
-      setOtpSent(false);
-      setCountdown(120);
-      clearInterval(interval);
-    }
-    return () => clearInterval(interval);
-  }, [otpSent, countdown]);
+  const [countdown, setCountdown] = useState(60); // 2 minutes in seconds
 
   const closeRef = useRef(null);
   const fileRef = useRef(null);
@@ -55,8 +41,24 @@ function SimpleModal(props) {
   const [timer, setTimer] = useState(60);
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
   useEffect(() => {
-    console.log(timer);
+    let interval = null;
+    if (otpSent && countdown > 0) {
+      interval = setInterval(() => {
+        setCountdown((countdown) => countdown - 1);
+      }, 1000);
+    } else if (countdown === 0) {
+      setOtpSent(false);
+      setCountdown(60);
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [otpSent, countdown]);
+
+
+  useEffect(() => {
+
     let interval;
     if (showOtp && timer > 0) {
       interval = setInterval(() => {
@@ -129,8 +131,6 @@ function SimpleModal(props) {
         console.log(res.data.data.verify);
         if (res.data.data.verify === true) {
           if (res.data.data.link) {
-
-            console.log(res.data.data.link)
             new JsFileDownloader({
               url: res.data.data.link,
             })
@@ -316,7 +316,7 @@ function SimpleModal(props) {
                                 className="form-control mb-2"
                                 placeholder="Enter OTP code..."
                                 autoComplete="off"
-                                {...register("otp", { required: false })}
+                                {...register("otp", { required: true })}
                               />
                               {errors.otp && (
                                 <small className="text-danger">

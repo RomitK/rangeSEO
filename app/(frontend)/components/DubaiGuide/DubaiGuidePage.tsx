@@ -7,7 +7,9 @@ import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
 import ContactModel from "../models/contactModel";
 import { useGetDubaiGuideData } from "@/src/services/DubaiGuideService"
-import DubaiGuideModel from "../models/DubaiGuideModel";
+import DubaiGuideModelGolden from "../models/dubaiGuide/ModelGolden";
+import ModelInvestment from "../models/dubaiGuide/ModelInvestment";
+import ModelBuyer from "../models/dubaiGuide/ModelBuyer";
 import "@/public/css/responsive.css";
 import "@/public/css/dubai-guide-page-styles.css";
 function DubaiGuidePage() {
@@ -118,7 +120,7 @@ function DubaiGuidePage() {
                   </p>
                   <button className=" mrAuto downloadBtn"
                   data-bs-toggle="modal"
-                  data-bs-target="#downloadNow" 
+                  data-bs-target="#downloadNowGolden" 
                     onClick={() => {
                       setFormName('GoldenVisaForm');
                       setFileName('GoldenVisa.pdf');
@@ -147,7 +149,7 @@ function DubaiGuidePage() {
                   </p>
                   <button className=" mrAuto downloadBtn"  
                   data-bs-toggle="modal"
-                  data-bs-target="#downloadNow" 
+                  data-bs-target="#downloadNowBuyer" 
                     onClick={() => {
                       setFormName('BuyerGudieForm');
                       setFileName('BuyerGuide.pdf');
@@ -186,12 +188,12 @@ function DubaiGuidePage() {
                     Download the report to explore Dubai’s luxury real estate.
                   </p>
                   <button className="mrAuto downloadBtn" data-bs-toggle="modal"
-                  data-bs-target="#downloadNow" 
+                  data-bs-target="#downloadNowInvestment" 
                     onClick={() => {
                       setFormName('LuxuryPropertiesForm');
                       setFileName('LuxuryProperties.pdf');
                       setDownloadLink(dubaiGuideData?.luxuryPropertiesGuide);
-                      setTitle('LUXURY PROPERTIES')
+                      setTitle('Investment Guide')
                     }}>DOWNLOAD NOW</button>
                 </div>
               </div>
@@ -201,12 +203,29 @@ function DubaiGuidePage() {
         <ContactModel sideText={contactSideText} pageUrl={pageUrl}></ContactModel>
         {
         dubaiGuideData && 
-        <DubaiGuideModel 
+        <>
+          <DubaiGuideModelGolden 
           downloadLink={downloadLink} 
           fileName={fileName}
           formName = {formName}
           title ={title}
-          ></DubaiGuideModel>
+          ></DubaiGuideModelGolden>
+
+          <ModelInvestment downloadLink={downloadLink} 
+          fileName={fileName}
+          formName = {formName}
+          title ={title}>
+
+          </ModelInvestment>
+
+          <ModelBuyer downloadLink={downloadLink} 
+          fileName={fileName}
+          formName = {formName}
+          title ={title}>
+
+          </ModelBuyer>
+        </>
+        
       }
       </section>
     </>
