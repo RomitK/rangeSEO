@@ -123,7 +123,7 @@ function DubaiGuidePage() {
                       setFormName('GoldenVisaForm');
                       setFileName('GoldenVisa.pdf');
                       setDownloadLink(dubaiGuideData?.goldenVisaGuide);
-                      setTitle('Golen Visa')
+                      setTitle('Golden Visa')
                     }}
                   >DOWNLOAD NOW</button>
                 </div>
