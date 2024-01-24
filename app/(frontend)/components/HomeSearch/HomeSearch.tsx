@@ -63,8 +63,8 @@ function HomeSearch() {
             preload="metadata"
             poster="videos/homeSearchImage.png"
           >
-            <source src="/videos/dk.mp4" type="video/mp4" />
-            <source src="/videos/dk.mp4" type="video/mov" />
+            <source src="/videos/new-dk.mp4" type="video/mp4" />
+            <source src="/videos/new-dk.mp4" type="video/mov" />
             Sorry, your browser doesn't support videos.
           </video>
           <div className="videoOverlay"></div>
