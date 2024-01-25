@@ -76,7 +76,8 @@ function SingleProjectView({ params }) {
             onBeforeInit={(swiper) => {
               bannerSwiperRef.current = swiper;
             }}
-            className="swiper"
+            className="swiper projectGallery"
+            
           >
             {projectData?.exteriorGallery?.map((exteriorGallery, index) => {
               return (

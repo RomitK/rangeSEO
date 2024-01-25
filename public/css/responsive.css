@@ -425,6 +425,9 @@ display: block   !important;
 .propertyDesktopItemLink{
     display: none   !important;
 }
+.projectGallery{
+    height: auto !important;
+}
 
 .lookingForMobileItem{
     display: block   !important;
