@@ -111,8 +111,10 @@ function CalenderModel() {
           </div>
           <div className="modal-body  p-0 rounded-1 m-2">
             <div className="row g-0">
-              {(!startDate || confirm) && (
-                <div className="col-12 col-lg-5 col-md-12 border-end descricalenderCol">
+              {(!startDate || confirm) && ( <>
+
+
+                <div className="col-12 col-lg-5 col-md-12 border-end descricalenderCol propertyDesktopItemLink">
                   <div className="border-bottom">
                     <div className="p-3 text-center">
                       <img
@@ -123,7 +125,7 @@ function CalenderModel() {
                       />
                     </div>
                   </div>
-                  <div className="p-3">
+                  <div className="p-3 ">
                     <div className="agent-img mt-2">
                       <img
                         src="/images/videocall.webp"
@@ -141,6 +143,25 @@ function CalenderModel() {
                     </div>
                   </div>
                 </div>
+
+              <div className="col-12 col-lg-5 col-md-12  descricalenderCol " id="mobItemLink">
+            
+                <div className="p-3 text-center">
+                  <img
+                    src="/images/logo_blue.png"
+                    alt="Range Property"
+                    className="img-fluid"
+                    width="180"
+                  />
+                </div>
+              </div>
+
+
+
+              </>
+
+
+                
               )}
 
               <div
