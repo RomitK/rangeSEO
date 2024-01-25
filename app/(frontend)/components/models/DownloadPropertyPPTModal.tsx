@@ -14,6 +14,7 @@ import {
 } from "@/src/services/HomeService";
 
 function DownloadPropertyPPTModal(props) {
+  console.log(props.slug)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,7 +24,7 @@ function DownloadPropertyPPTModal(props) {
     page: props.pageUrl,
   });
   const [formName, setformName] = useState()
-  
+  const [propertySlug, setPropertySlug] = useState(props.slug);
   const visiorFormRef = useRef(null);
   const submitBtnRef = useRef(null);
   const [otpSent, setOtpSent] = useState(false);
@@ -45,6 +46,7 @@ function DownloadPropertyPPTModal(props) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   useEffect(() => {
     setformName(props.formName)
+    setPropertySlug(props.slug)
   }, [props]);
 
   useEffect(() => {
@@ -467,12 +469,13 @@ function DownloadPropertyPPTModal(props) {
                         <input
                           type="hidden"
                           value="propertyBrochure"
-                          {...register("formName", { required: true })}
+                          {...register("formName", { required: false })}
                         />
                         <input
+                        
                           type="hidden"
-                          value={props.slug}
-                          {...register("property", { required: true })}
+                          value={propertySlug}
+                          {...register("property", { required: false })}
                         />
                         <input
                           type="hidden"
