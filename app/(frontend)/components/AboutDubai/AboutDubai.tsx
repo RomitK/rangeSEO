@@ -54,7 +54,7 @@ function AboutDubai(props) {
                                           <img
                                             src="/images/icons/benefit1.png"
                                             alt="range"
-                                            className="img-fluid"
+                                            
                                             width="25px"
                                           />
                                         </div>
@@ -71,7 +71,7 @@ function AboutDubai(props) {
                                           <img
                                             src="images/icons/benefit2.png"
                                             alt="range"
-                                            className="img-fluid"
+                                           
                                             width="25px"
                                           />
                                         </div>
@@ -90,7 +90,7 @@ function AboutDubai(props) {
                                           <img
                                             src="images/icons/benefit3.png"
                                             alt="range"
-                                            className="img-fluid"
+                                            
                                             width="25px"
                                           />
                                         </div>
@@ -107,7 +107,7 @@ function AboutDubai(props) {
                                           <img
                                             src="images/icons/benefit3.png"
                                             alt="range"
-                                            className="img-fluid"
+                                           
                                             width="25px"
                                           />
                                         </div>
@@ -126,7 +126,7 @@ function AboutDubai(props) {
                                           <img
                                             src="images/icons/benefit5.png"
                                             alt="range"
-                                            className="img-fluid"
+                                            
                                             width="25px"
                                           />
                                         </div>
@@ -143,7 +143,7 @@ function AboutDubai(props) {
                                           <img
                                             src="/images/icons/benefit6.png"
                                             alt="range"
-                                            className="img-fluid"
+                                            
                                             width="25px"
                                           />
                                         </div>
