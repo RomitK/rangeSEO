@@ -503,7 +503,7 @@ function LuxuryPropertyFilters({
           >
             <option value="">Completion Status</option>
             <option value="286">Ready</option>
-            <option value="287">OffPlan</option>
+            <option value="287">Off-Plan</option>
           </select>
         </div>
         }
