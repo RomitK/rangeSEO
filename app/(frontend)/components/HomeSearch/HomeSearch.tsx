@@ -56,9 +56,12 @@ function HomeSearch() {
         className="mainBg  d-md-block d-lg-block d-xl-block overlayBg homeHeader"
         id="home"
       >
-        <div className="p-relative videoContainer">
+
+
+
+        <div className="p-relative videoContainer ">
           <video
-            className="d-block w-100 videoMain"
+            className="d-block w-100 videoMain propertyDesktopItemLink"
             muted playsInline autoPlay loop
             preload="metadata"
             poster="videos/homeSearchBannerImage.jpg"
@@ -67,9 +70,22 @@ function HomeSearch() {
             <source src="/videos/new-dk.mp4" type="video/mov" />
             Sorry, your browser doesn't support videos.
           </video>
+
+          <video
+            id="mobItemLink"
+            className="d-block w-100 videoMain"
+            muted playsInline autoPlay loop
+            preload="metadata"
+            poster="videos/homeSearchBannerImage.jpg"
+          >
+            <source src="/videos/new-dk-mobile.mp4" type="video/mp4" />
+            <source src="/videos/new-dk-mobile.mp4" type="video/mov" />
+            Sorry, your browser doesn't support videos.
+          </video>
+
           <div className="videoOverlay"></div>
         </div>
-        <div className="headerForm">
+        <div className="headerForm propertyDesktopItemLink">
           <ul className="nav nav-pills frmTabList" id="pills-tab">
             <Link href="/buy" className="nav-link active">
               Buy

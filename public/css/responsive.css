@@ -177,7 +177,7 @@ width: 100%;
 grid-template-columns: auto auto !important ;
 }
 .homeHeader .videoMain{
-height: 260px;
+height: 300px;
 }
 .listCardArea .fillBtn.appleNowBtn{
 position: relative;
@@ -225,7 +225,7 @@ width: 60px;
 height: 60px;
 }
 .videoSectionContiner .videoBox .videoMain{
-height: 200px;
+height: 300px;
 }
 .bgAboutDubai{
 position: relative;
@@ -317,7 +317,7 @@ width: 70px !important;
 .homeHeader{
 background-image: url("/images/poster-img.png");
 width: 100%;
-height: 260px;
+height: 300px;
 background-size: cover;
 background-position: center;
 }
@@ -407,6 +407,9 @@ justify-content: center;
 }
 .offcanvas-body .mobItemLink{
 display: block   !important;
+}
+#mobItemLink{
+    display: block   !important;
 }
 .propertyMobItemLink{
     display: block   !important;

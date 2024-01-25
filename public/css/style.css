@@ -2019,6 +2019,9 @@ background-color: #2f3c6a;
     .offcanvas-body .mobItemLink{
         display: none;
     }
+    #mobItemLink{
+        display: none   !important;
+    }
     .propertyMobItemLink{
         display: none;
     }
