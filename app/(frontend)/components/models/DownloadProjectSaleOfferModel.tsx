@@ -130,7 +130,8 @@ function DownloadProjectSaleOfferModel(props) {
     verifyOTPApi(data)
       .then((res) => {
         console.log(res.data);
-        if (res.data.verify) {
+        if (res.data.data.verify) {
+          toast.success("The sale offer has been sent to the provided email address");
           setShowOtp(true);
           setOtpSent(true);
           reset();
