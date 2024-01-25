@@ -267,6 +267,7 @@ function DownloadProjectPPTModal(props) {
                 ref={closeRef}
                 onClick={() => {
                   reset();
+                  setTimer(60);
                   clearErrors("name");
                   clearErrors("email");
                   clearErrors("phone");
