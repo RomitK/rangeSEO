@@ -182,7 +182,7 @@ function SinglePropertyView({ params }) {
                       {propertyData?.gallery?.map((image, index) => {
                         return (
                           <SwiperSlide key={image.id + index + "gallery"}>
-                            <img src={image.path} alt={image.title ? image.title : propertyData.name} style={{ height: "500px" }}/>
+                            <img src={image.path} alt={image.title ? image.title : propertyData.name} className="propertyGallery"/>
                           </SwiperSlide>
                         );
                       })}
@@ -239,8 +239,11 @@ function SinglePropertyView({ params }) {
                           propertyData?.floorplans &&
                           <GallaryModalImg images={propertyData?.floorplans} />
                         }
+                        {
+                          propertyData?.youtube_video && <GallaryModalVideo video={propertyData?.youtube_video} />
+                        }
                        
-                        <GallaryModalVideo video={propertyData?.youtube_video} />
+                        
                       </div>
                     </div>
                     
@@ -1648,10 +1651,12 @@ function SinglePropertyView({ params }) {
                                         separator=","
                                         url={getCurrentUrl()}
                                         className="btnContentItem whatsapp"
+                                        style={{ width:"100%"}}
                                       >
                                         <i
                                           className="fa fa-whatsapp"
                                           aria-hidden="true"
+                                          style={{fontSize:"14px"}}
                                         ></i>
                                         Share on whatsapp
                                       </WhatsappShareButton>
@@ -1664,10 +1669,12 @@ function SinglePropertyView({ params }) {
                                       <EmailShareButton
                                       url={getCurrentUrl()}
                                       className="btnContentItem email"
+                                      style={{ width:"100%"}}
                                     >
                                       <i
                                         className="fa fa-envelope"
                                         aria-hidden="true"
+                                        style={{fontSize:"14px"}}
                                       ></i>
                                       Share on Email
                                     </EmailShareButton>

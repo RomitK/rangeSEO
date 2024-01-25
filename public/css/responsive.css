@@ -74,8 +74,13 @@ width: 100%;
 width: 100%;
 }
 .sliderThumbnailArea .sliderModalBox{
-width: 200px;
+/* width: 200px; */
 }
+@media (max-width: 768px) { /* Adjust the breakpoint as needed */
+    .sliderThumbnailArea .sliderModalBox{
+      flex-direction: row;
+    }
+  }
 .sliderThumbnailArea .gallerymodalBtn{
 font-size: 11px;
 }
@@ -178,6 +183,9 @@ grid-template-columns: auto auto !important ;
 }
 .homeHeader .videoMain{
 height: 300px;
+}
+.propertyGallery{
+    height: 100% !important;
 }
 .listCardArea .fillBtn.appleNowBtn{
 position: relative;

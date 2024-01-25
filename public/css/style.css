@@ -2034,3 +2034,6 @@ background-color: #2f3c6a;
     .largeCloseBtn{
         font-size: larger;
     }
+    .propertyGallery{
+        height: 500px !important
+    }

@@ -231,25 +231,22 @@ function DownloadProjectSaleOfferModel(props) {
                     />
                   </div>
                   {!UserAs && (
-                    <div className=" p-4">
-                      <div className="col-6 col-lg-12 col-md-6">
-                        <button
-                          className="btn btn-sm btn-bluee rounded-0 px-5 float-end btnContact2"
-                          onClick={() => setUserAs("Visitor")}
-                        >
-                          {" "}
-                          I am a Buyer
-                        </button>
-                      </div>
-                      <div className="col-6 col-lg-6 col-md-6">
-                        <button
-                          className="btn btn-sm btn-primary rounded-0 px-5 float-end btnContact2"
-                          onClick={() => setUserAs("Employee")}
-                        >
-                          I am an Agent
-                        </button>
-                      </div>
-                    </div>
+                   <div className="p-4 d-flex justify-content-end">
+                   <button
+                       className="btn btn-sm btn-bluee rounded-0 px-5 me-2 btnContact2"
+                       onClick={() => setUserAs("Visitor")}
+                   >
+                       I am a Buyer
+                   </button>
+               
+                   <button
+                       className="btn btn-sm btn-primary rounded-0 px-5 btnContact2"
+                       onClick={() => setUserAs("Employee")}
+                   >
+                       I am an Agent
+                   </button>
+               </div>
+               
                   )}
 
                   {UserAs && UserAs == "Visitor" && showOtp && (
