@@ -264,7 +264,6 @@ function SimpleModal(props) {
                 ref={closeRef}
                 onClick={() => {
                   reset();
-                  setTimer(60);
                   clearErrors("name");
                   clearErrors("email");
                   clearErrors("phone");
@@ -472,7 +471,7 @@ function SimpleModal(props) {
                         <input
                           type="hidden"
                           value="homePageBrochure"
-                          setTimer(60); { required: false })}
+                          {...register("formName", { required: false })}
                         />
                         <input
                           type="hidden"
