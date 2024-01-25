@@ -548,6 +548,7 @@ function SingleProjectView({ params }) {
                     separator=","
                     url={getCurrentUrl()}
                     className="btnContentItem whatsapp"
+                    style={{ width:"100%"}}
                   >
                     <i className="fa fa-whatsapp" aria-hidden="true"></i>
                     Share on whatsapp
@@ -560,6 +561,7 @@ function SingleProjectView({ params }) {
                   <EmailShareButton
                     url={getCurrentUrl()}
                     className="btnContentItem email"
+                    style={{ width:"100%"}}
                   >
                     <i className="fa fa-envelope" aria-hidden="true"></i>
                     Share on Email
