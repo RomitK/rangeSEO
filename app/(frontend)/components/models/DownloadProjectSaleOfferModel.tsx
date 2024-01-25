@@ -135,6 +135,9 @@ function DownloadProjectSaleOfferModel(props) {
           setShowOtp(true);
           setOtpSent(true);
           reset();
+          setTimer(60);
+          closeRef.current.click();
+          
         } else {
           toast.error("Invalid OTP");
         }
