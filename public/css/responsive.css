@@ -184,9 +184,9 @@ grid-template-columns: auto auto !important ;
 .homeHeader .videoMain{
 height: 300px;
 }
-.propertyGallery{
+/* .propertyGallery{
     height: 100% !important;
-}
+} */
 .listCardArea .fillBtn.appleNowBtn{
 position: relative;
 top: unset;
