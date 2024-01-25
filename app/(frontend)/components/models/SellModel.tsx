@@ -465,7 +465,7 @@ function SellModel(props) {
                       </div>
                       <div className="modal-footer border-0">
                         <input
-                          type="text"
+                          type="hidden"
                           value="SellForm"
                           {...register("formName", { required: true })}
                         />

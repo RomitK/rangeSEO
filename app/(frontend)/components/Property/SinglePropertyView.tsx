@@ -1922,7 +1922,7 @@ function SinglePropertyView({ params }) {
       )}
       <MortgageModel></MortgageModel>
       <CalenderModel />
-      <DownloadPropertyPPTModal brochureLink={propertyData?.brochureLink} fileName={propertyData?.name+" Brochure.pdf"}/>
+      <DownloadPropertyPPTModal brochureLink={propertyData?.brochureLink} fileName={propertyData?.name+" Brochure.pdf"} slug={propertyData?.slug}/>
       <SaleOfferModal />
       <DownloadProjectSaleOfferModel brochureLink={propertyData?.saleOfferLink} fileName={propertyData?.name+" SaleOffer.pdf"}/>
     </>

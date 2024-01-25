@@ -465,7 +465,7 @@ function ModelInvestment(props) {
                       </div>
                       <div className="modal-footer border-0">
                         <input
-                          type="text"
+                          type="hidden"
                           value="LuxuryPropertiesForm"
                           {...register("formName", { required: true })}
                         />

@@ -297,7 +297,7 @@ function DownloadPropertyPPTModal(props) {
                         <div className="row">
                           <div className="col-md-12">
                             <h6 className="text-primary text-center p-2">
-                              Enter Details For Downloading {props.title} {props.formName}
+                              Enter Details For Downloading Brochure
                             </h6>
 
                             <div className="form-group">
@@ -465,9 +465,14 @@ function DownloadPropertyPPTModal(props) {
                       </div>
                       <div className="modal-footer border-0">
                         <input
-                          type="text"
-                          value="SellForm"
+                          type="hidden"
+                          value="propertyBrochure"
                           {...register("formName", { required: true })}
+                        />
+                        <input
+                          type="hidden"
+                          value={props.slug}
+                          {...register("property", { required: true })}
                         />
                         <input
                           type="hidden"

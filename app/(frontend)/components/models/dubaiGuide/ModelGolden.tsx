@@ -465,7 +465,7 @@ function DubaiGuideModelGolden(props) {
                       </div>
                       <div className="modal-footer border-0">
                         <input
-                          type="text"
+                          type="hidden"
                           value="GoldenVisaForm"
                           {...register("formName", { required: true })}
                         />
