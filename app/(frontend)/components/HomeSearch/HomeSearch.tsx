@@ -61,7 +61,7 @@ function HomeSearch() {
             className="d-block w-100 videoMain"
             muted playsInline autoPlay loop
             preload="metadata"
-            poster="videos/homeSearchImage.png"
+            poster="videos/homeSearchBannerImage.jpg"
           >
             <source src="/videos/new-dk.mp4" type="video/mp4" />
             <source src="/videos/new-dk.mp4" type="video/mov" />
