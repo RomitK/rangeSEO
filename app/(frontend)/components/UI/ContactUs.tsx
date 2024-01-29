@@ -29,7 +29,7 @@ const ContactUs = () => {
       });
   };
   return (
-    <div className="col-12 col-lg-4 col-md-4">
+    <div className="col-12 col-lg-4 col-md-4 propertyDesktopItemLink">
       <div className="text-start">
         <div className="mb-3">
           <p className="text-dark mb-0"><b>WRITE TO US</b></p>

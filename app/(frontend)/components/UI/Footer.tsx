@@ -65,7 +65,7 @@ function Footer() {
                       />
                     </Link>
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 propertyDesktopItemLink">
                     <p className=" fs-12 mb-0">
                       Range International Property Investments is an esteemed
                       award-winning real estate brokerage based in Dubai, UAE.
@@ -81,7 +81,7 @@ function Footer() {
                     </p>
                   </div>
                   <div className="row">
-                    <div className="col-12 col-lg-6 col-md-6">
+                    <div className="col-6">
                       <ul className="mb-0 list-unstyled footNav ">
                         <li>
                           <Link className="footLink text-dark" href="/buy">
@@ -108,7 +108,7 @@ function Footer() {
                         </li>
                       </ul>
                     </div>
-                    <div className="col-12 col-lg-6 col-md-6">
+                    <div className="col-6">
                       <ul className="mb-0 list-unstyled footNav">
                         <li>
                           <Link
@@ -186,18 +186,18 @@ function Footer() {
                         </li>
                       </ul>
                     </div>
-                    <div className="mb-1">
+                    <div className="mb-1 propertyDesktopItemLink">
                       <p className="text-dark mb-0 font-weight-bold">
                         <b>MAILING LIST</b>
                       </p>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3 propertyDesktopItemLink">
                       <p className="text-dark fs-12 mb-0">
                         Sign up for our mailing list to get latest updates and
                         offers.
                       </p>
                     </div>
-                    <div className="subscribeCont">
+                    <div className="subscribeCont propertyDesktopItemLink">
                       <form
                         action=""
                         method="post"
