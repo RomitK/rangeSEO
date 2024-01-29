@@ -179,19 +179,18 @@ function SellPage() {
               property sale in Dubai a rewarding and hassle-free endeavor.
             </p>
             <div className="video">
-              {/* <iframe
-                src="https://player.vimeo.com/video/392311980?h=2f90973f9d"
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-              ></iframe> */}
+            <iframe width="100%" height="500"  src="https://www.youtube-nocookie.com/embed/QtyzrF1G2y0?si=ncGL8qggLYJPo1-3" 
+            title="YouTube video player" 
+            frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowFullScreen></iframe>
+            </div>
 
-              <iframe width="100%" height="500" 
+              {/* <iframe width="100%" height="500" 
             src="https://www.youtube-nocookie.com/embed/-6jlrq7idl8" 
             title="YouTube video player" 
             frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen></iframe>
-            </div>
+             */}
             {/* <div className="videoBox">
                                   <video
                                         className="d-block w-100 videoMain"
