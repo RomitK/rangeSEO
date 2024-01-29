@@ -58,6 +58,7 @@ function SinglePropertyView({ params }) {
   const similiarPropertySwiperRef = useRef<SwiperCore>();
   const amentitiesSwiperRef = useRef<SwiperCore>();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [isFixed, setIsFixed] = useState(false);
 
   const onMapLoad = (map) => {
     mapRef.current = map;
@@ -153,6 +154,27 @@ function SinglePropertyView({ params }) {
   useEffect(() => {
     setDownpaymentMoney((downpaymentPer / 100) * propertyPrice);
   }, [downpaymentPer]);
+
+
+
+  useEffect(() => {
+      const handleScroll = () => {
+          const currentScrollPos = window.pageYOffset;
+          const specifiedOffset = 200; // Change this value based on when you want the div to become fixed
+        // console.log(currentScrollPos > specifiedOffset)
+          if (currentScrollPos > specifiedOffset) {
+
+              setIsFixed(true);
+          } else {
+              setIsFixed(false);
+          }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+
+      return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       <section className="my-5">
@@ -454,7 +476,7 @@ function SinglePropertyView({ params }) {
                       </div>
                       {propertyData?.agent && (
                         <>
-                        <div className="py-3 proUserBox">
+                        <div className={`py-3 proUserBox}`}>
                       <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
                         <div className="my-auto projctSpecIMg me-3 mb-3">
                           <center>
@@ -1368,8 +1390,8 @@ function SinglePropertyView({ params }) {
                       </ul>
                     </div>
                     {propertyData?.agent && (
-                      <>
-                      <div className="py-3 proUserBox">
+                      <div className={`${isFixed ? 'fixed-div' : ''}`}>
+                      <div className={`py-3 proUserBox`}>
                     <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
                       <div className="my-auto projctSpecIMg me-3 mb-3">
                         <center>
@@ -1444,7 +1466,7 @@ function SinglePropertyView({ params }) {
                         </a>
                       </div>
                     </div>
-                      </>
+                      </div>
                     
                     )}
                     

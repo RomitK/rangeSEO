@@ -2037,3 +2037,16 @@ background-color: #2f3c6a;
     /* .propertyGallery{
         height: 500px !important
     } */
+    .fixed-div {
+        position: fixed;
+        /* transition: all 0.3s ease-in-out; */
+       
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2); /* Example box shadow */
+        background-color: white; /* White background */
+        margin-left: -17px;
+        /* width: 30%; */
+        /* position: relative; */
+        padding: 30px;
+    }
