@@ -64,10 +64,10 @@ function HomeSearch() {
             className="d-block w-100 videoMain propertyDesktopItemLink"
             muted playsInline autoPlay loop
             preload="metadata"
-            poster="videos/homeSearchBannerImage.jpg"
+            poster="videos/homeSearchBannerImageWithText.jpg"
           >
-            <source src="/videos/new-dk.mp4" type="video/mp4" />
-            <source src="/videos/new-dk.mp4" type="video/mov" />
+            <source src="/videos/new-dk1.mp4" type="video/mp4" />
+            <source src="/videos/new-dk1.mp4" type="video/mov" />
             Sorry, your browser doesn't support videos.
           </video>
 
