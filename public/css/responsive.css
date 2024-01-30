@@ -74,7 +74,7 @@ width: 100%;
 width: 100%;
 }
 .sliderThumbnailArea .sliderModalBox{
-/* width: 200px; */
+    width: 100%;
 }
 @media (max-width: 768px) { /* Adjust the breakpoint as needed */
     .sliderThumbnailArea .sliderModalBox{

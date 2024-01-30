@@ -112,18 +112,7 @@ function Navbar() {
                       Services
                     </Link>
                   </li>
-                  {/* <li className="dropdown navDropMain nav-item">
-                                        <a href="" className="dropdown-toggle nav-link " data-toggle="dropdown">Services<b
-                                            className="caret"></b></a>
-                                        <ul className="dropdown-menu">
-                                            <li className=""><a href="" className="mainLink">Residential Sales & Leasing</a></li>
-                                            <li className=""><a href="" className="mainLink">Commercial Sales &
-                                                Leasing</a></li>
-                                            <li className=""><a href="" className="mainLink">Property Management</a></li>
-                                            <li className=""><a href="" className="mainLink">Holiday Homes</a></li>
-                                            <li className=""><a href="" className="mainLink">Mortgages</a></li>
-                                        </ul>
-                                    </li> */}
+
                   <li className="dropdown navDropMain nav-item">
                     <a
                       className="dropdown-toggle nav-link "
@@ -132,11 +121,7 @@ function Navbar() {
                       Insights<b className="caret"></b>
                     </a>
                     <ul className="dropdown-menu">
-                      {/* <li className="">
-                        <a href="" className="mainLink">
-                          Dubai Trends
-                        </a>
-                      </li> */}
+                     
                       <li className="">
                         <Link className="mainLink" href="/communities">
                           Communities
