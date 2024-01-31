@@ -7,7 +7,7 @@ function AboutPage() {
     <>
       <header className="aboutHeader">
         <img
-          src="/images/banner/about-banner.jpg"
+          src="/images/banner/new-about.jpg"
           className="headerSimpleImg"
           id="headerSimpleImg"
           alt="header"
