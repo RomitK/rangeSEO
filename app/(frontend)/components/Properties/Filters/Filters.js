@@ -11,8 +11,8 @@ import MultiValue from "@/app/(frontend)/components/UI/ReactSelect/MultiValue";
 import IndicatorsContainer from "@/app/(frontend)/components/UI/ReactSelect/IndicatorsContainer";
 import MultiValueContainer from "@/app/(frontend)/components/UI/ReactSelect/MultiValueContainer";
 import { useSearchParams } from "next/navigation";
-import { useLocation } from 'react-router-dom';
-
+import { useLocation } from "react-router-dom";
+import Link from "next/link";
 function Filters({
   setShowMap,
   showMap,
@@ -24,8 +24,9 @@ function Filters({
   setLoading,
   sortBy,
   setLinks,
-  setTotalProperties
+  setTotalProperties,
 }) {
+  const closeRef = useRef(null);
   const [form, setForm] = useState({
     accommodation_id: "",
     community: "",
@@ -38,11 +39,11 @@ function Filters({
     bathroom: "",
     area: "",
     category: "",
-    completion_status_id: '',
+    completion_status_id: "",
     furnishing: "",
-    isCommercial:"",
+    isCommercial: "",
   });
-  
+
   const [projectAmenities, setProjectAmenities] = useState(amenities);
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
@@ -121,7 +122,7 @@ function Filters({
 
   useEffect(() => {
     if (isCommercial) {
-      form['isCommercial'] = 1;
+      form["isCommercial"] = 1;
       setForm({ ...form });
 
       const filtered = accomodations?.filter(
@@ -132,8 +133,8 @@ function Filters({
         setFilteredAccomodation([...filtered]);
       }
     } else {
-      setIsCommercial(false)      
-      form['isCommercial'] = "";
+      setIsCommercial(false);
+      form["isCommercial"] = "";
       setForm({ ...form });
 
       const filtered = accomodations?.filter(
@@ -152,7 +153,10 @@ function Filters({
     }
   }, [isMobile]);
   useEffect(() => {
-    if (searchParams.has("project_name") && searchParams.has("project_detail")) {
+    if (
+      searchParams.has("project_name") &&
+      searchParams.has("project_detail")
+    ) {
       setForm({
         ...form,
         searchBy: [
@@ -169,7 +173,10 @@ function Filters({
         },
       ]);
     }
-    if (searchParams.has("community_name") && searchParams.has("community_detail")) {
+    if (
+      searchParams.has("community_name") &&
+      searchParams.has("community_detail")
+    ) {
       setForm({
         ...form,
         searchBy: [
@@ -186,7 +193,10 @@ function Filters({
         },
       ]);
     }
-    if (searchParams.has("developer_name") && searchParams.has("developer_detail")) {
+    if (
+      searchParams.has("developer_name") &&
+      searchParams.has("developer_detail")
+    ) {
       setForm({
         ...form,
         searchBy: [
@@ -203,55 +213,54 @@ function Filters({
         },
       ]);
     }
-    if(searchParams.has("accommodation_id")){
-      form['accommodation_id'] =searchParams.get("accommodation_id");
-      setForm({ ...form })
+    if (searchParams.has("accommodation_id")) {
+      form["accommodation_id"] = searchParams.get("accommodation_id");
+      setForm({ ...form });
     }
-    if(searchParams.has("bedrooms")){
-      form['bedrooms'] =searchParams.get("bedrooms");
-      setForm({ ...form })
-      if(form['bedrooms']){
-        setShowMore(true)
+    if (searchParams.has("bedrooms")) {
+      form["bedrooms"] = searchParams.get("bedrooms");
+      setForm({ ...form });
+      if (form["bedrooms"]) {
+        setShowMore(true);
       }
     }
 
-    if(searchParams.has("minprice")){
-      form['minprice'] =searchParams.get("minprice");
-      setForm({ ...form })
-      if(form['minprice']){
-        setShowMore(true)
+    if (searchParams.has("minprice")) {
+      form["minprice"] = searchParams.get("minprice");
+      setForm({ ...form });
+      if (form["minprice"]) {
+        setShowMore(true);
       }
     }
 
-    if(searchParams.has("maxprice")){
-      form['maxprice'] =searchParams.get("maxprice");
-      setForm({ ...form })
-      if(form['maxprice']){
-        setShowMore(true)
+    if (searchParams.has("maxprice")) {
+      form["maxprice"] = searchParams.get("maxprice");
+      setForm({ ...form });
+      if (form["maxprice"]) {
+        setShowMore(true);
       }
     }
 
-    if(searchParams.has("minarea")){
-      form['minarea'] =searchParams.get("minarea");
-      setForm({ ...form })
-      if(form['minarea']){
-        setShowMore(true)
+    if (searchParams.has("minarea")) {
+      form["minarea"] = searchParams.get("minarea");
+      setForm({ ...form });
+      if (form["minarea"]) {
+        setShowMore(true);
       }
     }
 
-
-    if(searchParams.has("maxarea")){
-      form['maxarea'] =searchParams.get("maxarea");
-      setForm({ ...form })
-      if(form['maxarea']){
-        setShowMore(true)
+    if (searchParams.has("maxarea")) {
+      form["maxarea"] = searchParams.get("maxarea");
+      setForm({ ...form });
+      if (form["maxarea"]) {
+        setShowMore(true);
       }
     }
-    if(searchParams.has('searchBy')){
-      console.log(searchParams.get('searchBy'))
-      form['searchBy'] =searchParams.get("searchBy");
-      selectRef.current.setValue(JSON.parse(searchParams.get('searchBy')))
-      setForm({ ...form })
+    if (searchParams.has("searchBy")) {
+      console.log(searchParams.get("searchBy"));
+      form["searchBy"] = searchParams.get("searchBy");
+      selectRef.current.setValue(JSON.parse(searchParams.get("searchBy")));
+      setForm({ ...form });
     }
   }, []);
   useEffect(() => {
@@ -292,7 +301,7 @@ function Filters({
           setTotalProperties(res.data.properties.meta.total);
           setOriginalMarkers([...propertiesDup]);
           setLinks(res.data.properties.links);
-          
+
           if (propertiesDup.length) {
             mapRef?.current?.setCenter({
               lat: parseFloat(propertiesDup[0].address_latitude),
@@ -342,11 +351,10 @@ function Filters({
   }
 
   const handleReset = () => {
-
     setIsCommercial(false);
-    setForm(prevForm => ({
+    setForm((prevForm) => ({
       ...prevForm,
-      isCommercial: ""
+      isCommercial: "",
     }));
     form["minprice"] = "";
     form["maxprice"] = "";
@@ -356,31 +364,30 @@ function Filters({
     form["bedrooms"] = "";
     form["accommodation_id"] = "";
     form["completion_status_id"] = "";
-    form["category"] = "",
-    form["bathroom"] = "";
+    (form["category"] = ""), (form["bathroom"] = "");
     form["searchBy"] = "";
-    form["amenities"] ="";
-    form["isCommercial"] ="";
-    
+    form["amenities"] = "";
+    form["isCommercial"] = "";
+
     setSelectedItems([]);
     selectRef.current.setValue([]);
-    if(minPriceRef.current != null){
+    if (minPriceRef.current != null) {
       minPriceRef.current.value = "";
     }
-    if(maxPriceRef.current != null){
+    if (maxPriceRef.current != null) {
       maxPriceRef.current.value = "";
     }
-    if(minAreaRef.current != null){
+    if (minAreaRef.current != null) {
       minAreaRef.current.value = "";
     }
-    if(maxAreaRef.current != null){
+    if (maxAreaRef.current != null) {
       maxAreaRef.current.value = "";
     }
   };
   const handleChange = (e) => {
     form[e.target.name] = e.target.value;
-    if(form.category == "rent" || form.category == ""){
-      form.completion_status_id = ""
+    if (form.category == "rent" || form.category == "") {
+      form.completion_status_id = "";
     }
     setForm({ ...form });
   };
@@ -523,7 +530,378 @@ function Filters({
   };
   return (
     <form action="">
-      <div className="row row-gap-3">
+      <div className="mobItemLink row">
+        <div className="col-10 col-lg-3">
+          <AsyncSelect
+            isClearable={false}
+            isMulti
+            placeholder="Search..."
+            onChange={(comm, { action }) => {
+              if (comm != form["searchBy"]) {
+                form["searchBy"] = comm;
+                setForm({ ...form });
+              }
+              if (action === "clear" || action === "remove-value") {
+                setTimeout(() => selectRef.current.blur(), 1);
+              }
+            }}
+            ref={selectRef}
+            styles={{
+              container: (baseStyles, state) => ({
+                ...baseStyles,
+                minWidth: "160px",
+              }),
+              valueContainer: (baseStyles, state) => ({
+                ...baseStyles,
+                columnGap: "0.1rem",
+                display: "grid",
+                gridTemplateColumns: hasFocus
+                  ? "1fr auto auto 1fr"
+                  : "auto auto 1fr",
+              }),
+              multiValue: (baseStyles, state) => ({
+                ...baseStyles,
+                gridColumn: 1,
+              }),
+              input: (baseStyles, state) => ({
+                ...baseStyles,
+                gridColumn: hasFocus ? 1 : "none",
+              }),
+            }}
+            blurInputOnSelect={true}
+            onFocus={() => {
+              setHasFocus(true);
+              setShowSelectedValues(false);
+            }}
+            onBlur={() => {
+              setShowSelectedValues(true);
+              setHasFocus(false);
+            }}
+            controlShouldRenderValue={showSelectedValues}
+            components={{
+              MultiValue,
+              IndicatorsContainer,
+              NoOptionsMessage,
+              MultiValueContainer,
+              Menu,
+            }}
+            getOptionLabel={(option) => option.name}
+            getOptionValue={(option) => option.type}
+            name="searchBy"
+            loadOptions={loadOptions}
+            instanceId="searchBy"
+          />
+        </div>
+        <div className="col-2">
+          <div className=" my-auto me-0 me-lg-3 me-md-3 ms-3 ms-lg-0 ms-md-0">
+            <img
+              src="/images/icons/menu.png"
+              alt="Range Internation Property Investments"
+              className="img-fluid navMobMen cursor-pointer"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasRight1"
+              width="35"
+            />
+            <div
+              className="offcanvas offcanvas-end"
+              tabIndex={-1}
+              id="offcanvasRight1"
+              aria-labelledby="offcanvasRightLabel"
+            >
+              <div className="offcanvas-header">
+                <div className="">Filters</div>
+                <div className="my-auto">
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"
+                    ref={closeRef}
+                  ></button>
+                </div>
+              </div>
+              <div className="offcanvas-body ">
+                <div className="row g-2">
+                  <div
+                    className={`base-class ${
+                      form.category && form.category != ""
+                        ? "col-md-1"
+                        : "col-md-2"
+                    }`}
+                  >
+                    <select
+                      onChange={handleChange}
+                      value={form.category}
+                      name="category"
+                      id="category"
+                      className="form-select bedroomSelect"
+                    >
+                      <option value="">Buy/Rent</option>
+                      <option value="buy">Buy</option>
+                      <option value="rent">Rent</option>
+                    </select>
+                  </div>
+                  {form.category && form.category != "rent" && (
+                    <div className="col-md-2">
+                      <select
+                        onChange={handleChange}
+                        value={form.completion_status_id}
+                        name="completion_status_id"
+                        id="completion_status_id"
+                        className="form-select bedroomSelect"
+                      >
+                        <option value="">Completion Status</option>
+                        <option value="286">Ready</option>
+                        <option value="287">Off-Plan</option>
+                      </select>
+                    </div>
+                  )}
+                  <div className="col-md-2">
+                    <select
+                      onChange={handleChange}
+                      value={form.accommodation_id}
+                      name="accommodation_id"
+                      id="accomodation"
+                      className="form-select bedroomSelect"
+                    >
+                      <option value=""> Property Type</option>
+                      {filteredAccomodation?.map((accomodation) => (
+                        <option key={accomodation.id} value={accomodation.id}>
+                          {accomodation.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div
+                    className={`base-class ${
+                      form.category && form.category != "rent"
+                        ? "col-md-1"
+                        : "col-md-2"
+                    }`}
+                  >
+                    <div className="dropdown">
+                      <div
+                        className="form-select"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        data-bs-auto-close="outside"
+                      >
+                        {form.minprice || form.maxprice
+                          ? `${form.minprice} ${
+                              form.minprice && form.maxprice && "-"
+                            } ${form.maxprice} AED`
+                          : "Price"}
+                        {}
+                      </div>
+                      <div className="dropdown-menu p-4">
+                        <div className="mb-3">
+                          <label className="form-label">Minimum Price</label>
+                          <input
+                            type="number"
+                            className="form-control"
+                            id="minprice"
+                            min={0}
+                            placeholder="0"
+                            name="minprice"
+                            ref={minPriceRef}
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <label className="form-label">Maximum Price</label>
+                          <input
+                            type="number"
+                            name="maxprice"
+                            className="form-control"
+                            id="maxprice"
+                            placeholder="Any Price"
+                            min={0}
+                            ref={maxPriceRef}
+                          />
+                        </div>
+                        <div className="mt-4 d-grid">
+                          <div
+                            className="row justify-content-center"
+                            style={{ columnGap: "0.25rem" }}
+                          >
+                            <button
+                              className="btn btn-primary btn-sm col"
+                              type="button"
+                              onClick={handleApplyPrice}
+                            >
+                              Apply
+                            </button>
+                            {showPriceResetButton() && (
+                              <button
+                                className="btn btn-secondary btn-sm col"
+                                type="button"
+                                onClick={resetApplyPrice}
+                              >
+                                Reset
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {!isCommercial && (
+                    <div className="col-lg-2">
+                      <select
+                        onChange={handleChange}
+                        value={form.furnishing}
+                        name="furnishing"
+                        id="furnishing"
+                        className="form-select furnishingSelect"
+                      >
+                        <option value="">All Furnishings</option>
+                        <option value="1">Furnished</option>
+                        <option value="2">Unfurnished</option>
+                        <option value="partly">Partly Furnished</option>
+                      </select>
+                    </div>
+                  )}
+
+                  <div className="col-lg-2">
+                    <select
+                      onChange={handleChange}
+                      value={form.bedrooms}
+                      name="bedrooms"
+                      id="bedrooms"
+                      className="form-select bedroomSelect"
+                    >
+                      <option value="">Select Bedrooms</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="Studio">Studio</option>
+                    </select>
+                  </div>
+                  {!isCommercial && (
+                    <div className="col-lg-2">
+                      <input
+                        value={form.bathroom}
+                        type="number"
+                        name="bathroom"
+                        onChange={handleChange}
+                        className="form-control"
+                        id="bathroom"
+                        placeholder="Bathrooms"
+                      />
+                    </div>
+                  )}
+                  <div className="col-lg-3">
+                    <div className="dropdown">
+                      <div
+                        className="form-select"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        data-bs-auto-close="outside"
+                      >
+                        {form.minarea && form.maxarea
+                          ? `${form.minarea} ${
+                              form.minarea && form.maxarea && "-"
+                            } ${form.maxarea} `
+                          : "Area(Sq.Ft)"}
+                        {}
+                      </div>
+                      <div className="dropdown-menu p-4">
+                        {" "}
+                        <div className="mb-3">
+                          <label className="form-label">Minimum Area</label>
+                          <input
+                            type="number"
+                            className="form-control"
+                            id="minarea"
+                            min={0}
+                            placeholder="0"
+                            name="minarea"
+                            ref={minAreaRef}
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <label className="form-label">Maximum Area</label>
+                          <input
+                            type="number"
+                            name="maxarea"
+                            className="form-control"
+                            id="maxarea"
+                            placeholder="Any Area"
+                            ref={maxAreaRef}
+                          />
+                        </div>
+                        <div className="mt-4 d-grid">
+                          <div
+                            className="row justify-content-center"
+                            style={{ columnGap: "0.25rem" }}
+                          >
+                            <button
+                              className="btn btn-primary btn-sm col-md"
+                              type="button"
+                              onClick={handleApplyArea}
+                            >
+                              Apply
+                            </button>
+                            {showAreaResetButton() && (
+                              <button
+                                className="btn btn-secondary btn-sm col-md"
+                                type="button"
+                                onClick={resetApplyArea}
+                              >
+                                Reset
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    className={`base-class ${
+                      form.category && form.category != "rent"
+                        ? "col-md-3"
+                        : "col-md-3"
+                    } d-flex align-items-center gap-2 justify-content-end`}
+                  >
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="exampleCheck1"
+                        onChange={(e) => setIsCommercial(e.target.checked)}
+                        checked={isCommercial}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="exampleCheck1"
+                      >
+                        Commericial
+                      </label>
+                    </div>
+
+                    {!isEmptyObject() && (
+                      <button
+                        className="btn btn-sm btn-secondary"
+                        type="button"
+                        onClick={handleReset}
+                      >
+                        Reset
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="row row-gap-3 propertyDesktopItemLink">
         <div className="col-12 col-lg-3">
           <AsyncSelect
             isClearable={false}
@@ -585,7 +963,11 @@ function Filters({
             instanceId="searchBy"
           />
         </div>
-        <div  className={`base-class ${form.category && form.category != '' ? 'col-md-1' : 'col-md-2'}`}>
+        <div
+          className={`base-class ${
+            form.category && form.category != "" ? "col-md-1" : "col-md-2"
+          }`}
+        >
           <select
             onChange={handleChange}
             value={form.category}
@@ -598,22 +980,21 @@ function Filters({
             <option value="rent">Rent</option>
           </select>
         </div>
-        {
-         form.category && form.category != 'rent' &&
+        {form.category && form.category != "rent" && (
           <div className="col-md-2">
-          <select
-            onChange={handleChange}
-            value={form.completion_status_id}
-            name="completion_status_id"
-            id="completion_status_id"
-            className="form-select bedroomSelect"
-          >
-            <option value="">Completion Status</option>
-            <option value="286">Ready</option>
-            <option value="287">Off-Plan</option>
-          </select>
-        </div>
-        }
+            <select
+              onChange={handleChange}
+              value={form.completion_status_id}
+              name="completion_status_id"
+              id="completion_status_id"
+              className="form-select bedroomSelect"
+            >
+              <option value="">Completion Status</option>
+              <option value="286">Ready</option>
+              <option value="287">Off-Plan</option>
+            </select>
+          </div>
+        )}
         <div className="col-md-2">
           <select
             onChange={handleChange}
@@ -631,7 +1012,11 @@ function Filters({
           </select>
         </div>
 
-        <div className={`base-class ${form.category && form.category != 'rent' ? 'col-md-1' : 'col-md-2'}`}>
+        <div
+          className={`base-class ${
+            form.category && form.category != "rent" ? "col-md-1" : "col-md-2"
+          }`}
+        >
           <div className="dropdown">
             <div
               className="form-select"
@@ -698,7 +1083,11 @@ function Filters({
           </div>
         </div>
 
-        <div  className={`base-class ${form.category && form.category != 'rent' ? 'col-md-3' : 'col-md-3'} d-flex align-items-center gap-2 justify-content-end`}>
+        <div
+          className={`base-class ${
+            form.category && form.category != "rent" ? "col-md-3" : "col-md-3"
+          } d-flex align-items-center gap-2 justify-content-end`}
+        >
           <div className="form-check">
             <input
               type="checkbox"
@@ -721,7 +1110,7 @@ function Filters({
           {!isEmptyObject() && (
             <button
               className="btn btn-sm btn-secondary"
-              type="button"             
+              type="button"
               onClick={handleReset}
             >
               Reset
