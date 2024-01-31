@@ -182,7 +182,7 @@ function SinglePropertyView({ params }) {
           <div className="row justify-content-center">
             <div className="col-12 col-lg-12 col-md-12">
               <div className="row">
-                <div className="col-12 col-lg-8 col-md-8">
+                <div className="col-12 col-lg-7 col-md-7">
                   <div className="mb-3">
                     {
                       propertyData?.gallery &&
