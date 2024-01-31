@@ -529,75 +529,170 @@ function Filters({
       });
   };
   return (
-    <form action="">
-      <div className="mobItemLink row">
-        <div className="col-10 col-lg-3">
-          <AsyncSelect
-            isClearable={false}
-            isMulti
-            placeholder="Search..."
-            onChange={(comm, { action }) => {
-              if (comm != form["searchBy"]) {
-                form["searchBy"] = comm;
-                setForm({ ...form });
-              }
-              if (action === "clear" || action === "remove-value") {
-                setTimeout(() => selectRef.current.blur(), 1);
-              }
-            }}
-            ref={selectRef}
-            styles={{
-              container: (baseStyles, state) => ({
-                ...baseStyles,
-                minWidth: "160px",
-              }),
-              valueContainer: (baseStyles, state) => ({
-                ...baseStyles,
-                columnGap: "0.1rem",
-                display: "grid",
-                gridTemplateColumns: hasFocus
-                  ? "1fr auto auto 1fr"
-                  : "auto auto 1fr",
-              }),
-              multiValue: (baseStyles, state) => ({
-                ...baseStyles,
-                gridColumn: 1,
-              }),
-              input: (baseStyles, state) => ({
-                ...baseStyles,
-                gridColumn: hasFocus ? 1 : "none",
-              }),
-            }}
-            blurInputOnSelect={true}
-            onFocus={() => {
-              setHasFocus(true);
-              setShowSelectedValues(false);
-            }}
-            onBlur={() => {
-              setShowSelectedValues(true);
-              setHasFocus(false);
-            }}
-            controlShouldRenderValue={showSelectedValues}
-            components={{
-              MultiValue,
-              IndicatorsContainer,
-              NoOptionsMessage,
-              MultiValueContainer,
-              Menu,
-            }}
-            getOptionLabel={(option) => option.name}
-            getOptionValue={(option) => option.type}
-            name="searchBy"
-            loadOptions={loadOptions}
-            instanceId="searchBy"
-          />
-        </div>
-        <div className="col-2">
-          <div className=" my-auto me-0 me-lg-3 me-md-3 ms-3 ms-lg-0 ms-md-0">
+    <>
+    <nav className="navbar bg-white mobItemLink ">
+          <div className="container justify-content-start">
+            <div className="col-4">
+                  <img
+                    src="/images/icons/menu.png"
+                    alt="Range Internation Property Investments"
+                    className="img-fluid navMobMen cursor-pointer"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight2"
+                    width="35"
+                  />
+                  <div
+                    className="offcanvas offcanvas-start"
+                    tabIndex={-1}
+                    id="offcanvasRight2"
+                    aria-labelledby="offcanvasRightLabel"
+                  >
+                    <div className="offcanvas-header">
+                      <div className="">
+                        <Link href={{ pathname: "/" }} className="navbar-brand">
+                          <img
+                            src="/images/logo.png"
+                            alt="Range Internation Property Investments"
+                            className="img-fluid navMobLogo"
+                            width="175"
+                          />
+                        </Link>
+                      </div>
+                      <div className="my-auto">
+                        <button
+                          type="button"
+                          className="btn-close"
+                          data-bs-dismiss="offcanvas"
+                          aria-label="Close"
+                          ref={closeRef}
+                        ></button>
+                      </div>
+                    </div>
+                    <div className="offcanvas-body">
+                      <ul className="list-unstyled dropList">
+
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/properties"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            Properties
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/projects"
+                            onClick={() => closeRef.current.click()}
+                          >
+                             Projects
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/communities"
+                            onClick={() => closeRef.current.click()}
+                          >
+                             Communities
+                          </Link>
+                        </li>
+
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/developers"
+                            onClick={() => closeRef.current.click()}
+                          >
+                             Developers
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/teams"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            Meet the Team
+                          </Link>
+                        </li>
+
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link className="nav-link" href="/about" onClick={() => closeRef.current.click()}>
+                            About Range
+                          </Link>
+                        </li>
+
+                        <li className="nav-item py-3 border-bottom">
+                          <Link
+                            className="nav-link"
+                            href="/goldenVisa"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            Golden Visa
+                          </Link>
+                        </li>
+
+                        <li className="nav-item py-3 border-bottom">
+                          <Link
+                            className="nav-link"
+                            href="/careers"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            Career
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom">
+                          <Link className="nav-link" href="/medias"  onClick={() => closeRef.current.click()}>
+                            Media
+                          </Link>
+                        </li>
+                        {/* <li className="nav-item py-3 border-bottom" >
+                          <Link className="nav-link" href="/blogs" onClick={() => closeRef.current.click()}>
+                            Blogs and News
+                          </Link>
+                        </li> */}
+                        <li className="nav-item py-3 border-bottom">
+                          <Link className="nav-link" href="/dubaiGuide"  onClick={() => closeRef.current.click()}>
+                            Dubai Guide
+                          </Link>
+                        </li>
+                        {/* <li className="nav-item py-3 border-bottom">
+                          <a className="nav-link" href="">
+                            Investment Guide
+                          </a>
+                        </li> */}
+                        <li className="nav-item py-3 border-bottom">
+                          <Link
+                            className="nav-link"
+                            href="/faqs"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            FAQ's
+                          </Link>
+                        </li>
+                        
+                      </ul>
+                    </div>
+                  </div>
+            </div>
+            <div className="col-4">
+              <Link href={{ pathname: "/" }} className="navbar-brand">
+                <img
+                  src="/images/logo.png"
+                  alt="Range Internation Property Investments"
+                  className="img-fluid navMobLogo"
+                  width="175"
+                />
+              </Link>
+            </div>
+            <div className="col-4">
+           
             <img
-              src="/images/icons/menu.png"
+              src="/images/icons/filter.png"
               alt="Range Internation Property Investments"
-              className="img-fluid navMobMen cursor-pointer"
+              className="img-fluid navMobMen cursor-pointer float-end"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasRight1"
               width="35"
@@ -898,7 +993,74 @@ function Filters({
               </div>
             </div>
           </div>
+            </div>
+          
+        </nav>
+        <form action="">
+      <div className="mobItemLink row g-2">
+        <br></br>
+        <div className="col-12 col-lg-3 bt-2">
+          <AsyncSelect
+            isClearable={false}
+            isMulti
+            placeholder="Search..."
+            onChange={(comm, { action }) => {
+              if (comm != form["searchBy"]) {
+                form["searchBy"] = comm;
+                setForm({ ...form });
+              }
+              if (action === "clear" || action === "remove-value") {
+                setTimeout(() => selectRef.current.blur(), 1);
+              }
+            }}
+            ref={selectRef}
+            styles={{
+              container: (baseStyles, state) => ({
+                ...baseStyles,
+                minWidth: "160px",
+              }),
+              valueContainer: (baseStyles, state) => ({
+                ...baseStyles,
+                columnGap: "0.1rem",
+                display: "grid",
+                gridTemplateColumns: hasFocus
+                  ? "1fr auto auto 1fr"
+                  : "auto auto 1fr",
+              }),
+              multiValue: (baseStyles, state) => ({
+                ...baseStyles,
+                gridColumn: 1,
+              }),
+              input: (baseStyles, state) => ({
+                ...baseStyles,
+                gridColumn: hasFocus ? 1 : "none",
+              }),
+            }}
+            blurInputOnSelect={true}
+            onFocus={() => {
+              setHasFocus(true);
+              setShowSelectedValues(false);
+            }}
+            onBlur={() => {
+              setShowSelectedValues(true);
+              setHasFocus(false);
+            }}
+            controlShouldRenderValue={showSelectedValues}
+            components={{
+              MultiValue,
+              IndicatorsContainer,
+              NoOptionsMessage,
+              MultiValueContainer,
+              Menu,
+            }}
+            getOptionLabel={(option) => option.name}
+            getOptionValue={(option) => option.type}
+            name="searchBy"
+            loadOptions={loadOptions}
+            instanceId="searchBy"
+          />
         </div>
+        
       </div>
 
       <div className="row row-gap-3 propertyDesktopItemLink">
@@ -1338,6 +1500,10 @@ function Filters({
         }
       />
     </form>
+        
+        
+        </>
+    
   );
 }
 

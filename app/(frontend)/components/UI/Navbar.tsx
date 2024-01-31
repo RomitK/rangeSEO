@@ -14,9 +14,18 @@ function Navbar() {
     "/offplan",
     "/luxuryProperties",
   ].includes(usePathname());
+
+  const mobileNav = [
+    "/properties",
+    "/ready",
+    "/buy",
+    "/rent",
+    "/offplan",
+    "/luxuryProperties",
+  ].includes(usePathname());
   return (
     <>
-        <nav className="navbar  bg-white">
+        <nav className="navbar bg-white propertyDesktopItemLink">
           <div className="container py-3">
             <div className="my-auto">
               <Link href={{ pathname: "/" }} className="navbar-brand">
@@ -355,8 +364,167 @@ function Navbar() {
             </div>
           </div>
         </nav>
-      
-      
+        {!expandPropertyDropdown && (
+        <nav className="navbar bg-white mobItemLink">
+          <div className="container justify-content-start">
+            <div className="col-4">
+                  <img
+                    src="/images/icons/menu.png"
+                    alt="Range Internation Property Investments"
+                    className="img-fluid navMobMen cursor-pointer"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight2"
+                    width="35"
+                  />
+                  <div
+                    className="offcanvas offcanvas-start"
+                    tabIndex={-1}
+                    id="offcanvasRight2"
+                    aria-labelledby="offcanvasRightLabel"
+                  >
+                    <div className="offcanvas-header">
+                      <div className="">
+                        <Link href={{ pathname: "/" }} className="navbar-brand">
+                          <img
+                            src="/images/logo.png"
+                            alt="Range Internation Property Investments"
+                            className="img-fluid navMobLogo"
+                            width="175"
+                          />
+                        </Link>
+                      </div>
+                      <div className="my-auto">
+                        <button
+                          type="button"
+                          className="btn-close"
+                          data-bs-dismiss="offcanvas"
+                          aria-label="Close"
+                          ref={closeRef}
+                        ></button>
+                      </div>
+                    </div>
+                    <div className="offcanvas-body">
+                      <ul className="list-unstyled dropList">
+
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/properties"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            Properties
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/projects"
+                            onClick={() => closeRef.current.click()}
+                          >
+                             Projects
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/communities"
+                            onClick={() => closeRef.current.click()}
+                          >
+                             Communities
+                          </Link>
+                        </li>
+
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/developers"
+                            onClick={() => closeRef.current.click()}
+                          >
+                             Developers
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link
+                            className="nav-link"
+                            href="/teams"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            Meet the Team
+                          </Link>
+                        </li>
+
+                        <li className="nav-item py-3 border-bottom mobItemLink">
+                          <Link className="nav-link" href="/about" onClick={() => closeRef.current.click()}>
+                            About Range
+                          </Link>
+                        </li>
+
+                        <li className="nav-item py-3 border-bottom">
+                          <Link
+                            className="nav-link"
+                            href="/goldenVisa"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            Golden Visa
+                          </Link>
+                        </li>
+
+                        <li className="nav-item py-3 border-bottom">
+                          <Link
+                            className="nav-link"
+                            href="/careers"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            Career
+                          </Link>
+                        </li>
+                        <li className="nav-item py-3 border-bottom">
+                          <Link className="nav-link" href="/medias"  onClick={() => closeRef.current.click()}>
+                            Media
+                          </Link>
+                        </li>
+                        {/* <li className="nav-item py-3 border-bottom" >
+                          <Link className="nav-link" href="/blogs" onClick={() => closeRef.current.click()}>
+                            Blogs and News
+                          </Link>
+                        </li> */}
+                        <li className="nav-item py-3 border-bottom">
+                          <Link className="nav-link" href="/dubaiGuide"  onClick={() => closeRef.current.click()}>
+                            Dubai Guide
+                          </Link>
+                        </li>
+                        {/* <li className="nav-item py-3 border-bottom">
+                          <a className="nav-link" href="">
+                            Investment Guide
+                          </a>
+                        </li> */}
+                        <li className="nav-item py-3 border-bottom">
+                          <Link
+                            className="nav-link"
+                            href="/faqs"
+                            onClick={() => closeRef.current.click()}
+                          >
+                            FAQ's
+                          </Link>
+                        </li>
+                        
+                      </ul>
+                    </div>
+                  </div>
+            </div>
+            <div className="col-4">
+              <Link href={{ pathname: "/" }} className="navbar-brand">
+                <img
+                  src="/images/logo.png"
+                  alt="Range Internation Property Investments"
+                  className="img-fluid navMobLogo"
+                  width="175"
+                />
+              </Link>
+            </div>
+          </div>
+        </nav>
+        )}
     </>
   );
 }

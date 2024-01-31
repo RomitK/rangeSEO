@@ -30,7 +30,7 @@ const PropertyList = ({ params }) => {
   const isReadyPage = Object.hasOwn(params, "ready");
   const isOffPlanPage = Object.hasOwn(params, "offplan");
   
-
+  const [isMobile, setIsMobile] = useState(false);
   const { propertyAccommodations } = useGetPropertyAccommodations();
   const [showMap, setShowMap] = useState(true);
   const [totalProperties, setTotalProperties] = useState(0);
@@ -61,6 +61,25 @@ const PropertyList = ({ params }) => {
   const [loading, setLoading] = useState(false);
   const [sorting, setSorting] = useState("");
   const mapRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobile(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const getMarkersInView = useCallback(() => {
     if (!mapRef2.current) return;
@@ -164,10 +183,10 @@ const PropertyList = ({ params }) => {
   };
 
   return (
-    <div className="container-fluid px-0">
-      <div className="row g-0">
-        <div className="col-12 col-lg-12 col-md-12">
-          <div className="p-3 shadow-sm">
+    <div className={`${isMobile ? '' : 'container-fluid px-0'}`}>
+      <div className={` ${isMobile ? '' : 'row g-0 '}`}>
+        <div className={`${isMobile ? '' : 'col-12 col-lg-12 col-md-12'}`}>
+          <div className={`${isMobile ? '' : 'p-3 shadow-sm'}`}>
             {
               isLuxuryProperties && 
                 <LuxuryPropertyFilters
