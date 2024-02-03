@@ -304,7 +304,7 @@ width: 210px;
 justify-content: flex-start !important;
 }
 nav.navbar.bg-white{
-padding-bottom: 15px;
+/* padding-bottom: 15px; */
 }
 .clmSliderItem .carouselcontent .downloadBtn {
 width: 206px;

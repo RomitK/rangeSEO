@@ -24,6 +24,7 @@ const PropertyList = ({ params }) => {
   const [filteredMarkers, setFilteredMarkers] = useState([]);
   const [trigger, setTrigger] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
   const [infoWindowData, setInfoWindowData] = useState({
     id: null,
@@ -40,6 +41,26 @@ const PropertyList = ({ params }) => {
     completionStatusName: "",
     accommodationName: "",
   });
+  
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobile(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
   const [showClearMapButton, setShowClearMapButton] = useState(false);
   const mapRef2 = useRef(null);
   const [loading, setLoading] = useState(false);
@@ -152,10 +173,10 @@ const PropertyList = ({ params }) => {
     setSorting(e.target.value);
   };
   return (
-    <div className="container-fluid px-0">
-      <div className="row g-0">
-        <div className="col-12 col-lg-12 col-md-12">
-          <div className="p-3 shadow-sm">
+    <div className={`${isMobile ? '' : 'container-fluid px-0'}`}>
+      <div className={` ${isMobile ? '' : 'row g-0 '}`}>
+        <div className={`${isMobile ? '' : 'col-12 col-lg-12 col-md-12'}`}>
+          <div className={`${isMobile ? '' : 'p-3 shadow-sm'}`}>
             <Filters
               setProperties={setProperties}
               showMap={showMap}
@@ -168,6 +189,7 @@ const PropertyList = ({ params }) => {
               sortBy={sorting}
               setLinks={setLinks}
               setTotalProperties={setTotalProperties}
+              totalPropertyCount= {totalProperties}
             />
           </div>
         </div>

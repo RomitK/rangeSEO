@@ -198,9 +198,22 @@ color: #136dae;
 cursor: pointer;
 }
 .btn-outline-primary{
-border-color: #136dae;
-color: #136dae;
+border-color: #136dae !important;
+color: #136dae !important;
 }
+.vertical-scrollable-container{
+    overflow-x: auto;
+  white-space: nowrap;
+  background-color: transparent; /* Set the background color to transparent */
+  border: none; /* Optional: Remove border if needed */
+}
+.vertical-scrollable-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5); /* Thumb color with transparency */
+  }
+  
+  .vertical-scrollable-container::-webkit-scrollbar-track {
+    background-color: transparent; /* Track color set to transparent */
+  }
 .btn-check:checked+.btn{
 background-color:  #136dae;
 border-color: #136dae;
@@ -2062,3 +2075,13 @@ background-color: #2f3c6a;
         /* position: relative; */
         padding: 30px;
     }
+    .scrol_y{
+        height: 200px; overflow-y: auto;
+    }
+
+ 
+      
+
+    
+
+    

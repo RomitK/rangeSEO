@@ -7,7 +7,7 @@ import LookingFor from "@/app/(frontend)/components/LookingFor/LookingFor";
 import Testimonials from "@/app/(frontend)/components/Testimonial/TestimonialList";
 import HomeSearch from "@/app/(frontend)/components/HomeSearch/HomeSearch";
 import { SWRProvider } from "@/app/swr-provider";
-import "@/public/css/developers-styles.css";
+// import "@/public/css/developers-styles.css";
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
