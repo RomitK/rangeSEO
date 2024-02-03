@@ -200,6 +200,7 @@ const PropertyList = ({ params }) => {
                 setLoading={setLoading}
                 sortBy={sorting}
                 setLinks={setLinks}
+                totalPropertyCount= {totalProperties}
                 setTotalProperties = {setTotalProperties}
               />
             }
@@ -216,6 +217,7 @@ const PropertyList = ({ params }) => {
                 setLoading={setLoading}
                 sortBy={sorting}
                 setLinks={setLinks}
+                totalPropertyCount= {totalProperties}
                 setTotalProperties = {setTotalProperties}
               />
             }
@@ -232,6 +234,7 @@ const PropertyList = ({ params }) => {
                 setLoading={setLoading}
                 sortBy={sorting}
                 setLinks={setLinks}
+                totalPropertyCount= {totalProperties}
                 setTotalProperties = {setTotalProperties}
               />
             }
@@ -247,6 +250,7 @@ const PropertyList = ({ params }) => {
                 setLoading={setLoading}
                 sortBy={sorting}
                 setLinks={setLinks}
+                totalPropertyCount= {totalProperties}
                 setTotalProperties = {setTotalProperties}
               />
             }
@@ -263,6 +267,7 @@ const PropertyList = ({ params }) => {
                 setLoading={setLoading}
                 sortBy={sorting}
                 setLinks={setLinks}
+                totalPropertyCount= {totalProperties}
                 setTotalProperties = {setTotalProperties}
               />
             }
@@ -279,6 +284,7 @@ const PropertyList = ({ params }) => {
                   setLoading={setLoading}
                   sortBy={sorting}
                   setLinks={setLinks}
+                  totalPropertyCount= {totalProperties}
                   setTotalProperties = {setTotalProperties}
                 />
             }
