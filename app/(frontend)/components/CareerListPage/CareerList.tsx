@@ -20,9 +20,26 @@ function CareerListPage() {
   const [visibleCareers, setVisibleCareers] = useState([]);
   const [currentCareerId, setCurrentCareerId] = useState(0);
   const [currentCareerPosition, setCurrentCareerName] = useState(null);
-  const contactSideText =
-    " An esteemed award-winning real estate brokerage based in Dubai, UAE.";
-
+  const contactSideText = " An esteemed award-winning real estate brokerage based in Dubai, UAE.";
+  const [isMobileDev, setIsMobileDev] = useState(false);
+  useEffect(() => {
+      const handleResize = () => {
+        // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+        const isMobileDevice = window.innerWidth < 768;
+        setIsMobileDev(isMobileDevice);
+      };
+  
+      // Initial check on component mount
+      handleResize();
+  
+      // Add event listener for window resize
+      window.addEventListener("resize", handleResize);
+  
+      // Clean up the event listener on component unmount
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+  }, []);
   const onNextPage = () => {
     const newCareers = CareersData?.careers.slice(0, visibleCareers.length * 2);
     setVisibleCareers(newCareers);
@@ -54,7 +71,7 @@ function CareerListPage() {
           </a>
         </div>
       </header>
-      <section className="multiCarouselSection">
+      <section className={`multiCarouselSection ${isMobileDev ? 'my-2' : ''}`}>
         <div className="container">
           <h4 className="sctionMdTitle text-primary  mb-4">WHY RANGE?</h4>
           <p className="fs-14 text-secondary mb-2">

@@ -26,7 +26,7 @@ import SaleOfferModal from "@/app/(frontend)/components/models/SaleOfferModal";
 import GallaryModalImg from "@/app/(frontend)/components/models/GallaryModalImg";
 import DownloadBrochure from "@/app/(frontend)/components/models/DownloadBrochure";
 import DownloadProjectPPTModal from "../models/DownloadProjectPPTModal";
-import DownloadProjectSaleOfferModel from '@/app/(frontend)/components/models/DownloadProjectSaleOfferModel'
+import DownloadProjectSaleOfferModel from "@/app/(frontend)/components/models/DownloadProjectSaleOfferModel";
 
 import "@/public/css/single-project-view-styles.css";
 function SingleProjectView({ params }) {
@@ -40,6 +40,7 @@ function SingleProjectView({ params }) {
   const rentSwiperRef = useRef<SwiperCore>();
   const saleSwiperRef = useRef<SwiperCore>();
   const amentitiesSwiperRef = useRef<SwiperCore>();
+  const typesSwiperRef = useRef<SwiperCore>();
   const contactSideText =
     "An esteemed award-winning real estate brokerage based in Dubai, UAE.";
   const pageUrl = "Home";
@@ -47,8 +48,27 @@ function SingleProjectView({ params }) {
   const [floorPlanFile, setFloorPlanFile] = useState(null);
   const [loading, setLoading] = useState(false);
   // const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [isMobileDev, setIsMobileDev] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobileDev(isMobileDevice);
+    };
 
-    useEffect(() => {
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
     if (projectData) {
       document.title = projectData?.meta_title;
       let metaDesc = document.createElement("meta");
@@ -62,11 +82,10 @@ function SingleProjectView({ params }) {
     }
   }, [projectData]);
 
-
   return (
     <>
       {projectData?.exteriorGallery && (
-        <header>
+        <header className={`${isMobileDev ? "h-auto" : ""}`}>
           <Swiper
             loop={true}
             modules={[Navigation]}
@@ -77,7 +96,6 @@ function SingleProjectView({ params }) {
               bannerSwiperRef.current = swiper;
             }}
             className="swiper projectGallery"
-            
           >
             {projectData?.exteriorGallery?.map((exteriorGallery, index) => {
               return (
@@ -85,7 +103,15 @@ function SingleProjectView({ params }) {
                   className="swiperSilderItem"
                   key={exteriorGallery.id + "exteriorGallery" + index}
                 >
-                  <img src={exteriorGallery.path} alt={exteriorGallery.title ?exteriorGallery.title: projectData.title} className="sliderCoverImg" />
+                  <img
+                    src={exteriorGallery.path}
+                    alt={
+                      exteriorGallery.title
+                        ? exteriorGallery.title
+                        : projectData.title
+                    }
+                    className="sliderCoverImg"
+                  />
                   <div className=" sliderContainer">
                     <div className="sliderContentArea">
                       <div className="sliderContent">
@@ -126,6 +152,41 @@ function SingleProjectView({ params }) {
       {projectData && (
         <section className="mb-3">
           <div className="container">
+            {/* {isMobileDev && (
+            <div className="row">
+              <div className="col-6">
+                <div className="vtTextBXox">
+                  <p>Starting Price</p>
+                  <h3 className="text-primary">
+                    AED {new Intl.NumberFormat().format(projectData?.price)}
+                  </h3>
+                </div>
+              </div>
+              <div className="col-6">
+                <div className="vtTextBXox">
+                  <p>Available Units</p>
+                  <h3 className="text-primary">{projectData?.availableUnits} </h3>
+                </div>
+              </div>
+              <div className="col-6">
+                <div className="vtTextBXox">
+                  <p>Handover</p>
+                  <h3 className="text-primary">{projectData?.handOver}</h3>
+                </div>
+              </div>
+              <div className="col-6">
+                <div className="vtTextBXox">
+                  <p>Location</p>
+                  
+                    <h3 className="text-primary">
+                      {projectData?.communityName}
+                    </h3>
+                  
+                </div>
+              </div>
+            </div>
+            )} */}
+            {/* {!isMobileDev && ( */}
             <div className="row">
               <div className="col-md-3">
                 <div className="vtTextBXox">
@@ -138,10 +199,11 @@ function SingleProjectView({ params }) {
               <div className="col-md-3">
                 <div className="vtTextBXox">
                   <p>Available Units</p>
-                  <h3 className="text-primary">{projectData?.availableUnits} </h3>
+                  <h3 className="text-primary">
+                    {projectData?.availableUnits}{" "}
+                  </h3>
                 </div>
               </div>
-              
               <div className="col-md-3">
                 <div className="vtTextBXox">
                   <p>Handover</p>
@@ -151,28 +213,25 @@ function SingleProjectView({ params }) {
               <div className="col-md-3">
                 <div className="vtTextBXox">
                   <p>Location</p>
-                  
-                    <h3 className="text-primary">
-                      {projectData?.communityName}
-                    </h3>
-                  
+
+                  <h3 className="text-primary">{projectData?.communityName}</h3>
                 </div>
               </div>
             </div>
+            {/* )} */}
           </div>
         </section>
       )}
       <section>
-        <div className="tabsListConatiner ">
-          <div className="container">
+        <div className={`tabsListConatiner ${isMobileDev ? "mb-2" : ""}`}>
+          <div className={`container ${isMobileDev ? "mb-1 pb-2" : ""}`}>
             <div className="row">
               <div className="col selectTitle">
                 <a
-                  className="tabTitle active"
+                  className={`tabTitle active ${isMobileDev ? "" : ""}`}
                   href="#Hightlights"
                   aria-selected="true"
                 >
-                  {/* Hightlights */}
                   Project Details
                 </a>
               </div>
@@ -182,37 +241,40 @@ function SingleProjectView({ params }) {
                   href="#ProjectDetails"
                   aria-selected="true"
                 >
-                  {/* Project Details */}
                   Amenities
                 </a>
               </div>
               <div className="col selectTitle">
                 <a className="tabTitle " href="#NearBy" aria-selected="true">
-                similar PROJECTS
+                  similar PROJECTS
                 </a>
               </div>
-              {projectData && (projectData?.rentProperties?.length > 0 || projectData?.buyProperties?.length > 0) && (
-              <div className="col selectTitle">
-                <a
-                  className="tabTitle"
-                  href="#AvailableProperties"
-                  aria-selected="true"
-                >
-                  Available Properties
-                </a>
-              </div>
-              )}
+              {projectData &&
+                (projectData?.rentProperties?.length > 0 ||
+                  projectData?.buyProperties?.length > 0) && (
+                  <div className="col selectTitle">
+                    <a
+                      className="tabTitle"
+                      href="#AvailableProperties"
+                      aria-selected="true"
+                    >
+                      Available Properties
+                    </a>
+                  </div>
+                )}
             </div>
           </div>
         </div>
       </section>
       {projectData && (
         <section id="Hightlights">
-          <div className="container ">
+          <div className={`container ${isMobileDev ? "mb-1 pb-2" : ""}`}>
             <div className="row align-items-center ">
               <div className="col-md-8">
                 <div className="secTabCntent" id="hightlight">
-                  <h4 className="sctionMdTitle text-primary">Project Details</h4>
+                  <h4 className="sctionMdTitle text-primary">
+                    Project Details
+                  </h4>
                   <div className="text-secondary mb-4">
                     {/* {parse(projectData?.hightlightDescription ?? "")} */}
                     {parse(projectData?.longDescription ?? "")}
@@ -227,7 +289,7 @@ function SingleProjectView({ params }) {
                 Download Brochure
               </button> */}
 
-              {/* <DownloadBrochure brochureLink={projectData.brochureLink} fileName={projectData.title+" Brochure.pdf"}></DownloadBrochure> */}
+                {/* <DownloadBrochure brochureLink={projectData.brochureLink} fileName={projectData.title+" Brochure.pdf"}></DownloadBrochure> */}
               </div>
               <div className="col-md-4">
                 {projectData?.interiorGallery && (
@@ -252,7 +314,11 @@ function SingleProjectView({ params }) {
                             <img
                               src={interiorGallery.path}
                               className="clmCoverImg"
-                              alt={interiorGallery.title ? interiorGallery.title : projectData.title}
+                              alt={
+                                interiorGallery.title
+                                  ? interiorGallery.title
+                                  : projectData.title
+                              }
                             />
                           </SwiperSlide>
                         );
@@ -288,15 +354,22 @@ function SingleProjectView({ params }) {
       {projectData &&
         projectData.amenities &&
         projectData.amenities.length > 0 && (
-          <section className="my-5" id="ProjectDetails">
+          <section
+            id="ProjectDetails"
+            className={`my-5 ${isMobileDev ? "my-2" : ""}`}
+          >
             <div className="container">
               <div className="row">
                 <div className="col-12 col-lg-12 col-md-12">
                   <div className="row ">
-                        <div className="mainHead mb-5 text-primary">
-                          <h4>AMENITIES</h4>
-                        </div>
-                        {projectData.amenities &&
+                    <div
+                      className={`mainHead  text-primary ${
+                        isMobileDev ? "mb-1" : "mb-5"
+                      }`}
+                    >
+                      <h4>AMENITIES</h4>
+                    </div>
+                    {projectData.amenities && (
                       <Swiper
                         slidesPerView={1}
                         spaceBetween={50}
@@ -346,20 +419,21 @@ function SingleProjectView({ params }) {
                                       />
                                     </div>
                                   </div>
-                                  
                                 </div>
                                 <div className="text-center ps-2">
-                                    <small className="fs-20">
-                                      {amenity.name}
-                                    </small>
-                                  </div>
+                                  <small className="fs-20">
+                                    {amenity.name}
+                                  </small>
+                                </div>
                               </div>
                             </SwiperSlide>
                           );
                         })}
                         <div
                           className="swiper-button-next text-primary"
-                          onClick={() => amentitiesSwiperRef.current?.slideNext()}
+                          onClick={() =>
+                            amentitiesSwiperRef.current?.slideNext()
+                          }
                         >
                           <span className="">
                             <i className="bi bi-chevron-right fs-1"></i>
@@ -367,148 +441,297 @@ function SingleProjectView({ params }) {
                         </div>
                         <div
                           className="swiper-button-prev text-primary"
-                          onClick={() => amentitiesSwiperRef.current?.slidePrev()}
+                          onClick={() =>
+                            amentitiesSwiperRef.current?.slidePrev()
+                          }
                         >
                           <span className="">
                             <i className="bi bi-chevron-left fs-1"></i>
                           </span>
                         </div>
                       </Swiper>
-                      }
+                    )}
                   </div>
                 </div>
               </div>
             </div>
           </section>
-      )}
-
-      {/* {projectData && (
-        <section id="ProjectDetails">
-          <div className="container ">
-            <h4 className="sctionMdTitle text-primary my-4">Amenities</h4>
-             {parse(projectData?.longDescription ?? "")}
-
-            <div>
-              <br></br>
-              <button
-                className="btn btn-blue text-uppercase btn-lg btnTextWt mt-5"
-                data-bs-toggle="modal"
-                data-bs-target="#floorplan"
-                onClick={() => setFloorPlanFile(projectData.brochure)}
-              >
-                Download Brochure
-              </button>
-            </div>
-          </div>
-        </section>
-      )} */}
+        )}
       {projectData && (
-        <section className="tableSection">
+        <section className={`tableSection  ${isMobileDev ? 'mb-2' : ''}`}>
           <div className="container">
-            <h4 className="sctionMdTitle text-primary my-4">Property Type</h4>
-
-            <div className="tableContainer">
-              <table className="priceTable">
-                <thead>
-                  <tr>
-                    <th>
-                      <h5 className="tblThText">Unit Type</h5>
-                    </th>
-                    <th>
-                      <h5 className="tblThText">Property Type</h5>
-                    </th>
-                    <th>
-                      <h5 className="tblThText">Size</h5>
-                    </th>
-                    <th>
-                      <h5 className="tblThText text-center">Bedroom</h5>
-                    </th>
-                    <th>
-                      <h5 className="tblThText text-center">Starting Price</h5>
-                    </th>
-                    <th>
-                      <h5 className="tblThText text-center">Payment Plan</h5>
-                    </th>
-                    <th>
-                      <h5 className="tblThText text-center">Floor Plan</h5>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {projectData?.types?.map((type, index) => {
-                    return (
-                      <tr key={type.id}>
-                        <td>
-                          {type.property ? (
-                            <Link href={`/properties/${type.property}`}>
+            <h4
+              className={`sctionMdTitle text-primary ${
+                isMobileDev ? "my-1" : "my-4"
+              }`}
+            >
+              Property Type
+            </h4>
+            {!isMobileDev && (
+              <div className="tableContainer">
+                <table className="priceTable">
+                  <thead>
+                    <tr>
+                      <th>
+                        <h5 className="tblThText">Unit Type</h5>
+                      </th>
+                      <th>
+                        <h5 className="tblThText">Property Type</h5>
+                      </th>
+                      <th>
+                        <h5 className="tblThText">Size</h5>
+                      </th>
+                      <th>
+                        <h5 className="tblThText text-center">Bedroom</h5>
+                      </th>
+                      <th>
+                        <h5 className="tblThText text-center">
+                          Starting Price
+                        </h5>
+                      </th>
+                      <th>
+                        <h5 className="tblThText text-center">Payment Plan</h5>
+                      </th>
+                      <th>
+                        <h5 className="tblThText text-center">Floor Plan</h5>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {projectData?.types?.map((type, index) => {
+                      return (
+                        <tr key={type.id}>
+                          <td>
+                            {type.property ? (
+                              <Link href={`/properties/${type.property}`}>
+                                <p className="tblTdText text-secondary">
+                                  {type.name}
+                                </p>
+                              </Link>
+                            ) : (
                               <p className="tblTdText text-secondary">
                                 {type.name}
                               </p>
-                            </Link>
-                          ) : (
+                            )}
+                          </td>
+                          <td>
                             <p className="tblTdText text-secondary">
-                              {type.name}
+                              {type?.accommodation}
                             </p>
-                          )}
-                        </td>
-                        <td>
-                          <p className="tblTdText text-secondary">
-                            {type?.accommodation}
-                          </p>
-                        </td>
-                        <td>
-                          <p className="tblTdText text-secondary">
-                            {type?.area} {type?.areaUnit}
-                          </p>
-                        </td>
-                        <td>
-                          <p className="tblTdText text-secondary text-center">
-                            {type?.bedrooms}
-                          </p>
-                        </td>
-                        <td>
-                          <p className="tblTdText text-secondary text-center">
-                            AED{" "}
-                            {type &&
-                              new Intl.NumberFormat().format(
-                                type?.startingPrice
-                              )}{" "}
-                          </p>
-                        </td>
-                        <td>
-                          <button
-                            className="fillBtn tblBtn mrAuto"
-                            data-bs-toggle="modal"
-                            data-bs-target="#paymentplan"
-                            onClick={() => setCurrentUnit(type)}
-                          >
-                            view
-                          </button>
-                        </td>
-                        <td>
-                          <button
-                            className="fillBtn tblBtn mrAuto"
-                            data-bs-toggle="modal"
-                            //data-bs-target="#floorplan"
-                            data-bs-target={"#gallaryModalImg-" + type.id}
+                          </td>
+                          <td>
+                            <p className="tblTdText text-secondary">
+                              {type?.area} {type?.areaUnit}
+                            </p>
+                          </td>
+                          <td>
+                            <p className="tblTdText text-secondary text-center">
+                              {type?.bedrooms}
+                            </p>
+                          </td>
+                          <td>
+                            <p className="tblTdText text-secondary text-center">
+                              AED{" "}
+                              {type &&
+                                new Intl.NumberFormat().format(
+                                  type?.startingPrice
+                                )}{" "}
+                            </p>
+                          </td>
+                          <td>
+                            <button
+                              className="fillBtn tblBtn mrAuto"
+                              data-bs-toggle="modal"
+                              data-bs-target="#paymentplan"
+                              onClick={() => setCurrentUnit(type)}
+                            >
+                              view
+                            </button>
+                          </td>
+                          <td>
+                            <button
+                              className="fillBtn tblBtn mrAuto"
+                              data-bs-toggle="modal"
+                              //data-bs-target="#floorplan"
+                              data-bs-target={"#gallaryModalImg-" + type.id}
 
-                            // onClick={() => setFloorPlanFile(type.floorPlan)}
-                          >
-                            view
-                          </button>
-                          {/* <FloorPlanModal images={type?.floorPlan}/> */}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                              // onClick={() => setFloorPlanFile(type.floorPlan)}
+                            >
+                              view
+                            </button>
+                            {/* <FloorPlanModal images={type?.floorPlan}/> */}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+            {isMobileDev && (
+              <Swiper
+                slidesPerView={1}
+                spaceBetween={50}
+                loop={true}
+                pagination={{
+                  el: ".swiper-pagination",
+                  clickable: true,
+                }}
+                navigation={{
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev",
+                }}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 2,
+                    spaceBetween: 50,
+                  },
+                  768: {
+                    slidesPerView: 4,
+                    spaceBetween: 50,
+                  },
+                  1024: {
+                    slidesPerView: 6,
+                    spaceBetween: 50,
+                  },
+                }}
+                modules={[Navigation, Pagination]}
+                onSwiper={(swiper) => {
+                  typesSwiperRef.current = swiper;
+                }}
+                className="swiper"
+              >
+                {projectData?.types?.map((type, index) => {
+                  return (
+                    <SwiperSlide key={type.id + index + "amentity"}>
+                      <div className="tableContainer w-auto">
+                        <table className="priceTable">
+                          <thead>
+                            <tbody>
+                              <tr key={type.id}>
+                                <th>
+                                  <h5 className="tblThText">Unit Type</h5>
+                                </th>
+                                <td>
+                                  {type.property ? (
+                                    <Link href={`/properties/${type.property}`}>
+                                      <p className="tblTdText text-secondary">
+                                        {type.name}
+                                      </p>
+                                    </Link>
+                                  ) : (
+                                    <p className="tblTdText text-secondary">
+                                      {type.name}
+                                    </p>
+                                  )}
+                                </td>
+                                <th>
+                                  <h5 className="tblThText">Property Type</h5>
+                                </th>
+                                <td>
+                                  <p className="tblTdText text-secondary">
+                                    {type?.accommodation}
+                                  </p>
+                                </td>
+                              </tr>
+
+                              <tr key={type.id}>
+                                <th>
+                                  <h5 className="tblThText">Size</h5>
+                                </th>
+                                <td>
+                                  <p className="tblTdText text-secondary">
+                                    {type?.area} {type?.areaUnit}
+                                  </p>
+                                </td>
+
+                                <th>
+                                  <h5 className="tblThText">Bedroom</h5>
+                                </th>
+                                <td>
+                                  <p className="tblTdText text-secondary">
+                                    {type?.bedrooms}
+                                  </p>
+                                </td>
+                              </tr>
+                              <tr key={type.id}>
+                                <th>
+                                  <h5 className="tblThText ">Starting Price</h5>
+                                </th>
+                                <td>
+                                  <p className="tblTdText text-secondary">
+                                    AED{" "}
+                                    {type &&
+                                      new Intl.NumberFormat().format(
+                                        type?.startingPrice
+                                      )}{" "}
+                                  </p>
+                                </td>
+                              </tr>
+                              <tr key={type.id}>
+                                <th>
+                                  <h5 className="tblThText text-center">
+                                    Payment Plan
+                                  </h5>
+                                </th>
+                                <td>
+                                  <button
+                                    className="fillBtn tblBtn mrAuto  w-auto"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#paymentplan"
+                                    onClick={() => setCurrentUnit(type)}
+                                  >
+                                    view
+                                  </button>
+                                </td>
+
+                                <th>
+                                  <h5 className="tblThText text-center">
+                                    Floor Plan
+                                  </h5>
+                                </th>
+                                <td>
+                                  <button
+                                    className="fillBtn tblBtn mrAuto w-auto"
+                                    data-bs-toggle="modal"
+                                    data-bs-target={
+                                      "#gallaryModalImg-" + type.id
+                                    }
+                                  >
+                                    view
+                                  </button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </thead>
+                        </table>
+                      </div>
+                    </SwiperSlide>
+                  );
+                })}
+
+                <div
+                  className="swiper-button-next text-primary"
+                  onClick={() => typesSwiperRef.current?.slideNext()}
+                >
+                  <span className="">
+                    <i className="bi bi-chevron-right fs-1"></i>
+                  </span>
+                </div>
+                <div
+                  className="swiper-button-prev text-primary"
+                  onClick={() => typesSwiperRef.current?.slidePrev()}
+                >
+                  <span className="">
+                    <i className="bi bi-chevron-left fs-1"></i>
+                  </span>
+                </div>
+              </Swiper>
+            )}
           </div>
         </section>
       )}
 
-   
       {projectData && (
         <div className="socialfixBar">
           <div className="accordion" id="accordionExample">
@@ -549,7 +772,7 @@ function SingleProjectView({ params }) {
                     separator=","
                     url={getCurrentUrl()}
                     className="btnContentItem whatsapp"
-                    style={{ width:"100%"}}
+                    style={{ width: "100%" }}
                   >
                     <i className="fa fa-whatsapp" aria-hidden="true"></i>
                     Share on whatsapp
@@ -562,7 +785,7 @@ function SingleProjectView({ params }) {
                   <EmailShareButton
                     url={getCurrentUrl()}
                     className="btnContentItem email"
-                    style={{ width:"100%"}}
+                    style={{ width: "100%" }}
                   >
                     <i className="fa fa-envelope" aria-hidden="true"></i>
                     Share on Email
@@ -598,19 +821,19 @@ function SingleProjectView({ params }) {
                 data-bs-parent="#accordionExample"
               >
                 <div className="fixBtnContent">
-                <a
-        className="btnContentItem text-decoration-none"
-        data-bs-toggle="modal"
-        data-bs-target="#downloadBrochure"
-      >
-        <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
-        DOWNLOAD BROCHURE
-      </a>
+                  <a
+                    className="btnContentItem text-decoration-none"
+                    data-bs-toggle="modal"
+                    data-bs-target="#downloadBrochure"
+                  >
+                    <img
+                      src="/images/icons/btn-icon-2.png"
+                      className="fixBtnIcon"
+                    />
+                    DOWNLOAD BROCHURE
+                  </a>
 
-                  
-
-                  
-                 {/* <a
+                  {/* <a
                     className="btnContentItem text-decoration-none"
                     data-bs-toggle="modal"
                     data-bs-target="#projectSaleOffer"
@@ -641,7 +864,7 @@ function SingleProjectView({ params }) {
         <>
           {projectData?.developer &&
             Object.keys(projectData.developer).length > 0 && (
-              <section className="AboutDeveloper my-5">
+              <section className={`AboutDeveloper  ${isMobileDev ? 'my-2' : 'my-5'}`}>
                 <div className="container">
                   <div className="row">
                     <div className="col-md-7">
@@ -676,494 +899,529 @@ function SingleProjectView({ params }) {
             )}
         </>
       )}
-        <section className="my-5" id="NearBy">
-          <div className="container">
-            <div className="row">
-              <div className="secTabCntent">
-                <h4 className="sctionMdTitle text-primary">similar</h4>
-                <h6 className="sctionSubTitle text-primary"> PROJECTS</h6>
-              </div>
-              <div className="row g-0">
+      <section className={`${isMobileDev ? 'my-2' : 'my-5'}`} id="NearBy">
+        <div className="container">
+          <div className="row">
+            <div className="secTabCntent">
+              <h4 className="sctionMdTitle text-primary">similar</h4>
+              <h6 className="sctionSubTitle text-primary"> PROJECTS</h6>
+            </div>
+            <div className="row g-0">
               {!nearByProjects ? (
                 <h1>Loading...</h1>
-                ) : (
-                  <>
-                  {nearByProjects && 
-                  <Swiper
-                  loop
-                  slidesPerView={1}
-                  spaceBetween={10}
-                  pagination={{
-                    el: ".swiper-pagination",
-                    clickable: true,
-                  }}
-                  navigation={{
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
-                  }}
-                  breakpoints={{
-                    640: {
-                      slidesPerView: 2,
-                      spaceBetween: 10,
-                    },
-                    768: {
-                      slidesPerView: 3,
-                      spaceBetween: 10,
-                    },
-                    1024: {
-                      slidesPerView: 4,
-                      spaceBetween: 10,
-                    },
-                  }}
-                  modules={[Navigation, Pagination]}
-                  onSwiper={(swiper) => {
-                    otherProjectSwiperRef.current = swiper;
-                  }}
-                  onBeforeInit={(swiper) => {
-                    otherProjectSwiperRef.current = swiper;
-                  }}
-                  className="swiper pb-5 communitySwiper"
-                >
-                  {nearByProjects?.map((project, index) => {
-                    return (
-                      <SwiperSlide
-                        className="col-12 col-lg-3 col-md-3"
-                        key={project.id + index}
-                      >
-                        <div className="projectImgCont">
-                          <Link
-                            href={`/projects/${project.slug}`}
-                            className="fw-bold mb-1 text-decoration-none text-white"
+              ) : (
+                <>
+                  {nearByProjects && (
+                    <Swiper
+                      loop
+                      slidesPerView={1}
+                      spaceBetween={10}
+                      pagination={{
+                        el: ".swiper-pagination",
+                        clickable: true,
+                      }}
+                      navigation={{
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                      }}
+                      breakpoints={{
+                        640: {
+                          slidesPerView: 2,
+                          spaceBetween: 10,
+                        },
+                        768: {
+                          slidesPerView: 3,
+                          spaceBetween: 10,
+                        },
+                        1024: {
+                          slidesPerView: 4,
+                          spaceBetween: 10,
+                        },
+                      }}
+                      modules={[Navigation, Pagination]}
+                      onSwiper={(swiper) => {
+                        otherProjectSwiperRef.current = swiper;
+                      }}
+                      onBeforeInit={(swiper) => {
+                        otherProjectSwiperRef.current = swiper;
+                      }}
+                      className="swiper pb-5 communitySwiper"
+                    >
+                      {nearByProjects?.map((project, index) => {
+                        return (
+                          <SwiperSlide
+                            className="col-12 col-lg-3 col-md-3"
+                            key={project.id + index}
                           >
-                            <img
-                              src={project.mainImage}
-                              alt={project.title}
-                              className="img-fluid"
-                            />
-                            <div className="projectImgOverlay">
-                              <div>
-                                <span className="badge projectType">
-                                  {project.accommodation}
-                                </span>
-                              </div>
-                              <div className="text-white">
-                                <p className="fw-bold mb-1">{project.title}</p>
-                              </div>
+                            <div className="projectImgCont">
+                              <Link
+                                href={`/projects/${project.slug}`}
+                                className="fw-bold mb-1 text-decoration-none text-white"
+                              >
+                                <img
+                                  src={project.mainImage}
+                                  alt={project.title}
+                                  className="img-fluid"
+                                />
+                                <div className="projectImgOverlay">
+                                  <div>
+                                    <span className="badge projectType">
+                                      {project.accommodation}
+                                    </span>
+                                  </div>
+                                  <div className="text-white">
+                                    <p className="fw-bold mb-1">
+                                      {project.title}
+                                    </p>
+                                  </div>
+                                </div>
+                              </Link>
                             </div>
-                          </Link>
-                        </div>
-                      </SwiperSlide>
-                    );
-                  })}
-                  <div
-                    className="swiper-button-next text-primary"
-                    onClick={() => otherProjectSwiperRef.current?.slideNext()}
-                  >
-                    <span className="">
-                      <i className="bi bi-chevron-right fs-1"></i>
-                    </span>
-                  </div>
-                  <div
-                    className="swiper-button-prev text-primary"
-                    onClick={() => otherProjectSwiperRef.current?.slidePrev()}
-                  >
-                    <span className="">
-                      <i className="bi bi-chevron-left fs-1"></i>
-                    </span>
-                  </div>
-                </Swiper>}
-                  </>
-                
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
-      
-      {projectData && (projectData?.rentProperties?.length > 0 || projectData?.buyProperties?.length > 0) && (
-      <section className="mt-5 bg-light py-3" id="AvailableProperties">
-        <div className="container">
-          <div className="row g-3 justify-content-center">
-            <div className="col-12 col-lg-12 col-md-12">
-              <div className="row">
-                <div className="col-12 col-lg-12 col-md-12">
-                  <div>
-                    <div className="mainHead mb-5 text-primary">
-                      <h4 className="sctionMdTitle text-primary">
-                        AVAILABLE PROPERTIES
-                      </h4>
-                      {projectData?.rentProperties.length > 0 && (
-                      <div className="row">
-                        <h6 className="sctionSubTitle text-primary col-6">
-                          FOR RENT
-                        </h6>
-                        <div className="col-6 text-end">
-                          
-                            <Link
-                              href={`/rent?project_name=${projectData?.title}&project_detail=${projectData?.id}`}
-                              className="text-decoration-none bdrBtn width-auto-fit"
-                            >
-                              View All
-                            </Link>
-                           
-                        </div>
+                          </SwiperSlide>
+                        );
+                      })}
+                      <div
+                        className="swiper-button-next text-primary"
+                        onClick={() =>
+                          otherProjectSwiperRef.current?.slideNext()
+                        }
+                      >
+                        <span className="">
+                          <i className="bi bi-chevron-right fs-1"></i>
+                        </span>
                       </div>
-                    )}
-                    </div>
-                  </div>
-                </div>
-                {projectData?.rentProperties.length > 0 && (
-                  <div className="col-12 col-lg-12 col-md-12">
-                    <div className="swiper pb-3 projectSlider">
-                      <Swiper
-                        loop
-                        slidesPerView={1}
-                        spaceBetween={10}
-                        pagination={{
-                          el: ".swiper-pagination",
-                          clickable: true,
-                        }}
-                        navigation={{
-                          nextEl: ".swiper-button-next",
-                          prevEl: ".swiper-button-prev",
-                        }}
-                        breakpoints={{
-                          640: {
-                            slidesPerView: 2,
-                            spaceBetween: 10,
-                          },
-                          768: {
-                            slidesPerView: 3,
-                            spaceBetween: 10,
-                          },
-                          1024: {
-                            slidesPerView: 4,
-                            spaceBetween: 10,
-                          },
-                        }}
-                        modules={[Navigation, Pagination]}
-                        onSwiper={(swiper) => {
-                          rentSwiperRef.current = swiper;
-                        }}
-                        className="swiper pb-5"
+                      <div
+                        className="swiper-button-prev text-primary"
+                        onClick={() =>
+                          otherProjectSwiperRef.current?.slidePrev()
+                        }
                       >
-                        {projectData?.rentProperties?.map(
-                          (similarProperty, index) => {
-                            return (
-                              <SwiperSlide
-                                key={
-                                  similarProperty.id + index + "similarProperty"
-                                }
-                              >
-                                <div className="swiper-slide">
-                                  <div>
-                                    <div className="card propCard rounded-0 projectPropertyCard">
-                                      <div>
-                                        <div className="">
-                                          <a
-                                            href={`/properties/${similarProperty.slug}`}
-                                            className="text-decoration-none"
-                                          >
-                                            <div className="projectImgCont">
-                                              <img
-                                                src={similarProperty.mainImage}
-                                                alt={similarProperty.name}
-                                                className="img-fluid propImg"
-                                              />
-                                              <div className="projectImgOverlay">
-                                                <div></div>
-                                                <div>
-                                                  <span className="badge float-start fs-10 projectType">
-                                                    {
-                                                      similarProperty.accommodation
-                                                    }
-                                                  </span>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </a>
-                                        </div>
-                                        <div className="card-body rounded-3 rounded-top-0 similarPropertyCard">
-                                          <Link
-                                            href={`/properties/${similarProperty.slug}`}
-                                            className="text-decoration-none"
-                                          >
-                                            <h6 className="text-black fs-16 fw-semibold mb-0">
-                                              {similarProperty.name}
-                                            </h6>
-                                          </Link>
-                                          <div className="mb-1">
-                                            <small className="text-secondary">
-                                              {similarProperty.communityName}
-                                            </small>
-                                          </div>
-                                          <p className="fs-18 mb-2 text-primary fw-semibold">
-                                            AED{" "}
-                                            {similarProperty &&
-                                              new Intl.NumberFormat().format(
-                                                similarProperty.price
-                                              )}{" "}
-                                          </p>
-                                          <ul className="list-unstyled mb-0 d-flex justify-content-between">
-                                            <li className="d-inline">
-                                              <small>
-                                                <img
-                                                  src="/images/icons/bed.png"
-                                                  alt="Range"
-                                                  className="img-fluid"
-                                                  width="25px"
-                                                />
-                                                <span className="align-text-top ms-1">
-                                                  {similarProperty.bedrooms}
-                                                </span>
-                                              </small>
-                                            </li>
-                                            <li className="d-inline">
-                                              <small>
-                                                <img
-                                                  src="/images/icons/bath.png"
-                                                  alt="Range"
-                                                  className="img-fluid"
-                                                  width="20px"
-                                                />
-                                                <span className="align-text-top ms-1">
-                                                  {similarProperty.bathrooms}
-                                                </span>
-                                              </small>
-                                            </li>
-                                            <li className="d-inline">
-                                              <small>
-                                                <img
-                                                  src="/images/icons/area.png"
-                                                  alt="Range"
-                                                  className="img-fluid"
-                                                  width="20px"
-                                                />
-                                                <span className="align-text-top ms-1">
-                                                  {" "}
-                                                  {similarProperty.area}{" "}
-                                                  {similarProperty.unit_measure}
-                                                </span>
-                                              </small>
-                                            </li>
-                                          </ul>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </SwiperSlide>
-                            );
-                          }
-                        )}
-
-                        <div
-                          className="swiper-button-next swiperUniqueNext text-primary"
-                          onClick={() => rentSwiperRef.current?.slidePrev()}
-                        >
-                          <span className="">
-                            <i className="bi bi-chevron-right fs-1"></i>
-                          </span>
-                        </div>
-                        <div
-                          className="swiper-button-prev swiperUniquePrev text-primary"
-                          onClick={() => rentSwiperRef.current?.slideNext()}
-                        >
-                          <span className="">
-                            <i className="bi bi-chevron-left fs-1"></i>
-                          </span>
-                        </div>
-                      </Swiper>
-                    </div>
-                  </div>
-                )}
-                {projectData?.buyProperties.length > 0 && (
-                  <>
-                  <div className="row mb-3">
-                  <h6 className="sctionSubTitle text-primary col-6">FOR SALE</h6>
-                  <div className="col-6 text-end">
-                    
-                      <Link
-                      href={`/buy?project_name=${projectData?.title}&project_detail=${projectData?.id}`}
-                        className="text-decoration-none bdrBtn width-auto-fit"
-                      >
-                        View All
-                      </Link>
-                    
-                  </div>
-                </div>
-                  <div className="col-12 col-lg-12 col-md-12">
-                    <div className="swiper pb-3 projectSlider">
-                      <Swiper
-                        loop
-                        slidesPerView={1}
-                        spaceBetween={10}
-                        pagination={{
-                          el: ".swiper-pagination",
-                          clickable: true,
-                        }}
-                        navigation={{
-                          nextEl: ".swiper-button-next",
-                          prevEl: ".swiper-button-prev",
-                        }}
-                        breakpoints={{
-                          640: {
-                            slidesPerView: 2,
-                            spaceBetween: 10,
-                          },
-                          768: {
-                            slidesPerView: 3,
-                            spaceBetween: 10,
-                          },
-                          1024: {
-                            slidesPerView: 4,
-                            spaceBetween: 10,
-                          },
-                        }}
-                        modules={[Navigation, Pagination]}
-                        onSwiper={(swiper) => {
-                          saleSwiperRef.current = swiper;
-                        }}
-                        className="swiper pb-5"
-                      >
-                        {projectData?.buyProperties?.map(
-                          (similarProperty, index) => {
-                            return (
-                              <SwiperSlide
-                                key={
-                                  similarProperty.id + index + "similarProperty"
-                                }
-                              >
-                                <div className="swiper-slide">
-                                  <div>
-                                    <div className="card propCard rounded-0">
-                                      <div>
-                                        <div className="">
-                                          <a
-                                            href={`/properties/${similarProperty.slug}`}
-                                            className="text-decoration-none"
-                                          >
-                                            <div className="projectImgCont">
-                                              <img
-                                                src={similarProperty.mainImage}
-                                                alt={similarProperty.name}
-                                                className="img-fluid propImg"
-                                              />
-                                              <div className="projectImgOverlay">
-                                                <div></div>
-                                                <div>
-                                                  <span className="badge float-start fs-10 projectType">
-                                                    {
-                                                      similarProperty.accommodation
-                                                    }
-                                                  </span>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </a>
-                                        </div>
-                                        <div className="card-body rounded-3 rounded-top-0 projectPropertyCard">
-                                          <Link
-                                            href={`/properties/${similarProperty.slug}`}
-                                            className="text-decoration-none"
-                                          >
-                                            <h6 className="text-black fs-16 fw-semibold mb-0">
-                                              {similarProperty.name}
-                                            </h6>
-                                          </Link>
-                                          <div className="mb-1">
-                                            <small className="text-secondary">
-                                              {similarProperty.communityName}
-                                            </small>
-                                          </div>
-                                          <p className="fs-18 mb-2 text-primary fw-semibold">
-                                            AED{" "}
-                                            {similarProperty &&
-                                              new Intl.NumberFormat().format(
-                                                similarProperty.price
-                                              )}{" "}
-                                          </p>
-                                          <ul className="list-unstyled mb-0 d-flex justify-content-between">
-                                            <li className="d-inline">
-                                              <small>
-                                                <img
-                                                  src="/images/icons/bed.png"
-                                                  alt="Range"
-                                                  className="img-fluid"
-                                                  width="25px"
-                                                />
-                                                <span className="align-text-top ms-1">
-                                                  {similarProperty.bedrooms}
-                                                </span>
-                                              </small>
-                                            </li>
-                                            <li className="d-inline">
-                                              <small>
-                                                <img
-                                                  src="/images/icons/bath.png"
-                                                  alt="Range"
-                                                  className="img-fluid"
-                                                  width="20px"
-                                                />
-                                                <span className="align-text-top ms-1">
-                                                  {similarProperty.bathrooms}
-                                                </span>
-                                              </small>
-                                            </li>
-                                            <li className="d-inline">
-                                              <small>
-                                                <img
-                                                  src="/images/icons/area.png"
-                                                  alt="Range"
-                                                  className="img-fluid"
-                                                  width="20px"
-                                                />
-                                                <span className="align-text-top ms-1">
-                                                  {" "}
-                                                  {similarProperty.area}{" "}
-                                                  {similarProperty.unit_measure}
-                                                </span>
-                                              </small>
-                                            </li>
-                                          </ul>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </SwiperSlide>
-                            );
-                          }
-                        )}
-
-                        <div
-                          className="swiper-button-next swiperUniqueNext text-primary"
-                          onClick={() => saleSwiperRef.current?.slidePrev()}
-                        >
-                          <span className="">
-                            <i className="bi bi-chevron-right fs-1"></i>
-                          </span>
-                        </div>
-                        <div
-                          className="swiper-button-prev swiperUniquePrev text-primary"
-                          onClick={() => saleSwiperRef.current?.slideNext()}
-                        >
-                          <span className="">
-                            <i className="bi bi-chevron-left fs-1"></i>
-                          </span>
-                        </div>
-                      </Swiper>
-                    </div>
-                  </div>
-                  </>
-                
-                )}
-              </div>
+                        <span className="">
+                          <i className="bi bi-chevron-left fs-1"></i>
+                        </span>
+                      </div>
+                    </Swiper>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>
       </section>
-      )}
+
+      {projectData &&
+        (projectData?.rentProperties?.length > 0 ||
+          projectData?.buyProperties?.length > 0) && (
+          <section className="mt-5 bg-light py-3" id="AvailableProperties">
+            <div className="container">
+              <div className="row g-3 justify-content-center">
+                <div className="col-12 col-lg-12 col-md-12">
+                  <div className="row">
+                    <div className="col-12 col-lg-12 col-md-12">
+                      <div>
+                        <div className="mainHead mb-5 text-primary">
+                          <h4 className="sctionMdTitle text-primary">
+                            AVAILABLE PROPERTIES
+                          </h4>
+                          {projectData?.rentProperties.length > 0 && (
+                            <div className="row">
+                              <h6 className="sctionSubTitle text-primary col-6">
+                                FOR RENT
+                              </h6>
+                              <div className="col-6 text-end">
+                                <Link
+                                  href={`/rent?project_name=${projectData?.title}&project_detail=${projectData?.id}`}
+                                  className="text-decoration-none bdrBtn width-auto-fit"
+                                >
+                                  View All
+                                </Link>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    {projectData?.rentProperties.length > 0 && (
+                      <div className="col-12 col-lg-12 col-md-12">
+                        <div className="swiper pb-3 projectSlider">
+                          <Swiper
+                            loop
+                            slidesPerView={1}
+                            spaceBetween={10}
+                            pagination={{
+                              el: ".swiper-pagination",
+                              clickable: true,
+                            }}
+                            navigation={{
+                              nextEl: ".swiper-button-next",
+                              prevEl: ".swiper-button-prev",
+                            }}
+                            breakpoints={{
+                              640: {
+                                slidesPerView: 2,
+                                spaceBetween: 10,
+                              },
+                              768: {
+                                slidesPerView: 3,
+                                spaceBetween: 10,
+                              },
+                              1024: {
+                                slidesPerView: 4,
+                                spaceBetween: 10,
+                              },
+                            }}
+                            modules={[Navigation, Pagination]}
+                            onSwiper={(swiper) => {
+                              rentSwiperRef.current = swiper;
+                            }}
+                            className="swiper pb-5"
+                          >
+                            {projectData?.rentProperties?.map(
+                              (similarProperty, index) => {
+                                return (
+                                  <SwiperSlide
+                                    key={
+                                      similarProperty.id +
+                                      index +
+                                      "similarProperty"
+                                    }
+                                  >
+                                    <div className="swiper-slide">
+                                      <div>
+                                        <div className="card propCard rounded-0 projectPropertyCard">
+                                          <div>
+                                            <div className="">
+                                              <a
+                                                href={`/properties/${similarProperty.slug}`}
+                                                className="text-decoration-none"
+                                              >
+                                                <div className="projectImgCont">
+                                                  <img
+                                                    src={
+                                                      similarProperty.mainImage
+                                                    }
+                                                    alt={similarProperty.name}
+                                                    className="img-fluid propImg"
+                                                  />
+                                                  <div className="projectImgOverlay">
+                                                    <div></div>
+                                                    <div>
+                                                      <span className="badge float-start fs-10 projectType">
+                                                        {
+                                                          similarProperty.accommodation
+                                                        }
+                                                      </span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </a>
+                                            </div>
+                                            <div className="card-body rounded-3 rounded-top-0 similarPropertyCard">
+                                              <Link
+                                                href={`/properties/${similarProperty.slug}`}
+                                                className="text-decoration-none"
+                                              >
+                                                <h6 className="text-black fs-16 fw-semibold mb-0">
+                                                  {similarProperty.name}
+                                                </h6>
+                                              </Link>
+                                              <div className="mb-1">
+                                                <small className="text-secondary">
+                                                  {
+                                                    similarProperty.communityName
+                                                  }
+                                                </small>
+                                              </div>
+                                              <p className="fs-18 mb-2 text-primary fw-semibold">
+                                                AED{" "}
+                                                {similarProperty &&
+                                                  new Intl.NumberFormat().format(
+                                                    similarProperty.price
+                                                  )}{" "}
+                                              </p>
+                                              <ul className="list-unstyled mb-0 d-flex justify-content-between">
+                                                <li className="d-inline">
+                                                  <small>
+                                                    <img
+                                                      src="/images/icons/bed.png"
+                                                      alt="Range"
+                                                      className="img-fluid"
+                                                      width="25px"
+                                                    />
+                                                    <span className="align-text-top ms-1">
+                                                      {similarProperty.bedrooms}
+                                                    </span>
+                                                  </small>
+                                                </li>
+                                                <li className="d-inline">
+                                                  <small>
+                                                    <img
+                                                      src="/images/icons/bath.png"
+                                                      alt="Range"
+                                                      className="img-fluid"
+                                                      width="20px"
+                                                    />
+                                                    <span className="align-text-top ms-1">
+                                                      {
+                                                        similarProperty.bathrooms
+                                                      }
+                                                    </span>
+                                                  </small>
+                                                </li>
+                                                <li className="d-inline">
+                                                  <small>
+                                                    <img
+                                                      src="/images/icons/area.png"
+                                                      alt="Range"
+                                                      className="img-fluid"
+                                                      width="20px"
+                                                    />
+                                                    <span className="align-text-top ms-1">
+                                                      {" "}
+                                                      {
+                                                        similarProperty.area
+                                                      }{" "}
+                                                      {
+                                                        similarProperty.unit_measure
+                                                      }
+                                                    </span>
+                                                  </small>
+                                                </li>
+                                              </ul>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </SwiperSlide>
+                                );
+                              }
+                            )}
+
+                            <div
+                              className="swiper-button-next swiperUniqueNext text-primary"
+                              onClick={() => rentSwiperRef.current?.slidePrev()}
+                            >
+                              <span className="">
+                                <i className="bi bi-chevron-right fs-1"></i>
+                              </span>
+                            </div>
+                            <div
+                              className="swiper-button-prev swiperUniquePrev text-primary"
+                              onClick={() => rentSwiperRef.current?.slideNext()}
+                            >
+                              <span className="">
+                                <i className="bi bi-chevron-left fs-1"></i>
+                              </span>
+                            </div>
+                          </Swiper>
+                        </div>
+                      </div>
+                    )}
+                    {projectData?.buyProperties.length > 0 && (
+                      <>
+                        <div className="row mb-3">
+                          <h6 className="sctionSubTitle text-primary col-6">
+                            FOR SALE
+                          </h6>
+                          <div className="col-6 text-end">
+                            <Link
+                              href={`/buy?project_name=${projectData?.title}&project_detail=${projectData?.id}`}
+                              className="text-decoration-none bdrBtn width-auto-fit"
+                            >
+                              View All
+                            </Link>
+                          </div>
+                        </div>
+                        <div className="col-12 col-lg-12 col-md-12">
+                          <div className="swiper pb-3 projectSlider">
+                            <Swiper
+                              loop
+                              slidesPerView={1}
+                              spaceBetween={10}
+                              pagination={{
+                                el: ".swiper-pagination",
+                                clickable: true,
+                              }}
+                              navigation={{
+                                nextEl: ".swiper-button-next",
+                                prevEl: ".swiper-button-prev",
+                              }}
+                              breakpoints={{
+                                640: {
+                                  slidesPerView: 2,
+                                  spaceBetween: 10,
+                                },
+                                768: {
+                                  slidesPerView: 3,
+                                  spaceBetween: 10,
+                                },
+                                1024: {
+                                  slidesPerView: 4,
+                                  spaceBetween: 10,
+                                },
+                              }}
+                              modules={[Navigation, Pagination]}
+                              onSwiper={(swiper) => {
+                                saleSwiperRef.current = swiper;
+                              }}
+                              className="swiper pb-5"
+                            >
+                              {projectData?.buyProperties?.map(
+                                (similarProperty, index) => {
+                                  return (
+                                    <SwiperSlide
+                                      key={
+                                        similarProperty.id +
+                                        index +
+                                        "similarProperty"
+                                      }
+                                    >
+                                      <div className="swiper-slide">
+                                        <div>
+                                          <div className="card propCard rounded-0">
+                                            <div>
+                                              <div className="">
+                                                <a
+                                                  href={`/properties/${similarProperty.slug}`}
+                                                  className="text-decoration-none"
+                                                >
+                                                  <div className="projectImgCont">
+                                                    <img
+                                                      src={
+                                                        similarProperty.mainImage
+                                                      }
+                                                      alt={similarProperty.name}
+                                                      className="img-fluid propImg"
+                                                    />
+                                                    <div className="projectImgOverlay">
+                                                      <div></div>
+                                                      <div>
+                                                        <span className="badge float-start fs-10 projectType">
+                                                          {
+                                                            similarProperty.accommodation
+                                                          }
+                                                        </span>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </a>
+                                              </div>
+                                              <div className="card-body rounded-3 rounded-top-0 projectPropertyCard">
+                                                <Link
+                                                  href={`/properties/${similarProperty.slug}`}
+                                                  className="text-decoration-none"
+                                                >
+                                                  <h6 className="text-black fs-16 fw-semibold mb-0">
+                                                    {similarProperty.name}
+                                                  </h6>
+                                                </Link>
+                                                <div className="mb-1">
+                                                  <small className="text-secondary">
+                                                    {
+                                                      similarProperty.communityName
+                                                    }
+                                                  </small>
+                                                </div>
+                                                <p className="fs-18 mb-2 text-primary fw-semibold">
+                                                  AED{" "}
+                                                  {similarProperty &&
+                                                    new Intl.NumberFormat().format(
+                                                      similarProperty.price
+                                                    )}{" "}
+                                                </p>
+                                                <ul className="list-unstyled mb-0 d-flex justify-content-between">
+                                                  <li className="d-inline">
+                                                    <small>
+                                                      <img
+                                                        src="/images/icons/bed.png"
+                                                        alt="Range"
+                                                        className="img-fluid"
+                                                        width="25px"
+                                                      />
+                                                      <span className="align-text-top ms-1">
+                                                        {
+                                                          similarProperty.bedrooms
+                                                        }
+                                                      </span>
+                                                    </small>
+                                                  </li>
+                                                  <li className="d-inline">
+                                                    <small>
+                                                      <img
+                                                        src="/images/icons/bath.png"
+                                                        alt="Range"
+                                                        className="img-fluid"
+                                                        width="20px"
+                                                      />
+                                                      <span className="align-text-top ms-1">
+                                                        {
+                                                          similarProperty.bathrooms
+                                                        }
+                                                      </span>
+                                                    </small>
+                                                  </li>
+                                                  <li className="d-inline">
+                                                    <small>
+                                                      <img
+                                                        src="/images/icons/area.png"
+                                                        alt="Range"
+                                                        className="img-fluid"
+                                                        width="20px"
+                                                      />
+                                                      <span className="align-text-top ms-1">
+                                                        {" "}
+                                                        {
+                                                          similarProperty.area
+                                                        }{" "}
+                                                        {
+                                                          similarProperty.unit_measure
+                                                        }
+                                                      </span>
+                                                    </small>
+                                                  </li>
+                                                </ul>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </SwiperSlide>
+                                  );
+                                }
+                              )}
+
+                              <div
+                                className="swiper-button-next swiperUniqueNext text-primary"
+                                onClick={() =>
+                                  saleSwiperRef.current?.slidePrev()
+                                }
+                              >
+                                <span className="">
+                                  <i className="bi bi-chevron-right fs-1"></i>
+                                </span>
+                              </div>
+                              <div
+                                className="swiper-button-prev swiperUniquePrev text-primary"
+                                onClick={() =>
+                                  saleSwiperRef.current?.slideNext()
+                                }
+                              >
+                                <span className="">
+                                  <i className="bi bi-chevron-left fs-1"></i>
+                                </span>
+                              </div>
+                            </Swiper>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
       {projectData?.types?.map((type, index) => {
         return (
           <div
@@ -1228,10 +1486,14 @@ function SingleProjectView({ params }) {
         currentUnit={currentUnit}
         project={projectData}
       ></PaymentPlanModel>
-      
+
       <SaleOfferModal />
-      <DownloadProjectSaleOfferModel/>
-      <DownloadProjectPPTModal  brochureLink={projectData?.brochureLink} fileName={projectData?.title} slug={projectData?.slug}/>
+      <DownloadProjectSaleOfferModel />
+      <DownloadProjectPPTModal
+        brochureLink={projectData?.brochureLink}
+        fileName={projectData?.title}
+        slug={projectData?.slug}
+      />
     </>
   );
 }

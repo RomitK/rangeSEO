@@ -49,7 +49,10 @@ height: 500px !important;
 height: 500px !important;
 }
 .dubaiGuideSection{
-margin: 60px 0px !important;  
+/* margin: 60px 0px !important;   */
+}
+.dubaiMy60{
+    margin: 60px 0px !important;  
 }
 .horizantalCard{
 background-color: #f6f6f6 !important;   

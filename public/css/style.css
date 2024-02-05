@@ -2079,7 +2079,12 @@ background-color: #2f3c6a;
         height: 200px; overflow-y: auto;
     }
 
- 
+    .mob-contact-links{
+        display: none;
+      }
+      .bottomMenu .Probtn {
+        color: white !important;
+      }
       
 
     

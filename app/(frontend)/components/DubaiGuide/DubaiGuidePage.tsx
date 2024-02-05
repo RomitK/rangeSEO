@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Swiper as SwiperType } from "swiper";
 import "swiper/css/navigation";
@@ -21,9 +21,28 @@ function DubaiGuidePage() {
     const [ fileName, setFileName] = useState(null);
     const [ formName, setFormName] = useState(null);
     const [ title, setTitle] = useState(null);
+    const [isMobileDev, setIsMobileDev] = useState(false);
+    useEffect(() => {
+      const handleResize = () => {
+        // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+        const isMobileDevice = window.innerWidth < 768;
+        setIsMobileDev(isMobileDevice);
+      };
+  
+      // Initial check on component mount
+      handleResize();
+  
+      // Add event listener for window resize
+      window.addEventListener("resize", handleResize);
+  
+      // Clean up the event listener on component unmount
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
     return (
     <>
-      <header className="header dubaiGuideSection">
+      <header className={`header dubaiGuideSection ${isMobileDev ? 'my-5' : 'dubaiMy60'}`}>
         <h4 className="sctionMdTitle text-primary text-center mb-2">
           DUBAI GUIDES
         </h4>
