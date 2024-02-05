@@ -2058,9 +2058,10 @@ background-color: #2f3c6a;
     .largeCloseBtn{
         font-size: larger;
     }
-    /* .propertyGallery{
-        height: 500px !important
-    } */
+    .propertyGallery{
+        height: 400px !important;
+        width: 800px;
+    }
     .fixed-div {
         position: fixed;
         /* transition: all 0.3s ease-in-out; */
