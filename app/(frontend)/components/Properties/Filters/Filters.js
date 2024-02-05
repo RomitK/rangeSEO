@@ -100,7 +100,22 @@ function Filters({
                   <div
                     role="button"
                     className={classes.openItemsDiv}
+                    onTouchStart={() => {
+                      console.log('mobile')
+
+                      const comm = form["searchBy"];
+                      const filtered = comm.filter(
+                        (item1) =>
+                          item1.name !== selectedItem.name &&
+                          item1.type !== selectedItem.type
+                      );
+                      props.setValue([...filtered]);
+                      setForm({ ...form, searchBy: filtered });
+                      selectRef.current.blur();
+                      
+                    }}
                     onClick={() => {
+                      console.log('desktop')
                       const comm = form["searchBy"];
                       const filtered = comm.filter(
                         (item1) =>
