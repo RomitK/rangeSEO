@@ -10,7 +10,7 @@ import { useForm, Controller } from "react-hook-form";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 
 function CareerModel(props) {
-
+  const [isMobileDev, setIsMobileDev] = useState(false);
   const {
     register,
     handleSubmit,
@@ -18,6 +18,26 @@ function CareerModel(props) {
     control,
     reset,
   } = useForm();
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobileDev(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const onSubmit = (data) => {
 
     const formData = new FormData();
@@ -119,7 +139,7 @@ function CareerModel(props) {
         aria-hidden="true"
       >
         <div className="modal-dialog  modal-dialog-centered modal-md modalBookMeet ">
-          <div className="modal-content">
+          <div className={`modal-content ${isMobileDev ? 'p-2' : ''}`}>
             <div className="modal-header border-0 justify-content-end p-1">
               <button
                 type="button"

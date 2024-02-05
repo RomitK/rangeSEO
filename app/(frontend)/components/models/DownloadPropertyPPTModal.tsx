@@ -29,6 +29,7 @@ function DownloadPropertyPPTModal(props) {
   const submitBtnRef = useRef(null);
   const [otpSent, setOtpSent] = useState(false);
   const [countdown, setCountdown] = useState(60); // 2 minutes in seconds
+  const [isMobileDev, setIsMobileDev] = useState(false);
 
   const closeRef = useRef(null);
   const fileRef = useRef(null);
@@ -42,6 +43,24 @@ function DownloadPropertyPPTModal(props) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [optPhoneNumber, setOptPhoneNumber] = useState("");
   const [timer, setTimer] = useState(60);
+ useEffect(() => {
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobileDev(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   useEffect(() => {
@@ -258,7 +277,7 @@ function DownloadPropertyPPTModal(props) {
         aria-hidden="true"
       >
         <div className="modal-dialog  modal-dialog-centered modal-md modalBookMeet ">
-          <div className="modal-content">
+          <div className={`modal-content ${isMobileDev ? 'p-2' : ''}`}>
             <div className="modal-header border-0 justify-content-end p-1">
             <button
                 type="button"
@@ -288,7 +307,7 @@ function DownloadPropertyPPTModal(props) {
                       width="150"
                     />
                   </div>
-                  <div className=" p-4">
+                  <div className={` ${isMobileDev ? '' : ''}`}>
                   {showOtp && (
                     <form
                       action=""

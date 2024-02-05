@@ -29,7 +29,7 @@ function DownloadProjectSaleOfferModel(props) {
   const submitBtnRef = useRef(null);
   const [otpSent, setOtpSent] = useState(false);
   const [countdown, setCountdown] = useState(120); // 2 minutes in seconds
-
+  const [isMobileDev, setIsMobileDev] = useState(false);
   useEffect(() => {
     let interval = null;
     if (otpSent && countdown > 0) {
@@ -58,6 +58,26 @@ function DownloadProjectSaleOfferModel(props) {
   const [timer, setTimer] = useState(60);
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobileDev(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     console.log(timer);
     let interval;
@@ -203,7 +223,7 @@ function DownloadProjectSaleOfferModel(props) {
         aria-hidden="true"
       >
         <div className="modal-dialog  modal-dialog-centered modal-md modalBookMeet ">
-          <div className="modal-content">
+          <div   className={`modal-content ${isMobileDev ? 'p-2' : ''}`}>
             <div className="modal-header border-0 justify-content-end p-1">
               <button
                 type="button"
@@ -236,16 +256,16 @@ function DownloadProjectSaleOfferModel(props) {
                     />
                   </div>
                   {!UserAs && (
-                   <div className="p-4 d-flex justify-content-end">
+                   <div className="p-4 py-2 d-flex justify-content-center">
                    <button
-                       className="btn btn-sm btn-bluee rounded-0 px-5 me-2 btnContact2"
+                       className="btn btn-sm btn-bluee rounded-0 p-3 me-2 btnContact2 text-nowrap d-flex justify-content-center"
                        onClick={() => setUserAs("Visitor")}
                    >
                        I am a Buyer
                    </button>
                
                    <button
-                       className="btn btn-sm btn-primary rounded-0 px-5 btnContact2"
+                       className="btn btn-sm btn-primary rounded-0 p-3 btnContact2 text-nowrap d-flex justify-content-center"
                        onClick={() => setUserAs("Employee")}
                    >
                        I am an Agent

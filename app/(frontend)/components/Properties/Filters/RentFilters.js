@@ -1208,10 +1208,10 @@ function RentFilters({
               </div>
             </div>
           </nav>
-          <form action="">
-            <div className="mobItemLink row my-1">
-              <br></br>
-              <div className="col-10 col-lg-3 mx-auto ">
+          <form action="" className="">
+            <div className="my-2 mobItemLink ">
+              
+              <div className="col-10 col-lg-3 mx-auto">
                 <AsyncSelect
                   isClearable={false}
                   isMulti

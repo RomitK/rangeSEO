@@ -21,6 +21,7 @@ left: 0;
 margin-bottom: 40px;
 }
 }
+
 @media (max-width:992px){
 .vtTextBXox p {
 font-size: 16px;
@@ -90,8 +91,15 @@ font-size: 14px;
 .sliderThumbnailArea{
 height: 9vw !important;
 }
+ 
 }
 @media (max-width:768px){
+    .clBoxitem .clBoxitemitem h5 {
+        font-size: x-large !important
+    }
+    .proUserBox .projctSpecIMg{
+        /* min-width: min-content !important; */
+        }
 .AddressArea{
 flex-direction: column;
 }
@@ -243,7 +251,7 @@ width: 100%;
 height: 280px;
 }
 .dashboardcontrols.wizardWrapArea{
-padding: 30px 20px !important;
+/* padding: 30px 20px !important; */
 }
 .sliderThumbnailArea{
 height: unset !important;
@@ -255,12 +263,13 @@ height: unset !important;
 .sliderModalBox .gallerymodalBtn i{
 font-size: 18px;
 }
+
 .sliderThumbnailArea .gallerymodalBtn{
 font-size: 14px;
 height: 40px;
 }
 .sliderThumbnailArea .sliderModalBox{
-margin: 15px auto 10px;
+/* margin: 15px auto 10px; */
 }
 .socialfixBar .fixBtnContent{
 flex-direction: column;
@@ -387,8 +396,15 @@ height: 250px !important;
 .dubaiGuideSection .mb-5{
 margin-bottom: 0px !important;
 }
+.multiItemsCarousel .swiper-wrapper{
+    padding: 10px 0px 20px;
+}
+section .sctionMdTitle {
+    font-size: 22px;
+}
 .dubaiGuideSection{
 padding-bottom: 0px !important;
+margin: 20px 0px !important;  
 }
 .dubaiGuideSection .multiSilder{
 height: 350px !important;
