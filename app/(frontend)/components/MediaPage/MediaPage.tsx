@@ -14,6 +14,26 @@ function MediaPage({ params }) {
   const [blogs, setBlogs] = useState([]);
   const [celebrations, setCelebrations] = useState([]);
   const [events, setEvents] = useState([]);
+  const [isMobileDev, setIsMobileDev] = useState(false);
+  useEffect(() => {
+    
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobileDev(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const onNextPage = () => {
     let url = links?.next;
@@ -61,7 +81,7 @@ function MediaPage({ params }) {
     <>
       <section>
         <div className="container">
-          <div className="mainHead mb-3 text-primary text-center mxWd pt-5">
+          <div className={`mainHead mb-3 text-primary text-center mxWd  ${isMobileDev ? "" : "pt-5"}`}>
             <h4 className="mb-2 pt-2">MEDIA</h4>
             <span className="lineShape mb-2"></span>
           </div>

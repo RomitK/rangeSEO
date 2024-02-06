@@ -22,6 +22,25 @@ import { getFontAwesomeSvgPath } from "@/src/utils/helpers/common";
 import Location from "./Location";
 import { createRoot } from "react-dom/client";
 function SinglecommunityDataView({ params }) {
+  const [isMobileDev, setIsMobileDev] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobileDev(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   const slug = params.slug[0];
   const { communityData } = useGetSingleCommunityData(slug);
   const [nearByLocations, setNearByLocations] = useState([]);
@@ -173,14 +192,14 @@ function SinglecommunityDataView({ params }) {
 
   return (
     <>
-      <section className="my-5">
+      <section  className={` ${isMobileDev ? "my-2" : "my-5"}`}>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12 col-lg-12 col-md-12">
               <div className="row g-3 justify-content-center">
                 <div className="col-12 col-lg-12 col-md-12">
                   <div>
-                    <div className="mainHead mb-3 text-primary text-center">
+                    <div className={`mainHead  text-primary text-center ${isMobileDev ? "" : "mb-3"}`} >
                       <h4>{communityData && communityData.name}</h4>
                     </div>
                   </div>
@@ -306,7 +325,7 @@ function SinglecommunityDataView({ params }) {
                   <div className="row ">
                     <div className="col-12 col-lg-12 col-md-12">
                       <div>
-                        <div className="mainHead mb-5 text-center text-primary">
+                        <div className={`mainHead  text-center text-primary ${isMobileDev ? "mb-2" : "mb-5"}`}>
                           <h4>HIGHLIGHTS</h4>
                         </div>
                       </div>
@@ -342,7 +361,8 @@ function SinglecommunityDataView({ params }) {
                         onSwiper={(swiper) => {
                           hightlighSwiperRef.current = swiper;
                         }}
-                        className="swiper highlightSwiper px-5"
+                        
+                        className={`swiper highlightSwiper ${isMobileDev ? "px-2" : "px-5"}`}
                       >
                         {communityData?.highlights?.map((highlight, index) => {
                           return (
@@ -399,7 +419,7 @@ function SinglecommunityDataView({ params }) {
             </div>
           </section>
         )}
-      <section className="my-5 bg-light py-5">
+      <section className={`bg-light ${isMobileDev ? "my-2 py-2" : "my-5 py-5"}`}>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12 col-lg-10 col-md-12">
@@ -677,14 +697,14 @@ function SinglecommunityDataView({ params }) {
       {communityData &&
         communityData.amenities &&
         communityData.amenities.length > 0 && (
-          <section className="my-5" id="amenities">
+          <section  id="amenities" className={` ${isMobileDev ? "my-2" : "my-5"}`} >
             <div className="container">
               <div className="row">
                 <div className="col-12 col-lg-12 col-md-12">
                   <div className="row ">
                     <div className="col-12 col-lg-12 col-md-12">
                       <div>
-                        <div className="mainHead mb-5 text-center text-primary">
+                        <div className={`mainHead  text-center text-primary ${isMobileDev ? "mb-2" : "mb-5"}`}>
                           <h4>AMENITIES</h4>
                         </div>
                       </div>
@@ -720,7 +740,8 @@ function SinglecommunityDataView({ params }) {
                         onSwiper={(swiper) => {
                           amentitiesSwiperRef.current = swiper;
                         }}
-                        className="swiper amenitiesSwiper px-5"
+                        
+                        className={`swiper amenitiesSwiper ${isMobileDev ? "px-2" : "px-5"}`} 
                       >
                         {communityData?.amenities?.map((amenity, index) => {
                           return (
@@ -774,21 +795,21 @@ function SinglecommunityDataView({ params }) {
         )}
       {communityData &&
         (communityData?.rentProperties.length > 0 ||  communityData?.saleProperties.length > 0)  &&(
-          <section className="my-5" id="properties">
+          <section id="properties" className={` ${isMobileDev ? "my-2" : "my-5"}`}>
             <div className="container">
               <div className="row">
                 <div className="col-12 col-lg-12 col-md-12">
                   <div className="row">
                     <div className="col-12 col-lg-12 col-md-12">
                       <div>
-                        <div className="mainHead mb-5 text-center text-primary">
+                        <div className={`mainHead  text-center text-primary ${isMobileDev ? "mb-2" : "mb-5"}`}>
                           <h4>AVAILABLE PROPERTIES</h4>
                         </div>
                       </div>
                     </div>
                     {communityData?.rentProperties.length > 0 && (
                     <div className="col-12 col-lg-12 col-md-12">
-                      <div className="row mb-5">
+                      <div className={`row ${isMobileDev ? "mb-2" : "mb-5"}`}>
                         <h6 className="sctionCommunitySubTitle text-primary col-6">
                           FOR RENT
                         </h6>
@@ -832,7 +853,8 @@ function SinglecommunityDataView({ params }) {
                         onSwiper={(swiper) => {
                           PropertyRentSwiperRef.current = swiper;
                         }}
-                        className="swiper pb-5 projectSlider"
+                        
+                        className={`swiper projectSlider ${isMobileDev ? "pb-2" : "pb-5"}`}
                       >
                         {communityData?.rentProperties?.map((property, index) => {
                           return (
@@ -960,7 +982,7 @@ function SinglecommunityDataView({ params }) {
                     )}
                     {communityData?.saleProperties.length > 0 && (
                     <div className="col-12 col-lg-12 col-md-12">
-                    <div className="row mb-5">
+                    <div className={`row ${isMobileDev ? "mb-2" : "mb-5"}`}>
                         <h6 className="sctionCommunitySubTitle text-primary col-6">
                           FOR SALE
                         </h6>
@@ -1005,7 +1027,8 @@ function SinglecommunityDataView({ params }) {
                         onSwiper={(swiper) => {
                           PropertySaleSwiperRef.current = swiper;
                         }}
-                        className="swiper pb-5 projectSlider"
+
+                        className={`swiper projectSlider ${isMobileDev ? "pb-2" : "pb-5"}`}
                       >
                         {communityData?.saleProperties?.map((property, index) => {
                           return (
@@ -1276,7 +1299,7 @@ function SinglecommunityDataView({ params }) {
                       onSwiper={(swiper) => {
                         nearbyCommunitiesSwiperRef.current = swiper;
                       }}
-                      className="swiper pb-5 projectSlider"
+                      className={`swiper projectSlider ${isMobileDev ? "pb-2" : "pb-5"}`}
                     >
                       {communityData?.nearbyCommunities.map(
                         (nearbyCommunity, index) => {

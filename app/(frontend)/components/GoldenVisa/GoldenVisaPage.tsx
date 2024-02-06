@@ -10,7 +10,26 @@ function GoldenVisaPage() {
   const [answers, setAnswers] = useState({});
   const [checkClicked, setCheckClicked] = useState(false);
   const inputRef = useRef(null);
+  const [isMobileDev, setIsMobileDev] = useState(false);
+  useEffect(() => {
+    
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobileDev(isMobileDevice);
+    };
 
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   const showCheck = () => {
     return (
       Object.values(answers)
@@ -45,17 +64,17 @@ function GoldenVisaPage() {
 
   return (
     <>
-      <section className="my-5">
+      <section  className={` ${isMobileDev ? "my-2" : "my-5"}`}>
         <div className="container">
-          <div className="">
-            <div className=" ">
+          
+           
               <h1 className="sctionMdTitle text-primary text-center">
                 Check Your Eligibility
               </h1>
-            </div>
+          
 
             <div className="wrapper dashoboardpage golderservicepage">
-              <div className="row">
+            
                 {checkClicked ? (
                   <VisaCategories
                     onBackToQuestionClicked={handleCheckClick}
@@ -64,9 +83,11 @@ function GoldenVisaPage() {
                 ) : (
                   <div className="col-md-12 margin0">
                     <div
-                      className="dashboardcontrols dashboardcontrolsboxs
-                                                     dashboardcontrolsboxs2 box-wrapper 
-                                                     card-box-shadow p-5 my-5 wizardWrapArea"
+                    className={`dashboardcontrols dashboardcontrolsboxs
+                    dashboardcontrolsboxs2 box-wrapper 
+                    card-box-shadow wizardWrapArea  ${isMobileDev ? "" : "p-5 my-5"}`}
+
+                     
                     >
                       <div className="col-md-12">
                         <p className="ng-binding wzdTitleBar">
@@ -146,9 +167,8 @@ function GoldenVisaPage() {
                             </button>
                           )}
                         </div>
-
                         <div>
-                          {showCheck() && (
+                        {showCheck() && (
                             <button
                               type="button"
                               onClick={handleCheckClick}
@@ -158,11 +178,15 @@ function GoldenVisaPage() {
                             </button>
                           )}
 
+                        </div>
+                        <div>
+                          
+
                           {currentQuestion + 1 != QUESTIONS.length && (
                             <button
                               type="button"
                               onClick={handleNextClicked}
-                              className="btn btn-lg btn-blue ms-2"
+                              className="btn btn-lg btn-blue "
                             >
                               Next
                             </button>
@@ -173,9 +197,9 @@ function GoldenVisaPage() {
                     <div className="col-md-2"></div>
                   </div>
                 )}
-              </div>
+              
             </div>
-          </div>
+         
         </div>
       </section>
     </>
