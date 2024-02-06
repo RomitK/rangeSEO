@@ -511,7 +511,6 @@ useEffect(() => {
       <div className="row row-gap-3">
         <div className="col-12  col-lg-3">
           <AsyncSelect
-            menuIsOpen={true}
             isClearable={false}
             isMulti
             placeholder="Search..."
