@@ -2031,3 +2031,8 @@ background-color: #2f3c6a;
     .largeCloseBtn{
         font-size: larger;
     }
+    .serchMoreBtn{
+        display: flex;
+        align-items: center;
+        gap: 10px; 
+    }

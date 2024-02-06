@@ -69,13 +69,13 @@ function RentFilters({
             <div className="d-inline-flex mb-1 flex-wrap">
               {items?.map((selectedItem) => (
                 <div
-                  className={classes.openedItemContainer}
+                  className={`${classes.openedItemContainer} selectedTags`}
                   key={selectedItem.name}
                 >
                   <span className="p-1">{selectedItem.name}</span>
                   <div
                     role="button"
-                    className={classes.openItemsDiv}
+                    className={`${classes.openItemsDiv} `}
                     onClick={() => {
                       const comm = form["searchBy"];
                       const filtered = comm.filter(
@@ -215,7 +215,7 @@ function RentFilters({
   }, []);
   useEffect(() => {
 
-    let getPropertiesURL = process.env.API_HOST + "properties?";
+    let getPropertiesURL = process.env.API_HOST + "/properties?";
     let payload = { ...form };
 
     for (let key in payload) {
@@ -473,7 +473,7 @@ useEffect(() => {
     const abortController = new AbortController();
     const abortSignal = abortController.signal;
     const apiUrl =
-      process.env.API_HOST + "propertyPageSearch?keyword=" + inputValue;
+      process.env.API_HOST + "/propertyPageSearch?keyword=" + inputValue;
 
     ongoingRequests.map((onGoingRequest) =>
       onGoingRequest.abortController.abort()
@@ -509,8 +509,9 @@ useEffect(() => {
   return (
     <form action="">
       <div className="row row-gap-3">
-        <div className="col-12 col-lg-3">
+        <div className="col-12  col-lg-3">
           <AsyncSelect
+            menuIsOpen={true}
             isClearable={false}
             isMulti
             placeholder="Search..."
@@ -548,6 +549,7 @@ useEffect(() => {
             }}
             blurInputOnSelect={true}
             onFocus={() => {
+              console.log('onFocus')
               setHasFocus(true);
               setShowSelectedValues(false);
             }}

@@ -1,4 +1,4 @@
-import { components } from "react-select";
+
 
 const MoreSelectedBadge = ({ items }) => {
     const style = {
@@ -20,12 +20,12 @@ const MoreSelectedBadge = ({ items }) => {
     const label = `${length} more`;
 
     return (
-        <>
-            <div style={style} title={title}>
+        <div className="serchMoreBtn">
+            <div style={style} title={title} > 
                 {label}
             </div>
             <div style={addStyle}>+ Add</div>
-        </>
+        </div>
     );
 };
 
