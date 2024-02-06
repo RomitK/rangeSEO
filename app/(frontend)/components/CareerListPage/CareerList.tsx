@@ -73,8 +73,8 @@ function CareerListPage() {
       </header>
       <section className={`multiCarouselSection ${isMobileDev ? 'my-2' : ''}`}>
         <div className="container">
-          <h4 className="sctionMdTitle text-primary  mb-4">WHY RANGE?</h4>
-          <p className="fs-14 text-secondary mb-2">
+          <h4 className={`sctionMdTitle text-primary ${isMobileDev ? 'pb-0' : 'mb-4'}`}>WHY RANGE?</h4>
+          <p  className={`fs-14 text-secondary ${isMobileDev ? '' : 'mb-2'}`}>
             Range International Property Investments, a distinguished
             Dubai-based brokerage, boasts
             <span className="pWt600">

@@ -9,9 +9,29 @@ import "@/public/css/contact-Us-styles.css"
 import PhoneInput from "react-phone-number-input";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 function ContactPage() {
+  const [isMobileDev, setIsMobileDev] = useState(false);
+  useEffect(() => {
+    
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobileDev(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const { faqsData } = useGetContactFaqsData();
   const [activeIndex, setActiveIndex] = useState(0);
-
   const {
     register,
     handleSubmit,
@@ -74,10 +94,10 @@ function ContactPage() {
       </header> */}
       <section className="section contactSection" id="contactSectionId">
         <div className="container">
-          <h4 className="sctionMdTitle text-primary text-center ">
+          <h4 className={`text-primary text-center  sctionMdTitle ${isMobileDev ? "pb-0" : ""}`}>
             CONTACT US
           </h4>
-          <p className="fs-12 text-secondary mxWdtext mb-5">
+          <p className={`fs-12 text-secondary mxWdtext ${isMobileDev ? "mb-3" : "mb-5"}`}>
             Connect with Range for unparalleled real estate solutions. From
             inquiries to collaborations, our team is ready to assist. Reach out
             through the form below or stay updated on industry insights through

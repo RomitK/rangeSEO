@@ -24,6 +24,27 @@ import {
 import Project from "./Project";
 
 function SingleDeveloperView({ params }) {
+
+  const [isMobileDev, setIsMobileDev] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobileDev(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const slug = params.slug[0];
   const { developerData } = useGetSingleDeveloperData(slug);
   const PropertySwiperRef = useRef<SwiperCore>();
@@ -147,7 +168,7 @@ function SingleDeveloperView({ params }) {
   return (
     <>
       {developerData && (
-        <section className="my-5">
+        <section  className={` ${isMobileDev ? "py-2" : "py-5"}`}>
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-12 col-lg-12 col-md-12">
@@ -198,7 +219,7 @@ function SingleDeveloperView({ params }) {
                             <SwiperSlide key={img.id + "gallery"}>
                               <div className="swiper-slide">
                                 <div className="communityImgCont">
-                                  <p className="text-white">{index}</p>
+                                 
                                   <img
                                     src={img.path}
                                     alt={img.title ? img.title: developerData.name }
@@ -339,14 +360,14 @@ function SingleDeveloperView({ params }) {
       </Modal>
 
       {developerData && developerData.projects &&  developerData.projects.length > 0 && (
-        <section className="my-5">
+        <section  className={`${isMobileDev ? "my-2" : "my-5"}`}>
           <div className="container-fluid px-0">
             <div className="row g-0">
               <div className="col-12 col-lg-12 col-md-12">
                 <div className="row g-0">
                   <div className="col-12 col-lg-12 col-md-12">
                     <div>
-                      <div className="mainHead mb-5 text-center text-primary">
+                      <div className={`mainHead  text-center text-primary ${isMobileDev ? "mb-2" : "mb-5"}`}>
                         <h4>LATEST PROJECTS</h4>
                       </div>
                     </div>
@@ -491,14 +512,14 @@ function SingleDeveloperView({ params }) {
         </section>
       )}
       {developerData && developerData.communities &&  developerData.communities.length > 0 && (
-        <section className="mt-5 bg-light py-5">
+        <section className={`bg-light  ${isMobileDev ? "mt-2 py-2" : "mt-5 py-5"}`}>
           <div className="container">
             <div className="row g-3 justify-content-center">
               <div className="col-12 col-lg-12 col-md-12">
                 <div className="row">
                   <div className="col-12 col-lg-12 col-md-12">
                     <div>
-                      <div className="mainHead mb-5 text-primary text-center">
+                      <div   className={`mainHead text-primary text-center  ${isMobileDev ? "mb-2" : "mb-5"}`}>
                         <h4> {developerData.name}'s Presence in UAE</h4>
                       </div>
                     </div>
@@ -530,7 +551,8 @@ function SingleDeveloperView({ params }) {
                       onSwiper={(swiper) => {
                         communitySwiperRef.current = swiper;
                       }}
-                      className="swiper pb-5 projectSlider"
+                      
+                      className={`swiper projectSlider ${isMobileDev ? "pb-2" : "pb-5"}`}
                     >
                       {developerData?.communities?.map((community, index) => {
                         return (
@@ -777,21 +799,21 @@ function SingleDeveloperView({ params }) {
 
 {developerData &&
         (developerData?.rentProperties.length > 0 ||  developerData?.saleProperties.length > 0)  &&(
-          <section className="my-5" id="properties">
+          <section  id="properties"  className={` ${isMobileDev ? "my-2" : "my-5"}`}>
             <div className="container">
               <div className="row">
                 <div className="col-12 col-lg-12 col-md-12">
                   <div className="row">
                     <div className="col-12 col-lg-12 col-md-12">
                       <div>
-                        <div className="mainHead mb-5 text-center text-primary">
+                        <div className={`mainHead text-center text-primary  ${isMobileDev ? "mb-2" : "mb-5"}`}>
                           <h4>AVAILABLE PROPERTIES</h4>
                         </div>
                       </div>
                     </div>
                     {developerData?.rentProperties.length > 0 && (
                     <div className="col-12 col-lg-12 col-md-12">
-                      <div className="row mb-5">
+                      <div className={`row ${isMobileDev ? "mb-2" : "mb-5"}`}>
                         <h6 className="sctionCommunitySubTitle text-primary col-6">
                           FOR RENT
                         </h6>
@@ -835,7 +857,8 @@ function SingleDeveloperView({ params }) {
                         onSwiper={(swiper) => {
                           PropertyRentSwiperRef.current = swiper;
                         }}
-                        className="swiper pb-5 projectSlider"
+                        
+                        className={`swiper pb-5 projectSlider ${isMobileDev ? "pb-2" : "pb-5"}`}
                       >
                         {developerData?.rentProperties?.map((property, index) => {
                           return (
@@ -963,7 +986,7 @@ function SingleDeveloperView({ params }) {
                     )}
                     {developerData?.saleProperties.length > 0 && (
                     <div className="col-12 col-lg-12 col-md-12">
-                    <div className="row mb-5">
+                    <div className={`row ${isMobileDev ? "mb-2" : "mb-5"}`}>
                         <h6 className="sctionCommunitySubTitle text-primary col-6">
                           FOR SALE
                         </h6>
@@ -1008,7 +1031,8 @@ function SingleDeveloperView({ params }) {
                         onSwiper={(swiper) => {
                           PropertySaleSwiperRef.current = swiper;
                         }}
-                        className="swiper pb-5 projectSlider"
+                        
+                        className={`swiper projectSlider ${isMobileDev ? "pb-2" : "pb-5"}`}
                       >
                         {developerData?.saleProperties?.map((property, index) => {
                           return (

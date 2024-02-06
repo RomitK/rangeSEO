@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { useGetAllFaqsData } from "@/src/services/FaqService";
 import parse from "html-react-parser";
@@ -9,6 +9,25 @@ function FaqsPage() {
   const [query, setQuery] = useState("");
   const { faqsData } = useGetAllFaqsData(query);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobileDev, setIsMobileDev] = useState(false);
+  useEffect(() => {
+      const handleResize = () => {
+        // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+        const isMobileDevice = window.innerWidth < 768;
+        setIsMobileDev(isMobileDevice);
+      };
+  
+      // Initial check on component mount
+      handleResize();
+  
+      // Add event listener for window resize
+      window.addEventListener("resize", handleResize);
+  
+      // Clean up the event listener on component unmount
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+  }, []);
   return (
     <>
       <section className="faqSection">
@@ -17,13 +36,13 @@ function FaqsPage() {
             DUBAI REAL ESTATE FAQ
           </h4> */}
 
-          <div className="upper-heading-div text-center padding">
+          <div className={`upper-heading-div text-center ${isMobileDev ? "" : "padding"}`}>
             <span className="upper-heading">FAQ</span>
             <span>
               <i className="fa-solid fa-horizontal-rule"></i>
             </span>
           </div>
-          <div className="location-heading-div text-center padding-bottom">
+          <div className={`location-heading-div text-center${isMobileDev ? "" : "padding-bottom"}`}>
             <h2 className="location-heading">Frequently Ask Questions</h2>
           </div>
 

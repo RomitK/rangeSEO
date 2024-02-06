@@ -22,6 +22,8 @@ function Navbar() {
     "/rent",
     "/offplan",
     '/projects',
+    '/developers',
+    '/communities',
     "/luxuryProperties",
   ].includes(usePathname());
 

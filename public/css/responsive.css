@@ -284,6 +284,33 @@ gap: 6px;
 width: 26px;
 height: 16px;
 }
+.developersSection{
+    padding: 20px 0!important 
+}
+.pdTop20{
+
+}
+.partnerBox .logoImg{
+    height: 80px !important;
+}
+.clmCardImage{
+    height: 200px !important;
+}
+.communitiesSection{
+    padding-top: 20px !important;
+}
+.meetOurTeam{
+    padding-top: 20px !important;
+    }
+    .contactSection{
+        padding-top: 20px !important;
+    }
+    .listCardTit{
+        font-size: 20px !important;
+    }
+    .custom-checkbox .answers-options-container {
+        height: 100px !important;
+    }
 .fixBtnContent .btnContentItem .fa-whatsapp{
 font-size: 20px;
 }
@@ -348,7 +375,7 @@ height: auto !important;
 margin-top: 20px !important;
 }
 .location-heading {
-font-size: 34px !important;
+font-size: 28px !important;
 }
 .communityImgCont img {
 height: 400px !important;

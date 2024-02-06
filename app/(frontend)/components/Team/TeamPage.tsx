@@ -1,8 +1,30 @@
+"use client";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useGetAllTeamData } from "@/src/services/TeamService";
 import "@/public/css/about-styles.css";
 function TeamPage() {
+  const [isMobileDev, setIsMobileDev] = useState(false);
   const { teamsData } = useGetAllTeamData();
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobileDev(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
       {/* <header className="aboutHeader">
@@ -14,10 +36,10 @@ function TeamPage() {
       </header> */}
       <section className="section meetOurTeam">
         <div className="container">
-          <h4 className="sctionMdTitle text-primary text-center mb-5">
+          <h4 className={`sctionMdTitle text-primary text-center ${isMobileDev ? "mb-3" : "mb-5"}`}>
             MEET THE TEAM
           </h4>
-          <p className="fs-12 text-secondary mxWdtext mb-5">
+          <p className={`fs-12 text-secondary mxWdtext ${isMobileDev ? "mb-3" : "mb-5"}`}>
             Meet the exceptional team at Range International Property
             Investments, the driving force behind our success. With a wealth of
             experience and a keen understanding of the real estate market, they
