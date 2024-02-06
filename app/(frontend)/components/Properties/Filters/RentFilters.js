@@ -93,13 +93,13 @@ function RentFilters({
             <div className="d-inline-flex mb-1 flex-wrap">
               {items?.map((selectedItem) => (
                 <div
-                  className={classes.openedItemContainer}
+                  className={`${classes.openedItemContainer} selectedTags`}
                   key={selectedItem.name}
                 >
                   <span className="p-1">{selectedItem.name}</span>
                   <div
                     role="button"
-                    className={classes.openItemsDiv}
+                    className={`${classes.openItemsDiv} `}
                     onTouchStart={() => {
                       console.log('mobile')
 
