@@ -93,13 +93,13 @@ function RentFilters({
             <div className="d-inline-flex mb-1 flex-wrap">
               {items?.map((selectedItem) => (
                 <div
-                  className={classes.openedItemContainer}
+                  className={`${classes.openedItemContainer} selectedTags`}
                   key={selectedItem.name}
                 >
                   <span className="p-1">{selectedItem.name}</span>
                   <div
                     role="button"
-                    className={classes.openItemsDiv}
+                    className={`${classes.openItemsDiv} `}
                     onClick={() => {
                       const comm = form["searchBy"];
                       const filtered = comm.filter(
@@ -285,6 +285,7 @@ function RentFilters({
     }
   }, []);
   useEffect(() => {
+
     let getPropertiesURL = process.env.API_HOST + "properties?";
     let payload = { ...form };
     for (let key in payload) {
@@ -526,7 +527,7 @@ function RentFilters({
     const abortController = new AbortController();
     const abortSignal = abortController.signal;
     const apiUrl =
-      process.env.API_HOST + "propertyPageSearch?keyword=" + inputValue;
+      process.env.API_HOST + "/propertyPageSearch?keyword=" + inputValue;
 
     ongoingRequests.map((onGoingRequest) =>
       onGoingRequest.abortController.abort()
@@ -560,835 +561,114 @@ function RentFilters({
       });
   };
   return (
-    <>
-      {isMobileDev && (
-        <>
-          <nav className="navbar bg-white mobItemLink ">
-            <div className="container justify-content-start">
-              <div className="col-4">
-                <img
-                  src="/images/icons/menu.png"
-                  alt="Range Internation Property Investments"
-                  className="img-fluid navMobMen cursor-pointer"
-                  data-bs-toggle="offcanvas"
-                  data-bs-target="#offcanvasRight2"
-                  width="25"
-                />
-                <div
-                  className="offcanvas offcanvas-start"
-                  tabIndex={-1}
-                  id="offcanvasRight2"
-                  aria-labelledby="offcanvasRightLabel"
-                >
-                  <div className="offcanvas-header">
-                    <div className="">
-                      <Link href={{ pathname: "/" }} className="navbar-brand">
-                        <img
-                          src="/images/logo.png"
-                          alt="Range Internation Property Investments"
-                          className="img-fluid navMobLogo"
-                          width="175"
-                        />
-                      </Link>
-                    </div>
-                    <div className="my-auto">
-                      <button
-                        type="button"
-                        className="btn-close"
-                        data-bs-dismiss="offcanvas"
-                        aria-label="Close"
-                        ref={closeRef}
-                      ></button>
-                    </div>
-                  </div>
-                  <div className="offcanvas-body">
-                    <ul className="list-unstyled dropList">
-                      <li className="nav-item py-3 border-bottom mobItemLink">
-                        <Link
-                          className="nav-link"
-                          href="/properties"
-                          onClick={() => closeRef.current.click()}
-                        >
-                          Properties
-                        </Link>
-                      </li>
-                      <li className="nav-item py-3 border-bottom mobItemLink">
-                        <Link
-                          className="nav-link"
-                          href="/projects"
-                          onClick={() => closeRef.current.click()}
-                        >
-                          Projects
-                        </Link>
-                      </li>
-                      <li className="nav-item py-3 border-bottom mobItemLink">
-                        <Link
-                          className="nav-link"
-                          href="/communities"
-                          onClick={() => closeRef.current.click()}
-                        >
-                          Communities
-                        </Link>
-                      </li>
-
-                      <li className="nav-item py-3 border-bottom mobItemLink">
-                        <Link
-                          className="nav-link"
-                          href="/developers"
-                          onClick={() => closeRef.current.click()}
-                        >
-                          Developers
-                        </Link>
-                      </li>
-                      <li className="nav-item py-3 border-bottom mobItemLink">
-                        <Link
-                          className="nav-link"
-                          href="/teams"
-                          onClick={() => closeRef.current.click()}
-                        >
-                          Meet the Team
-                        </Link>
-                      </li>
-
-                      <li className="nav-item py-3 border-bottom mobItemLink">
-                        <Link
-                          className="nav-link"
-                          href="/about"
-                          onClick={() => closeRef.current.click()}
-                        >
-                          About Range
-                        </Link>
-                      </li>
-
-                      <li className="nav-item py-3 border-bottom">
-                        <Link
-                          className="nav-link"
-                          href="/goldenVisa"
-                          onClick={() => closeRef.current.click()}
-                        >
-                          Golden Visa
-                        </Link>
-                      </li>
-
-                      <li className="nav-item py-3 border-bottom">
-                        <Link
-                          className="nav-link"
-                          href="/careers"
-                          onClick={() => closeRef.current.click()}
-                        >
-                          Career
-                        </Link>
-                      </li>
-                      <li className="nav-item py-3 border-bottom">
-                        <Link
-                          className="nav-link"
-                          href="/medias"
-                          onClick={() => closeRef.current.click()}
-                        >
-                          Media
-                        </Link>
-                      </li>
-                      {/* <li className="nav-item py-3 border-bottom" >
-                          <Link className="nav-link" href="/blogs" onClick={() => closeRef.current.click()}>
-                            Blogs and News
-                          </Link>
-                        </li> */}
-                      <li className="nav-item py-3 border-bottom">
-                        <Link
-                          className="nav-link"
-                          href="/dubaiGuide"
-                          onClick={() => closeRef.current.click()}
-                        >
-                          Dubai Guide
-                        </Link>
-                      </li>
-                      {/* <li className="nav-item py-3 border-bottom">
-                          <a className="nav-link" href="">
-                            Investment Guide
-                          </a>
-                        </li> */}
-                      <li className="nav-item py-3 border-bottom">
-                        <Link
-                          className="nav-link"
-                          href="/faqs"
-                          onClick={() => closeRef.current.click()}
-                        >
-                          FAQ's
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div className="col-4">
-                <Link href={{ pathname: "/" }} className="navbar-brand">
-                  <img
-                    src="/images/logo.png"
-                    alt="Range Internation Property Investments"
-                    className="img-fluid navMobLogo"
-                    width="175"
-                  />
-                </Link>
-              </div>
-              <div className="col-4">
-                <img
-                  src="/images/icons/filter.png"
-                  alt="Range Internation Property Investments"
-                  className="img-fluid navMobMen cursor-pointer float-end"
-                  data-bs-toggle="offcanvas"
-                  data-bs-target="#offcanvasRight1"
-                  width="25"
-                />
-                <div
-                  className="offcanvas offcanvas-end"
-                  tabIndex={-1}
-                  id="offcanvasRight1"
-                  aria-labelledby="offcanvasRightLabel"
-                >
-                  <div className="offcanvas-header border-bottom ">
-                    <div className="">Filters</div>
-                    <div className="my-auto">
-                      <button
-                        type="button"
-                        className="btn-close"
-                        data-bs-dismiss="offcanvas"
-                        aria-label="Close"
-                        ref={closeRef}
-                      ></button>
-                    </div>
-                  </div>
-                  <div className="offcanvas-body ">
-                    <div className="row g-3">
-                      <div
-                        className="btn-group"
-                        role="group"
-                        aria-label="Basic checkbox toggle button group"
-                      >
-                        <input
-                          type="checkbox"
-                          name="category"
-                          value="all"
-                          checked={form.category === "all"}
-                          onChange={handleChange}
-                          className="btn-check"
-                          id="btncheck1"
-                        />
-                        <label class="btn btn-outline-primary" for="btncheck1">
-                          Any
-                        </label>
-
-                        <input
-                          type="checkbox"
-                          name="category"
-                          value="buy"
-                          checked={form.category === "buy"}
-                          onChange={handleChange}
-                          className="btn-check"
-                          id="btncheck2"
-                        />
-                        <label class="btn btn-outline-primary" for="btncheck2">
-                          Buy
-                        </label>
-
-                        <input
-                          type="checkbox"
-                          name="category"
-                          value="rent"
-                          checked={form.category === "rent"}
-                          onChange={handleChange}
-                          className="btn-check"
-                          id="btncheck3"
-                        />
-                        <label class="btn btn-outline-primary" for="btncheck3">
-                          Rent
-                        </label>
-                      </div>
-
-                      {form.category && form.category == "buy" && (
-                        <>
-                          <div
-                            class="btn-group"
-                            role="group"
-                            aria-label="Basic checkbox toggle button group"
-                          >
-                            <input
-                              type="checkbox"
-                              name="completion_status_id"
-                              value=""
-                              checked={form.completion_status_id === ""}
-                              onChange={handleChange}
-                              className="btn-check"
-                              id="btncheck6"
-                            />
-                            <label
-                              class="btn btn-outline-primary"
-                              for="btncheck6"
-                            >
-                              Any
-                            </label>
-
-                            <input
-                              type="checkbox"
-                              name="completion_status_id"
-                              value="286"
-                              checked={form.completion_status_id === "286"}
-                              onChange={handleChange}
-                              className="btn-check"
-                              id="btncheck5"
-                            />
-                            <label
-                              className="btn btn-outline-primary"
-                              for="btncheck5"
-                            >
-                              Ready
-                            </label>
-
-                            <input
-                              type="checkbox"
-                              name="completion_status_id"
-                              value="287"
-                              checked={form.completion_status_id === "287"}
-                              onChange={handleChange}
-                              className="btn-check"
-                              id="btncheck4"
-                            />
-                            <label
-                              class="btn btn-outline-primary"
-                              for="btncheck4"
-                            >
-                              Off-Plan
-                            </label>
-                          </div>
-                        </>
-                      )}
-
-                      <div className="col-md-2">
-                        <select
-                          onChange={handleChange}
-                          value={form.accommodation_id}
-                          name="accommodation_id"
-                          id="accomodation"
-                          className="form-select bedroomSelect"
-                        >
-                          <option value=""> Property Type</option>
-                          {filteredAccomodation?.map((accomodation) => (
-                            <option
-                              key={accomodation.id}
-                              value={accomodation.id}
-                            >
-                              {accomodation.name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-
-                      {!isCommercial && (
-                        <div
-                          class="btn-group"
-                          role="group"
-                          aria-label="Basic checkbox toggle button group"
-                        >
-                          <input
-                            type="checkbox"
-                            name="furnishing"
-                            value="0"
-                            checked={form.furnishing === "0"}
-                            onChange={handleChange}
-                            className="btn-check"
-                            id="btncheck8"
-                          />
-                          <label
-                            class="btn btn-outline-primary"
-                            for="btncheck8"
-                          >
-                            Furnished
-                          </label>
-
-                          <input
-                            type="checkbox"
-                            name="furnishing"
-                            value="1"
-                            checked={form.furnishing === "1"}
-                            onChange={handleChange}
-                            className="btn-check"
-                            id="btncheck9"
-                          />
-                          <label
-                            class="btn btn-outline-primary"
-                            for="btncheck9"
-                          >
-                            Unfurnished
-                          </label>
-
-                          <input
-                            type="checkbox"
-                            name="furnishing"
-                            value="partly"
-                            checked={form.furnishing === "partly"}
-                            onChange={handleChange}
-                            className="btn-check"
-                            id="btncheck10"
-                          />
-                          <label
-                            class="btn btn-outline-primary"
-                            for="btncheck10"
-                          >
-                            Partly Furnished
-                          </label>
-                        </div>
-                      )}
-
-                      <div className="col-lg-2">
-                        <select
-                          onChange={handleChange}
-                          value={form.bedrooms}
-                          name="bedrooms"
-                          id="bedrooms"
-                          className="form-select bedroomSelect"
-                        >
-                          <option value="">Select Bedrooms</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="6">6</option>
-                          <option value="7">7</option>
-                          <option value="Studio">Studio</option>
-                        </select>
-                      </div>
-
-                      {!isCommercial && (
-                        <div className="col-lg-2">
-                          <input
-                            value={form.bathroom}
-                            type="number"
-                            name="bathroom"
-                            onChange={handleChange}
-                            className="form-control"
-                            id="bathroom"
-                            placeholder="Bathrooms"
-                          />
-                        </div>
-                      )}
-                      <div
-                        className={`base-class ${
-                          form.category && form.category != "rent"
-                            ? "col-md-1"
-                            : "col-md-2"
-                        }`}
-                      >
-                        <div className="dropdown">
-                          <div
-                            className="form-select"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                            data-bs-auto-close="outside"
-                          >
-                            {form.minprice || form.maxprice
-                              ? `${form.minprice} ${
-                                  form.minprice && form.maxprice && "-"
-                                } ${form.maxprice} AED`
-                              : "Price"}
-                            {}
-                          </div>
-                          <div className="dropdown-menu p-4">
-                            <div className="mb-3">
-                              <label className="form-label">
-                                Minimum Price
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                id="minprice"
-                                min={0}
-                                placeholder="0"
-                                name="minprice"
-                                ref={minPriceRef}
-                              />
-                            </div>
-                            <div className="mb-3">
-                              <label className="form-label">
-                                Maximum Price
-                              </label>
-                              <input
-                                type="number"
-                                name="maxprice"
-                                className="form-control"
-                                id="maxprice"
-                                placeholder="Any Price"
-                                min={0}
-                                ref={maxPriceRef}
-                              />
-                            </div>
-                            <div className="mt-4 d-grid">
-                              <div
-                                className="row justify-content-center"
-                                style={{ columnGap: "0.25rem" }}
-                              >
-                                <button
-                                  className="btn btn-primary btn-sm col"
-                                  type="button"
-                                  onClick={handleApplyPrice}
-                                >
-                                  Apply
-                                </button>
-                                {showPriceResetButton() && (
-                                  <button
-                                    className="btn btn-secondary btn-sm col"
-                                    type="button"
-                                    onClick={resetApplyPrice}
-                                  >
-                                    Reset
-                                  </button>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-
-                      <div className="col-lg-3">
-                        <div className="dropdown">
-                          <div
-                            className="form-select"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                            data-bs-auto-close="outside"
-                          >
-                            {form.minarea && form.maxarea
-                              ? `${form.minarea} ${
-                                  form.minarea && form.maxarea && "-"
-                                } ${form.maxarea} `
-                              : "Area(Sq.Ft)"}
-                            {}
-                          </div>
-                          <div className="dropdown-menu p-4">
-                            {" "}
-                            <div className="mb-3">
-                              <label className="form-label">Minimum Area</label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                id="minarea"
-                                min={0}
-                                placeholder="0"
-                                name="minarea"
-                                ref={minAreaRef}
-                              />
-                            </div>
-                            <div className="mb-3">
-                              <label className="form-label">Maximum Area</label>
-                              <input
-                                type="number"
-                                name="maxarea"
-                                className="form-control"
-                                id="maxarea"
-                                placeholder="Any Area"
-                                ref={maxAreaRef}
-                              />
-                            </div>
-                            <div className="mt-4 d-grid">
-                              <div
-                                className="row justify-content-center"
-                                style={{ columnGap: "0.25rem" }}
-                              >
-                                <button
-                                  className="btn btn-primary btn-sm col-md"
-                                  type="button"
-                                  onClick={handleApplyArea}
-                                >
-                                  Apply
-                                </button>
-                                {showAreaResetButton() && (
-                                  <button
-                                    className="btn btn-secondary btn-sm col-md"
-                                    type="button"
-                                    onClick={resetApplyArea}
-                                  >
-                                    Reset
-                                  </button>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="col-lg-3">
-                        <div className="row g-0">
-                          <div className="col-12 vertical-scrollable-container" >
-                            {filteredOptions?.map((option) => (
-                              <div key={option.value} className="d-inline-block px-1">
-                                
-
-
-                          <input
-                           key={option.value}
-                           id={option.value}
-                           type="checkbox"
-                           label={highlightMatch(option.label)}
-                           checked={selectedItems.includes(option.value)}
-                           onChange={() => handleCheckboxChange(option.value)}
-                           className="btn-check" // Add a custom class for styling
-                          />
-
-
-                                <label className="btn btn-outline-primary m-0" htmlFor={option.value}>
-                                  {highlightMatch(option.label)}
-                                </label>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-
-
-
-
-
-
-                      </div>
-
-                      <div
-                        className={`base-class ${
-                          form.category && form.category != "rent"
-                            ? "col-lg-3"
-                            : "col-lg-3"
-                        } `}
-                      >
-                        <div className="form-check col-lg-6">
-                          <input
-                            type="checkbox"
-                            className="form-check-input"
-                            id="exampleCheck1"
-                            onChange={(e) => setIsCommercial(e.target.checked)}
-                            checked={isCommercial}
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="exampleCheck1"
-                          >
-                            show only Commericial Properties
-                          </label>
-                        </div>
-                        
-                        
-                      </div>
-
-
-                      {!isEmptyObject() && (
-                          <div className="col-lg-3">
-                            <button
-                              className="btn btn-sm btn-secondary w-100 "
-                              type="button"
-                              onClick={handleReset}
-                            >
-                              Reset
-                            </button>
-                          </div>
-                        )}
-
-                        <div className="col-lg-3">
-                          <button
-                            className="btn  btn-primary w-100"
-                            type="button"
-                            data-bs-dismiss="offcanvas"
-                            aria-label="Close"
-                            ref={closeRef}
-                          >
-                            Show {totalPropertyCount} results
-                          </button>
-                        </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </nav>
-          <form action="" className="">
-            <div className="my-2 mobItemLink ">
-              
-              <div className="col-10 col-lg-3 mx-auto">
-                <AsyncSelect
-                  isClearable={false}
-                  isMulti
-                  placeholder="Search..."
-                  onChange={(comm, { action }) => {
-                    if (comm != form["searchBy"]) {
-                      form["searchBy"] = comm;
-                      setForm({ ...form });
-                    }
-                    if (action === "clear" || action === "remove-value") {
-                      setTimeout(() => selectRef.current.blur(), 1);
-                    }
-                  }}
-                  ref={selectRef}
-                  styles={{
-                    container: (baseStyles, state) => ({
-                      ...baseStyles,
-                      minWidth: "160px",
-                    }),
-                    valueContainer: (baseStyles, state) => ({
-                      ...baseStyles,
-                      columnGap: "0.1rem",
-                      display: "grid",
-                      gridTemplateColumns: hasFocus
-                        ? "1fr auto auto 1fr"
-                        : "auto auto 1fr",
-                    }),
-                    multiValue: (baseStyles, state) => ({
-                      ...baseStyles,
-                      gridColumn: 1,
-                    }),
-                    input: (baseStyles, state) => ({
-                      ...baseStyles,
-                      gridColumn: hasFocus ? 1 : "none",
-                    }),
-                  }}
-                  blurInputOnSelect={true}
-                  onFocus={() => {
-                    setHasFocus(true);
-                    setShowSelectedValues(false);
-                  }}
-                  onBlur={() => {
-                    setShowSelectedValues(true);
-                    setHasFocus(false);
-                  }}
-                  controlShouldRenderValue={showSelectedValues}
-                  components={{
-                    MultiValue,
-                    IndicatorsContainer,
-                    NoOptionsMessage,
-                    MultiValueContainer,
-                    Menu,
-                  }}
-                  getOptionLabel={(option) => option.name}
-                  getOptionValue={(option) => option.type}
-                  name="searchBy"
-                  loadOptions={loadOptions}
-                  instanceId="searchBy"
-                />
-              </div>
-            </div>
-          </form>
-        </>
-      )}
-
-      {!isMobileDev && (
-        <>
-          <div className="row row-gap-3 ">
-            <div className="col-12 col-lg-3">
-              <AsyncSelect
-                isClearable={false}
-                isMulti
-                placeholder="Search..."
-                onChange={(comm, { action }) => {
-                  if (comm != form["searchBy"]) {
-                    form["searchBy"] = comm;
-                    setForm({ ...form });
-                  }
-                  if (action === "clear" || action === "remove-value") {
-                    setTimeout(() => selectRef.current.blur(), 1);
-                  }
-                }}
-                ref={selectRef}
-                styles={{
-                  container: (baseStyles, state) => ({
-                    ...baseStyles,
-                    minWidth: "160px",
-                  }),
-                  valueContainer: (baseStyles, state) => ({
-                    ...baseStyles,
-                    columnGap: "0.1rem",
-                    display: "grid",
-                    gridTemplateColumns: hasFocus
-                      ? "1fr auto auto 1fr"
-                      : "auto auto 1fr",
-                  }),
-                  multiValue: (baseStyles, state) => ({
-                    ...baseStyles,
-                    gridColumn: 1,
-                  }),
-                  input: (baseStyles, state) => ({
-                    ...baseStyles,
-                    gridColumn: hasFocus ? 1 : "none",
-                  }),
-                }}
-                blurInputOnSelect={true}
-                onFocus={() => {
-                  setHasFocus(true);
-                  setShowSelectedValues(false);
-                }}
-                onBlur={() => {
-                  setShowSelectedValues(true);
-                  setHasFocus(false);
-                }}
-                controlShouldRenderValue={showSelectedValues}
-                components={{
-                  MultiValue,
-                  IndicatorsContainer,
-                  NoOptionsMessage,
-                  MultiValueContainer,
-                  Menu,
-                }}
-                getOptionLabel={(option) => option.name}
-                getOptionValue={(option) => option.type}
-                name="searchBy"
-                loadOptions={loadOptions}
-                instanceId="searchBy"
-              />
-            </div>
-            <div
-              className={`base-class ${
-                form.category && form.category != "" ? "col-md-1" : "col-md-2"
-              }`}
-            >
-              <select
-                onChange={handleChange}
-                value={form.category}
-                name="category"
-                id="category"
-                className="form-select bedroomSelect"
-              >
-                <option value="all">Buy/Rent</option>
-                <option value="buy">Buy</option>
-                <option value="rent">Rent</option>
-              </select>
-            </div>
-            {form.category && form.category == "buy" && (
-              <div className="col-md-2">
-                <select
-                  onChange={handleChange}
-                  value={form.completion_status_id}
-                  name="completion_status_id"
-                  id="completion_status_id"
-                  className="form-select bedroomSelect"
-                >
-                  <option value="">Completion Status</option>
-                  <option value="286">Ready</option>
-                  <option value="287">Off-Plan</option>
-                </select>
-              </div>
-            )}
-            <div className="col-md-2">
-              <select
-                onChange={handleChange}
-                value={form.accommodation_id}
-                name="accommodation_id"
-                id="accomodation"
-                className="form-select bedroomSelect"
-              >
-                <option value=""> Property Type</option>
-                {filteredAccomodation?.map((accomodation) => (
-                  <option key={accomodation.id} value={accomodation.id}>
-                    {accomodation.name}
-                  </option>
-                ))}
-              </select>
-            </div>
+    <form action="">
+      <div className="row row-gap-3">
+        <div className="col-12 col-lg-3">
+          <AsyncSelect
+            isClearable={false}
+            isMulti
+            placeholder="Search..."
+            onChange={(comm, { action }) => {
+              if (comm != form["searchBy"]) {
+                form["searchBy"] = comm;
+                setForm({ ...form });
+              }
+              if (action === "clear" || action === "remove-value") {
+                setTimeout(() => selectRef.current.blur(), 1);
+              }
+            }}
+            ref={selectRef}
+            styles={{
+              container: (baseStyles, state) => ({
+                ...baseStyles,
+                minWidth: "160px",
+              }),
+              valueContainer: (baseStyles, state) => ({
+                ...baseStyles,
+                columnGap: "0.1rem",
+                display: "grid",
+                gridTemplateColumns: hasFocus
+                  ? "1fr auto auto 1fr"
+                  : "auto auto 1fr",
+              }),
+              multiValue: (baseStyles, state) => ({
+                ...baseStyles,
+                gridColumn: 1,
+              }),
+              input: (baseStyles, state) => ({
+                ...baseStyles,
+                gridColumn: hasFocus ? 1 : "none",
+              }),
+            }}
+            blurInputOnSelect={true}
+            onFocus={() => {
+              setHasFocus(true);
+              setShowSelectedValues(false);
+            }}
+            onBlur={() => {
+              setShowSelectedValues(true);
+              setHasFocus(false);
+            }}
+            controlShouldRenderValue={showSelectedValues}
+            components={{
+              MultiValue,
+              IndicatorsContainer,
+              NoOptionsMessage,
+              MultiValueContainer,
+              Menu,
+            }}
+            getOptionLabel={(option) => option.name}
+            getOptionValue={(option) => option.type}
+            name="searchBy"
+            loadOptions={loadOptions}
+            instanceId="searchBy"
+          />
+        </div>
+        <div  className={`base-class ${form.category && form.category != 'all' ? 'col-md-1' : 'col-md-2'}`}>
+          <select
+            onChange={handleChange}
+            value={form.category}
+            name="category"
+            id="category"
+            className="form-select bedroomSelect"
+          >
+            <option value="all">Buy/Rent</option>
+            <option value="buy">Buy</option>
+            <option value="rent">Rent</option>
+          </select>
+        </div>
+        {
+         form.category && form.category == 'buy' &&
+          <div className="col-md-2">
+          <select
+            onChange={handleChange}
+            value={form.completion_status_id}
+            name="completion_status_id"
+            id="completion_status_id"
+            className="form-select bedroomSelect"
+          >
+            <option value="">Completion Status</option>
+            <option value="286">Ready</option>
+            <option value="287">OffPlan</option>
+          </select>
+        </div>
+        }
+        <div className="col-md-2">
+          <select
+            onChange={handleChange}
+            value={form.accommodation_id}
+            name="accommodation_id"
+            id="accomodation"
+            className="form-select bedroomSelect"
+          >
+            <option value=""> Property Type</option>
+            {filteredAccomodation?.map((accomodation) => (
+              <option key={accomodation.id} value={accomodation.id}>
+                {accomodation.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
             <div
               className={`base-class ${
