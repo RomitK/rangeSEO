@@ -509,6 +509,9 @@ font-size: 14px !important;
 .bottomMenu{
     padding: 0% !important;
 }
+.Probtn{
+    gap: unset !important;
+}
 .serchMoreBtn + .css-ndrg1h-Input{
     width: 100%;
     position: absolute;
