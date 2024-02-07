@@ -69,7 +69,7 @@ function GoldenVisaPage() {
       <section className={`${isMobileDev ? "my-2" : "my-5"}`}>
         <div className="container">
           <div className="">
-            <div className=" ">
+          <div className=" ">
               <h1 className="sctionMdTitle text-primary text-center">
                 Check Your Eligibility
               </h1>
@@ -84,10 +84,10 @@ function GoldenVisaPage() {
                   />
                 ) : (
                   <div className="col-md-12 margin0">
-                    <div
-                      className="dashboardcontrols dashboardcontrolsboxs
+                    <div className={`"dashboardcontrols dashboardcontrolsboxs
                                                      dashboardcontrolsboxs2 box-wrapper 
-                                                     card-box-shadow p-5 my-5 wizardWrapArea"
+                                                     card-box-shadow wizardWrapArea ${isMobileDev ? "m-0 p-0" : "p-5 my-5"}`}
+
                     >
                       <div className="col-md-12">
                         <p className="ng-binding wzdTitleBar">
@@ -184,7 +184,7 @@ function GoldenVisaPage() {
                             <button
                               type="button"
                               onClick={handleNextClicked}
-                              className="btn btn-lg btn-blue ms-2"
+                              className="btn btn-lg btn-blue"
                             >
                               Next
                             </button>
