@@ -4,30 +4,7 @@ import VISAS from "../../../../src/constants/visas";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-
 function VisaCategories({ answers, onBackToQuestionClicked }) {
-
-    const [isMobileDev, setIsMobileDev] = useState(false);
-    useEffect(() => {
-  
-        const handleResize = () => {
-            // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
-            const isMobileDevice = window.innerWidth < 768;
-            setIsMobileDev(isMobileDevice);
-        };
-
-        // Initial check on component mount
-        handleResize();
-
-        // Add event listener for window resize
-        window.addEventListener("resize", handleResize);
-
-        // Clean up the event listener on component unmount
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
-
     const [visaCategories, setVisaCategories] = useState([]);
 
     useEffect(() => {
@@ -60,10 +37,8 @@ function VisaCategories({ answers, onBackToQuestionClicked }) {
                         <p className="d-flex flex-column justify-content-center ng-binding">
                             Thank you for completing the eligibility assessment. Based on the information you have
                             provided, you will be eligible to apply for the following category(s) for Golden Residency.
-                            {
-                                !isMobileDev && <br/>
-                            }
-                            
+                            <br />
+                            <br />
                             <span
                                 onClick={onBackToQuestionClicked}
                                 style={{ display: "contents", color: "#ee3f43", cursor: "pointer" }}
@@ -76,10 +51,8 @@ function VisaCategories({ answers, onBackToQuestionClicked }) {
                             Thank you for completing the eligibility assessment. The information you provided is not
                             compatible with any of the Golden Residency categories. To learn more about each category,
                             please visit our homepage
-                            {
-                                !isMobileDev && <br/>
-                            }
-                            
+                            <br />
+                            <br />
                             For any other inquiries, please go to&nbsp;
                             <Link
                                 className="link"
