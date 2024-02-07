@@ -40,7 +40,7 @@ function RentFilters({
     amenities: "",
     bathroom: "",
     area: "",
-    category: "",
+    category: "rent",
     completion_status_id: "",
     furnishing: "",
     isCommercial: "",

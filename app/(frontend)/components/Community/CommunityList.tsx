@@ -498,9 +498,11 @@ function CommunityList() {
                     />
                     <div className="overlay">
                       <h5 className="crdtitle">{community.name}</h5>
+                      {!isMobileDev && (
                       <p className="crdText">
                         {community && parse(community?.description ?? "")}
                       </p>
+                      )}
                     </div>
                   </Link>
                 </div>

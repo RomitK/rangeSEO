@@ -1151,13 +1151,6 @@ function Filters({
                             ))}
                           </div>
                         </div>
-
-
-
-
-
-
-
                       </div>
 
                       <div
