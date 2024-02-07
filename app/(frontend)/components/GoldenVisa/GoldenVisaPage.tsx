@@ -5,6 +5,27 @@ import "@/public/css/golden-visa-styles.css";
 import "@/public/css/responsive.css";
 
 function GoldenVisaPage() {
+
+  const [isMobileDev, setIsMobileDev] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobileDev(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answer, setAnswer] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -45,7 +66,7 @@ function GoldenVisaPage() {
 
   return (
     <>
-      <section className="my-5">
+      <section className={`${isMobileDev ? "my-2" : "my-5"}`}>
         <div className="container">
           <div className="">
             <div className=" ">
@@ -157,7 +178,8 @@ function GoldenVisaPage() {
                               Check
                             </button>
                           )}
-
+                          </div>
+                        <div>
                           {currentQuestion + 1 != QUESTIONS.length && (
                             <button
                               type="button"
