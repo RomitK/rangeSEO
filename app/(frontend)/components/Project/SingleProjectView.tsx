@@ -569,7 +569,88 @@ function SingleProjectView({ params }) {
               </div>
             )}
             {isMobileDev && (
-              <Swiper
+              <>
+              <div className="tableContainer">
+                <table className="priceTable">
+                  <thead>
+                    <tr>
+                    <th>
+                        <h5 className="tblThText text-center">Bedroom</h5>
+                      </th>
+                      <th>
+                        <h5 className="tblThText">Size</h5>
+                      </th>
+                     
+                      <th>
+                        <h5 className="tblThText text-center">
+                          Starting Price
+                        </h5>
+                      </th>
+                      <th>
+                        <h5 className="tblThText text-center">Payment Plan</h5>
+                      </th>
+                      <th>
+                        <h5 className="tblThText text-center">Floor Plan</h5>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {projectData?.types?.map((type, index) => {
+                      return (
+                        <tr key={type.id}>
+                          
+                         
+                          <td>
+                            <p className="tblTdText text-secondary text-center">
+                              {type?.bedrooms}
+                            </p>
+                          </td>
+                          
+                          <td>
+                            <p className="tblTdText text-secondary">
+                              {type?.area} {type?.areaUnit}
+                            </p>
+                          </td>
+                          <td>
+                            <p className="tblTdText text-secondary text-center">
+                              AED{" "}
+                              {type &&
+                                new Intl.NumberFormat().format(
+                                  type?.startingPrice
+                                )}{" "}
+                            </p>
+                          </td>
+                          <td>
+                            <button
+                              className="fillBtn tblBtn mrAuto"
+                              data-bs-toggle="modal"
+                              data-bs-target="#paymentplan"
+                              onClick={() => setCurrentUnit(type)}
+                            >
+                              view
+                            </button>
+                          </td>
+                          <td>
+                            <button
+                              className="fillBtn tblBtn mrAuto"
+                              data-bs-toggle="modal"
+                              //data-bs-target="#floorplan"
+                              data-bs-target={"#gallaryModalImg-" + type.id}
+
+                              // onClick={() => setFloorPlanFile(type.floorPlan)}
+                            >
+                              view
+                            </button>
+                            {/* <FloorPlanModal images={type?.floorPlan}/> */}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* <Swiper
                 slidesPerView={1}
                 spaceBetween={50}
                 loop={true}
@@ -726,7 +807,9 @@ function SingleProjectView({ params }) {
                     <i className="bi bi-chevron-left fs-1"></i>
                   </span>
                 </div>
-              </Swiper>
+              </Swiper> */}
+              </>
+              
             )}
           </div>
         </section>

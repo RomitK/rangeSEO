@@ -1,4 +1,7 @@
 
+"use client";
+import React from "react";
+import { useState, useEffect, useRef } from "react";
 
 const MoreSelectedBadge = ({ items }) => {
 
@@ -46,7 +49,7 @@ const MoreSelectedBadge = ({ items }) => {
                 {label}
             </div>
             {
-                !isMobileDevice && (
+                !isMobileDev && (
                     <div style={addStyle}>+ Add</div>
                 )
             }
