@@ -583,14 +583,14 @@ function SingleProjectView({ params }) {
                      
                       <th>
                         <h5 className="tblThText text-center">
-                          Starting Price
+                          Price (AED)
                         </h5>
                       </th>
                       <th>
-                        <h5 className="tblThText text-center">Payment Plan</h5>
+                        <h5 className="tblThText text-center">PP</h5>
                       </th>
                       <th>
-                        <h5 className="tblThText text-center">Floor Plan</h5>
+                        <h5 className="tblThText text-center">FP</h5>
                       </th>
                     </tr>
                   </thead>
@@ -600,29 +600,29 @@ function SingleProjectView({ params }) {
                         <tr key={type.id}>
                           
                          
-                          <td>
+                          <td className="p-0">
                             <p className="tblTdText text-secondary text-center">
                               {type?.bedrooms}
                             </p>
                           </td>
                           
-                          <td>
+                          <td className="p-0">
                             <p className="tblTdText text-secondary">
                               {type?.area} {type?.areaUnit}
                             </p>
                           </td>
-                          <td>
+                          <td className="p-0">
                             <p className="tblTdText text-secondary text-center">
-                              AED{" "}
+                             
                               {type &&
                                 new Intl.NumberFormat().format(
                                   type?.startingPrice
                                 )}{" "}
                             </p>
                           </td>
-                          <td>
+                          <td className="p-0">
                             <button
-                              className="fillBtn tblBtn mrAuto"
+                              className="fillBtn tblBtn mrAuto w-auto"
                               data-bs-toggle="modal"
                               data-bs-target="#paymentplan"
                               onClick={() => setCurrentUnit(type)}
@@ -630,9 +630,9 @@ function SingleProjectView({ params }) {
                               view
                             </button>
                           </td>
-                          <td>
+                          <td className="p-0">
                             <button
-                              className="fillBtn tblBtn mrAuto"
+                              className="fillBtn tblBtn mrAuto w-auto"
                               data-bs-toggle="modal"
                               //data-bs-target="#floorplan"
                               data-bs-target={"#gallaryModalImg-" + type.id}
