@@ -24,7 +24,7 @@ const MoreSelectedBadge = ({ items }) => {
             <div style={style} title={title} > 
                 {label}
             </div>
-            <div>+ Add</div>
+            <span>+ Add</span>
         </div>
     );
 };
