@@ -156,7 +156,7 @@ function LookingFor() {
 
             {/* Circle box Start */}
             <div className="proCircleCard">
-              <a className="proCircleBox" href="https://mymortgage.ae/" target="_blanket">
+              <Link className="proCircleBox" href="/mortgage">
                 <div className="circleContent">
                   <img
                     src="/images/icons/interest4.png"
@@ -166,7 +166,7 @@ function LookingFor() {
                   />
                   <p className="text"> Mortgage </p>
                 </div>
-              </a>
+              </Link>
               <div className="nbrCircle">
                 <h6>05</h6>
               </div>

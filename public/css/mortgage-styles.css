@@ -13,12 +13,12 @@
     clear: both;
     margin-top: 15px;
 }
-.custom-checkbox {
+.mortage-custom-checkbox {
     display: block;
     margin-bottom: 0.5rem;
     position: relative;
 }
-.custom-checkbox input {
+.mortage-custom-checkbox input {
     padding: 0;
     height: initial;
     width: initial;
@@ -39,31 +39,31 @@
 input[type="radio"] {
     border: none !important;
 }
-.custom-checkbox .answers-options-container label {
-    width: 39px;
+.mortage-custom-checkbox .answers-options-container label {
+    /* width: 39px; */
 }
 
-.custom-checkbox label {
+.mortage-custom-checkbox label {
     position: relative;
     cursor: pointer;
 }
-.custom-checkbox .answers-options-container label span {
+.mortage-custom-checkbox .answers-options-container label span {
     font-size: 2rem;
     color: #2f3c6a;
 }
-.custom-checkbox .answers-options-container {
+.mortage-custom-checkbox .answers-options-container {
     border: 2px solid;
     border-color: #2f3c6a;
     border-radius: 5px;
-    width: 135px;
-    height: 135px;
+    /* width: 135px; */
+    height: 95px;
 }
 
-.custom-checkbox .answers-options-container label::before {
+.mortage-custom-checkbox .answers-options-container label::before {
     padding: 15px;
     margin: 0;
 }
-.custom-checkbox label:before {
+.mortage-custom-checkbox label:before {
     content: "";
     -webkit-appearance: none;
     background-color: transparent;
@@ -78,14 +78,15 @@ input[type="radio"] {
     margin-inline-end: 0.6rem;
     border-radius: 50px;
 }
-.custom-checkbox .answers-options-container input:checked + label:after {
+.mortage-custom-checkbox .answers-options-container input:checked + label:after {
     left: 19px;
-    width: 15px;
+    /* width: 15px; */
+    text-align: center;
     height: 30px;
     border-width: 0 5px 5px 0;
 }
 
-.custom-checkbox input:checked + label:after {
+.mortage-custom-checkbox input:checked + label:after {
     content: "";
     display: block;
     position: absolute;
@@ -264,3 +265,57 @@ input[type="radio"] {
 }
 
 /* end check eligibility */
+
+
+
+
+.wizardWrapArea{
+    /* min-height: 650px; */
+    margin: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    }
+    .wzdTitleBar{
+    background-color: #fff;
+    padding: 14px 15px;
+    border-left: 4px solid #136dae;
+    margin-bottom: 20px !important;
+    }
+    .wizardWrapArea ul li{
+        color: #6f6d71 ;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .mortage-custom-checkbox .answers-options-container{
+        box-shadow:0px 3px 15px #0b5ed71a;
+        background-color: #fff;
+    }
+    .dashboardcontrols.wizardWrapArea{
+    box-shadow: 0 5px 30px rgb(0 0 0 / 6%);
+    border: 1px solid #e1e1e1;
+    background-color: #f6f6f6;
+    }
+    .wizardFooterBar{
+    margin-top: 5%;
+    background-color: #fff;
+    padding: 14px 15px;   
+    border: 1px solid #e1e1e1;
+    }
+    .wizardFooterBar button{
+    width: 120px;
+    height: 44px;
+    border-radius: 0;
+    box-shadow: 0px 2px 5px #0000004f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff !important;
+    font-size: 14px !important;
+    }
+    .wizardFooterBar > div:nth-child(2){
+    display: flex;
+    }
+    .mortage-custom-checkbox .answers-options-container label span{
+        font-size: 18px !important;
+    }

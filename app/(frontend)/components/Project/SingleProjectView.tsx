@@ -82,6 +82,15 @@ function SingleProjectView({ params }) {
     }
   }, [projectData]);
 
+
+
+  const [showAll, setShowAll] = useState(false);
+  const [linesToShow, setLinesToShow] = useState(5); // Number of lines to show initially
+
+  const toggleShowAll = () => {
+    setShowAll(!showAll);
+  };
+
   return (
     <>
       {projectData?.exteriorGallery && (
@@ -275,6 +284,7 @@ function SingleProjectView({ params }) {
                   <h4 className="sctionMdTitle text-primary">
                     Project Details
                   </h4>
+                  
                   <div className="text-secondary mb-4">
                     {/* {parse(projectData?.hightlightDescription ?? "")} */}
                     {parse(projectData?.longDescription ?? "")}
@@ -356,7 +366,7 @@ function SingleProjectView({ params }) {
         projectData.amenities.length > 0 && (
           <section
             id="ProjectDetails"
-            className={`my-5 ${isMobileDev ? "my-2" : ""}`}
+            className={` ${isMobileDev ? "my-2" : "my-5"}`}
           >
             <div className="container">
               <div className="row">
@@ -371,85 +381,80 @@ function SingleProjectView({ params }) {
                     </div>
                     {projectData.amenities && (
                       <Swiper
-                        slidesPerView={1}
-                        spaceBetween={50}
-                        pagination={{
-                          el: ".swiper-pagination",
-                          clickable: true,
-                        }}
-                        navigation={{
-                          nextEl: ".swiper-button-next",
-                          prevEl: ".swiper-button-prev",
-                        }}
-                        breakpoints={{
-                          640: {
-                            slidesPerView: 2,
-                            spaceBetween: 50,
-                          },
-                          768: {
-                            slidesPerView: 4,
-                            spaceBetween: 50,
-                          },
-                          1024: {
-                            slidesPerView: 4,
-                            spaceBetween: 50,
-                          },
-                        }}
-                        modules={[Navigation, Pagination]}
-                        onSwiper={(swiper) => {
-                          amentitiesSwiperRef.current = swiper;
-                        }}
-                        onBeforeInit={(swiper) => {
-                          amentitiesSwiperRef.current = swiper;
-                        }}
-                        className="swiper amenitiesSwiper px-5"
-                      >
-                        {projectData?.amenities?.map((amenity, index) => {
-                          return (
-                            <SwiperSlide key={amenity.id + index + "amentity"}>
-                              <div className="swiper-slide">
-                                <div className="">
-                                  <div className="mb-2">
-                                    <div className="amenityImg mx-auto">
-                                      <img
-                                        src={amenity.image}
-                                        alt={amenity.name}
-                                        className="img-fluid"
-                                        width="40px"
-                                      />
-                                    </div>
+                      slidesPerView={2}
+                      spaceBetween={0}
+                      pagination={{
+                        el: ".swiper-pagination",
+                        clickable: true,
+                      }}
+                      navigation={{
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                      }}
+                      breakpoints={{
+                        640: {
+                          slidesPerView: 2,
+                          spaceBetween: 50,
+                        },
+                        768: {
+                          slidesPerView: 4,
+                          spaceBetween: 50,
+                        },
+                        1024: {
+                          slidesPerView: 6,
+                          spaceBetween: 50,
+                        },
+                      }}
+                      modules={[Navigation, Pagination]}
+                      onSwiper={(swiper) => {
+                        amentitiesSwiperRef.current = swiper;
+                      }}
+                      
+                      className={`swiper amenitiesSwiper ${isMobileDev ? "px-2" : "px-5"}`} 
+                    >
+                      {projectData?.amenities?.map((amenity, index) => {
+                        return (
+                          <SwiperSlide key={amenity.id + index + "amentity"}>
+                            <div className="swiper-slide">
+                              <div className="py-3">
+                                <div className="mb-2">
+                                  <div className="amenityImg mx-auto">
+                                    <img
+                                      src={amenity.image}
+                                      alt={amenity.name}
+                                      className="img-fluid"
+                                     
+                                    />
                                   </div>
                                 </div>
-                                <div className="text-center ps-2">
-                                  <small className="fs-20">
+                                <div className="text-center">
+                                  <small className="fs-16">
                                     {amenity.name}
                                   </small>
                                 </div>
                               </div>
-                            </SwiperSlide>
-                          );
-                        })}
-                        <div
-                          className="swiper-button-next text-primary"
-                          onClick={() =>
-                            amentitiesSwiperRef.current?.slideNext()
-                          }
-                        >
-                          <span className="">
-                            <i className="bi bi-chevron-right fs-1"></i>
-                          </span>
-                        </div>
-                        <div
-                          className="swiper-button-prev text-primary"
-                          onClick={() =>
-                            amentitiesSwiperRef.current?.slidePrev()
-                          }
-                        >
-                          <span className="">
-                            <i className="bi bi-chevron-left fs-1"></i>
-                          </span>
-                        </div>
-                      </Swiper>
+                            </div>
+                          </SwiperSlide>
+                        );
+                      })}
+                      <div
+                        className="swiper-button-next text-primary"
+                        onClick={() => amentitiesSwiperRef.current?.slideNext()}
+                      >
+                        <span className="">
+                          <i className="bi bi-chevron-right fs-1"></i>
+                        </span>
+                      </div>
+                      <div
+                        className="swiper-button-prev text-primary"
+                        onClick={() => amentitiesSwiperRef.current?.slidePrev()}
+                      >
+                        <span className="">
+                          <i className="bi bi-chevron-left fs-1"></i>
+                        </span>
+                      </div>
+                      {/* <div className="swiper-pagination"></div> */}
+                    </Swiper>
                     )}
                   </div>
                 </div>
@@ -575,7 +580,7 @@ function SingleProjectView({ params }) {
                   <thead>
                     <tr>
                     <th>
-                        <h5 className="tblThText text-center">Bedroom</h5>
+                        <h5 className="tblThText">Bedroom</h5>
                       </th>
                       <th>
                         <h5 className="tblThText">Size</h5>
@@ -601,7 +606,7 @@ function SingleProjectView({ params }) {
                           
                          
                           <td className="p-0">
-                            <p className="tblTdText text-secondary text-center">
+                            <p className="tblTdText text-secondary">
                               {type?.bedrooms}
                             </p>
                           </td>
@@ -620,9 +625,9 @@ function SingleProjectView({ params }) {
                                 )}{" "}
                             </p>
                           </td>
-                          <td className="p-0">
+                          <td className="p-0 text-center">
                             <button
-                              className="fillBtn tblBtn mrAuto w-auto"
+                              className="fillBtn  mrAuto w-auto"
                               data-bs-toggle="modal"
                               data-bs-target="#paymentplan"
                               onClick={() => setCurrentUnit(type)}
@@ -630,9 +635,9 @@ function SingleProjectView({ params }) {
                               view
                             </button>
                           </td>
-                          <td className="p-0">
+                          <td className="p-0 text-center">
                             <button
-                              className="fillBtn tblBtn mrAuto w-auto"
+                              className="fillBtn  mrAuto w-auto"
                               data-bs-toggle="modal"
                               //data-bs-target="#floorplan"
                               data-bs-target={"#gallaryModalImg-" + type.id}

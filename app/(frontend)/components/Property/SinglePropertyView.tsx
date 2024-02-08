@@ -193,6 +193,17 @@ function SinglePropertyView({ params }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+
+
+
+
+  const [showAll, setShowAll] = useState(false);
+  const [linesToShow, setLinesToShow] = useState(5); // Number of lines to show initially
+
+  const toggleShowAll = () => {
+    setShowAll(!showAll);
+  };
+
   return (
     <>
       <section className={`${isMobileDev ? "my-3" : "my-5"}`}>
@@ -304,13 +315,30 @@ function SinglePropertyView({ params }) {
                         </h4>
                       </div>
                       <div>
+
+                        {
+                          isMobileDev && (
+                            <div className="property-description" style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      <div style={{ maxHeight: showAll ? 'none' : `${linesToShow * 1.2}em`, overflow: 'hidden' }}>
+                        {parse(propertyData?.description ?? '')}
+                      </div>
+                      {!showAll && (
+                        <button className="read-more-btn bdrBtn width-auto-fit" onClick={toggleShowAll}>Read More</button>
+                      )}
+                      {showAll && (
+                        <button className="read-less-btn bdrBtn width-auto-fit" onClick={toggleShowAll}>Read Less</button>
+                      )}
+                    </div>
+                          )
+                        }
+                      
+                      {! isMobileDev && (
                         <div className="fs-14">
                           {propertyData &&
                             parse(propertyData?.description ?? "")}
                         </div>
+                          )}
                       </div>
-
-                      
                     </div>
                   </div>
 
@@ -496,6 +524,7 @@ function SinglePropertyView({ params }) {
                                     className="Probtn bg-primary"
                                   >
                                     <img
+                                      alt="callNow"
                                       src="/images/icons/phone.png"
                                       className="proPhoneIcon"
                                     />
@@ -925,6 +954,7 @@ function SinglePropertyView({ params }) {
                               <div className={` ${isMobileDev ? 'clBoxitem mb-2' : 'clBoxitem'}`}>
                                 <div className="circleImgBox">
                                   <img
+                                    alt="handover"
                                     src="/images/icons/pro-icon-1.webp"
                                     className="iconImg"
                                   />
@@ -937,6 +967,7 @@ function SinglePropertyView({ params }) {
                               <div className={` ${isMobileDev ? 'clBoxitem mb-2' : 'clBoxitem'}`}>
                                 <div className="circleImgBox">
                                   <img
+                                    alt="developer"
                                     src="/images/icons/pro-icon-2.webp"
                                     className="iconImg"
                                   />
@@ -949,6 +980,7 @@ function SinglePropertyView({ params }) {
                               <div className={` ${isMobileDev ? 'clBoxitem mb-2' : 'clBoxitem'}`}>
                                 <div className="circleImgBox">
                                   <img
+                                    alt="developer"
                                     src="/images/icons/pro-icon-3.webp"
                                     className="iconImg"
                                   />
@@ -1388,6 +1420,7 @@ function SinglePropertyView({ params }) {
                                   className="Probtn bg-primary"
                                 >
                                   <img
+                                    alt="call"
                                     src="/images/icons/phone.png"
                                     className="proPhoneIcon"
                                   />
@@ -1571,6 +1604,7 @@ function SinglePropertyView({ params }) {
                   aria-expanded="false"
                 >
                   <img
+                  alt="cross"
                     src="/images/icons/btn-icon-5.png"
                     className="fixBtnIcon"
                   />
@@ -1630,6 +1664,7 @@ function SinglePropertyView({ params }) {
                   aria-expanded="false"
                 >
                   <img
+                  alt="cross"
                     src="/images/icons/btn-icon-4.png"
                     className="fixBtnIcon"
                   />
@@ -1656,6 +1691,7 @@ function SinglePropertyView({ params }) {
                       data-bs-target="#downloadBrochure"
                     >
                       <img
+                      alt="downlaod"
                         src="/images/icons/btn-icon-2.png"
                         className="fixBtnIcon"
                       />
@@ -1670,6 +1706,7 @@ function SinglePropertyView({ params }) {
                     >
                       {" "}
                       <img
+                      alt="saleoffer"
                         src="/images/icons/btn-icon-1.png"
                         className="fixBtnIcon"
                       />
