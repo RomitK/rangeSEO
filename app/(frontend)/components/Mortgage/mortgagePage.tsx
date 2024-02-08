@@ -263,7 +263,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="yes"
+                                        htmlFor="yes"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -287,7 +287,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="no"
+                                        htmlFor="no"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -317,7 +317,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="yes"
+                                        htmlFor="yes"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -340,7 +340,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="no"
+                                        htmlFor="no"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -405,7 +405,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="yes"
+                                        htmlFor="yes"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -429,7 +429,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="no"
+                                        htmlFor="no"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -452,7 +452,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="noo"
+                                        htmlFor="noo"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -484,7 +484,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="yes"
+                                        htmlFor="yes"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -509,7 +509,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="no"
+                                        htmlFor="no"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -533,7 +533,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="noo"
+                                        htmlFor="noo"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -622,7 +622,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="yes"
+                                        htmlFor="yes"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -642,7 +642,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="no"
+                                        htmlFor="no"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -778,7 +778,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="yes"
+                                          htmlFor="yes"
                                         >
                                           <span className="px-2">
                                             {" "}
@@ -798,7 +798,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="no"
+                                          htmlFor="no"
                                         >
                                           <span className="px-2">
                                             {" "}
@@ -890,7 +890,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="yes"
+                                          htmlFor="yes"
                                         >
                                           <span className="px-2">
                                             {" "}
@@ -910,7 +910,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="no"
+                                          htmlFor="no"
                                         >
                                           <span className="px-2">
                                             {" "}
@@ -1114,7 +1114,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="yes"
+                                          htmlFor="yes"
                                         >
                                           <span className="px-2">
                                             {" "}
@@ -1134,7 +1134,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="no"
+                                          htmlFor="no"
                                         >
                                           <span className="px-2">
                                             {" "}
@@ -1187,7 +1187,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="yes"
+                                          htmlFor="yes"
                                         >
                                           <span className="px-2"> Villa</span>
                                         </label>
@@ -1205,7 +1205,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="no"
+                                          htmlFor="no"
                                         >
                                           <span className="px-2">
                                             {" "}
@@ -1226,7 +1226,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="noo"
+                                          htmlFor="noo"
                                         >
                                           <span className="px-2">
                                             {" "}
@@ -1255,7 +1255,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="yes"
+                                          htmlFor="yes"
                                         >
                                           <span className="px-2"> Villa</span>
                                         </label>
@@ -1274,7 +1274,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="no"
+                                          htmlFor="no"
                                         >
                                           <span className="px-2">
                                             {" "}
@@ -1295,7 +1295,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="noo"
+                                          htmlFor="noo"
                                         >
                                           <span className="px-2">
                                             {" "}
@@ -1379,7 +1379,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="yes"
+                                          htmlFor="yes"
                                         >
                                           <span className="px-2">
                                             {" "}
@@ -1402,7 +1402,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="no"
+                                          htmlFor="no"
                                         >
                                           <span className="px-2">
                                             {" "}
@@ -1432,7 +1432,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="yes"
+                                          htmlFor="yes"
                                         >
                                           <span className="px-2">
                                             {" "}
@@ -1456,7 +1456,7 @@ function MortgagePage() {
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
-                                          for="no"
+                                          htmlFor="no"
                                         >
                                           <span className="px-2">
                                             {" "}
@@ -2520,7 +2520,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="yes"
+                                        htmlFor="yes"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -2540,7 +2540,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="no"
+                                        htmlFor="no"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -2567,7 +2567,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="yes"
+                                        htmlFor="yes"
                                       >
                                         <span className="px-2">
                                           {" "}
@@ -2587,7 +2587,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        for="no"
+                                        htmlhtmlFor="no"
                                       >
                                         <span className="px-2">
                                           {" "}
