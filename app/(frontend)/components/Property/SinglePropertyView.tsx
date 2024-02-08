@@ -752,7 +752,97 @@ function SinglePropertyView({ params }) {
                               })}
                           </div>
                           <div className="col-12 col-lg-12 col-md-12 propertyMobItemLink">
-                            <Swiper
+                            {
+                              isMobileDev && (
+                                <Swiper
+                              slidesPerView={2}
+                              spaceBetween={10}
+                              pagination={{
+                                el: ".swiper-pagination",
+                                clickable: true,
+                              }}
+                              navigation={{
+                                nextEl: ".swiper-button-next",
+                                prevEl: ".swiper-button-prev",
+                              }}
+                              breakpoints={{
+                                640: {
+                                  slidesPerView: 2,
+                                  spaceBetween: 50,
+                                },
+                                768: {
+                                  slidesPerView: 2,
+                                  spaceBetween: 50,
+                                },
+                                1024: {
+                                  slidesPerView: 4,
+                                  spaceBetween: 50,
+                                },
+                              }}
+                              modules={[Navigation]}
+                              onSwiper={(swiper) => {
+                                amentitiesSwiperRef.current = swiper;
+                              }}
+                             
+                              className={`swiper amenitiesSwiper ${isMobileDev ? '' : 'px-5'}`}
+                            >
+                              {propertyData?.amenities
+                                ?.slice(0, 8)
+                                ?.map((amenity, index) => {
+                                  return (
+                                    <SwiperSlide
+                                      key={amenity.id + index + "amentity"}
+                                    >
+                                      <div className="swiper-slide align-items-start">
+                                <div className="py-3">
+                                  <div className="mb-2">
+                                    <div className="amenityImg mx-auto">
+                                      <img
+                                        src={amenity.image}
+                                        alt={amenity.name}
+                                        className="img-fluid"
+                                        width="40px"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="">
+                                  <small className={`${isMobileDev ? 'fs-16' : 'fs-20'}`}>
+                                      {amenity.name}
+                                    </small>
+                                  </div>
+                                </div>
+                              </div>
+                                    </SwiperSlide>
+                                  );
+                                })}
+                              <div
+                                className="swiper-button-next text-primary"
+                                onClick={() =>
+                                  amentitiesSwiperRef.current?.slideNext()
+                                }
+                              >
+                                <span className="">
+                                  <i className="bi bi-chevron-right fs-1"></i>
+                                </span>
+                              </div>
+                              <div
+                                className="swiper-button-prev text-primary"
+                                onClick={() =>
+                                  amentitiesSwiperRef.current?.slidePrev()
+                                }
+                              >
+                                <span className="">
+                                  <i className="bi bi-chevron-left fs-1"></i>
+                                </span>
+                              </div>
+                                </Swiper>
+                              )
+                            }
+                            
+
+                            {
+                              !isMobileDev && (
+                                <Swiper
                               slidesPerView={2}
                               spaceBetween={50}
                               pagination={{
@@ -833,6 +923,10 @@ function SinglePropertyView({ params }) {
                                 </span>
                               </div>
                             </Swiper>
+                              )
+
+                            }
+                            
                           </div>
                         </div>
                       </div>
