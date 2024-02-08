@@ -803,7 +803,7 @@ function SinglePropertyView({ params }) {
                                     </div>
                                   </div>
                                   <div className="">
-                                    <small className="fs-20">
+                                  <small className={`${isMobileDev ? 'fs-16' : 'fs-20'}`}>
                                       {amenity.name}
                                     </small>
                                   </div>
