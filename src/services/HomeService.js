@@ -19,3 +19,22 @@ export const verifyOTPApi = (data) => {
 export const saveContactFormApi2 = (data) => {
   return httpClient.post("/contactUs", data);
 };
+
+
+export const useGetBankNames = (slug) => {
+  const {
+    data: bankNameOption,
+    error,
+    mutate,
+  } = useSWR(`/bankNames`);
+  return { bankNameOption: bankNameOption?.data, bankNameOptionMutate: mutate };
+};
+
+export const useGetMortageYears = (slug) => {
+  const {
+    data: mortgageYearOption,
+    error,
+    mutate,
+  } = useSWR(`/mortageYears`);
+  return { mortgageYearOption: mortgageYearOption?.data, mortgageYearOptionMutate: mutate };
+};

@@ -7,8 +7,7 @@ import PhoneInput from "react-phone-number-input";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 import { useForm, Controller } from "react-hook-form";
 import SellModel from "../models/SellModel";
-import { useGetSingleManagementData } from "@/src/services/ManagementService";
-import { useGetSellerGuideData } from "@/src/services/DubaiGuideService";
+import { useGetBankNames, useGetMortageYears } from "@/src/services/HomeService";
 import "@/public/css/mortgage-styles.css";
 import "@/public/css/responsive.css";
 import Select from "react-select";
@@ -19,6 +18,9 @@ type OptionType = {
 };
 
 function MortgagePage() {
+  const { bankNameOption } = useGetBankNames();
+  const { mortgageYearOption } = useGetMortageYears();
+  
   const [bankData, setBankData] = useState();
   const [yearData, setYearData] = useState();
   const [isMobileDev, setIsMobileDev] = useState(false);
@@ -69,35 +71,10 @@ function MortgagePage() {
       });
   };
 
-  const options: OptionType[] = [
+  const bankOptions: OptionType[] = [
     { value: "Dubai Islamic Bank", label: "Dubai Islamic Bank" },
     { value: "Citi Bank", label: "Citi Bank" },
-    { value: "Emirate Islamic Bank", label: "Emirate Islamic Bank" },
-    {
-      value: "ADCB Abu Dhabi Commercial Bank",
-      label: "ADCB Abu Dhabi Commercial Bank",
-    },
-    { value: "Abu Dhabi Islamic Bank", label: "Abu Dhabi Islamic Bank" },
-    { value: "Ajman Bank", label: "Ajman Bank" },
-    { value: "Arab Bank", label: "Arab Bank" },
-    { value: "Bank Of Baroda", label: "Bank Of Baroda" },
-    {
-      value: "Commercial Bank International",
-      label: "Commercial Bank International",
-    },
-    {
-      value: "CBD Commercial Bank Of Dubai",
-      label: "CBD Commercial Bank Of Dubai",
-    },
-    { value: "Emirates NBD", label: "Emirates NBD" },
-    { value: "FAB First Abu Dhabi Bank", label: "FAB First Abu Dhabi Bank" },
-    { value: "HSBC", label: "HSBC" },
-    { value: "Mashreq Bank", label: "Mashreq Bank" },
-    { value: "National Bank Of Fujairah", label: "National Bank Of Fujairah" },
-    { value: "RAK Bank", label: "RAK Bank" },
-    { value: "Sharjah Islamic Bank", label: "Sharjah Islamic Bank" },
-    { value: "Standard Chartered Bank", label: "Standard Chartered Bank" },
-    { value: "United Arab Bank", label: "United Arab Bank" },
+  
   ];
 
   const years: OptionType[] = [
@@ -598,10 +575,9 @@ function MortgagePage() {
                                   <div className="col-md-4">
                                     <p>Which bank is your mortgage with?</p>
                                     <Select
-                                      options={options}
+                                      options={bankNameOption}
                                       value={bankData}
-                                      className=""
-                                      onChange={(e) => setBankData(e)}
+                                      onChange={(selectedOption) => setBankData(selectedOption)}
                                     />
                                   </div>
                                 </div>
@@ -866,7 +842,7 @@ function MortgagePage() {
                                     <div className="col-md-4">
                                       <p>What’s the remaining mortgage term?</p>
                                       <Select
-                                        options={years}
+                                        options={mortgageYearOption}
                                         value={yearData}
                                         className=""
                                         onChange={(e) => setYearData(e)}
@@ -2587,7 +2563,7 @@ function MortgagePage() {
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
-                                        htmlhtmlFor="no"
+                                        htmlFor="no"
                                       >
                                         <span className="px-2">
                                           {" "}
