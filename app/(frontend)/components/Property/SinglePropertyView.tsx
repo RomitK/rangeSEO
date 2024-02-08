@@ -541,7 +541,7 @@ function SinglePropertyView({ params }) {
                                 <i
                                   className="fa fa-calendar"
                                   aria-hidden="true"
-                                ></i>
+                                ></i> 
                                 SCHEDULE VIEWING
                               </a>
                                   )}

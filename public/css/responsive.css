@@ -534,8 +534,11 @@ font-size: 14px !important;
 .bottomMenu{
     padding: 0% !important;
 }
+.Probtn.scheduleBtn{
+    /* font-size: 16px !important; */
+    }
 .Probtn{
-    gap: unset !important;
+    gap: 2px !important;
 }
 .serchMoreBtn + .css-ndrg1h-Input{
     width: 100%;
