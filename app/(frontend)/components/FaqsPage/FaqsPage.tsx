@@ -36,14 +36,15 @@ function FaqsPage() {
             DUBAI REAL ESTATE FAQ
           </h4> */}
 
+          
+          <div className={`location-heading-div text-center${isMobileDev ? "" : "padding-bottom"}`}>
+            <h2 className="location-heading">Frequently Ask Questions</h2>
+          </div>
           <div className={`upper-heading-div text-center ${isMobileDev ? "" : "padding"}`}>
-            <span className="upper-heading">FAQ</span>
+            <span className="upper-heading">FAQs</span>
             <span>
               <i className="fa-solid fa-horizontal-rule"></i>
             </span>
-          </div>
-          <div className={`location-heading-div text-center${isMobileDev ? "" : "padding-bottom"}`}>
-            <h2 className="location-heading">Frequently Ask Questions</h2>
           </div>
 
           <div className={`faqSearchBar ${isMobileDev ? "my-3" : ""}`}>

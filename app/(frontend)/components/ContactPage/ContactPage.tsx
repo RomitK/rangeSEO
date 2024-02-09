@@ -264,14 +264,16 @@ function ContactPage() {
         <div className="container">
           {/* <h4 className="sctionMdTitle text-primary ">FAQS</h4> */}
 
+          
+          <div className="location-heading-div text-center padding-bottom">
+            <h2 className="location-heading">Frequently Ask Questions</h2>
+          </div>
+
           <div className="upper-heading-div text-center padding">
-            <span className="upper-heading">FAQ</span>
+            <span className="upper-heading">FAQs</span>
             <span>
               <i className="fa-solid fa-horizontal-rule"></i>
             </span>
-          </div>
-          <div className="location-heading-div text-center padding-bottom">
-            <h2 className="location-heading">Frequently Ask Questions</h2>
           </div>
           {/* <div className="accordion" id="FAQAccordion"> */}
           <div className="accordion">
