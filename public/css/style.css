@@ -2111,3 +2111,6 @@ background-color: #2f3c6a;
       .custom-padding {
         padding: 3px; /* Adjust the value as needed */
       }
+      .g-0{
+        gap: 0px !important;
+      }

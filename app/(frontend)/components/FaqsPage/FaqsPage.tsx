@@ -46,7 +46,7 @@ function FaqsPage() {
             <h2 className="location-heading">Frequently Ask Questions</h2>
           </div>
 
-          <div className="faqSearchBar">
+          <div className={`faqSearchBar ${isMobileDev ? "my-3" : ""}`}>
             <input
               type="search"
               className="searchInputField"
@@ -54,7 +54,7 @@ function FaqsPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
-            <button className="searchBtn">
+            <button className={`searchBtn ${isMobileDev ? "g-0 w-auto" : ""}`}>
               <i className="fa fa-search searchIcon"></i> Search{" "}
             </button>
           </div>
