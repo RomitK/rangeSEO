@@ -61,8 +61,8 @@ function WhyRange(){
                                         </div>
                                         <div className="my-auto">
                                             <div className="mainHead text-primary text-uppercase">
-                                                <h4 className="fw-800 mb-0">25</h4>
-                                                <p className="text-dark mb-0 fs-20">MULTILINGUAL AGENTS</p>
+                                                <h4 className="fw-800 mb-0">25+</h4>
+                                                <p className="text-dark mb-0 fs-20">LANGUAGES SPOKEN</p>
                                             </div>
                                         </div>
                                     </div>
