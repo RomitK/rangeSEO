@@ -135,19 +135,10 @@ function MediaPage({ params }) {
                   data-bs-target="#celebrationTab"
                   aria-selected="false"
                 >
-                  CELEBARTION
+                  CELEBRATION
                 </button>
               </li>
-              <li className="nav-item" role="presentation">
-                <button
-                  className="nav-link"
-                  data-bs-toggle="tab"
-                  data-bs-target="#eventTab"
-                  aria-selected="false"
-                >
-                  SAELSEVENTS
-                </button>
-              </li>
+              
             </ul>
             <div className="tab-content" id="myTabContent">
               {/* Tab 1 Contant Area Start */}
