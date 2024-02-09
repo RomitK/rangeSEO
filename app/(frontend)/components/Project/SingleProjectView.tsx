@@ -608,18 +608,18 @@ function SingleProjectView({ params }) {
                         <tr key={type.id}>
                           
                          
-                          <td className="p-0">
+                          <td className="p-0 priceTableGrayBorder">
                             <p className="tblTdText text-secondary">
                               {type?.bedrooms}
                             </p>
                           </td>
                           
-                          <td className="p-0">
+                          <td className="p-0 priceTableGrayBorder">
                             <p className="tblTdText text-secondary">
                               {type?.area} {type?.areaUnit}
                             </p>
                           </td>
-                          <td className="p-0">
+                          <td className="p-0 priceTableGrayBorder">
                             <p className="tblTdText text-secondary text-center">
                              
                               {type &&
@@ -628,7 +628,7 @@ function SingleProjectView({ params }) {
                                 )}{" "}
                             </p>
                           </td>
-                          <td className="p-0 text-center">
+                          <td className="p-0 text-center ">
                             <button
                               className="fillBtn  mrAuto w-auto"
                               data-bs-toggle="modal"

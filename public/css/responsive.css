@@ -383,6 +383,12 @@ width: 70px !important;
 .homeHeader .videoContainer {
 /* display: none; */
 }
+.priceTable tbody tr {
+    border-bottom: 1px solid #ffff !important;
+}
+.priceTableGrayBorder {
+    border-bottom: 1px solid #8c8c8c;
+}
 .homeHeader{
 background-image: url("/images/poster-img.png");
 width: 100%;
