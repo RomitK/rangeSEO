@@ -225,7 +225,7 @@ function CareerModel(props) {
                                 name="emailCon2"
                                 id="emailCon2"
                                 className="form-control"
-                                placeholder="Enter your email"
+                                placeholder="Enter your email address"
                                 autoComplete="off"
                                 {...register("email", { required: true })}
                                 

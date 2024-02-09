@@ -122,7 +122,7 @@ function ContactModel(props) {
                                 name="emailCon2"
                                 id="emailCon2"
                                 className="form-control mb-2"
-                                placeholder="Enter your email"
+                                placeholder="Enter your email address"
                                 autoComplete="off"
                                 value={formData.email}
                                 onChange={(e) =>
