@@ -2588,10 +2588,10 @@ function MortgagePage() {
       </section>
       <section className="aboutPgSection">
         <div className="container">
-          <h4 className="sctionMdTitle text-primary ">ABOUT RANGE</h4>
+          <h4 className="sctionMdTitle text-primary ">ABOUT MY MORTGAGE </h4>
           <p className="fs-14 text-secondary mb-4">
-          Range International Property Investments is an esteemed award-winning real estate brokerage based in Dubai, UAE. With over two decades of unmatched experience, we have established ourselves as industry leaders, renowned for our exceptional services and deep knowledge of the real estate market locally and internationally. Our dynamic and innovative team of industry experts is dedicated to delivering exceptional results while building lasting relationships based on professionalism, integrity, and trust. <br/><br/>
-          Our forte goes beyond sales & leases of residential, commercial, and off-plan properties. Our expertise extends to Financial Consultancy, Wealth Management, Property Valuation, and Mortgage services. By closely monitoring market trends, we identify high-return investment opportunities, providing you with a seamless and customer-focused experience. Our commitment to research and guidance allows you to have access to extensive premium real estate opportunities in today’s dynamic market. Experience the difference with Range and unlock extraordinary possibilities in the ever-changing real estate landscape.
+          My Mortgage is our sister company, a leading mortgage brokerage dedicated to helping our clients achieve their dream of home ownership. At My Mortgage, a team of experienced professionals is committed to providing exceptional customer services and personalized solutions to meet the specific needs of each of our clients
+Founded in 2019, My Mortgage has grown to become a trusted name in the mortgage industry. Over the last few years, they have helped hundreds of clients secure financing for their homes and are proud to have built a reputation for honesty, integrity, and professionalism
           </p>
           </div>
           </section>
