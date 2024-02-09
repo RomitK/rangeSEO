@@ -215,8 +215,8 @@ color: #136dae !important;
     background-color: transparent; /* Track color set to transparent */
   }
 .btn-check:checked+.btn{
-background-color:  #136dae;
-border-color: #136dae;
+background-color:  #136dae !important;
+border-color: #136dae !important;
 color: #fff !important;
 }
 .btn-check:hover+.btn{
