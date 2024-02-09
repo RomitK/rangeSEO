@@ -191,7 +191,8 @@ label {
 .communityImgCont img {
   height: 600px;
   width: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
+  object-fit: fill;
   object-position: center;
 }
 .fillBtn.contactBtn {
