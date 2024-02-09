@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 import SwiperCore, { Swiper as SwiperType } from "swiper";
 import "swiper/swiper-bundle.css";
 import "swiper/css/pagination";
@@ -779,7 +779,10 @@ function SinglePropertyView({ params }) {
                                   spaceBetween: 50,
                                 },
                               }}
-                              modules={[Navigation]}
+                              autoplay={{
+                                delay: 3000,
+                              }}
+                              modules={[Navigation, Autoplay]}
                               onSwiper={(swiper) => {
                                 amentitiesSwiperRef.current = swiper;
                               }}

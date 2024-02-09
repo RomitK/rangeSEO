@@ -406,6 +406,9 @@ font-size: 22px !important;
 .faqSearchBar{
     
 }
+.HomepartnerBox .logoImg {
+    height: 100px !important;
+}
 .communityImgCont img {
 height: 400px !important;
 }

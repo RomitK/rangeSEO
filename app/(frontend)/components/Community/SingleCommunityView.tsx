@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import SwiperCore, { Swiper as SwiperType } from "swiper";
 
 import "swiper/swiper-bundle.css";
@@ -814,7 +814,10 @@ function SinglecommunityDataView({ params }) {
                             spaceBetween: 0,
                           },
                         }}
-                        modules={[Navigation, Pagination]}
+                        autoplay={{
+                          delay: 3000,
+                        }}
+                        modules={[Navigation, Pagination, Autoplay]}
                         onSwiper={(swiper) => {
                           amentitiesSwiperRef.current = swiper;
                         }}

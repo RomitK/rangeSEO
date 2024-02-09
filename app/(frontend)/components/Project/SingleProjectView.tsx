@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 import SwiperCore, { Swiper as SwiperType } from "swiper";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -405,7 +405,10 @@ function SingleProjectView({ params }) {
                           spaceBetween: 50,
                         },
                       }}
-                      modules={[Navigation, Pagination]}
+                      autoplay={{
+                        delay: 3000,
+                      }}
+                      modules={[Navigation, Pagination, Autoplay]}
                       onSwiper={(swiper) => {
                         amentitiesSwiperRef.current = swiper;
                       }}
