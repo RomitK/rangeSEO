@@ -284,7 +284,7 @@ function DownloadProjectSaleOfferModel(props) {
                         <div className="row">
                           <div className="col-md-12">
                             <h6 className="text-primary text-center p-2">
-                              Enter Details For Downloading Sale Offer
+                              Enter Details to Download the Sale Offer
                             </h6>
 
                             <div className="form-group">

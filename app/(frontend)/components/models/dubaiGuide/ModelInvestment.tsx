@@ -318,7 +318,7 @@ function ModelInvestment(props) {
                         <div className="row">
                           <div className="col-md-12">
                             <h6 className="text-primary text-center p-2">
-                              Enter Details For Downloading {props.title}
+                              Enter Details to Download the {props.title}
                             </h6>
 
                             <div className="form-group">
@@ -409,7 +409,7 @@ function ModelInvestment(props) {
                       <div className="row">
                         <div className="col-md-12">
                           <h6 className="text-primary text-center p-2">
-                            Enter Details For Downloading {props.title}
+                          Enter Details to Download the {props.title}
                           </h6>
 
                           {!showOtp && (
