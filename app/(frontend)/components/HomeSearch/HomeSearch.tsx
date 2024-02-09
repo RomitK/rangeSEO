@@ -78,8 +78,8 @@ function HomeSearch() {
             preload="metadata"
             poster="videos/homeSearchBannerImage.jpg"
           >
-            <source src="/videos/new-dk-mobile.mp4" type="video/mp4" />
-            <source src="/videos/new-dk-mobile.mp4" type="video/mov" />
+            <source src="/videos/dk-version-3.mp4" type="video/mp4" />
+            <source src="/videos/dk-version-3.mp4" type="video/mov" />
             Sorry, your browser doesn't support videos.
           </video>
 
