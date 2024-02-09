@@ -388,7 +388,7 @@ function SellModel(props) {
                       <div className="row">
                         <div className="col-md-12">
                           <h6 className="text-primary text-center p-2">
-                            Enter Details For Downloading {props.title} {props.formName}
+                            Enter Details to Download the {props.title}
                           </h6>
 
                           {!showOtp && (
