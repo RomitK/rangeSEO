@@ -89,6 +89,9 @@ function CareerListPage() {
               opportunities in Dubai's dynamic real estate market.
             </span>
           </p>
+
+          
+          
           {CareersData?.counters &&
           <Swiper
             slidesPerView={4}
@@ -146,12 +149,28 @@ function CareerListPage() {
             </div>
           </Swiper>
           }
+
+
+      <div className="">
+
+      <iframe width="100%" height="600"  src="https://www.youtube.com/embed/0Jg0PalVzk4?si=kmoa6MrpN80-wMlC" title="YouTube video player" 
+      frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+
+             
+            </div>
+
         </div>
+
+ 
       </section>
+     
+
       <section className="ListingSection" id="currentOpening">
         <div className="container">
           <div className="text-center mb-2  row g-3 justify-content-center">
             <h4 className=" text-primary">OPEN ROLES</h4>
+
+            
             <p className="fs-14 text-secondary mb-2">
               We are currently hiring for the below mentioned roles. Please
               click on the role to view the full job description and apply with
