@@ -144,7 +144,7 @@ const HomePage = () => {
                   <div className="row g-0">
                     <div className="col-12 col-lg-12 col-md-12">
                       <div>
-                        <div className="mainHead mb-5 text-center text-primary">
+                        <div className="mainHead text-center text-primary">
                           <h4>WE PARTNER WITH THE BEST</h4>
                         </div>
                       </div>
