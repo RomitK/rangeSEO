@@ -161,7 +161,7 @@ function ContactPage() {
           <div className="AddressArea">
             <div className="addressBox">
               <h4>Request a Call back</h4>
-              <p>Please fill up the form</p>
+              <p>Please fill the form</p>
               <div className="addressBoxContent">
                 <div className="row ">
                 <form onSubmit={handleSubmit(onSubmit)}>

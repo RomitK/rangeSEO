@@ -216,7 +216,7 @@ function Navbar() {
                     </li>
                     <li className="">
                       <Link className="mainLink" href="/careers">
-                        Career
+                        Careers
                       </Link>
                     </li>
                   </ul>
@@ -330,7 +330,7 @@ function Navbar() {
                           href="/careers"
                           onClick={() => closeRef.current.click()}
                         >
-                          Career
+                          Careers
                         </Link>
                       </li>
                       <li className="nav-item py-3 border-bottom">
@@ -503,7 +503,7 @@ function Navbar() {
                             href="/careers"
                             onClick={() => closeRef.current.click()}
                           >
-                            Career
+                            Careers
                           </Link>
                         </li>
                         <li className="nav-item py-3 border-bottom">
