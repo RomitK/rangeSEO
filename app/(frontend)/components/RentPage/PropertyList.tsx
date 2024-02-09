@@ -341,7 +341,7 @@ const PropertyList = ({ params }) => {
         >
           <div id="dataTable">
             <div>
-              <h5>Real Estate &amp; Homes</h5>
+              <h5>Available Properties</h5>
             </div>
             <div id="PropertyResult">
               <div>
