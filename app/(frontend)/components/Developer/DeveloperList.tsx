@@ -6,7 +6,7 @@ import Select from "react-select";
 import parse from "html-react-parser";
 import { useGetAllDeveloperData } from "@/src/services/DeveloperService";
 import { useGetCommunityOption } from "@/src/services/CommunityService";
-import { useGetAccommodationOptions } from "@/src/services/AccommodationService";
+import { useGetDeveloperAccommodationOptions } from "@/src/services/AccommodationService";
 import {
   useGetProjectOfferTypes,
   useGetProjectOptions,
@@ -48,7 +48,7 @@ function DeveloperList({ params }) {
   const [developers, setDevelopers] = useState([]);
   const [visibleDevelopers, setVisibleDevelopers] = useState([]);
   const { communityOption } = useGetCommunityOption();
-  const { accommodationOptions } = useGetAccommodationOptions();
+  const { accommodationOptions } = useGetDeveloperAccommodationOptions();
   const { projectOfferTypeOption } = useGetProjectOfferTypes();
   const [totalDevelopers, setTotalDevelopers] = useState(0);
   const { projectOption } = useGetProjectOptions();
@@ -445,7 +445,7 @@ function DeveloperList({ params }) {
             {developers?.map(function (developer, index) {
               return (
                 <Link
-                  href={`/developers/${developer?.slug}`}
+                  href={`/developers/${developer?.slug}?accommodation=${form?.accommodation_id.value}&completionStatus=${form.completion_status_id.value}&community=${form.community_id.value}`}
                  
                   className={`  ${isMobileDev ? "col-6" : "col-md-4"}`}
                   key={developer.id}
