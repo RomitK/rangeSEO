@@ -219,7 +219,10 @@ function SellPage() {
               />
               <div className="colmBoxContent">
                 <h2>
-                  GUIDE TO SELL <br />
+
+                
+
+                  GUIDE TO SELLING <br />
                   YOUR PROPERTY
                 </h2>
                 
