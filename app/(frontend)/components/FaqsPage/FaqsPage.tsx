@@ -37,10 +37,10 @@ function FaqsPage() {
           </h4> */}
 
           
-          <div className={`location-heading-div text-center${isMobileDev ? "" : "padding-bottom"}`}>
+          <div className={`location-heading-div text-center ${isMobileDev ? "" : "padding"}`}>
             <h2 className="location-heading">Frequently Ask Questions</h2>
           </div>
-          <div className={`upper-heading-div text-center ${isMobileDev ? "" : "padding"}`}>
+          <div className={`upper-heading-div text-center ${isMobileDev ? "" : " padding-bottom"}`}>
             <span className="upper-heading">FAQs</span>
             <span>
               <i className="fa-solid fa-horizontal-rule"></i>

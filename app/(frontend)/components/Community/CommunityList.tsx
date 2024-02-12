@@ -6,7 +6,7 @@ import Select from "react-select";
 import parse from "html-react-parser";
 import { useGetAllCommunityData } from "@/src/services/CommunityService";
 import { useGetDeveloperOptions } from "@/src/services/DeveloperService";
-import { useGetAccommodationOptions } from "@/src/services/AccommodationService";
+import { useGetCommunityAccommodationOptions } from "@/src/services/AccommodationService";
 import {
   useGetProjectOfferTypes,
   useGetProjectOptions,
@@ -46,7 +46,7 @@ function CommunityList() {
   });
   const { communitiesData, isValidating } = useGetAllCommunityData("", form);
   const { developerOption } = useGetDeveloperOptions();
-  const { accommodationOptions } = useGetAccommodationOptions();
+  const { accommodationOptions } = useGetCommunityAccommodationOptions();
   const { projectOfferTypeOption } = useGetProjectOfferTypes();
   const { projectOption } = useGetProjectOptions();
 
@@ -488,7 +488,8 @@ function CommunityList() {
               return (
                 <div className="col-md-4" key={community.id}>
                   <Link
-                    href={`/communities/${community.slug}`}
+
+                    href={`/communities/${community?.slug}?accommodation=${form?.accommodation_id.label}&developer=${form.developer_id.label}&project=${form.project_id.label}&completionStatus=${form.completion_status_id.label}`}
                     className="cardBox"
                   >
                     <img

@@ -21,8 +21,30 @@ import { useGetSingleCommunityData } from "@/src/services/CommunityService";
 import { getFontAwesomeSvgPath } from "@/src/utils/helpers/common";
 import Location from "./Location";
 import { createRoot } from "react-dom/client";
+import { useSearchParams } from "next/navigation";
+
 function SinglecommunityDataView({ params }) {
   const [isMobileDev, setIsMobileDev] = useState(false);
+  const searchParams = useSearchParams();
+
+  const [form, setForm] = useState({
+    accommodation : "",
+    completionStatus:"", 
+    project: "",
+    developer:"",
+  });
+
+  useEffect(() => {
+  
+    if (searchParams.has("accommodation") && searchParams.has("completionStatus") && searchParams.has("project") && searchParams.has("developer")) {
+      console.log('ppppp')
+      form.accommodation = searchParams.get("accommodation")
+      form.completionStatus = searchParams.get("completionStatus")
+      form.project = searchParams.get("project")
+      form.developer = searchParams.get("developer")
+    }
+  }, []);
+
   useEffect(() => {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
@@ -42,7 +64,7 @@ function SinglecommunityDataView({ params }) {
     };
   }, []);
   const slug = params.slug[0];
-  const { communityData } = useGetSingleCommunityData(slug);
+  const { communityData } = useGetSingleCommunityData(slug, form);
   const [nearByLocations, setNearByLocations] = useState([]);
   const [type, setType] = useState("property");
   const [icon, setIcon] = useState("");
@@ -737,7 +759,10 @@ function SinglecommunityDataView({ params }) {
                             spaceBetween: 50,
                           },
                         }}
-                        modules={[Navigation, Pagination]}
+                        autoplay={{
+                          delay: 3000,
+                        }}
+                        modules={[Navigation, Pagination, Autoplay]}
                         onSwiper={(swiper) => {
                           amentitiesSwiperRef.current = swiper;
                         }}

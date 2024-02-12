@@ -1,10 +1,15 @@
 import useSWR from "swr";
-export const useGetSingleDeveloperData = (slug) => {
-  const {
-    data: developerData,
-    error,
-    mutate,
-  } = useSWR(slug ? `/developers/${slug}/detail` : null);
+export const useGetSingleDeveloperData = (slug, form) => {
+
+  let url = `/developers/${slug}/detail/?`;
+  for (let key in form) {
+    if (form.hasOwnProperty(key)) {
+      if (form[key]) { // Check if the value is truthy, not if it has a 'value' property
+        url += `${key}=${form[key]}&`; // Access the value directly, no need for .value
+      }
+    }
+  }
+  const { data: developerData, error, mutate, isValidating } = useSWR(url);
 
   return { developerData: developerData?.data, developerDataMutate: mutate };
 };

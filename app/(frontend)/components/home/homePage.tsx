@@ -20,6 +20,7 @@ import { useGetAllHomeData } from "@/src/services/HomeService";
 import Link from "next/link";
 const HomePage = () => {
   const PropertySwiperRef = useRef<SwiperCore>();
+  const developerSwiperRef = useRef<SwiperCore>();
   const testimonialSwiperRef = useRef<SwiperCore>();
   const { homeData } = useGetAllHomeData();
   return (
@@ -182,7 +183,7 @@ const HomePage = () => {
                           }}
                           modules={[Navigation, Pagination, Autoplay]}
                           onSwiper={(swiper) => {
-                            PropertySwiperRef.current = swiper;
+                            developerSwiperRef.current = swiper;
                           }}
                           className="swiper projectSlider"
                         >
@@ -209,7 +210,7 @@ const HomePage = () => {
                           <div
                             className="swiper-button-prev swiperUniquePrev text-primary"
                             onClick={() =>
-                              PropertySwiperRef.current?.slidePrev()
+                              developerSwiperRef.current?.slidePrev()
                             }
                           >
                             <span className="">
@@ -219,7 +220,7 @@ const HomePage = () => {
                           <div
                             className="swiper-button-next swiperUniqueNext text-primary"
                             onClick={() =>
-                              PropertySwiperRef.current?.slideNext()
+                              developerSwiperRef.current?.slideNext()
                             }
                           >
                             <span className="">

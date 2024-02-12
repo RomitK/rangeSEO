@@ -14,6 +14,7 @@ import { useMemo } from "react";
 import { useGetSingleDeveloperData } from "@/src/services/DeveloperService";
 import Modal from "./Model"
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import {
   GoogleMap,
   InfoWindow,
@@ -44,15 +45,21 @@ function SingleDeveloperView({ params }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  const [form, setForm] = useState({
+    accommodation : "",
+    completionStatus:"", 
+    community: ""
+  });
 
   const slug = params.slug[0];
-  const { developerData } = useGetSingleDeveloperData(slug);
+  const { developerData } = useGetSingleDeveloperData(slug, form);
   const PropertySwiperRef = useRef<SwiperCore>();
   const communitySwiperRef = useRef<SwiperCore>();
   const gallerySwiperRef1 = useRef<SwiperCore>();
   const PropertySaleSwiperRef = useRef<SwiperCore>();
   const PropertyRentSwiperRef = useRef<SwiperCore>();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const projectOptions = developerData?.newProjects;
   const projectChangeHandle = (event) => {
     setSelectedProject(event);
@@ -81,6 +88,8 @@ function SingleDeveloperView({ params }) {
     slug: "",
     completionStatusName: "",
   });
+
+  
   const [markers, setMarkers] = useState([]);
   const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
 
@@ -88,6 +97,17 @@ function SingleDeveloperView({ params }) {
     minPrice: 0,
     maxPrice: 0,
   });
+
+
+  useEffect(() => {
+    if (searchParams.has("accommodation") && searchParams.has("completionStatus") && searchParams.has("community")) {
+      form.accommodation = searchParams.get("accommodation")
+      form.completionStatus = searchParams.get("completionStatus")
+      form.community = searchParams.get("community")
+    }
+  }, []);
+
+
   useEffect(() => {
     if (developerData?.projects) {
       setMarkers(developerData.projects);
@@ -263,7 +283,7 @@ function SingleDeveloperView({ params }) {
             <h1>Loading...</h1>
           ) : (  
             <GoogleMap
-              mapContainerClassName="map-container"
+              mapContainerClassName="list-map-container"
               onLoad={onMapLoad}
               onClick={() => setIsOpen(false)}
             >
@@ -400,7 +420,7 @@ function SingleDeveloperView({ params }) {
                           </p>
                         </div>
                       </div>
-                      <div className="col-10 col-lg-2 col-md-3 mx-3 my-auto">
+                      {/* <div className="col-10 col-lg-2 col-md-3 mx-3 my-auto">
                         <div className="bg-white shadow  px-3 py-2">
                           <p className="text-primary mb-1 fw-semibold">
                             PRICE RANGE
@@ -462,7 +482,7 @@ function SingleDeveloperView({ params }) {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   {developerData?.projects?.slice(0, 12)?.map((project, index) => {
