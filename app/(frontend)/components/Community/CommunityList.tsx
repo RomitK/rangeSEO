@@ -489,7 +489,7 @@ function CommunityList() {
                 <div className="col-md-4" key={community.id}>
                   <Link
 
-                    href={`/communities/${community?.slug}?accommodation=${form?.accommodation_id.label}&developer=${form.developer_id.label}&project=${form.project_id.label}&completionStatus=${form.completion_status_id.label}`}
+                    href={`/communities/${community?.slug}?accommodation=${form?.accommodation_id.label}&developer=${form.developer_id.label}&project=${form.project_id.label}&completionStatus=${form.completion_status_id.label}&accommodation_id=${form?.accommodation_id.value}`}
                     className="cardBox"
                   >
                     <img

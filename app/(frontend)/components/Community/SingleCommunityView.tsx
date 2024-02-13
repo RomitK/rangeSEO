@@ -29,6 +29,7 @@ function SinglecommunityDataView({ params }) {
 
   const [form, setForm] = useState({
     accommodation : "",
+    accommodation_id:"",
     completionStatus:"", 
     project: "",
     developer:"",
@@ -36,12 +37,12 @@ function SinglecommunityDataView({ params }) {
 
   useEffect(() => {
   
-    if (searchParams.has("accommodation") && searchParams.has("completionStatus") && searchParams.has("project") && searchParams.has("developer")) {
-      console.log('ppppp')
+    if (searchParams.has("accommodation") && searchParams.has("completionStatus") && searchParams.has("project") && searchParams.has("developer") && searchParams.has('accommodation_id')) {
       form.accommodation = searchParams.get("accommodation")
       form.completionStatus = searchParams.get("completionStatus")
       form.project = searchParams.get("project")
       form.developer = searchParams.get("developer")
+      form.accommodation_id = searchParams.get("accommodation_id")
     }
   }, []);
 
@@ -924,7 +925,7 @@ function SinglecommunityDataView({ params }) {
                         <div className="col-6 text-end">
                           {communityData?.rentProperties.length > 0 && (
                             <Link
-                              href={`/rent?community_name=${communityData?.name}&community_detail=${communityData?.id}`}
+                              href={`/rent?community_name=${communityData?.name}&community_detail=${communityData?.id}&property_type=${form.accommodation}&accommodation_id=${form.accommodation_id}`}
                               className="text-decoration-none bdrBtn width-auto-fit"  style={{width: "fit-content"}}
                             >
                               View All
@@ -1097,7 +1098,7 @@ function SinglecommunityDataView({ params }) {
                         <div className="col-6 text-end">
                           {communityData?.saleProperties.length > 0 && (
                             <Link
-                              href={`/buy?community_name=${communityData?.name}&community_detail=${communityData?.id}`}
+                              href={`/buy?community_name=${communityData?.name}&community_detail=${communityData?.id}&accommodation_id=${form.accommodation_id}`}
                               className="text-decoration-none bdrBtn width-auto-fit"
                               style={{width: "fit-content"}}
                             >

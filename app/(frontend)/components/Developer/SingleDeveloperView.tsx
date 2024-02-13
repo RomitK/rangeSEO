@@ -47,6 +47,7 @@ function SingleDeveloperView({ params }) {
   }, []);
   const [form, setForm] = useState({
     accommodation : "",
+    accommodation_id:"",
     completionStatus:"", 
     community: ""
   });
@@ -100,10 +101,11 @@ function SingleDeveloperView({ params }) {
 
 
   useEffect(() => {
-    if (searchParams.has("accommodation") && searchParams.has("completionStatus") && searchParams.has("community")) {
+    if (searchParams.has("accommodation") && searchParams.has("completionStatus") && searchParams.has("community") && searchParams.has('accommodation_id')) {
       form.accommodation = searchParams.get("accommodation")
       form.completionStatus = searchParams.get("completionStatus")
       form.community = searchParams.get("community")
+      form.accommodation_id = searchParams.get("accommodation_id")
     }
   }, []);
 
@@ -840,7 +842,7 @@ function SingleDeveloperView({ params }) {
                         <div className="col-6 text-end">
                           {developerData?.rentProperties.length > 0 && (
                             <Link
-                              href={`/rent?developer_name=${developerData?.name}&developer_detail=${developerData?.id}`}
+                              href={`/rent?developer_name=${developerData?.name}&developer_detail=${developerData?.id}&accommodation_id=${form.accommodation_id}`}
                               className="text-decoration-none bdrBtn width-auto-fit"  style={{width: "fit-content"}}
                             >
                               View All
@@ -1013,7 +1015,7 @@ function SingleDeveloperView({ params }) {
                         <div className="col-6 text-end">
                           {developerData?.saleProperties.length > 0 && (
                             <Link
-                              href={`/buy?developer_name=${developerData?.name}&developer_detail=${developerData?.id}`}
+                              href={`/buy?developer_name=${developerData?.name}&developer_detail=${developerData?.id}&accommodation_id=${form.accommodation_id}`}
                               className="text-decoration-none bdrBtn width-auto-fit"
                               style={{width: "fit-content"}}
                             >

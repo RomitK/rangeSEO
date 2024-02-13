@@ -445,7 +445,7 @@ function DeveloperList({ params }) {
             {developers?.map(function (developer, index) {
               return (
                 <Link
-                  href={`/developers/${developer?.slug}?accommodation=${form?.accommodation_id.label}&completionStatus=${form.completion_status_id.label}&community=${form.community_id.label}`}
+                  href={`/developers/${developer?.slug}?accommodation=${form?.accommodation_id.label}&completionStatus=${form.completion_status_id.label}&community=${form.community_id.label}&accommodation_id=${form?.accommodation_id.value}`}
                  
                   className={`  ${isMobileDev ? "col-6" : "col-md-4"}`}
                   key={developer.id}
