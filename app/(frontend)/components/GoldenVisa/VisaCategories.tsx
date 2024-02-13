@@ -6,7 +6,25 @@ import Link from "next/link";
 
 function VisaCategories({ answers, onBackToQuestionClicked }) {
     const [visaCategories, setVisaCategories] = useState([]);
-
+    const [isMobileDev, setIsMobileDev] = useState(false);
+    useEffect(() => {
+      const handleResize = () => {
+        // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+        const isMobileDevice = window.innerWidth < 768;
+        setIsMobileDev(isMobileDevice);
+      };
+  
+      // Initial check on component mount
+      handleResize();
+  
+      // Add event listener for window resize
+      window.addEventListener("resize", handleResize);
+  
+      // Clean up the event listener on component unmount
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
     useEffect(() => {
         let visaCategoriesDup = [];
         for (const property in answers) {
@@ -71,7 +89,7 @@ function VisaCategories({ answers, onBackToQuestionClicked }) {
                         </p>
                     )}
                 </div>
-                <div className="row dashboardcontrols dashboardcontrolsboxs dashboardcontrolsboxs2">
+                <div  className={`"row dashboardcontrols dashboardcontrolsboxs dashboardcontrolsboxs2 ${isMobileDev ? "nospace-row" : ""}`}>
                     {visaCategories.map(
                         (visaCategory) =>
                             VISAS[visaCategory] && (
