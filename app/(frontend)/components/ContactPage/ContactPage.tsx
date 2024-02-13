@@ -108,51 +108,141 @@ function ContactPage() {
       </section>
       <section className="section contactBoxsSection">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-4">
-              <div className="contactBox">
-                <h5>Call Us</h5>
-                <a href="tel:80072888" className="textFlexBar">
-                  <img
-                    src="/images/icons/phone-icon.png"
-                    className="contact-icon"
-                    alt="phone"
-                  />
-                  <p>800 72 888</p>
-                </a>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="contactBox bdr">
-                <h5>Email</h5>
-                <a href="mailto:sales@range.ae" className="textFlexBar">
-                  <img
-                    src="/images/icons/mail-icon.png"
-                    className="contact-icon"
-                    alt="mail"
-                  />
-                  <p>sales@range.ae</p>
-                </a>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="contactBox">
-                <h5>WhatsApp</h5>
-                <a
-                  href={
-                    "https://wa.me/+971506337953?text=Hi, Please let me know more about investing in Dubai Real Estate"
-                  }
-                  className="textFlexBar"
-                >
-                  <img
-                    src="/images/icons/whatsapp-icon.png"
-                    className="contact-icon"
-                    alt="whatsapp"
-                  />
-                  <p>+971 50 633 7953</p>
-                </a>
-              </div>
-            </div>
+          <div className="row" >
+            {
+              isMobileDev && (
+                <>
+
+                <div className="col-6 paddingRight0">
+                  <div className="contactBox bdrOnly">
+                    <h5 className="">Call Us</h5>
+                    <a href="tel:80072888" className="textFlexBar">
+                      <img
+                        src="/images/icons/phone-icon.png"
+                        className="contact-icon"
+                        alt="phone"
+                      />
+                      <p className="fs-12">800 72 888</p>
+                    </a>
+                  </div>
+                </div>
+                <div className="col-6 paddingRight0">
+                  <div className="contactBox bdr">
+                    <h5>Email</h5>
+                    <a href="mailto:sales@range.ae" className="textFlexBar">
+                      <img
+                        src="/images/icons/mail-icon.png"
+                        className="contact-icon"
+                        alt="mail"
+                      />
+                      <p className="fs-12">sales@range.ae</p>
+                    </a>
+                  </div>
+                </div>
+                <div className="col-6 paddingRight0">
+                  <div className="contactBox bdrOnly">
+                    <h5>WhatsApp</h5>
+                    <a
+                      href={
+                        "https://wa.me/+971506337953?text=Hi, Please let me know more about investing in Dubai Real Estate"
+                      }
+                      className="textFlexBar"
+                    >
+                      <img
+                        src="/images/icons/whatsapp-icon.png"
+                        className="contact-icon"
+                        alt="whatsapp"
+                      />
+                      <p className="fs-12">+971 50 633 7953</p>
+                    </a>
+                  </div>
+                </div>
+                <div className="col-6 paddingRight0">
+                  <div className="contactBox">
+                    <h5>Address</h5>
+                    <a href="tel:80072888" className="textFlexBar">
+                      <img
+                        src="/images/icons/map_pin.png"
+                        className="contact-icon"
+                        alt="whatsapp"
+                      />
+                      <p className="fs-12"> 2601, Aspect Tower, Business Bay, Dubai, UAE</p>
+                    </a>
+                  </div>
+                </div>
+
+                </>
+              )
+            }
+            {
+              !isMobileDev && (
+                <>
+
+                <div className="col-lg-3 ">
+                  <div className="contactBox">
+                    <h5 className="">Call Us</h5>
+                    <a href="tel:80072888" className="textFlexBar">
+                      <img
+                        src="/images/icons/phone-icon.png"
+                        className="contact-icon"
+                        alt="phone"
+                      />
+                      <p className="fs-18">800 72 888</p>
+                    </a>
+                  </div>
+                </div>
+                <div className="col-lg-3 paddingLeft0">
+                  <div className="contactBox bdr">
+                    <h5>Email</h5>
+                    <a href="mailto:sales@range.ae" className="textFlexBar">
+                      <img
+                        src="/images/icons/mail-icon.png"
+                        className="contact-icon"
+                        alt="mail"
+                      />
+                      <p className="fs-18">sales@range.ae</p>
+                    </a>
+                  </div>
+                </div>
+                <div className="col-lg-3 paddingRight0">
+                  <div className="contactBox bdrOnly">
+                    <h5>WhatsApp</h5>
+                    <a
+                      href={
+                        "https://wa.me/+971506337953?text=Hi, Please let me know more about investing in Dubai Real Estate"
+                      }
+                      className="textFlexBar"
+                    >
+                      <img
+                        src="/images/icons/whatsapp-icon.png"
+                        className="contact-icon"
+                        alt="whatsapp"
+                      />
+                      <p className="fs-18">+971 50 633 7953</p>
+                    </a>
+                  </div>
+                </div>
+                <div className="col-lg-3 paddingRight0">
+                  <div className="contactBox">
+                    <h5>Address</h5>
+                    <a href="tel:80072888" className="textFlexBar">
+                    <img
+                        src="/images/icons/map_pin.png"
+                        className="contact-icon"
+                        alt="whatsapp"
+                      />
+                      <p className="fs-18"> 2601, Aspect Tower, Business Bay, Dubai, UAE</p>
+
+                    </a>
+                     
+                    
+                  </div>
+                </div>
+
+                </>
+              )
+            }
+
           </div>
         </div>
       </section>
@@ -160,12 +250,13 @@ function ContactPage() {
         <div className="container">
           <div className="AddressArea">
             <div className="addressBox">
-              <h4>Request a Call back</h4>
-              <p>Please fill the form</p>
+              <h4 className="text-center text-primary">Request a Call back</h4>
+              
               <div className="addressBoxContent">
                 <div className="row ">
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="col-12 mb-2">
+                  <p>Please fill the form</p>
                     <input type="hidden" value="CallBackRequestForm" {...register("formName", { required: false })}/>
                     <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
                     <input
@@ -243,7 +334,7 @@ function ContactPage() {
               <div className="addressBoxHead">
                 <h4>Location</h4>
                 <p className=" text-secondary">
-                  2601, Aspect Tower, Business Bay, Dubai, UAE, 114888
+                 
                 </p>
               </div>
               <div className="addressBoxContent pad-0">
@@ -265,11 +356,11 @@ function ContactPage() {
           {/* <h4 className="sctionMdTitle text-primary ">FAQS</h4> */}
 
           
-          <div className="location-heading-div text-center padding-bottom">
+          <div className="location-heading-div text-center padding">
             <h2 className="location-heading">Frequently Ask Questions</h2>
           </div>
 
-          <div className="upper-heading-div text-center padding">
+          <div className="upper-heading-div text-center  padding-bottom">
             <span className="upper-heading">FAQs</span>
             <span>
               <i className="fa-solid fa-horizontal-rule"></i>

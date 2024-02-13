@@ -224,6 +224,15 @@ background-color:  #136dae !important;
 border-color: #136dae !important;
 color:white !important
 }
+.contactBox.bdrOnly {
+    border-right: 1px solid #3f3f3f;
+}
+.paddingRight0{
+    padding-right: 0px !important;
+}
+.paddingLeft0{
+    padding-right: 0px !important;
+}
 .search-input.active input{
 border-radius: 5px 5px 0 0;
 }

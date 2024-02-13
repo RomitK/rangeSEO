@@ -48,6 +48,7 @@ function SingleDeveloperView({ params }) {
   const [form, setForm] = useState({
     accommodation : "",
     accommodation_id:"",
+    completion_status_id:"",
     completionStatus:"", 
     community: ""
   });
@@ -101,11 +102,12 @@ function SingleDeveloperView({ params }) {
 
 
   useEffect(() => {
-    if (searchParams.has("accommodation") && searchParams.has("completionStatus") && searchParams.has("community") && searchParams.has('accommodation_id')) {
+    if (searchParams.has("accommodation") && searchParams.has("completionStatus") && searchParams.has("community") && searchParams.has('accommodation_id') && searchParams.has("completion_status_id")) {
       form.accommodation = searchParams.get("accommodation")
       form.completionStatus = searchParams.get("completionStatus")
       form.community = searchParams.get("community")
       form.accommodation_id = searchParams.get("accommodation_id")
+      form.completion_status_id = searchParams.get("completion_status_id")
     }
   }, []);
 
@@ -521,7 +523,7 @@ function SingleDeveloperView({ params }) {
                   {developerData && developerData.projects &&  developerData.projects.length > 0 && (
                   <div className="text-center py-3 text-primary">
                     <a className="text-primary"
-                     href={`/projects?developer_name=${developerData.name}&developer_detail=${developerData.id}&lisiting`}
+                     href={`/projects?developer_name=${developerData.name}&developer_detail=${developerData.id}&accommodation_id=${form.accommodation_id}&completion_status_id=${form.completion_status_id}&lisiting`}
                     >
                     VIEW ALL
                     </a>

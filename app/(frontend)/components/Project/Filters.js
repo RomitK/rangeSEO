@@ -101,7 +101,12 @@ function Filters({
     } else {
       setIsCommercial(false)      
       form['isCommercial'] = "";
-      form['accommodation_id'] = "";
+      if(searchParams.has('accommodation_id')){
+        form['accommodation_id'] = searchParams.get('accommodation_id');
+      }else{
+        form['accommodation_id'] = "";
+      }
+
       setForm({ ...form });
 
       const filtered = accomodations?.filter(
@@ -127,10 +132,26 @@ function Filters({
       setForm({ ...form });
       setShowMore(true);
     }
+    // if(searchParams.has('completion_status_id') && searchParams.has('accommodation_id')){
+    //   form['completion_status_id'] =searchParams.get('completion_status_id');
+    //   form['accommodation_id'] = searchParams.get('accommodation_id');
+    //   setForm({ ...form });
+    // }
+
+    // if(searchParams.has('accommodation_id')){
+    //   form['accommodation_id'] = searchParams.get('accommodation_id');
+    //   setForm({ ...form });
+    // }
+
     if (
       searchParams.has("developer_name") &&
-      searchParams.has("developer_detail")
+      searchParams.has("developer_detail") && 
+      searchParams.has('completion_status_id') && searchParams.has('accommodation_id')
     ) {
+      console.log('searchParam')
+      form['completion_status_id'] =searchParams.get('completion_status_id');
+      form['accommodation_id'] = searchParams.get('accommodation_id');
+
       setForm({
         ...form,
         searchBy: [
@@ -273,7 +294,6 @@ function Filters({
   }, [isMobile]);
 
   useEffect(() => {
-
     let getPropertiesURL = process.env.API_HOST + "projects?";
     let payload = { ...form };
     for (let key in payload) {
@@ -376,11 +396,10 @@ function Filters({
   
   const handleChange = (e) => {
     form[e.target.name] = e.target.value;
-    
     setForm({ ...form });
     if(showListing){
       form['lastUpdated'] =e.target.name;
-      redirectListing(form);
+     redirectListing(form);
     }
   };
 

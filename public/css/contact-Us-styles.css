@@ -26,7 +26,8 @@ padding: 50px 0px;
 margin-bottom: 60px;
 }
 .contactBox{
-padding: 24px 40px;
+    align-items: center !important;
+padding: 20px 20px;
 }
 .textFlexBar{
 display: flex;
