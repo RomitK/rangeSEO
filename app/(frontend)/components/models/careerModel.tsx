@@ -200,8 +200,9 @@ function CareerModel(props) {
                                 width="150"
                               />
                               <h6 className="text-primary py-2">
-                              SHARE YOUR CV WITH US <br/>
-                              {props.careerPosition}
+                                Share your CV with us
+                             
+                              {/* {props.careerPosition} */}
                             </h6>
                             </div>
                             <div className="form-group  mb-2">
