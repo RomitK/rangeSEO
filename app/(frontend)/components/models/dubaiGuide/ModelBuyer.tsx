@@ -164,7 +164,7 @@ function ModelBuyer(props) {
                 setIsLoading(false);
                 closeRef.current.click();
                 reset();
-                toast.success("Thank you. your document is downloading.");
+                toast.success("Thank you. Your document is downloading.");
               })
               .catch(function (error) {
                 toast.error(`Download failed Something went wrong!`);
@@ -252,7 +252,7 @@ function ModelBuyer(props) {
             setIsLoading(false);
             closeRef.current.click();
             reset();
-            toast.success("Thank you. your document is downloading.");
+            toast.success("Thank you. Your document is downloading.");
           })
           .catch(function (error) {
             toast.error(`Download failed Something went wrong!`);
