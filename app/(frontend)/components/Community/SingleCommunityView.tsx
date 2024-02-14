@@ -1450,7 +1450,7 @@ function SinglecommunityDataView({ params }) {
                                           className="text-decoration-none"
                                         >
                                           <div className="mb-1 text-center">
-                                            <h5 className="text-black">
+                                            <h5 className="text-black text-nowrap">
                                               {nearbyCommunity.name}
                                             </h5>
                                           </div>
