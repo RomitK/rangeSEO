@@ -235,7 +235,7 @@ function SellPage() {
               </div>
             </div>
             <div className="colmBox formBox" id="sellContact">
-              <h3 className="title">Contact our Agents now</h3>
+              <h3 className="title">Contact our agent now</h3>
               <div className="row ">
               <form onSubmit={handleSubmit(onSubmit)}>
                   <input type="hidden" value="sellContactForm" {...register("formName", { required: false })}/>
