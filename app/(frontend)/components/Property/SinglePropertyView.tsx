@@ -870,7 +870,13 @@ function SinglePropertyView({ params }) {
                                   spaceBetween: 50,
                                 },
                               }}
-                              modules={[Navigation]}
+                            
+
+                              autoplay={{
+                                delay: 3000,
+                              }}
+                              modules={[Navigation, Autoplay]}
+
                               onSwiper={(swiper) => {
                                 amentitiesSwiperRef.current = swiper;
                               }}
@@ -985,7 +991,13 @@ function SinglePropertyView({ params }) {
                                             spaceBetween: 10,
                                           },
                                         }}
-                                        modules={[Navigation]}
+
+                                        autoplay={{
+                                          delay: 3000,
+                                        }}
+                                        modules={[Navigation, Autoplay]}
+
+                                       
                                         onSwiper={(swiper) => {
                                           projectSwiperRef.current = swiper;
                                         }}
@@ -1617,7 +1629,10 @@ function SinglePropertyView({ params }) {
                                 spaceBetween: 10,
                               },
                             }}
-                            modules={[Navigation]}
+                            autoplay={{
+                              delay: 3000,
+                            }}
+                            modules={[Navigation, Autoplay]}
                             onSwiper={(swiper) => {
                               CommunitySwiperRef.current = swiper;
                             }}
@@ -1856,7 +1871,10 @@ function SinglePropertyView({ params }) {
                                 spaceBetween: 10,
                               },
                             }}
-                            modules={[Navigation]}
+                            autoplay={{
+                              delay: 3000,
+                            }}
+                            modules={[Navigation, Autoplay]}
                             onSwiper={(swiper) => {
                               similiarPropertySwiperRef.current = swiper;
                             }}

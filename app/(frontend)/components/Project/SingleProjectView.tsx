@@ -1029,7 +1029,11 @@ function SingleProjectView({ params }) {
                           spaceBetween: 10,
                         },
                       }}
-                      modules={[Navigation, Pagination]}
+                      autoplay={{
+                        delay: 3000,
+                      }}
+                      modules={[Navigation, Autoplay]}
+                     
                       onSwiper={(swiper) => {
                         otherProjectSwiperRef.current = swiper;
                       }}
@@ -1161,7 +1165,10 @@ function SingleProjectView({ params }) {
                                 spaceBetween: 10,
                               },
                             }}
-                            modules={[Navigation, Pagination]}
+                            autoplay={{
+                              delay: 3000,
+                            }}
+                            modules={[Navigation, Autoplay]}
                             onSwiper={(swiper) => {
                               rentSwiperRef.current = swiper;
                             }}
@@ -1352,7 +1359,10 @@ function SingleProjectView({ params }) {
                                   spaceBetween: 10,
                                 },
                               }}
-                              modules={[Navigation, Pagination]}
+                              autoplay={{
+                                delay: 3000,
+                              }}
+                              modules={[Navigation, Autoplay]}
                               onSwiper={(swiper) => {
                                 saleSwiperRef.current = swiper;
                               }}
