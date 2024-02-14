@@ -36,7 +36,7 @@ function TeamPage() {
       </header> */}
       <section className="section meetOurTeam">
         <div className="container">
-          <h4 className={`sctionMdTitle text-primary text-center ${isMobileDev ? "mb-3" : "mb-5"}`}>
+          <h4 className={`sctionMdTitle text-primary text-center ${isMobileDev ? "mb-3" : ""}`}>
             MEET THE TEAM
           </h4>
           <p className={`fs-12 text-secondary mxWdtext ${isMobileDev ? "mb-3" : "mb-5"}`}>

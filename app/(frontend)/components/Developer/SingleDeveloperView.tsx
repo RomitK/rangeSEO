@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import SwiperCore, { Swiper as SwiperType } from "swiper";
 import "swiper/swiper-bundle.css";
 import "swiper/css/pagination";
@@ -571,7 +571,10 @@ function SingleDeveloperView({ params }) {
                           spaceBetween: 10,
                         },
                       }}
-                      modules={[Navigation, Pagination]}
+                      autoplay={{
+                        delay: 3000,
+                      }}
+                      modules={[Navigation, Pagination, Autoplay]}
                       onSwiper={(swiper) => {
                         communitySwiperRef.current = swiper;
                       }}
@@ -877,7 +880,10 @@ function SingleDeveloperView({ params }) {
                             spaceBetween: 10,
                           },
                         }}
-                        modules={[Navigation, Pagination]}
+                        autoplay={{
+                          delay: 3000,
+                        }}
+                        modules={[Navigation, Pagination, Autoplay]}
                         onSwiper={(swiper) => {
                           PropertyRentSwiperRef.current = swiper;
                         }}
@@ -1051,7 +1057,10 @@ function SingleDeveloperView({ params }) {
                             spaceBetween: 10,
                           },
                         }}
-                        modules={[Navigation, Pagination]}
+                        autoplay={{
+                          delay: 3000,
+                        }}
+                        modules={[Navigation, Pagination, Autoplay]}
                         onSwiper={(swiper) => {
                           PropertySaleSwiperRef.current = swiper;
                         }}
