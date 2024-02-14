@@ -83,7 +83,7 @@ function ServiceModel(props) {
                                 width="150"
                               />
                               <h6 className="text-primary py-2">
-                              Enter Details
+                              Enter your details here
                             </h6>
                             </div>
                             <div className="form-group  mb-2">
