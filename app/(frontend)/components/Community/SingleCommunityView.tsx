@@ -380,7 +380,10 @@ function SinglecommunityDataView({ params }) {
                             spaceBetween: 50,
                           },
                         }}
-                        modules={[Navigation, Pagination]}
+                        autoplay={{
+                          delay: 3000,
+                        }}
+                        modules={[Navigation, Pagination, Autoplay]}
                         onSwiper={(swiper) => {
                           hightlighSwiperRef.current = swiper;
                         }}
@@ -958,7 +961,10 @@ function SinglecommunityDataView({ params }) {
                             spaceBetween: 10,
                           },
                         }}
-                        modules={[Navigation, Pagination]}
+                        autoplay={{
+                          delay: 3000,
+                        }}
+                        modules={[Navigation, Pagination, Autoplay]}
                         onSwiper={(swiper) => {
                           PropertyRentSwiperRef.current = swiper;
                         }}
@@ -1132,7 +1138,10 @@ function SinglecommunityDataView({ params }) {
                             spaceBetween: 10,
                           },
                         }}
-                        modules={[Navigation, Pagination]}
+                        autoplay={{
+                          delay: 3000,
+                        }}
+                        modules={[Navigation, Pagination, Autoplay]}
                         onSwiper={(swiper) => {
                           PropertySaleSwiperRef.current = swiper;
                         }}
@@ -1404,7 +1413,10 @@ function SinglecommunityDataView({ params }) {
                           spaceBetween: 10,
                         },
                       }}
-                      modules={[Navigation, Pagination]}
+                      autoplay={{
+                        delay: 3000,
+                      }}
+                      modules={[Navigation, Pagination, Autoplay]}
                       onSwiper={(swiper) => {
                         nearbyCommunitiesSwiperRef.current = swiper;
                       }}
