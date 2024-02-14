@@ -76,7 +76,7 @@ function GoldenVisaPage() {
             </div>
 
             <div className="wrapper dashoboardpage golderservicepage">
-              <div className="row">
+              <div className={`"row ${isMobileDev ? "m-0 p-0" : ""}`}>
                 {checkClicked ? (
                   <VisaCategories
                     onBackToQuestionClicked={handleCheckClick}

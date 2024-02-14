@@ -5,7 +5,7 @@ function VisaCategory({ visaCategory }) {
         <div className="col-md-3 ng-scope">
             <div className="dash-section">
                 <div className="icondiv col-md-12">
-                    <img src="/images/visas/VISA-Multi-Entry1.svg" />
+                    <img src="/images/visas/VISA-Multi-Entry1.svg" alt="visa"/>
                 </div>
                 <div className="col-md-12">
                     <p style={{ minHeight: "50px" }} className="ng-binding">
@@ -20,7 +20,7 @@ function VisaCategory({ visaCategory }) {
                 </div>
                 <div className="col-md-12 text-center">
                 <button
-                    className="fillBtn  mrAuto cardBtn goldenVisa"
+                    className="fillBtn  mrAuto cardBtn goldenVisa btn btn-primary rounded-0"
                     data-bs-toggle="modal"
                     data-bs-target="#enquireNow"
                   >
