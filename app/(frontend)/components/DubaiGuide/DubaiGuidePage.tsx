@@ -76,7 +76,14 @@ function DubaiGuidePage() {
             </div>
           </SwiperSlide>
           <SwiperSlide className="clmSliderItem">
-            <img src="/images/banner/banner-4.webp" className="multiItem" alt="banner"/>
+          
+          {
+            isMobileDev && (<img src="/images/banner/banner-4-mobile.jpeg" className="multiItem" alt="banner"/>)
+          }
+          {
+            !isMobileDev && (<img src="/images/banner/invest.jpeg" className="multiItem" alt="banner"/>)
+          }
+            
             <div className="carouselcontent">
               <h3> BUYER GUIDE</h3>
               <button className="mrAuto downloadBtn" onClick={() => window.location.href = '#buyerGuide'}>DOWNLOAD NOW</button>
