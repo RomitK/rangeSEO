@@ -162,8 +162,8 @@ font-weight: 700;
 padding: 8px 24px;
 opacity: 0.73;
 position: absolute;
-top: 15px;
-left: 15px;
+top: 10px;
+    left: 40%;
 }
 .eventCardImg{
 width: 100%;
