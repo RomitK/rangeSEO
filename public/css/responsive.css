@@ -468,6 +468,7 @@ section .sctionMdTitle {
     font-size: 22px;
 }
 .dubaiGuideSection{
+    height: auto !important;
 padding-bottom: 0px !important;
 margin: 20px 0px !important;  
 }
