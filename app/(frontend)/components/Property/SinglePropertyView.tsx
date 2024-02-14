@@ -1124,7 +1124,7 @@ function SinglePropertyView({ params }) {
                           href={`/projects/${propertyData.project["slug"]}`}
                           className="text-decoration-none bdrBtn width-auto-fit"
                         >
-                          View More
+                          Learn More
                         </Link>
                         <br></br>
                         {propertyData && (
