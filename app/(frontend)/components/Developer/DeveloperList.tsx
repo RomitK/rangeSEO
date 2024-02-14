@@ -381,7 +381,7 @@ function DeveloperList({ params }) {
       </div>
     )}
       
-      <section className={`developersSection  ${isMobileDev ? "" : "py-2"}`}>
+      <section className={`developersSection  ${isMobileDev ? "py-2" : ""}`}>
         <div className="container">
           <h4
             className={`sctionMdTitle text-primary text-center  ${
