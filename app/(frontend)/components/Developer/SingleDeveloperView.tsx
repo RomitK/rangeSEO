@@ -385,7 +385,7 @@ function SingleDeveloperView({ params }) {
       </Modal>
 
       {developerData && developerData.projects &&  developerData.projects.length > 0 && (
-        <section  className={`${isMobileDev ? "my-2" : "my-5"}`}>
+        <section  className={`${isMobileDev ? "" : ""}`}>
           <div className="container-fluid px-0">
             <div className="row g-0">
               <div className="col-12 col-lg-12 col-md-12">
