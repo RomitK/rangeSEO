@@ -2080,9 +2080,9 @@ background-color: #2f3c6a;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2); /* Example box shadow */
         background-color: white; /* White background */
         margin-left: -17px;
-        /* width: 30%; */
+        /* width: 10%; */
         /* position: relative; */
-        padding: 30px;
+        padding: 50px;
     }
     .scrol_y{
         height: 200px; overflow-y: auto;
@@ -2123,3 +2123,26 @@ background-color: #2f3c6a;
       .g-0{
         gap: 0px !important;
       }
+      .custom-prev-arrow,
+      .custom-next-arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 1;
+        color: #fff;
+        cursor: pointer;
+      }
+      
+      .custom-prev-arrow {
+        left: 10px;
+      }
+      
+      .custom-next-arrow {
+        right: 10px;
+      }
+      .slide-item {
+        padding: 0 10px !important; /* Adjust the margin to increase space between slides */
+      }
+      .fixed-div-content {
+        width: 100%; /* Or adjust the width as needed */
+      }
+      

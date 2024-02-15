@@ -179,7 +179,7 @@ function SinglePropertyView({ params }) {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
-      const specifiedOffset = 200; // Change this value based on when you want the div to become fixed
+      const specifiedOffset = 400; // Change this value based on when you want the div to become fixed
       // console.log(currentScrollPos > specifiedOffset)
       if (currentScrollPos > specifiedOffset) {
         setIsFixed(true);
@@ -1495,8 +1495,8 @@ function SinglePropertyView({ params }) {
                       </ul>
                     </div>
                     {propertyData?.agent && (
-                      <div className={`${isFixed ? "fixed-div" : ""}`}>
-                        <div className={`py-3 proUserBox`}>
+                      <div >
+                        <div className={` proUserBox`}>
                           <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
                             <div className="my-auto projctSpecIMg me-3 mb-3">
                               <center>
@@ -1540,10 +1540,14 @@ function SinglePropertyView({ params }) {
                           </div>
                         </div>
 
-                        <div className="py-3">
+                        <div className={`py-3 ${isFixed ? "fixed-div" : ""}`}>
+                        <small className="text-white">
+                          Co-Founder & Managing Partner & Managing aaaafsdf
+                          </small>
+                        
                           <div className="BtnsflexBar mb-3">
                             <a
-                              className="Probtn whatsappBtn wd50pr"
+                              className="Probtn whatsappBtn "
                               href={
                                 "https://wa.me/" +
                                 propertyData?.agent?.whatsapp +
@@ -1557,14 +1561,30 @@ function SinglePropertyView({ params }) {
                               WHATSAPP
                             </a>
                             <a
-                              className="Probtn bg-primary wd50pr"
+                              className="Probtn bg-primary "
                               href={"mailto:" + propertyData?.agent?.email}
                             >
                               <i className="fa fa-envelope"></i>
                               Email
                             </a>
+                            {
+                              isFixed && (
+                                <>
+                                <a
+                                  href={"tel:" + propertyData?.agent?.contact}
+                                  className="Probtn bg-primary "
+                                >
+                                  <img
+                                    alt="call"
+                                    src="/images/icons/phone.png"
+                                    className="proPhoneIcon"
+                                  />
+                                  CALL NOW
+                                </a></>
+                              )
+                            }
                           </div>
-
+                          
                           <div className="text-center mb-3">
                             <a
                               className="Probtn bg-primary scheduleBtn"
@@ -1578,6 +1598,8 @@ function SinglePropertyView({ params }) {
                               SCHEDULE VIEWING
                             </a>
                           </div>
+
+                          
                         </div>
                       </div>
                     )}

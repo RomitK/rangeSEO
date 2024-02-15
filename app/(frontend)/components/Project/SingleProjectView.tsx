@@ -130,6 +130,7 @@ function SingleProjectView({ params }) {
                           {projectData &&
                             projectData.shortDescription &&
                             parse(projectData?.shortDescription ?? "")}
+                            Permit Number:{projectData?.permit_number}
                         </p>
                       </div>
                     </div>

@@ -23,10 +23,55 @@ import {
   OverlayView,
 } from "@react-google-maps/api";
 import Project from "./Project";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function SingleDeveloperView({ params }) {
 
   const [isMobileDev, setIsMobileDev] = useState(false);
+
+  const sliderRef = useRef(null);
+
+  // Define custom arrow components for navigation
+  const PrevArrow = (props) => (
+    <div {...props} className="custom-prev-arrow text-white">
+      <span className="">
+        <i className="bi bi-chevron-left fs-1"></i>
+      </span>
+    </div>
+  );
+  const NextArrow = (props) => (
+    <div {...props} className="custom-next-arrow text-white">
+      <span className="">
+        <i className="bi bi-chevron-right fs-1"></i>
+      </span>
+    </div>
+  );
+
+  // Settings for desktop and iPad
+  const desktopSettings = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    centerMode: true,
+    autoplay: true,
+    speed: 3000,
+    centerPadding: "300px",
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+  };
+
+  // Settings for mobile
+  const mobileSettings = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    centerMode: false,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+  };
+
   useEffect(() => {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
@@ -209,69 +254,25 @@ function SingleDeveloperView({ params }) {
                   </div>
                   {developerData && developerData.imageGallery && (
                     <div className="col-12 col-lg-12 col-md-12">
-                      <Swiper
-                        slidesPerView={1}
-                        spaceBetween={10}
-                        pagination={{
-                          el: ".swiper-pagination",
-                          clickable: true,
-                        }}
-                        navigation={{
-                          nextEl: ".swiper-button-next",
-                          prevEl: ".swiper-button-prev",
-                        }}
-                        breakpoints={{
-                          640: {
-                            slidesPerView: 1,
-                            spaceBetween: 10,
-                          },
-                          768: {
-                            slidesPerView: 1,
-                            spaceBetween: 10,
-                          },
-                          1024: {
-                            slidesPerView: 1,
-                            spaceBetween: 10,
-                          },
-                        }}
-                        modules={[Navigation, Pagination]}
-                       
-                        className="swiper communityMainSwiper"
-                      >
-                        {developerData?.imageGallery?.map((img, index) => {
-                          return (
-                            <SwiperSlide key={img.id + "gallery"}>
-                              <div className="swiper-slide">
-                                <div className="communityImgCont">
-                                 
-                                  <img
-                                    src={img.path}
-                                    alt={img.title ? img.title: developerData.name }
-                                    className="img-fluid communityGalleryImage"
-                                  />
-                                </div>
-                              </div>
-                            </SwiperSlide>
-                          );
-                        })}
-                        <div
-                          className="swiper-button-next text-white"
-                          onClick={() => gallerySwiperRef1.current?.slideNext()}
-                        >
-                          <span className="">
-                            <i className="bi bi-chevron-right fs-1"></i>
-                          </span>
+
+
+                    <Slider
+                      {...(isMobileDev ? mobileSettings : desktopSettings)}
+                      ref={sliderRef}
+                      className="communityDataMainSwiper px-1"
+                    >
+                      {developerData?.imageGallery?.map((img, index) => (
+                        <div key={img.id + "gallery"} className="slide-item">
+                          <div className="communityImgCont">
+                            <img
+                              src={img.path}
+                              alt={img.title ? img.title : developerData.name}
+                              className="img-fluid communityGalleryImage"
+                            />
+                          </div>
                         </div>
-                        <div
-                          className="swiper-button-prev text-white"
-                          onClick={() => gallerySwiperRef1.current?.slidePrev()}
-                        >
-                          <span className="">
-                            <i className="bi bi-chevron-left fs-1"></i>
-                          </span>
-                        </div>
-                        
-                      </Swiper>
+                      ))}
+                    </Slider>      
                     </div>
                   )}
                 </div>

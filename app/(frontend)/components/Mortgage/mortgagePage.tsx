@@ -7,7 +7,10 @@ import PhoneInput from "react-phone-number-input";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 import { useForm, Controller } from "react-hook-form";
 import SellModel from "../models/SellModel";
-import { useGetBankNames, useGetMortageYears } from "@/src/services/HomeService";
+import {
+  useGetBankNames,
+  useGetMortageYears,
+} from "@/src/services/HomeService";
 import "@/public/css/mortgage-styles.css";
 import "@/public/css/responsive.css";
 import Select from "react-select";
@@ -20,7 +23,7 @@ type OptionType = {
 function MortgagePage() {
   const { bankNameOption } = useGetBankNames();
   const { mortgageYearOption } = useGetMortageYears();
-  
+
   const [bankData, setBankData] = useState();
   const [yearData, setYearData] = useState();
   const [isMobileDev, setIsMobileDev] = useState(false);
@@ -74,7 +77,6 @@ function MortgagePage() {
   const bankOptions: OptionType[] = [
     { value: "Dubai Islamic Bank", label: "Dubai Islamic Bank" },
     { value: "Citi Bank", label: "Citi Bank" },
-  
   ];
 
   const years: OptionType[] = [
@@ -214,14 +216,18 @@ function MortgagePage() {
                   >
                     {step == 1 && (
                       <>
-                        <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                        <div
+                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                        >
                           <div className="col-md-12">
                             <p className="wzdTitleBar">
                               <strong>What are you looking for</strong>
                             </p>
                           </div>
                         </div>
-                        <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                        <div
+                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                        >
                           <div className="form-group col-md-12">
                             {!isMobileDev && (
                               <>
@@ -280,53 +286,49 @@ function MortgagePage() {
                             {isMobileDev && (
                               <>
                                 <div className="mortage-custom-checkbox ">
-                                  
-                                    <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                      <input
-                                        id="yes"
-                                        type="radio"
-                                        name="insideUAE"
-                                        onChange={handleStep1Ans}
-                                        required
-                                        checked={step1Ans === "new_purchase"}
-                                        value="new_purchase"
-                                        ref={inputRef}
-                                      />
-                                      <label
-                                        className="d-flex flex-row align-items-center"
-                                        htmlFor="yes"
-                                      >
-                                        <span className="px-2">
-                                          {" "}
-                                          New Purchase
-                                        </span>
-                                      </label>
-                                    </div>
-                                    <br/>
-                                    <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                      <input
-                                        id="no"
-                                        type="radio"
-                                        name="insideUAE"
-                                        onChange={handleStep1Ans}
-                                        required
-                                        checked={
-                                          step1Ans === "mortage_refinance"
-                                        }
-                                        value="mortage_refinance"
-                                      />
-                                      <label
-                                        className="d-flex flex-row align-items-center"
-                                        htmlFor="no"
-                                      >
-                                        <span className="px-2">
-                                          {" "}
-                                          Mortgage Refinances
-                                        </span>
-                                      </label>
-                                    </div>
+                                  <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                    <input
+                                      id="yes"
+                                      type="radio"
+                                      name="insideUAE"
+                                      onChange={handleStep1Ans}
+                                      required
+                                      checked={step1Ans === "new_purchase"}
+                                      value="new_purchase"
+                                      ref={inputRef}
+                                    />
+                                    <label
+                                      className="d-flex flex-row align-items-center"
+                                      htmlFor="yes"
+                                    >
+                                      <span className="px-2">
+                                        {" "}
+                                        New Purchase
+                                      </span>
+                                    </label>
                                   </div>
-                                
+                                  <br />
+                                  <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                    <input
+                                      id="no"
+                                      type="radio"
+                                      name="insideUAE"
+                                      onChange={handleStep1Ans}
+                                      required
+                                      checked={step1Ans === "mortage_refinance"}
+                                      value="mortage_refinance"
+                                    />
+                                    <label
+                                      className="d-flex flex-row align-items-center"
+                                      htmlFor="no"
+                                    >
+                                      <span className="px-2">
+                                        {" "}
+                                        Mortgage Refinances
+                                      </span>
+                                    </label>
+                                  </div>
+                                </div>
                               </>
                             )}
                           </div>
@@ -352,7 +354,9 @@ function MortgagePage() {
 
                     {step == 2 && step1Ans === "new_purchase" && (
                       <>
-                        <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                        <div
+                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                        >
                           <div className="col-md-12">
                             <p className="wzdTitleBar">
                               <strong>
@@ -361,7 +365,9 @@ function MortgagePage() {
                             </p>
                           </div>
                         </div>
-                        <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                        <div
+                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                        >
                           <div className="form-group col-md-12">
                             {!isMobileDev && (
                               <>
@@ -470,7 +476,7 @@ function MortgagePage() {
                                       </label>
                                     </div>
                                   </div>
-                                  <br/>
+                                  <br />
                                   <div className="">
                                     <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
                                       <input
@@ -495,7 +501,7 @@ function MortgagePage() {
                                       </label>
                                     </div>
                                   </div>
-                                  <br/>
+                                  <br />
                                   <div className="">
                                     <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
                                       <input
@@ -557,7 +563,9 @@ function MortgagePage() {
 
                     {step == 2 && step1Ans === "mortage_refinance" && (
                       <>
-                        <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                        <div
+                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                        >
                           <div className="col-md-12">
                             <p className="wzdTitleBar">
                               <strong>
@@ -567,7 +575,9 @@ function MortgagePage() {
                             </p>
                           </div>
                         </div>
-                        <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                        <div
+                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                        >
                           <div className="form-group col-md-12">
                             {!isMobileDev && (
                               <>
@@ -577,7 +587,9 @@ function MortgagePage() {
                                     <Select
                                       options={bankNameOption}
                                       value={bankData}
-                                      onChange={(selectedOption) => setBankData(selectedOption)}
+                                      onChange={(selectedOption) =>
+                                        setBankData(selectedOption)
+                                      }
                                     />
                                   </div>
                                 </div>
@@ -668,7 +680,11 @@ function MortgagePage() {
                       step1Ans === "mortage_refinance" &&
                       bankData && (
                         <>
-                          <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                          <div
+                            className={`"row ${
+                              isMobileDev ? "nospace-row" : ""
+                            }`}
+                          >
                             <div className="col-md-12">
                               <p className="wzdTitleBar">
                                 <strong>
@@ -678,7 +694,11 @@ function MortgagePage() {
                               </p>
                             </div>
                           </div>
-                          <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                          <div
+                            className={`"row ${
+                              isMobileDev ? "nospace-row" : ""
+                            }`}
+                          >
                             <div className="form-group col-md-12">
                               {!isMobileDev && (
                                 <>
@@ -825,7 +845,11 @@ function MortgagePage() {
                       bankData &&
                       propertyValue && (
                         <>
-                          <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                          <div
+                            className={`"row ${
+                              isMobileDev ? "nospace-row" : ""
+                            }`}
+                          >
                             <div className="col-md-12">
                               <p className="wzdTitleBar">
                                 <strong>
@@ -834,7 +858,11 @@ function MortgagePage() {
                               </p>
                             </div>
                           </div>
-                          <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                          <div
+                            className={`"row ${
+                              isMobileDev ? "nospace-row" : ""
+                            }`}
+                          >
                             <div className="form-group col-md-12">
                               {!isMobileDev && (
                                 <>
@@ -938,7 +966,11 @@ function MortgagePage() {
                       propertyValue &&
                       yearData && (
                         <>
-                          <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                          <div
+                            className={`"row ${
+                              isMobileDev ? "nospace-row" : ""
+                            }`}
+                          >
                             <div className="form-group col-md-12 text-center">
                               {!isMobileDev && (
                                 <>
@@ -1135,7 +1167,11 @@ function MortgagePage() {
                         "found_dream_home",
                       ].includes(step2Ans) && (
                         <>
-                          <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                          <div
+                            className={`"row ${
+                              isMobileDev ? "nospace-row" : ""
+                            }`}
+                          >
                             <div className="col-md-12">
                               <p className="wzdTitleBar">
                                 <strong>
@@ -1145,7 +1181,11 @@ function MortgagePage() {
                               </p>
                             </div>
                           </div>
-                          <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                          <div
+                            className={`"row ${
+                              isMobileDev ? "nospace-row" : ""
+                            }`}
+                          >
                             <div className="form-group col-md-12">
                               {!isMobileDev && (
                                 <>
@@ -1237,7 +1277,7 @@ function MortgagePage() {
                                         </label>
                                       </div>
                                     </div>
-                                    <br/>
+                                    <br />
                                     <div className="col-md-4">
                                       <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
                                         <input
@@ -1258,7 +1298,8 @@ function MortgagePage() {
                                           </span>
                                         </label>
                                       </div>
-                                    </div><br/>
+                                    </div>
+                                    <br />
                                     <div className="col-md-4">
                                       <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
                                         <input
@@ -1326,7 +1367,11 @@ function MortgagePage() {
                       ].includes(step2Ans) &&
                       ["villa", "apartment"].includes(step3Ans) && (
                         <>
-                          <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                          <div
+                            className={`"row ${
+                              isMobileDev ? "nospace-row" : ""
+                            }`}
+                          >
                             <div className="col-md-12">
                               <p className="wzdTitleBar">
                                 <strong>
@@ -1336,7 +1381,11 @@ function MortgagePage() {
                               </p>
                             </div>
                           </div>
-                          <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                          <div
+                            className={`"row ${
+                              isMobileDev ? "nospace-row" : ""
+                            }`}
+                          >
                             <div className="form-group col-md-12">
                               {!isMobileDev && (
                                 <>
@@ -1417,7 +1466,7 @@ function MortgagePage() {
                                         </label>
                                       </div>
                                     </div>
-                                    <br/>
+                                    <br />
                                     <div className="">
                                       <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
                                         <input
@@ -1490,7 +1539,11 @@ function MortgagePage() {
                         step4Ans
                       ) && (
                         <>
-                          <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                          <div
+                            className={`"row ${
+                              isMobileDev ? "nospace-row" : ""
+                            }`}
+                          >
                             <div className="col-md-12">
                               <p className="wzdTitleBar">
                                 <strong>
@@ -1500,7 +1553,11 @@ function MortgagePage() {
                               </p>
                             </div>
                           </div>
-                          <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                          <div
+                            className={`"row ${
+                              isMobileDev ? "nospace-row" : ""
+                            }`}
+                          >
                             <div className="form-group col-md-12">
                               {!isMobileDev && (
                                 <>
@@ -1539,33 +1596,31 @@ function MortgagePage() {
 
                               {isMobileDev && (
                                 <>
-
-                                      <div className="px-3">
-                                        <p className="form-label fw-500">
-                                          Property Value
-                                        </p>
-                                        <div className="input-group maxContent">
-                                          <span className="input-group-text  rounded-0 border-end p-2">
-                                            AED
-                                          </span>
-                                          <input
-                                            type="text"
-                                            className="form-control border-start-0  rounded-0"
-                                            placeholder="Enter amount"
-                                            value={propertyValue}
-                                            onChange={(e) =>
-                                              setPropertyValue(
-                                                parseInt(e.target.value)
-                                              )
-                                            }
-                                            name="price"
-                                          />
-                                        </div>
-                                        <small>
-                                          Not sure what the amount is? Give us
-                                          an approximate figure.
-                                        </small>
-                                      
+                                  <div className="px-3">
+                                    <p className="form-label fw-500">
+                                      Property Value
+                                    </p>
+                                    <div className="input-group maxContent">
+                                      <span className="input-group-text  rounded-0 border-end p-2">
+                                        AED
+                                      </span>
+                                      <input
+                                        type="text"
+                                        className="form-control border-start-0  rounded-0"
+                                        placeholder="Enter amount"
+                                        value={propertyValue}
+                                        onChange={(e) =>
+                                          setPropertyValue(
+                                            parseInt(e.target.value)
+                                          )
+                                        }
+                                        name="price"
+                                      />
+                                    </div>
+                                    <small>
+                                      Not sure what the amount is? Give us an
+                                      approximate figure.
+                                    </small>
                                   </div>
                                 </>
                               )}
@@ -1613,10 +1668,14 @@ function MortgagePage() {
                       ["villa", "apartment"].includes(step3Ans) &&
                       ["ready_to_move_in", "under_construction"].includes(
                         step4Ans
-                      )  && propertyValue && (
+                      ) &&
+                      propertyValue && (
                         <>
-                          
-                          <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                          <div
+                            className={`"row ${
+                              isMobileDev ? "nospace-row" : ""
+                            }`}
+                          >
                             <div className="form-group col-md-12 text-center">
                               {!isMobileDev && (
                                 <>
@@ -1756,7 +1815,7 @@ function MortgagePage() {
 
                               {isMobileDev && (
                                 <>
-                                   <div className="container">
+                                  <div className="container">
                                     <div className="row justify-content-center">
                                       <div className="col-lg-6">
                                         <p className="wzdTitleBar">
@@ -1893,7 +1952,6 @@ function MortgagePage() {
                           </div>
                         </>
                       )}
-                      
 
                     {step === 4 &&
                       step1Ans === "new_purchase" &&
@@ -1904,143 +1962,331 @@ function MortgagePage() {
                       ].includes(step2Ans) &&
                       ["undecided"].includes(step3Ans) && (
                         <>
-                          <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                          <div
+                            className={`"row ${
+                              isMobileDev ? "nospace-row" : ""
+                            }`}
+                          >
                             <div className="form-group col-md-12">
                               {!isMobileDev && (
                                 <>
-                                  <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
-                            <div className="form-group col-md-12 text-center">
-                              {!isMobileDev && (
-                                <>
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <p className="wzdTitleBar">
-                                          <strong>
-                                            Let's get some details to help serve
-                                            you better!
-                                          </strong>
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <div className="contactForm">
-                                          <form
-                                            onSubmit={handleSubmit(onSubmit)}
-                                          >
-                                            <div className="row">
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="text"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="name"
-                                                  placeholder="Name"
-                                                  {...register("name", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.name && (
-                                                  <small className="text-danger">
-                                                    Name is required.
-                                                  </small>
-                                                )}
+                                  <div
+                                    className={`"row ${
+                                      isMobileDev ? "nospace-row" : ""
+                                    }`}
+                                  >
+                                    <div className="form-group col-md-12 text-center">
+                                      {!isMobileDev && (
+                                        <>
+                                          <div className="container">
+                                            <div className="row justify-content-center">
+                                              <div className="col-lg-6">
+                                                <p className="wzdTitleBar">
+                                                  <strong>
+                                                    Let's get some details to
+                                                    help serve you better!
+                                                  </strong>
+                                                </p>
                                               </div>
+                                            </div>
+                                          </div>
 
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="email"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="email"
-                                                  placeholder="Email Address"
-                                                  {...register("email", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.email && (
-                                                  <small className="text-danger">
-                                                    Email is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <Controller
-                                                  name="phone"
-                                                  control={control}
-                                                  rules={{ required: true }}
-                                                  render={({
-                                                    field: { onChange, value },
-                                                  }) => (
-                                                    <PhoneInput
-                                                      international
-                                                      countryCallingCodeEditable={
-                                                        false
-                                                      }
-                                                      className="form-control rounded-0 fs-14 d-flex"
-                                                      defaultCountry="AE"
-                                                      placeholder="Enter Phone Number"
-                                                      value={value}
-                                                      onChange={onChange}
-                                                      style={{ border: "0px" }}
-                                                    />
-                                                  )}
-                                                />
-
-                                                {errors.phone && (
-                                                  <small className="text-danger">
-                                                    Phone is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <textarea
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="message"
-                                                  rows={3}
-                                                  placeholder="Message"
-                                                  {...register("message", {
-                                                    required: false,
-                                                  })}
-                                                ></textarea>
-                                                {errors.message && (
-                                                  <small className="text-danger">
-                                                    Message is required.
-                                                  </small>
-                                                )}
-                                              </div>
-                                              <input
-                                                type="hidden"
-                                                value="ContactForm"
-                                                {...register("formName", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <input
-                                                type="hidden"
-                                                value={currentPageURL}
-                                                {...register("page", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <div className="col-12 mb-2">
-                                                <div className="text-start">
-                                                  <button
-                                                    className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
-                                                    type="submit"
+                                          <div className="container">
+                                            <div className="row justify-content-center">
+                                              <div className="col-lg-6">
+                                                <div className="contactForm">
+                                                  <form
+                                                    onSubmit={handleSubmit(
+                                                      onSubmit
+                                                    )}
                                                   >
-                                                    Submit
-                                                  </button>
+                                                    <div className="row">
+                                                      <div className="col-12 mb-2">
+                                                        <input
+                                                          type="text"
+                                                          className="form-control rounded-0 fs-14"
+                                                          id="name"
+                                                          placeholder="Name"
+                                                          {...register("name", {
+                                                            required: true,
+                                                          })}
+                                                        />
+                                                        {errors.name && (
+                                                          <small className="text-danger">
+                                                            Name is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+
+                                                      <div className="col-12 mb-2">
+                                                        <input
+                                                          type="email"
+                                                          className="form-control rounded-0 fs-14"
+                                                          id="email"
+                                                          placeholder="Email Address"
+                                                          {...register(
+                                                            "email",
+                                                            {
+                                                              required: true,
+                                                            }
+                                                          )}
+                                                        />
+                                                        {errors.email && (
+                                                          <small className="text-danger">
+                                                            Email is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+
+                                                      <div className="col-12 mb-2">
+                                                        <Controller
+                                                          name="phone"
+                                                          control={control}
+                                                          rules={{
+                                                            required: true,
+                                                          }}
+                                                          render={({
+                                                            field: {
+                                                              onChange,
+                                                              value,
+                                                            },
+                                                          }) => (
+                                                            <PhoneInput
+                                                              international
+                                                              countryCallingCodeEditable={
+                                                                false
+                                                              }
+                                                              className="form-control rounded-0 fs-14 d-flex"
+                                                              defaultCountry="AE"
+                                                              placeholder="Enter Phone Number"
+                                                              value={value}
+                                                              onChange={
+                                                                onChange
+                                                              }
+                                                              style={{
+                                                                border: "0px",
+                                                              }}
+                                                            />
+                                                          )}
+                                                        />
+
+                                                        {errors.phone && (
+                                                          <small className="text-danger">
+                                                            Phone is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+
+                                                      <div className="col-12 mb-2">
+                                                        <textarea
+                                                          className="form-control rounded-0 fs-14"
+                                                          id="message"
+                                                          rows={3}
+                                                          placeholder="Message"
+                                                          {...register(
+                                                            "message",
+                                                            {
+                                                              required: false,
+                                                            }
+                                                          )}
+                                                        ></textarea>
+                                                        {errors.message && (
+                                                          <small className="text-danger">
+                                                            Message is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+                                                      <input
+                                                        type="hidden"
+                                                        value="ContactForm"
+                                                        {...register(
+                                                          "formName",
+                                                          {
+                                                            required: false,
+                                                          }
+                                                        )}
+                                                      />
+                                                      <input
+                                                        type="hidden"
+                                                        value={currentPageURL}
+                                                        {...register("page", {
+                                                          required: false,
+                                                        })}
+                                                      />
+                                                      <div className="col-12 mb-2">
+                                                        <div className="text-start">
+                                                          <button
+                                                            className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
+                                                            type="submit"
+                                                          >
+                                                            Submit
+                                                          </button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </form>
                                                 </div>
                                               </div>
                                             </div>
-                                          </form>
-                                        </div>
-                                      </div>
+                                          </div>
+                                        </>
+                                      )}
+
+                                      {isMobileDev && (
+                                        <>
+                                          <div className="container">
+                                            <div className="row justify-content-center">
+                                              <div className="col-lg-6">
+                                                <p className="wzdTitleBar">
+                                                  <strong>
+                                                    Let's get some details to
+                                                    help serve you better!
+                                                  </strong>
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div className="container">
+                                            <div className="row justify-content-center">
+                                              <div className="col-lg-6">
+                                                <div className="contactForm">
+                                                  <form
+                                                    onSubmit={handleSubmit(
+                                                      onSubmit
+                                                    )}
+                                                  >
+                                                    <div className="row">
+                                                      <div className="col-12 mb-2">
+                                                        <input
+                                                          type="text"
+                                                          className="form-control rounded-0 fs-14"
+                                                          id="name"
+                                                          placeholder="Name"
+                                                          {...register("name", {
+                                                            required: true,
+                                                          })}
+                                                        />
+                                                        {errors.name && (
+                                                          <small className="text-danger">
+                                                            Name is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+
+                                                      <div className="col-12 mb-2">
+                                                        <input
+                                                          type="email"
+                                                          className="form-control rounded-0 fs-14"
+                                                          id="email"
+                                                          placeholder="Email Address"
+                                                          {...register(
+                                                            "email",
+                                                            {
+                                                              required: true,
+                                                            }
+                                                          )}
+                                                        />
+                                                        {errors.email && (
+                                                          <small className="text-danger">
+                                                            Email is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+
+                                                      <div className="col-12 mb-2">
+                                                        <Controller
+                                                          name="phone"
+                                                          control={control}
+                                                          rules={{
+                                                            required: true,
+                                                          }}
+                                                          render={({
+                                                            field: {
+                                                              onChange,
+                                                              value,
+                                                            },
+                                                          }) => (
+                                                            <PhoneInput
+                                                              international
+                                                              countryCallingCodeEditable={
+                                                                false
+                                                              }
+                                                              className="form-control rounded-0 fs-14 d-flex"
+                                                              defaultCountry="AE"
+                                                              placeholder="Enter Phone Number"
+                                                              value={value}
+                                                              onChange={
+                                                                onChange
+                                                              }
+                                                              style={{
+                                                                border: "0px",
+                                                              }}
+                                                            />
+                                                          )}
+                                                        />
+
+                                                        {errors.phone && (
+                                                          <small className="text-danger">
+                                                            Phone is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+
+                                                      <div className="col-12 mb-2">
+                                                        <textarea
+                                                          className="form-control rounded-0 fs-14"
+                                                          id="message"
+                                                          rows={3}
+                                                          placeholder="Message"
+                                                          {...register(
+                                                            "message",
+                                                            {
+                                                              required: false,
+                                                            }
+                                                          )}
+                                                        ></textarea>
+                                                        {errors.message && (
+                                                          <small className="text-danger">
+                                                            Message is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+                                                      <input
+                                                        type="hidden"
+                                                        value="ContactForm"
+                                                        {...register(
+                                                          "formName",
+                                                          {
+                                                            required: false,
+                                                          }
+                                                        )}
+                                                      />
+                                                      <input
+                                                        type="hidden"
+                                                        value={currentPageURL}
+                                                        {...register("page", {
+                                                          required: false,
+                                                        })}
+                                                      />
+                                                      <div className="col-12 mb-2">
+                                                        <div className="text-start">
+                                                          <button
+                                                            className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
+                                                            type="submit"
+                                                          >
+                                                            Submit
+                                                          </button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </>
+                                      )}
                                     </div>
                                   </div>
                                 </>
@@ -2048,421 +2294,325 @@ function MortgagePage() {
 
                               {isMobileDev && (
                                 <>
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <p className="wzdTitleBar">
-                                          <strong>
-                                            Let's get some details to help serve
-                                            you better!
-                                          </strong>
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <div className="contactForm">
-                                          <form
-                                            onSubmit={handleSubmit(onSubmit)}
-                                          >
-                                            <div className="row">
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="text"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="name"
-                                                  placeholder="Name"
-                                                  {...register("name", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.name && (
-                                                  <small className="text-danger">
-                                                    Name is required.
-                                                  </small>
-                                                )}
+                                  <div
+                                    className={`"row ${
+                                      isMobileDev ? "nospace-row" : ""
+                                    }`}
+                                  >
+                                    <div className="form-group col-md-12 text-center">
+                                      {!isMobileDev && (
+                                        <>
+                                          <div className="container">
+                                            <div className="row justify-content-center">
+                                              <div className="col-lg-6">
+                                                <p className="wzdTitleBar">
+                                                  <strong>
+                                                    Let's get some details to
+                                                    help serve you better!
+                                                  </strong>
+                                                </p>
                                               </div>
+                                            </div>
+                                          </div>
 
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="email"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="email"
-                                                  placeholder="Email Address"
-                                                  {...register("email", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.email && (
-                                                  <small className="text-danger">
-                                                    Email is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <Controller
-                                                  name="phone"
-                                                  control={control}
-                                                  rules={{ required: true }}
-                                                  render={({
-                                                    field: { onChange, value },
-                                                  }) => (
-                                                    <PhoneInput
-                                                      international
-                                                      countryCallingCodeEditable={
-                                                        false
-                                                      }
-                                                      className="form-control rounded-0 fs-14 d-flex"
-                                                      defaultCountry="AE"
-                                                      placeholder="Enter Phone Number"
-                                                      value={value}
-                                                      onChange={onChange}
-                                                      style={{ border: "0px" }}
-                                                    />
-                                                  )}
-                                                />
-
-                                                {errors.phone && (
-                                                  <small className="text-danger">
-                                                    Phone is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <textarea
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="message"
-                                                  rows={3}
-                                                  placeholder="Message"
-                                                  {...register("message", {
-                                                    required: false,
-                                                  })}
-                                                ></textarea>
-                                                {errors.message && (
-                                                  <small className="text-danger">
-                                                    Message is required.
-                                                  </small>
-                                                )}
-                                              </div>
-                                              <input
-                                                type="hidden"
-                                                value="ContactForm"
-                                                {...register("formName", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <input
-                                                type="hidden"
-                                                value={currentPageURL}
-                                                {...register("page", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <div className="col-12 mb-2">
-                                                <div className="text-start">
-                                                  <button
-                                                    className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
-                                                    type="submit"
+                                          <div className="container">
+                                            <div className="row justify-content-center">
+                                              <div className="col-lg-6">
+                                                <div className="contactForm">
+                                                  <form
+                                                    onSubmit={handleSubmit(
+                                                      onSubmit
+                                                    )}
                                                   >
-                                                    Submit
-                                                  </button>
+                                                    <div className="row">
+                                                      <div className="col-12 mb-2">
+                                                        <input
+                                                          type="text"
+                                                          className="form-control rounded-0 fs-14"
+                                                          id="name"
+                                                          placeholder="Name"
+                                                          {...register("name", {
+                                                            required: true,
+                                                          })}
+                                                        />
+                                                        {errors.name && (
+                                                          <small className="text-danger">
+                                                            Name is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+
+                                                      <div className="col-12 mb-2">
+                                                        <input
+                                                          type="email"
+                                                          className="form-control rounded-0 fs-14"
+                                                          id="email"
+                                                          placeholder="Email Address"
+                                                          {...register(
+                                                            "email",
+                                                            {
+                                                              required: true,
+                                                            }
+                                                          )}
+                                                        />
+                                                        {errors.email && (
+                                                          <small className="text-danger">
+                                                            Email is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+
+                                                      <div className="col-12 mb-2">
+                                                        <Controller
+                                                          name="phone"
+                                                          control={control}
+                                                          rules={{
+                                                            required: true,
+                                                          }}
+                                                          render={({
+                                                            field: {
+                                                              onChange,
+                                                              value,
+                                                            },
+                                                          }) => (
+                                                            <PhoneInput
+                                                              international
+                                                              countryCallingCodeEditable={
+                                                                false
+                                                              }
+                                                              className="form-control rounded-0 fs-14 d-flex"
+                                                              defaultCountry="AE"
+                                                              placeholder="Enter Phone Number"
+                                                              value={value}
+                                                              onChange={
+                                                                onChange
+                                                              }
+                                                              style={{
+                                                                border: "0px",
+                                                              }}
+                                                            />
+                                                          )}
+                                                        />
+
+                                                        {errors.phone && (
+                                                          <small className="text-danger">
+                                                            Phone is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+
+                                                      <div className="col-12 mb-2">
+                                                        <textarea
+                                                          className="form-control rounded-0 fs-14"
+                                                          id="message"
+                                                          rows={3}
+                                                          placeholder="Message"
+                                                          {...register(
+                                                            "message",
+                                                            {
+                                                              required: false,
+                                                            }
+                                                          )}
+                                                        ></textarea>
+                                                        {errors.message && (
+                                                          <small className="text-danger">
+                                                            Message is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+                                                      <input
+                                                        type="hidden"
+                                                        value="ContactForm"
+                                                        {...register(
+                                                          "formName",
+                                                          {
+                                                            required: false,
+                                                          }
+                                                        )}
+                                                      />
+                                                      <input
+                                                        type="hidden"
+                                                        value={currentPageURL}
+                                                        {...register("page", {
+                                                          required: false,
+                                                        })}
+                                                      />
+                                                      <div className="col-12 mb-2">
+                                                        <div className="text-start">
+                                                          <button
+                                                            className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
+                                                            type="submit"
+                                                          >
+                                                            Submit
+                                                          </button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </form>
                                                 </div>
                                               </div>
                                             </div>
-                                          </form>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-                            </div>
-                          </div>
-                                </>
-                              )}
+                                          </div>
+                                        </>
+                                      )}
 
-                              {isMobileDev && (
-                                <>
-                                  <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
-                            <div className="form-group col-md-12 text-center">
-                              {!isMobileDev && (
-                                <>
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <p className="wzdTitleBar">
-                                          <strong>
-                                            Let's get some details to help serve
-                                            you better!
-                                          </strong>
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <div className="contactForm">
-                                          <form
-                                            onSubmit={handleSubmit(onSubmit)}
-                                          >
-                                            <div className="row">
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="text"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="name"
-                                                  placeholder="Name"
-                                                  {...register("name", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.name && (
-                                                  <small className="text-danger">
-                                                    Name is required.
-                                                  </small>
-                                                )}
+                                      {isMobileDev && (
+                                        <>
+                                          <div className="container">
+                                            <div className="row justify-content-center">
+                                              <div className="col-lg-6">
+                                                <p className="wzdTitleBar">
+                                                  <strong>
+                                                    Let's get some details to
+                                                    help serve you better!
+                                                  </strong>
+                                                </p>
                                               </div>
+                                            </div>
+                                          </div>
 
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="email"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="email"
-                                                  placeholder="Email Address"
-                                                  {...register("email", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.email && (
-                                                  <small className="text-danger">
-                                                    Email is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <Controller
-                                                  name="phone"
-                                                  control={control}
-                                                  rules={{ required: true }}
-                                                  render={({
-                                                    field: { onChange, value },
-                                                  }) => (
-                                                    <PhoneInput
-                                                      international
-                                                      countryCallingCodeEditable={
-                                                        false
-                                                      }
-                                                      className="form-control rounded-0 fs-14 d-flex"
-                                                      defaultCountry="AE"
-                                                      placeholder="Enter Phone Number"
-                                                      value={value}
-                                                      onChange={onChange}
-                                                      style={{ border: "0px" }}
-                                                    />
-                                                  )}
-                                                />
-
-                                                {errors.phone && (
-                                                  <small className="text-danger">
-                                                    Phone is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <textarea
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="message"
-                                                  rows={3}
-                                                  placeholder="Message"
-                                                  {...register("message", {
-                                                    required: false,
-                                                  })}
-                                                ></textarea>
-                                                {errors.message && (
-                                                  <small className="text-danger">
-                                                    Message is required.
-                                                  </small>
-                                                )}
-                                              </div>
-                                              <input
-                                                type="hidden"
-                                                value="ContactForm"
-                                                {...register("formName", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <input
-                                                type="hidden"
-                                                value={currentPageURL}
-                                                {...register("page", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <div className="col-12 mb-2">
-                                                <div className="text-start">
-                                                  <button
-                                                    className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
-                                                    type="submit"
+                                          <div className="container">
+                                            <div className="row justify-content-center">
+                                              <div className="col-lg-6">
+                                                <div className="contactForm">
+                                                  <form
+                                                    onSubmit={handleSubmit(
+                                                      onSubmit
+                                                    )}
                                                   >
-                                                    Submit
-                                                  </button>
+                                                    <div className="row">
+                                                      <div className="col-12 mb-2">
+                                                        <input
+                                                          type="text"
+                                                          className="form-control rounded-0 fs-14"
+                                                          id="name"
+                                                          placeholder="Name"
+                                                          {...register("name", {
+                                                            required: true,
+                                                          })}
+                                                        />
+                                                        {errors.name && (
+                                                          <small className="text-danger">
+                                                            Name is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+
+                                                      <div className="col-12 mb-2">
+                                                        <input
+                                                          type="email"
+                                                          className="form-control rounded-0 fs-14"
+                                                          id="email"
+                                                          placeholder="Email Address"
+                                                          {...register(
+                                                            "email",
+                                                            {
+                                                              required: true,
+                                                            }
+                                                          )}
+                                                        />
+                                                        {errors.email && (
+                                                          <small className="text-danger">
+                                                            Email is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+
+                                                      <div className="col-12 mb-2">
+                                                        <Controller
+                                                          name="phone"
+                                                          control={control}
+                                                          rules={{
+                                                            required: true,
+                                                          }}
+                                                          render={({
+                                                            field: {
+                                                              onChange,
+                                                              value,
+                                                            },
+                                                          }) => (
+                                                            <PhoneInput
+                                                              international
+                                                              countryCallingCodeEditable={
+                                                                false
+                                                              }
+                                                              className="form-control rounded-0 fs-14 d-flex"
+                                                              defaultCountry="AE"
+                                                              placeholder="Enter Phone Number"
+                                                              value={value}
+                                                              onChange={
+                                                                onChange
+                                                              }
+                                                              style={{
+                                                                border: "0px",
+                                                              }}
+                                                            />
+                                                          )}
+                                                        />
+
+                                                        {errors.phone && (
+                                                          <small className="text-danger">
+                                                            Phone is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+
+                                                      <div className="col-12 mb-2">
+                                                        <textarea
+                                                          className="form-control rounded-0 fs-14"
+                                                          id="message"
+                                                          rows={3}
+                                                          placeholder="Message"
+                                                          {...register(
+                                                            "message",
+                                                            {
+                                                              required: false,
+                                                            }
+                                                          )}
+                                                        ></textarea>
+                                                        {errors.message && (
+                                                          <small className="text-danger">
+                                                            Message is required.
+                                                          </small>
+                                                        )}
+                                                      </div>
+                                                      <input
+                                                        type="hidden"
+                                                        value="ContactForm"
+                                                        {...register(
+                                                          "formName",
+                                                          {
+                                                            required: false,
+                                                          }
+                                                        )}
+                                                      />
+                                                      <input
+                                                        type="hidden"
+                                                        value={currentPageURL}
+                                                        {...register("page", {
+                                                          required: false,
+                                                        })}
+                                                      />
+                                                      <div className="col-12 mb-2">
+                                                        <div className="text-start">
+                                                          <button
+                                                            className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
+                                                            type="submit"
+                                                          >
+                                                            Submit
+                                                          </button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </form>
                                                 </div>
                                               </div>
                                             </div>
-                                          </form>
-                                        </div>
-                                      </div>
+                                          </div>
+                                        </>
+                                      )}
                                     </div>
                                   </div>
-                                </>
-                              )}
-
-                              {isMobileDev && (
-                                <>
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <p className="wzdTitleBar">
-                                          <strong>
-                                            Let's get some details to help serve
-                                            you better!
-                                          </strong>
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <div className="contactForm">
-                                          <form
-                                            onSubmit={handleSubmit(onSubmit)}
-                                          >
-                                            <div className="row">
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="text"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="name"
-                                                  placeholder="Name"
-                                                  {...register("name", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.name && (
-                                                  <small className="text-danger">
-                                                    Name is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="email"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="email"
-                                                  placeholder="Email Address"
-                                                  {...register("email", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.email && (
-                                                  <small className="text-danger">
-                                                    Email is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <Controller
-                                                  name="phone"
-                                                  control={control}
-                                                  rules={{ required: true }}
-                                                  render={({
-                                                    field: { onChange, value },
-                                                  }) => (
-                                                    <PhoneInput
-                                                      international
-                                                      countryCallingCodeEditable={
-                                                        false
-                                                      }
-                                                      className="form-control rounded-0 fs-14 d-flex"
-                                                      defaultCountry="AE"
-                                                      placeholder="Enter Phone Number"
-                                                      value={value}
-                                                      onChange={onChange}
-                                                      style={{ border: "0px" }}
-                                                    />
-                                                  )}
-                                                />
-
-                                                {errors.phone && (
-                                                  <small className="text-danger">
-                                                    Phone is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <textarea
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="message"
-                                                  rows={3}
-                                                  placeholder="Message"
-                                                  {...register("message", {
-                                                    required: false,
-                                                  })}
-                                                ></textarea>
-                                                {errors.message && (
-                                                  <small className="text-danger">
-                                                    Message is required.
-                                                  </small>
-                                                )}
-                                              </div>
-                                              <input
-                                                type="hidden"
-                                                value="ContactForm"
-                                                {...register("formName", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <input
-                                                type="hidden"
-                                                value={currentPageURL}
-                                                {...register("page", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <div className="col-12 mb-2">
-                                                <div className="text-start">
-                                                  <button
-                                                    className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
-                                                    type="submit"
-                                                  >
-                                                    Submit
-                                                  </button>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </form>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-                            </div>
-                          </div>
                                 </>
                               )}
                             </div>
@@ -2472,14 +2622,18 @@ function MortgagePage() {
 
                     {step == 2 && step1Ans == 2 && (
                       <>
-                        <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                        <div
+                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                        >
                           <div className="col-md-12">
                             <p className="wzdTitleBar">
                               <strong>What are you looking for2</strong>
                             </p>
                           </div>
                         </div>
-                        <div className={`"row ${isMobileDev ? "nospace-row" : ""}`}>
+                        <div
+                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                        >
                           <div className="form-group col-md-12">
                             {!isMobileDev && (
                               <>
@@ -2588,13 +2742,43 @@ function MortgagePage() {
       </section>
       <section className="aboutPgSection">
         <div className="container">
-          <h4 className="sctionMdTitle text-primary ">ABOUT MY MORTGAGE </h4>
-          <p className="fs-14 text-secondary mb-4">
-          My Mortgage is our sister company, a leading mortgage brokerage dedicated to helping our clients achieve their dream of home ownership. At My Mortgage, a team of experienced professionals is committed to providing exceptional customer services and personalized solutions to meet the specific needs of each of our clients
-Founded in 2019, My Mortgage has grown to become a trusted name in the mortgage industry. Over the last few years, they have helped hundreds of clients secure financing for their homes and are proud to have built a reputation for honesty, integrity, and professionalism
-          </p>
+          <h4 className="sctionMdTitle text-primary uppercase-text ">
+            My Mortgage{" "}
+          </h4>
+          <div className="row">
+          <div className="col-md-8">
+            <p className="fs-14 text-secondary mb-4">
+              Founded in 2019, the mortgage wing of Range International Property
+              Investments has grown to become a trusted name in the UAE property
+              market. Over the last few years, we have helped hundreds of
+              clients secure financing for their homes and we are proud to have
+              built a reputation of honesty, integrity and professionalism. We
+              understand that buying a home can be a complex and overwhelming
+              experience, which is why we are committed to providing
+              personalised solutions and exceptional customer service every step
+              of the way.
+              <br />
+              <br />
+              We offer a wide range of services, including new mortgages,
+              refinancing, handover payments, equity, non-resident mortgages and
+              commercial mortgages. Our team will work with you to determine the
+              best financing option as per your requirements and will guide you
+              through the entire process from pre-approval to disbursal.
+            </p>
           </div>
-          </section>
+          <div className="col-md-4 text-center">
+            <img
+              src="images/mortage_logo.png"
+              alt="My Mortgage"
+              className="img-fluid py-2"
+              width={250}
+            />
+          </div>
+
+          </div>
+
+        </div>
+      </section>
     </>
   );
 }
