@@ -38,7 +38,7 @@ display: none !important;
 }
 .clmSliderItem .multiItem{
 width: 100% !important;
-height: 450px !important;
+height: 350px !important;
 object-fit: cover !important;
 }
 .swiper-slide.swiper-slide-active.clmSliderItem{
@@ -92,6 +92,7 @@ border: 1.5px solid #2f3c6a !important;
     position: relative !important;
 }
 .clmSliderItem .carouselcontent{
+    text-align: center;
 position: absolute !important;
 top: 50% !important;
 left: 50% !important;

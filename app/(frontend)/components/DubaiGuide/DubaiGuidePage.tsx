@@ -12,6 +12,12 @@ import ModelInvestment from "../models/dubaiGuide/ModelInvestment";
 import ModelBuyer from "../models/dubaiGuide/ModelBuyer";
 import "@/public/css/responsive.css";
 import "@/public/css/dubai-guide-page-styles.css";
+
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 function DubaiGuidePage() {
     const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
     const pageUrl ="Dubai Guide"
@@ -40,12 +46,91 @@ function DubaiGuidePage() {
         window.removeEventListener("resize", handleResize);
       };
     }, []);
+    const images = [
+      {
+        'id': 1,
+        'image':'/images/guides/golden-visa.webp',
+        'title':'GOLDEN VISA'
+      },
+      {
+        'id': 2,
+        'image':'/images/banner/banner-3.webp',
+        'title':'INVESTMENT GUIDE'
+      },
+      {
+        'id': 3,
+        'image':'/images/banner/invest.jpeg',
+        'title':'BUYER GUIDE'
+      }
+    ];
+
+    const sliderRef = useRef(null);
+
+    // Define custom arrow components for navigation
+    const PrevArrow = (props) => (
+      <div {...props} className="custom-prev-arrow text-white">
+        <span className="">
+          <i className="bi bi-chevron-left fs-1"></i>
+        </span>
+      </div>
+    );
+    const NextArrow = (props) => (
+      <div {...props} className="custom-next-arrow text-white">
+        <span className="">
+          <i className="bi bi-chevron-right fs-1"></i>
+        </span>
+      </div>
+    );
+  
+  // Settings for desktop and iPad
+  const desktopSettings = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    centerMode: true,
+    autoplay: true,
+    speed: 4000,
+    centerPadding: "200px",
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+  };
+
+  // Settings for mobile
+  const mobileSettings = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    centerMode: false,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+  };
+
     return (
     <>
-      <header className={`header dubaiGuideSection ${isMobileDev ? 'my-5' : 'dubaiMy60'}`}>
+      <section className={`header dubaiGuideSection ${isMobileDev ? 'my-3' : 'dubaiMy60'}`}>
+      <div className="container">
         <h4 className="sctionMdTitle text-primary text-center mb-2">
           DUBAI GUIDES
         </h4>
+        <Slider
+                      {...(isMobileDev ? mobileSettings : desktopSettings)}
+                      ref={sliderRef}
+                      className="multiSilder"
+                    >
+                      {images?.map((img, index) => (
+                        <>
+                         <div className="clmSliderItem">
+                         <img src={img.image} className="multiItem" alt="banner"/>
+                         <div className="carouselcontent">
+                           <h3>{img.title}</h3>
+                           <button className="mrAuto downloadBtn" onClick={() => window.location.href = '#goldenVisa'}>DOWNLOAD NOW</button>
+                         </div>
+                       </div>
+                        </>
+                        
+                      ))}
+                    </Slider> 
+{/* 
         <Swiper
           id="multiSilder"
           modules={[Navigation]}
@@ -120,8 +205,9 @@ function DubaiGuidePage() {
                 <i className="bi bi-chevron-right fs-1"></i>
               </span>
             </div>
-        </Swiper>
-      </header>
+        </Swiper> */}
+        </div>
+      </section>
       <section className="guidsSection">
         <div className="container">
           <div className="sectionArea" id="goldenVisa">
