@@ -72,6 +72,9 @@ const HomePage = () => {
                               spaceBetween: 10,
                             },
                           }}
+                          autoplay={{
+                            delay: 3000,
+                          }}
                           modules={[Navigation, Pagination, Autoplay]}
                           onSwiper={(swiper) => {
                             PropertySwiperRef.current = swiper;

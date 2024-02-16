@@ -2742,9 +2742,9 @@ function MortgagePage() {
       </section>
       <section className="aboutPgSection">
         <div className="container">
-          <h4 className="sctionMdTitle text-primary uppercase-text ">
+          {/* <h4 className="sctionMdTitle text-primary uppercase-text ">
             My Mortgage{" "}
-          </h4>
+          </h4> */}
           <div className="row">
           <div className="col-md-8">
             <p className="fs-14 text-secondary mb-4">
@@ -2759,11 +2759,11 @@ function MortgagePage() {
               of the way.
               <br />
               <br />
-              We offer a wide range of services, including new mortgages,
+              {/* We offer a wide range of services, including new mortgages,
               refinancing, handover payments, equity, non-resident mortgages and
               commercial mortgages. Our team will work with you to determine the
               best financing option as per your requirements and will guide you
-              through the entire process from pre-approval to disbursal.
+              through the entire process from pre-approval to disbursal. */}
             </p>
           </div>
           <div className="col-md-4 text-center">
@@ -2771,7 +2771,7 @@ function MortgagePage() {
               src="images/mortage_logo.png"
               alt="My Mortgage"
               className="img-fluid py-2"
-              width={250}
+              width={150}
             />
           </div>
 
