@@ -2746,7 +2746,15 @@ function MortgagePage() {
             My Mortgage{" "}
           </h4> */}
           <div className="row">
-          <div className="col-md-8">
+          <div className="col-md-3 text-center">
+            <img
+              src="images/mortage_logo.png"
+              alt="My Mortgage"
+              className="img-fluid py-2"
+              width={150}
+            />
+          </div>
+          <div className="col-md-9">
             <p className="fs-14 text-secondary mb-4">
               Founded in 2019, the mortgage wing of Range International Property
               Investments has grown to become a trusted name in the UAE property
@@ -2766,14 +2774,7 @@ function MortgagePage() {
               through the entire process from pre-approval to disbursal. */}
             </p>
           </div>
-          <div className="col-md-4 text-center">
-            <img
-              src="images/mortage_logo.png"
-              alt="My Mortgage"
-              className="img-fluid py-2"
-              width={150}
-            />
-          </div>
+          
 
           </div>
 
