@@ -2149,21 +2149,38 @@ background-color: #2f3c6a;
         animation: shake 2.5s;
         animation-iteration-count: infinite;
     }
-      .floatingBtn{
+    .floatingBtn{
         background: unset;
         position: fixed !important;
-    top: auto !important;
-    right: 20px !important;
-    bottom: 20px;
-    z-index: 999 !important;
-    width: 70px;
-    font-size: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    height: 70px;
-   
-    border-radius: 50px;
-    cursor: pointer;
-      }
+        top: auto !important;
+        right: 20px !important;
+        bottom: 100px;
+        z-index: 999 !important;
+        width: 70px;
+        font-size: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        height: 70px;
+        border-radius: 50px;
+        cursor: pointer;
+    }
+    .floatingBtnListing{
+        background: unset;
+        position: fixed !important;
+        top: auto !important;
+        right: 20px !important;
+        bottom: 100px;
+        z-index: 999 !important;
+        width: 70px;
+        font-size: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        height: 70px;
+        border-radius: 50px;
+        cursor: pointer;
+
+    }

@@ -1,6 +1,9 @@
 "use client";
-import Link from "next/link";
+
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import Script from "next/script";
 import ContactUs from "./ContactUs";
 import parse from "html-react-parser";
@@ -22,6 +25,28 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 function Footer() {
+  const [isMobile, setIsMobile] = useState(false);
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobile(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const currentYear = new Date().getFullYear();
   const faFacebookIcon = faFacebook as IconProp;
   const faInstagramIcon = faInstagram as IconProp;
@@ -47,6 +72,19 @@ function Footer() {
         toast.error("Something went wrong, please try again");
       });
   };
+
+  const lisitingPage = [
+    "/properties",
+    "/ready",
+    "/buy",
+    "/rent",
+    "/offplan",
+    "/projects",
+    "/luxuryProperties",
+  ].includes(usePathname());
+
+  const isPropertiesSlugRoute = usePathname().includes('/properties/');
+
   return (
     <>
       <footer className="pt-3 text-dark footer">
@@ -384,6 +422,42 @@ function Footer() {
           </div>
         </div>
       </footer>
+      {
+        !isMobile && (
+          <div className="floatingBtn">
+            <div className="iconMain shake">
+                <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
+                    <img className="" src="/images/icons/whatsapp.png" alt="chatIcon" width="60"/>
+                </a>
+            </div>
+      </div>
+        )
+      }
+      {
+        isMobile && lisitingPage && (
+          <div className="floatingBtnListing">
+            <div className="iconMain shake">
+                <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
+                    <img className="" src="/images/icons/whatsapp.png" alt="chatIcon1" width="60"/>
+                </a>
+            </div>
+          </div>
+        )
+      }
+
+    {
+        isMobile && !lisitingPage && !isPropertiesSlugRoute &&(
+          <div className="floatingBtn">
+            <div className="iconMain shake">
+                <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
+                    <img className="" src="/images/icons/whatsapp.png" alt="chatIcon2" width="60"/>
+                </a>
+            </div>
+          </div>
+        )
+      }
+
+      
       <Script
         type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
