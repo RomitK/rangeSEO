@@ -237,6 +237,33 @@ function Services() {
                 </div>
               </div>
             </div>
+
+            <div className="col-md-6">
+              <div className="serviceCard">
+                <img
+                  src="/images/guides/portfolio.jpg"
+                  className="serviceCardImg"
+                  alt=" Investment Consultancy"
+                />
+                <div className="serCardContent ">
+                  <h3 className="cardTitle text-center">
+                  Portfolio Management{" "}
+                  </h3>
+                  <p className="fs-14 text-secondary mb-4">
+                  At Range, we offer comprehensive Portfolio Management Services tailored to maximize your real estate investments. Our dedicated team of experts specializes in guiding clients through each aspect of property portfolio management, ensuring optimal performance and returns. From strategic asset allocation to property acquisition, leasing, and ongoing maintenance, we provide personalized solutions to meet your specific investment goals.
+                  </p>
+                  <button
+                    className="fillBtn  mrAuto cardBtn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#enquireNow"
+                  >
+                    ENQUIRE NOW
+                  </button>
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </section>

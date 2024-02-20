@@ -345,7 +345,7 @@ function DubaiGuidePage() {
             </div>
           </div>
 
-          <div className="sectionArea" id="portifolio">
+          {/* <div className="sectionArea" id="portifolio">
             <h4 className="sctionMdTitle text-primary mb-4">
             Portfolio Management
             </h4>
@@ -381,7 +381,7 @@ function DubaiGuidePage() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <ContactModel
           sideText={contactSideText}
