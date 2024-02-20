@@ -193,10 +193,6 @@ function SinglePropertyView({ params }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
-
-
-
   const [showAll, setShowAll] = useState(false);
   const [linesToShow, setLinesToShow] = useState(5); // Number of lines to show initially
 
@@ -307,7 +303,6 @@ function SinglePropertyView({ params }) {
                     </div>
                   </div>
                   <div className={`${isMobileDev ? "" : "mb-3"}`}>
-                    
                     <div className="py-2">
                       <div className="text-blue">
                         <h4 className="mb-2">
@@ -315,29 +310,49 @@ function SinglePropertyView({ params }) {
                         </h4>
                       </div>
                       <div>
+                        {isMobileDev && (
+                          <div
+                            className="property-description"
+                            style={{
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                            }}
+                          >
+                            <div
+                              style={{
+                                maxHeight: showAll
+                                  ? "none"
+                                  : `${linesToShow * 1.2}em`,
+                                overflow: "hidden",
+                              }}
+                            >
+                              {parse(propertyData?.description ?? "")}
+                            </div>
+                            {!showAll && (
+                              <button
+                                className="read-more-btn bdrBtn width-auto-fit"
+                                onClick={toggleShowAll}
+                              >
+                                Read More
+                              </button>
+                            )}
+                            {showAll && (
+                              <button
+                                className="read-less-btn bdrBtn width-auto-fit"
+                                onClick={toggleShowAll}
+                              >
+                                Read Less
+                              </button>
+                            )}
+                          </div>
+                        )}
 
-                        {
-                          isMobileDev && (
-                            <div className="property-description" style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                      <div style={{ maxHeight: showAll ? 'none' : `${linesToShow * 1.2}em`, overflow: 'hidden' }}>
-                        {parse(propertyData?.description ?? '')}
-                      </div>
-                      {!showAll && (
-                        <button className="read-more-btn bdrBtn width-auto-fit" onClick={toggleShowAll}>Read More</button>
-                      )}
-                      {showAll && (
-                        <button className="read-less-btn bdrBtn width-auto-fit" onClick={toggleShowAll}>Read Less</button>
-                      )}
-                    </div>
-                          )
-                        }
-                      
-                      {! isMobileDev && (
-                        <div className="fs-14">
-                          {propertyData &&
-                            parse(propertyData?.description ?? "")}
-                        </div>
-                          )}
+                        {!isMobileDev && (
+                          <div className="fs-14">
+                            {propertyData &&
+                              parse(propertyData?.description ?? "")}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -355,14 +370,19 @@ function SinglePropertyView({ params }) {
                             </p>
                           </div>
                         </div>
+
                         <div className="mdColBar">
                           <div className=" py-3">
-                            <p className="text-primary fw-500 mb-1 fs-16">
-                              PERMIT NUMBER
-                            </p>
-                            <p className="fw-500 mb-0 fs-16">
-                              {propertyData && propertyData.permit_number}
-                            </p>
+                            {propertyData && propertyData?.permit_number && (
+                              <>
+                                <p className="text-primary fw-500 mb-1 fs-16">
+                                  PERMIT NUMBER
+                                </p>
+                                <p className="fw-500 mb-0 fs-16">
+                                  {propertyData && propertyData.permit_number}
+                                </p>
+                              </>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -492,7 +512,13 @@ function SinglePropertyView({ params }) {
                         <>
                           <div className={`py-3 proUserBox`}>
                             <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
-                              <div className={` ${isMobileDev ? 'projctSpecIMg me-3 mb-3' : 'my-auto projctSpecIMg me-3 mb-3'}`}>
+                              <div
+                                className={` ${
+                                  isMobileDev
+                                    ? "projctSpecIMg me-3 mb-3"
+                                    : "my-auto projctSpecIMg me-3 mb-3"
+                                }`}
+                              >
                                 <center>
                                   <img
                                     src={
@@ -519,82 +545,81 @@ function SinglePropertyView({ params }) {
                                       propertyData?.agent?.designation}
                                   </p>
                                   {!isMobileDev && (
-                                  <a
-                                    href={"tel:" + propertyData?.agent?.contact}
-                                    className="Probtn bg-primary"
-                                  >
-                                    <img
-                                      alt="callNow"
-                                      src="/images/icons/phone.png"
-                                      className="proPhoneIcon"
-                                    />
-                                    CALL NOW
-                                  </a>
+                                    <a
+                                      href={
+                                        "tel:" + propertyData?.agent?.contact
+                                      }
+                                      className="Probtn bg-primary"
+                                    >
+                                      <img
+                                        alt="callNow"
+                                        src="/images/icons/phone.png"
+                                        className="proPhoneIcon"
+                                      />
+                                      CALL NOW
+                                    </a>
                                   )}
 
                                   {isMobileDev && (
-                                  <a
-                                className="Probtn bg-primary scheduleBtn"
-                                data-bs-toggle="modal"
-                                data-bs-target="#bookAmeeting"
-                              >
-                                <i
-                                  className="fa fa-calendar"
-                                  aria-hidden="true"
-                                ></i> 
-                                SCHEDULE VIEWING
-                              </a>
+                                    <a
+                                      className="Probtn bg-primary scheduleBtn"
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#bookAmeeting"
+                                    >
+                                      <i
+                                        className="fa fa-calendar"
+                                        aria-hidden="true"
+                                      ></i>
+                                      SCHEDULE VIEWING
+                                    </a>
                                   )}
-
                                 </div>
                               </div>
                             </div>
                           </div>
                           {!isMobileDev && (
-                          <div className="py-3">
-                            <div className="BtnsflexBar mb-3">
-                              <a
-                                className="Probtn whatsappBtn wd50pr"
-                                href={
-                                  "https://wa.me/" +
-                                  propertyData?.agent?.whatsapp +
-                                  "?text=Hi, " +
-                                  propertyData?.agent?.name +
-                                  " Please let me know more about the following property " +
-                                  getCurrentUrl()
-                                }
-                              >
-                                <i className="fa fa-whatsapp"></i>
-                                WHATSAPP
-                              </a>
-                              <a
-                                className="Probtn bg-primary wd50pr"
-                                href={"mailto:" + propertyData?.agent?.email}
-                              >
-                                <i className="fa fa-envelope"></i>
-                                Email
-                              </a>
-                            </div>
+                            <div className="py-3">
+                              <div className="BtnsflexBar mb-3">
+                                <a
+                                  className="Probtn whatsappBtn wd50pr"
+                                  href={
+                                    "https://wa.me/" +
+                                    propertyData?.agent?.whatsapp +
+                                    "?text=Hi, " +
+                                    propertyData?.agent?.name +
+                                    " Please let me know more about the following property " +
+                                    getCurrentUrl()
+                                  }
+                                >
+                                  <i className="fa fa-whatsapp"></i>
+                                  WHATSAPP
+                                </a>
+                                <a
+                                  className="Probtn bg-primary wd50pr"
+                                  href={"mailto:" + propertyData?.agent?.email}
+                                >
+                                  <i className="fa fa-envelope"></i>
+                                  Email
+                                </a>
+                              </div>
 
-                            <div className="text-center mb-3">
-                              <a
-                                className="Probtn bg-primary scheduleBtn"
-                                data-bs-toggle="modal"
-                                data-bs-target="#bookAmeeting"
-                              >
-                                <i
-                                  className="fa fa-calendar"
-                                  aria-hidden="true"
-                                ></i>
-                                SCHEDULE VIEWING
-                              </a>
+                              <div className="text-center mb-3">
+                                <a
+                                  className="Probtn bg-primary scheduleBtn"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#bookAmeeting"
+                                >
+                                  <i
+                                    className="fa fa-calendar"
+                                    aria-hidden="true"
+                                  ></i>
+                                  SCHEDULE VIEWING
+                                </a>
+                              </div>
                             </div>
-                          </div>
                           )}
                         </>
                       )}
-
-                      
                     </div>
                     {propertyData &&
                       propertyData?.category != "Rent" &&
@@ -714,7 +739,7 @@ function SinglePropertyView({ params }) {
 
                   {propertyData && propertyData.amenities && (
                     <div className="mb-3">
-                      <div  className={`${isMobileDev ? '' : 'py-3'}`}>
+                      <div className={`${isMobileDev ? "" : "py-3"}`}>
                         <div className="mainHead text-primary">
                           <h4 className="mb-0">AMENITIES</h4>
                         </div>
@@ -742,7 +767,11 @@ function SinglePropertyView({ params }) {
                                         </div>
                                       </div>
                                       <div className="text-center">
-                                        <small className={`${isMobileDev ? 'fs-16' : 'fs-20'}`}>
+                                        <small
+                                          className={`${
+                                            isMobileDev ? "fs-16" : "fs-20"
+                                          }`}
+                                        >
                                           {amenity.name}
                                         </small>
                                       </div>
@@ -752,190 +781,193 @@ function SinglePropertyView({ params }) {
                               })}
                           </div>
                           <div className="col-12 col-lg-12 col-md-12 propertyMobItemLink">
-                            {
-                              isMobileDev && (
-                                <Swiper
-                              slidesPerView={2}
-                              spaceBetween={10}
-                              pagination={{
-                                el: ".swiper-pagination",
-                                clickable: true,
-                              }}
-                              navigation={{
-                                nextEl: ".swiper-button-next",
-                                prevEl: ".swiper-button-prev",
-                              }}
-                              breakpoints={{
-                                640: {
-                                  slidesPerView: 2,
-                                  spaceBetween: 50,
-                                },
-                                768: {
-                                  slidesPerView: 2,
-                                  spaceBetween: 50,
-                                },
-                                1024: {
-                                  slidesPerView: 4,
-                                  spaceBetween: 50,
-                                },
-                              }}
-                              autoplay={{
-                                delay: 3000,
-                              }}
-                              modules={[Navigation, Autoplay]}
-                              onSwiper={(swiper) => {
-                                amentitiesSwiperRef.current = swiper;
-                              }}
-                             
-                              className={`swiper amenitiesSwiper ${isMobileDev ? '' : 'px-5'}`}
-                            >
-                              {propertyData?.amenities
-                                ?.slice(0, 8)
-                                ?.map((amenity, index) => {
-                                  return (
-                                    <SwiperSlide
-                                      key={amenity.id + index + "amentity"}
-                                    >
-                                      <div className="swiper-slide align-items-start">
-                                <div className="py-3">
-                                  <div className="mb-2">
-                                    <div className="amenityImg mx-auto">
-                                      <img
-                                        src={amenity.image}
-                                        alt={amenity.name}
-                                        className="img-fluid"
-                                        width="40px"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div className="">
-                                  <small className={`${isMobileDev ? 'fs-16' : 'fs-20'}`}>
-                                      {amenity.name}
-                                    </small>
-                                  </div>
+                            {isMobileDev && (
+                              <Swiper
+                                slidesPerView={2}
+                                spaceBetween={10}
+                                pagination={{
+                                  el: ".swiper-pagination",
+                                  clickable: true,
+                                }}
+                                navigation={{
+                                  nextEl: ".swiper-button-next",
+                                  prevEl: ".swiper-button-prev",
+                                }}
+                                breakpoints={{
+                                  640: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 50,
+                                  },
+                                  768: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 50,
+                                  },
+                                  1024: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 50,
+                                  },
+                                }}
+                                autoplay={{
+                                  delay: 3000,
+                                }}
+                                modules={[Navigation, Autoplay]}
+                                onSwiper={(swiper) => {
+                                  amentitiesSwiperRef.current = swiper;
+                                }}
+                                className={`swiper amenitiesSwiper ${
+                                  isMobileDev ? "" : "px-5"
+                                }`}
+                              >
+                                {propertyData?.amenities
+                                  ?.slice(0, 8)
+                                  ?.map((amenity, index) => {
+                                    return (
+                                      <SwiperSlide
+                                        key={amenity.id + index + "amentity"}
+                                      >
+                                        <div className="swiper-slide align-items-start">
+                                          <div className="py-3">
+                                            <div className="mb-2">
+                                              <div className="amenityImg mx-auto">
+                                                <img
+                                                  src={amenity.image}
+                                                  alt={amenity.name}
+                                                  className="img-fluid"
+                                                  width="40px"
+                                                />
+                                              </div>
+                                            </div>
+                                            <div className="">
+                                              <small
+                                                className={`${
+                                                  isMobileDev
+                                                    ? "fs-16"
+                                                    : "fs-20"
+                                                }`}
+                                              >
+                                                {amenity.name}
+                                              </small>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </SwiperSlide>
+                                    );
+                                  })}
+                                <div
+                                  className="swiper-button-next text-primary"
+                                  onClick={() =>
+                                    amentitiesSwiperRef.current?.slideNext()
+                                  }
+                                >
+                                  <span className="">
+                                    <i className="bi bi-chevron-right fs-1"></i>
+                                  </span>
                                 </div>
-                              </div>
-                                    </SwiperSlide>
-                                  );
-                                })}
-                              <div
-                                className="swiper-button-next text-primary"
-                                onClick={() =>
-                                  amentitiesSwiperRef.current?.slideNext()
-                                }
-                              >
-                                <span className="">
-                                  <i className="bi bi-chevron-right fs-1"></i>
-                                </span>
-                              </div>
-                              <div
-                                className="swiper-button-prev text-primary"
-                                onClick={() =>
-                                  amentitiesSwiperRef.current?.slidePrev()
-                                }
-                              >
-                                <span className="">
-                                  <i className="bi bi-chevron-left fs-1"></i>
-                                </span>
-                              </div>
-                                </Swiper>
-                              )
-                            }
-                            
-
-                            {
-                              !isMobileDev && (
-                                <Swiper
-                              slidesPerView={2}
-                              spaceBetween={50}
-                              pagination={{
-                                el: ".swiper-pagination",
-                                clickable: true,
-                              }}
-                              navigation={{
-                                nextEl: ".swiper-button-next",
-                                prevEl: ".swiper-button-prev",
-                              }}
-                              breakpoints={{
-                                640: {
-                                  slidesPerView: 2,
-                                  spaceBetween: 50,
-                                },
-                                768: {
-                                  slidesPerView: 2,
-                                  spaceBetween: 50,
-                                },
-                                1024: {
-                                  slidesPerView: 4,
-                                  spaceBetween: 50,
-                                },
-                              }}
-                            
-
-                              autoplay={{
-                                delay: 3000,
-                              }}
-                              modules={[Navigation, Autoplay]}
-
-                              onSwiper={(swiper) => {
-                                amentitiesSwiperRef.current = swiper;
-                              }}
-                              className="swiper amenitiesSwiper px-5"
-                            >
-                              {propertyData?.amenities
-                                ?.slice(0, 8)
-                                ?.map((amenity, index) => {
-                                  return (
-                                    <SwiperSlide
-                                      key={amenity.id + index + "amentity"}
-                                    >
-                                      <div className="swiper-slide align-items-start">
-                                <div className="py-3">
-                                  <div className="mb-2">
-                                    <div className="amenityImg mx-auto">
-                                      <img
-                                        src={amenity.image}
-                                        alt={amenity.name}
-                                        className="img-fluid"
-                                        width="40px"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div className="">
-                                  <small className={`${isMobileDev ? 'fs-16' : 'fs-20'}`}>
-                                      {amenity.name}
-                                    </small>
-                                  </div>
+                                <div
+                                  className="swiper-button-prev text-primary"
+                                  onClick={() =>
+                                    amentitiesSwiperRef.current?.slidePrev()
+                                  }
+                                >
+                                  <span className="">
+                                    <i className="bi bi-chevron-left fs-1"></i>
+                                  </span>
                                 </div>
-                              </div>
-                                    </SwiperSlide>
-                                  );
-                                })}
-                              <div
-                                className="swiper-button-next text-primary"
-                                onClick={() =>
-                                  amentitiesSwiperRef.current?.slideNext()
-                                }
-                              >
-                                <span className="">
-                                  <i className="bi bi-chevron-right fs-1"></i>
-                                </span>
-                              </div>
-                              <div
-                                className="swiper-button-prev text-primary"
-                                onClick={() =>
-                                  amentitiesSwiperRef.current?.slidePrev()
-                                }
-                              >
-                                <span className="">
-                                  <i className="bi bi-chevron-left fs-1"></i>
-                                </span>
-                              </div>
-                            </Swiper>
-                              )
+                              </Swiper>
+                            )}
 
-                            }
-                            
+                            {!isMobileDev && (
+                              <Swiper
+                                slidesPerView={2}
+                                spaceBetween={50}
+                                pagination={{
+                                  el: ".swiper-pagination",
+                                  clickable: true,
+                                }}
+                                navigation={{
+                                  nextEl: ".swiper-button-next",
+                                  prevEl: ".swiper-button-prev",
+                                }}
+                                breakpoints={{
+                                  640: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 50,
+                                  },
+                                  768: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 50,
+                                  },
+                                  1024: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 50,
+                                  },
+                                }}
+                                autoplay={{
+                                  delay: 3000,
+                                }}
+                                modules={[Navigation, Autoplay]}
+                                onSwiper={(swiper) => {
+                                  amentitiesSwiperRef.current = swiper;
+                                }}
+                                className="swiper amenitiesSwiper px-5"
+                              >
+                                {propertyData?.amenities
+                                  ?.slice(0, 8)
+                                  ?.map((amenity, index) => {
+                                    return (
+                                      <SwiperSlide
+                                        key={amenity.id + index + "amentity"}
+                                      >
+                                        <div className="swiper-slide align-items-start">
+                                          <div className="py-3">
+                                            <div className="mb-2">
+                                              <div className="amenityImg mx-auto">
+                                                <img
+                                                  src={amenity.image}
+                                                  alt={amenity.name}
+                                                  className="img-fluid"
+                                                  width="40px"
+                                                />
+                                              </div>
+                                            </div>
+                                            <div className="">
+                                              <small
+                                                className={`${
+                                                  isMobileDev
+                                                    ? "fs-16"
+                                                    : "fs-20"
+                                                }`}
+                                              >
+                                                {amenity.name}
+                                              </small>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </SwiperSlide>
+                                    );
+                                  })}
+                                <div
+                                  className="swiper-button-next text-primary"
+                                  onClick={() =>
+                                    amentitiesSwiperRef.current?.slideNext()
+                                  }
+                                >
+                                  <span className="">
+                                    <i className="bi bi-chevron-right fs-1"></i>
+                                  </span>
+                                </div>
+                                <div
+                                  className="swiper-button-prev text-primary"
+                                  onClick={() =>
+                                    amentitiesSwiperRef.current?.slidePrev()
+                                  }
+                                >
+                                  <span className="">
+                                    <i className="bi bi-chevron-left fs-1"></i>
+                                  </span>
+                                </div>
+                              </Swiper>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -991,13 +1023,10 @@ function SinglePropertyView({ params }) {
                                             spaceBetween: 10,
                                           },
                                         }}
-
                                         autoplay={{
                                           delay: 3000,
                                         }}
                                         modules={[Navigation, Autoplay]}
-
-                                       
                                         onSwiper={(swiper) => {
                                           projectSwiperRef.current = swiper;
                                         }}
@@ -1059,8 +1088,14 @@ function SinglePropertyView({ params }) {
                             </div>
                           </div>
                           <div className="col-lg-5">
-                            <div className={` ${isMobileDev ? '' : 'clBoxList'}`}>
-                              <div className={` ${isMobileDev ? 'clBoxitem mb-2' : 'clBoxitem'}`}>
+                            <div
+                              className={` ${isMobileDev ? "" : "clBoxList"}`}
+                            >
+                              <div
+                                className={` ${
+                                  isMobileDev ? "clBoxitem mb-2" : "clBoxitem"
+                                }`}
+                              >
                                 <div className="circleImgBox">
                                   <img
                                     alt="handover"
@@ -1073,7 +1108,11 @@ function SinglePropertyView({ params }) {
                                   <p>HANDOVER</p>
                                 </div>
                               </div>
-                              <div className={` ${isMobileDev ? 'clBoxitem mb-2' : 'clBoxitem'}`}>
+                              <div
+                                className={` ${
+                                  isMobileDev ? "clBoxitem mb-2" : "clBoxitem"
+                                }`}
+                              >
                                 <div className="circleImgBox">
                                   <img
                                     alt="developer"
@@ -1086,7 +1125,11 @@ function SinglePropertyView({ params }) {
                                   <p>DEVELOPER</p>
                                 </div>
                               </div>
-                              <div className={` ${isMobileDev ? 'clBoxitem mb-2' : 'clBoxitem'}`}>
+                              <div
+                                className={` ${
+                                  isMobileDev ? "clBoxitem mb-2" : "clBoxitem"
+                                }`}
+                              >
                                 <div className="circleImgBox">
                                   <img
                                     alt="developer"
@@ -1345,7 +1388,6 @@ function SinglePropertyView({ params }) {
                                 </div>
                               </div>
                             </div>
-                           
                           </>
                         )}
                       </div>
@@ -1495,7 +1537,7 @@ function SinglePropertyView({ params }) {
                       </ul>
                     </div>
                     {propertyData?.agent && (
-                      <div >
+                      <div>
                         <div className={` proUserBox`}>
                           <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
                             <div className="my-auto projctSpecIMg me-3 mb-3">
@@ -1541,10 +1583,10 @@ function SinglePropertyView({ params }) {
                         </div>
 
                         <div className={`py-3 ${isFixed ? "fixed-div" : ""}`}>
-                        <small className="text-white">
-                          Co-Founder & Managing Partner & Managing aaaafsdf
+                          <small className="text-white">
+                            Co-Founder & Managing Partner & Managing aaaafsdf
                           </small>
-                        
+
                           <div className="BtnsflexBar mb-3">
                             <a
                               className="Probtn whatsappBtn "
@@ -1567,9 +1609,8 @@ function SinglePropertyView({ params }) {
                               <i className="fa fa-envelope"></i>
                               Email
                             </a>
-                            {
-                              isFixed && (
-                                <>
+                            {isFixed && (
+                              <>
                                 <a
                                   href={"tel:" + propertyData?.agent?.contact}
                                   className="Probtn bg-primary "
@@ -1580,11 +1621,11 @@ function SinglePropertyView({ params }) {
                                     className="proPhoneIcon"
                                   />
                                   CALL NOW
-                                </a></>
-                              )
-                            }
+                                </a>
+                              </>
+                            )}
                           </div>
-                          
+
                           <div className="text-center mb-3">
                             <a
                               className="Probtn bg-primary scheduleBtn"
@@ -1598,8 +1639,6 @@ function SinglePropertyView({ params }) {
                               SCHEDULE VIEWING
                             </a>
                           </div>
-
-                          
                         </div>
                       </div>
                     )}
@@ -1610,7 +1649,6 @@ function SinglePropertyView({ params }) {
                       <MortgageCalculator property={propertyData} />
                     )}
 
-                  
                   {propertyData && propertyData.community && (
                     <div className="bg-light px-3 py-2 mb-5">
                       <div className="py-3">
@@ -1684,7 +1722,6 @@ function SinglePropertyView({ params }) {
                                             width: "500px",
                                           }}
                                         />
-                                       
                                       </Link>
                                     </div>
                                   </SwiperSlide>
@@ -1738,7 +1775,7 @@ function SinglePropertyView({ params }) {
                   aria-expanded="false"
                 >
                   <img
-                  alt="cross"
+                    alt="cross"
                     src="/images/icons/btn-icon-5.png"
                     className="fixBtnIcon"
                   />
@@ -1757,7 +1794,6 @@ function SinglePropertyView({ params }) {
                   data-bs-parent="#accordionExample"
                 >
                   <div className="fixBtnContent">
-                  
                     <WhatsappShareButton
                       title={propertyData?.name}
                       separator=","
@@ -1772,7 +1808,6 @@ function SinglePropertyView({ params }) {
                       ></i>
                       Share on whatsapp
                     </WhatsappShareButton>
-                   
 
                     <EmailShareButton
                       url={getCurrentUrl()}
@@ -1798,7 +1833,7 @@ function SinglePropertyView({ params }) {
                   aria-expanded="false"
                 >
                   <img
-                  alt="cross"
+                    alt="cross"
                     src="/images/icons/btn-icon-4.png"
                     className="fixBtnIcon"
                   />
@@ -1817,21 +1852,18 @@ function SinglePropertyView({ params }) {
                   data-bs-parent="#accordionExample"
                 >
                   <div className="fixBtnContent">
-                    
-
                     <a
                       className="btnContentItem text-decoration-none"
                       data-bs-toggle="modal"
                       data-bs-target="#downloadBrochure"
                     >
                       <img
-                      alt="downlaod"
+                        alt="downlaod"
                         src="/images/icons/btn-icon-2.png"
                         className="fixBtnIcon"
                       />
                       DOWNLOAD BROCHURE
                     </a>
-                   
 
                     <a
                       className="btnContentItem text-decoration-none"
@@ -1840,7 +1872,7 @@ function SinglePropertyView({ params }) {
                     >
                       {" "}
                       <img
-                      alt="saleoffer"
+                        alt="saleoffer"
                         src="/images/icons/btn-icon-1.png"
                         className="fixBtnIcon"
                       />
@@ -2069,9 +2101,14 @@ function SinglePropertyView({ params }) {
         brochureLink={propertyData?.saleOfferLink}
         fileName={propertyData?.name + " SaleOffer.pdf"}
       />
-      
+
       {propertyData?.agent && (
-      <AgentBotton contact={propertyData?.agent?.contact} email={propertyData?.agent?.email} whatsapp={propertyData?.agent?.whatsapp} name={propertyData?.agent?.name}/>
+        <AgentBotton
+          contact={propertyData?.agent?.contact}
+          email={propertyData?.agent?.email}
+          whatsapp={propertyData?.agent?.whatsapp}
+          name={propertyData?.agent?.name}
+        />
       )}
     </>
   );
