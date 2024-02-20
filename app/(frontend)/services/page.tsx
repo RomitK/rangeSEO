@@ -144,7 +144,7 @@ function Services() {
                   alt="Property Management"
                 />
                 <div className="serCardContent ">
-                  <h3 className="cardTitle text-center">Property Management</h3>
+                  <h3 className="cardTitle text-center">Property/Portfolio Management</h3>
                   <p className="fs-14 text-secondary mb-4">
                     We offer comprehensive property management services tailored
                     to meet your unique needs. Our experienced team is dedicated
@@ -238,7 +238,7 @@ function Services() {
               </div>
             </div>
 
-            <div className="col-md-6">
+            {/* <div className="col-md-6">
               <div className="serviceCard">
                 <img
                   src="/images/guides/portfolio.jpg"
@@ -261,7 +261,7 @@ function Services() {
                   </button>
                 </div>
               </div>
-            </div>
+            </div> */}
 
 
           </div>
