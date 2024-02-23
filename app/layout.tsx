@@ -8,8 +8,8 @@ const inter = Inter({ subsets: ["latin"] });
 import Head from "next/head";
 
 export const metadata: Metadata = {
-  title: "Range International Property Investments",
-  description: "Range International Property Investments",
+  title: "Range International Property Investments12",
+  description: "Range International Property Investments12",
   icons: {
     icon: "/favicon.ico",
   },
