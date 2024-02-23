@@ -7,14 +7,6 @@ function Layout(props) {
   return (
     <>
       <Header />
-      <noscript>
-        <iframe
-          src="https://www.googletagmanager.com/ns.html?id=GTM-PBWHF5MF"
-          height="0"
-          width="0"
-          className="hidden-iframe"
-        ></iframe>
-      </noscript>
       <Navbar />
       <section>{props.children}</section>
       <Footer />
