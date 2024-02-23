@@ -35,15 +35,6 @@ function Header() {
           integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
           crossOrigin="anonymous"
         />
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ENW575XKY6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ENW575XKY6');
-</script>
       </Head>
     </>
   );
