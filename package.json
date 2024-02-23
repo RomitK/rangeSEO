@@ -22,6 +22,7 @@
     "js-file-downloader": "^1.1.25",
     "libphonenumber-js": "^1.10.53",
     "next": "^13.5.5",
+    "nextjs-google-analytics": "^2.3.3",
     "qs": "^6.11.2",
     "react": "^18",
     "react-bootstrap": "^2.9.1",
