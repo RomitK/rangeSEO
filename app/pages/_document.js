@@ -6,6 +6,7 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* Google Analytics script */}
+          <h1>fsdfsd</h1>
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-ENW575XKY6"

@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/(frontend)/communities/[...slug]/page.tsx"
-, "app/(frontend)/components/Property/MortgageCalculator.js", "app/(frontend)/components/UI/ReactSelect/MultiValueContainer.js", "app/(frontend)/components/UI/CustomSelectToggle.js", "app/(frontend)/components/Project/Filters.js"  ],
+, "app/(frontend)/components/Property/MortgageCalculator.js", "app/(frontend)/components/UI/ReactSelect/MultiValueContainer.js", "app/(frontend)/components/UI/CustomSelectToggle.js", "app/(frontend)/components/Project/Filters.js", "app/pages/_document.js"  ],
   "exclude": ["node_modules"]
 }
