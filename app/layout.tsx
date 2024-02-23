@@ -40,7 +40,7 @@ export default function RootLayout({
         ></script>
       </Head>
       <body className={inter.className} suppressHydrationWarning={true}>
-        <Layout>
+        {/* <Layout>
           {children}
           <ToastContainer
             position="bottom-center"
@@ -54,7 +54,7 @@ export default function RootLayout({
             pauseOnHover
             theme="light"
           />
-        </Layout>
+        </Layout> */}
       </body>
     </html>
   );
