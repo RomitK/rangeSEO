@@ -22,25 +22,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-ENW575XKY6"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-
-              gtag('config', 'G-ENW575XKY6');
-            `,
-          }}
-        ></script>
-      </Head>
       <body className={inter.className} suppressHydrationWarning={true}>
-        {/* <Layout>
+        <Layout>
           {children}
           <ToastContainer
             position="bottom-center"
@@ -54,7 +37,7 @@ export default function RootLayout({
             pauseOnHover
             theme="light"
           />
-        </Layout> */}
+        </Layout>
       </body>
     </html>
   );
