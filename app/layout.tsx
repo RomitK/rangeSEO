@@ -7,8 +7,7 @@ import "./globals.css";
 import Layout from "./(frontend)/components/UI/Layout";
 const inter = Inter({ subsets: ["latin"] });
 import Head from "next/head";
-
-
+import Script from 'next/script'
 export const metadata: Metadata = {
   title: "Range International Property Investments12",
   description: "Range International Property Investments12",
@@ -24,8 +23,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+
+<Script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-E7NY2W59JZ"
+/>
+
+<Script id="google-analytics">
+  {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+  `}
+</Script>
+
+</head>
       <body className={inter.className} suppressHydrationWarning={true}>
-        <Layout>
+      <Layout>
           {children}
           <ToastContainer
             position="bottom-center"
@@ -41,7 +57,6 @@ export default function RootLayout({
           />
         </Layout>
       </body>
-      <GoogleAnalytics/>
     </html>
   );
 }
