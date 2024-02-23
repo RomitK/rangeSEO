@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 import Layout from "./(frontend)/components/UI/Layout";
 const inter = Inter({ subsets: ["latin"] });
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Range International Property Investments",
@@ -21,6 +22,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Head>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-ENW575XKY6"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-ENW575XKY6');
+            `,
+          }}
+        ></script>
+      </Head>
       <body className={inter.className} suppressHydrationWarning={true}>
         <Layout>
           {children}
