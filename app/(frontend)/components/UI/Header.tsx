@@ -24,18 +24,6 @@ function Header() {
         href="images/favicon.png"
       />
       <meta name="robots" content="index,follow" />
-      <Script
-      src="https://www.googletagmanager.com/gtag/js?id=G-ENW575XKY6"
-      strategy="beforeInteractive"
-    />
-    <Script id="google-tag-manager">
-      {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-ENW575XKY6');
-      `}
-    </Script>
     </Head>
     
   );
