@@ -23,7 +23,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <GoogleAnalytics id="G-ENW575XKY6" />
       <body className={inter.className} suppressHydrationWarning={true}>
         <Layout>
           {children}
@@ -41,6 +40,7 @@ export default function RootLayout({
           />
         </Layout>
       </body>
+      <GoogleAnalytics gaId="G-ENW575XKY6" />
     </html>
   );
 }
