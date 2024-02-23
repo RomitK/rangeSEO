@@ -24,32 +24,20 @@ function Header() {
         href="images/favicon.png"
       />
       <meta name="robots" content="index,follow" />
-
-      {/* External script inclusion using Next.js Script component */}
       <Script
-        src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
-        strategy="beforeInteractive"
-        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-        crossOrigin="anonymous"
-      />
-      <Script
-        id="google-tag-manager"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function(w,d,s,l,i){
-              w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});
-              var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-              j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;
-              f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-PBWHF5MF');
-          `,
-        }}
-      />
+      src="https://www.googletagmanager.com/gtag/js?id=G-ENW575XKY6"
+      strategy="beforeInteractive"
+    />
+    <Script id="google-tag-manager">
+      {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ENW575XKY6');
+      `}
+    </Script>
     </Head>
+    
   );
 }
 
