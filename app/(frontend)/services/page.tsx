@@ -10,6 +10,7 @@ import ServiceModel from '@/app/(frontend)/components/models/ServiceModel';
 import "@/public/css/services-styles.css";
 function Services() {
   const router = useRouter();
+  const [activeService, setActiveService] = useState('');
   const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
   const pageUrl ="Services"
   const [formData, setFormData] = useState({
@@ -102,6 +103,7 @@ function Services() {
                     className="fillBtn  mrAuto cardBtn"
                     data-bs-toggle="modal"
                     data-bs-target="#enquireNow"
+                    onClick={() => setActiveService("ResidentialSales&Leasing")}
                   >
                     ENQUIRE NOW
                   </button>
@@ -130,6 +132,7 @@ function Services() {
                     className="fillBtn  mrAuto cardBtn"
                     data-bs-toggle="modal"
                     data-bs-target="#enquireNow"
+                    onClick={() => setActiveService("CommercialSales&Leasing")}
                   >
                     ENQUIRE NOW
                   </button>
@@ -155,6 +158,7 @@ function Services() {
                     className="fillBtn  mrAuto cardBtn"
                     data-bs-toggle="modal"
                     data-bs-target="#enquireNow"
+                    onClick={() => setActiveService("Property/PortfolioManagement")}
                   >
                     ENQUIRE NOW
                   </button>
@@ -181,6 +185,7 @@ function Services() {
                     className="fillBtn  mrAuto cardBtn"
                     data-bs-toggle="modal"
                     data-bs-target="#enquireNow"
+                    onClick={() => setActiveService("HolidayHomes")}
                   >
                     ENQUIRE NOW
                   </button>
@@ -203,6 +208,7 @@ function Services() {
                     className="fillBtn  mrAuto cardBtn"
                     data-bs-toggle="modal"
                     data-bs-target="#enquireNow"
+                    onClick={() => setActiveService("MortgageServices")}
                   >
                     ENQUIRE NOW
                   </button>
@@ -231,6 +237,7 @@ function Services() {
                     className="fillBtn  mrAuto cardBtn"
                     data-bs-toggle="modal"
                     data-bs-target="#enquireNow"
+                    onClick={() => setActiveService("InvestmentConsultancy")}
                   >
                     ENQUIRE NOW
                   </button>
@@ -278,7 +285,7 @@ function Services() {
           </button>
         </div>
       </section>
-      <ServiceModel></ServiceModel>
+      <ServiceModel activeService={activeService}></ServiceModel>
     </>
   );
 }
