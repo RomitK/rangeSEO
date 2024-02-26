@@ -25,76 +25,94 @@ letter-spacing: 0;
 font-variant: initial;
 line-height: 1;
 }
-.swiperSilderItem{
-position: relative;
+.swiperSilderItem {
+  position: relative;
+  margin-right: 0; /* Remove margin between slides */
 }
-.swiperSilderItem .sliderCoverImg{
-width: 100%;
-height: 100%;
-max-height: 600px;
-position: absolute;
-left: 0px;
-top: 0px;
-object-fit: cover;
-object-position: center;
+
+.swiperSilderItem .sliderCoverImg {
+  width: 100%; /* Set width to auto */
+  height: 100%; /* Set height to 100% */
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+  object-position: center;
 }
-.sliderContainer{
-position: relative;
-width: 90%;
-height: 100%;
-padding: 0;
-margin: 0 auto;
+.swiperprojectGallery .sliderContentArea {
+  display: flex;
+  align-items: center;
+  /*justify-content: center; /* Center horizontally */
+  height: 100%; /* Ensure content area takes full height of slide */
 }
-.sliderContainer .sliderContentArea{
-display: flex;
-align-items: flex-end;
-height: 100%;
-padding-bottom:80px;
+
+
+.sliderContainer {
+  position: relative;
+  width: 100%; /* Set width to 100% */
+  height: 600px; /* Set a fixed height or adjust as needed */
+  overflow: hidden; /* Ensure overflow is hidden to prevent content overflow */
+  margin: 0 auto;
+}
+
+.sliderContainer .sliderContentArea {
+  display: flex;
+  align-items: flex-end;
+  height: 100%; /* Set height to 100% */
+  padding-bottom: 80px;
 }
 .sliderContentArea .slideMdTit{
-color: #fff;
-font-size: 34px;
-font-weight: 400;
-margin: 0;
-line-height: 38px;
-position: relative;
-top: 11px;
+  color: #fff;
+  font-size: 34px;
+  font-weight: 400;
+  margin: 0;
+  line-height: 38px;
+  position: relative;
+  top: 11px;
+  }
+  .sliderContent{
+  text-align: left;
+  }
+  .sliderContentArea .sliderTitle{
+  font-size: 90px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 94px;
+  margin-bottom: 0;
+  }
+.sliderContentArea .sliderContent {
+  max-width: 60%;
+  padding: 24px 0 30px 20px;
+  border-left: 2px solid #fff;
+  background: #2f3c6a73;
+  padding-right: 20px;
 }
-.sliderContent{
-text-align: left;
+
+ .sliderContentArea .sliderContent h5 {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 38px;
+  margin: 0;
+  position: relative;
+  top: 3px;
+}.swiper-wrapper {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping of slides */
+  gap: 0; /* Remove space between slides */
 }
-.sliderContentArea .sliderTitle{
-font-size: 90px;
-font-weight: 800;
-color: #fff;
-line-height: 94px;
-margin-bottom: 0;
+
+.sliderContentArea .sliderContent h1 {
+  font-size: 90px;
+  color: #fff;
+  line-height: 80px;
 }
-.sliderContentArea .sliderContent{
-max-width: 60%;
-padding:24px 0px 30px 20px;
-border-left: 2px solid #fff;
-background:#2f3c6a73;
-padding-right: 20px;
+
+.sliderContentArea .sliderContent p {
+  color: #fff;
+  font-size: 14px;
 }
-.sliderContentArea .sliderContent h5{
-color: #fff;
-font-size: 32px;
-font-weight: 500;
-line-height: 38px;
-margin: 0px;
-position: relative;
-top: 3px;
-}
-.sliderContentArea .sliderContent h1{
-font-size: 90px;
-color: #fff;
-line-height: 80px;
-}
-.sliderContentArea .sliderContent p{
-color: #fff;
-font-size: 14px;
-}
+
 .sliderArrowBar{
 position: absolute;
 width: 92px;

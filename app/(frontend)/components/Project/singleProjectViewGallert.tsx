@@ -29,57 +29,8 @@ import DownloadProjectPPTModal from "../models/DownloadProjectPPTModal";
 import DownloadProjectSaleOfferModel from "@/app/(frontend)/components/models/DownloadProjectSaleOfferModel";
 
 import "@/public/css/single-project-view-styles.css";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
 function SingleProjectView({ params }) {
   const slug = params.slug[0];
-  const sliderRef = useRef(null);
-
-
-
-  // Define custom arrow components for navigation
-  const PrevArrow = (props) => (
-    <div {...props} className="custom-prev-arrow text-white">
-      <span className="">
-        <i className="bi bi-chevron-left fs-1"></i>
-      </span>
-    </div>
-  );
-  const NextArrow = (props) => (
-    <div {...props} className="custom-next-arrow text-white">
-      <span className="">
-        <i className="bi bi-chevron-right fs-1"></i>
-      </span>
-    </div>
-  );
-
-  // Settings for desktop and iPad
-  const desktopSettings = {
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    centerMode: true,
-    autoplay: true,
-    speed: 3000,
-    centerPadding: "300px",
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
-  };
-
-  // Settings for mobile
-  const mobileSettings = {
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    centerMode: false,
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
-  };
-
-
-
   const { projectData } = useGetSingleProjectData(slug);
   const { nearByProjects } = useGetNearByProjectsData(slug);
   const bannerSwiperRef = useRef<SwiperCore>();
@@ -140,21 +91,11 @@ function SingleProjectView({ params }) {
     setShowAll(!showAll);
   };
 
-// Inside your component
-const [activeSlideIndex, setActiveSlideIndex] = useState(0); // Initialize with the first slide index
-
-// Function to handle slide change
-const handleBeforeChange = (oldIndex, newIndex) => {
-  setActiveSlideIndex(newIndex);
-};
-
-
   return (
     <>
       {projectData?.exteriorGallery && (
-        <>
         <header className={`${isMobileDev ? "h-auto" : ""}`}>
-          {/* <Swiper
+          <Swiper
             loop={true}
             modules={[Navigation]}
             onSwiper={(swiper) => {
@@ -223,60 +164,8 @@ const handleBeforeChange = (oldIndex, newIndex) => {
                 </span>
               </div>
             </div>
-          </Swiper> */}
-
-<Slider
-  {...(isMobileDev ? mobileSettings : desktopSettings)}
-  ref={sliderRef}
-  className="swiperprojectGallery"  beforeChange={handleBeforeChange}
->
-  {projectData?.exteriorGallery?.map((exteriorGallery, index) => (
-    <div
-    className="swiperSilderItem"
-    key={exteriorGallery.id + "exteriorGallery" + index}
-  >
-    <img
-      src={exteriorGallery.path}
-      alt={
-        exteriorGallery.title
-          ? exteriorGallery.title
-          : projectData.title
-      }
-      className="sliderCoverImg"
-    />
-
-    <div className="sliderContainer">
-      <div className="sliderContentArea" style={{ display: index === activeSlideIndex ? 'flex' : 'none' }}>
-        <div className="sliderContent">
-          <h5>{projectData?.sub_title_1}</h5>
-          <h1>{projectData?.sub_title_2}</h1>
-          <p className="mb-5">
-            {projectData &&
-              projectData.shortDescription &&
-              parse(projectData?.shortDescription ?? "")}
-              {
-               projectData && projectData?.permit_number &&
-               (
-                <>
-                 Permit Number:{projectData?.permit_number}
-                </>
-               )
-              }
-             
-          </p>
-        </div>
-      </div>
-    </div>
- 
-    
-  </div>
-  ))}
-</Slider>
-
+          </Swiper>
         </header>
-
-        
-</>
       )}
       {projectData && (
         <section className="mb-3">

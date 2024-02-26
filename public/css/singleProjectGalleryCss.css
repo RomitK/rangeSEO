@@ -1,0 +1,528 @@
+header{
+    height: 600px;
+    }
+    .swiper {
+    width: 100%;
+    height: 100%;
+    }
+    .swiper-slide {
+    text-align: center;
+    font-size: 18px; 
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 600px;
+    }
+    .swiper-button-next:after {
+    content: 'next';
+    }
+    .swiper-button-next:after, .swiper-button-next:after {
+    font-family: swiper-icons;
+    font-size: var(--swiper-navigation-size);
+    text-transform: none!important;
+    letter-spacing: 0;
+    font-variant: initial;
+    line-height: 1;
+    }
+    .swiperSilderItem{
+    position: relative;
+    }
+    .swiperSilderItem .sliderCoverImg{
+    width: 100%;
+    height: 100%;
+    max-height: 600px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    object-fit: cover;
+    object-position: center;
+    }
+    .sliderContainer{
+    position: relative;
+    width: 90%;
+    height: 100%;
+    padding: 0;
+    margin: 0 auto;
+    }
+    .sliderContainer .sliderContentArea{
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    padding-bottom:80px;
+    }
+    .sliderContentArea .slideMdTit{
+    color: #fff;
+    font-size: 34px;
+    font-weight: 400;
+    margin: 0;
+    line-height: 38px;
+    position: relative;
+    top: 11px;
+    }
+    .sliderContent{
+    text-align: left;
+    }
+    .sliderContentArea .sliderTitle{
+    font-size: 90px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 94px;
+    margin-bottom: 0;
+    }
+    .sliderContentArea .sliderContent{
+    max-width: 60%;
+    padding:24px 0px 30px 20px;
+    border-left: 2px solid #fff;
+    background:#2f3c6a73;
+    padding-right: 20px;
+    }
+    .sliderContentArea .sliderContent h5{
+    color: #fff;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 38px;
+    margin: 0px;
+    position: relative;
+    top: 3px;
+    }
+    .sliderContentArea .sliderContent h1{
+    font-size: 90px;
+    color: #fff;
+    line-height: 80px;
+    }
+    .sliderContentArea .sliderContent p{
+    color: #fff;
+    font-size: 14px;
+    }
+    .sliderArrowBar{
+    position: absolute;
+    width: 92px;
+    bottom: 105px;
+    left: 6%;
+    }
+    .sliderArrowBar > div > span{
+    display: none;
+    }
+    .sliderArrowBar .swiper-button-next{
+    background-image: url(/images/icons/slider-right-arrow.png);
+    background-size: 30px;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    background-position: center;
+    }
+    .sliderArrowBar .swiper-button-prev{
+    background-image: url(/images/icons/slider-left-arrow.png);
+    background-size: 30px;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    background-position: center;
+    }
+    .vtTextBXox{
+    text-align:center;
+    }
+    .vtTextBXox p{
+    margin: 0px;
+    color: #3f3f3f;
+    font-size: 20px;
+    }
+    .vtTextBXox h3{
+    font-size: 26px;
+    font-weight: 800;
+    margin: 0px;
+    color: #3f3f3f;
+    line-height: 32px;
+    }
+    .vtTextBXox{
+    padding: 30px 0px;
+    }
+    .tabsListConatiner{
+    padding: 24px 0px;
+    border-top: 1.4px solid #bcbcbc;
+    border-bottom: 1.4px solid #bcbcbc;
+    margin-bottom: 60px;
+    }
+    
+    .TabsListOptions{
+    display: flex;
+    justify-content: space-between;
+    }
+    .TabsListOptions .nav-link{
+    background-color: unset;
+    color: #3f3f3f;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 500;
+    }
+    .TabsListOptions .nav-link.active{
+    background-color: unset;
+    color: #136DAE;
+    text-decoration: underline;
+    }
+    .secTabCntent{
+    padding: 20px 0px; 
+    }
+    .sctionMdTitle{
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: 500;
+    }
+    .sctionSubTitle{
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+    }
+    .collapsArea{
+    margin-bottom: 30px;
+    }
+    #secAccordion .accordion-button:after{
+    position: absolute;
+    left:0px;
+    }
+    #secAccordion .accordion-button:not(.collapsed){
+    background-color: unset;
+    }
+    #secAccordion, #secAccordion .accordion-item{
+    border: 0px;
+    margin-bottom: 12px;
+    }
+    #secAccordion .accordion-collapse .accordion-body{
+    padding-left: 36px;
+    padding-top: 6px;
+    }
+    #secAccordion .accordion-button:not(.collapsed){
+    color: #136DAE ;
+    }
+    .tabsListConatiner  .tab-pane .container{
+    border-bottom: 1px solid #3f3f3f;
+    margin-bottom: 40px;
+    }
+    .secTabCntent p{
+    font-size: 14px;
+    }
+    .clmCoverImg{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    }
+    .singleSlider.clmSlider{
+    padding-bottom: 40px;
+    }
+    .secTabCntent{
+    padding-right: 40px;
+    }
+    .sctionSmTitle{
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 500;
+    }
+    .priceTable{
+    width: 100%;
+    margin-bottom: 30px;
+    }
+    .priceTable thead .tblThText{
+    font-size: 20px;
+    color: #3f3f3f;
+    font-weight: 600;
+    margin: 0px;
+    }
+    .priceTable tbody .tblTdText{
+    margin: 0px;
+    }
+    .fillBtn{
+    background-color: #136DAE;
+    color: #fff;
+    border: 0px;
+    box-shadow: 0px 3px 5px #00000052;
+    transition: 0.3s ease;
+    border: 1.5px solid #136DAE;
+    }
+    .fillBtn:hover{
+    box-shadow: unset;
+    background-color: unset;
+    color: #136DAE;
+    border: 1.5px solid #136DAE;
+    }
+    .tblBtn{
+    width: 100px;
+    height: 36px;
+    font-size: 16px;
+    text-transform: uppercase;
+    display: block;
+    }
+    .mrAuto{
+    margin: 0 auto;
+    }
+    .priceTable tbody td{
+    padding:10px 0px ;
+    vertical-align: middle;
+    }
+    .priceTable tbody tr{
+    border-bottom:1px solid #8c8c8c;
+    }
+    .priceTable thead th{
+    padding: 15px 0px;
+    }
+    .bdrBtn{
+    background-color: unset;
+    border: 1.5px solid #136DAE;
+    padding: 5px 20px;
+    color: #136DAE;
+    transition: 0.3s ease;
+    /* display: block; */
+    font-size: 16px;
+    }
+    
+    
+    .bdrBtn:hover{
+    background-color: #136DAE;
+    color: #fff;
+    box-shadow: 0px 3px 5px #00000052;
+    }
+    .tableSection{
+    margin-bottom: 60px;
+    }
+    .clmContainImg{
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    object-position: center;
+    }
+    .labelFLex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    }
+    .labelFLex .priceLabel{
+    background-color: #136DAE ;
+    border-radius: 100px;
+    color: #fff !important;
+    padding: 10px 20px;
+    }
+    .tblTdText{
+    margin-bottom: 0px;
+    }
+    .form-control.textArea{
+    min-height: 140px;
+    }
+    .submitBtn{
+    width: 120px;
+    height: 40px;
+    margin-bottom: 10px;
+    }
+    .floorFormBox{
+    padding: 10px 5px;
+    }
+    .floorFormBox .form-floating>label{
+    font-size: 14px;
+    }
+    .listArrowIcon{
+    width: 16px;
+    height: 20px;
+    object-fit: contain;
+    }
+    .ListpPannel .listItem{
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 20px;
+    }
+    .selectTitle .tabTitle{
+    color: #3f3f3f;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    }
+    .selectTitle .tabTitle:active{
+    color: #136DAE;
+    text-decoration: underline;
+    }
+    .selectTitle .tabTitle.active{
+    color: #136DAE;
+    text-decoration: underline;
+    }
+    .secTabCntent .trix-content ul{
+    padding: 0;
+    padding-left: 15px;
+    }
+    .secTabCntent .trix-content ul li{
+    /* font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    color: #3f3f3f;
+    font-weight: 500;
+    margin-bottom: 3px; */
+    }
+    .tabsListConatiner .container .row{
+    padding: 0px 40px;
+    }
+    #ProjectDetails{
+    margin-bottom: 60px;
+    }
+    #ProjectDetails .trix-content p{
+    font-size: 14px;
+    color: #6F6D71 !important;
+    }
+    #Hightlights .container{
+    border-bottom:1.4px solid #bcbcbc;
+    padding-bottom: 30px;
+    margin-bottom: 50px;
+    }
+    .AboutDeveloper .container{
+    padding-bottom: 40px;
+    border-bottom: 1.4px solid #bcbcbc;
+    }
+    .tableContainer{
+    width: 100%;
+    overflow-x: auto;
+    }
+    .tableContainer .priceTable{
+    width: 100%;
+    }
+    .proInfoList{
+    display: flex;
+    flex-flow: wrap;
+    gap: 10px;
+    margin-bottom: 0px;
+    }
+    .proInfoList .liBar{
+    width: calc(50% - 5px );
+    margin-bottom: 15px;
+    }
+    .rowFlexBar{
+    display: flex;
+    gap: 10px;
+    }
+    .rowFlexBar .mdColBar{
+    width: 50%;
+    }
+    .proInfoList .liBar small{
+    display: flex;
+    align-items: center;
+    line-height: 18px;
+    }
+    .proInfoList .liBar small span a{
+    color:#212529;
+    font-size: 14px;
+    font-weight: 500;
+    }
+    .proPhoneIcon{
+    width: 15px;
+    filter: brightness(0) invert(1);
+    }
+    .Probtn{
+    border: 0px;
+    width: 100%;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    gap: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    }
+    .Probtn:hover{
+    color: #fff;
+    }
+    .proUserBoxContent{
+    width: 100%;
+    }
+    .proUserBox .projctSpecIMg{
+    min-width: 90px;
+    }
+    .whatsappBtn{
+    background-color: #64b161;
+    }
+    .BtnsflexBar{
+    display: flex;
+    gap: 5px;
+    }
+    .Probtn.whatsappBtn .fa-whatsapp{
+    font-size: 24px;
+    }
+    .Probtn.scheduleBtn{
+    font-size: 16px;
+    }
+    .Probtn.scheduleBtn .fa-calendar{
+    font-size: 16px;
+    }
+    .swiperThumbnailColm{
+    width: 100%;
+    }
+    .sliderModalBox{
+    width: 280px;
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    }
+    .sliderThumbnailArea{
+    display: flex;
+    gap: 10px;
+    padding-top: 10px;
+    /* height: 10vw; */
+    }
+    .floorplans{
+        width: 100% !important;
+        height: 400px !important;
+        object-fit: contain !important;
+      }
+      .width-auto-fit{
+        width: fit-content !important;
+      }
+      .similarPropertyCard{
+        max-height: auto !important;
+      }
+      .proColImgBox img{
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+      }
+      .clBoxList{
+        padding: 30px 20px;
+      }
+      .clBoxitem{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 40px;
+      }
+      .circleImgBox .iconImg{
+       width: 40px;
+       height: 40px;
+       object-fit: contain;
+      }
+      .clBoxitem .circleImgBox{
+      width: 70px;
+      height: 70px;
+      border-radius: 100px;
+      border: 2px solid #136DAE ;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      }
+      .clBoxitem .clBoxitemitem h5{
+      font-size: 28px;
+      color: #2b2b2b;
+      font-weight: 500;
+      margin: 0px;
+      }
+      .clBoxitem .clBoxitemitem p{
+      color: #136DAE;
+      font-size: 16px;
+      margin: 0px;
+      font-weight: 500;
+      }
