@@ -1664,7 +1664,7 @@ transform: translate(-50%, -50%);
 z-index: 9;
 }
 .goldenVisa:hover{
-    color: #136dae !important;
+    color: white !important;
 }
 .vertical-center {
     display: flex;
