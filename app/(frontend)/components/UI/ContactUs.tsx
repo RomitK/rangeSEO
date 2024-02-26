@@ -94,7 +94,7 @@ const ContactUs = () => {
                 <small className="text-danger">Message is required.</small>
               )}
               </div>
-              <input type="hidden" value="ContactForm" {...register("formName", { required: false })}/>
+              <input type="hidden" value="FooterContactForm" {...register("formName", { required: false })}/>
               <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
               <div className="col-12 mb-2">
                 <div className="text-start">
