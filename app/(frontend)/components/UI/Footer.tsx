@@ -394,7 +394,7 @@ function Footer() {
                 <div className="col my-auto iconRoundBlack">
                   <div className="text-center p-2">
                     <a
-                      href={process.env.TELEGRAM_LINK}
+                      href="https://t.me/+Fu6abZUkOxc3N2Y8"
                       className="text-decoration-none"
                       target="_blanket"
                       aria-label={`Follow us on Telegram`}
