@@ -1175,7 +1175,7 @@ function OffPlanFilters({
                             className="form-check-label"
                             htmlFor="exampleCheck1"
                           >
-                            show only Commericial Properties
+                            show only Commercial Properties
                           </label>
                         </div>
                         
@@ -1484,7 +1484,7 @@ function OffPlanFilters({
                   checked={isCommercial}
                 />
                 <label className="form-check-label" htmlFor="exampleCheck1">
-                  Commericial
+                  Commercial
                 </label>
               </div>
               <button

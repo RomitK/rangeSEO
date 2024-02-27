@@ -617,7 +617,7 @@ function OffPlanFilters({
               checked={isCommercial}
             />
             <label className="form-check-label" htmlFor="exampleCheck1">
-              Commericial
+              Commercial
             </label>
           </div>
           <button

@@ -975,7 +975,7 @@ function Filters({
                         className="form-check-label"
                         htmlFor="exampleCheck1"
                       >
-                        Commericial
+                        Commercial
                       </label>
                     </div>
 
@@ -1259,7 +1259,7 @@ function Filters({
               checked={isCommercial}
             />
             <label className="form-check-label" htmlFor="exampleCheck1">
-              Commericial
+              Commercial
             </label>
           </div>
           <button

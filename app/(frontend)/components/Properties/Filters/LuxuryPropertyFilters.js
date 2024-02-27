@@ -1167,7 +1167,7 @@ function LuxuryPropertyFilters({
                             className="form-check-label"
                             htmlFor="exampleCheck1"
                           >
-                            show only Commericial Properties
+                            show only Commercial Properties
                           </label>
                         </div>
                         
@@ -1475,7 +1475,7 @@ function LuxuryPropertyFilters({
                   checked={isCommercial}
                 />
                 <label className="form-check-label" htmlFor="exampleCheck1">
-                  Commericial
+                  Commercial
                 </label>
               </div>
               <button
