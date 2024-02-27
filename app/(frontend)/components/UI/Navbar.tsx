@@ -55,7 +55,7 @@ function Navbar() {
           <div className="my-auto">
             <Link href={{ pathname: "/" }} className="navbar-brand">
               <img
-                src="/images/logo.png"
+                src="/images/logo_blue.png"
                 alt="Range Internation Property Investments"
                 className="img-fluid navMobLogo"
                 width="175"
@@ -241,7 +241,7 @@ function Navbar() {
                     <div className="">
                       <Link href={{ pathname: "/" }} className="navbar-brand">
                         <img
-                          src="/images/logo.png"
+                          src="/images/logo_blue.png"
                           alt="Range Internation Property Investments"
                           className="img-fluid navMobLogo"
                           width="175"
@@ -414,7 +414,7 @@ function Navbar() {
                       <div className="">
                         <Link href={{ pathname: "/" }} className="navbar-brand">
                           <img
-                            src="/images/logo.png"
+                            src="/images/logo_blue.png"
                             alt="Range Internation Property Investments"
                             className="img-fluid navMobLogo"
                             width="175"
@@ -543,7 +543,7 @@ function Navbar() {
             <div className="col-4">
               <Link href={{ pathname: "/" }} className="navbar-brand">
                 <img
-                  src="/images/logo.png"
+                  src="/images/logo_blue.png"
                   alt="Range Internation Property Investments"
                   className="img-fluid navMobLogo"
                   width="175"

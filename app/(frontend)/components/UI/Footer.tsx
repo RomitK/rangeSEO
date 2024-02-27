@@ -96,7 +96,7 @@ function Footer() {
                   <div className="mb-3">
                     <Link href={{ pathname: "/" }}>
                       <img
-                        src="/images/logo.png"
+                        src="/images/logo_blue.png"
                         alt="Range Internation Property Investments"
                         className="img-fluid"
                         width="175"

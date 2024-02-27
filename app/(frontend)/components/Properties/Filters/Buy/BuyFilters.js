@@ -584,7 +584,7 @@ function BuyFilters({
                     <div className="">
                       <Link href={{ pathname: "/" }} className="navbar-brand">
                         <img
-                          src="/images/logo.png"
+                          src="/images/logo_blue.png"
                           alt="Range Internation Property Investments"
                           className="img-fluid navMobLogo"
                           width="175"
@@ -723,7 +723,7 @@ function BuyFilters({
               <div className="col-4">
                 <Link href={{ pathname: "/" }} className="navbar-brand">
                   <img
-                    src="/images/logo.png"
+                    src="/images/logo_blue.png"
                     alt="Range Internation Property Investments"
                     className="img-fluid navMobLogo"
                     width="175"
