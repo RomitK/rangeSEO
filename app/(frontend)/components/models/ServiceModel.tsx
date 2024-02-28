@@ -27,7 +27,7 @@ function ServiceModel(props) {
 
   const currentPageURL = getCurrentUrl();
   const onSubmit = (data) => {
-   
+    data.formName = formName; // Set the formName in the data before submitting
     saveContactFormApi(data)
       .then((res) => {
         toast.success(
