@@ -11,7 +11,8 @@ import { getCurrentUrl } from "@/src/utils/helpers/common";
 import { saveContactFormApi } from "@/src/services/HomeService";
 
 function ServiceModel(props) {
-
+ 
+  const [formName, setFormName] = useState(props.activeService); 
   const {
     register,
     handleSubmit,
@@ -19,8 +20,14 @@ function ServiceModel(props) {
     control,
     reset,
   } = useForm();
+
+  useEffect(() => {
+    setFormName(props.activeService);
+  }, [props.activeService]);
+
   const currentPageURL = getCurrentUrl();
   const onSubmit = (data) => {
+   
     saveContactFormApi(data)
       .then((res) => {
         toast.success(
@@ -70,8 +77,8 @@ function ServiceModel(props) {
                 <div className="col-12 col-lg-12 col-md-12 ">
                   <div className="">
                     <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
-                      <input type="hidden" value={props?.activeService} {...register("serviceName", { required: false })}/>
-                    <input type="hidden" value={props?.activeService} {...register("formName", { required: false })}/>
+                    <input type="text" value={formName} {...register("serviceName", { required: false })}/>
+                    <input type="text" value={formName} {...register("formName", { required: false })}/>
                     <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
                       <div className="">
                         <div className="row">
