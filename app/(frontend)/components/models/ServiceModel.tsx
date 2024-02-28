@@ -77,8 +77,8 @@ function ServiceModel(props) {
                 <div className="col-12 col-lg-12 col-md-12 ">
                   <div className="">
                     <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
-                    <input type="text" value={formName} {...register("serviceName", { required: false })}/>
-                    <input type="text" value={formName} {...register("formName", { required: false })}/>
+                    <input type="hidden" value={formName} {...register("serviceName", { required: false })}/>
+                    <input type="hidden" value={formName} {...register("formName", { required: false })}/>
                     <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
                       <div className="">
                         <div className="row">
