@@ -27,6 +27,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
 function SingleDeveloperView({ params }) {
 
   const [isMobileDev, setIsMobileDev] = useState(false);
@@ -76,6 +77,9 @@ function SingleDeveloperView({ params }) {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
+      if(isMobileDevice){
+        document.body.style.overflow = 'auto';
+      }
       setIsMobileDev(isMobileDevice);
     };
 

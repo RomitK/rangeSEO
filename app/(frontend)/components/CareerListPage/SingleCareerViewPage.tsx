@@ -8,8 +8,32 @@ import ContactSection from "../ContactSection/ContactSection";
 import "@/public/css/career-page-styles.css";
 import "@/public/css/responsive.css";
 
+
 function SingleCareerViewPage({ params }) {
+  const [isMobileDev, setIsMobileDev] = useState(false);
   const slug = params.slug[0];
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      if(isMobileDevice){
+        document.body.style.overflow = 'auto';
+      }
+      setIsMobileDev(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+}, []);
+
   const { CareerData } = useGetSingleCareerData(slug);
   const [currentCareerId, setCurrentCareerId] = useState(0);
   const [currentCareerPosition, setCurrentCareerName] = useState(null);

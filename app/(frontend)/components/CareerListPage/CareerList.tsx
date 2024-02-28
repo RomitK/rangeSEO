@@ -14,6 +14,8 @@ import CareerModel from "../models/careerModel";
 import ContactSection from "../ContactSection/ContactSection";
 import "@/public/css/career-page-styles.css";
 import "@/public/css/responsive.css";
+
+
 function CareerListPage() {
   const { CareersData } = useGetAllCareerData();
   const [careers, setCareers] = useState([]);
@@ -26,6 +28,9 @@ function CareerListPage() {
       const handleResize = () => {
         // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
         const isMobileDevice = window.innerWidth < 768;
+        if(isMobileDevice){
+          document.body.style.overflow = 'auto';
+        }
         setIsMobileDev(isMobileDevice);
       };
   

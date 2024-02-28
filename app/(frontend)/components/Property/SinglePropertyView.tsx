@@ -152,6 +152,11 @@ function SinglePropertyView({ params }) {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
+
+      if(isMobileDevice){
+        document.body.style.overflow = 'auto';
+      }
+
       setIsMobileDev(isMobileDevice);
     };
 

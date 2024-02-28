@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useGetAllTeamData } from "@/src/services/TeamService";
 import "@/public/css/about-styles.css";
+
 function TeamPage() {
   const [isMobileDev, setIsMobileDev] = useState(false);
   const { teamsData } = useGetAllTeamData();
@@ -10,6 +11,11 @@ function TeamPage() {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
+
+      if(isMobileDevice){
+        document.body.style.overflow = 'auto';
+      }
+
       setIsMobileDev(isMobileDevice);
     };
 

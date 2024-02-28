@@ -8,6 +8,8 @@ import "@/public/css/style.css"
 import "@/public/css/contact-Us-styles.css"
 import PhoneInput from "react-phone-number-input";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
+
+
 function ContactPage() {
   const [isMobileDev, setIsMobileDev] = useState(false);
   useEffect(() => {
@@ -15,6 +17,9 @@ function ContactPage() {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
+      if(isMobileDevice){
+        document.body.style.overflow = 'auto';
+      }
       setIsMobileDev(isMobileDevice);
     };
 

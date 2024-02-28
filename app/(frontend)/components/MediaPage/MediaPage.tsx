@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useGetMedias } from "@/src/services/MediaService";
 import axios from "axios";
 
+
 function MediaPage({ params }) {
   const [form, setForm] = useState({});
   const { mediaData } = useGetMedias("", form);
@@ -20,6 +21,9 @@ function MediaPage({ params }) {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
+      if(isMobileDevice){
+        document.body.style.overflow = 'auto';
+      }
       setIsMobileDev(isMobileDevice);
     };
 

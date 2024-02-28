@@ -13,6 +13,7 @@ import {
 } from "@/src/services/ProjectService";
 import axios from "axios";
 import Loader from "../UI/Loader";
+
 type OptionType = {
   value: string;
   label: string;
@@ -29,6 +30,9 @@ function DeveloperList({ params }) {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
+      if(isMobileDevice){
+        document.body.style.overflow = 'auto';
+      }
       setIsMobileDev(isMobileDevice);
     };
 

@@ -43,6 +43,7 @@ import {
 } from "react-share";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 
+
 function SingleMediaView({ params }) {
   const faFacebookIcon = faFacebook as IconProp;
   const faInstagramIcon = faInstagram as IconProp;
@@ -60,6 +61,11 @@ function SingleMediaView({ params }) {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
+
+      if(isMobileDevice){
+        document.body.style.overflow = 'auto';
+      }
+
       setIsMobileDev(isMobileDevice);
     };
 

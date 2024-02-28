@@ -18,7 +18,32 @@ import "swiper/css/pagination";
 import { useState, useEffect } from "react";
 import { useGetAllHomeData } from "@/src/services/HomeService";
 import Link from "next/link";
+
 const HomePage = () => {
+
+  const [isMobileDev, setIsMobileDev] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      if(isMobileDevice){
+        document.body.style.overflow = 'auto';
+      }
+      setIsMobileDev(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const PropertySwiperRef = useRef<SwiperCore>();
   const developerSwiperRef = useRef<SwiperCore>();
   const testimonialSwiperRef = useRef<SwiperCore>();

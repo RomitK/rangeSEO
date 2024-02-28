@@ -1,10 +1,35 @@
 import Link from "next/link";
+import { useState, useRef, useEffect } from "react";
 import { useGetSingleManagementData } from "@/src/services/ManagementService";
 import parse from "html-react-parser";
 import AwardGallery from "../Award/page";
 
 function SingleManagmentPageView({ params }) {
   const slug = params.slug[0];
+
+  const [isMobileDev, setIsMobileDev] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      if(isMobileDevice){
+        document.body.style.overflow = 'auto';
+      }
+      setIsMobileDev(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const { managementData } = useGetSingleManagementData(slug);
   return (
     <>

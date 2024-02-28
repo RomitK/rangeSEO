@@ -4,6 +4,7 @@ import VisaCategories from "./VisaCategories";
 import "@/public/css/golden-visa-styles.css";
 import "@/public/css/responsive.css";
 
+
 function GoldenVisaPage() {
 
   const [isMobileDev, setIsMobileDev] = useState(false);
@@ -11,6 +12,9 @@ function GoldenVisaPage() {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
+      if(isMobileDevice){
+        document.body.style.overflow = 'auto';
+      }
       setIsMobileDev(isMobileDevice);
     };
 

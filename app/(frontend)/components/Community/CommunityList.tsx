@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useEffect, useRef } from "react";
+
 import Link from "next/link";
 import Select from "react-select";
 import parse from "html-react-parser";
@@ -18,11 +19,15 @@ type OptionType = {
   label: string;
 };
 function CommunityList() {
+ 
   const [isMobileDev, setIsMobileDev] = useState(false);
   useEffect(() => {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
+      if(isMobileDevice){
+        document.body.style.overflow = 'auto';
+      }
       setIsMobileDev(isMobileDevice);
     };
 
