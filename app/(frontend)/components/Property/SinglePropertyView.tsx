@@ -44,6 +44,7 @@ function SinglePropertyView({ params }) {
   const [type, setType] = useState("property");
   const [icon, setIcon] = useState("");
   const [iconPath, setIconPath] = useState(null);
+  const [iconNearPath, setNearIconPath] = useState(null);
   const [isOpen, setIsOpen] = useState(null);
   const centerRef = useRef({ lat: 25.2048, lng: 55.2708 });
   const mapRef = useRef(null);
@@ -158,7 +159,7 @@ function SinglePropertyView({ params }) {
           position: position,
           map: map,
           icon: {
-            url: iconPath, // Set the icon path here
+            url: iconNearPath, // Set the icon path here
             scaledSize: new window.google.maps.Size(32, 32), // Adjust the size if needed
           },
         });
@@ -1244,7 +1245,7 @@ function SinglePropertyView({ params }) {
                                           "school",
                                           propertyData
                                         );
-                                        setIcon("school");
+                                        setNearIconPath("/images/icons/pins/school.png");
                                       }}
                                     >
                                       Education
@@ -1259,7 +1260,7 @@ function SinglePropertyView({ params }) {
                                           "gym",
                                           propertyData
                                         );
-                                        setIcon("gym");
+                                        setNearIconPath("/images/icons/pins/Gym.png");
                                       }}
                                     >
                                       Gym
@@ -1274,7 +1275,7 @@ function SinglePropertyView({ params }) {
                                           "supermarket",
                                           propertyData
                                         );
-                                        setIcon("supermarket");
+                                        setNearIconPath("/images/icons/pins/Supermarket.png");
                                       }}
                                     >
                                       Super market
@@ -1289,7 +1290,7 @@ function SinglePropertyView({ params }) {
                                           "hospital",
                                           propertyData
                                         );
-                                        setIcon("hospital");
+                                        setNearIconPath("/images/icons/pins/hospital.png");
                                       }}
                                     >
                                       Hospital/Clinic
@@ -1380,7 +1381,7 @@ function SinglePropertyView({ params }) {
                                           "pet_store",
                                           propertyData
                                         );
-                                        setIcon("pet");
+                                        setNearIconPath("/images/icons/pins/petshop.png");
                                       }}
                                     >
                                       PET SHOP
@@ -1395,7 +1396,7 @@ function SinglePropertyView({ params }) {
                                           "shopping_mall",
                                           propertyData
                                         );
-                                        setIcon("mall");
+                                        setNearIconPath("/images/icons/pins/mall.png");
                                       }}
                                     >
                                       MALL
@@ -1410,7 +1411,7 @@ function SinglePropertyView({ params }) {
                                           "gas_station",
                                           propertyData
                                         );
-                                        setIcon("gas_station");
+                                        setNearIconPath("/images/icons/pins/Fuelpump.png");
                                       }}
                                     >
                                       GAS STATION
@@ -1425,7 +1426,7 @@ function SinglePropertyView({ params }) {
                                           "restaurant",
                                           propertyData
                                         );
-                                        setIcon("restaurant");
+                                        setNearIconPath("/images/icons/pins/restaurant.png");
                                       }}
                                     >
                                       RESTAURANT

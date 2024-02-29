@@ -123,6 +123,7 @@ function SinglecommunityDataView({ params }) {
   const [type, setType] = useState("property");
   const [icon, setIcon] = useState("");
   const [iconPath, setIconPath] = useState(null);
+  const [iconNearPath, setNearIconPath] = useState(null);
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
   const [isOpen, setIsOpen] = useState(null);
@@ -197,7 +198,7 @@ function SinglecommunityDataView({ params }) {
           position: position,
           map: map,
           icon: {
-            url: iconPath, // Set the icon path here
+            url: iconNearPath, // Set the icon path here
             scaledSize: new window.google.maps.Size(32, 32), // Adjust the size if needed
           },
         });
@@ -284,10 +285,10 @@ function SinglecommunityDataView({ params }) {
   //   }
   // }, [communityData]);
 
-  useEffect(() => {
-    let path = getFontAwesomeSvgPath(icon);
-    setIconPath(path);
-  }, [icon]);
+  // useEffect(() => {
+  //   let path = getFontAwesomeSvgPath(icon);
+  //   setIconPath(path);
+  // }, [icon]);
 
   return (
     <>
@@ -512,7 +513,7 @@ function SinglecommunityDataView({ params }) {
                                   "school",
                                   communityData
                                 );
-                                setIcon("school");
+                                setNearIconPath("/images/icons/pins/school.png");
                               }}
                             >
                               Education
@@ -524,7 +525,7 @@ function SinglecommunityDataView({ params }) {
                                 }`}
                               onClick={() => {
                                 getNearByPlacesByTypeMap("gym", communityData);
-                                setIcon("gym");
+                                setNearIconPath("/images/icons/pins/Gym.png");
                               }}
                             >
                               Gym
@@ -539,7 +540,7 @@ function SinglecommunityDataView({ params }) {
                                   "supermarket",
                                   communityData
                                 );
-                                setIcon("supermarket");
+                                setNearIconPath("/images/icons/pins/Supermarket.png");
                               }}
                             >
                               Super market
@@ -554,7 +555,7 @@ function SinglecommunityDataView({ params }) {
                                   "hospital",
                                   communityData
                                 );
-                                setIcon("hospital");
+                                setNearIconPath("/images/icons/pins/hospital.png");
                               }}
                             >
                               Hospital/Clinic
@@ -640,7 +641,7 @@ function SinglecommunityDataView({ params }) {
                                   "pet_store",
                                   communityData
                                 );
-                                setIcon("pet");
+                                setNearIconPath("/images/icons/pins/petshop.png");
                               }}
                             >
                               PET SHOP
@@ -655,7 +656,7 @@ function SinglecommunityDataView({ params }) {
                                   "shopping_mall",
                                   communityData
                                 );
-                                setIcon("mall");
+                                setNearIconPath("/images/icons/pins/mall.png");
                               }}
                             >
                               MALL
@@ -670,7 +671,7 @@ function SinglecommunityDataView({ params }) {
                                   "gas_station",
                                   communityData
                                 );
-                                setIcon("gas_station");
+                                setNearIconPath("/images/icons/pins/Fuelpump.png");
                               }}
                             >
                               GAS STATION
@@ -685,7 +686,7 @@ function SinglecommunityDataView({ params }) {
                                   "restaurant",
                                   communityData
                                 );
-                                setIcon("restaurant");
+                                setNearIconPath("/images/icons/pins/restaurant.png");
                               }}
                             >
                               RESTAURANT
