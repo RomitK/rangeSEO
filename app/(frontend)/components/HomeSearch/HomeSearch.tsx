@@ -1,11 +1,28 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 function HomeSearch() {
   const [suggestion, setSuggestion] = useState([]);
   const [showSuggestion, setShowSuggestion] = useState(false);
+  useEffect(() => {
+    // Add event listener to handle clicks outside the suggestion box
+    const handleClickOutside = (event) => {
+      const suggestionBox = document.getElementById("suggestion-box");
+      if (suggestionBox && !suggestionBox.contains(event.target)) {
+        // Click occurred outside the suggestion box, hide suggestions
+        setShowSuggestion(false);
+      }
+    };
 
+    // Attach event listener to the document body
+    document.body.addEventListener("click", handleClickOutside);
+
+    // Cleanup: remove event listener on component unmount
+    return () => {
+      document.body.removeEventListener("click", handleClickOutside);
+    };
+  }, []); // Only run this effect once on component mount
   async function changeSearch(e) {
     if (e.target.value.trim() === "") {
       setShowSuggestion(false);
@@ -36,7 +53,7 @@ function HomeSearch() {
           //console.log(formattedText);
           data2[i].name = formattedText;
         }
-        if (e.target.value.trim() === "" || data2.length === 0 ) {
+        if (e.target.value.trim() === "" || data2.length === 0) {
           setShowSuggestion(false);
         } else {
 
@@ -119,9 +136,9 @@ function HomeSearch() {
                               </div> */}
           <div className="search-input frmSearcBar">
             <input type="text" placeholder="Type your search..." onChange={changeSearch} />
-            <i className="fa fa-search"></i>
+            <i className="fa fa-search" style={{ pointerEvents: 'none' }}></i>
           </div>
-          <div id="suggestion-box" style={{height: "200px",overflow: "auto"}}>
+          <div id="suggestion-box" style={{ height: "200px", overflow: "auto" }}>
             {showSuggestion && (
               <div id="suggestion">
                 {suggestion.map((sug, index) => (
