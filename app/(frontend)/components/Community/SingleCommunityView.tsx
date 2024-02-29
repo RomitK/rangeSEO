@@ -100,7 +100,7 @@ function SinglecommunityDataView({ params }) {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
-      if(isMobileDevice){
+      if (isMobileDevice) {
         document.body.style.overflow = 'auto';
       }
       setIsMobileDev(isMobileDevice);
@@ -184,31 +184,58 @@ function SinglecommunityDataView({ params }) {
   };
 
   const AdvanceMarker = ({ map, position, children, onClick }) => {
-    const rootRef = useRef(null);
     const markerRef = useRef(null);
 
     useEffect(() => {
-      if (!rootRef.current) {
-        const container = document.createElement("div");
-        container.classList.add("mapMarker");
-        rootRef.current = createRoot(container);
-        markerRef.current = new google.maps.marker.AdvancedMarkerElement({
-          position,
-          content: container,
+      const createMarker = () => {
+        // Ensure google is available
+        if (!window.google || !window.google.maps) {
+          console.error('Google Maps API not available.');
+          return null;
+        }
+        return new window.google.maps.Marker({
+          position: position,
+          map: map,
+          icon: {
+            url: iconPath, // Set the icon path here
+            scaledSize: new window.google.maps.Size(32, 32), // Adjust the size if needed
+          },
         });
+      };
+
+      if (!markerRef.current) {
+        markerRef.current = createMarker();
+        if (!markerRef.current) return; // Stop further execution if marker creation failed
       }
 
-      return () => (markerRef.current.map = null);
-    }, []);
+      return () => {
+        // Clean up resources when component is unmounted
+        if (markerRef.current) {
+          markerRef.current.setMap(null); // Remove marker from map
+        }
+      };
+    }, [map]); // Dependency array to ensure effect runs only when map changes
 
     useEffect(() => {
-      rootRef.current.render(children);
-      markerRef.current.position = position;
-      markerRef.current.map = map;
-      const listener = markerRef.current.addListener("click", onClick);
-      return () => listener.remove();
-    }, [map, position, children, onClick]);
-    return <>{children}</>;
+      if (!markerRef.current) return;
+
+      // Update marker position
+      markerRef.current.setPosition(position);
+
+      // Add click listener
+      markerRef.current.addListener('click', onClick);
+
+      return () => {
+        // Clean up event listener when component is unmounted
+        if (markerRef.current) {
+          window.google.maps.event.clearListeners(markerRef.current, 'click');
+        }
+      };
+    }, [position, onClick]);
+
+    // Render children if any with unique keys
+    const renderedChildren = Array.isArray(children) ? children : [children];
+    return <>{renderedChildren.map((child, index) => React.cloneElement(child, { key: `marker-${index}` }))}</>;
   };
   const getDistanceMatrix = async (origin, destination) => {
     const distance = [];
@@ -272,9 +299,8 @@ function SinglecommunityDataView({ params }) {
                 <div className="col-12 col-lg-12 col-md-12">
                   <div>
                     <div
-                      className={`mainHead  text-primary text-center ${
-                        isMobileDev ? "" : "mb-3"
-                      }`}
+                      className={`mainHead  text-primary text-center ${isMobileDev ? "" : "mb-3"
+                        }`}
                     >
                       <h4>{communityData && communityData.name}</h4>
                     </div>
@@ -357,9 +383,8 @@ function SinglecommunityDataView({ params }) {
                     <div className="col-12 col-lg-12 col-md-12">
                       <div>
                         <div
-                          className={`mainHead  text-center text-primary ${
-                            isMobileDev ? "mb-2" : "mb-5"
-                          }`}
+                          className={`mainHead  text-center text-primary ${isMobileDev ? "mb-2" : "mb-5"
+                            }`}
                         >
                           <h4>HIGHLIGHTS</h4>
                         </div>
@@ -399,9 +424,8 @@ function SinglecommunityDataView({ params }) {
                         onSwiper={(swiper) => {
                           hightlighSwiperRef.current = swiper;
                         }}
-                        className={`swiper highlightSwiper ${
-                          isMobileDev ? "px-2" : "px-5"
-                        }`}
+                        className={`swiper highlightSwiper ${isMobileDev ? "px-2" : "px-5"
+                          }`}
                       >
                         {communityData?.highlights?.map((highlight, index) => {
                           return (
@@ -481,9 +505,8 @@ function SinglecommunityDataView({ params }) {
                         <div className="row g-1">
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "school" ? "active" : ""
-                              }`}
+                              className={`btn btnNearby w-100 h-100 ${type == "school" ? "active" : ""
+                                }`}
                               onClick={() => {
                                 getNearByPlacesByTypeMap(
                                   "school",
@@ -497,9 +520,8 @@ function SinglecommunityDataView({ params }) {
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "gym" ? "active" : ""
-                              }`}
+                              className={`btn btnNearby w-100 h-100 ${type == "gym" ? "active" : ""
+                                }`}
                               onClick={() => {
                                 getNearByPlacesByTypeMap("gym", communityData);
                                 setIcon("gym");
@@ -510,9 +532,8 @@ function SinglecommunityDataView({ params }) {
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "supermarket" ? "active" : ""
-                              }`}
+                              className={`btn btnNearby w-100 h-100 ${type == "supermarket" ? "active" : ""
+                                }`}
                               onClick={() => {
                                 getNearByPlacesByTypeMap(
                                   "supermarket",
@@ -526,9 +547,8 @@ function SinglecommunityDataView({ params }) {
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "hospital" ? "active" : ""
-                              }`}
+                              className={`btn btnNearby w-100 h-100 ${type == "hospital" ? "active" : ""
+                                }`}
                               onClick={() => {
                                 getNearByPlacesByTypeMap(
                                   "hospital",
@@ -613,9 +633,8 @@ function SinglecommunityDataView({ params }) {
                         <div className="row g-1">
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "pet_store" ? "active" : ""
-                              }`}
+                              className={`btn btnNearby w-100 h-100 ${type == "pet_store" ? "active" : ""
+                                }`}
                               onClick={() => {
                                 getNearByPlacesByTypeMap(
                                   "pet_store",
@@ -629,9 +648,8 @@ function SinglecommunityDataView({ params }) {
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "shopping_mall" ? "active" : ""
-                              }`}
+                              className={`btn btnNearby w-100 h-100 ${type == "shopping_mall" ? "active" : ""
+                                }`}
                               onClick={() => {
                                 getNearByPlacesByTypeMap(
                                   "shopping_mall",
@@ -645,9 +663,8 @@ function SinglecommunityDataView({ params }) {
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "gas_station" ? "active" : ""
-                              }`}
+                              className={`btn btnNearby w-100 h-100 ${type == "gas_station" ? "active" : ""
+                                }`}
                               onClick={() => {
                                 getNearByPlacesByTypeMap(
                                   "gas_station",
@@ -661,9 +678,8 @@ function SinglecommunityDataView({ params }) {
                           </div>
                           <div className="col-6 col-lg-3 col-md-3">
                             <button
-                              className={`btn btnNearby w-100 h-100 ${
-                                type == "restaurant" ? "active" : ""
-                              }`}
+                              className={`btn btnNearby w-100 h-100 ${type == "restaurant" ? "active" : ""
+                                }`}
                               onClick={() => {
                                 getNearByPlacesByTypeMap(
                                   "restaurant",
@@ -750,9 +766,8 @@ function SinglecommunityDataView({ params }) {
                     <div className="col-12 col-lg-12 col-md-12">
                       <div>
                         <div
-                          className={`mainHead  text-center text-primary ${
-                            isMobileDev ? "mb-2" : "mb-5"
-                          }`}
+                          className={`mainHead  text-center text-primary ${isMobileDev ? "mb-2" : "mb-5"
+                            }`}
                         >
                           <h4>AMENITIES</h4>
                         </div>
@@ -793,9 +808,8 @@ function SinglecommunityDataView({ params }) {
                           onSwiper={(swiper) => {
                             amentitiesSwiperRef.current = swiper;
                           }}
-                          className={`swiper amenitiesSwiper ${
-                            isMobileDev ? "px-2" : "px-5"
-                          }`}
+                          className={`swiper amenitiesSwiper ${isMobileDev ? "px-2" : "px-5"
+                            }`}
                         >
                           {communityData?.amenities?.map((amenity, index) => {
                             return (
@@ -880,9 +894,8 @@ function SinglecommunityDataView({ params }) {
                           onSwiper={(swiper) => {
                             amentitiesSwiperRef.current = swiper;
                           }}
-                          className={`swiper amenitiesSwiper ${
-                            isMobileDev ? "px-2" : "px-5"
-                          }`}
+                          className={`swiper amenitiesSwiper ${isMobileDev ? "px-2" : "px-5"
+                            }`}
                         >
                           {communityData?.amenities?.map((amenity, index) => {
                             return (
@@ -955,9 +968,8 @@ function SinglecommunityDataView({ params }) {
                     <div className="col-12 col-lg-12 col-md-12">
                       <div>
                         <div
-                          className={`mainHead  text-center text-primary ${
-                            isMobileDev ? "mb-2" : "mb-5"
-                          }`}
+                          className={`mainHead  text-center text-primary ${isMobileDev ? "mb-2" : "mb-5"
+                            }`}
                         >
                           <h4>AVAILABLE PROPERTIES</h4>
                         </div>
@@ -1013,9 +1025,8 @@ function SinglecommunityDataView({ params }) {
                           onSwiper={(swiper) => {
                             PropertyRentSwiperRef.current = swiper;
                           }}
-                          className={`swiper projectSlider ${
-                            isMobileDev ? "pb-2" : "pb-5"
-                          }`}
+                          className={`swiper projectSlider ${isMobileDev ? "pb-2" : "pb-5"
+                            }`}
                         >
                           {communityData?.rentProperties?.map(
                             (property, index) => {
@@ -1197,9 +1208,8 @@ function SinglecommunityDataView({ params }) {
                           onSwiper={(swiper) => {
                             PropertySaleSwiperRef.current = swiper;
                           }}
-                          className={`swiper projectSlider ${
-                            isMobileDev ? "pb-2" : "pb-5"
-                          }`}
+                          className={`swiper projectSlider ${isMobileDev ? "pb-2" : "pb-5"
+                            }`}
                         >
                           {communityData?.saleProperties?.map(
                             (property, index) => {
@@ -1480,9 +1490,8 @@ function SinglecommunityDataView({ params }) {
                         onSwiper={(swiper) => {
                           nearbyCommunitiesSwiperRef.current = swiper;
                         }}
-                        className={`swiper projectSlider ${
-                          isMobileDev ? "pb-2" : "pb-5"
-                        }`}
+                        className={`swiper projectSlider ${isMobileDev ? "pb-2" : "pb-5"
+                          }`}
                       >
                         {communityData?.nearbyCommunities.map(
                           (nearbyCommunity, index) => {
