@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: false,
   env: {
     API_HOST: process.env.API_HOST,
+    MAP_ID:process.env.MAP_ID,
     GOOGLE_MAP_KEY: process.env.GOOGLE_MAP_KEY,
     FACEBOOK_LINK: process.env.FACEBOOK_LINK,
     INSTAGRAM_LINK: process.env.INSTAGRAM_LINK,

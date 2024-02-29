@@ -14,7 +14,7 @@ import {
 } from "@/src/services/HomeService";
 
 function DownloadPropertyPPTModal(props) {
-  console.log(props.slug)
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",

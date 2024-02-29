@@ -79,7 +79,7 @@ function DownloadProjectSaleOfferModel(props) {
   }, []);
 
   useEffect(() => {
-    console.log(timer);
+    // console.log(timer);
     let interval;
     if (showOtp && timer > 0) {
       interval = setInterval(() => {

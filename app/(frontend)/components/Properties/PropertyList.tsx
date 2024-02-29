@@ -9,7 +9,7 @@ import {
   DrawingManagerF,
 } from "@react-google-maps/api";
 
-import { useGetPropertyAccommodations} from "@/src/services/AccommodationService";
+import { useGetPropertyAccommodations } from "@/src/services/AccommodationService";
 import { useGetPropertyAmenities } from "@/src/services/AmenityService"
 
 import axios from "axios";
@@ -25,11 +25,11 @@ const PropertyList = ({ params }) => {
 
   //console.log(params);
   const isLuxuryProperties = Object.hasOwn(params, 'isLuxury');
-  const isRentPage =  Object.hasOwn(params, 'rent');
+  const isRentPage = Object.hasOwn(params, 'rent');
   const isBuyPage = Object.hasOwn(params, "buy");
   const isReadyPage = Object.hasOwn(params, "ready");
   const isOffPlanPage = Object.hasOwn(params, "offplan");
-  
+
   const [isMobile, setIsMobile] = useState(false);
   const { propertyAccommodations } = useGetPropertyAccommodations();
   const [showMap, setShowMap] = useState(true);
@@ -54,13 +54,13 @@ const PropertyList = ({ params }) => {
     slug: "",
     accommodationName: "",
     categoryName: "",
-    completionStatusName:""
+    completionStatusName: ""
   });
   const [showClearMapButton, setShowClearMapButton] = useState(false);
   const mapRef2 = useRef(null);
   const [loading, setLoading] = useState(false);
   const [sorting, setSorting] = useState("");
-  const mapRef = useRef(null);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -188,8 +188,8 @@ const PropertyList = ({ params }) => {
         <div className={`${isMobile ? '' : 'col-12 col-lg-12 col-md-12'}`}>
           <div className={`${isMobile ? '' : 'p-3 shadow-sm'}`}>
             {
-              isLuxuryProperties && 
-                <LuxuryPropertyFilters
+              isLuxuryProperties &&
+              <LuxuryPropertyFilters
                 setProperties={setProperties}
                 showMap={showMap}
                 setShowMap={setShowMap}
@@ -200,13 +200,13 @@ const PropertyList = ({ params }) => {
                 setLoading={setLoading}
                 sortBy={sorting}
                 setLinks={setLinks}
-                totalPropertyCount= {totalProperties}
-                setTotalProperties = {setTotalProperties}
+                totalPropertyCount={totalProperties}
+                setTotalProperties={setTotalProperties}
               />
             }
             {
-              isRentPage && 
-              <RentFilters 
+              isRentPage &&
+              <RentFilters
                 setProperties={setProperties}
                 showMap={showMap}
                 setShowMap={setShowMap}
@@ -217,13 +217,13 @@ const PropertyList = ({ params }) => {
                 setLoading={setLoading}
                 sortBy={sorting}
                 setLinks={setLinks}
-                totalPropertyCount= {totalProperties}
-                setTotalProperties = {setTotalProperties}
+                totalPropertyCount={totalProperties}
+                setTotalProperties={setTotalProperties}
               />
             }
             {
-              isBuyPage && 
-              <BuyFilters 
+              isBuyPage &&
+              <BuyFilters
                 setProperties={setProperties}
                 showMap={showMap}
                 setShowMap={setShowMap}
@@ -234,12 +234,12 @@ const PropertyList = ({ params }) => {
                 setLoading={setLoading}
                 sortBy={sorting}
                 setLinks={setLinks}
-                totalPropertyCount= {totalProperties}
-                setTotalProperties = {setTotalProperties}
+                totalPropertyCount={totalProperties}
+                setTotalProperties={setTotalProperties}
               />
             }
-            {isReadyPage && 
-              <ReadyFilters 
+            {isReadyPage &&
+              <ReadyFilters
                 setProperties={setProperties}
                 showMap={showMap}
                 setShowMap={setShowMap}
@@ -250,43 +250,43 @@ const PropertyList = ({ params }) => {
                 setLoading={setLoading}
                 sortBy={sorting}
                 setLinks={setLinks}
-                totalPropertyCount= {totalProperties}
-                setTotalProperties = {setTotalProperties}
-              />
-            }
-            {
-              isOffPlanPage && 
-              <OffPlanFilters 
-                setProperties={setProperties}
-                showMap={showMap}
-                setShowMap={setShowMap}
-                mapRef={mapRef2}
-                setOriginalMarkers={setOriginalMarkers}
-                accomodations={propertyAccommodations}
-                amenities={propertyAccommodations}
-                setLoading={setLoading}
-                sortBy={sorting}
-                setLinks={setLinks}
-                totalPropertyCount= {totalProperties}
-                setTotalProperties = {setTotalProperties}
+                totalPropertyCount={totalProperties}
+                setTotalProperties={setTotalProperties}
               />
             }
             {
-              !isLuxuryProperties && !isRentPage && !isBuyPage && !isReadyPage && !isOffPlanPage && 
-                <Filters
-                  setProperties={setProperties}
-                  showMap={showMap}
-                  setShowMap={setShowMap}
-                  mapRef={mapRef2}
-                  setOriginalMarkers={setOriginalMarkers}
-                  accomodations={propertyAccommodations}
-                  amenities={propertyAccommodations}
-                  setLoading={setLoading}
-                  sortBy={sorting}
-                  setLinks={setLinks}
-                  totalPropertyCount= {totalProperties}
-                  setTotalProperties = {setTotalProperties}
-                />
+              isOffPlanPage &&
+              <OffPlanFilters
+                setProperties={setProperties}
+                showMap={showMap}
+                setShowMap={setShowMap}
+                mapRef={mapRef2}
+                setOriginalMarkers={setOriginalMarkers}
+                accomodations={propertyAccommodations}
+                amenities={propertyAccommodations}
+                setLoading={setLoading}
+                sortBy={sorting}
+                setLinks={setLinks}
+                totalPropertyCount={totalProperties}
+                setTotalProperties={setTotalProperties}
+              />
+            }
+            {
+              !isLuxuryProperties && !isRentPage && !isBuyPage && !isReadyPage && !isOffPlanPage &&
+              <Filters
+                setProperties={setProperties}
+                showMap={showMap}
+                setShowMap={setShowMap}
+                mapRef={mapRef2}
+                setOriginalMarkers={setOriginalMarkers}
+                accomodations={propertyAccommodations}
+                amenities={propertyAccommodations}
+                setLoading={setLoading}
+                sortBy={sorting}
+                setLinks={setLinks}
+                totalPropertyCount={totalProperties}
+                setTotalProperties={setTotalProperties}
+              />
             }
           </div>
         </div>
@@ -322,8 +322,9 @@ const PropertyList = ({ params }) => {
                   mapContainerClassName="list-map-container"
                   onLoad={onMapLoad}
                   onClick={() => {
-                      setIsOpen(false);
+                    setIsOpen(false);
                   }}
+                  
                 >
                   {filteredMarkers.map(
                     (
@@ -407,7 +408,7 @@ const PropertyList = ({ params }) => {
                                   infoWindowData.accommodationName
                                 }
                                 categoryName={infoWindowData.categoryName}
-                                completionStatusName = {infoWindowData.completionStatusName}
+                                completionStatusName={infoWindowData.completionStatusName}
                               />
                             </div>
                           </InfoWindow>
@@ -475,7 +476,7 @@ const PropertyList = ({ params }) => {
                           </p>
                         </div>
                         <div className="col">
-                         
+
                           <select
                             onChange={handleSortChange}
                             value={sorting}
@@ -497,9 +498,8 @@ const PropertyList = ({ params }) => {
                         {properties.map((property, index) => (
                           <div
                             key={index}
-                            className={`col-12 ${
-                              showMap ? "col-lg-6" : "col-lg-3"
-                            } col-md-6`}
+                            className={`col-12 ${showMap ? "col-lg-6" : "col-lg-3"
+                              } col-md-6`}
                           >
                             <Property
                               slug={property.slug}
@@ -513,7 +513,7 @@ const PropertyList = ({ params }) => {
                               name={property.name}
                               accommodationName={property.accommodationName}
                               categoryName={property.categoryName}
-                              completionStatusName = {property.completionStatusName}
+                              completionStatusName={property.completionStatusName}
                             />
                           </div>
                         ))}
