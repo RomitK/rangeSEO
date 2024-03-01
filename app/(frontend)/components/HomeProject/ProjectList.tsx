@@ -21,6 +21,8 @@ function ProjectList() {
   const { homeData } = useGetAllHomeData();
 
   const options = homeData?.newProjects;
+  const priceOption = homeData?.formattedNumbers;
+
   const projectChangeHandle = (event) => {
     setSelectedProject(event);
     router.push("/projects/" + event.value);
@@ -39,7 +41,7 @@ function ProjectList() {
     area_unit: "",
     bedrooms: "",
     bathrooms: "",
-    handOver : "",
+    handOver: "",
     starting_price: "",
     mainImage: "",
     slug: "",
@@ -198,7 +200,7 @@ function ProjectList() {
                         }}
                       >
                         {new Intl.NumberFormat().format(starting_price)}
-                        
+
                       </div>
                     </OverlayView>
                     {isOpen && infoWindowData?.id === ind && (
@@ -211,10 +213,10 @@ function ProjectList() {
                           <Project
                             slug={infoWindowData.slug}
                             area={infoWindowData.area}
-                            area_unit = {infoWindowData.area_unit}
+                            area_unit={infoWindowData.area_unit}
                             bathrooms={infoWindowData.bathrooms}
                             bedrooms={infoWindowData.bedrooms}
-                            handOver = {infoWindowData.handOver}
+                            handOver={infoWindowData.handOver}
                             starting_price={infoWindowData.starting_price}
                             address={infoWindowData.address}
                             mainImage={infoWindowData.mainImage}
@@ -300,20 +302,19 @@ function ProjectList() {
                             data-bs-auto-close="outside"
                           >
                             {minMaxPrice.minPrice && minMaxPrice.maxPrice
-                              ? `${minMaxPrice.minPrice} ${
-                                  minMaxPrice.minPrice &&
-                                  minMaxPrice.maxPrice &&
-                                  "-"
-                                } ${minMaxPrice.maxPrice} AED`
+                              ? `${minMaxPrice.minPrice} ${minMaxPrice.minPrice &&
+                              minMaxPrice.maxPrice &&
+                              "-"
+                              } ${minMaxPrice.maxPrice} AED`
                               : "Price"}
-                            {}
+                            { }
                           </div>
                           <div className="dropdown-menu p-4 mt-1">
                             <div className="mb-3">
                               <label className="form-label">
                                 Minimum Price
                               </label>
-                              <input
+                              <input list="data1"
                                 type="number"
                                 className="form-control"
                                 id="minprice"
@@ -322,20 +323,37 @@ function ProjectList() {
                                 name="minprice"
                                 ref={minPriceRef}
                               />
+
+                              <datalist id="data1" >
+                                {priceOption?.map((item, key) =>
+                                  <option key={key} value={item.replace(/,/g, '')} />
+                                )}
+                              </datalist>
+
+
                             </div>
                             <div className="mb-3">
                               <label className="form-label">
                                 Maximum Price
                               </label>
-                              <input
+
+                              <input list="data2"
                                 type="number"
                                 name="maxprice"
                                 className="form-control"
                                 id="maxprice"
                                 placeholder="Any Price"
                                 min={0}
+
                                 ref={maxPriceRef}
                               />
+
+                              <datalist id="data2" >
+                                {priceOption?.map((item, key) =>
+                                  <option key={key} value={item.replace(/,/g, '')} />
+                                )}
+                              </datalist>
+
                             </div>
                             <div className="mt-4 d-grid">
                               <button
