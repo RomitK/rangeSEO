@@ -32,7 +32,7 @@ function MortgagePage() {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
 
-      if(isMobileDevice){
+      if (isMobileDevice) {
         document.body.style.overflow = 'auto';
       }
 
@@ -215,9 +215,8 @@ function MortgagePage() {
               <div className="row">
                 <div className="col-md-12 margin0">
                   <div
-                    className={`"dashboardcontrols dashboardcontrolsboxs dashboardcontrolsboxs2 box-wrapper card-box-shadow wizardWrapArea ${
-                      isMobileDev ? "m-0 p-0" : "p-5 my-5"
-                    }`}
+                    className={`"dashboardcontrols dashboardcontrolsboxs dashboardcontrolsboxs2 box-wrapper card-box-shadow wizardWrapArea ${isMobileDev ? "m-0 p-0" : "p-5 my-5"
+                      }`}
                   >
                     {step == 1 && (
                       <>
@@ -686,9 +685,8 @@ function MortgagePage() {
                       bankData && (
                         <>
                           <div
-                            className={`"row ${
-                              isMobileDev ? "nospace-row" : ""
-                            }`}
+                            className={`"row ${isMobileDev ? "nospace-row" : ""
+                              }`}
                           >
                             <div className="col-md-12">
                               <p className="wzdTitleBar">
@@ -700,9 +698,8 @@ function MortgagePage() {
                             </div>
                           </div>
                           <div
-                            className={`"row ${
-                              isMobileDev ? "nospace-row" : ""
-                            }`}
+                            className={`"row ${isMobileDev ? "nospace-row" : ""
+                              }`}
                           >
                             <div className="form-group col-md-12">
                               {!isMobileDev && (
@@ -851,9 +848,8 @@ function MortgagePage() {
                       propertyValue && (
                         <>
                           <div
-                            className={`"row ${
-                              isMobileDev ? "nospace-row" : ""
-                            }`}
+                            className={`"row ${isMobileDev ? "nospace-row" : ""
+                              }`}
                           >
                             <div className="col-md-12">
                               <p className="wzdTitleBar">
@@ -864,9 +860,8 @@ function MortgagePage() {
                             </div>
                           </div>
                           <div
-                            className={`"row ${
-                              isMobileDev ? "nospace-row" : ""
-                            }`}
+                            className={`"row ${isMobileDev ? "nospace-row" : ""
+                              }`}
                           >
                             <div className="form-group col-md-12">
                               {!isMobileDev && (
@@ -972,9 +967,8 @@ function MortgagePage() {
                       yearData && (
                         <>
                           <div
-                            className={`"row ${
-                              isMobileDev ? "nospace-row" : ""
-                            }`}
+                            className={`"row ${isMobileDev ? "nospace-row" : ""
+                              }`}
                           >
                             <div className="form-group col-md-12 text-center">
                               {!isMobileDev && (
@@ -1173,9 +1167,8 @@ function MortgagePage() {
                       ].includes(step2Ans) && (
                         <>
                           <div
-                            className={`"row ${
-                              isMobileDev ? "nospace-row" : ""
-                            }`}
+                            className={`"row ${isMobileDev ? "nospace-row" : ""
+                              }`}
                           >
                             <div className="col-md-12">
                               <p className="wzdTitleBar">
@@ -1187,9 +1180,8 @@ function MortgagePage() {
                             </div>
                           </div>
                           <div
-                            className={`"row ${
-                              isMobileDev ? "nospace-row" : ""
-                            }`}
+                            className={`"row ${isMobileDev ? "nospace-row" : ""
+                              }`}
                           >
                             <div className="form-group col-md-12">
                               {!isMobileDev && (
@@ -1373,9 +1365,8 @@ function MortgagePage() {
                       ["villa", "apartment"].includes(step3Ans) && (
                         <>
                           <div
-                            className={`"row ${
-                              isMobileDev ? "nospace-row" : ""
-                            }`}
+                            className={`"row ${isMobileDev ? "nospace-row" : ""
+                              }`}
                           >
                             <div className="col-md-12">
                               <p className="wzdTitleBar">
@@ -1387,9 +1378,8 @@ function MortgagePage() {
                             </div>
                           </div>
                           <div
-                            className={`"row ${
-                              isMobileDev ? "nospace-row" : ""
-                            }`}
+                            className={`"row ${isMobileDev ? "nospace-row" : ""
+                              }`}
                           >
                             <div className="form-group col-md-12">
                               {!isMobileDev && (
@@ -1545,9 +1535,8 @@ function MortgagePage() {
                       ) && (
                         <>
                           <div
-                            className={`"row ${
-                              isMobileDev ? "nospace-row" : ""
-                            }`}
+                            className={`"row ${isMobileDev ? "nospace-row" : ""
+                              }`}
                           >
                             <div className="col-md-12">
                               <p className="wzdTitleBar">
@@ -1559,9 +1548,8 @@ function MortgagePage() {
                             </div>
                           </div>
                           <div
-                            className={`"row ${
-                              isMobileDev ? "nospace-row" : ""
-                            }`}
+                            className={`"row ${isMobileDev ? "nospace-row" : ""
+                              }`}
                           >
                             <div className="form-group col-md-12">
                               {!isMobileDev && (
@@ -1677,9 +1665,8 @@ function MortgagePage() {
                       propertyValue && (
                         <>
                           <div
-                            className={`"row ${
-                              isMobileDev ? "nospace-row" : ""
-                            }`}
+                            className={`"row ${isMobileDev ? "nospace-row" : ""
+                              }`}
                           >
                             <div className="form-group col-md-12 text-center">
                               {!isMobileDev && (
@@ -1968,17 +1955,15 @@ function MortgagePage() {
                       ["undecided"].includes(step3Ans) && (
                         <>
                           <div
-                            className={`"row ${
-                              isMobileDev ? "nospace-row" : ""
-                            }`}
+                            className={`"row ${isMobileDev ? "nospace-row" : ""
+                              }`}
                           >
                             <div className="form-group col-md-12">
                               {!isMobileDev && (
                                 <>
                                   <div
-                                    className={`"row ${
-                                      isMobileDev ? "nospace-row" : ""
-                                    }`}
+                                    className={`"row ${isMobileDev ? "nospace-row" : ""
+                                      }`}
                                   >
                                     <div className="form-group col-md-12 text-center">
                                       {!isMobileDev && (
@@ -2300,9 +2285,8 @@ function MortgagePage() {
                               {isMobileDev && (
                                 <>
                                   <div
-                                    className={`"row ${
-                                      isMobileDev ? "nospace-row" : ""
-                                    }`}
+                                    className={`"row ${isMobileDev ? "nospace-row" : ""
+                                      }`}
                                   >
                                     <div className="form-group col-md-12 text-center">
                                       {!isMobileDev && (
@@ -2751,35 +2735,35 @@ function MortgagePage() {
             My Mortgage{" "}
           </h4> */}
           <div className="row">
-          <div className="col-md-3 text-center">
-            <img
-              src="images/mortage_logo_blue.png"
-              alt="My Mortgage"
-              className="img-fluid py-2"
-              width={150}
-            />
-          </div>
-          <div className="col-md-9">
-            <p className="fs-14 text-secondary mb-4">
-              Founded in 2019, the mortgage wing of Range International Property
-              Investments has grown to become a trusted name in the UAE property
-              market. Over the last few years, we have helped hundreds of
-              clients secure financing for their homes and we are proud to have
-              built a reputation of honesty, integrity and professionalism. We
-              understand that buying a home can be a complex and overwhelming
-              experience, which is why we are committed to providing
-              personalised solutions and exceptional customer service every step
-              of the way.
-              <br />
-              <br />
-              {/* We offer a wide range of services, including new mortgages,
+            <div className="col-md-3 text-center">
+              <img
+                src="images/mortage_logo.png"
+                alt="My Mortgage"
+                className="img-fluid py-2"
+                width={150}
+              />
+            </div>
+            <div className="col-md-9">
+              <p className="fs-14 text-secondary mb-4">
+                Founded in 2019, the mortgage wing of Range International Property
+                Investments has grown to become a trusted name in the UAE property
+                market. Over the last few years, we have helped hundreds of
+                clients secure financing for their homes and we are proud to have
+                built a reputation of honesty, integrity and professionalism. We
+                understand that buying a home can be a complex and overwhelming
+                experience, which is why we are committed to providing
+                personalised solutions and exceptional customer service every step
+                of the way.
+                <br />
+                <br />
+                {/* We offer a wide range of services, including new mortgages,
               refinancing, handover payments, equity, non-resident mortgages and
               commercial mortgages. Our team will work with you to determine the
               best financing option as per your requirements and will guide you
               through the entire process from pre-approval to disbursal. */}
-            </p>
-          </div>
-          
+              </p>
+            </div>
+
 
           </div>
 

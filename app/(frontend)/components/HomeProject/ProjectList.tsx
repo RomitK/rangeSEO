@@ -348,7 +348,7 @@ function ProjectList() {
                                 ref={maxPriceRef}
                               />
 
-                              <datalist id="data2" >
+                              <datalist id="data2" className="scrollable-datalist">
                                 {priceOption?.map((item, key) =>
                                   <option key={key} value={item.replace(/,/g, '')} />
                                 )}
@@ -405,7 +405,7 @@ function ProjectList() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
     </>
   );
 }
