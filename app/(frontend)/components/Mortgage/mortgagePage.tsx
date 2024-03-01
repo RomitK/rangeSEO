@@ -719,11 +719,11 @@ function MortgagePage() {
                                             className="form-control border-start-0  rounded-0"
                                             placeholder="Enter amount"
                                             value={propertyValue}
-                                            onChange={(e) =>
-                                              setPropertyValue(
-                                                parseInt(e.target.value)
-                                              )
-                                            }
+                                            onChange={(e) => {
+                                              const parsedValue = parseInt(e?.target?.value);
+                                              // Check if parsedValue is NaN, then set it to 0
+                                              setPropertyValue(isNaN(parsedValue) ? 0 : parsedValue);
+                                            }}
                                             name="price"
                                           />
                                         </div>
@@ -1565,14 +1565,12 @@ function MortgagePage() {
                                             AED
                                           </span>
                                           <input
-                                            type="text"
+                                            type="number"
                                             className="form-control border-start-0  rounded-0"
                                             placeholder="Enter amount"
                                             value={propertyValue}
                                             onChange={(e) =>
-                                              setPropertyValue(
-                                                parseInt(e.target.value)
-                                              )
+                                              setPropertyValue(parseInt(e.target.value))
                                             }
                                             name="price"
                                           />
@@ -1602,11 +1600,11 @@ function MortgagePage() {
                                         className="form-control border-start-0  rounded-0"
                                         placeholder="Enter amount"
                                         value={propertyValue}
-                                        onChange={(e) =>
-                                          setPropertyValue(
-                                            parseInt(e.target.value)
-                                          )
-                                        }
+                                        onChange={(e) => {
+                                          const parsedValue = parseInt(e?.target?.value);
+                                          // Check if parsedValue is NaN, then set it to 0
+                                          setPropertyValue(isNaN(parsedValue) ? 0 : parsedValue);
+                                        }}
                                         name="price"
                                       />
                                     </div>
