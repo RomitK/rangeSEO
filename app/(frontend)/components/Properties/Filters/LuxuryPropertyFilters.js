@@ -46,7 +46,7 @@ function LuxuryPropertyFilters({
     isCommercial:"",
     exclusive: 1,
   });
-
+  const [priceList, setPriceList] = useState([]);
   const [projectAmenities, setProjectAmenities] = useState(amenities);
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
@@ -66,7 +66,14 @@ function LuxuryPropertyFilters({
   const [hasFocus, setHasFocus] = useState(false);
   const [showSelectedValues, setShowSelectedValues] = useState(true);
   const [ongoingRequests, setOngoingRequests] = useState([]);
+  const [showDatalist, setShowDatalist] = useState(false);
+  const handleFocus = () => {
+    setShowDatalist(true);
+  };
 
+  const handleBlur = () => {
+    setShowDatalist(false);
+  };
   useEffect(() => {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
@@ -85,6 +92,26 @@ function LuxuryPropertyFilters({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect (()=>{
+    let getPropertiesURL = process.env.API_HOST + "properties/luxuryProperties/priceList";
+   
+    setLoading(true);
+    fetch(getPropertiesURL)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.success) {
+          setPriceList(res.data.formattedNumbers)
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error); // Handle the error response object
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
   const Menu = ({ children, ...props }) => {
     let items = form["searchBy"];
     return (
@@ -989,34 +1016,46 @@ function LuxuryPropertyFilters({
                             {}
                           </div>
                           <div className="dropdown-menu p-4">
-                            <div className="mb-3">
-                              <label className="form-label">
-                                Minimum Price
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                id="minprice"
-                                min={0}
-                                placeholder="0"
-                                name="minprice"
-                                ref={minPriceRef}
-                              />
-                            </div>
-                            <div className="mb-3">
-                              <label className="form-label">
-                                Maximum Price
-                              </label>
-                              <input
-                                type="number"
-                                name="maxprice"
-                                className="form-control"
-                                id="maxprice"
-                                placeholder="Any Price"
-                                min={0}
-                                ref={maxPriceRef}
-                              />
-                            </div>
+                          <div className="mb-3">
+                    <label className="form-label">Minimum Price</label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="minprice"
+                      min={0}
+                      placeholder="0"
+                      name="minprice"
+                      ref={minPriceRef}
+                      list="data1"
+                      onFocus={handleFocus}
+                      onBlur={handleBlur}
+                    />
+                    {showDatalist && (
+                       <datalist id="data1" >
+                          {priceList?.map((item, key) =>
+                           <option key={key} value={item} />
+                        )}
+                      </datalist>
+                    )}
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label">Maximum Price</label>
+                    <input
+                      type="number"
+                      name="maxprice"
+                      className="form-control"
+                      id="maxprice"
+                      placeholder="Any Price"
+                      min={0}
+                      ref={maxPriceRef}
+                      list="data2"
+                    />
+                    <datalist id="data2" >
+                      {priceList?.map((item, key) =>
+                          <option key={key} value={item} />
+                      )}
+                    </datalist>
+                  </div>
                             <div className="mt-4 d-grid">
                               <div
                                 className="row justify-content-center"
@@ -1409,29 +1448,45 @@ function LuxuryPropertyFilters({
                 </div>
                 <div className="dropdown-menu p-4">
                   <div className="mb-3">
-                    <label className="form-label">Minimum Price</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      id="minprice"
-                      min={0}
-                      placeholder="0"
-                      name="minprice"
-                      ref={minPriceRef}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Maximum Price</label>
-                    <input
-                      type="number"
-                      name="maxprice"
-                      className="form-control"
-                      id="maxprice"
-                      placeholder="Any Price"
-                      min={0}
-                      ref={maxPriceRef}
-                    />
-                  </div>
+                              <label className="form-label">Minimum Price</label>
+                              <input
+                                type="number"
+                                className="form-control"
+                                id="minprice"
+                                min={0}
+                                placeholder="0"
+                                name="minprice"
+                                ref={minPriceRef}
+                                list="data1"
+                                onFocus={handleFocus}
+                                onBlur={handleBlur}
+                              />
+                              {showDatalist && (
+                                <datalist id="data1" >
+                                    {priceList?.map((item, key) =>
+                                    <option key={key} value={item} />
+                                  )}
+                                </datalist>
+                              )}
+                            </div>
+                            <div className="mb-3">
+                              <label className="form-label">Maximum Price</label>
+                              <input
+                                type="number"
+                                name="maxprice"
+                                className="form-control"
+                                id="maxprice"
+                                placeholder="Any Price"
+                                min={0}
+                                ref={maxPriceRef}
+                                list="data2"
+                              />
+                              <datalist id="data2" >
+                                {priceList?.map((item, key) =>
+                                    <option key={key} value={item} />
+                                )}
+                              </datalist>
+                            </div>
                   <div className="mt-4 d-grid">
                     <div
                       className="row justify-content-center"
