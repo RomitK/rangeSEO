@@ -326,7 +326,7 @@ function ProjectList() {
 
                               <datalist id="data1" >
                                 {priceOption?.map((item, key) =>
-                                  <option key={key} value={item.replace(/,/g, '')} />
+                                  <option key={key} value={item} />
                                 )}
                               </datalist>
 
@@ -350,7 +350,7 @@ function ProjectList() {
 
                               <datalist id="data2" className="scrollable-datalist">
                                 {priceOption?.map((item, key) =>
-                                  <option key={key} value={item.replace(/,/g, '')} />
+                                  <option key={key} value={item} />
                                 )}
                               </datalist>
 

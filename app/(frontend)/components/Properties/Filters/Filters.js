@@ -13,6 +13,8 @@ import MultiValueContainer from "@/app/(frontend)/components/UI/ReactSelect/Mult
 import { useSearchParams } from "next/navigation";
 import { useLocation } from "react-router-dom";
 import Link from "next/link";
+
+
 function Filters({
   setShowMap,
   showMap,
@@ -27,6 +29,15 @@ function Filters({
   totalPropertyCount,
   setTotalProperties,
 }) {
+  const [showDatalist, setShowDatalist] = useState(false);
+
+  const handleFocus = () => {
+    setShowDatalist(true);
+  };
+
+  const handleBlur = () => {
+    setShowDatalist(false);
+  };
 
   const closeRef = useRef(null);
   const [form, setForm] = useState({
@@ -46,6 +57,7 @@ function Filters({
     isCommercial: "",
   });
 
+  const [priceList, setPriceList] = useState([]);
   const [projectAmenities, setProjectAmenities] = useState(amenities);
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
@@ -83,6 +95,25 @@ function Filters({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
+  }, []);
+
+  useEffect (()=>{
+    let getPropertiesURL = process.env.API_HOST + "properties/all/priceList";
+   
+    setLoading(true);
+    fetch(getPropertiesURL)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.success) {
+          setPriceList(res.data.formattedNumbers)
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error); // Handle the error response object
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
   const Menu = ({ children, ...props }) => {
     let items = form["searchBy"];
@@ -1425,7 +1456,17 @@ function Filters({
                       placeholder="0"
                       name="minprice"
                       ref={minPriceRef}
+                      list="data1"
+                      onFocus={handleFocus}
+                      onBlur={handleBlur}
                     />
+                    {showDatalist && (
+                       <datalist id="data1" >
+                          {priceList?.map((item, key) =>
+                           <option key={key} value={item} />
+                        )}
+                      </datalist>
+                    )}
                   </div>
                   <div className="mb-3">
                     <label className="form-label">Maximum Price</label>
@@ -1437,7 +1478,13 @@ function Filters({
                       placeholder="Any Price"
                       min={0}
                       ref={maxPriceRef}
+                      list="data2"
                     />
+                    <datalist id="data2" >
+                      {priceList?.map((item, key) =>
+                          <option key={key} value={item} />
+                      )}
+                    </datalist>
                   </div>
                   <div className="mt-4 d-grid">
                     <div
