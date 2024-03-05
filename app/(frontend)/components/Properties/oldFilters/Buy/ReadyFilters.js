@@ -817,7 +817,7 @@ function ReadyFilters({
                     name="maxarea"
                     className="form-control"
                     id="maxarea"
-                    placeholder="Any Area"
+                    placeholder=""
                     ref={maxAreaRef}
                   />
                 </div>

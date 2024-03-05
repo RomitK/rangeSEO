@@ -13,6 +13,7 @@ import MultiValueContainer from "@/app/(frontend)/components/UI/ReactSelect/Mult
 import { useSearchParams } from "next/navigation";
 import { useLocation } from "react-router-dom";
 import Link from "next/link";
+
 function LuxuryPropertyFilters({
   setShowMap,
   showMap,
@@ -27,7 +28,6 @@ function LuxuryPropertyFilters({
   totalPropertyCount,
   setTotalProperties,
 }) {
-
   const closeRef = useRef(null);
   const [form, setForm] = useState({
     accommodation_id: "",
@@ -43,10 +43,13 @@ function LuxuryPropertyFilters({
     category: "",
     completion_status_id: "",
     furnishing: "",
-    isCommercial:"",
+    isCommercial: "",
     exclusive: 1,
   });
+
   const [priceList, setPriceList] = useState([]);
+  const [areaList, setAreaList] = useState([]);
+
   const [projectAmenities, setProjectAmenities] = useState(amenities);
   const [showMore, setShowMore] = useState(false);
   const [newArray, setNewArray] = useState([]);
@@ -66,14 +69,136 @@ function LuxuryPropertyFilters({
   const [hasFocus, setHasFocus] = useState(false);
   const [showSelectedValues, setShowSelectedValues] = useState(true);
   const [ongoingRequests, setOngoingRequests] = useState([]);
-  const [showDatalist, setShowDatalist] = useState(false);
-  const handleFocus = () => {
-    setShowDatalist(true);
+  const priceDropdownRef = useRef(null);
+
+  const [showMinAreaSuggestions, setShowMinAreaSuggestions] = useState(false);
+  const [showMaxAreaSuggestions, setShowMaxAreaSuggestions] = useState(false);
+  const [selectedMinArea, setSelectedMinArea] = useState("");
+  const [selectedMaxArea, setSelectedMaxArea] = useState("");
+
+  const [showMinPriceSuggestions, setShowMinPriceSuggestions] = useState(false);
+  const [showMaxPriceSuggestions, setShowMaxPriceSuggestions] = useState(false);
+  const [selectedMinPrice, setSelectedMinPrice] = useState("");
+  const [selectedMaxPrice, setSelectedMaxPrice] = useState("");
+
+  const handleOnFocusMinimum = () => {
+    setShowMinAreaSuggestions(true);
   };
 
-  const handleBlur = () => {
-    setShowDatalist(false);
+  const handleOnBlurMinimum = () => {
+    setTimeout(() => setShowMinAreaSuggestions(false), 200); // Delay hiding to allow click on suggestions
   };
+
+  const handleOnFocusMax = () => {
+    setShowMaxAreaSuggestions(true);
+  };
+
+  const handleOnBlurMax = () => {
+    setTimeout(() => setShowMaxAreaSuggestions(false), 200); // Delay hiding to allow click on suggestions
+  };
+
+  const handleMinAreaSelection = (value) => {
+    minAreaRef.current.value = value;
+    setSelectedMinArea(value);
+    // setShowMaxAreaSuggestions(true); // Show suggestions for maximum area
+  };
+
+  const handleMaxAreaSelection = (value) => {
+    maxAreaRef.current.value = value;
+    setSelectedMaxArea(value);
+    // setShowMinAreaSuggestions(true); // Show suggestions for minimum area
+  };
+
+  const filterMinAreaList = () => {
+    return areaList.filter((item) => item < selectedMaxArea);
+  };
+
+  const filterMaxAreaList = () => {
+    return areaList.filter((item) => item > selectedMinArea);
+  };
+
+  // Function to find the minimum value in the priceList
+  const findMinPrice = () => {
+    if (priceList.length > 0) {
+      return Math.min(...priceList);
+    }
+    return "";
+  };
+
+  // Function to find the maximum value in the priceList
+  const findMaxPrice = () => {
+    if (priceList.length > 0) {
+      return Math.max(...priceList);
+    }
+    return "";
+  };
+
+  // Function to find the minimum value in the areaList
+  const findMinArea = () => {
+    if (areaList.length > 0) {
+      return Math.min(...areaList);
+    }
+    return "";
+  };
+
+  // Function to find the maximum value in the areaList
+  const findMaxArea = () => {
+    if (areaList.length > 0) {
+      return Math.max(...areaList);
+    }
+    return "";
+  };
+
+  useEffect(() => {
+    // Set the initial value of selectedMinArea to the minimum value of the priceList
+    setSelectedMinPrice(findMinPrice());
+
+    // Set the initial value of selectedMaxArea to the maximum value of the priceList
+    setSelectedMaxPrice(findMaxPrice());
+  }, [priceList]);
+
+  useEffect(() => {
+    // Set the initial value of selectedMinArea to the minimum value of the areaList
+    setSelectedMinArea(findMinArea());
+
+    // Set the initial value of selectedMaxArea to the maximum value of the areaList
+    setSelectedMaxArea(findMaxArea());
+  }, [areaList]);
+
+  const handleOnFocusMinimumPrice = () => {
+    setShowMinPriceSuggestions(true);
+  };
+
+  const handleOnBlurMinimumPrice = () => {
+    setTimeout(() => setShowMinPriceSuggestions(false), 200); // Delay hiding to allow click on suggestions
+  };
+
+  const handleOnFocusMaxPrice = () => {
+    setShowMaxPriceSuggestions(true);
+  };
+
+  const handleOnBlurMaxPrice = () => {
+    setTimeout(() => setShowMaxPriceSuggestions(false), 200); // Delay hiding to allow click on suggestions
+  };
+
+  const handleMinPriceSelection = (value) => {
+    minPriceRef.current.value = value;
+    setSelectedMinPrice(value);
+  };
+
+  const handleMaxPriceSelection = (value) => {
+    maxPriceRef.current.value = value;
+    setSelectedMaxPrice(value);
+  };
+
+  const filterMinPriceList = () => {
+    return priceList.filter((item) => item < selectedMaxPrice);
+  };
+
+  const filterMaxPriceList = () => {
+    return priceList.filter((item) => item > selectedMinPrice);
+  };
+
   useEffect(() => {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
@@ -92,16 +217,31 @@ function LuxuryPropertyFilters({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  useEffect(() => {
+    let getPropertiesAreaURL = process.env.API_HOST + "properties/luxuryProperties/areaList";
+    let getPropertiesPriceURL =
+      process.env.API_HOST + "properties/luxuryProperties/priceList";
 
-  useEffect (()=>{
-    let getPropertiesURL = process.env.API_HOST + "properties/luxuryProperties/priceList";
-   
     setLoading(true);
-    fetch(getPropertiesURL)
+    fetch(getPropertiesAreaURL)
       .then((response) => response.json())
       .then((res) => {
         if (res.success) {
-          setPriceList(res.data.formattedNumbers)
+          setAreaList(res.data.formattedNumbers);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error); // Handle the error response object
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+
+    fetch(getPropertiesPriceURL)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.success) {
+          setPriceList(res.data.formattedNumbers);
         }
       })
       .catch((error) => {
@@ -111,96 +251,14 @@ function LuxuryPropertyFilters({
         setLoading(false);
       });
   }, []);
-
-  const Menu = ({ children, ...props }) => {
-    let items = form["searchBy"];
-    return (
-      <components.Menu {...props}>
-        {items?.length ? (
-          <div className="pt-2">
-            <div className="d-inline-flex mb-1 flex-wrap">
-              {items?.map((selectedItem) => (
-                <div
-                  className={classes.openedItemContainer}
-                  key={selectedItem.name}
-                >
-                  <span className="p-1">{selectedItem.name}</span>
-                  <div
-                    role="button"
-                    className={classes.openItemsDiv}
-                    onClick={() => {
-                      const comm = form["searchBy"];
-                      const filtered = comm.filter(
-                        (item1) =>
-                          item1.name !== selectedItem.name &&
-                          item1.type !== selectedItem.type
-                      );
-                      props.setValue([...filtered]);
-                      setForm({ ...form, searchBy: filtered });
-                      selectRef.current.blur();
-                    }}
-                  >
-                    <svg
-                      height="14"
-                      width="14"
-                      viewBox="0 0 20 20"
-                      aria-hidden="true"
-                      focusable="false"
-                      className={classes.clearItemIcon}
-                    >
-                      <path d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"></path>
-                    </svg>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
-        {children}
-      </components.Menu>
-    );
-  };
-
-  const NoOptionsMessage = ({ children, ...props }) => (
-    <components.NoOptionsMessage {...props}>
-      {showNoMessage ? { children } : <>Search</>}
-    </components.NoOptionsMessage>
-  );
-
   useEffect(() => {
-    if (isCommercial) {
-      form["isCommercial"] = 1;
-      setForm({ ...form });
-
-      const filtered = accomodations?.filter(
-        (accomodation) =>
-          accomodation.type === "Commercial" || accomodation.type === "Both"
-      );
-      if (filtered != null) {
-        setFilteredAccomodation([...filtered]);
-      }
-    } else {
-      setIsCommercial(false);
-      form["isCommercial"] = "";
-      setForm({ ...form });
-
-      const filtered = accomodations?.filter(
-        (accomodation) =>
-          accomodation.type === "Residential" || accomodation.type === "Both"
-      );
-      if (filtered != null) {
-        setFilteredAccomodation([...filtered]);
-      }
-    }
-  }, [isCommercial, accomodations]);
-
-  useEffect(() => {
-    if (isMobile && showMap) {
-      setShowMap(false);
-    }
-  }, [isMobile]);
+    const newArray3 = projectAmenities?.map((originalObject, index) => {
+      const label = originalObject.name;
+      const value = originalObject.id;
+      return { label, value };
+    });
+    setNewArrayF(projectAmenities);
+  }, []);
   useEffect(() => {
     if (
       searchParams.has("project_name") &&
@@ -306,12 +364,116 @@ function LuxuryPropertyFilters({
       }
     }
     if (searchParams.has("searchBy")) {
-
       form["searchBy"] = searchParams.get("searchBy");
       selectRef.current.setValue(JSON.parse(searchParams.get("searchBy")));
       setForm({ ...form });
     }
   }, []);
+
+  const Menu = ({ children, ...props }) => {
+    let items = form["searchBy"];
+    return (
+      <components.Menu {...props}>
+        {items?.length ? (
+          <div className="pt-2">
+            <div className="d-inline-flex mb-1 flex-wrap">
+              {items?.map((selectedItem) => (
+                <div
+                  className={classes.openedItemContainer}
+                  key={selectedItem.name}
+                >
+                  <span className="p-1">{selectedItem.name}</span>
+                  <div
+                    role="button"
+                    className={classes.openItemsDiv}
+                    onTouchStart={() => {
+                      console.log("mobile");
+
+                      const comm = form["searchBy"];
+                      const filtered = comm.filter(
+                        (item1) =>
+                          item1.name !== selectedItem.name &&
+                          item1.type !== selectedItem.type
+                      );
+                      props.setValue([...filtered]);
+                      setForm({ ...form, searchBy: filtered });
+                      selectRef.current.blur();
+                    }}
+                    onClick={() => {
+                      console.log("desktop");
+                      const comm = form["searchBy"];
+                      const filtered = comm.filter(
+                        (item1) =>
+                          item1.name !== selectedItem.name &&
+                          item1.type !== selectedItem.type
+                      );
+                      props.setValue([...filtered]);
+                      setForm({ ...form, searchBy: filtered });
+                      selectRef.current.blur();
+                    }}
+                  >
+                    <svg
+                      height="14"
+                      width="14"
+                      viewBox="0 0 20 20"
+                      aria-hidden="true"
+                      focusable="false"
+                      className={classes.clearItemIcon}
+                    >
+                      <path d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"></path>
+                    </svg>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+        {children}
+      </components.Menu>
+    );
+  };
+
+  const NoOptionsMessage = ({ children, ...props }) => (
+    <components.NoOptionsMessage {...props}>
+      {showNoMessage ? { children } : <>Search</>}
+    </components.NoOptionsMessage>
+  );
+
+  useEffect(() => {
+    if (isCommercial) {
+      form["isCommercial"] = 1;
+      setForm({ ...form });
+
+      const filtered = accomodations?.filter(
+        (accomodation) =>
+          accomodation.type === "Commercial" || accomodation.type === "Both"
+      );
+      if (filtered != null) {
+        setFilteredAccomodation([...filtered]);
+      }
+    } else {
+      setIsCommercial(false);
+      form["isCommercial"] = "";
+      setForm({ ...form });
+
+      const filtered = accomodations?.filter(
+        (accomodation) =>
+          accomodation.type === "Residential" || accomodation.type === "Both"
+      );
+      if (filtered != null) {
+        setFilteredAccomodation([...filtered]);
+      }
+    }
+  }, [isCommercial, accomodations]);
+
+  useEffect(() => {
+    if (isMobile && showMap) {
+      setShowMap(false);
+    }
+  }, [isMobile]);
+
   useEffect(() => {
     let getPropertiesURL = process.env.API_HOST + "properties?";
     let payload = { ...form };
@@ -377,23 +539,15 @@ function LuxuryPropertyFilters({
       const value = originalObject.id;
       return { label, value };
     });
-    setNewArrayF(projectAmenities);
-  }, []);
-  useEffect(() => {
-    const newArray3 = projectAmenities?.map((originalObject, index) => {
-      const label = originalObject.name;
-      const value = originalObject.id;
-      return { label, value };
-    });
     setNewArrayF(newArray3);
   }, projectAmenities);
+
   function isEmptyObject() {
     const o = { ...form };
     delete o.exclusive;
     delete o.sortBy;
-    const result =  Object.keys(o).every(function (x) {
+    const result = Object.keys(o).every(function (x) {
       if (Array.isArray(o[x])) {
-
         return o[x].length > 0 ? false : true;
       } else {
         return o[x] === "" || o[x] === null;
@@ -404,9 +558,9 @@ function LuxuryPropertyFilters({
 
   const handleReset = () => {
     setIsCommercial(false);
-    setForm(prevForm => ({
+    setForm((prevForm) => ({
       ...prevForm,
-      isCommercial: ""
+      isCommercial: "",
     }));
     form["minprice"] = "";
     form["maxprice"] = "";
@@ -421,7 +575,6 @@ function LuxuryPropertyFilters({
     form["searchBy"] = "";
     form["amenities"] = "";
     form["isCommercial"] = "";
-    //console.log(form.furnishing);
     setForm({ ...form });
 
     setSelectedItems([]);
@@ -438,6 +591,18 @@ function LuxuryPropertyFilters({
     if (maxAreaRef.current != null) {
       maxAreaRef.current.value = "";
     }
+
+    // Set the initial value of selectedMinArea to the minimum value of the priceList
+    setSelectedMinPrice(findMinPrice());
+
+    // Set the initial value of selectedMaxArea to the maximum value of the priceList
+    setSelectedMaxPrice(findMaxPrice());
+
+    // Set the initial value of selectedMinArea to the minimum value of the areaList
+    setSelectedMinArea(findMinArea());
+
+    // Set the initial value of selectedMaxArea to the maximum value of the areaList
+    setSelectedMaxArea(findMaxArea());
   };
   const handleChange = (e) => {
     form[e.target.name] = e.target.value;
@@ -450,6 +615,10 @@ function LuxuryPropertyFilters({
   const handleViewChange = (e) => {};
 
   const handleApplyPrice = () => {
+    const dropdownMenu = document.querySelector("#priceDiv");
+    if (dropdownMenu) {
+      dropdownMenu.classList.remove("show");
+    }
     setForm({
       ...form,
       minprice: minPriceRef.current.value,
@@ -462,9 +631,20 @@ function LuxuryPropertyFilters({
     setForm({ ...form });
     minPriceRef.current.value = "";
     maxPriceRef.current.value = "";
+
+    // Set the initial value of selectedMinArea to the minimum value of the priceList
+    setSelectedMinPrice(findMinPrice());
+
+    // Set the initial value of selectedMaxArea to the maximum value of the priceList
+    setSelectedMaxPrice(findMaxPrice());
   };
 
   const handleApplyArea = () => {
+    const dropdownMenu = document.querySelector("#areaDiv");
+    if (dropdownMenu) {
+      dropdownMenu.classList.remove("show");
+    }
+
     setForm({
       ...form,
       minarea: minAreaRef.current.value,
@@ -477,6 +657,12 @@ function LuxuryPropertyFilters({
     setForm({ ...form });
     minAreaRef.current.value = "";
     maxAreaRef.current.value = "";
+
+    // Set the initial value of selectedMinArea to the minimum value of the areaList
+    setSelectedMinArea(findMinArea());
+
+    // Set the initial value of selectedMaxArea to the maximum value of the areaList
+    setSelectedMaxArea(findMaxArea());
   };
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -1001,7 +1187,7 @@ function LuxuryPropertyFilters({
                             : "col-md-2"
                         }`}
                       >
-                        <div className="dropdown">
+                        <div className="dropdown" >
                           <div
                             className="form-select"
                             data-bs-toggle="dropdown"
@@ -1015,75 +1201,100 @@ function LuxuryPropertyFilters({
                               : "Price"}
                             {}
                           </div>
-                          <div className="dropdown-menu p-4">
-                          <div className="mb-3">
-                    <label className="form-label">Minimum Price</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      id="minprice"
-                      min={0}
-                      placeholder="0"
-                      name="minprice"
-                      ref={minPriceRef}
-                      list="data1"
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                    />
-                    {showDatalist && (
-                       <datalist id="data1" >
-                          {priceList?.map((item, key) =>
-                           <option key={key} value={item} />
-                        )}
-                      </datalist>
-                    )}
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Maximum Price</label>
-                    <input
-                      type="number"
-                      name="maxprice"
-                      className="form-control"
-                      id="maxprice"
-                      placeholder="Any Price"
-                      min={0}
-                      ref={maxPriceRef}
-                      list="data2"
-                    />
-                    <datalist id="data2" >
-                      {priceList?.map((item, key) =>
-                          <option key={key} value={item} />
-                      )}
-                    </datalist>
-                  </div>
-                            <div className="mt-4 d-grid">
-                              <div
-                                className="row justify-content-center"
-                                style={{ columnGap: "0.25rem" }}
-                              >
-                                <button
-                                  className="btn btn-primary btn-sm col"
-                                  type="button"
-                                  onClick={handleApplyPrice}
-                                >
-                                  Apply
-                                </button>
-                                {showPriceResetButton() && (
-                                  <button
-                                    className="btn btn-secondary btn-sm col"
-                                    type="button"
-                                    onClick={resetApplyPrice}
-                                  >
-                                    Reset
-                                  </button>
+                          <div className="dropdown-menu p-4" id="priceDiv">
+                            <div className="row">
+                              <div className="mb-3 col-6">
+                                <label className="form-label">
+                                  Minimum Price
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  id="minprice"
+                                  min={0}
+                                  placeholder="0"
+                                  name="minprice"
+                                  ref={minPriceRef}
+                                  onFocus={handleOnFocusMinimumPrice}
+                                  onBlur={handleOnBlurMinimumPrice}
+                                />
+                                {showMinPriceSuggestions && (
+                                  <div id="area-suggestion-box">
+                                    <div id="area-suggestion">
+                                      {filterMinPriceList().map((item, key) => (
+                                        <button
+                                          className="btn area-buttons"
+                                          key={key}
+                                          onClick={() =>
+                                            handleMinPriceSelection(item)
+                                          }
+                                        >
+                                          {item}
+                                        </button>
+                                      ))}
+                                    </div>
+                                  </div>
                                 )}
+                              </div>
+                              <div className="mb-3 col-6">
+                                <label className="form-label">
+                                  Maximum Price
+                                </label>
+                                <input
+                                  type="number"
+                                  name="maxprice"
+                                  className="form-control"
+                                  id="maxprice"
+                                  min={0}
+                                  ref={maxPriceRef}
+                                  onFocus={handleOnFocusMaxPrice}
+                                  onBlur={handleOnBlurMaxPrice}
+                                />
+                                {showMaxPriceSuggestions && (
+                                  <div id="area-suggestion-box">
+                                    <div id="area-suggestion">
+                                      {filterMaxPriceList().map((item, key) => (
+                                        <button
+                                          className="btn area-buttons"
+                                          key={key}
+                                          onClick={() =>
+                                            handleMaxPriceSelection(item)
+                                          }
+                                        >
+                                          {item}
+                                        </button>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                              <div className="mt-4 d-grid">
+                                <div
+                                  className="row justify-content-center"
+                                  style={{ columnGap: "0.25rem" }}
+                                >
+                                  <button
+                                    className="btn btn-primary btn-sm col"
+                                    type="button"
+                                    onClick={handleApplyPrice}
+                                  >
+                                    Apply
+                                  </button>
+                                  {showPriceResetButton() && (
+                                    <button
+                                      className="btn btn-secondary btn-sm col"
+                                      type="button"
+                                      onClick={resetApplyPrice}
+                                    >
+                                      Reset
+                                    </button>
+                                  )}
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-
-
 
                       <div className="col-lg-3">
                         <div className="dropdown">
@@ -1096,56 +1307,100 @@ function LuxuryPropertyFilters({
                             {form.minarea && form.maxarea
                               ? `${form.minarea} ${
                                   form.minarea && form.maxarea && "-"
-                                } ${form.maxarea} `
+                                } ${form.maxarea} (Sq.Ft)`
                               : "Area(Sq.Ft)"}
                             {}
                           </div>
-                          <div className="dropdown-menu p-4">
-                            {" "}
-                            <div className="mb-3">
-                              <label className="form-label">Minimum Area</label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                id="minarea"
-                                min={0}
-                                placeholder="0"
-                                name="minarea"
-                                ref={minAreaRef}
-                              />
-                            </div>
-                            <div className="mb-3">
-                              <label className="form-label">Maximum Area</label>
-                              <input
-                                type="number"
-                                name="maxarea"
-                                className="form-control"
-                                id="maxarea"
-                                placeholder="Any Area"
-                                ref={maxAreaRef}
-                              />
-                            </div>
-                            <div className="mt-4 d-grid">
-                              <div
-                                className="row justify-content-center"
-                                style={{ columnGap: "0.25rem" }}
-                              >
-                                <button
-                                  className="btn btn-primary btn-sm col-md"
-                                  type="button"
-                                  onClick={handleApplyArea}
-                                >
-                                  Apply
-                                </button>
-                                {showAreaResetButton() && (
-                                  <button
-                                    className="btn btn-secondary btn-sm col-md"
-                                    type="button"
-                                    onClick={resetApplyArea}
-                                  >
-                                    Reset
-                                  </button>
+                          <div className="dropdown-menu p-4" id="areaDiv">
+                            <div className="row">
+                              {" "}
+                              <div className="mb-3 col-6">
+                                <label className="form-label">
+                                  Minimum Area
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  id="minarea"
+                                  min={0}
+                                  placeholder="0"
+                                  name="minarea"
+                                  ref={minAreaRef}
+                                  onFocus={handleOnFocusMinimum}
+                                  onBlur={handleOnBlurMinimum}
+                                />
+                                {showMinAreaSuggestions && (
+                                  <div id="area-suggestion-box">
+                                    <div id="area-suggestion">
+                                      {filterMinAreaList().map((item, key) => (
+                                        <button
+                                          className="btn area-buttons"
+                                          key={key}
+                                          onClick={() =>
+                                            handleMinAreaSelection(item)
+                                          }
+                                        >
+                                          {item}
+                                        </button>
+                                      ))}
+                                    </div>
+                                  </div>
                                 )}
+                              </div>
+                              <div className="mb-3 col-6">
+                                <label className="form-label">
+                                  Maximum Area
+                                </label>
+                                <input
+                                  type="number"
+                                  name="maxarea"
+                                  className="form-control"
+                                  id="maxarea"
+                                  placeholder=""
+                                  ref={maxAreaRef}
+                                  onFocus={handleOnFocusMax}
+                                  onBlur={handleOnBlurMax}
+                                />
+                                {showMaxAreaSuggestions && (
+                                  <div id="area-suggestion-box">
+                                    <div id="area-suggestion">
+                                      {filterMaxAreaList().map((item, key) => (
+                                        <button
+                                          className="btn area-buttons"
+                                          key={key}
+                                          onClick={() =>
+                                            handleMaxAreaSelection(item)
+                                          }
+                                        >
+                                          {item}
+                                        </button>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                              <div className="mt-4 d-grid">
+                                <div
+                                  className="row justify-content-center"
+                                  style={{ columnGap: "0.25rem" }}
+                                >
+                                  <button
+                                    className="btn btn-primary btn-sm col"
+                                    type="button"
+                                    onClick={handleApplyArea}
+                                  >
+                                    Apply
+                                  </button>
+                                  {showAreaResetButton() && (
+                                    <button
+                                      className="btn btn-secondary btn-sm col"
+                                      type="button"
+                                      onClick={resetApplyArea}
+                                    >
+                                      Reset
+                                    </button>
+                                  )}
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -1154,37 +1409,34 @@ function LuxuryPropertyFilters({
 
                       <div className="col-lg-3">
                         <div className="row g-0">
-                          <div className="col-12 vertical-scrollable-container" >
+                          <div className="col-12 vertical-scrollable-container">
                             {filteredOptions?.map((option) => (
-                              <div key={option.value} className="d-inline-block px-1">
-                                
+                              <div
+                                key={option.value}
+                                className="d-inline-block px-1"
+                              >
+                                <input
+                                  key={option.value}
+                                  id={option.value}
+                                  type="checkbox"
+                                  label={highlightMatch(option.label)}
+                                  checked={selectedItems.includes(option.value)}
+                                  onChange={() =>
+                                    handleCheckboxChange(option.value)
+                                  }
+                                  className="btn-check" // Add a custom class for styling
+                                />
 
-
-                          <input
-                           key={option.value}
-                           id={option.value}
-                           type="checkbox"
-                           label={highlightMatch(option.label)}
-                           checked={selectedItems.includes(option.value)}
-                           onChange={() => handleCheckboxChange(option.value)}
-                           className="btn-check" // Add a custom class for styling
-                          />
-
-
-                                <label className="btn btn-outline-primary m-0" htmlFor={option.value}>
+                                <label
+                                  className="btn btn-outline-primary m-0"
+                                  htmlFor={option.value}
+                                >
                                   {highlightMatch(option.label)}
                                 </label>
                               </div>
                             ))}
                           </div>
                         </div>
-
-
-
-
-
-
-
                       </div>
 
                       <div
@@ -1209,35 +1461,31 @@ function LuxuryPropertyFilters({
                             show only Commercial Properties
                           </label>
                         </div>
-                        
-                        
                       </div>
 
-
                       {!isEmptyObject() && (
-                          <div className="col-lg-3">
-                            <button
-                              className="btn btn-sm btn-secondary w-100 "
-                              type="button"
-                              onClick={handleReset}
-                            >
-                              Reset
-                            </button>
-                          </div>
-                        )}
-
                         <div className="col-lg-3">
                           <button
-                            className="btn  btn-primary w-100"
+                            className="btn btn-sm btn-secondary w-100 "
                             type="button"
-                            data-bs-dismiss="offcanvas"
-                            aria-label="Close"
-                            ref={closeRef}
+                            onClick={handleReset}
                           >
-                            Show {totalPropertyCount} results
+                            Reset
                           </button>
                         </div>
+                      )}
 
+                      <div className="col-lg-3">
+                        <button
+                          className="btn  btn-primary w-100"
+                          type="button"
+                          data-bs-dismiss="offcanvas"
+                          aria-label="Close"
+                          ref={closeRef}
+                        >
+                          Show {totalPropertyCount} results
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1315,7 +1563,13 @@ function LuxuryPropertyFilters({
       {!isMobileDev && (
         <>
           <div className="row row-gap-3 ">
-            <div className="col-12 col-lg-3">
+            <div
+              className={`col-12 ${
+                form.category && form.category != "rent"
+                  ? "col-md-2"
+                  : "col-md-3"
+              }`}
+            >
               <AsyncSelect
                 isClearable={false}
                 isMulti
@@ -1428,11 +1682,11 @@ function LuxuryPropertyFilters({
             <div
               className={`base-class ${
                 form.category && form.category != "rent"
-                  ? "col-md-1"
+                  ? "col-md-2"
                   : "col-md-2"
               }`}
             >
-              <div className="dropdown">
+              <div className="dropdown" >
                 <div
                   className="form-select"
                   data-bs-toggle="dropdown"
@@ -1446,68 +1700,88 @@ function LuxuryPropertyFilters({
                     : "Price"}
                   {}
                 </div>
-                <div className="dropdown-menu p-4">
-                  <div className="mb-3">
-                              <label className="form-label">Minimum Price</label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                id="minprice"
-                                min={0}
-                                placeholder="0"
-                                name="minprice"
-                                ref={minPriceRef}
-                                list="data1"
-                                onFocus={handleFocus}
-                                onBlur={handleBlur}
-                              />
-                              {showDatalist && (
-                                <datalist id="data1" >
-                                    {priceList?.map((item, key) =>
-                                    <option key={key} value={item} />
-                                  )}
-                                </datalist>
-                              )}
-                            </div>
-                            <div className="mb-3">
-                              <label className="form-label">Maximum Price</label>
-                              <input
-                                type="number"
-                                name="maxprice"
-                                className="form-control"
-                                id="maxprice"
-                                placeholder="Any Price"
-                                min={0}
-                                ref={maxPriceRef}
-                                list="data2"
-                              />
-                              <datalist id="data2" >
-                                {priceList?.map((item, key) =>
-                                    <option key={key} value={item} />
-                                )}
-                              </datalist>
-                            </div>
-                  <div className="mt-4 d-grid">
-                    <div
-                      className="row justify-content-center"
-                      style={{ columnGap: "0.25rem" }}
-                    >
-                      <button
-                        className="btn btn-primary btn-sm col"
-                        type="button"
-                        onClick={handleApplyPrice}
-                      >
-                        Apply
-                      </button>
-                      {showPriceResetButton() && (
-                        <button
-                          className="btn btn-secondary btn-sm col"
-                          type="button"
-                          onClick={resetApplyPrice}
-                        >
-                          Reset
-                        </button>
+                <div className="dropdown-menu p-4" id="priceDiv">
+                  <div className="row">
+                    {" "}
+                    <div className="mb-3 col-6">
+                      <label className="form-label">Minimum Price</label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        id="minprice"
+                        min={0}
+                        placeholder="0"
+                        name="minprice"
+                        ref={minPriceRef}
+                        onFocus={handleOnFocusMinimumPrice}
+                        onBlur={handleOnBlurMinimumPrice}
+                      />
+                      {showMinPriceSuggestions && (
+                        <div id="area-suggestion-box">
+                          <div id="area-suggestion">
+                            {filterMinPriceList().map((item, key) => (
+                              <button
+                                className="btn area-buttons"
+                                key={key}
+                                onClick={() => handleMinPriceSelection(item)}
+                              >
+                                {item}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
                       )}
+                    </div>
+                    <div className="mb-3 col-6">
+                      <label className="form-label">Maximum Price</label>
+                      <input
+                        type="number"
+                        name="maxprice"
+                        className="form-control"
+                        id="maxprice"
+                        min={0}
+                        ref={maxPriceRef}
+                        onFocus={handleOnFocusMaxPrice}
+                        onBlur={handleOnBlurMaxPrice}
+                      />
+                      {showMaxPriceSuggestions && (
+                        <div id="area-suggestion-box">
+                          <div id="area-suggestion">
+                            {filterMaxPriceList().map((item, key) => (
+                              <button
+                                className="btn area-buttons"
+                                key={key}
+                                onClick={() => handleMaxPriceSelection(item)}
+                              >
+                                {item}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <div className="mt-4 d-grid">
+                      <div
+                        className="row justify-content-center"
+                        style={{ columnGap: "0.25rem" }}
+                      >
+                        <button
+                          className="btn btn-primary btn-sm col"
+                          type="button"
+                          onClick={handleApplyPrice}
+                        >
+                          Apply
+                        </button>
+                        {showPriceResetButton() && (
+                          <button
+                            className="btn btn-secondary btn-sm col"
+                            type="button"
+                            onClick={resetApplyPrice}
+                          >
+                            Reset
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1712,56 +1986,92 @@ function LuxuryPropertyFilters({
                 {form.minarea && form.maxarea
                   ? `${form.minarea} ${form.minarea && form.maxarea && "-"} ${
                       form.maxarea
-                    } `
+                    } (Sq.Ft)`
                   : "Area(Sq.Ft)"}
                 {}
               </div>
-              <div className="dropdown-menu p-4">
-                {" "}
-                <div className="mb-3">
-                  <label className="form-label">Minimum Area</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    id="minarea"
-                    min={0}
-                    placeholder="0"
-                    name="minarea"
-                    ref={minAreaRef}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Maximum Area</label>
-                  <input
-                    type="number"
-                    name="maxarea"
-                    className="form-control"
-                    id="maxarea"
-                    placeholder="Any Area"
-                    ref={maxAreaRef}
-                  />
-                </div>
-                <div className="mt-4 d-grid">
-                  <div
-                    className="row justify-content-center"
-                    style={{ columnGap: "0.25rem" }}
-                  >
-                    <button
-                      className="btn btn-primary btn-sm col-md"
-                      type="button"
-                      onClick={handleApplyArea}
-                    >
-                      Apply
-                    </button>
-                    {showAreaResetButton() && (
-                      <button
-                        className="btn btn-secondary btn-sm col-md"
-                        type="button"
-                        onClick={resetApplyArea}
-                      >
-                        Reset
-                      </button>
+              <div className="dropdown-menu p-4" id="areaDiv">
+                <div className="row">
+                  {" "}
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Minimum Area</label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="minarea"
+                      min={0}
+                      placeholder="0"
+                      name="minarea"
+                      ref={minAreaRef}
+                      onFocus={handleOnFocusMinimum}
+                      onBlur={handleOnBlurMinimum}
+                    />
+                    {showMinAreaSuggestions && (
+                      <div id="area-suggestion-box">
+                        <div id="area-suggestion">
+                          {filterMinAreaList().map((item, key) => (
+                            <button
+                              className="btn area-buttons"
+                              key={key}
+                              onClick={() => handleMinAreaSelection(item)}
+                            >
+                              {item}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                     )}
+                  </div>
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Maximum Area</label>
+                    <input
+                      type="number"
+                      name="maxarea"
+                      className="form-control"
+                      id="maxarea"
+                      placeholder=""
+                      ref={maxAreaRef}
+                      onFocus={handleOnFocusMax}
+                      onBlur={handleOnBlurMax}
+                    />
+                    {showMaxAreaSuggestions && (
+                      <div id="area-suggestion-box">
+                        <div id="area-suggestion">
+                          {filterMaxAreaList().map((item, key) => (
+                            <button
+                              className="btn area-buttons"
+                              key={key}
+                              onClick={() => handleMaxAreaSelection(item)}
+                            >
+                              {item}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="mt-4 d-grid">
+                    <div
+                      className="row justify-content-center"
+                      style={{ columnGap: "0.25rem" }}
+                    >
+                      <button
+                        className="btn btn-primary btn-sm col-md"
+                        type="button"
+                        onClick={handleApplyArea}
+                      >
+                        Apply
+                      </button>
+                      {showAreaResetButton() && (
+                        <button
+                          className="btn btn-secondary btn-sm col-md"
+                          type="button"
+                          onClick={resetApplyArea}
+                        >
+                          Reset
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

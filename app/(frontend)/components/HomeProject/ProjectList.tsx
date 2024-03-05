@@ -33,6 +33,12 @@ function ProjectList() {
   });
   const [mapRef, setMapRef] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [showMinPriceSuggestions, setShowMinPriceSuggestions] = useState(false);
+  const [showMaxPriceSuggestions, setShowMaxPriceSuggestions] = useState(false);
+  const [selectedMinPrice, setSelectedMinPrice] = useState("");
+  const [selectedMaxPrice, setSelectedMaxPrice] = useState("");
+  const [priceList, setPriceList] = useState([]);
+
   const [infoWindowData, setInfoWindowData] = useState({
     id: null,
     address: "",
@@ -58,11 +64,71 @@ function ProjectList() {
   const minPriceRef = useRef(null);
   const maxPriceRef = useRef(null);
 
+
+  const handleOnFocusMinimumPrice = () => {
+    setShowMinPriceSuggestions(true);
+  };
+
+  const handleOnBlurMinimumPrice = () => {
+    setTimeout(() => setShowMinPriceSuggestions(false), 200); // Delay hiding to allow click on suggestions
+  };
+
+  const handleOnFocusMaxPrice = () => {
+    setShowMaxPriceSuggestions(true);
+  };
+
+  const handleOnBlurMaxPrice = () => {
+    setTimeout(() => setShowMaxPriceSuggestions(false), 200); // Delay hiding to allow click on suggestions
+  };
+
+  const handleMinPriceSelection = (value) => {
+    minPriceRef.current.value = value;
+    setSelectedMinPrice(value);
+  };
+
+  const handleMaxPriceSelection = (value) => {
+    maxPriceRef.current.value = value;
+    setSelectedMaxPrice(value);
+  };
+
+  const filterMinPriceList = () => {
+    return priceList.filter((item) => item < selectedMaxPrice);
+  };
+
+  const filterMaxPriceList = () => {
+    return priceList.filter((item) => item > selectedMinPrice);
+  };
+
   useEffect(() => {
     if (homeData?.mapProjects) {
       setMarkers(homeData?.mapProjects);
     }
+    setPriceList(homeData?.formattedNumbers);
+
   }, [homeData]);
+  // Function to find the minimum value in the priceList
+  const findMinPrice = () => {
+    if (priceList?.length > 0) {
+      return Math.min(...priceList);
+    }
+    return "";
+  };
+
+  // Function to find the maximum value in the priceList
+  const findMaxPrice = () => {
+    if (priceList?.length > 0) {
+      return Math.max(...priceList);
+    }
+    return "";
+  };
+  useEffect(() => {
+    // Set the initial value of selectedMinArea to the minimum value of the priceList
+    setSelectedMinPrice(findMinPrice().toString());
+
+    // Set the initial value of selectedMaxArea to the maximum value of the priceList
+    setSelectedMaxPrice(findMaxPrice().toString());
+  }, [priceList]);
+
   const handleApplyPrice = () => {
     setMinMaxPrice({
       minPrice: minPriceRef.current.value,
@@ -309,60 +375,76 @@ function ProjectList() {
                               : "Price"}
                             { }
                           </div>
-                          <div className="dropdown-menu p-4 mt-1">
-                            <div className="mb-3">
-                              <label className="form-label">
-                                Minimum Price
-                              </label>
-                              <input list="data1"
-                                type="number"
-                                className="form-control"
-                                id="minprice"
-                                min={0}
-                                placeholder="0"
-                                name="minprice"
-                                ref={minPriceRef}
-                              />
-
-                              <datalist id="data1" >
-                                {priceOption?.map((item, key) =>
-                                  <option key={key} value={item} />
+                          <div className="dropdown-menu p-4" id="priceDiv">
+                            <div className="row">
+                              {" "}
+                              <div className="mb-3 col-6">
+                                <label className="form-label">Minimum Price</label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  id="minprice"
+                                  min={0}
+                                  placeholder="0"
+                                  name="minprice"
+                                  ref={minPriceRef}
+                                  onFocus={handleOnFocusMinimumPrice}
+                                  onBlur={handleOnBlurMinimumPrice}
+                                />
+                                {showMinPriceSuggestions && (
+                                  <div id="area-suggestion-box">
+                                    <div id="area-suggestion">
+                                      {filterMinPriceList().map((item, key) => (
+                                        <button
+                                          className="btn area-buttons"
+                                          key={key}
+                                          onClick={() => handleMinPriceSelection(item)}
+                                        >
+                                          {item}
+                                        </button>
+                                      ))}
+                                    </div>
+                                  </div>
                                 )}
-                              </datalist>
-
-
-                            </div>
-                            <div className="mb-3">
-                              <label className="form-label">
-                                Maximum Price
-                              </label>
-
-                              <input list="data2"
-                                type="number"
-                                name="maxprice"
-                                className="form-control"
-                                id="maxprice"
-                                placeholder="Any Price"
-                                min={0}
-
-                                ref={maxPriceRef}
-                              />
-
-                              <datalist id="data2" className="scrollable-datalist">
-                                {priceOption?.map((item, key) =>
-                                  <option key={key} value={item} />
+                              </div>
+                              <div className="mb-3 col-6">
+                                <label className="form-label">Maximum Price</label>
+                                <input
+                                  type="number"
+                                  name="maxprice"
+                                  className="form-control"
+                                  id="maxprice"
+                                  min={0}
+                                  ref={maxPriceRef}
+                                  onFocus={handleOnFocusMaxPrice}
+                                  onBlur={handleOnBlurMaxPrice}
+                                />
+                                {showMaxPriceSuggestions && (
+                                  <div id="area-suggestion-box">
+                                    <div id="area-suggestion">
+                                      {filterMaxPriceList().map((item, key) => (
+                                        <button
+                                          className="btn area-buttons"
+                                          key={key}
+                                          onClick={() => handleMaxPriceSelection(item)}
+                                        >
+                                          {item}
+                                        </button>
+                                      ))}
+                                    </div>
+                                  </div>
                                 )}
-                              </datalist>
+                              </div>
+                              <div className="mt-4 d-grid">
 
-                            </div>
-                            <div className="mt-4 d-grid">
-                              <button
-                                className="btn btn-primary btn-lg"
-                                type="button"
-                                onClick={handleApplyPrice}
-                              >
-                                Apply
-                              </button>
+                                <button
+                                  className="btn btn-primary btn-lg"
+                                  type="button"
+                                  onClick={handleApplyPrice}
+                                >
+                                  Apply
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>

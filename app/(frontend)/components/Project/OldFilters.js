@@ -847,7 +847,7 @@ function Filters({
                       min={0}
                       className="form-control"
                       id="maxarea"
-                      placeholder="Any Area"
+                      placeholder=""
                       ref={maxAreaRef}
                       onChange={handlePositiveChange}
                     />
