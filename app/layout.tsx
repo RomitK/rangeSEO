@@ -9,8 +9,8 @@ const inter = Inter({ subsets: ["latin"] });
 import Head from "next/head";
 import Script from 'next/script'
 export const metadata: Metadata = {
-  title: "Range International Property Investments12",
-  description: "Range International Property Investments12",
+  title: "Range International Property Investments",
+  description: "Range International Property Investments",
   icons: {
     icon: "/favicon.ico",
   },
