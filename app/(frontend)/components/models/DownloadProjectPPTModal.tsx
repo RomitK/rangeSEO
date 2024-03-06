@@ -168,7 +168,7 @@ function DownloadProjectPPTModal(props) {
               .catch(function (error) {
                 toast.error(`Download failed Something went wrong!`);
               });
- 
+
           }
           setShowOtp(true);
           setOtpSent(true);
@@ -256,17 +256,17 @@ function DownloadProjectPPTModal(props) {
           .catch(function (error) {
             toast.error(`Download failed Something went wrong!`);
           });
-          reset();
+        reset();
       })
       .catch((err) => {
         toast.error("Something went wrong, please try again");
       });
   };
-  
+
 
   return (
     <>
-      {isLoading && <Loader />}              
+      {isLoading && <Loader />}
       <div
         className="modal fade"
         id="downloadBrochure"
@@ -275,9 +275,9 @@ function DownloadProjectPPTModal(props) {
         aria-hidden="true"
       >
         <div className="modal-dialog  modal-dialog-centered modal-md modalBookMeet ">
-          <div  className={`modal-content ${isMobileDev ? 'p-2' : ''}`}>
+          <div className={`modal-content ${isMobileDev ? 'p-2' : ''}`}>
             <div className="modal-header border-0 justify-content-end p-1">
-            <button
+              <button
                 type="button"
                 className="bg-transparent border-0"
                 data-bs-dismiss="modal"
@@ -307,97 +307,97 @@ function DownloadProjectPPTModal(props) {
                     />
                   </div>
                   <div className="">
-                  {showOtp && (
-                    <form
-                      action=""
-                      method="POST"
-                      onSubmit={handleSubmit(onSubmitVisitorOTPVerifyForm)}
-                    >
-                      <div className="">
-                        <div className="row">
-                          <div className="col-md-12">
-                            <h6 className="text-primary text-center p-2">
-                              Enter Details to Download the Brochure
-                            </h6>
+                    {showOtp && (
+                      <form
+                        action=""
+                        method="POST"
+                        onSubmit={handleSubmit(onSubmitVisitorOTPVerifyForm)}
+                      >
+                        <div className="">
+                          <div className="row">
+                            <div className="col-md-12">
+                              <h6 className="text-primary text-center p-2">
+                                Enter Details to Download the Brochure
+                              </h6>
 
-                            <div className="form-group">
-                              <label>
-                                OTP{" "}
-                                <small className="text-danger">
-                                  {" "}
-                                  {timer > 0 && (
-                                    <span>(Valid for: {timer} seconds)</span>
-                                  )}{" "}
-                                  *
-                                </small>
-                              </label>
-                              <input
-                                type="text"
-                                name="nameCon2"
-                                id="nameCon2"
-                                className="form-control mb-2"
-                                placeholder="Enter OTP code..."
-                                autoComplete="off"
-                                {...register("otp", { required: true })}
-                              />
-                              {errors.otp && (
-                                <small className="text-danger">
-                                  OTP is required.
-                                </small>
-                              )}
-                            
+                              <div className="form-group">
+                                <label>
+                                  OTP{" "}
+                                  <small className="text-danger">
+                                    {" "}
+                                    {timer > 0 && (
+                                      <span>(Valid for: {timer} seconds)</span>
+                                    )}{" "}
+                                    *
+                                  </small>
+                                </label>
+                                <input
+                                  type="text"
+                                  name="nameCon2"
+                                  id="nameCon2"
+                                  className="form-control mb-2"
+                                  placeholder="Enter OTP code..."
+                                  autoComplete="off"
+                                  {...register("otp", { required: true })}
+                                />
+                                {errors.otp && (
+                                  <small className="text-danger">
+                                    OTP is required.
+                                  </small>
+                                )}
+
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="modal-footer border-0">
-                          
-                       
+                          <div className="modal-footer border-0">
 
-                          {timer === 0 ? (
-                            <div className="row">
-                              <div className="col-md-6">
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-bluee rounded-0 px-5 float-end btnContact"
-                                  onClick={() => {
-                                    if (submitBtnRef.current) {
-                                      
-                                      submitBtnRef.current.click();
+
+
+                            {timer === 0 ? (
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <button
+                                    type="button"
+                                    className="btn btn-sm btn-bluee rounded-0 px-5 float-end btnContact"
+                                    onClick={() => {
+                                      if (submitBtnRef.current) {
+
+                                        submitBtnRef.current.click();
+                                        setTimer(60);
+                                      }
+                                    }}
+                                  >
+                                    Resend OTP
+                                  </button>
+                                </div>
+                                <div className="col-md-6">
+                                  <button
+                                    type="button"
+                                    className="btn btn-sm btn-primary rounded-0 px-5 float-end btnContact2"
+                                    onClick={() => {
+                                      setShowOtp(false);
                                       setTimer(60);
-                                    }
-                                  }}
-                                >
-                                  Resend OTP
-                                </button>
+                                    }}
+                                  >
+                                    Change Number
+                                  </button>
+                                </div>
                               </div>
-                              <div className="col-md-6">
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-primary rounded-0 px-5 float-end btnContact2"
-                                  onClick={() => {
-                                    setShowOtp(false);
-                                    setTimer(60);
-                                  }}
-                                >
-                                  Change Number
-                                </button>
-                              </div>
-                            </div>
-                          ) : (
-                            <button
-                              type="submit"
-                              name="submit"
-                              className="btn btn-blue rounded-0 px-5 float-end btnContact2"
-                            >
-                              {isLoading ? "Sending..." : "Verify OTP"}
-                            </button>
-                          )}
+                            ) : (
+                              <button
+                                type="submit"
+                                name="submit"
+                                className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                              >
+                                {isLoading ? "Sending..." : "Verify OTP"}
+                              </button>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    </form>
-                  )}
+                      </form>
+                    )}
 
-                 
+
                     <form
                       ref={visiorFormRef}
                       action=""
@@ -408,7 +408,7 @@ function DownloadProjectPPTModal(props) {
                       <div className="row">
                         <div className="col-md-12">
                           <h6 className="text-primary text-center p-2">
-                            Enter Details For Downloading {props.title} {props.formName}
+                            Enter Details to Download the Brochure
                           </h6>
 
                           {!showOtp && (
@@ -509,7 +509,7 @@ function DownloadProjectPPTModal(props) {
                         </button>
                       </div>
                     </form>
-                 
+
                   </div>
                 </div>
               </div>
@@ -517,7 +517,7 @@ function DownloadProjectPPTModal(props) {
           </div>
         </div>
       </div>
-   
+
     </>
   );
 }
