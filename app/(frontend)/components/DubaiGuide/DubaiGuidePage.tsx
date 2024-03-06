@@ -34,7 +34,7 @@ function DubaiGuidePage() {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
-      if(isMobileDevice){
+      if (isMobileDevice) {
         document.body.style.overflow = 'auto';
       }
       setIsMobileDev(isMobileDevice);
@@ -113,9 +113,8 @@ function DubaiGuidePage() {
   return (
     <>
       <section
-        className={`header dubaiGuideSection ${
-          isMobileDev ? "my-3" : "dubaiMy60"
-        }`}
+        className={`header dubaiGuideSection ${isMobileDev ? "my-3" : "dubaiMy60"
+          }`}
       >
         <div className="container">
           <h4 className="sctionMdTitle text-primary text-center mb-2">
@@ -252,7 +251,7 @@ function DubaiGuidePage() {
                     data-bs-toggle="modal"
                     data-bs-target="#downloadNowGolden"
                     onClick={() => {
-                      setFormName("GoldenVisaForm");
+                      setFormName("GoldenVisaGuideForm");
                       setFileName("GoldenVisa.pdf");
                       setDownloadLink(dubaiGuideData?.goldenVisaGuide);
                       setTitle("Golden Visa");
@@ -284,7 +283,7 @@ function DubaiGuidePage() {
                     data-bs-toggle="modal"
                     data-bs-target="#downloadNowBuyer"
                     onClick={() => {
-                      setFormName("BuyerGudieForm");
+                      setFormName("BuyerGuideForm");
                       setFileName("BuyerGuide.pdf");
                       setDownloadLink(dubaiGuideData?.buyerGuide);
                       setTitle("Buyer Guide");
@@ -336,8 +335,8 @@ function DubaiGuidePage() {
                     data-bs-toggle="modal"
                     data-bs-target="#downloadNowInvestment"
                     onClick={() => {
-                      setFormName("LuxuryPropertiesForm");
-                      setFileName("LuxuryProperties.pdf");
+                      setFormName("InvestmentGuideForm");
+                      setFileName("InvestmentGuide.pdf");
                       setDownloadLink(dubaiGuideData?.luxuryPropertiesGuide);
                       setTitle("Investment Guide");
                     }}

@@ -486,7 +486,7 @@ function ModelBuyer(props) {
                       <div className="modal-footer border-0">
                         <input
                           type="hidden"
-                          value="BuyerGudieForm"
+                          value="BuyerGuideForm"
                           {...register("formName", { required: true })}
                         />
                         <input
