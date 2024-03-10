@@ -160,7 +160,7 @@ function Footer() {
                         </li>
                         <li>
                           <Link
-                            href="/dubaiGuide"
+                            href="/dubaiGuides"
                             className="footLink text-dark"
                           >
                             Dubai Guides
@@ -426,38 +426,38 @@ function Footer() {
         !isMobile && (
           <div className="floatingBtn">
             <div className="iconMain shake">
-                <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
-                    <img className="" src="/images/icons/whatsapp.png" alt="chatIcon" width="60"/>
-                </a>
+              <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
+                <img className="" src="/images/icons/whatsapp.png" alt="chatIcon" width="60" />
+              </a>
             </div>
-      </div>
+          </div>
         )
       }
       {
         isMobile && lisitingPage && (
           <div className="floatingBtnListing">
             <div className="iconMain shake">
-                <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
-                    <img className="" src="/images/icons/whatsapp.png" alt="chatIcon1" width="60"/>
-                </a>
+              <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
+                <img className="" src="/images/icons/whatsapp.png" alt="chatIcon1" width="60" />
+              </a>
             </div>
           </div>
         )
       }
 
-    {
-        isMobile && !lisitingPage && !isPropertiesSlugRoute &&(
+      {
+        isMobile && !lisitingPage && !isPropertiesSlugRoute && (
           <div className="floatingBtn">
             <div className="iconMain shake">
-                <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
-                    <img className="" src="/images/icons/whatsapp.png" alt="chatIcon2" width="60"/>
-                </a>
+              <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
+                <img className="" src="/images/icons/whatsapp.png" alt="chatIcon2" width="60" />
+              </a>
             </div>
           </div>
         )
       }
 
-      
+
       <Script
         type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

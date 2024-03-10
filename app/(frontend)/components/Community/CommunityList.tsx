@@ -266,7 +266,7 @@ function CommunityList() {
                             <li className="nav-item py-3 border-bottom">
                               <Link
                                 className="nav-link"
-                                href="/dubaiGuide"
+                                href="/dubaiGuides"
                                 onClick={() => closeRef.current.click()}
                               >
                                 Dubai Guide

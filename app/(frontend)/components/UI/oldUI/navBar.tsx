@@ -36,7 +36,7 @@ function Navbar() {
                     <a
                       href="/properties"
                       className="dropdown-toggle nav-link "
-                      data-toggle="dropdown" 
+                      data-toggle="dropdown"
                     >
                       Properties <b className="caret"></b>
                     </a>
@@ -223,7 +223,7 @@ function Navbar() {
                             href="/projects"
                             onClick={() => closeRef.current.click()}
                           >
-                             Projects
+                            Projects
                           </Link>
                         </li>
                         <li className="nav-item py-3 border-bottom mobItemLink">
@@ -232,7 +232,7 @@ function Navbar() {
                             href="/communities"
                             onClick={() => closeRef.current.click()}
                           >
-                             Communities
+                            Communities
                           </Link>
                         </li>
 
@@ -242,7 +242,7 @@ function Navbar() {
                             href="/developers"
                             onClick={() => closeRef.current.click()}
                           >
-                             Developers
+                            Developers
                           </Link>
                         </li>
                         <li className="nav-item py-3 border-bottom mobItemLink">
@@ -281,7 +281,7 @@ function Navbar() {
                           </Link>
                         </li>
                         <li className="nav-item py-3 border-bottom">
-                          <Link className="nav-link" href="/medias"  onClick={() => closeRef.current.click()}>
+                          <Link className="nav-link" href="/medias" onClick={() => closeRef.current.click()}>
                             Media
                           </Link>
                         </li>
@@ -291,7 +291,7 @@ function Navbar() {
                           </Link>
                         </li>
                         <li className="nav-item py-3 border-bottom">
-                          <Link className="nav-link" href="/dubaiGuide"  onClick={() => closeRef.current.click()}>
+                          <Link className="nav-link" href="/dubaiGuides" onClick={() => closeRef.current.click()}>
                             Dubai Guide
                           </Link>
                         </li>
@@ -309,7 +309,7 @@ function Navbar() {
                             FAQ's
                           </Link>
                         </li>
-                        
+
                       </ul>
                     </div>
                   </div>
@@ -386,7 +386,7 @@ function Navbar() {
                       <a
                         className="dropdown-toggle nav-link "
                         data-toggle="dropdown" href="/properties"
-                       
+
                       >
                         Properties <b className="caret"></b>
                       </a>
@@ -560,7 +560,7 @@ function Navbar() {
                     </div>
                     <div className="offcanvas-body">
                       <ul className="list-unstyled dropList">
-                      <li className="nav-item py-3 border-bottom mobItemLink">
+                        <li className="nav-item py-3 border-bottom mobItemLink">
                           <Link
                             className="nav-link"
                             href="/properties"
@@ -575,7 +575,7 @@ function Navbar() {
                             href="/projects"
                             onClick={() => closeRef.current.click()}
                           >
-                             Projects
+                            Projects
                           </Link>
                         </li>
                         <li className="nav-item py-3 border-bottom mobItemLink">
@@ -584,7 +584,7 @@ function Navbar() {
                             href="/communities"
                             onClick={() => closeRef.current.click()}
                           >
-                             Communities
+                            Communities
                           </Link>
                         </li>
 
@@ -594,7 +594,7 @@ function Navbar() {
                             href="/developers"
                             onClick={() => closeRef.current.click()}
                           >
-                             Developers
+                            Developers
                           </Link>
                         </li>
                         <li className="nav-item py-3 border-bottom mobItemLink">
@@ -612,7 +612,7 @@ function Navbar() {
                             About Range
                           </Link>
                         </li>
-                        
+
                         <li className="nav-item py-3 border-bottom">
                           <Link
                             className="nav-link"
@@ -642,7 +642,7 @@ function Navbar() {
                           </Link>
                         </li>
                         <li className="nav-item py-3 border-bottom">
-                          <Link className="nav-link" href="/dubaiGuide" onClick={() => closeRef.current.click()}>
+                          <Link className="nav-link" href="/dubaiGuides" onClick={() => closeRef.current.click()}>
                             Dubai Guide
                           </Link>
                         </li>

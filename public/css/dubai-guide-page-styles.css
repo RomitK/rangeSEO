@@ -80,10 +80,10 @@ font-size: 18px !important;
 font-weight: 700 !important;
 }
 .downloadBtn:hover{
-box-shadow: unset !important;
+/* box-shadow: unset !important;
 background-color: unset !important;
 color: #2f3c6a !important;
-border: 1.5px solid #2f3c6a !important;
+border: 1.5px solid #2f3c6a !important; */
 }
 .guidsSection{
     margin: 20px 0px 100px !important;
@@ -112,10 +112,10 @@ width: 300px !important;
 }
 
 .clmSliderItem .downloadBtn:hover{
-    box-shadow: unset !important;
+    /* box-shadow: unset !important;
     background-color: unset !important;
     color: #ffffff !important;
-    border: 1.5px solid #2f3c6a !important;
+    border: 1.5px solid #2f3c6a !important; */
     }
 
     .swiper-horizontal{

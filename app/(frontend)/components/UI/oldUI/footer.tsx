@@ -66,25 +66,25 @@ function Footer() {
                     <div className="col-12 col-lg-6 col-md-6">
                       <ul className="mb-0 list-unstyled footNav">
                         <li>
-                        <Link className="footLink" href="/buy">
-                        Buy
-                        </Link>  
-                         
+                          <Link className="footLink" href="/buy">
+                            Buy
+                          </Link>
+
                         </li>
                         <li>
-                        <Link className="footLink" href="/rent">
+                          <Link className="footLink" href="/rent">
                             Rent
-                            </Link>  
+                          </Link>
                         </li>
                         <li>
-                        <Link className="footLink" href="/offplan">
+                          <Link className="footLink" href="/offplan">
                             Off-Plan
-                            </Link>  
+                          </Link>
                         </li>
                         <li>
-                        <Link href="/luxuryProperties" className="footLink">
+                          <Link href="/luxuryProperties" className="footLink">
                             Luxury Properties
-                            </Link>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -101,16 +101,16 @@ function Footer() {
                           </Link>
                         </li>
                         <li>
-                        <Link href="/dubaiGuide" className="footLink">
-                           Dubai Guides
-                           </Link>
+                          <Link href="/dubaiGuides" className="footLink">
+                            Dubai Guides
+                          </Link>
                         </li>
                         <li>
-                         
+
 
                           <Link className="footLink" href="/about">
-                        About
-                        </Link>
+                            About
+                          </Link>
 
                         </li>
                         <li>
@@ -177,8 +177,8 @@ function Footer() {
                       <form action="" method="post" onSubmit={handleSubmit(onSubmit)}>
                         <div className="input-group">
                           <div className="form-outline">
-                            <input type="hidden" value="EmailerForm" {...register("formName", { required: false })}/>
-                            <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
+                            <input type="hidden" value="EmailerForm" {...register("formName", { required: false })} />
+                            <input type="hidden" value={currentPageURL} {...register("page", { required: false })} />
                             <input
                               type="search"
                               id="form1"
@@ -242,7 +242,7 @@ function Footer() {
                     >
                       <span className="iconRoundBlack">
                         {/* <i className="fa fa-twitter"></i> */}
-                        <img src="/images/icons/twitter-icon.png" className="twitterIcon"/>
+                        <img src="/images/icons/twitter-icon.png" className="twitterIcon" />
                       </span>
                     </a>
                   </div>

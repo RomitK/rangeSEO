@@ -654,7 +654,7 @@ function Filters({
                           </Link>
                         </li> */}
                         <li className="nav-item py-3 border-bottom">
-                          <Link className="nav-link" href="/dubaiGuide"  onClick={() => closeRef.current.click()}>
+                          <Link className="nav-link" href="/dubaiGuides"  onClick={() => closeRef.current.click()}>
                             Dubai Guide
                           </Link>
                         </li>

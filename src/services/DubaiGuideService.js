@@ -1,5 +1,16 @@
 import useSWR from "swr";
 
+
+export const useGetAllGuideData = (search = null) => {
+  const {
+    data: guideData,
+    error,
+    mutate
+} = useSWR(`/guides${search ? "?keyword=" + search : ""}`);
+  return { guideData: guideData?.data, guideDataMutate: mutate };
+};
+
+
 export const useGetDubaiGuideData = (slug) => {
   const {
     data: dubaiGuideData,
