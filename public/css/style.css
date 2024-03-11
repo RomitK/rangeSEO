@@ -2194,3 +2194,37 @@ background-color: #2f3c6a;
         max-height: 200px !important;
         overflow-y: auto !important;
       }
+      .faqSearchBar{
+        position: relative;
+        margin-bottom: 50px;
+        }
+        .searchIcon{
+        font-size: 20px;
+        }
+        .searchInputField{
+            width: 100%;
+            height: 54px;
+            border: 1px solid #b5b5b5;
+            outline: none;
+            background-color: #fff;
+            padding: 0px 146px 0px 20px;
+            
+        }
+        .searchBtn{
+        width: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        height: 46px;
+        border: 0px;
+        font-size: 14px;
+        font-weight: 700;
+        background-color: #136DAE;
+        color: #fff;
+        position: absolute;
+        right: 4px;
+        top: 4px;
+        text-transform: uppercase;
+        box-shadow: 0px 0px 5px #00010269;
+        }

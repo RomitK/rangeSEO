@@ -913,7 +913,7 @@ function RentFilters({
                           href="/dubaiGuides"
                           onClick={() => closeRef.current.click()}
                         >
-                          Dubai Guide
+                          Dubai Guides
                         </Link>
                       </li>
                       {/* <li className="nav-item py-3 border-bottom">

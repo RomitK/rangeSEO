@@ -292,7 +292,7 @@ function Navbar() {
                         </li>
                         <li className="nav-item py-3 border-bottom">
                           <Link className="nav-link" href="/dubaiGuides" onClick={() => closeRef.current.click()}>
-                            Dubai Guide
+                            Dubai Guides
                           </Link>
                         </li>
                         {/* <li className="nav-item py-3 border-bottom">
@@ -643,7 +643,7 @@ function Navbar() {
                         </li>
                         <li className="nav-item py-3 border-bottom">
                           <Link className="nav-link" href="/dubaiGuides" onClick={() => closeRef.current.click()}>
-                            Dubai Guide
+                            Dubai Guides
                           </Link>
                         </li>
                         {/* <li className="nav-item py-3 border-bottom">

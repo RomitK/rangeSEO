@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 
 import { Pagination, Navigation } from "swiper/modules";
 import ContactModel from "../models/contactModel";
-import { useGetAllGuideData } from "@/src/services/DubaiGuideService";
+import { useGetAllGuideDataWithSearch, useGetAllGuideData } from "@/src/services/DubaiGuideService";
 import DubaiGuideModelGolden from "../models/dubaiGuide/ModelGolden";
 import ModelInvestment from "../models/dubaiGuide/ModelInvestment";
 import ModelBuyer from "../models/dubaiGuide/ModelBuyer";
@@ -23,13 +23,16 @@ import "slick-carousel/slick/slick-theme.css";
 
 function DubaiGuidePage() {
   const pageUrl = "Dubai Guide";
+  const [query, setQuery] = useState("");
   const swiperRef = useRef<SwiperCore>();
+  const { guideDatawithQuery } = useGetAllGuideDataWithSearch(query);
   const { guideData } = useGetAllGuideData();
+
   const [downloadLink, setDownloadLink] = useState(null);
   const [fileName, setFileName] = useState(null);
   const [formName, setFormName] = useState(null);
   const [title, setTitle] = useState(null);
-  const [ sourceId, setSourceId] = useState(null);
+  const [sourceId, setSourceId] = useState(null);
   const [isMobileDev, setIsMobileDev] = useState(false);
   useEffect(() => {
     const handleResize = () => {
@@ -118,9 +121,10 @@ function DubaiGuidePage() {
           }`}
       >
         <div className="container">
-          <h4 className="sctionMdTitle text-primary text-center mb-2">
+          <h4 className="sctionMdTitle text-primary text-center">
             DUBAI GUIDES
           </h4>
+
           <Slider
             {...(isMobileDev ? mobileSettings : desktopSettings)}
             ref={sliderRef}
@@ -144,12 +148,28 @@ function DubaiGuidePage() {
               </div>
             ))}
           </Slider>
+          <br />
+          <div className={`faqSearchBar ${isMobileDev ? "my-3" : ""}`}>
+            <input
+              type="search"
+              className="searchInputField"
+              placeholder="Search..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button className={`searchBtn ${isMobileDev ? "g-0 w-auto" : ""}`}>
+              <i className="fa fa-search searchIcon"></i> Search{" "}
+            </button>
+          </div>
+
 
         </div>
       </section>
       <section className="guidsSection">
         <div className="container">
-          {guideData?.map((guide, index) => (
+
+
+          {guideDatawithQuery?.map((guide, index) => (
             <div className="sectionArea" id={guide?.slug} key={index}>
               <h4 className="sctionMdTitle text-primary  mb-4">{guide.title}</h4>
               <div className="row horizantalCard">
@@ -210,7 +230,7 @@ function DubaiGuidePage() {
             <ModelDubaiGuide
               downloadLink={downloadLink}
               fileName={fileName}
-              sourceId = {sourceId}
+              sourceId={sourceId}
               formName={formName}
               title={title}>
             </ModelDubaiGuide>
