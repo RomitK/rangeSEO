@@ -235,7 +235,7 @@ function Footer() {
                         offers.
                       </p>
                     </div>
-                    <div className="subscribeCont propertyDesktopItemLink">
+                    <div className="subscribeCont propertyDesktopItemLink" id="subscribeForm">
                       <form
                         action=""
                         method="post"
