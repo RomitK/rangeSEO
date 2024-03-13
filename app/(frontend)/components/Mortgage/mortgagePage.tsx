@@ -15,6 +15,7 @@ import "@/public/css/mortgage-styles.css";
 import "@/public/css/responsive.css";
 import Select from "react-select";
 import Loader from "@/app/(frontend)/components/UI/Loader";
+import { parsePhoneNumberFromString, AsYouType } from "libphonenumber-js";
 import { useRouter } from "next/navigation";
 type OptionType = {
   value: string;
@@ -67,9 +68,12 @@ function MortgagePage() {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
     control,
     reset,
+    clearErrors,
   } = useForm();
+  
   const currentPageURL = getCurrentUrl();
   const onSubmit = (data) => {
     setIsLoading(true);
@@ -255,7 +259,27 @@ function MortgagePage() {
       setSelectYearData(e?.value)
     }
   }
+  const [countryCode, setCountryCode] = useState("+971");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [optPhoneNumber, setOptPhoneNumber] = useState("");
+  const handlePhoneChange = (phone) => {
+    if (phone) {
+      const phoneNumberParsed = parsePhoneNumberFromString(phone);
 
+      if (phoneNumberParsed) {
+        const countryCode = phoneNumberParsed.countryCallingCode; // Extracts the country code
+        const nationalNumber = phoneNumberParsed.nationalNumber; // Extracts the national number (phone number without country code)
+        const fullNumber = phoneNumberParsed.formatInternational(); // Full phone number with country code
+
+        // Now you can set these values to your state or form
+        // For example:
+        setValue("countryCode", `+${countryCode}`);
+        setValue("nationalNumber", nationalNumber);
+        setValue("fullPhoneNumber", fullNumber);
+        setOptPhoneNumber(fullNumber);
+      }
+    }
+  };
 
   return (
     <>
@@ -1679,7 +1703,10 @@ function MortgagePage() {
                                                       defaultCountry="AE"
                                                       placeholder="Enter Phone Number"
                                                       value={value}
-                                                      onChange={onChange}
+                                                      onChange={(phone) => {
+                                                        handlePhoneChange(phone);
+                                                        onChange(phone); // keep react-hook-form's onChange in sync
+                                                      }}
                                                       style={{ border: "0px" }}
                                                     />
                                                   )}
@@ -1708,6 +1735,12 @@ function MortgagePage() {
                                                   </small>
                                                 )}
                                               </div>
+                                              <input
+                                                type="hidden"
+                                                name="countryCode"
+                                                {...register("countryCode", {
+                                                  required: false,
+                                                })} />
                                               <input
                                                 type="hidden"
                                                 value="mortgageForm"
