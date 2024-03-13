@@ -1710,6 +1710,10 @@ function MortgagePage() {
                                                         error={errors.phone ? 'Invalid phone number' : undefined}
                                                         {...field}
                                                         style={{ border: "0px" }}
+                                                        onChange={(phone) => {
+                                                          handlePhoneChange(phone);
+                                                          field.onChange(phone); // keep react-hook-form's onChange in sync
+                                                        }}
                                                       />
                                                       {errors.phone && (
                                                         <small className="text-danger">
