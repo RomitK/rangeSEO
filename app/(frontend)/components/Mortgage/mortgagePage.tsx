@@ -4,6 +4,7 @@ import "@/public/css/sell-with-range.css";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import PhoneInput from "react-phone-number-input";
+import { isValidPhoneNumber } from 'react-phone-number-input'
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 import { useForm, Controller } from "react-hook-form";
 import SellModel from "../models/SellModel";
@@ -17,6 +18,8 @@ import Select from "react-select";
 import Loader from "@/app/(frontend)/components/UI/Loader";
 import { parsePhoneNumberFromString, AsYouType } from "libphonenumber-js";
 import { useRouter } from "next/navigation";
+import { FieldError } from "react-hook-form";
+
 type OptionType = {
   value: string;
   label: string;
@@ -73,7 +76,7 @@ function MortgagePage() {
     reset,
     clearErrors,
   } = useForm();
-  
+
   const currentPageURL = getCurrentUrl();
   const onSubmit = (data) => {
     setIsLoading(true);
@@ -1690,33 +1693,33 @@ function MortgagePage() {
                                                 <Controller
                                                   name="phone"
                                                   control={control}
-                                                  rules={{ required: true }}
-                                                  render={({
-                                                    field: { onChange, value },
-                                                  }) => (
-                                                    <PhoneInput
-                                                      international
-                                                      countryCallingCodeEditable={
-                                                        false
-                                                      }
-                                                      className="form-control rounded-0 fs-14 d-flex"
-                                                      defaultCountry="AE"
-                                                      placeholder="Enter Phone Number"
-                                                      value={value}
-                                                      onChange={(phone) => {
-                                                        handlePhoneChange(phone);
-                                                        onChange(phone); // keep react-hook-form's onChange in sync
-                                                      }}
-                                                      style={{ border: "0px" }}
-                                                    />
+                                                  rules={{
+                                                    required: 'Phone is required.',
+                                                    validate: {
+                                                      validPhoneNumber: (value) => isValidPhoneNumber(value) || 'Invalid phone number'
+                                                    }
+                                                  }}
+                                                  render={({ field }) => (
+                                                    <>
+                                                      <PhoneInput
+                                                        international
+                                                        countryCallingCodeEditable={false}
+                                                        className={`form-control rounded-0 fs-14 d-flex ${errors.phone ? 'is-invalid' : ''}`}
+                                                        defaultCountry="AE"
+                                                        placeholder="Enter Phone Number"
+                                                        error={errors.phone ? 'Invalid phone number' : undefined}
+                                                        {...field}
+                                                        style={{ border: "0px" }}
+                                                      />
+                                                      {errors.phone && (
+                                                        <small className="text-danger">
+                                                          {(errors.phone as FieldError).message}
+                                                        </small>
+                                                      )}
+
+                                                    </>
                                                   )}
                                                 />
-
-                                                {errors.phone && (
-                                                  <small className="text-danger">
-                                                    Phone is required.
-                                                  </small>
-                                                )}
                                               </div>
 
                                               <div className="col-12 mb-2">

@@ -3,11 +3,14 @@ import React from "react";
 import { toast } from "react-toastify";
 import { useForm, Controller } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
+import { isValidPhoneNumber } from 'react-phone-number-input'
 import "react-phone-number-input/style.css";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
+import { FieldError } from "react-hook-form";
+
 const ContactUs = () => {
-  
+
   const {
     register,
     handleSubmit,
@@ -48,7 +51,7 @@ const ContactUs = () => {
                 />
                 {errors.name && <small className="text-danger">Name is required.</small>}
               </div>
-              
+
               <div className="col-12 mb-2">
                 <input
                   type="email"
@@ -59,29 +62,40 @@ const ContactUs = () => {
                 />
                 {errors.email && <small className="text-danger">Email is required.</small>}
               </div>
-              
+
               <div className="col-12 mb-2">
                 <Controller
                   name="phone"
                   control={control}
-                  rules={{ required: true }}
-                  render={({ field: { onChange, value } }) => (
-                    <PhoneInput
-                      international
-                      countryCallingCodeEditable={false}
-                      className="form-control rounded-0 fs-14 d-flex"
-                      defaultCountry="AE"
-                      placeholder="Enter Phone Number"
-                      value={value}
-                      onChange={onChange}
-                      style={{ border: "0px" }}
-                    />
+                  rules={{
+                    required: 'Phone is required.',
+                    validate: {
+                      validPhoneNumber: (value) => isValidPhoneNumber(value) || 'Invalid phone number'
+                    }
+                  }}
+                  render={({ field }) => (
+                    <>
+                      <PhoneInput
+                        international
+                        countryCallingCodeEditable={false}
+                        className={`form-control rounded-0 fs-14 d-flex ${errors.phone ? 'is-invalid' : ''}`}
+                        defaultCountry="AE"
+                        placeholder="Enter Phone Number"
+                        error={errors.phone ? 'Invalid phone number' : undefined}
+                        {...field}
+                        style={{ border: "0px" }}
+                      />
+                      {errors.phone && (
+                        <small className="text-danger">
+                          {(errors.phone as FieldError).message}
+                        </small>
+                      )}
+
+                    </>
                   )}
                 />
-
-                {errors.phone && <small className="text-danger">Phone is required.</small>}
               </div>
-              
+
               <div className="col-12 mb-2">
                 <textarea
                   className="form-control rounded-0 fs-14"
@@ -91,11 +105,11 @@ const ContactUs = () => {
                   {...register("message", { required: false })}
                 ></textarea>
                 {errors.message && (
-                <small className="text-danger">Message is required.</small>
-              )}
+                  <small className="text-danger">Message is required.</small>
+                )}
               </div>
-              <input type="hidden" value="FooterContactForm" {...register("formName", { required: false })}/>
-              <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
+              <input type="hidden" value="FooterContactForm" {...register("formName", { required: false })} />
+              <input type="hidden" value={currentPageURL} {...register("page", { required: false })} />
               <div className="col-12 mb-2">
                 <div className="text-start">
                   <button
