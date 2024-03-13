@@ -78,7 +78,7 @@ function MortgagePage() {
         router.push(`/thank-you`);
         //toast.success("Thank you. Our team will get back to you soon.");
         setIsLoading(false);
-        setStep(1);
+        // setStep(1);
         reset();
       })
       .catch((err) => {
