@@ -65,7 +65,10 @@ function Footer() {
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
-        toast.success("Thank you for subscribing to our mailing list.");
+        toast.success("Thank you for subscribing to our mailing list.", {
+          toastId: "subscription-success-toast"
+        });
+
         reset();
       })
       .catch((err) => {
