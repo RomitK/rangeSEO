@@ -19,13 +19,13 @@ type OptionType = {
   label: string;
 };
 function CommunityList() {
- 
+
   const [isMobileDev, setIsMobileDev] = useState(false);
   useEffect(() => {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
-      if(isMobileDevice){
+      if (isMobileDevice) {
         document.body.style.overflow = 'auto';
       }
       setIsMobileDev(isMobileDevice);
@@ -420,72 +420,72 @@ function CommunityList() {
               <div>
                 <p className="mb-0">
                   We have an array of properties available in the most
-                  sough-after communities of Dubai.
+                  sought-after communities of Dubai.
                 </p>
               </div>
             </div>
           </div>
           {!isMobileDev && (
-          <div className="row mb-5">
-            <div className="col-md-3">
-              <div className="proSelectBox">
-                <label>PROJECT</label>
-                <Select
-                  options={projectOptions}
-                  value={form.project_id}
-                  className="reactSelectInput"
-                  placeholder="Select Project"
-                  onChange={(e) => setForm({ ...form, project_id: e })}
-                />
+            <div className="row mb-5">
+              <div className="col-md-3">
+                <div className="proSelectBox">
+                  <label>PROJECT</label>
+                  <Select
+                    options={projectOptions}
+                    value={form.project_id}
+                    className="reactSelectInput"
+                    placeholder="Select Project"
+                    onChange={(e) => setForm({ ...form, project_id: e })}
+                  />
+                </div>
               </div>
+              <div className="col-md-3">
+                <div className="proSelectBox">
+                  <label>PROPERTY TYPE</label>
+                  <Select
+                    options={accommodationOptionss}
+                    value={form.accommodation_id}
+                    className="reactSelectInput"
+                    onChange={(e) => setForm({ ...form, accommodation_id: e })}
+                  />
+                </div>
+              </div>
+              <div className="col-md-3">
+                <div className="proSelectBox">
+                  <label>DEVELOPER</label>
+                  <Select
+                    options={developerOptions}
+                    value={form.developer_id}
+                    className="reactSelectInput"
+                    onChange={(e) => setForm({ ...form, developer_id: e })}
+                  />
+                </div>
+              </div>
+              <div className="col-md-3">
+                <div className="proSelectBox">
+                  <label>PROJECT STATUS</label>
+                  <Select
+                    options={projectOfferTypeOptions}
+                    value={form.completion_status_id}
+                    className="reactSelectInput"
+                    onChange={(e) =>
+                      setForm({ ...form, completion_status_id: e })
+                    }
+                  />
+                </div>
+              </div>
+              {!isEmptyObject() && (
+                <div className="col-md-12 text-center mt-3">
+                  <button
+                    className="btn  btn-secondary"
+                    type="button"
+                    onClick={handleReset}
+                  >
+                    Reset
+                  </button>
+                </div>
+              )}
             </div>
-            <div className="col-md-3">
-              <div className="proSelectBox">
-                <label>PROPERTY TYPE</label>
-                <Select
-                  options={accommodationOptionss}
-                  value={form.accommodation_id}
-                  className="reactSelectInput"
-                  onChange={(e) => setForm({ ...form, accommodation_id: e })}
-                />
-              </div>
-            </div>
-            <div className="col-md-3">
-              <div className="proSelectBox">
-                <label>DEVELOPER</label>
-                <Select
-                  options={developerOptions}
-                  value={form.developer_id}
-                  className="reactSelectInput"
-                  onChange={(e) => setForm({ ...form, developer_id: e })}
-                />
-              </div>
-            </div>
-            <div className="col-md-3">
-              <div className="proSelectBox">
-                <label>PROJECT STATUS</label>
-                <Select
-                  options={projectOfferTypeOptions}
-                  value={form.completion_status_id}
-                  className="reactSelectInput"
-                  onChange={(e) =>
-                    setForm({ ...form, completion_status_id: e })
-                  }
-                />
-              </div>
-            </div>
-            {!isEmptyObject() && (
-              <div className="col-md-12 text-center mt-3">
-                <button
-                  className="btn  btn-secondary"
-                  type="button"
-                  onClick={handleReset}
-                >
-                  Reset
-                </button>
-              </div>
-            )}
-          </div>
           )}
 
           <div className="row">
@@ -505,9 +505,9 @@ function CommunityList() {
                     <div className="overlay">
                       <h5 className="crdtitle">{community.name}</h5>
                       {!isMobileDev && (
-                      <p className="crdText">
-                        {community && parse(community?.description ?? "")}
-                      </p>
+                        <p className="crdText">
+                          {community && parse(community?.description ?? "")}
+                        </p>
                       )}
                     </div>
                   </Link>
