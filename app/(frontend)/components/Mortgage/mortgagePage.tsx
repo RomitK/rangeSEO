@@ -14,7 +14,7 @@ import {
 import "@/public/css/mortgage-styles.css";
 import "@/public/css/responsive.css";
 import Select from "react-select";
-
+import { useRouter } from "next/navigation";
 type OptionType = {
   value: string;
   label: string;
@@ -23,10 +23,14 @@ type OptionType = {
 function MortgagePage() {
   const { bankNameOption } = useGetBankNames();
   const { mortgageYearOption } = useGetMortageYears();
-
+  const router = useRouter();
   const [bankData, setBankData] = useState();
+  const [selectedBankValue, setSelectedBankValue] = useState(null);
   const [yearData, setYearData] = useState();
+  const [selectYearData, setSelectYearData] = useState();
   const [isMobileDev, setIsMobileDev] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+
   useEffect(() => {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
@@ -52,9 +56,7 @@ function MortgagePage() {
   }, []);
   const inputRef = useRef(null);
   const inputRef2 = useRef(null);
-  const inputRef3 = useRef(null);
-  const inputRef4 = useRef(null);
-  const inputRef5 = useRef(null);
+
   useEffect(() => {
     inputRef?.current.click();
   }, []);
@@ -70,7 +72,8 @@ function MortgagePage() {
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
-        toast.success("Thank you. Our team will get back to you soon.");
+        router.push(`/thank-you`);
+        //toast.success("Thank you. Our team will get back to you soon.");
         setStep(1);
         reset();
       })
@@ -115,6 +118,7 @@ function MortgagePage() {
   // const developerOptions: OptionType[] = options;
 
   const [propertyValue, setPropertyValue] = useState(0);
+  const [currentPropertyValue, setCurrentPropertyValue] = useState(0);
   const [propertyLoanValue, setPropertyLoanValue] = useState(0);
   const [step1Ans, setStep1Ans] = useState(null);
   const [step2Ans, setStep2Ans] = useState(null);
@@ -200,6 +204,40 @@ function MortgagePage() {
     const value = event.target.value;
     setStep13Ans(value);
   };
+  useEffect(() => {
+    if (
+      (step === 5 &&
+        step1Ans === "EXISTING" &&
+        bankData &&
+        currentPropertyValue &&
+        yearData) ||
+      (step === 6 && step1Ans === "NEW" &&
+        [
+          "RESEARCHING",
+          "VIEWING_PERSON",
+          "ALREADY_MADE",
+        ].includes(step2Ans) &&
+        ["VILLA", "APARTMENT"].includes(step3Ans) &&
+        ["COMPLETED", "UNDER_CONSTRUCTION"].includes(
+          step4Ans
+        )) ||
+      (
+        step === 4 &&
+        step1Ans === "NEW" &&
+        [
+          "RESEARCHING",
+          "VIEWING_PERSON",
+          "ALREADY_MADE",
+        ].includes(step2Ans) &&
+        ["NOT_DECIDED"].includes(step3Ans)
+
+      )) {
+      setShowForm(true);
+    } else {
+      setShowForm(false);
+    }
+
+  }, [step]);
 
   return (
     <>
@@ -212,7 +250,7 @@ function MortgagePage() {
               </h1>
             </div>
             <div className="wrapper dashoboardpage golderservicepage">
-              <div className="row">
+              <div className={`"row ${isMobileDev ? "m-0 p-0" : ""}`}>
                 <div className="col-md-12 margin0">
                   <div
                     className={`"dashboardcontrols dashboardcontrolsboxs dashboardcontrolsboxs2 box-wrapper card-box-shadow wizardWrapArea ${isMobileDev ? "m-0 p-0" : "p-5 my-5"
@@ -244,8 +282,8 @@ function MortgagePage() {
                                         name="insideUAE"
                                         onChange={handleStep1Ans}
                                         required
-                                        checked={step1Ans === "new_purchase"}
-                                        value="new_purchase"
+                                        checked={step1Ans === "NEW"}
+                                        value="NEW"
                                         ref={inputRef}
                                       />
                                       <label
@@ -268,9 +306,9 @@ function MortgagePage() {
                                         onChange={handleStep1Ans}
                                         required
                                         checked={
-                                          step1Ans === "mortage_refinance"
+                                          step1Ans === "EXISTING"
                                         }
-                                        value="mortage_refinance"
+                                        value="EXISTING"
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
@@ -297,8 +335,8 @@ function MortgagePage() {
                                       name="insideUAE"
                                       onChange={handleStep1Ans}
                                       required
-                                      checked={step1Ans === "new_purchase"}
-                                      value="new_purchase"
+                                      checked={step1Ans === "NEW"}
+                                      value="NEW"
                                       ref={inputRef}
                                     />
                                     <label
@@ -319,8 +357,8 @@ function MortgagePage() {
                                       name="insideUAE"
                                       onChange={handleStep1Ans}
                                       required
-                                      checked={step1Ans === "mortage_refinance"}
-                                      value="mortage_refinance"
+                                      checked={step1Ans === "EXISTING"}
+                                      value="EXISTING"
                                     />
                                     <label
                                       className="d-flex flex-row align-items-center"
@@ -356,7 +394,7 @@ function MortgagePage() {
                       </>
                     )}
 
-                    {step == 2 && step1Ans === "new_purchase" && (
+                    {step == 2 && step1Ans === "NEW" && (
                       <>
                         <div
                           className={`"row ${isMobileDev ? "nospace-row" : ""}`}
@@ -384,10 +422,10 @@ function MortgagePage() {
                                         name="insideUAE"
                                         required
                                         onChange={handleStep2Ans}
-                                        value="just_browersing_the_market"
+                                        value="RESEARCHING"
                                         checked={
                                           step2Ans ===
-                                          "just_browersing_the_market"
+                                          "RESEARCHING"
                                         }
                                       />
                                       <label
@@ -409,9 +447,9 @@ function MortgagePage() {
                                         name="insideUAE"
                                         onChange={handleStep2Ans}
                                         required
-                                        value="started_looking_around"
+                                        value="VIEWING_PERSON"
                                         checked={
-                                          step2Ans === "started_looking_around"
+                                          step2Ans === "VIEWING_PERSON"
                                         }
                                       />
                                       <label
@@ -433,9 +471,9 @@ function MortgagePage() {
                                         name="insideUAE"
                                         onChange={handleStep2Ans}
                                         checked={
-                                          step2Ans === "found_dream_home"
+                                          step2Ans === "ALREADY_MADE"
                                         }
-                                        value="found_dream_home"
+                                        value="ALREADY_MADE"
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
@@ -463,10 +501,10 @@ function MortgagePage() {
                                         name="insideUAE"
                                         required
                                         onChange={handleStep2Ans}
-                                        value="just_browersing_the_market"
+                                        value="RESEARCHING"
                                         checked={
                                           step2Ans ===
-                                          "just_browersing_the_market"
+                                          "RESEARCHING"
                                         }
                                       />
                                       <label
@@ -489,9 +527,9 @@ function MortgagePage() {
                                         name="insideUAE"
                                         onChange={handleStep2Ans}
                                         required
-                                        value="started_looking_around"
+                                        value="VIEWING_PERSON"
                                         checked={
-                                          step2Ans === "started_looking_around"
+                                          step2Ans === "VIEWING_PERSON"
                                         }
                                       />
                                       <label
@@ -514,9 +552,9 @@ function MortgagePage() {
                                         name="insideUAE"
                                         onChange={handleStep2Ans}
                                         checked={
-                                          step2Ans === "found_dream_home"
+                                          step2Ans === "ALREADY_MADE"
                                         }
-                                        value="found_dream_home"
+                                        value="ALREADY_MADE"
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
@@ -565,7 +603,7 @@ function MortgagePage() {
                       </>
                     )}
 
-                    {step == 2 && step1Ans === "mortage_refinance" && (
+                    {step == 2 && step1Ans === "EXISTING" && (
                       <>
                         <div
                           className={`"row ${isMobileDev ? "nospace-row" : ""}`}
@@ -591,9 +629,10 @@ function MortgagePage() {
                                     <Select
                                       options={bankNameOption}
                                       value={bankData}
-                                      onChange={(selectedOption) =>
-                                        setBankData(selectedOption)
-                                      }
+                                      onChange={(selectedOption) => {
+                                        setBankData(selectedOption);
+                                        setSelectedBankValue(selectedOption?.value);
+                                      }}
                                     />
                                   </div>
                                 </div>
@@ -602,46 +641,17 @@ function MortgagePage() {
 
                             {isMobileDev && (
                               <>
-                                <div className="mortage-custom-checkbox  ">
-                                  <div className="col-md-12 my-3">
-                                    <div className="answers-options-container d-flex justify-content-center  mx-3">
-                                      <input
-                                        id="yes"
-                                        type="radio"
-                                        name="insideUAE"
-                                        required
-                                        value="1"
-                                      />
-                                      <label
-                                        className="d-flex flex-row align-items-center"
-                                        htmlFor="yes"
-                                      >
-                                        <span className="px-2">
-                                          {" "}
-                                          New Purchase
-                                        </span>
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div className="col-md-12 my-3">
-                                    <div className="answers-options-container d-flex  justify-content-center  mx-3">
-                                      <input
-                                        id="no"
-                                        type="radio"
-                                        name="insideUAE"
-                                        required
-                                        value="0"
-                                      />
-                                      <label
-                                        className="d-flex flex-row align-items-center"
-                                        htmlFor="no"
-                                      >
-                                        <span className="px-2">
-                                          {" "}
-                                          Mortgage Refinances
-                                        </span>
-                                      </label>
-                                    </div>
+                                <div className="d-flex  p-3">
+                                  <div className="col-md-12">
+                                    <p>Which bank is your mortgage with?</p>
+                                    <Select
+                                      options={bankNameOption}
+                                      value={bankData}
+                                      onChange={(selectedOption) => {
+                                        setBankData(selectedOption);
+                                        setSelectedBankValue(selectedOption?.value);
+                                      }}
+                                    />
                                   </div>
                                 </div>
                               </>
@@ -680,60 +690,57 @@ function MortgagePage() {
                       </>
                     )}
 
-                    {step === 3 &&
-                      step1Ans === "mortage_refinance" &&
-                      bankData && (
-                        <>
-                          <div
-                            className={`"row ${isMobileDev ? "nospace-row" : ""
-                              }`}
-                          >
-                            <div className="col-md-12">
-                              <p className="wzdTitleBar">
-                                <strong>
-                                  Alright, let's get a few details about your
-                                  property?
-                                </strong>
-                              </p>
-                            </div>
+                    {step === 3 && step1Ans === "EXISTING" && bankData && (
+                      <>
+                        <div
+                          className={`"row ${isMobileDev ? "nospace-row" : ""
+                            }`}
+                        >
+                          <div className="col-md-12">
+                            <p className="wzdTitleBar">
+                              <strong>
+                                Alright, let's get a few details about your property?
+                              </strong>
+                            </p>
                           </div>
-                          <div
-                            className={`"row ${isMobileDev ? "nospace-row" : ""
-                              }`}
-                          >
-                            <div className="form-group col-md-12">
-                              {!isMobileDev && (
-                                <>
-                                  <div className=" justify-content-center mt-3">
-                                    <div className="col-md-12">
-                                      <div className="">
-                                        <p className="form-label fw-500">
-                                          Property Value
-                                        </p>
-                                        <div className="input-group maxContent">
-                                          <span className="input-group-text  rounded-0 border-end p-2">
-                                            AED
-                                          </span>
-                                          <input
-                                            type="text"
-                                            className="form-control border-start-0  rounded-0"
-                                            placeholder="Enter amount"
-                                            value={propertyValue}
-                                            onChange={(e) => {
-                                              const parsedValue = parseInt(e?.target?.value);
-                                              // Check if parsedValue is NaN, then set it to 0
-                                              setPropertyValue(isNaN(parsedValue) ? 0 : parsedValue);
-                                            }}
-                                            name="price"
-                                          />
-                                        </div>
-                                        <small>
-                                          Not sure what the amount is? Give us
-                                          an approximate figure.
-                                        </small>
+                        </div>
+                        <div
+                          className={`"row ${isMobileDev ? "nospace-row" : ""
+                            }`}
+                        >
+                          <div className="form-group col-md-12">
+                            {!isMobileDev && (
+                              <>
+                                <div className=" justify-content-center mt-3">
+                                  <div className="col-md-12">
+                                    <div className="">
+                                      <p className="form-label fw-500">
+                                        Property Value
+                                      </p>
+                                      <div className="input-group maxContent">
+                                        <span className="input-group-text  rounded-0 border-end p-2">
+                                          AED
+                                        </span>
+                                        <input
+                                          type="text"
+                                          className="form-control border-start-0  rounded-0"
+                                          placeholder="Enter amount"
+                                          value={currentPropertyValue}
+                                          onChange={(e) => {
+                                            const parsedValue = parseInt(e?.target?.value);
+                                            // Check if parsedValue is NaN, then set it to 0
+                                            setCurrentPropertyValue(isNaN(parsedValue) ? 0 : parsedValue);
+                                          }}
+                                          name="price"
+                                        />
                                       </div>
+                                      <small>
+                                        Not sure what the amount is? Give us
+                                        an approximate figure.
+                                      </small>
+                                    </div>
 
-                                      {/* <div className="mb-3">
+                                    {/* <div className="mb-3">
                                         <p className="form-label fw-500">
                                         Outstanding loan amount
                                         </p>
@@ -757,413 +764,199 @@ function MortgagePage() {
                                         </div>
                                         <small>Not sure what the amount is? Give us an approximate figure.</small>
                                       </div> */}
-                                    </div>
                                   </div>
-                                </>
-                              )}
-
-                              {isMobileDev && (
-                                <>
-                                  <div className="mortage-custom-checkbox  ">
-                                    <div className="col-md-12 my-3">
-                                      <div className="answers-options-container d-flex justify-content-center  mx-3">
-                                        <input
-                                          id="yes"
-                                          type="radio"
-                                          name="insideUAE"
-                                          required
-                                          value="1"
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="yes"
-                                        >
-                                          <span className="px-2">
-                                            {" "}
-                                            New Purchase
-                                          </span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                    <div className="col-md-12 my-3">
-                                      <div className="answers-options-container d-flex  justify-content-center  mx-3">
-                                        <input
-                                          id="no"
-                                          type="radio"
-                                          name="insideUAE"
-                                          required
-                                          value="0"
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="no"
-                                        >
-                                          <span className="px-2">
-                                            {" "}
-                                            Mortgage Refinances
-                                          </span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-                            </div>
-                          </div>
-
-                          <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
-                            <div>
-                              {step > 1 && (
-                                <div>
-                                  <button
-                                    type="button"
-                                    className="btn btn-lg btn-blue"
-                                    onClick={handlePreClicked}
-                                  >
-                                    Back
-                                  </button>
-                                </div>
-                              )}
-                            </div>
-                            {propertyValue > 0 && (
-                              <>
-                                <div>
-                                  <button
-                                    type="button"
-                                    className="btn btn-lg btn-blue"
-                                    onClick={handleNextClicked}
-                                  >
-                                    Next
-                                  </button>
                                 </div>
                               </>
                             )}
-                          </div>
-                        </>
-                      )}
 
-                    {step === 4 &&
-                      step1Ans === "mortage_refinance" &&
-                      bankData &&
-                      propertyValue && (
-                        <>
-                          <div
-                            className={`"row ${isMobileDev ? "nospace-row" : ""
-                              }`}
-                          >
-                            <div className="col-md-12">
-                              <p className="wzdTitleBar">
-                                <strong>
-                                  What’s the remaining mortgage term?
-                                </strong>
-                              </p>
-                            </div>
-                          </div>
-                          <div
-                            className={`"row ${isMobileDev ? "nospace-row" : ""
-                              }`}
-                          >
-                            <div className="form-group col-md-12">
-                              {!isMobileDev && (
-                                <>
-                                  <div className="d-flex  mt-3">
-                                    <div className="col-md-4">
-                                      <p>What’s the remaining mortgage term?</p>
-                                      <Select
-                                        options={mortgageYearOption}
-                                        value={yearData}
-                                        className=""
-                                        onChange={(e) => setYearData(e)}
-                                      />
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-
-                              {isMobileDev && (
-                                <>
-                                  <div className="mortage-custom-checkbox  ">
-                                    <div className="col-md-12 my-3">
-                                      <div className="answers-options-container d-flex justify-content-center  mx-3">
-                                        <input
-                                          id="yes"
-                                          type="radio"
-                                          name="insideUAE"
-                                          required
-                                          value="1"
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="yes"
-                                        >
-                                          <span className="px-2">
-                                            {" "}
-                                            New Purchase
-                                          </span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                    <div className="col-md-12 my-3">
-                                      <div className="answers-options-container d-flex  justify-content-center  mx-3">
-                                        <input
-                                          id="no"
-                                          type="radio"
-                                          name="insideUAE"
-                                          required
-                                          value="0"
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="no"
-                                        >
-                                          <span className="px-2">
-                                            {" "}
-                                            Mortgage Refinances
-                                          </span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-                            </div>
-                          </div>
-
-                          <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
-                            <div>
-                              {step > 1 && (
-                                <div>
-                                  <button
-                                    type="button"
-                                    className="btn btn-lg btn-blue"
-                                    onClick={handlePreClicked}
-                                  >
-                                    Back
-                                  </button>
-                                </div>
-                              )}
-                            </div>
-                            {propertyValue > 0 && yearData && (
+                            {isMobileDev && (
                               <>
-                                <div>
-                                  <button
-                                    type="button"
-                                    className="btn btn-lg btn-blue"
-                                    onClick={handleNextClicked}
-                                  >
-                                    Next
-                                  </button>
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        </>
-                      )}
+                                <div className="justify-content-center p-3">
+                                  <div className="col-md-12">
+                                    <div className="">
+                                      <p className="form-label fw-500">
+                                        Property Value
+                                      </p>
+                                      <div className="input-group maxContent">
+                                        <span className="input-group-text  rounded-0 border-end p-2">
+                                          AED
+                                        </span>
+                                        <input
+                                          type="text"
+                                          className="form-control border-start-0  rounded-0"
+                                          placeholder="Enter amount"
+                                          value={currentPropertyValue}
+                                          onChange={(e) => {
+                                            const parsedValue = parseInt(e?.target?.value);
+                                            // Check if parsedValue is NaN, then set it to 0
+                                            setCurrentPropertyValue(isNaN(parsedValue) ? 0 : parsedValue);
+                                          }}
+                                          name="price"
+                                        />
+                                      </div>
+                                      <small>
+                                        Not sure what the amount is? Give us
+                                        an approximate figure.
+                                      </small>
+                                    </div>
 
-                    {step === 5 &&
-                      step1Ans === "mortage_refinance" &&
-                      bankData &&
-                      propertyValue &&
-                      yearData && (
-                        <>
-                          <div
-                            className={`"row ${isMobileDev ? "nospace-row" : ""
-                              }`}
-                          >
-                            <div className="form-group col-md-12 text-center">
-                              {!isMobileDev && (
-                                <>
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <p className="wzdTitleBar">
-                                          <strong>
-                                            Let's get some details to help serve
-                                            you better!
-                                          </strong>
+                                    {/* <div className="mb-3">
+                                        <p className="form-label fw-500">
+                                        Outstanding loan amount
                                         </p>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <div className="contactForm">
-                                          <form
-                                            onSubmit={handleSubmit(onSubmit)}
-                                          >
-                                            <div className="row">
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="text"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="name"
-                                                  placeholder="Name"
-                                                  {...register("name", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.name && (
-                                                  <small className="text-danger">
-                                                    Name is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="email"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="email"
-                                                  placeholder="Email Address"
-                                                  {...register("email", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.email && (
-                                                  <small className="text-danger">
-                                                    Email is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <Controller
-                                                  name="phone"
-                                                  control={control}
-                                                  rules={{ required: true }}
-                                                  render={({
-                                                    field: { onChange, value },
-                                                  }) => (
-                                                    <PhoneInput
-                                                      international
-                                                      countryCallingCodeEditable={
-                                                        false
-                                                      }
-                                                      className="form-control rounded-0 fs-14 d-flex"
-                                                      defaultCountry="AE"
-                                                      placeholder="Enter Phone Number"
-                                                      value={value}
-                                                      onChange={onChange}
-                                                      style={{ border: "0px" }}
-                                                    />
-                                                  )}
-                                                />
-
-                                                {errors.phone && (
-                                                  <small className="text-danger">
-                                                    Phone is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <textarea
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="message"
-                                                  rows={3}
-                                                  placeholder="Message"
-                                                  {...register("message", {
-                                                    required: false,
-                                                  })}
-                                                ></textarea>
-                                                {errors.message && (
-                                                  <small className="text-danger">
-                                                    Message is required.
-                                                  </small>
-                                                )}
-                                              </div>
-                                              <input
-                                                type="hidden"
-                                                value="ContactForm"
-                                                {...register("formName", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <input
-                                                type="hidden"
-                                                value={currentPageURL}
-                                                {...register("page", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <div className="col-12 mb-2">
-                                                <div className="text-start">
-                                                  <button
-                                                    className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
-                                                    type="submit"
-                                                  >
-                                                    Submit
-                                                  </button>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </form>
+                                        <div className="input-group maxContent">
+                                          <span className="input-group-text  rounded-0 border-end p-2">
+                                            AED
+                                          </span>
+                                          <input
+                                            type="text"
+                                            className="form-control border-start-0  rounded-0"
+                                            placeholder="Enter amount"
+                                            value={propertyLoanValue}
+                                            onChange={(e) =>
+                                              setPropertyLoanValue(
+                                                parseInt(e.target.value)
+                                              )
+                                            }
+                                            name="price"
+                                          />
+                                          
                                         </div>
-                                      </div>
-                                    </div>
+                                        <small>Not sure what the amount is? Give us an approximate figure.</small>
+                                      </div> */}
                                   </div>
-                                </>
-                              )}
-
-                              {isMobileDev && (
-                                <>
-                                  <div className="mortage-custom-checkbox  ">
-                                    <div className="col-md-12 my-3">
-                                      <div className="answers-options-container d-flex justify-content-center  mx-3">
-                                        <input
-                                          id="yes"
-                                          type="radio"
-                                          name="insideUAE"
-                                          required
-                                          value="1"
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="yes"
-                                        >
-                                          <span className="px-2">
-                                            {" "}
-                                            New Purchase
-                                          </span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                    <div className="col-md-12 my-3">
-                                      <div className="answers-options-container d-flex  justify-content-center  mx-3">
-                                        <input
-                                          id="no"
-                                          type="radio"
-                                          name="insideUAE"
-                                          required
-                                          value="0"
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="no"
-                                        >
-                                          <span className="px-2">
-                                            {" "}
-                                            Mortgage Refinances
-                                          </span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-                            </div>
+                                </div>
+                              </>
+                            )}
                           </div>
-                        </>
-                      )}
+                        </div>
+
+                        <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
+                          <div>
+                            {step > 1 && (
+                              <div>
+                                <button
+                                  type="button"
+                                  className="btn btn-lg btn-blue"
+                                  onClick={handlePreClicked}
+                                >
+                                  Back
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                          {currentPropertyValue > 0 && (
+                            <>
+                              <div>
+                                <button
+                                  type="button"
+                                  className="btn btn-lg btn-blue"
+                                  onClick={handleNextClicked}
+                                >
+                                  Next
+                                </button>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </>
+                    )}
+                    {step === 4 && step1Ans === "EXISTING" && bankData && currentPropertyValue && (
+                      <>
+                        <div
+                          className={`"row ${isMobileDev ? "nospace-row" : ""
+                            }`}
+                        >
+                          <div className="col-md-12">
+                            <p className="wzdTitleBar">
+                              <strong>
+                                What’s the remaining mortgage term?
+                              </strong>
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          className={`"row ${isMobileDev ? "nospace-row" : ""
+                            }`}
+                        >
+                          <div className="form-group col-md-12">
+                            {!isMobileDev && (
+                              <>
+                                <div className="d-flex  mt-3">
+                                  <div className="col-md-4">
+                                    <p>What’s the remaining mortgage term?</p>
+                                    <Select
+                                      options={mortgageYearOption}
+                                      value={yearData}
+                                      className=""
+                                      onChange={(e) => {
+                                        setYearData(e)
+                                        setSelectYearData(e?.value)
+                                      }}
+                                    />
+                                  </div>
+                                </div>
+                              </>
+                            )}
+
+                            {isMobileDev && (
+                              <>
+                                <div className="d-flex  p-3">
+                                  <div className="col-md-4">
+                                    <p>What’s the remaining mortgage term?</p>
+                                    <Select
+                                      options={mortgageYearOption}
+                                      value={yearData}
+                                      className=""
+                                      onChange={(e) => {
+                                        setYearData(e)
+                                        setSelectYearData(e?.value)
+                                      }}
+                                    />
+                                  </div>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
+                          <div>
+                            {step > 1 && (
+                              <div>
+                                <button
+                                  type="button"
+                                  className="btn btn-lg btn-blue"
+                                  onClick={handlePreClicked}
+                                >
+                                  Back
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                          {currentPropertyValue > 0 && yearData && (
+                            <>
+                              <div>
+                                <button
+                                  type="button"
+                                  className="btn btn-lg btn-blue"
+                                  onClick={handleNextClicked}
+                                >
+                                  Next
+                                </button>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </>
+                    )}
 
                     {step === 3 &&
-                      step1Ans === "new_purchase" &&
+                      step1Ans === "NEW" &&
                       [
-                        "just_browersing_the_market",
-                        "started_looking_around",
-                        "found_dream_home",
+                        "RESEARCHING",
+                        "VIEWING_PERSON",
+                        "ALREADY_MADE",
                       ].includes(step2Ans) && (
                         <>
                           <div
@@ -1173,8 +966,7 @@ function MortgagePage() {
                             <div className="col-md-12">
                               <p className="wzdTitleBar">
                                 <strong>
-                                  What kind of property are you in the market
-                                  for?
+                                  What kind of property are you in the market for?
                                 </strong>
                               </p>
                             </div>
@@ -1195,8 +987,8 @@ function MortgagePage() {
                                           name="insideUAE"
                                           required
                                           onChange={handleStep3Ans}
-                                          value="villa"
-                                          checked={step3Ans === "villa"}
+                                          value="VILLA"
+                                          checked={step3Ans === "VILLA"}
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
@@ -1213,8 +1005,8 @@ function MortgagePage() {
                                           type="radio"
                                           name="insideUAE"
                                           onChange={handleStep3Ans}
-                                          checked={step3Ans === "apartment"}
-                                          value="apartment"
+                                          checked={step3Ans === "APARTMENT"}
+                                          value="APARTMENT"
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
@@ -1234,8 +1026,8 @@ function MortgagePage() {
                                           type="radio"
                                           name="insideUAE"
                                           onChange={handleStep3Ans}
-                                          checked={step3Ans === "undecided"}
-                                          value="undecided"
+                                          checked={step3Ans === "NOT_DECIDED"}
+                                          value="NOT_DECIDED"
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
@@ -1263,8 +1055,8 @@ function MortgagePage() {
                                           name="insideUAE"
                                           required
                                           onChange={handleStep3Ans}
-                                          value="villa"
-                                          checked={step3Ans === "villa"}
+                                          value="VILLA"
+                                          checked={step3Ans === "VILLA"}
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
@@ -1282,8 +1074,8 @@ function MortgagePage() {
                                           type="radio"
                                           name="insideUAE"
                                           onChange={handleStep3Ans}
-                                          checked={step3Ans === "apartment"}
-                                          value="apartment"
+                                          checked={step3Ans === "APARTMENT"}
+                                          value="APARTMENT"
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
@@ -1304,8 +1096,8 @@ function MortgagePage() {
                                           type="radio"
                                           name="insideUAE"
                                           onChange={handleStep3Ans}
-                                          checked={step3Ans === "undecided"}
-                                          value="undecided"
+                                          checked={step3Ans === "NOT_DECIDED"}
+                                          value="NOT_DECIDED"
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
@@ -1356,13 +1148,13 @@ function MortgagePage() {
                       )}
 
                     {step === 4 &&
-                      step1Ans === "new_purchase" &&
+                      step1Ans === "NEW" &&
                       [
-                        "just_browersing_the_market",
-                        "started_looking_around",
-                        "found_dream_home",
+                        "RESEARCHING",
+                        "VIEWING_PERSON",
+                        "ALREADY_MADE",
                       ].includes(step2Ans) &&
-                      ["villa", "apartment"].includes(step3Ans) && (
+                      ["VILLA", "APARTMENT"].includes(step3Ans) && (
                         <>
                           <div
                             className={`"row ${isMobileDev ? "nospace-row" : ""
@@ -1371,8 +1163,7 @@ function MortgagePage() {
                             <div className="col-md-12">
                               <p className="wzdTitleBar">
                                 <strong>
-                                  Looking for something ready? Would an off-plan
-                                  project work as well?
+                                  Looking for something ready? Would an off-plan project work as well?
                                 </strong>
                               </p>
                             </div>
@@ -1392,10 +1183,10 @@ function MortgagePage() {
                                           type="radio"
                                           name="insideUAE"
                                           checked={
-                                            step4Ans === "ready_to_move_in"
+                                            step4Ans === "COMPLETED"
                                           }
                                           onChange={handleStep4Ans}
-                                          value="ready_to_move_in"
+                                          value="COMPLETED"
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
@@ -1416,9 +1207,9 @@ function MortgagePage() {
                                           name="insideUAE"
                                           onChange={handleStep4Ans}
                                           checked={
-                                            step4Ans === "under_construction"
+                                            step4Ans === "UNDER_CONSTRUCTION"
                                           }
-                                          value="under_construction"
+                                          value="UNDER_CONSTRUCTION"
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
@@ -1445,10 +1236,10 @@ function MortgagePage() {
                                           type="radio"
                                           name="insideUAE"
                                           checked={
-                                            step4Ans === "ready_to_move_in"
+                                            step4Ans === "COMPLETED"
                                           }
                                           onChange={handleStep4Ans}
-                                          value="ready_to_move_in"
+                                          value="COMPLETED"
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
@@ -1470,9 +1261,9 @@ function MortgagePage() {
                                           name="insideUAE"
                                           onChange={handleStep4Ans}
                                           checked={
-                                            step4Ans === "under_construction"
+                                            step4Ans === "UNDER_CONSTRUCTION"
                                           }
-                                          value="under_construction"
+                                          value="UNDER_CONSTRUCTION"
                                         />
                                         <label
                                           className="d-flex flex-row align-items-center"
@@ -1523,14 +1314,14 @@ function MortgagePage() {
                       )}
 
                     {step === 5 &&
-                      step1Ans === "new_purchase" &&
+                      step1Ans === "NEW" &&
                       [
-                        "just_browersing_the_market",
-                        "started_looking_around",
-                        "found_dream_home",
+                        "RESEARCHING",
+                        "VIEWING_PERSON",
+                        "ALREADY_MADE",
                       ].includes(step2Ans) &&
-                      ["villa", "apartment"].includes(step3Ans) &&
-                      ["ready_to_move_in", "under_construction"].includes(
+                      ["VILLA", "APARTMENT"].includes(step3Ans) &&
+                      ["COMPLETED", "UNDER_CONSTRUCTION"].includes(
                         step4Ans
                       ) && (
                         <>
@@ -1541,8 +1332,7 @@ function MortgagePage() {
                             <div className="col-md-12">
                               <p className="wzdTitleBar">
                                 <strong>
-                                  Mention the maximum amount you are willing to
-                                  spend on the property
+                                  Mention the maximum amount you are willing to spend on the property
                                 </strong>
                               </p>
                             </div>
@@ -1645,964 +1435,6 @@ function MortgagePage() {
                                 </div>
                               </>
                             )}
-                          </div>
-                        </>
-                      )}
-
-                    {step === 6 &&
-                      step1Ans === "new_purchase" &&
-                      [
-                        "just_browersing_the_market",
-                        "started_looking_around",
-                        "found_dream_home",
-                      ].includes(step2Ans) &&
-                      ["villa", "apartment"].includes(step3Ans) &&
-                      ["ready_to_move_in", "under_construction"].includes(
-                        step4Ans
-                      ) &&
-                      propertyValue && (
-                        <>
-                          <div
-                            className={`"row ${isMobileDev ? "nospace-row" : ""
-                              }`}
-                          >
-                            <div className="form-group col-md-12 text-center">
-                              {!isMobileDev && (
-                                <>
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <p className="wzdTitleBar">
-                                          <strong>
-                                            Let's get some details to help serve
-                                            you better!
-                                          </strong>
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <div className="contactForm">
-                                          <form
-                                            onSubmit={handleSubmit(onSubmit)}
-                                          >
-                                            <div className="row">
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="text"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="name"
-                                                  placeholder="Name"
-                                                  {...register("name", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.name && (
-                                                  <small className="text-danger">
-                                                    Name is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="email"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="email"
-                                                  placeholder="Email Address"
-                                                  {...register("email", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.email && (
-                                                  <small className="text-danger">
-                                                    Email is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <Controller
-                                                  name="phone"
-                                                  control={control}
-                                                  rules={{ required: true }}
-                                                  render={({
-                                                    field: { onChange, value },
-                                                  }) => (
-                                                    <PhoneInput
-                                                      international
-                                                      countryCallingCodeEditable={
-                                                        false
-                                                      }
-                                                      className="form-control rounded-0 fs-14 d-flex"
-                                                      defaultCountry="AE"
-                                                      placeholder="Enter Phone Number"
-                                                      value={value}
-                                                      onChange={onChange}
-                                                      style={{ border: "0px" }}
-                                                    />
-                                                  )}
-                                                />
-
-                                                {errors.phone && (
-                                                  <small className="text-danger">
-                                                    Phone is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <textarea
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="message"
-                                                  rows={3}
-                                                  placeholder="Message"
-                                                  {...register("message", {
-                                                    required: false,
-                                                  })}
-                                                ></textarea>
-                                                {errors.message && (
-                                                  <small className="text-danger">
-                                                    Message is required.
-                                                  </small>
-                                                )}
-                                              </div>
-                                              <input
-                                                type="hidden"
-                                                value="ContactForm"
-                                                {...register("formName", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <input
-                                                type="hidden"
-                                                value={currentPageURL}
-                                                {...register("page", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <div className="col-12 mb-2">
-                                                <div className="text-start">
-                                                  <button
-                                                    className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
-                                                    type="submit"
-                                                  >
-                                                    Submit
-                                                  </button>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </form>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-
-                              {isMobileDev && (
-                                <>
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <p className="wzdTitleBar">
-                                          <strong>
-                                            Let's get some details to help serve
-                                            you better!
-                                          </strong>
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <div className="contactForm">
-                                          <form
-                                            onSubmit={handleSubmit(onSubmit)}
-                                          >
-                                            <div className="row">
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="text"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="name"
-                                                  placeholder="Name"
-                                                  {...register("name", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.name && (
-                                                  <small className="text-danger">
-                                                    Name is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="email"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="email"
-                                                  placeholder="Email Address"
-                                                  {...register("email", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.email && (
-                                                  <small className="text-danger">
-                                                    Email is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <Controller
-                                                  name="phone"
-                                                  control={control}
-                                                  rules={{ required: true }}
-                                                  render={({
-                                                    field: { onChange, value },
-                                                  }) => (
-                                                    <PhoneInput
-                                                      international
-                                                      countryCallingCodeEditable={
-                                                        false
-                                                      }
-                                                      className="form-control rounded-0 fs-14 d-flex"
-                                                      defaultCountry="AE"
-                                                      placeholder="Enter Phone Number"
-                                                      value={value}
-                                                      onChange={onChange}
-                                                      style={{ border: "0px" }}
-                                                    />
-                                                  )}
-                                                />
-
-                                                {errors.phone && (
-                                                  <small className="text-danger">
-                                                    Phone is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <textarea
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="message"
-                                                  rows={3}
-                                                  placeholder="Message"
-                                                  {...register("message", {
-                                                    required: false,
-                                                  })}
-                                                ></textarea>
-                                                {errors.message && (
-                                                  <small className="text-danger">
-                                                    Message is required.
-                                                  </small>
-                                                )}
-                                              </div>
-                                              <input
-                                                type="hidden"
-                                                value="ContactForm"
-                                                {...register("formName", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <input
-                                                type="hidden"
-                                                value={currentPageURL}
-                                                {...register("page", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <div className="col-12 mb-2">
-                                                <div className="text-start">
-                                                  <button
-                                                    className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
-                                                    type="submit"
-                                                  >
-                                                    Submit
-                                                  </button>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </form>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-                            </div>
-                          </div>
-                        </>
-                      )}
-
-                    {step === 4 &&
-                      step1Ans === "new_purchase" &&
-                      [
-                        "just_browersing_the_market",
-                        "started_looking_around",
-                        "found_dream_home",
-                      ].includes(step2Ans) &&
-                      ["undecided"].includes(step3Ans) && (
-                        <>
-                          <div
-                            className={`"row ${isMobileDev ? "nospace-row" : ""
-                              }`}
-                          >
-                            <div className="form-group col-md-12">
-                              {!isMobileDev && (
-                                <>
-                                  <div
-                                    className={`"row ${isMobileDev ? "nospace-row" : ""
-                                      }`}
-                                  >
-                                    <div className="form-group col-md-12 text-center">
-                                      {!isMobileDev && (
-                                        <>
-                                          <div className="container">
-                                            <div className="row justify-content-center">
-                                              <div className="col-lg-6">
-                                                <p className="wzdTitleBar">
-                                                  <strong>
-                                                    Let's get some details to
-                                                    help serve you better!
-                                                  </strong>
-                                                </p>
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div className="container">
-                                            <div className="row justify-content-center">
-                                              <div className="col-lg-6">
-                                                <div className="contactForm">
-                                                  <form
-                                                    onSubmit={handleSubmit(
-                                                      onSubmit
-                                                    )}
-                                                  >
-                                                    <div className="row">
-                                                      <div className="col-12 mb-2">
-                                                        <input
-                                                          type="text"
-                                                          className="form-control rounded-0 fs-14"
-                                                          id="name"
-                                                          placeholder="Name"
-                                                          {...register("name", {
-                                                            required: true,
-                                                          })}
-                                                        />
-                                                        {errors.name && (
-                                                          <small className="text-danger">
-                                                            Name is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-
-                                                      <div className="col-12 mb-2">
-                                                        <input
-                                                          type="email"
-                                                          className="form-control rounded-0 fs-14"
-                                                          id="email"
-                                                          placeholder="Email Address"
-                                                          {...register(
-                                                            "email",
-                                                            {
-                                                              required: true,
-                                                            }
-                                                          )}
-                                                        />
-                                                        {errors.email && (
-                                                          <small className="text-danger">
-                                                            Email is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-
-                                                      <div className="col-12 mb-2">
-                                                        <Controller
-                                                          name="phone"
-                                                          control={control}
-                                                          rules={{
-                                                            required: true,
-                                                          }}
-                                                          render={({
-                                                            field: {
-                                                              onChange,
-                                                              value,
-                                                            },
-                                                          }) => (
-                                                            <PhoneInput
-                                                              international
-                                                              countryCallingCodeEditable={
-                                                                false
-                                                              }
-                                                              className="form-control rounded-0 fs-14 d-flex"
-                                                              defaultCountry="AE"
-                                                              placeholder="Enter Phone Number"
-                                                              value={value}
-                                                              onChange={
-                                                                onChange
-                                                              }
-                                                              style={{
-                                                                border: "0px",
-                                                              }}
-                                                            />
-                                                          )}
-                                                        />
-
-                                                        {errors.phone && (
-                                                          <small className="text-danger">
-                                                            Phone is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-
-                                                      <div className="col-12 mb-2">
-                                                        <textarea
-                                                          className="form-control rounded-0 fs-14"
-                                                          id="message"
-                                                          rows={3}
-                                                          placeholder="Message"
-                                                          {...register(
-                                                            "message",
-                                                            {
-                                                              required: false,
-                                                            }
-                                                          )}
-                                                        ></textarea>
-                                                        {errors.message && (
-                                                          <small className="text-danger">
-                                                            Message is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-                                                      <input
-                                                        type="hidden"
-                                                        value="ContactForm"
-                                                        {...register(
-                                                          "formName",
-                                                          {
-                                                            required: false,
-                                                          }
-                                                        )}
-                                                      />
-                                                      <input
-                                                        type="hidden"
-                                                        value={currentPageURL}
-                                                        {...register("page", {
-                                                          required: false,
-                                                        })}
-                                                      />
-                                                      <div className="col-12 mb-2">
-                                                        <div className="text-start">
-                                                          <button
-                                                            className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
-                                                            type="submit"
-                                                          >
-                                                            Submit
-                                                          </button>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </form>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </>
-                                      )}
-
-                                      {isMobileDev && (
-                                        <>
-                                          <div className="container">
-                                            <div className="row justify-content-center">
-                                              <div className="col-lg-6">
-                                                <p className="wzdTitleBar">
-                                                  <strong>
-                                                    Let's get some details to
-                                                    help serve you better!
-                                                  </strong>
-                                                </p>
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div className="container">
-                                            <div className="row justify-content-center">
-                                              <div className="col-lg-6">
-                                                <div className="contactForm">
-                                                  <form
-                                                    onSubmit={handleSubmit(
-                                                      onSubmit
-                                                    )}
-                                                  >
-                                                    <div className="row">
-                                                      <div className="col-12 mb-2">
-                                                        <input
-                                                          type="text"
-                                                          className="form-control rounded-0 fs-14"
-                                                          id="name"
-                                                          placeholder="Name"
-                                                          {...register("name", {
-                                                            required: true,
-                                                          })}
-                                                        />
-                                                        {errors.name && (
-                                                          <small className="text-danger">
-                                                            Name is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-
-                                                      <div className="col-12 mb-2">
-                                                        <input
-                                                          type="email"
-                                                          className="form-control rounded-0 fs-14"
-                                                          id="email"
-                                                          placeholder="Email Address"
-                                                          {...register(
-                                                            "email",
-                                                            {
-                                                              required: true,
-                                                            }
-                                                          )}
-                                                        />
-                                                        {errors.email && (
-                                                          <small className="text-danger">
-                                                            Email is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-
-                                                      <div className="col-12 mb-2">
-                                                        <Controller
-                                                          name="phone"
-                                                          control={control}
-                                                          rules={{
-                                                            required: true,
-                                                          }}
-                                                          render={({
-                                                            field: {
-                                                              onChange,
-                                                              value,
-                                                            },
-                                                          }) => (
-                                                            <PhoneInput
-                                                              international
-                                                              countryCallingCodeEditable={
-                                                                false
-                                                              }
-                                                              className="form-control rounded-0 fs-14 d-flex"
-                                                              defaultCountry="AE"
-                                                              placeholder="Enter Phone Number"
-                                                              value={value}
-                                                              onChange={
-                                                                onChange
-                                                              }
-                                                              style={{
-                                                                border: "0px",
-                                                              }}
-                                                            />
-                                                          )}
-                                                        />
-
-                                                        {errors.phone && (
-                                                          <small className="text-danger">
-                                                            Phone is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-
-                                                      <div className="col-12 mb-2">
-                                                        <textarea
-                                                          className="form-control rounded-0 fs-14"
-                                                          id="message"
-                                                          rows={3}
-                                                          placeholder="Message"
-                                                          {...register(
-                                                            "message",
-                                                            {
-                                                              required: false,
-                                                            }
-                                                          )}
-                                                        ></textarea>
-                                                        {errors.message && (
-                                                          <small className="text-danger">
-                                                            Message is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-                                                      <input
-                                                        type="hidden"
-                                                        value="ContactForm"
-                                                        {...register(
-                                                          "formName",
-                                                          {
-                                                            required: false,
-                                                          }
-                                                        )}
-                                                      />
-                                                      <input
-                                                        type="hidden"
-                                                        value={currentPageURL}
-                                                        {...register("page", {
-                                                          required: false,
-                                                        })}
-                                                      />
-                                                      <div className="col-12 mb-2">
-                                                        <div className="text-start">
-                                                          <button
-                                                            className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
-                                                            type="submit"
-                                                          >
-                                                            Submit
-                                                          </button>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </form>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </>
-                                      )}
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-
-                              {isMobileDev && (
-                                <>
-                                  <div
-                                    className={`"row ${isMobileDev ? "nospace-row" : ""
-                                      }`}
-                                  >
-                                    <div className="form-group col-md-12 text-center">
-                                      {!isMobileDev && (
-                                        <>
-                                          <div className="container">
-                                            <div className="row justify-content-center">
-                                              <div className="col-lg-6">
-                                                <p className="wzdTitleBar">
-                                                  <strong>
-                                                    Let's get some details to
-                                                    help serve you better!
-                                                  </strong>
-                                                </p>
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div className="container">
-                                            <div className="row justify-content-center">
-                                              <div className="col-lg-6">
-                                                <div className="contactForm">
-                                                  <form
-                                                    onSubmit={handleSubmit(
-                                                      onSubmit
-                                                    )}
-                                                  >
-                                                    <div className="row">
-                                                      <div className="col-12 mb-2">
-                                                        <input
-                                                          type="text"
-                                                          className="form-control rounded-0 fs-14"
-                                                          id="name"
-                                                          placeholder="Name"
-                                                          {...register("name", {
-                                                            required: true,
-                                                          })}
-                                                        />
-                                                        {errors.name && (
-                                                          <small className="text-danger">
-                                                            Name is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-
-                                                      <div className="col-12 mb-2">
-                                                        <input
-                                                          type="email"
-                                                          className="form-control rounded-0 fs-14"
-                                                          id="email"
-                                                          placeholder="Email Address"
-                                                          {...register(
-                                                            "email",
-                                                            {
-                                                              required: true,
-                                                            }
-                                                          )}
-                                                        />
-                                                        {errors.email && (
-                                                          <small className="text-danger">
-                                                            Email is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-
-                                                      <div className="col-12 mb-2">
-                                                        <Controller
-                                                          name="phone"
-                                                          control={control}
-                                                          rules={{
-                                                            required: true,
-                                                          }}
-                                                          render={({
-                                                            field: {
-                                                              onChange,
-                                                              value,
-                                                            },
-                                                          }) => (
-                                                            <PhoneInput
-                                                              international
-                                                              countryCallingCodeEditable={
-                                                                false
-                                                              }
-                                                              className="form-control rounded-0 fs-14 d-flex"
-                                                              defaultCountry="AE"
-                                                              placeholder="Enter Phone Number"
-                                                              value={value}
-                                                              onChange={
-                                                                onChange
-                                                              }
-                                                              style={{
-                                                                border: "0px",
-                                                              }}
-                                                            />
-                                                          )}
-                                                        />
-
-                                                        {errors.phone && (
-                                                          <small className="text-danger">
-                                                            Phone is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-
-                                                      <div className="col-12 mb-2">
-                                                        <textarea
-                                                          className="form-control rounded-0 fs-14"
-                                                          id="message"
-                                                          rows={3}
-                                                          placeholder="Message"
-                                                          {...register(
-                                                            "message",
-                                                            {
-                                                              required: false,
-                                                            }
-                                                          )}
-                                                        ></textarea>
-                                                        {errors.message && (
-                                                          <small className="text-danger">
-                                                            Message is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-                                                      <input
-                                                        type="hidden"
-                                                        value="ContactForm"
-                                                        {...register(
-                                                          "formName",
-                                                          {
-                                                            required: false,
-                                                          }
-                                                        )}
-                                                      />
-                                                      <input
-                                                        type="hidden"
-                                                        value={currentPageURL}
-                                                        {...register("page", {
-                                                          required: false,
-                                                        })}
-                                                      />
-                                                      <div className="col-12 mb-2">
-                                                        <div className="text-start">
-                                                          <button
-                                                            className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
-                                                            type="submit"
-                                                          >
-                                                            Submit
-                                                          </button>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </form>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </>
-                                      )}
-
-                                      {isMobileDev && (
-                                        <>
-                                          <div className="container">
-                                            <div className="row justify-content-center">
-                                              <div className="col-lg-6">
-                                                <p className="wzdTitleBar">
-                                                  <strong>
-                                                    Let's get some details to
-                                                    help serve you better!
-                                                  </strong>
-                                                </p>
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div className="container">
-                                            <div className="row justify-content-center">
-                                              <div className="col-lg-6">
-                                                <div className="contactForm">
-                                                  <form
-                                                    onSubmit={handleSubmit(
-                                                      onSubmit
-                                                    )}
-                                                  >
-                                                    <div className="row">
-                                                      <div className="col-12 mb-2">
-                                                        <input
-                                                          type="text"
-                                                          className="form-control rounded-0 fs-14"
-                                                          id="name"
-                                                          placeholder="Name"
-                                                          {...register("name", {
-                                                            required: true,
-                                                          })}
-                                                        />
-                                                        {errors.name && (
-                                                          <small className="text-danger">
-                                                            Name is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-
-                                                      <div className="col-12 mb-2">
-                                                        <input
-                                                          type="email"
-                                                          className="form-control rounded-0 fs-14"
-                                                          id="email"
-                                                          placeholder="Email Address"
-                                                          {...register(
-                                                            "email",
-                                                            {
-                                                              required: true,
-                                                            }
-                                                          )}
-                                                        />
-                                                        {errors.email && (
-                                                          <small className="text-danger">
-                                                            Email is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-
-                                                      <div className="col-12 mb-2">
-                                                        <Controller
-                                                          name="phone"
-                                                          control={control}
-                                                          rules={{
-                                                            required: true,
-                                                          }}
-                                                          render={({
-                                                            field: {
-                                                              onChange,
-                                                              value,
-                                                            },
-                                                          }) => (
-                                                            <PhoneInput
-                                                              international
-                                                              countryCallingCodeEditable={
-                                                                false
-                                                              }
-                                                              className="form-control rounded-0 fs-14 d-flex"
-                                                              defaultCountry="AE"
-                                                              placeholder="Enter Phone Number"
-                                                              value={value}
-                                                              onChange={
-                                                                onChange
-                                                              }
-                                                              style={{
-                                                                border: "0px",
-                                                              }}
-                                                            />
-                                                          )}
-                                                        />
-
-                                                        {errors.phone && (
-                                                          <small className="text-danger">
-                                                            Phone is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-
-                                                      <div className="col-12 mb-2">
-                                                        <textarea
-                                                          className="form-control rounded-0 fs-14"
-                                                          id="message"
-                                                          rows={3}
-                                                          placeholder="Message"
-                                                          {...register(
-                                                            "message",
-                                                            {
-                                                              required: false,
-                                                            }
-                                                          )}
-                                                        ></textarea>
-                                                        {errors.message && (
-                                                          <small className="text-danger">
-                                                            Message is required.
-                                                          </small>
-                                                        )}
-                                                      </div>
-                                                      <input
-                                                        type="hidden"
-                                                        value="ContactForm"
-                                                        {...register(
-                                                          "formName",
-                                                          {
-                                                            required: false,
-                                                          }
-                                                        )}
-                                                      />
-                                                      <input
-                                                        type="hidden"
-                                                        value={currentPageURL}
-                                                        {...register("page", {
-                                                          required: false,
-                                                        })}
-                                                      />
-                                                      <div className="col-12 mb-2">
-                                                        <div className="text-start">
-                                                          <button
-                                                            className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
-                                                            type="submit"
-                                                          >
-                                                            Submit
-                                                          </button>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </form>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </>
-                                      )}
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-                            </div>
                           </div>
                         </>
                       )}
@@ -2720,6 +1552,363 @@ function MortgagePage() {
                         </div>
                       </>
                     )}
+
+
+                    {showForm == true
+                      && (
+                        <>
+                          <div
+                            className={`"row ${isMobileDev ? "nospace-row" : ""
+                              }`}
+                          >
+                            <div className="form-group col-md-12 text-center">
+                              {!isMobileDev && (
+                                <>
+                                  <div className="container">
+                                    <div className="row justify-content-center">
+                                      <div className="col-lg-6">
+                                        <p className="wzdTitleBar">
+                                          <strong>
+                                            Let's get some details to help serve
+                                            you better!
+                                          </strong>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div className="container">
+                                    <div className="row justify-content-center">
+                                      <div className="col-lg-6">
+                                        <div className="contactForm">
+                                          <form
+                                            onSubmit={handleSubmit(onSubmit)}
+                                          >
+                                            <div className="row">
+                                              <input type="hidden"
+                                                value={step1Ans}
+                                                {...register("mortgage_type", { required: false })}
+                                              />
+                                              <input type="hidden"
+                                                value={step2Ans}
+                                                {...register("property_stage", { required: false })}
+                                              />
+                                              <input type="hidden"
+                                                value={step3Ans}
+                                                {...register("property_type", { required: false })}
+                                              />
+                                              <input type="hidden"
+                                                value={step4Ans}
+                                                {...register("property_looking_status", { required: false })}
+                                              />
+
+                                              <input type="hidden"
+                                                value={propertyValue}
+                                                {...register("estimated_budget", { required: false })}
+                                              />
+
+                                              <input type="hidden"
+                                                value={selectedBankValue}
+                                                {...register("existing_mortgage_bank_id", { required: false })}
+                                              />
+
+                                              <input type="hidden"
+                                                value={currentPropertyValue}
+                                                {...register("property_current_value", { required: false })}
+                                              />
+
+                                              <input type="hidden"
+                                                value={selectYearData}
+                                                {...register("existing_mortgage_remaining_term", { required: false })}
+                                              />
+                                              <div className="col-12 mb-2">
+                                                <input
+                                                  type="text"
+                                                  className="form-control rounded-0 fs-14"
+                                                  id="name"
+                                                  placeholder="Name"
+                                                  {...register("name", {
+                                                    required: true,
+                                                  })}
+                                                />
+                                                {errors.name && (
+                                                  <small className="text-danger">
+                                                    Name is required.
+                                                  </small>
+                                                )}
+                                              </div>
+
+                                              <div className="col-12 mb-2">
+                                                <input
+                                                  type="email"
+                                                  className="form-control rounded-0 fs-14"
+                                                  id="email"
+                                                  placeholder="Email Address"
+                                                  {...register("email", {
+                                                    required: true,
+                                                  })}
+                                                />
+                                                {errors.email && (
+                                                  <small className="text-danger">
+                                                    Email is required.
+                                                  </small>
+                                                )}
+                                              </div>
+
+                                              <div className="col-12 mb-2">
+                                                <Controller
+                                                  name="phone"
+                                                  control={control}
+                                                  rules={{ required: true }}
+                                                  render={({
+                                                    field: { onChange, value },
+                                                  }) => (
+                                                    <PhoneInput
+                                                      international
+                                                      countryCallingCodeEditable={
+                                                        false
+                                                      }
+                                                      className="form-control rounded-0 fs-14 d-flex"
+                                                      defaultCountry="AE"
+                                                      placeholder="Enter Phone Number"
+                                                      value={value}
+                                                      onChange={onChange}
+                                                      style={{ border: "0px" }}
+                                                    />
+                                                  )}
+                                                />
+
+                                                {errors.phone && (
+                                                  <small className="text-danger">
+                                                    Phone is required.
+                                                  </small>
+                                                )}
+                                              </div>
+
+                                              <div className="col-12 mb-2">
+                                                <textarea
+                                                  className="form-control rounded-0 fs-14"
+                                                  id="message"
+                                                  rows={3}
+                                                  placeholder="Message"
+                                                  {...register("message", {
+                                                    required: false,
+                                                  })}
+                                                ></textarea>
+                                                {errors.message && (
+                                                  <small className="text-danger">
+                                                    Message is required.
+                                                  </small>
+                                                )}
+                                              </div>
+                                              <input
+                                                type="hidden"
+                                                value="mortgageForm"
+                                                {...register("formName", {
+                                                  required: false,
+                                                })}
+                                              />
+                                              <input
+                                                type="hidden"
+                                                value={currentPageURL}
+                                                {...register("page", {
+                                                  required: false,
+                                                })}
+                                              />
+                                              <div className="col-12 mb-2">
+                                                <div className="text-start">
+                                                  <button
+                                                    className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
+                                                    type="submit"
+                                                  >
+                                                    Submit
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </>
+                              )}
+
+                              {isMobileDev && (
+                                <>
+                                  <div className="container">
+                                    <div className="row justify-content-center">
+                                      <div className="col-lg-6">
+                                        <p className="wzdTitleBar">
+                                          <strong>
+                                            Let's get some details to help serve
+                                            you better!
+                                          </strong>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div className="container">
+                                    <div className="row justify-content-center">
+                                      <div className="col-lg-6">
+                                        <div className="contactForm">
+                                          <form
+                                            onSubmit={handleSubmit(onSubmit)}
+                                          >
+                                            <input type="text"
+                                              value={step1Ans}
+                                              {...register("mortgage_type", { required: false })}
+                                            />
+                                            <input type="text"
+                                              value={step2Ans}
+                                              {...register("property_stage", { required: false })}
+                                            />
+                                            <input type="text"
+                                              value={step3Ans}
+                                              {...register("property_type", { required: false })}
+                                            />
+                                            <input type="text"
+                                              value={step4Ans}
+                                              {...register("property_looking_status", { required: false })}
+                                            />
+
+                                            <input type="text"
+                                              value={propertyValue}
+                                              {...register("estimated_budget", { required: false })}
+                                            />
+
+                                            <input type="text"
+                                              value={selectedBankValue}
+                                              {...register("existing_mortgage_bank_id", { required: false })}
+                                            />
+
+                                            <input type="text"
+                                              value={currentPropertyValue}
+                                              {...register("property_current_value", { required: false })}
+                                            />
+
+                                            <input type="text"
+                                              value={selectYearData}
+                                              {...register("existing_mortgage_remaining_term", { required: false })}
+                                            />
+                                            <div className="row">
+                                              <div className="col-12 mb-2">
+                                                <input
+                                                  type="text"
+                                                  className="form-control rounded-0 fs-14"
+                                                  id="name"
+                                                  placeholder="Name"
+                                                  {...register("name", {
+                                                    required: true,
+                                                  })}
+                                                />
+                                                {errors.name && (
+                                                  <small className="text-danger">
+                                                    Name is required.
+                                                  </small>
+                                                )}
+                                              </div>
+
+                                              <div className="col-12 mb-2">
+                                                <input
+                                                  type="email"
+                                                  className="form-control rounded-0 fs-14"
+                                                  id="email"
+                                                  placeholder="Email Address"
+                                                  {...register("email", {
+                                                    required: true,
+                                                  })}
+                                                />
+                                                {errors.email && (
+                                                  <small className="text-danger">
+                                                    Email is required.
+                                                  </small>
+                                                )}
+                                              </div>
+
+                                              <div className="col-12 mb-2">
+                                                <Controller
+                                                  name="phone"
+                                                  control={control}
+                                                  rules={{ required: true }}
+                                                  render={({
+                                                    field: { onChange, value },
+                                                  }) => (
+                                                    <PhoneInput
+                                                      international
+                                                      countryCallingCodeEditable={
+                                                        false
+                                                      }
+                                                      className="form-control rounded-0 fs-14 d-flex"
+                                                      defaultCountry="AE"
+                                                      placeholder="Enter Phone Number"
+                                                      value={value}
+                                                      onChange={onChange}
+                                                      style={{ border: "0px" }}
+                                                    />
+                                                  )}
+                                                />
+
+                                                {errors.phone && (
+                                                  <small className="text-danger">
+                                                    Phone is required.
+                                                  </small>
+                                                )}
+                                              </div>
+
+                                              <div className="col-12 mb-2">
+                                                <textarea
+                                                  className="form-control rounded-0 fs-14"
+                                                  id="message"
+                                                  rows={3}
+                                                  placeholder="Message"
+                                                  {...register("message", {
+                                                    required: false,
+                                                  })}
+                                                ></textarea>
+                                                {errors.message && (
+                                                  <small className="text-danger">
+                                                    Message is required.
+                                                  </small>
+                                                )}
+                                              </div>
+                                              <input
+                                                type="hidden"
+                                                value="ContactForm"
+                                                {...register("formName", {
+                                                  required: false,
+                                                })}
+                                              />
+                                              <input
+                                                type="hidden"
+                                                value={currentPageURL}
+                                                {...register("page", {
+                                                  required: false,
+                                                })}
+                                              />
+                                              <div className="col-12 mb-2">
+                                                <div className="text-start">
+                                                  <button
+                                                    className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
+                                                    type="submit"
+                                                  >
+                                                    Submit
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        </>
+                      )}
                   </div>
                 </div>
               </div>
@@ -2729,9 +1918,6 @@ function MortgagePage() {
       </section>
       <section className="aboutPgSection">
         <div className="container">
-          {/* <h4 className="sctionMdTitle text-primary uppercase-text ">
-            My Mortgage{" "}
-          </h4> */}
           <div className="row">
             <div className="col-md-3 text-center">
               <img
@@ -2754,17 +1940,9 @@ function MortgagePage() {
                 of the way.
                 <br />
                 <br />
-                {/* We offer a wide range of services, including new mortgages,
-              refinancing, handover payments, equity, non-resident mortgages and
-              commercial mortgages. Our team will work with you to determine the
-              best financing option as per your requirements and will guide you
-              through the entire process from pre-approval to disbursal. */}
               </p>
             </div>
-
-
           </div>
-
         </div>
       </section>
     </>
