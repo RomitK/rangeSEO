@@ -239,95 +239,56 @@ function MortgagePage() {
 
   }, [step]);
 
-  return (
-    <>
-      <section className={`${isMobileDev ? "my-2" : "my-5"}`}>
-        <div className="container">
-          <div className="">
-            <div className=" ">
-              <h1 className="sctionMdTitle text-primary text-center">
-                Mortgage Journey
-              </h1>
-            </div>
-            <div className="wrapper dashoboardpage golderservicepage">
-              <div className={`"row ${isMobileDev ? "m-0 p-0" : ""}`}>
-                <div className="col-md-12 margin0">
-                  <div
-                    className={`"dashboardcontrols dashboardcontrolsboxs dashboardcontrolsboxs2 box-wrapper card-box-shadow wizardWrapArea ${isMobileDev ? "m-0 p-0" : "p-5 my-5"
-                      }`}
-                  >
-                    {step == 1 && (
-                      <>
-                        <div
-                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
-                        >
-                          <div className="col-md-12">
-                            <p className="wzdTitleBar">
-                              <strong>What are you looking for</strong>
-                            </p>
-                          </div>
-                        </div>
-                        <div
-                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
-                        >
-                          <div className="form-group col-md-12">
-                            {!isMobileDev && (
-                              <>
-                                <div className="mortage-custom-checkbox d-flex justify-content-center mt-3">
-                                  <div className="col-md-6">
-                                    <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                      <input
-                                        id="yes"
-                                        type="radio"
-                                        name="insideUAE"
-                                        onChange={handleStep1Ans}
-                                        required
-                                        checked={step1Ans === "NEW"}
-                                        value="NEW"
-                                        ref={inputRef}
-                                      />
-                                      <label
-                                        className="d-flex flex-row align-items-center"
-                                        htmlFor="yes"
-                                      >
-                                        <span className="px-2">
-                                          {" "}
-                                          New Purchase
-                                        </span>
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div className="col-md-6">
-                                    <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                      <input
-                                        id="no"
-                                        type="radio"
-                                        name="insideUAE"
-                                        onChange={handleStep1Ans}
-                                        required
-                                        checked={
-                                          step1Ans === "EXISTING"
-                                        }
-                                        value="EXISTING"
-                                      />
-                                      <label
-                                        className="d-flex flex-row align-items-center"
-                                        htmlFor="no"
-                                      >
-                                        <span className="px-2">
-                                          {" "}
-                                          Mortgage Refinances
-                                        </span>
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              </>
-                            )}
+  const bankHandleChange = (e) => {
+    if (e) {
+      setBankData(e);
+      setSelectedBankValue(e?.value);
+    }
+  }
+  const termHandleChange = (e) => {
+    if (e) {
+      setYearData(e)
+      setSelectYearData(e?.value)
+    }
+  }
 
-                            {isMobileDev && (
-                              <>
-                                <div className="mortage-custom-checkbox ">
+
+return (
+  <>
+    <section className={`${isMobileDev ? "my-2" : "my-5"}`}>
+      <div className="container">
+        <div className="">
+          <div className=" ">
+            <h1 className="sctionMdTitle text-primary text-center">
+              Mortgage Journey
+            </h1>
+          </div>
+          <div className="wrapper dashoboardpage golderservicepage">
+            <div className={`"row ${isMobileDev ? "m-0 p-0" : ""}`}>
+              <div className="col-md-12 margin0">
+                <div
+                  className={`"dashboardcontrols dashboardcontrolsboxs dashboardcontrolsboxs2 box-wrapper card-box-shadow wizardWrapArea ${isMobileDev ? "m-0 p-0" : "p-5 my-5"
+                    }`}
+                >
+                  {step == 1 && (
+                    <>
+                      <div
+                        className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                      >
+                        <div className="col-md-12">
+                          <p className="wzdTitleBar">
+                            <strong>What are you looking for</strong>
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                      >
+                        <div className="form-group col-md-12">
+                          {!isMobileDev && (
+                            <>
+                              <div className="mortage-custom-checkbox d-flex justify-content-center mt-3">
+                                <div className="col-md-6">
                                   <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
                                     <input
                                       id="yes"
@@ -349,7 +310,8 @@ function MortgagePage() {
                                       </span>
                                     </label>
                                   </div>
-                                  <br />
+                                </div>
+                                <div className="col-md-6">
                                   <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
                                     <input
                                       id="no"
@@ -357,7 +319,9 @@ function MortgagePage() {
                                       name="insideUAE"
                                       onChange={handleStep1Ans}
                                       required
-                                      checked={step1Ans === "EXISTING"}
+                                      checked={
+                                        step1Ans === "EXISTING"
+                                      }
                                       value="EXISTING"
                                     />
                                     <label
@@ -371,44 +335,647 @@ function MortgagePage() {
                                     </label>
                                   </div>
                                 </div>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                        {step1Ans && (
-                          <>
-                            <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
-                              <div></div>
-                              <div>
-                                <button
-                                  type="button"
-                                  className="btn btn-lg btn-blue"
-                                  onClick={handleNextClicked}
-                                >
-                                  Next
-                                </button>
                               </div>
+                            </>
+                          )}
+
+                          {isMobileDev && (
+                            <>
+                              <div className="mortage-custom-checkbox ">
+                                <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                  <input
+                                    id="yes"
+                                    type="radio"
+                                    name="insideUAE"
+                                    onChange={handleStep1Ans}
+                                    required
+                                    checked={step1Ans === "NEW"}
+                                    value="NEW"
+                                    ref={inputRef}
+                                  />
+                                  <label
+                                    className="d-flex flex-row align-items-center"
+                                    htmlFor="yes"
+                                  >
+                                    <span className="px-2">
+                                      {" "}
+                                      New Purchase
+                                    </span>
+                                  </label>
+                                </div>
+                                <br />
+                                <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                  <input
+                                    id="no"
+                                    type="radio"
+                                    name="insideUAE"
+                                    onChange={handleStep1Ans}
+                                    required
+                                    checked={step1Ans === "EXISTING"}
+                                    value="EXISTING"
+                                  />
+                                  <label
+                                    className="d-flex flex-row align-items-center"
+                                    htmlFor="no"
+                                  >
+                                    <span className="px-2">
+                                      {" "}
+                                      Mortgage Refinances
+                                    </span>
+                                  </label>
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                      {step1Ans && (
+                        <>
+                          <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
+                            <div></div>
+                            <div>
+                              <button
+                                type="button"
+                                className="btn btn-lg btn-blue"
+                                onClick={handleNextClicked}
+                              >
+                                Next
+                              </button>
+                            </div>
+                          </div>
+                        </>
+                      )}
+                    </>
+                  )}
+
+                  {step == 2 && step1Ans === "NEW" && (
+                    <>
+                      <div
+                        className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                      >
+                        <div className="col-md-12">
+                          <p className="wzdTitleBar">
+                            <strong>
+                              Thanks! Have you found a property already?
+                            </strong>
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                      >
+                        <div className="form-group col-md-12">
+                          {!isMobileDev && (
+                            <>
+                              <div className="mortage-custom-checkbox d-flex justify-content-center mt-3">
+                                <div className="col-md-4">
+                                  <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                    <input
+                                      id="yes"
+                                      type="radio"
+                                      name="insideUAE"
+                                      required
+                                      onChange={handleStep2Ans}
+                                      value="RESEARCHING"
+                                      checked={
+                                        step2Ans ===
+                                        "RESEARCHING"
+                                      }
+                                    />
+                                    <label
+                                      className="d-flex flex-row align-items-center"
+                                      htmlFor="yes"
+                                    >
+                                      <span className="px-2">
+                                        {" "}
+                                        Just browsing the market
+                                      </span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div className="col-md-4">
+                                  <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                    <input
+                                      id="no"
+                                      type="radio"
+                                      name="insideUAE"
+                                      onChange={handleStep2Ans}
+                                      required
+                                      value="VIEWING_PERSON"
+                                      checked={
+                                        step2Ans === "VIEWING_PERSON"
+                                      }
+                                    />
+                                    <label
+                                      className="d-flex flex-row align-items-center"
+                                      htmlFor="no"
+                                    >
+                                      <span className="px-2">
+                                        {" "}
+                                        I’ve started looking around
+                                      </span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div className="col-md-4">
+                                  <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                    <input
+                                      id="noo"
+                                      type="radio"
+                                      name="insideUAE"
+                                      onChange={handleStep2Ans}
+                                      checked={
+                                        step2Ans === "ALREADY_MADE"
+                                      }
+                                      value="ALREADY_MADE"
+                                    />
+                                    <label
+                                      className="d-flex flex-row align-items-center"
+                                      htmlFor="noo"
+                                    >
+                                      <span className="px-2">
+                                        {" "}
+                                        I’ve found my dream home
+                                      </span>
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          )}
+
+                          {isMobileDev && (
+                            <>
+                              <div className="mortage-custom-checkbox">
+                                <div className="">
+                                  <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                    <input
+                                      id="yes"
+                                      type="radio"
+                                      name="insideUAE"
+                                      required
+                                      onChange={handleStep2Ans}
+                                      value="RESEARCHING"
+                                      checked={
+                                        step2Ans ===
+                                        "RESEARCHING"
+                                      }
+                                    />
+                                    <label
+                                      className="d-flex flex-row align-items-center"
+                                      htmlFor="yes"
+                                    >
+                                      <span className="px-2">
+                                        {" "}
+                                        Just browsing the market
+                                      </span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <br />
+                                <div className="">
+                                  <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                    <input
+                                      id="no"
+                                      type="radio"
+                                      name="insideUAE"
+                                      onChange={handleStep2Ans}
+                                      required
+                                      value="VIEWING_PERSON"
+                                      checked={
+                                        step2Ans === "VIEWING_PERSON"
+                                      }
+                                    />
+                                    <label
+                                      className="d-flex flex-row align-items-center"
+                                      htmlFor="no"
+                                    >
+                                      <span className="px-2">
+                                        {" "}
+                                        I’ve started looking around
+                                      </span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <br />
+                                <div className="">
+                                  <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                    <input
+                                      id="noo"
+                                      type="radio"
+                                      name="insideUAE"
+                                      onChange={handleStep2Ans}
+                                      checked={
+                                        step2Ans === "ALREADY_MADE"
+                                      }
+                                      value="ALREADY_MADE"
+                                    />
+                                    <label
+                                      className="d-flex flex-row align-items-center"
+                                      htmlFor="noo"
+                                    >
+                                      <span className="px-2">
+                                        {" "}
+                                        I’ve found my dream home
+                                      </span>
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                      <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
+                        <div>
+                          {step > 1 && (
+                            <div>
+                              <button
+                                type="button"
+                                className="btn btn-lg btn-blue"
+                                onClick={handlePreClicked}
+                              >
+                                Back
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                        {step2Ans && (
+                          <>
+                            <div>
+                              <button
+                                type="button"
+                                className="btn btn-lg btn-blue"
+                                onClick={handleNextClicked}
+                              >
+                                Next
+                              </button>
                             </div>
                           </>
                         )}
-                      </>
-                    )}
+                      </div>
+                    </>
+                  )}
 
-                    {step == 2 && step1Ans === "NEW" && (
+                  {step == 2 && step1Ans === "EXISTING" && (
+                    <>
+                      <div
+                        className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                      >
+                        <div className="col-md-12">
+                          <p className="wzdTitleBar">
+                            <strong>
+                              Perfect! Let’s get some more information about
+                              you existing mortgage
+                            </strong>
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                      >
+                        <div className="form-group col-md-12">
+                          {!isMobileDev && (
+                            <>
+                              <div className="d-flex  mt-3">
+                                <div className="col-md-4">
+                                  <p>Which bank is your mortgage with?</p>
+                                  <Select
+                                    options={bankNameOption}
+                                    value={bankData}
+                                    onChange={bankHandleChange}
+                                  />
+                                </div>
+                              </div>
+                            </>
+                          )}
+
+                          {isMobileDev && (
+                            <>
+                              <div className="d-flex  p-3">
+                                <div className="col-md-12">
+                                  <p>Which bank is your mortgage with?</p>
+                                  <Select
+                                    options={bankNameOption}
+                                    value={bankData}
+                                    onChange={bankHandleChange}
+                                  />
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
+                        <div>
+                          {step > 1 && (
+                            <div>
+                              <button
+                                type="button"
+                                className="btn btn-lg btn-blue"
+                                onClick={handlePreClicked}
+                              >
+                                Back
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                        {bankData && (
+                          <>
+                            <div>
+                              <button
+                                type="button"
+                                className="btn btn-lg btn-blue"
+                                onClick={handleNextClicked}
+                              >
+                                Next
+                              </button>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </>
+                  )}
+
+                  {step === 3 && step1Ans === "EXISTING" && bankData && (
+                    <>
+                      <div
+                        className={`"row ${isMobileDev ? "nospace-row" : ""
+                          }`}
+                      >
+                        <div className="col-md-12">
+                          <p className="wzdTitleBar">
+                            <strong>
+                              Alright, let's get a few details about your property?
+                            </strong>
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className={`"row ${isMobileDev ? "nospace-row" : ""
+                          }`}
+                      >
+                        <div className="form-group col-md-12">
+                          {!isMobileDev && (
+                            <>
+                              <div className=" justify-content-center mt-3">
+                                <div className="col-md-12">
+                                  <div className="">
+                                    <p className="form-label fw-500">
+                                      Property Value
+                                    </p>
+                                    <div className="input-group maxContent">
+                                      <span className="input-group-text  rounded-0 border-end p-2">
+                                        AED
+                                      </span>
+                                      <input
+                                        type="text"
+                                        className="form-control border-start-0  rounded-0"
+                                        placeholder="Enter amount"
+                                        value={currentPropertyValue}
+                                        onChange={(e) => {
+                                          const parsedValue = parseInt(e?.target?.value);
+                                          // Check if parsedValue is NaN, then set it to 0
+                                          setCurrentPropertyValue(isNaN(parsedValue) ? 0 : parsedValue);
+                                        }}
+                                        name="price"
+                                      />
+                                    </div>
+                                    <small>
+                                      Not sure what the amount is? Give us
+                                      an approximate figure.
+                                    </small>
+                                  </div>
+
+                                  {/* <div className="mb-3">
+                                        <p className="form-label fw-500">
+                                        Outstanding loan amount
+                                        </p>
+                                        <div className="input-group maxContent">
+                                          <span className="input-group-text  rounded-0 border-end p-2">
+                                            AED
+                                          </span>
+                                          <input
+                                            type="text"
+                                            className="form-control border-start-0  rounded-0"
+                                            placeholder="Enter amount"
+                                            value={propertyLoanValue}
+                                            onChange={(e) =>
+                                              setPropertyLoanValue(
+                                                parseInt(e.target.value)
+                                              )
+                                            }
+                                            name="price"
+                                          />
+                                          
+                                        </div>
+                                        <small>Not sure what the amount is? Give us an approximate figure.</small>
+                                      </div> */}
+                                </div>
+                              </div>
+                            </>
+                          )}
+
+                          {isMobileDev && (
+                            <>
+                              <div className="justify-content-center p-3">
+                                <div className="col-md-12">
+                                  <div className="">
+                                    <p className="form-label fw-500">
+                                      Property Value
+                                    </p>
+                                    <div className="input-group maxContent">
+                                      <span className="input-group-text  rounded-0 border-end p-2">
+                                        AED
+                                      </span>
+                                      <input
+                                        type="text"
+                                        className="form-control border-start-0  rounded-0"
+                                        placeholder="Enter amount"
+                                        value={currentPropertyValue}
+                                        onChange={(e) => {
+                                          const parsedValue = parseInt(e?.target?.value);
+                                          // Check if parsedValue is NaN, then set it to 0
+                                          setCurrentPropertyValue(isNaN(parsedValue) ? 0 : parsedValue);
+                                        }}
+                                        name="price"
+                                      />
+                                    </div>
+                                    <small>
+                                      Not sure what the amount is? Give us
+                                      an approximate figure.
+                                    </small>
+                                  </div>
+
+                                  {/* <div className="mb-3">
+                                        <p className="form-label fw-500">
+                                        Outstanding loan amount
+                                        </p>
+                                        <div className="input-group maxContent">
+                                          <span className="input-group-text  rounded-0 border-end p-2">
+                                            AED
+                                          </span>
+                                          <input
+                                            type="text"
+                                            className="form-control border-start-0  rounded-0"
+                                            placeholder="Enter amount"
+                                            value={propertyLoanValue}
+                                            onChange={(e) =>
+                                              setPropertyLoanValue(
+                                                parseInt(e.target.value)
+                                              )
+                                            }
+                                            name="price"
+                                          />
+                                          
+                                        </div>
+                                        <small>Not sure what the amount is? Give us an approximate figure.</small>
+                                      </div> */}
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
+                        <div>
+                          {step > 1 && (
+                            <div>
+                              <button
+                                type="button"
+                                className="btn btn-lg btn-blue"
+                                onClick={handlePreClicked}
+                              >
+                                Back
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                        {currentPropertyValue > 0 && (
+                          <>
+                            <div>
+                              <button
+                                type="button"
+                                className="btn btn-lg btn-blue"
+                                onClick={handleNextClicked}
+                              >
+                                Next
+                              </button>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </>
+                  )}
+                  {step === 4 && step1Ans === "EXISTING" && bankData && currentPropertyValue && (
+                    <>
+                      <div
+                        className={`"row ${isMobileDev ? "nospace-row" : ""
+                          }`}
+                      >
+                        <div className="col-md-12">
+                          <p className="wzdTitleBar">
+                            <strong>
+                              What’s the remaining mortgage term?
+                            </strong>
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className={`"row ${isMobileDev ? "nospace-row" : ""
+                          }`}
+                      >
+                        <div className="form-group col-md-12">
+                          {!isMobileDev && (
+                            <>
+                              <div className="d-flex  mt-3">
+                                <div className="col-md-4">
+                                  <p>What’s the remaining mortgage term?</p>
+                                  <Select
+                                    options={mortgageYearOption}
+                                    value={yearData}
+                                    className=""
+                                    onChange={termHandleChange}
+                                  />
+                                </div>
+                              </div>
+                            </>
+                          )}
+
+                          {isMobileDev && (
+                            <>
+                              <div className="d-flex  p-3">
+                                <div className="col-md-4">
+                                  <p>What’s the remaining mortgage term?</p>
+                                  <Select
+                                    options={mortgageYearOption}
+                                    value={yearData}
+                                    className=""
+                                    onChange={termHandleChange}
+                                  />
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
+                        <div>
+                          {step > 1 && (
+                            <div>
+                              <button
+                                type="button"
+                                className="btn btn-lg btn-blue"
+                                onClick={handlePreClicked}
+                              >
+                                Back
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                        {currentPropertyValue > 0 && yearData && (
+                          <>
+                            <div>
+                              <button
+                                type="button"
+                                className="btn btn-lg btn-blue"
+                                onClick={handleNextClicked}
+                              >
+                                Next
+                              </button>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </>
+                  )}
+
+                  {step === 3 &&
+                    step1Ans === "NEW" &&
+                    [
+                      "RESEARCHING",
+                      "VIEWING_PERSON",
+                      "ALREADY_MADE",
+                    ].includes(step2Ans) && (
                       <>
                         <div
-                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                          className={`"row ${isMobileDev ? "nospace-row" : ""
+                            }`}
                         >
                           <div className="col-md-12">
                             <p className="wzdTitleBar">
                               <strong>
-                                Thanks! Have you found a property already?
+                                What kind of property are you in the market for?
                               </strong>
                             </p>
                           </div>
                         </div>
                         <div
-                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                          className={`"row ${isMobileDev ? "nospace-row" : ""
+                            }`}
                         >
                           <div className="form-group col-md-12">
                             {!isMobileDev && (
@@ -421,21 +988,15 @@ function MortgagePage() {
                                         type="radio"
                                         name="insideUAE"
                                         required
-                                        onChange={handleStep2Ans}
-                                        value="RESEARCHING"
-                                        checked={
-                                          step2Ans ===
-                                          "RESEARCHING"
-                                        }
+                                        onChange={handleStep3Ans}
+                                        value="VILLA"
+                                        checked={step3Ans === "VILLA"}
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
                                         htmlFor="yes"
                                       >
-                                        <span className="px-2">
-                                          {" "}
-                                          Just browsing the market
-                                        </span>
+                                        <span className="px-2"> Villa</span>
                                       </label>
                                     </div>
                                   </div>
@@ -445,12 +1006,9 @@ function MortgagePage() {
                                         id="no"
                                         type="radio"
                                         name="insideUAE"
-                                        onChange={handleStep2Ans}
-                                        required
-                                        value="VIEWING_PERSON"
-                                        checked={
-                                          step2Ans === "VIEWING_PERSON"
-                                        }
+                                        onChange={handleStep3Ans}
+                                        checked={step3Ans === "APARTMENT"}
+                                        value="APARTMENT"
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
@@ -458,7 +1016,7 @@ function MortgagePage() {
                                       >
                                         <span className="px-2">
                                           {" "}
-                                          I’ve started looking around
+                                          Apartment
                                         </span>
                                       </label>
                                     </div>
@@ -469,11 +1027,9 @@ function MortgagePage() {
                                         id="noo"
                                         type="radio"
                                         name="insideUAE"
-                                        onChange={handleStep2Ans}
-                                        checked={
-                                          step2Ans === "ALREADY_MADE"
-                                        }
-                                        value="ALREADY_MADE"
+                                        onChange={handleStep3Ans}
+                                        checked={step3Ans === "NOT_DECIDED"}
+                                        value="NOT_DECIDED"
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
@@ -481,7 +1037,189 @@ function MortgagePage() {
                                       >
                                         <span className="px-2">
                                           {" "}
-                                          I’ve found my dream home
+                                          Undecided
+                                        </span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            )}
+
+                            {isMobileDev && (
+                              <>
+                                <div className="mortage-custom-checkbox">
+                                  <div className="col-md-4">
+                                    <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                      <input
+                                        id="yes"
+                                        type="radio"
+                                        name="insideUAE"
+                                        required
+                                        onChange={handleStep3Ans}
+                                        value="VILLA"
+                                        checked={step3Ans === "VILLA"}
+                                      />
+                                      <label
+                                        className="d-flex flex-row align-items-center"
+                                        htmlFor="yes"
+                                      >
+                                        <span className="px-2"> Villa</span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <br />
+                                  <div className="col-md-4">
+                                    <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                      <input
+                                        id="no"
+                                        type="radio"
+                                        name="insideUAE"
+                                        onChange={handleStep3Ans}
+                                        checked={step3Ans === "APARTMENT"}
+                                        value="APARTMENT"
+                                      />
+                                      <label
+                                        className="d-flex flex-row align-items-center"
+                                        htmlFor="no"
+                                      >
+                                        <span className="px-2">
+                                          {" "}
+                                          Apartment
+                                        </span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <br />
+                                  <div className="col-md-4">
+                                    <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                      <input
+                                        id="noo"
+                                        type="radio"
+                                        name="insideUAE"
+                                        onChange={handleStep3Ans}
+                                        checked={step3Ans === "NOT_DECIDED"}
+                                        value="NOT_DECIDED"
+                                      />
+                                      <label
+                                        className="d-flex flex-row align-items-center"
+                                        htmlFor="noo"
+                                      >
+                                        <span className="px-2">
+                                          {" "}
+                                          Undecided
+                                        </span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
+                          <div>
+                            {step > 1 && (
+                              <div>
+                                <button
+                                  type="button"
+                                  className="btn btn-lg btn-blue"
+                                  onClick={handlePreClicked}
+                                >
+                                  Back
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                          {step3Ans && (
+                            <>
+                              <div>
+                                <button
+                                  type="button"
+                                  className="btn btn-lg btn-blue"
+                                  onClick={handleNextClicked}
+                                >
+                                  Next
+                                </button>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </>
+                    )}
+
+                  {step === 4 &&
+                    step1Ans === "NEW" &&
+                    [
+                      "RESEARCHING",
+                      "VIEWING_PERSON",
+                      "ALREADY_MADE",
+                    ].includes(step2Ans) &&
+                    ["VILLA", "APARTMENT"].includes(step3Ans) && (
+                      <>
+                        <div
+                          className={`"row ${isMobileDev ? "nospace-row" : ""
+                            }`}
+                        >
+                          <div className="col-md-12">
+                            <p className="wzdTitleBar">
+                              <strong>
+                                Looking for something ready? Would an off-plan project work as well?
+                              </strong>
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          className={`"row ${isMobileDev ? "nospace-row" : ""
+                            }`}
+                        >
+                          <div className="form-group col-md-12">
+                            {!isMobileDev && (
+                              <>
+                                <div className="mortage-custom-checkbox d-flex justify-content-center mt-3">
+                                  <div className="col-md-6">
+                                    <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                      <input
+                                        id="yes"
+                                        type="radio"
+                                        name="insideUAE"
+                                        checked={
+                                          step4Ans === "COMPLETED"
+                                        }
+                                        onChange={handleStep4Ans}
+                                        value="COMPLETED"
+                                      />
+                                      <label
+                                        className="d-flex flex-row align-items-center"
+                                        htmlFor="yes"
+                                      >
+                                        <span className="px-2">
+                                          {" "}
+                                          Ready to move in
+                                        </span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div className="col-md-6">
+                                    <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                      <input
+                                        id="no"
+                                        type="radio"
+                                        name="insideUAE"
+                                        onChange={handleStep4Ans}
+                                        checked={
+                                          step4Ans === "UNDER_CONSTRUCTION"
+                                        }
+                                        value="UNDER_CONSTRUCTION"
+                                      />
+                                      <label
+                                        className="d-flex flex-row align-items-center"
+                                        htmlFor="no"
+                                      >
+                                        <span className="px-2">
+                                          {" "}
+                                          Under construction
                                         </span>
                                       </label>
                                     </div>
@@ -499,13 +1237,11 @@ function MortgagePage() {
                                         id="yes"
                                         type="radio"
                                         name="insideUAE"
-                                        required
-                                        onChange={handleStep2Ans}
-                                        value="RESEARCHING"
                                         checked={
-                                          step2Ans ===
-                                          "RESEARCHING"
+                                          step4Ans === "COMPLETED"
                                         }
+                                        onChange={handleStep4Ans}
+                                        value="COMPLETED"
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
@@ -513,7 +1249,7 @@ function MortgagePage() {
                                       >
                                         <span className="px-2">
                                           {" "}
-                                          Just browsing the market
+                                          Ready to move in
                                         </span>
                                       </label>
                                     </div>
@@ -525,12 +1261,11 @@ function MortgagePage() {
                                         id="no"
                                         type="radio"
                                         name="insideUAE"
-                                        onChange={handleStep2Ans}
-                                        required
-                                        value="VIEWING_PERSON"
+                                        onChange={handleStep4Ans}
                                         checked={
-                                          step2Ans === "VIEWING_PERSON"
+                                          step4Ans === "UNDER_CONSTRUCTION"
                                         }
+                                        value="UNDER_CONSTRUCTION"
                                       />
                                       <label
                                         className="d-flex flex-row align-items-center"
@@ -538,120 +1273,10 @@ function MortgagePage() {
                                       >
                                         <span className="px-2">
                                           {" "}
-                                          I’ve started looking around
+                                          Under construction
                                         </span>
                                       </label>
                                     </div>
-                                  </div>
-                                  <br />
-                                  <div className="">
-                                    <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                      <input
-                                        id="noo"
-                                        type="radio"
-                                        name="insideUAE"
-                                        onChange={handleStep2Ans}
-                                        checked={
-                                          step2Ans === "ALREADY_MADE"
-                                        }
-                                        value="ALREADY_MADE"
-                                      />
-                                      <label
-                                        className="d-flex flex-row align-items-center"
-                                        htmlFor="noo"
-                                      >
-                                        <span className="px-2">
-                                          {" "}
-                                          I’ve found my dream home
-                                        </span>
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                        <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
-                          <div>
-                            {step > 1 && (
-                              <div>
-                                <button
-                                  type="button"
-                                  className="btn btn-lg btn-blue"
-                                  onClick={handlePreClicked}
-                                >
-                                  Back
-                                </button>
-                              </div>
-                            )}
-                          </div>
-                          {step2Ans && (
-                            <>
-                              <div>
-                                <button
-                                  type="button"
-                                  className="btn btn-lg btn-blue"
-                                  onClick={handleNextClicked}
-                                >
-                                  Next
-                                </button>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                      </>
-                    )}
-
-                    {step == 2 && step1Ans === "EXISTING" && (
-                      <>
-                        <div
-                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
-                        >
-                          <div className="col-md-12">
-                            <p className="wzdTitleBar">
-                              <strong>
-                                Perfect! Let’s get some more information about
-                                you existing mortgage
-                              </strong>
-                            </p>
-                          </div>
-                        </div>
-                        <div
-                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
-                        >
-                          <div className="form-group col-md-12">
-                            {!isMobileDev && (
-                              <>
-                                <div className="d-flex  mt-3">
-                                  <div className="col-md-4">
-                                    <p>Which bank is your mortgage with?</p>
-                                    <Select
-                                      options={bankNameOption}
-                                      value={bankData}
-                                      onChange={(selectedOption) => {
-                                        setBankData(selectedOption);
-                                        setSelectedBankValue(selectedOption?.value);
-                                      }}
-                                    />
-                                  </div>
-                                </div>
-                              </>
-                            )}
-
-                            {isMobileDev && (
-                              <>
-                                <div className="d-flex  p-3">
-                                  <div className="col-md-12">
-                                    <p>Which bank is your mortgage with?</p>
-                                    <Select
-                                      options={bankNameOption}
-                                      value={bankData}
-                                      onChange={(selectedOption) => {
-                                        setBankData(selectedOption);
-                                        setSelectedBankValue(selectedOption?.value);
-                                      }}
-                                    />
                                   </div>
                                 </div>
                               </>
@@ -673,7 +1298,7 @@ function MortgagePage() {
                               </div>
                             )}
                           </div>
-                          {bankData && (
+                          {step4Ans && (
                             <>
                               <div>
                                 <button
@@ -690,7 +1315,17 @@ function MortgagePage() {
                       </>
                     )}
 
-                    {step === 3 && step1Ans === "EXISTING" && bankData && (
+                  {step === 5 &&
+                    step1Ans === "NEW" &&
+                    [
+                      "RESEARCHING",
+                      "VIEWING_PERSON",
+                      "ALREADY_MADE",
+                    ].includes(step2Ans) &&
+                    ["VILLA", "APARTMENT"].includes(step3Ans) &&
+                    ["COMPLETED", "UNDER_CONSTRUCTION"].includes(
+                      step4Ans
+                    ) && (
                       <>
                         <div
                           className={`"row ${isMobileDev ? "nospace-row" : ""
@@ -699,7 +1334,7 @@ function MortgagePage() {
                           <div className="col-md-12">
                             <p className="wzdTitleBar">
                               <strong>
-                                Alright, let's get a few details about your property?
+                                Mention the maximum amount you are willing to spend on the property
                               </strong>
                             </p>
                           </div>
@@ -713,7 +1348,7 @@ function MortgagePage() {
                               <>
                                 <div className=" justify-content-center mt-3">
                                   <div className="col-md-12">
-                                    <div className="">
+                                    <div className="mb-3">
                                       <p className="form-label fw-500">
                                         Property Value
                                       </p>
@@ -722,15 +1357,13 @@ function MortgagePage() {
                                           AED
                                         </span>
                                         <input
-                                          type="text"
+                                          type="number"
                                           className="form-control border-start-0  rounded-0"
                                           placeholder="Enter amount"
-                                          value={currentPropertyValue}
-                                          onChange={(e) => {
-                                            const parsedValue = parseInt(e?.target?.value);
-                                            // Check if parsedValue is NaN, then set it to 0
-                                            setCurrentPropertyValue(isNaN(parsedValue) ? 0 : parsedValue);
-                                          }}
+                                          value={propertyValue}
+                                          onChange={(e) =>
+                                            setPropertyValue(parseInt(e.target.value))
+                                          }
                                           name="price"
                                         />
                                       </div>
@@ -739,31 +1372,6 @@ function MortgagePage() {
                                         an approximate figure.
                                       </small>
                                     </div>
-
-                                    {/* <div className="mb-3">
-                                        <p className="form-label fw-500">
-                                        Outstanding loan amount
-                                        </p>
-                                        <div className="input-group maxContent">
-                                          <span className="input-group-text  rounded-0 border-end p-2">
-                                            AED
-                                          </span>
-                                          <input
-                                            type="text"
-                                            className="form-control border-start-0  rounded-0"
-                                            placeholder="Enter amount"
-                                            value={propertyLoanValue}
-                                            onChange={(e) =>
-                                              setPropertyLoanValue(
-                                                parseInt(e.target.value)
-                                              )
-                                            }
-                                            name="price"
-                                          />
-                                          
-                                        </div>
-                                        <small>Not sure what the amount is? Give us an approximate figure.</small>
-                                      </div> */}
                                   </div>
                                 </div>
                               </>
@@ -771,60 +1379,31 @@ function MortgagePage() {
 
                             {isMobileDev && (
                               <>
-                                <div className="justify-content-center p-3">
-                                  <div className="col-md-12">
-                                    <div className="">
-                                      <p className="form-label fw-500">
-                                        Property Value
-                                      </p>
-                                      <div className="input-group maxContent">
-                                        <span className="input-group-text  rounded-0 border-end p-2">
-                                          AED
-                                        </span>
-                                        <input
-                                          type="text"
-                                          className="form-control border-start-0  rounded-0"
-                                          placeholder="Enter amount"
-                                          value={currentPropertyValue}
-                                          onChange={(e) => {
-                                            const parsedValue = parseInt(e?.target?.value);
-                                            // Check if parsedValue is NaN, then set it to 0
-                                            setCurrentPropertyValue(isNaN(parsedValue) ? 0 : parsedValue);
-                                          }}
-                                          name="price"
-                                        />
-                                      </div>
-                                      <small>
-                                        Not sure what the amount is? Give us
-                                        an approximate figure.
-                                      </small>
-                                    </div>
-
-                                    {/* <div className="mb-3">
-                                        <p className="form-label fw-500">
-                                        Outstanding loan amount
-                                        </p>
-                                        <div className="input-group maxContent">
-                                          <span className="input-group-text  rounded-0 border-end p-2">
-                                            AED
-                                          </span>
-                                          <input
-                                            type="text"
-                                            className="form-control border-start-0  rounded-0"
-                                            placeholder="Enter amount"
-                                            value={propertyLoanValue}
-                                            onChange={(e) =>
-                                              setPropertyLoanValue(
-                                                parseInt(e.target.value)
-                                              )
-                                            }
-                                            name="price"
-                                          />
-                                          
-                                        </div>
-                                        <small>Not sure what the amount is? Give us an approximate figure.</small>
-                                      </div> */}
+                                <div className="px-3">
+                                  <p className="form-label fw-500">
+                                    Property Value
+                                  </p>
+                                  <div className="input-group maxContent">
+                                    <span className="input-group-text  rounded-0 border-end p-2">
+                                      AED
+                                    </span>
+                                    <input
+                                      type="text"
+                                      className="form-control border-start-0  rounded-0"
+                                      placeholder="Enter amount"
+                                      value={propertyValue}
+                                      onChange={(e) => {
+                                        const parsedValue = parseInt(e?.target?.value);
+                                        // Check if parsedValue is NaN, then set it to 0
+                                        setPropertyValue(isNaN(parsedValue) ? 0 : parsedValue);
+                                      }}
+                                      name="price"
+                                    />
                                   </div>
+                                  <small>
+                                    Not sure what the amount is? Give us an
+                                    approximate figure.
+                                  </small>
                                 </div>
                               </>
                             )}
@@ -845,96 +1424,7 @@ function MortgagePage() {
                               </div>
                             )}
                           </div>
-                          {currentPropertyValue > 0 && (
-                            <>
-                              <div>
-                                <button
-                                  type="button"
-                                  className="btn btn-lg btn-blue"
-                                  onClick={handleNextClicked}
-                                >
-                                  Next
-                                </button>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                      </>
-                    )}
-                    {step === 4 && step1Ans === "EXISTING" && bankData && currentPropertyValue && (
-                      <>
-                        <div
-                          className={`"row ${isMobileDev ? "nospace-row" : ""
-                            }`}
-                        >
-                          <div className="col-md-12">
-                            <p className="wzdTitleBar">
-                              <strong>
-                                What’s the remaining mortgage term?
-                              </strong>
-                            </p>
-                          </div>
-                        </div>
-                        <div
-                          className={`"row ${isMobileDev ? "nospace-row" : ""
-                            }`}
-                        >
-                          <div className="form-group col-md-12">
-                            {!isMobileDev && (
-                              <>
-                                <div className="d-flex  mt-3">
-                                  <div className="col-md-4">
-                                    <p>What’s the remaining mortgage term?</p>
-                                    <Select
-                                      options={mortgageYearOption}
-                                      value={yearData}
-                                      className=""
-                                      onChange={(e) => {
-                                        setYearData(e)
-                                        setSelectYearData(e?.value)
-                                      }}
-                                    />
-                                  </div>
-                                </div>
-                              </>
-                            )}
-
-                            {isMobileDev && (
-                              <>
-                                <div className="d-flex  p-3">
-                                  <div className="col-md-4">
-                                    <p>What’s the remaining mortgage term?</p>
-                                    <Select
-                                      options={mortgageYearOption}
-                                      value={yearData}
-                                      className=""
-                                      onChange={(e) => {
-                                        setYearData(e)
-                                        setSelectYearData(e?.value)
-                                      }}
-                                    />
-                                  </div>
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        </div>
-
-                        <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
-                          <div>
-                            {step > 1 && (
-                              <div>
-                                <button
-                                  type="button"
-                                  className="btn btn-lg btn-blue"
-                                  onClick={handlePreClicked}
-                                >
-                                  Back
-                                </button>
-                              </div>
-                            )}
-                          </div>
-                          {currentPropertyValue > 0 && yearData && (
+                          {propertyValue > 0 && (
                             <>
                               <div>
                                 <button
@@ -951,1001 +1441,513 @@ function MortgagePage() {
                       </>
                     )}
 
-                    {step === 3 &&
-                      step1Ans === "NEW" &&
-                      [
-                        "RESEARCHING",
-                        "VIEWING_PERSON",
-                        "ALREADY_MADE",
-                      ].includes(step2Ans) && (
-                        <>
-                          <div
-                            className={`"row ${isMobileDev ? "nospace-row" : ""
-                              }`}
-                          >
-                            <div className="col-md-12">
-                              <p className="wzdTitleBar">
-                                <strong>
-                                  What kind of property are you in the market for?
-                                </strong>
-                              </p>
-                            </div>
-                          </div>
-                          <div
-                            className={`"row ${isMobileDev ? "nospace-row" : ""
-                              }`}
-                          >
-                            <div className="form-group col-md-12">
-                              {!isMobileDev && (
-                                <>
-                                  <div className="mortage-custom-checkbox d-flex justify-content-center mt-3">
-                                    <div className="col-md-4">
-                                      <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                        <input
-                                          id="yes"
-                                          type="radio"
-                                          name="insideUAE"
-                                          required
-                                          onChange={handleStep3Ans}
-                                          value="VILLA"
-                                          checked={step3Ans === "VILLA"}
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="yes"
-                                        >
-                                          <span className="px-2"> Villa</span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                      <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                        <input
-                                          id="no"
-                                          type="radio"
-                                          name="insideUAE"
-                                          onChange={handleStep3Ans}
-                                          checked={step3Ans === "APARTMENT"}
-                                          value="APARTMENT"
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="no"
-                                        >
-                                          <span className="px-2">
-                                            {" "}
-                                            Apartment
-                                          </span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                      <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                        <input
-                                          id="noo"
-                                          type="radio"
-                                          name="insideUAE"
-                                          onChange={handleStep3Ans}
-                                          checked={step3Ans === "NOT_DECIDED"}
-                                          value="NOT_DECIDED"
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="noo"
-                                        >
-                                          <span className="px-2">
-                                            {" "}
-                                            Undecided
-                                          </span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-
-                              {isMobileDev && (
-                                <>
-                                  <div className="mortage-custom-checkbox">
-                                    <div className="col-md-4">
-                                      <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                        <input
-                                          id="yes"
-                                          type="radio"
-                                          name="insideUAE"
-                                          required
-                                          onChange={handleStep3Ans}
-                                          value="VILLA"
-                                          checked={step3Ans === "VILLA"}
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="yes"
-                                        >
-                                          <span className="px-2"> Villa</span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                    <br />
-                                    <div className="col-md-4">
-                                      <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                        <input
-                                          id="no"
-                                          type="radio"
-                                          name="insideUAE"
-                                          onChange={handleStep3Ans}
-                                          checked={step3Ans === "APARTMENT"}
-                                          value="APARTMENT"
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="no"
-                                        >
-                                          <span className="px-2">
-                                            {" "}
-                                            Apartment
-                                          </span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                    <br />
-                                    <div className="col-md-4">
-                                      <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                        <input
-                                          id="noo"
-                                          type="radio"
-                                          name="insideUAE"
-                                          onChange={handleStep3Ans}
-                                          checked={step3Ans === "NOT_DECIDED"}
-                                          value="NOT_DECIDED"
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="noo"
-                                        >
-                                          <span className="px-2">
-                                            {" "}
-                                            Undecided
-                                          </span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-                            </div>
-                          </div>
-
-                          <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
-                            <div>
-                              {step > 1 && (
-                                <div>
-                                  <button
-                                    type="button"
-                                    className="btn btn-lg btn-blue"
-                                    onClick={handlePreClicked}
-                                  >
-                                    Back
-                                  </button>
-                                </div>
-                              )}
-                            </div>
-                            {step3Ans && (
-                              <>
-                                <div>
-                                  <button
-                                    type="button"
-                                    className="btn btn-lg btn-blue"
-                                    onClick={handleNextClicked}
-                                  >
-                                    Next
-                                  </button>
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        </>
-                      )}
-
-                    {step === 4 &&
-                      step1Ans === "NEW" &&
-                      [
-                        "RESEARCHING",
-                        "VIEWING_PERSON",
-                        "ALREADY_MADE",
-                      ].includes(step2Ans) &&
-                      ["VILLA", "APARTMENT"].includes(step3Ans) && (
-                        <>
-                          <div
-                            className={`"row ${isMobileDev ? "nospace-row" : ""
-                              }`}
-                          >
-                            <div className="col-md-12">
-                              <p className="wzdTitleBar">
-                                <strong>
-                                  Looking for something ready? Would an off-plan project work as well?
-                                </strong>
-                              </p>
-                            </div>
-                          </div>
-                          <div
-                            className={`"row ${isMobileDev ? "nospace-row" : ""
-                              }`}
-                          >
-                            <div className="form-group col-md-12">
-                              {!isMobileDev && (
-                                <>
-                                  <div className="mortage-custom-checkbox d-flex justify-content-center mt-3">
-                                    <div className="col-md-6">
-                                      <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                        <input
-                                          id="yes"
-                                          type="radio"
-                                          name="insideUAE"
-                                          checked={
-                                            step4Ans === "COMPLETED"
-                                          }
-                                          onChange={handleStep4Ans}
-                                          value="COMPLETED"
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="yes"
-                                        >
-                                          <span className="px-2">
-                                            {" "}
-                                            Ready to move in
-                                          </span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                      <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                        <input
-                                          id="no"
-                                          type="radio"
-                                          name="insideUAE"
-                                          onChange={handleStep4Ans}
-                                          checked={
-                                            step4Ans === "UNDER_CONSTRUCTION"
-                                          }
-                                          value="UNDER_CONSTRUCTION"
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="no"
-                                        >
-                                          <span className="px-2">
-                                            {" "}
-                                            Under construction
-                                          </span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-
-                              {isMobileDev && (
-                                <>
-                                  <div className="mortage-custom-checkbox">
-                                    <div className="">
-                                      <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                        <input
-                                          id="yes"
-                                          type="radio"
-                                          name="insideUAE"
-                                          checked={
-                                            step4Ans === "COMPLETED"
-                                          }
-                                          onChange={handleStep4Ans}
-                                          value="COMPLETED"
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="yes"
-                                        >
-                                          <span className="px-2">
-                                            {" "}
-                                            Ready to move in
-                                          </span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                    <br />
-                                    <div className="">
-                                      <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                        <input
-                                          id="no"
-                                          type="radio"
-                                          name="insideUAE"
-                                          onChange={handleStep4Ans}
-                                          checked={
-                                            step4Ans === "UNDER_CONSTRUCTION"
-                                          }
-                                          value="UNDER_CONSTRUCTION"
-                                        />
-                                        <label
-                                          className="d-flex flex-row align-items-center"
-                                          htmlFor="no"
-                                        >
-                                          <span className="px-2">
-                                            {" "}
-                                            Under construction
-                                          </span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-                            </div>
-                          </div>
-
-                          <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
-                            <div>
-                              {step > 1 && (
-                                <div>
-                                  <button
-                                    type="button"
-                                    className="btn btn-lg btn-blue"
-                                    onClick={handlePreClicked}
-                                  >
-                                    Back
-                                  </button>
-                                </div>
-                              )}
-                            </div>
-                            {step4Ans && (
-                              <>
-                                <div>
-                                  <button
-                                    type="button"
-                                    className="btn btn-lg btn-blue"
-                                    onClick={handleNextClicked}
-                                  >
-                                    Next
-                                  </button>
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        </>
-                      )}
-
-                    {step === 5 &&
-                      step1Ans === "NEW" &&
-                      [
-                        "RESEARCHING",
-                        "VIEWING_PERSON",
-                        "ALREADY_MADE",
-                      ].includes(step2Ans) &&
-                      ["VILLA", "APARTMENT"].includes(step3Ans) &&
-                      ["COMPLETED", "UNDER_CONSTRUCTION"].includes(
-                        step4Ans
-                      ) && (
-                        <>
-                          <div
-                            className={`"row ${isMobileDev ? "nospace-row" : ""
-                              }`}
-                          >
-                            <div className="col-md-12">
-                              <p className="wzdTitleBar">
-                                <strong>
-                                  Mention the maximum amount you are willing to spend on the property
-                                </strong>
-                              </p>
-                            </div>
-                          </div>
-                          <div
-                            className={`"row ${isMobileDev ? "nospace-row" : ""
-                              }`}
-                          >
-                            <div className="form-group col-md-12">
-                              {!isMobileDev && (
-                                <>
-                                  <div className=" justify-content-center mt-3">
-                                    <div className="col-md-12">
-                                      <div className="mb-3">
-                                        <p className="form-label fw-500">
-                                          Property Value
-                                        </p>
-                                        <div className="input-group maxContent">
-                                          <span className="input-group-text  rounded-0 border-end p-2">
-                                            AED
-                                          </span>
-                                          <input
-                                            type="number"
-                                            className="form-control border-start-0  rounded-0"
-                                            placeholder="Enter amount"
-                                            value={propertyValue}
-                                            onChange={(e) =>
-                                              setPropertyValue(parseInt(e.target.value))
-                                            }
-                                            name="price"
-                                          />
-                                        </div>
-                                        <small>
-                                          Not sure what the amount is? Give us
-                                          an approximate figure.
-                                        </small>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-
-                              {isMobileDev && (
-                                <>
-                                  <div className="px-3">
-                                    <p className="form-label fw-500">
-                                      Property Value
-                                    </p>
-                                    <div className="input-group maxContent">
-                                      <span className="input-group-text  rounded-0 border-end p-2">
-                                        AED
+                  {step == 2 && step1Ans == 2 && (
+                    <>
+                      <div
+                        className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                      >
+                        <div className="col-md-12">
+                          <p className="wzdTitleBar">
+                            <strong>What are you looking for2</strong>
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                      >
+                        <div className="form-group col-md-12">
+                          {!isMobileDev && (
+                            <>
+                              <div className="mortage-custom-checkbox d-flex justify-content-center mt-3">
+                                <div className="col-md-6">
+                                  <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                    <input
+                                      id="yes"
+                                      type="radio"
+                                      name="insideUAE"
+                                      required
+                                      value="1"
+                                      ref={inputRef}
+                                    />
+                                    <label
+                                      className="d-flex flex-row align-items-center"
+                                      htmlFor="yes"
+                                    >
+                                      <span className="px-2">
+                                        {" "}
+                                        New Purchase
                                       </span>
-                                      <input
-                                        type="text"
-                                        className="form-control border-start-0  rounded-0"
-                                        placeholder="Enter amount"
-                                        value={propertyValue}
-                                        onChange={(e) => {
-                                          const parsedValue = parseInt(e?.target?.value);
-                                          // Check if parsedValue is NaN, then set it to 0
-                                          setPropertyValue(isNaN(parsedValue) ? 0 : parsedValue);
-                                        }}
-                                        name="price"
-                                      />
-                                    </div>
-                                    <small>
-                                      Not sure what the amount is? Give us an
-                                      approximate figure.
-                                    </small>
+                                    </label>
                                   </div>
-                                </>
-                              )}
-                            </div>
-                          </div>
-
-                          <div className="col-md-12 d-flex justify-content-between wizardFooterBar">
-                            <div>
-                              {step > 1 && (
-                                <div>
-                                  <button
-                                    type="button"
-                                    className="btn btn-lg btn-blue"
-                                    onClick={handlePreClicked}
-                                  >
-                                    Back
-                                  </button>
                                 </div>
-                              )}
-                            </div>
-                            {propertyValue > 0 && (
-                              <>
-                                <div>
-                                  <button
-                                    type="button"
-                                    className="btn btn-lg btn-blue"
-                                    onClick={handleNextClicked}
-                                  >
-                                    Next
-                                  </button>
+                                <div className="col-md-6">
+                                  <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
+                                    <input
+                                      id="no"
+                                      type="radio"
+                                      name="insideUAE"
+                                      required
+                                      value="0"
+                                    />
+                                    <label
+                                      className="d-flex flex-row align-items-center"
+                                      htmlFor="no"
+                                    >
+                                      <span className="px-2">
+                                        {" "}
+                                        Mortgage Refinances
+                                      </span>
+                                    </label>
+                                  </div>
                                 </div>
-                              </>
-                            )}
-                          </div>
-                        </>
-                      )}
+                              </div>
+                            </>
+                          )}
 
-                    {step == 2 && step1Ans == 2 && (
+                          {isMobileDev && (
+                            <>
+                              <div className="mortage-custom-checkbox  ">
+                                <div className="col-md-12 my-3">
+                                  <div className="answers-options-container d-flex justify-content-center  mx-3">
+                                    <input
+                                      id="yes"
+                                      type="radio"
+                                      name="insideUAE"
+                                      required
+                                      value="1"
+                                    />
+                                    <label
+                                      className="d-flex flex-row align-items-center"
+                                      htmlFor="yes"
+                                    >
+                                      <span className="px-2">
+                                        {" "}
+                                        New Purchase
+                                      </span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div className="col-md-12 my-3">
+                                  <div className="answers-options-container d-flex  justify-content-center  mx-3">
+                                    <input
+                                      id="no"
+                                      type="radio"
+                                      name="insideUAE"
+                                      required
+                                      value="0"
+                                    />
+                                    <label
+                                      className="d-flex flex-row align-items-center"
+                                      htmlFor="no"
+                                    >
+                                      <span className="px-2">
+                                        {" "}
+                                        Mortgage Refinances
+                                      </span>
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+
+                  {showForm == true
+                    && (
                       <>
                         <div
-                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
+                          className={`"row ${isMobileDev ? "nospace-row" : ""
+                            }`}
                         >
-                          <div className="col-md-12">
-                            <p className="wzdTitleBar">
-                              <strong>What are you looking for2</strong>
-                            </p>
-                          </div>
-                        </div>
-                        <div
-                          className={`"row ${isMobileDev ? "nospace-row" : ""}`}
-                        >
-                          <div className="form-group col-md-12">
+                          <div className="form-group col-md-12 text-center">
                             {!isMobileDev && (
                               <>
-                                <div className="mortage-custom-checkbox d-flex justify-content-center mt-3">
-                                  <div className="col-md-6">
-                                    <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                      <input
-                                        id="yes"
-                                        type="radio"
-                                        name="insideUAE"
-                                        required
-                                        value="1"
-                                        ref={inputRef}
-                                      />
-                                      <label
-                                        className="d-flex flex-row align-items-center"
-                                        htmlFor="yes"
-                                      >
-                                        <span className="px-2">
-                                          {" "}
-                                          New Purchase
-                                        </span>
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div className="col-md-6">
-                                    <div className="answers-options-container d-flex align-items-center justify-content-center flex-row mx-3">
-                                      <input
-                                        id="no"
-                                        type="radio"
-                                        name="insideUAE"
-                                        required
-                                        value="0"
-                                      />
-                                      <label
-                                        className="d-flex flex-row align-items-center"
-                                        htmlFor="no"
-                                      >
-                                        <span className="px-2">
-                                          {" "}
-                                          Mortgage Refinances
-                                        </span>
-                                      </label>
+                                <div className="container">
+                                  <div className="row justify-content-center">
+                                    <div className="col-lg-6">
+                                      <p className="wzdTitleBar">
+                                        <strong>
+                                          Let's get some details to help serve
+                                          you better!
+                                        </strong>
+                                      </p>
                                     </div>
                                   </div>
                                 </div>
-                              </>
-                            )}
 
-                            {isMobileDev && (
-                              <>
-                                <div className="mortage-custom-checkbox  ">
-                                  <div className="col-md-12 my-3">
-                                    <div className="answers-options-container d-flex justify-content-center  mx-3">
-                                      <input
-                                        id="yes"
-                                        type="radio"
-                                        name="insideUAE"
-                                        required
-                                        value="1"
-                                      />
-                                      <label
-                                        className="d-flex flex-row align-items-center"
-                                        htmlFor="yes"
-                                      >
-                                        <span className="px-2">
-                                          {" "}
-                                          New Purchase
-                                        </span>
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div className="col-md-12 my-3">
-                                    <div className="answers-options-container d-flex  justify-content-center  mx-3">
-                                      <input
-                                        id="no"
-                                        type="radio"
-                                        name="insideUAE"
-                                        required
-                                        value="0"
-                                      />
-                                      <label
-                                        className="d-flex flex-row align-items-center"
-                                        htmlFor="no"
-                                      >
-                                        <span className="px-2">
-                                          {" "}
-                                          Mortgage Refinances
-                                        </span>
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                      </>
-                    )}
-
-
-                    {showForm == true
-                      && (
-                        <>
-                          <div
-                            className={`"row ${isMobileDev ? "nospace-row" : ""
-                              }`}
-                          >
-                            <div className="form-group col-md-12 text-center">
-                              {!isMobileDev && (
-                                <>
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <p className="wzdTitleBar">
-                                          <strong>
-                                            Let's get some details to help serve
-                                            you better!
-                                          </strong>
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <div className="contactForm">
-                                          <form
-                                            onSubmit={handleSubmit(onSubmit)}
-                                          >
-                                            <div className="row">
-                                              <input type="hidden"
-                                                value={step1Ans}
-                                                {...register("mortgage_type", { required: false })}
-                                              />
-                                              <input type="hidden"
-                                                value={step2Ans}
-                                                {...register("property_stage", { required: false })}
-                                              />
-                                              <input type="hidden"
-                                                value={step3Ans}
-                                                {...register("property_type", { required: false })}
-                                              />
-                                              <input type="hidden"
-                                                value={step4Ans}
-                                                {...register("property_looking_status", { required: false })}
-                                              />
-
-                                              <input type="hidden"
-                                                value={propertyValue}
-                                                {...register("estimated_budget", { required: false })}
-                                              />
-
-                                              <input type="hidden"
-                                                value={selectedBankValue}
-                                                {...register("existing_mortgage_bank_id", { required: false })}
-                                              />
-
-                                              <input type="hidden"
-                                                value={currentPropertyValue}
-                                                {...register("property_current_value", { required: false })}
-                                              />
-
-                                              <input type="hidden"
-                                                value={selectYearData}
-                                                {...register("existing_mortgage_remaining_term", { required: false })}
-                                              />
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="text"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="name"
-                                                  placeholder="Name"
-                                                  {...register("name", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.name && (
-                                                  <small className="text-danger">
-                                                    Name is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="email"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="email"
-                                                  placeholder="Email Address"
-                                                  {...register("email", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.email && (
-                                                  <small className="text-danger">
-                                                    Email is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <Controller
-                                                  name="phone"
-                                                  control={control}
-                                                  rules={{ required: true }}
-                                                  render={({
-                                                    field: { onChange, value },
-                                                  }) => (
-                                                    <PhoneInput
-                                                      international
-                                                      countryCallingCodeEditable={
-                                                        false
-                                                      }
-                                                      className="form-control rounded-0 fs-14 d-flex"
-                                                      defaultCountry="AE"
-                                                      placeholder="Enter Phone Number"
-                                                      value={value}
-                                                      onChange={onChange}
-                                                      style={{ border: "0px" }}
-                                                    />
-                                                  )}
-                                                />
-
-                                                {errors.phone && (
-                                                  <small className="text-danger">
-                                                    Phone is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <textarea
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="message"
-                                                  rows={3}
-                                                  placeholder="Message"
-                                                  {...register("message", {
-                                                    required: false,
-                                                  })}
-                                                ></textarea>
-                                                {errors.message && (
-                                                  <small className="text-danger">
-                                                    Message is required.
-                                                  </small>
-                                                )}
-                                              </div>
-                                              <input
-                                                type="hidden"
-                                                value="mortgageForm"
-                                                {...register("formName", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <input
-                                                type="hidden"
-                                                value={currentPageURL}
-                                                {...register("page", {
-                                                  required: false,
-                                                })}
-                                              />
-                                              <div className="col-12 mb-2">
-                                                <div className="text-start">
-                                                  <button
-                                                    className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
-                                                    type="submit"
-                                                  >
-                                                    Submit
-                                                  </button>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </form>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-
-                              {isMobileDev && (
-                                <>
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <p className="wzdTitleBar">
-                                          <strong>
-                                            Let's get some details to help serve
-                                            you better!
-                                          </strong>
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div className="container">
-                                    <div className="row justify-content-center">
-                                      <div className="col-lg-6">
-                                        <div className="contactForm">
-                                          <form
-                                            onSubmit={handleSubmit(onSubmit)}
-                                          >
-                                            <input type="text"
+                                <div className="container">
+                                  <div className="row justify-content-center">
+                                    <div className="col-lg-6">
+                                      <div className="contactForm">
+                                        <form
+                                          onSubmit={handleSubmit(onSubmit)}
+                                        >
+                                          <div className="row">
+                                            <input type="hidden"
                                               value={step1Ans}
                                               {...register("mortgage_type", { required: false })}
                                             />
-                                            <input type="text"
+                                            <input type="hidden"
                                               value={step2Ans}
                                               {...register("property_stage", { required: false })}
                                             />
-                                            <input type="text"
+                                            <input type="hidden"
                                               value={step3Ans}
                                               {...register("property_type", { required: false })}
                                             />
-                                            <input type="text"
+                                            <input type="hidden"
                                               value={step4Ans}
                                               {...register("property_looking_status", { required: false })}
                                             />
 
-                                            <input type="text"
+                                            <input type="hidden"
                                               value={propertyValue}
                                               {...register("estimated_budget", { required: false })}
                                             />
 
-                                            <input type="text"
+                                            <input type="hidden"
                                               value={selectedBankValue}
                                               {...register("existing_mortgage_bank_id", { required: false })}
                                             />
 
-                                            <input type="text"
+                                            <input type="hidden"
                                               value={currentPropertyValue}
                                               {...register("property_current_value", { required: false })}
                                             />
 
-                                            <input type="text"
+                                            <input type="hidden"
                                               value={selectYearData}
                                               {...register("existing_mortgage_remaining_term", { required: false })}
                                             />
-                                            <div className="row">
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="text"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="name"
-                                                  placeholder="Name"
-                                                  {...register("name", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.name && (
-                                                  <small className="text-danger">
-                                                    Name is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <input
-                                                  type="email"
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="email"
-                                                  placeholder="Email Address"
-                                                  {...register("email", {
-                                                    required: true,
-                                                  })}
-                                                />
-                                                {errors.email && (
-                                                  <small className="text-danger">
-                                                    Email is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <Controller
-                                                  name="phone"
-                                                  control={control}
-                                                  rules={{ required: true }}
-                                                  render={({
-                                                    field: { onChange, value },
-                                                  }) => (
-                                                    <PhoneInput
-                                                      international
-                                                      countryCallingCodeEditable={
-                                                        false
-                                                      }
-                                                      className="form-control rounded-0 fs-14 d-flex"
-                                                      defaultCountry="AE"
-                                                      placeholder="Enter Phone Number"
-                                                      value={value}
-                                                      onChange={onChange}
-                                                      style={{ border: "0px" }}
-                                                    />
-                                                  )}
-                                                />
-
-                                                {errors.phone && (
-                                                  <small className="text-danger">
-                                                    Phone is required.
-                                                  </small>
-                                                )}
-                                              </div>
-
-                                              <div className="col-12 mb-2">
-                                                <textarea
-                                                  className="form-control rounded-0 fs-14"
-                                                  id="message"
-                                                  rows={3}
-                                                  placeholder="Message"
-                                                  {...register("message", {
-                                                    required: false,
-                                                  })}
-                                                ></textarea>
-                                                {errors.message && (
-                                                  <small className="text-danger">
-                                                    Message is required.
-                                                  </small>
-                                                )}
-                                              </div>
+                                            <div className="col-12 mb-2">
                                               <input
-                                                type="hidden"
-                                                value="ContactForm"
-                                                {...register("formName", {
-                                                  required: false,
+                                                type="text"
+                                                className="form-control rounded-0 fs-14"
+                                                id="name"
+                                                placeholder="Name"
+                                                {...register("name", {
+                                                  required: true,
                                                 })}
                                               />
+                                              {errors.name && (
+                                                <small className="text-danger">
+                                                  Name is required.
+                                                </small>
+                                              )}
+                                            </div>
+
+                                            <div className="col-12 mb-2">
                                               <input
-                                                type="hidden"
-                                                value={currentPageURL}
-                                                {...register("page", {
-                                                  required: false,
+                                                type="email"
+                                                className="form-control rounded-0 fs-14"
+                                                id="email"
+                                                placeholder="Email Address"
+                                                {...register("email", {
+                                                  required: true,
                                                 })}
                                               />
-                                              <div className="col-12 mb-2">
-                                                <div className="text-start">
-                                                  <button
-                                                    className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
-                                                    type="submit"
-                                                  >
-                                                    Submit
-                                                  </button>
-                                                </div>
+                                              {errors.email && (
+                                                <small className="text-danger">
+                                                  Email is required.
+                                                </small>
+                                              )}
+                                            </div>
+
+                                            <div className="col-12 mb-2">
+                                              <Controller
+                                                name="phone"
+                                                control={control}
+                                                rules={{ required: true }}
+                                                render={({
+                                                  field: { onChange, value },
+                                                }) => (
+                                                  <PhoneInput
+                                                    international
+                                                    countryCallingCodeEditable={
+                                                      false
+                                                    }
+                                                    className="form-control rounded-0 fs-14 d-flex"
+                                                    defaultCountry="AE"
+                                                    placeholder="Enter Phone Number"
+                                                    value={value}
+                                                    onChange={onChange}
+                                                    style={{ border: "0px" }}
+                                                  />
+                                                )}
+                                              />
+
+                                              {errors.phone && (
+                                                <small className="text-danger">
+                                                  Phone is required.
+                                                </small>
+                                              )}
+                                            </div>
+
+                                            <div className="col-12 mb-2">
+                                              <textarea
+                                                className="form-control rounded-0 fs-14"
+                                                id="message"
+                                                rows={3}
+                                                placeholder="Message"
+                                                {...register("message", {
+                                                  required: false,
+                                                })}
+                                              ></textarea>
+                                              {errors.message && (
+                                                <small className="text-danger">
+                                                  Message is required.
+                                                </small>
+                                              )}
+                                            </div>
+                                            <input
+                                              type="hidden"
+                                              value="mortgageForm"
+                                              {...register("formName", {
+                                                required: false,
+                                              })}
+                                            />
+                                            <input
+                                              type="hidden"
+                                              value={currentPageURL}
+                                              {...register("page", {
+                                                required: false,
+                                              })}
+                                            />
+                                            <div className="col-12 mb-2">
+                                              <div className="text-start">
+                                                <button
+                                                  className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
+                                                  type="submit"
+                                                >
+                                                  Submit
+                                                </button>
                                               </div>
                                             </div>
-                                          </form>
-                                        </div>
+                                          </div>
+                                        </form>
                                       </div>
                                     </div>
                                   </div>
-                                </>
-                              )}
-                            </div>
+                                </div>
+                              </>
+                            )}
+
+                            {isMobileDev && (
+                              <>
+                                <div className="container">
+                                  <div className="row justify-content-center">
+                                    <div className="col-lg-6">
+                                      <p className="wzdTitleBar">
+                                        <strong>
+                                          Let's get some details to help serve
+                                          you better!
+                                        </strong>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="container">
+                                  <div className="row justify-content-center">
+                                    <div className="col-lg-6">
+                                      <div className="contactForm">
+                                        <form
+                                          onSubmit={handleSubmit(onSubmit)}
+                                        >
+                                          <input type="text"
+                                            value={step1Ans}
+                                            {...register("mortgage_type", { required: false })}
+                                          />
+                                          <input type="text"
+                                            value={step2Ans}
+                                            {...register("property_stage", { required: false })}
+                                          />
+                                          <input type="text"
+                                            value={step3Ans}
+                                            {...register("property_type", { required: false })}
+                                          />
+                                          <input type="text"
+                                            value={step4Ans}
+                                            {...register("property_looking_status", { required: false })}
+                                          />
+
+                                          <input type="text"
+                                            value={propertyValue}
+                                            {...register("estimated_budget", { required: false })}
+                                          />
+
+                                          <input type="text"
+                                            value={selectedBankValue}
+                                            {...register("existing_mortgage_bank_id", { required: false })}
+                                          />
+
+                                          <input type="text"
+                                            value={currentPropertyValue}
+                                            {...register("property_current_value", { required: false })}
+                                          />
+
+                                          <input type="text"
+                                            value={selectYearData}
+                                            {...register("existing_mortgage_remaining_term", { required: false })}
+                                          />
+                                          <div className="row">
+                                            <div className="col-12 mb-2">
+                                              <input
+                                                type="text"
+                                                className="form-control rounded-0 fs-14"
+                                                id="name"
+                                                placeholder="Name"
+                                                {...register("name", {
+                                                  required: true,
+                                                })}
+                                              />
+                                              {errors.name && (
+                                                <small className="text-danger">
+                                                  Name is required.
+                                                </small>
+                                              )}
+                                            </div>
+
+                                            <div className="col-12 mb-2">
+                                              <input
+                                                type="email"
+                                                className="form-control rounded-0 fs-14"
+                                                id="email"
+                                                placeholder="Email Address"
+                                                {...register("email", {
+                                                  required: true,
+                                                })}
+                                              />
+                                              {errors.email && (
+                                                <small className="text-danger">
+                                                  Email is required.
+                                                </small>
+                                              )}
+                                            </div>
+
+                                            <div className="col-12 mb-2">
+                                              <Controller
+                                                name="phone"
+                                                control={control}
+                                                rules={{ required: true }}
+                                                render={({
+                                                  field: { onChange, value },
+                                                }) => (
+                                                  <PhoneInput
+                                                    international
+                                                    countryCallingCodeEditable={
+                                                      false
+                                                    }
+                                                    className="form-control rounded-0 fs-14 d-flex"
+                                                    defaultCountry="AE"
+                                                    placeholder="Enter Phone Number"
+                                                    value={value}
+                                                    onChange={onChange}
+                                                    style={{ border: "0px" }}
+                                                  />
+                                                )}
+                                              />
+
+                                              {errors.phone && (
+                                                <small className="text-danger">
+                                                  Phone is required.
+                                                </small>
+                                              )}
+                                            </div>
+
+                                            <div className="col-12 mb-2">
+                                              <textarea
+                                                className="form-control rounded-0 fs-14"
+                                                id="message"
+                                                rows={3}
+                                                placeholder="Message"
+                                                {...register("message", {
+                                                  required: false,
+                                                })}
+                                              ></textarea>
+                                              {errors.message && (
+                                                <small className="text-danger">
+                                                  Message is required.
+                                                </small>
+                                              )}
+                                            </div>
+                                            <input
+                                              type="hidden"
+                                              value="ContactForm"
+                                              {...register("formName", {
+                                                required: false,
+                                              })}
+                                            />
+                                            <input
+                                              type="hidden"
+                                              value={currentPageURL}
+                                              {...register("page", {
+                                                required: false,
+                                              })}
+                                            />
+                                            <div className="col-12 mb-2">
+                                              <div className="text-start">
+                                                <button
+                                                  className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
+                                                  type="submit"
+                                                >
+                                                  Submit
+                                                </button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            )}
                           </div>
-                        </>
-                      )}
-                  </div>
+                        </div>
+                      </>
+                    )}
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-      <section className="aboutPgSection">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-3 text-center">
-              <img
-                src="images/mortage_logo.png"
-                alt="My Mortgage"
-                className="img-fluid py-2"
-                width={150}
-              />
-            </div>
-            <div className="col-md-9">
-              <p className="fs-14 text-secondary mb-4">
-                Founded in 2019, the mortgage wing of Range International Property
-                Investments has grown to become a trusted name in the UAE property
-                market. Over the last few years, we have helped hundreds of
-                clients secure financing for their homes and we are proud to have
-                built a reputation of honesty, integrity and professionalism. We
-                understand that buying a home can be a complex and overwhelming
-                experience, which is why we are committed to providing
-                personalised solutions and exceptional customer service every step
-                of the way.
-                <br />
-                <br />
-              </p>
-            </div>
+      </div>
+    </section>
+    <section className="aboutPgSection">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-3 text-center">
+            <img
+              src="images/mortage_logo.png"
+              alt="My Mortgage"
+              className="img-fluid py-2"
+              width={150}
+            />
+          </div>
+          <div className="col-md-9">
+            <p className="fs-14 text-secondary mb-4">
+              Founded in 2019, the mortgage wing of Range International Property
+              Investments has grown to become a trusted name in the UAE property
+              market. Over the last few years, we have helped hundreds of
+              clients secure financing for their homes and we are proud to have
+              built a reputation of honesty, integrity and professionalism. We
+              understand that buying a home can be a complex and overwhelming
+              experience, which is why we are committed to providing
+              personalised solutions and exceptional customer service every step
+              of the way.
+              <br />
+              <br />
+            </p>
           </div>
         </div>
-      </section>
-    </>
-  );
+      </div>
+    </section>
+  </>
+);
 }
 export default MortgagePage;
