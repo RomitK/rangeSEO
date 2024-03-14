@@ -12,7 +12,7 @@ function TeamPage() {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
 
-      if(isMobileDevice){
+      if (isMobileDevice) {
         document.body.style.overflow = 'auto';
       }
 
@@ -82,7 +82,7 @@ function TeamPage() {
                             target="_blanket"
                           >
                             <img
-                              src="/images/icons/team-call.png"
+                              src="/images/icons/phone-icon.png"
                               className="crdSocialIcon"
                               alt="phone"
                             />
@@ -95,7 +95,7 @@ function TeamPage() {
                             target="_blanket"
                           >
                             <img
-                              src="/images/icons/team-mail.png"
+                              src="/images/icons/mail-icon.png"
                               className="crdSocialIcon"
                               alt="mail"
                             />
@@ -104,13 +104,13 @@ function TeamPage() {
 
                         {team && team?.whatsapp && (
                           <a
-                            href={"https://wa.me/" + team?.whatsapp+"?text=Hi, "+ team?.name +" Please let me know more about investing in Dubai Real Estate"}
+                            href={"https://wa.me/" + team?.whatsapp + "?text=Hi, " + team?.name + " Please let me know more about investing in Dubai Real Estate"}
                             className="text-decoration-none socialLink"
                             target="_blanket"
                           >
                             <img
                               // src="/images/icons/team-whatsapp1.png"
-                              src="/images/icons/team-whatsapp.png"
+                              src="/images/icons/whatsapp-icon.png"
                               className="crdSocialIcon"
                               alt="whatsapp"
                             />
