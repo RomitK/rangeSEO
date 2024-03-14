@@ -4,7 +4,7 @@ import React from "react";
 import Select from "react-select";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
+import { priceShortFormat } from "@/app/utils/formatNumber"
 import { useGetAllHomeData } from "@/src/services/HomeService";
 function ProjectList() {
   const router = useRouter();

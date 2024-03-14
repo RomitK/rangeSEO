@@ -8,7 +8,7 @@ import {
   OverlayView,
   DrawingManagerF,
 } from "@react-google-maps/api";
-
+import { priceShortFormat } from "@/app/utils/formatNumber"
 import { useGetPropertyAccommodations } from "@/src/services/AccommodationService";
 import { useGetPropertyAmenities } from "@/src/services/AmenityService"
 
@@ -21,8 +21,8 @@ import BuyFilters from "@/app/(frontend)/components/Properties/Filters/Buy/BuyFi
 import ReadyFilters from "@/app/(frontend)/components/Properties/Filters/Buy/ReadyFilters";
 import OffPlanFilters from "@/app/(frontend)/components/Properties/Filters/Buy/OffPlanFilters";
 import Property from "@/app/(frontend)/components/Properties/Property";
-const PropertyList = ({ params }) => {
 
+const PropertyList = ({ params }) => {
   //console.log(params);
   const isLuxuryProperties = Object.hasOwn(params, 'isLuxury');
   const isRentPage = Object.hasOwn(params, 'rent');
@@ -324,7 +324,7 @@ const PropertyList = ({ params }) => {
                   onClick={() => {
                     setIsOpen(false);
                   }}
-                  
+
                 >
                   {filteredMarkers.map(
                     (
@@ -384,7 +384,7 @@ const PropertyList = ({ params }) => {
                               whiteSpace: "nowrap", // Rounded corners
                             }}
                           >
-                            {new Intl.NumberFormat().format(price)}
+                            {priceShortFormat(price)}
                           </div>
                         </OverlayView>
                         {isOpen && infoWindowData?.id === ind && (

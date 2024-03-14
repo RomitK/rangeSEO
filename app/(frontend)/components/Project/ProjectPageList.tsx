@@ -12,9 +12,10 @@ import {
 
 import classes from "./Project.module.css";
 import Filters from "./Filters";
-import { useGetProjectAccommodations} from "@/src/services/AccommodationService";
+import { useGetProjectAccommodations } from "@/src/services/AccommodationService";
 import { useGetProjectAmenities } from "@/src/services/AmenityService"
 import axios from "axios";
+import { priceShortFormat } from "@/app/utils/formatNumber"
 
 const PropertyList = ({ params }) => {
   const [showMap, setShowMap] = useState(true);
@@ -37,11 +38,11 @@ const PropertyList = ({ params }) => {
     starting_price: "",
     mainImage: "",
     slug: "",
-    handOver:"",
+    handOver: "",
     completionStatusName: "",
     accommodationName: "",
   });
-  
+
   useEffect(() => {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
@@ -60,7 +61,7 @@ const PropertyList = ({ params }) => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  
+
   const [showClearMapButton, setShowClearMapButton] = useState(false);
   const mapRef2 = useRef(null);
   const [loading, setLoading] = useState(false);
@@ -80,8 +81,8 @@ const PropertyList = ({ params }) => {
       bounds.contains(new window.google.maps.LatLng(marker.lat, marker.lng))
     );
     mapRef2?.current?.setCenter({
-       lat: parseFloat(originalMarkers[0].address_latitude),
-       lng: parseFloat(originalMarkers[0].address_longitude),
+      lat: parseFloat(originalMarkers[0].address_latitude),
+      lng: parseFloat(originalMarkers[0].address_longitude),
       // lat: 23.4241, // Latitude for UAE
       // lng: 53.8478, // Longitude for UAE
 
@@ -189,7 +190,7 @@ const PropertyList = ({ params }) => {
               sortBy={sorting}
               setLinks={setLinks}
               setTotalProperties={setTotalProperties}
-              totalPropertyCount= {totalProperties}
+              totalPropertyCount={totalProperties}
             />
           </div>
         </div>
@@ -286,7 +287,7 @@ const PropertyList = ({ params }) => {
                               whiteSpace: "nowrap", // Rounded corners
                             }}
                           >
-                            {new Intl.NumberFormat().format(starting_price)}
+                            {priceShortFormat(starting_price)}
                           </div>
                         </OverlayView>
                         {isOpen && infoWindowData?.id === ind && (
@@ -301,7 +302,7 @@ const PropertyList = ({ params }) => {
                                 area={infoWindowData.area}
                                 bathrooms={infoWindowData.bathrooms}
                                 bedrooms={infoWindowData.bedrooms}
-                                handOver = {infoWindowData.handOver}
+                                handOver={infoWindowData.handOver}
                                 starting_price={infoWindowData.starting_price}
                                 address={infoWindowData.address}
                                 mainImage={infoWindowData.mainImage}
@@ -401,9 +402,8 @@ const PropertyList = ({ params }) => {
                         {properties.map((property, index) => (
                           <div
                             key={index}
-                            className={`col-12 ${
-                              showMap ? "col-lg-6" : "col-lg-3"
-                            } col-md-6`}
+                            className={`col-12 ${showMap ? "col-lg-6" : "col-lg-3"
+                              } col-md-6`}
                           >
                             <Project
                               slug={property.slug}

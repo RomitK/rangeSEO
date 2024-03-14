@@ -15,7 +15,7 @@ import { useGetAllHomeData } from "@/src/services/HomeService";
 import Modal from "./Model";
 import MapProject from "./MapProject";
 import Project from "./Project";
-
+import { priceShortFormat } from "@/app/utils/formatNumber"
 function ProjectList() {
   const router = useRouter();
   const { homeData } = useGetAllHomeData();
@@ -265,7 +265,7 @@ function ProjectList() {
                           whiteSpace: "nowrap", // Rounded corners
                         }}
                       >
-                        {new Intl.NumberFormat().format(starting_price)}
+                        {priceShortFormat(starting_price)}
 
                       </div>
                     </OverlayView>
