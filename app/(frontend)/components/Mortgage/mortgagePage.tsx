@@ -19,6 +19,7 @@ import Loader from "@/app/(frontend)/components/UI/Loader";
 import { parsePhoneNumberFromString, AsYouType } from "libphonenumber-js";
 import { useRouter } from "next/navigation";
 import { FieldError } from "react-hook-form";
+import Swal from 'sweetalert2';
 
 type OptionType = {
   value: string;
@@ -82,10 +83,24 @@ function MortgagePage() {
     setIsLoading(true);
     saveContactFormApi(data)
       .then((res) => {
-        router.push(`/thank-you`);
+        //router.push(`/thank-you`);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          showCloseButton: true,
+          title: "Form Submitted",
+          text: "Thank you. Our team will get back to you soon.",
+          showConfirmButton: false,
+          timer: 1500
+        });
         //toast.success("Thank you. Our team will get back to you soon.");
         setIsLoading(false);
-        // setStep(1);
+        setStep(1);
+        setStep2Ans(null);
+        setStep3Ans(null);
+        setStep4Ans(null);
+        setCurrentPropertyValue(0);
+        setPropertyValue(0)
         reset();
       })
       .catch((err) => {
@@ -136,7 +151,6 @@ function MortgagePage() {
   const [step3Ans, setStep3Ans] = useState(null);
   const [step4Ans, setStep4Ans] = useState(null);
   const [step5Ans, setStep5Ans] = useState(null);
-
   const [step12Ans, setStep12Ans] = useState(1);
   const [step13Ans, setStep13Ans] = useState(1);
 

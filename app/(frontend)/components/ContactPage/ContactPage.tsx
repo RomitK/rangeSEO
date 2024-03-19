@@ -8,16 +8,18 @@ import "@/public/css/style.css"
 import "@/public/css/contact-Us-styles.css"
 import PhoneInput from "react-phone-number-input";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
-
+import Swal from 'sweetalert2'
+import { FieldError } from "react-hook-form";
+import { isValidPhoneNumber } from 'react-phone-number-input'
 
 function ContactPage() {
   const [isMobileDev, setIsMobileDev] = useState(false);
   useEffect(() => {
-    
+
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
-      if(isMobileDevice){
+      if (isMobileDevice) {
         document.body.style.overflow = 'auto';
       }
       setIsMobileDev(isMobileDevice);
@@ -49,9 +51,20 @@ function ContactPage() {
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
-        toast.success(
-          "Thank you. Our team will get back to you soon."
-        );
+
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          showCloseButton: true,
+          title: "Form Submitted",
+          text: "Thank you. Our team will get back to you soon.",
+          showConfirmButton: false,
+          timer: 1500
+        });
+
+        // toast.success(
+        //   "Thank you. Our team will get back to you soon."
+        // );
         reset();
       })
       .catch((err) => {
@@ -118,63 +131,63 @@ function ContactPage() {
               isMobileDev && (
                 <>
 
-                <div className="col-6 paddingRight0">
-                  <div className="contactBox bdrOnly">
-                    <h5 className="">Call Us</h5>
-                    <a href="tel:80072888" className="textFlexBar">
-                      <img
-                        src="/images/icons/phone-icon.png"
-                        className="contact-icon"
-                        alt="phone"
-                      />
-                      <p className="fs-12">800 72 888</p>
-                    </a>
+                  <div className="col-6 paddingRight0">
+                    <div className="contactBox bdrOnly">
+                      <h5 className="">Call Us</h5>
+                      <a href="tel:80072888" className="textFlexBar">
+                        <img
+                          src="/images/icons/phone-icon.png"
+                          className="contact-icon"
+                          alt="phone"
+                        />
+                        <p className="fs-12">800 72 888</p>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="col-6 paddingRight0">
-                  <div className="contactBox bdr">
-                    <h5>Email</h5>
-                    <a href="mailto:sales@range.ae" className="textFlexBar">
-                      <img
-                        src="/images/icons/mail-icon.png"
-                        className="contact-icon"
-                        alt="mail"
-                      />
-                      <p className="fs-12">sales@range.ae</p>
-                    </a>
+                  <div className="col-6 paddingRight0">
+                    <div className="contactBox bdr">
+                      <h5>Email</h5>
+                      <a href="mailto:sales@range.ae" className="textFlexBar">
+                        <img
+                          src="/images/icons/mail-icon.png"
+                          className="contact-icon"
+                          alt="mail"
+                        />
+                        <p className="fs-12">sales@range.ae</p>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="col-6 paddingRight0">
-                  <div className="contactBox bdrOnly">
-                    <h5>WhatsApp</h5>
-                    <a
-                      href={
-                        "https://wa.me/+971506337953?text=Hi, Please let me know more about investing in Dubai Real Estate"
-                      }
-                      className="textFlexBar"
-                    >
-                      <img
-                        src="/images/icons/whatsapp-icon.png"
-                        className="contact-icon"
-                        alt="whatsapp"
-                      />
-                      <p className="fs-12">+971 50 633 7953</p>
-                    </a>
+                  <div className="col-6 paddingRight0">
+                    <div className="contactBox bdrOnly">
+                      <h5>WhatsApp</h5>
+                      <a
+                        href={
+                          "https://wa.me/+971506337953?text=Hi, Please let me know more about investing in Dubai Real Estate"
+                        }
+                        className="textFlexBar"
+                      >
+                        <img
+                          src="/images/icons/whatsapp-icon.png"
+                          className="contact-icon"
+                          alt="whatsapp"
+                        />
+                        <p className="fs-12">+971 50 633 7953</p>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="col-6 paddingRight0">
-                  <div className="contactBox">
-                    <h5>Address</h5>
-                    <a href="tel:80072888" className="textFlexBar">
-                      <img
-                        src="/images/icons/map_pin.png"
-                        className="contact-icon"
-                        alt="whatsapp"
-                      />
-                      <p className="fs-12"> 2601, Aspect Tower, Business Bay, Dubai, UAE</p>
-                    </a>
+                  <div className="col-6 paddingRight0">
+                    <div className="contactBox">
+                      <h5>Address</h5>
+                      <a href="tel:80072888" className="textFlexBar">
+                        <img
+                          src="/images/icons/map_pin.png"
+                          className="contact-icon"
+                          alt="whatsapp"
+                        />
+                        <p className="fs-12"> 2601, Aspect Tower, Business Bay, Dubai, UAE</p>
+                      </a>
+                    </div>
                   </div>
-                </div>
 
                 </>
               )
@@ -183,66 +196,66 @@ function ContactPage() {
               !isMobileDev && (
                 <>
 
-                <div className="col-lg-3 ">
-                  <div className="contactBox">
-                    <h5 className="">Call Us</h5>
-                    <a href="tel:80072888" className="textFlexBar">
-                      <img
-                        src="/images/icons/phone-icon.png"
-                        className="contact-icon"
-                        alt="phone"
-                      />
-                      <p className="fs-18">800 72 888</p>
-                    </a>
+                  <div className="col-lg-3 ">
+                    <div className="contactBox">
+                      <h5 className="">Call Us</h5>
+                      <a href="tel:80072888" className="textFlexBar">
+                        <img
+                          src="/images/icons/phone-icon.png"
+                          className="contact-icon"
+                          alt="phone"
+                        />
+                        <p className="fs-18">800 72 888</p>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="col-lg-3 paddingLeft0">
-                  <div className="contactBox bdr">
-                    <h5>Email</h5>
-                    <a href="mailto:sales@range.ae" className="textFlexBar">
-                      <img
-                        src="/images/icons/mail-icon.png"
-                        className="contact-icon"
-                        alt="mail"
-                      />
-                      <p className="fs-18">sales@range.ae</p>
-                    </a>
+                  <div className="col-lg-3 paddingLeft0">
+                    <div className="contactBox bdr">
+                      <h5>Email</h5>
+                      <a href="mailto:sales@range.ae" className="textFlexBar">
+                        <img
+                          src="/images/icons/mail-icon.png"
+                          className="contact-icon"
+                          alt="mail"
+                        />
+                        <p className="fs-18">sales@range.ae</p>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="col-lg-3 paddingRight0">
-                  <div className="contactBox bdrOnly">
-                    <h5>WhatsApp</h5>
-                    <a
-                      href={
-                        "https://wa.me/+971506337953?text=Hi, Please let me know more about investing in Dubai Real Estate"
-                      }
-                      className="textFlexBar"
-                    >
-                      <img
-                        src="/images/icons/whatsapp-icon.png"
-                        className="contact-icon"
-                        alt="whatsapp"
-                      />
-                      <p className="fs-18">+971 50 633 7953</p>
-                    </a>
+                  <div className="col-lg-3 paddingRight0">
+                    <div className="contactBox bdrOnly">
+                      <h5>WhatsApp</h5>
+                      <a
+                        href={
+                          "https://wa.me/+971506337953?text=Hi, Please let me know more about investing in Dubai Real Estate"
+                        }
+                        className="textFlexBar"
+                      >
+                        <img
+                          src="/images/icons/whatsapp-icon.png"
+                          className="contact-icon"
+                          alt="whatsapp"
+                        />
+                        <p className="fs-18">+971 50 633 7953</p>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="col-lg-3 paddingRight0">
-                  <div className="contactBox">
-                    <h5>Address</h5>
-                    <a href="tel:80072888" className="textFlexBar">
-                    <img
-                        src="/images/icons/map_pin.png"
-                        className="contact-icon"
-                        alt="whatsapp"
-                      />
-                      <p className="fs-18"> 2601, Aspect Tower, Business Bay, Dubai, UAE</p>
+                  <div className="col-lg-3 paddingRight0">
+                    <div className="contactBox">
+                      <h5>Address</h5>
+                      <a href="tel:80072888" className="textFlexBar">
+                        <img
+                          src="/images/icons/map_pin.png"
+                          className="contact-icon"
+                          alt="whatsapp"
+                        />
+                        <p className="fs-18"> 2601, Aspect Tower, Business Bay, Dubai, UAE</p>
 
-                    </a>
-                     
-                    
+                      </a>
+
+
+                    </div>
                   </div>
-                </div>
 
                 </>
               )
@@ -256,81 +269,78 @@ function ContactPage() {
           <div className="AddressArea">
             <div className="addressBox">
               <h4 className="text-center text-primary">Request a Call back</h4>
-              
+
               <div className="addressBoxContent">
                 <div className="row ">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className="col-12 mb-2">
-                  <p>Please fill the form</p>
-                    <input type="hidden" value="CallBackRequestForm" {...register("formName", { required: false })}/>
-                    <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
-                    <input
-                      type="text"
-                      className="form-control cntInptField"
-                      placeholder="Name"
-                      {...register("name", { required: true })}
-                      required
-                    />
-                    {errors.name && <small className="text-danger">Name is required.</small>}
-                  </div>
-                  <div className="col-12 mb-2">
-                    <input
-                      type="email"
-                      className="form-control cntInptField"
-                      placeholder="Email Address"
-                      {...register("email", { required: true })}
-                      required
-                    />
-                    {errors.email && <small className="text-danger">Email is required.</small>}
-                  </div>
-                  <div className="col-12 mb-2">
-                    <Controller
-                      name="phone"
-                      control={control}
-                      rules={{ required: true }}
-                      render={({ field: { onChange, value } }) => (
-                        <PhoneInput
-                          international
-                          countryCallingCodeEditable={false}
-                          className="form-control rounded-0 fs-14 d-flex"
-                          defaultCountry="AE"
-                          placeholder="Enter Phone Number"
-                          value={value}
-                          onChange={onChange}
-                          style={{ border: "0px" }}
-                        />
-                      )}
-                    />
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="col-12 mb-2">
+                      <p>Please fill the form</p>
+                      <input type="hidden" value="CallBackRequestForm" {...register("formName", { required: false })} />
+                      <input type="hidden" value={currentPageURL} {...register("page", { required: false })} />
+                      <input
+                        type="text"
+                        className="form-control cntInptField"
+                        placeholder="Name"
+                        {...register("name", { required: true })}
 
-                    {errors.phone && <small className="text-danger">Phone is required.</small>}
-                    {/* <input
-                      type="phone"
-                      className="form-control cntInptField"
-                      placeholder="Contact Number"
-                      value={formData.phone}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          phone: e.target.value,
-                        })
-                      }
-                      autoComplete="off"
-                      required
-                    /> */}
-                  </div>
-                  <div className="col-12">
-                    <textarea
-                      className="form-control cntInptField textareaField"
-                      placeholder="Message"
-                     
-                      {...register("message", { required: false })}
-                    ></textarea>
-                  </div>
-                  <input
-                    type="submit"
-                    className="fillBtn submitBtn"
-                    value="Submit"
-                  />
+                      />
+                      {errors.name && <small className="text-danger">Name is required.</small>}
+                    </div>
+                    <div className="col-12 mb-2">
+                      <input
+                        type="email"
+                        className="form-control cntInptField"
+                        placeholder="Email Address"
+                        {...register("email", { required: true })}
+
+                      />
+                      {errors.email && <small className="text-danger">Email is required.</small>}
+                    </div>
+                    <div className="col-12 mb-2">
+                      <Controller
+                        name="phone"
+                        control={control}
+                        rules={{
+                          required: 'Phone is required.',
+                          validate: {
+                            validPhoneNumber: (value) => isValidPhoneNumber(value) || 'Invalid phone number'
+                          }
+                        }}
+                        render={({ field }) => (
+                          <>
+                            <PhoneInput
+                              international
+                              countryCallingCodeEditable={false}
+                              className={`form-control rounded-0 fs-14 d-flex ${errors.phone ? 'is-invalid' : ''}`}
+                              defaultCountry="AE"
+                              placeholder="Enter Phone Number"
+                              error={errors.phone ? 'Invalid phone number' : undefined}
+                              {...field}
+                              style={{ border: "0px" }}
+                            />
+                            {errors.phone && (
+                              <small className="text-danger">
+                                {(errors.phone as FieldError).message}
+                              </small>
+                            )}
+
+                          </>
+                        )}
+                      />
+                    </div>
+                    <div className="col-12">
+                      <textarea
+                        className="form-control cntInptField textareaField"
+                        placeholder="Message"
+
+                        {...register("message", { required: false })}
+                      ></textarea>
+                    </div>
+                    <input
+                      type="submit"
+                      className="fillBtn submitBtn"
+                      value="Submit"
+                    />
                   </form>
                 </div>
               </div>
@@ -339,7 +349,7 @@ function ContactPage() {
               <div className="addressBoxHead">
                 <h4>Location</h4>
                 <p className=" text-secondary">
-                 
+
                 </p>
               </div>
               <div className="addressBoxContent pad-0">
@@ -360,7 +370,7 @@ function ContactPage() {
         <div className="container">
           {/* <h4 className="sctionMdTitle text-primary ">FAQS</h4> */}
 
-          
+
           <div className="location-heading-div text-center padding">
             <h2 className="location-heading">Frequently Ask Questions</h2>
           </div>
@@ -378,9 +388,8 @@ function ContactPage() {
                 return (
                   <div className="accordion-item" key={index + "faq"}>
                     <button
-                      className={`accordion-button ${
-                        activeIndex != index ? " collapsed" : ""
-                      } `}
+                      className={`accordion-button ${activeIndex != index ? " collapsed" : ""
+                        } `}
                       data-bs-toggle="collapse"
                       data-bs-target={"#faqCollapse-" + index}
                       aria-expanded={activeIndex == index ? true : false}
@@ -392,9 +401,8 @@ function ContactPage() {
                     </button>
                     <div
                       id={"faqCollapse-" + index}
-                      className={`accordion-collapse collapse  ${
-                        activeIndex == index ? " show" : ""
-                      } `}
+                      className={`accordion-collapse collapse  ${activeIndex == index ? " show" : ""
+                        } `}
                       data-bs-parent="#FAQAccordion"
                     >
                       <div className="accordion-body">

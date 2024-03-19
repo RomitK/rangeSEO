@@ -12,7 +12,9 @@ import {
   sendOTPApi,
   verifyOTPApi,
 } from "@/src/services/HomeService";
-
+import Swal from 'sweetalert2'
+import { FieldError } from "react-hook-form";
+import { isValidPhoneNumber } from 'react-phone-number-input'
 function SellModel(props) {
   const [formData, setFormData] = useState({
     name: "",
@@ -23,7 +25,7 @@ function SellModel(props) {
     page: props.pageUrl,
   });
   const [formName, setformName] = useState()
-  
+
   const visiorFormRef = useRef(null);
   const submitBtnRef = useRef(null);
   const [otpSent, setOtpSent] = useState(false);
@@ -144,12 +146,20 @@ function SellModel(props) {
                 setIsLoading(false);
                 closeRef.current.click();
                 reset();
-                toast.success("Thank you. Your document is downloading.");
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Thank you. Your document is downloading.",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+
+                // toast.success("Thank you. Your document is downloading.");
               })
               .catch(function (error) {
                 toast.error(`Download failed Something went wrong!`);
               });
- 
+
           }
           setShowOtp(true);
           setOtpSent(true);
@@ -237,17 +247,17 @@ function SellModel(props) {
           .catch(function (error) {
             toast.error(`Download failed Something went wrong!`);
           });
-          reset();
+        reset();
       })
       .catch((err) => {
         toast.error("Something went wrong, please try again");
       });
   };
-  
+
 
   return (
     <>
-      {isLoading && <Loader />}              
+      {isLoading && <Loader />}
       <div
         className="modal fade"
         id="downloadNow"
@@ -258,7 +268,7 @@ function SellModel(props) {
         <div className="modal-dialog  modal-dialog-centered modal-md modalBookMeet ">
           <div className="modal-content">
             <div className="modal-header border-0 justify-content-end p-1">
-            <button
+              <button
                 type="button"
                 className="bg-transparent border-0"
                 data-bs-dismiss="modal"
@@ -287,97 +297,97 @@ function SellModel(props) {
                     />
                   </div>
                   <div className=" p-4">
-                  {showOtp && (
-                    <form
-                      action=""
-                      method="POST"
-                      onSubmit={handleSubmit(onSubmitVisitorOTPVerifyForm)}
-                    >
-                      <div className="">
-                        <div className="row">
-                          <div className="col-md-12">
-                            <h6 className="text-primary text-center p-2">
-                              Enter Details to Download the {props.title}
-                            </h6>
+                    {showOtp && (
+                      <form
+                        action=""
+                        method="POST"
+                        onSubmit={handleSubmit(onSubmitVisitorOTPVerifyForm)}
+                      >
+                        <div className="">
+                          <div className="row">
+                            <div className="col-md-12">
+                              <h6 className="text-primary text-center p-2">
+                                Enter Details to Download the {props.title}
+                              </h6>
 
-                            <div className="form-group">
-                              <label>
-                                OTP{" "}
-                                <small className="text-danger">
-                                  {" "}
-                                  {timer > 0 && (
-                                    <span>(Valid for: {timer} seconds)</span>
-                                  )}{" "}
-                                  *
-                                </small>
-                              </label>
-                              <input
-                                type="text"
-                                name="nameCon2"
-                                id="nameCon2"
-                                className="form-control mb-2"
-                                placeholder="Enter OTP code..."
-                                autoComplete="off"
-                                {...register("otp", { required: true })}
-                              />
-                              {errors.otp && (
-                                <small className="text-danger">
-                                  OTP is required.
-                                </small>
-                              )}
-                            
+                              <div className="form-group">
+                                <label>
+                                  OTP{" "}
+                                  <small className="text-danger">
+                                    {" "}
+                                    {timer > 0 && (
+                                      <span>(Valid for: {timer} seconds)</span>
+                                    )}{" "}
+                                    *
+                                  </small>
+                                </label>
+                                <input
+                                  type="text"
+                                  name="nameCon2"
+                                  id="nameCon2"
+                                  className="form-control mb-2"
+                                  placeholder="Enter OTP code..."
+                                  autoComplete="off"
+                                  {...register("otp", { required: true })}
+                                />
+                                {errors.otp && (
+                                  <small className="text-danger">
+                                    OTP is required.
+                                  </small>
+                                )}
+
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="modal-footer border-0">
-                          
-                       
+                          <div className="modal-footer border-0">
 
-                          {timer === 0 ? (
-                            <div className="row">
-                              <div className="col-md-6">
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-bluee rounded-0 px-5 float-end btnContact"
-                                  onClick={() => {
-                                    if (submitBtnRef.current) {
-                                      
-                                      submitBtnRef.current.click();
+
+
+                            {timer === 0 ? (
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <button
+                                    type="button"
+                                    className="btn btn-sm btn-bluee rounded-0 px-5 float-end btnContact"
+                                    onClick={() => {
+                                      if (submitBtnRef.current) {
+
+                                        submitBtnRef.current.click();
+                                        setTimer(60);
+                                      }
+                                    }}
+                                  >
+                                    Resend OTP
+                                  </button>
+                                </div>
+                                <div className="col-md-6">
+                                  <button
+                                    type="button"
+                                    className="btn btn-sm btn-primary rounded-0 px-5 float-end btnContact2"
+                                    onClick={() => {
+                                      setShowOtp(false);
                                       setTimer(60);
-                                    }
-                                  }}
-                                >
-                                  Resend OTP
-                                </button>
+                                    }}
+                                  >
+                                    Change Number
+                                  </button>
+                                </div>
                               </div>
-                              <div className="col-md-6">
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-primary rounded-0 px-5 float-end btnContact2"
-                                  onClick={() => {
-                                    setShowOtp(false);
-                                    setTimer(60);
-                                  }}
-                                >
-                                  Change Number
-                                </button>
-                              </div>
-                            </div>
-                          ) : (
-                            <button
-                              type="submit"
-                              name="submit"
-                              className="btn btn-blue rounded-0 px-5 float-end btnContact2"
-                            >
-                              {isLoading ? "Sending..." : "Verify OTP"}
-                            </button>
-                          )}
+                            ) : (
+                              <button
+                                type="submit"
+                                name="submit"
+                                className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                              >
+                                {isLoading ? "Sending..." : "Verify OTP"}
+                              </button>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    </form>
-                  )}
+                      </form>
+                    )}
 
-                 
+
                     <form
                       ref={visiorFormRef}
                       action=""
@@ -430,27 +440,37 @@ function SellModel(props) {
                                 <Controller
                                   name="phone"
                                   control={control}
-                                  rules={{ required: true }}
-                                  render={({ field: { onChange, value } }) => (
-                                    <PhoneInput
-                                      international
-                                      countryCallingCodeEditable={false}
-                                      className="form-control"
-                                      defaultCountry="AE"
-                                      placeholder="Enter Phone Number"
-                                      value={value}
-                                      onChange={(phone) => {
-                                        handlePhoneChange(phone);
-                                        onChange(phone); // keep react-hook-form's onChange in sync
-                                      }}
-                                    />
+                                  rules={{
+                                    required: 'Phone is required.',
+                                    validate: {
+                                      validPhoneNumber: (value) => isValidPhoneNumber(value) || 'Invalid phone number'
+                                    }
+                                  }}
+                                  render={({ field }) => (
+                                    <>
+                                      <PhoneInput
+                                        international
+                                        countryCallingCodeEditable={false}
+                                        className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+                                        defaultCountry="AE"
+                                        placeholder="Enter Phone Number"
+                                        error={errors.phone ? 'Invalid phone number' : undefined}
+                                        {...field}
+                                        style={{ border: "0px" }}
+                                        onChange={(phone) => {
+                                          handlePhoneChange(phone);
+                                          field.onChange(phone); // keep react-hook-form's onChange in sync
+                                        }}
+                                      />
+                                      {errors.phone && (
+                                        <small className="text-danger">
+                                          {(errors.phone as FieldError).message}
+                                        </small>
+                                      )}
+
+                                    </>
                                   )}
                                 />
-                                {errors.phone && (
-                                  <small className="text-danger">
-                                    Phone is required.
-                                  </small>
-                                )}
                               </div>
                               <input
                                 type="hidden"
@@ -484,7 +504,7 @@ function SellModel(props) {
                         </button>
                       </div>
                     </form>
-                 
+
                   </div>
                 </div>
               </div>
@@ -492,7 +512,7 @@ function SellModel(props) {
           </div>
         </div>
       </div>
-   
+
     </>
   );
 }

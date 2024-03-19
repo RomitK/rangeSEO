@@ -44,6 +44,7 @@
     "run": "^1.4.0",
     "select2": "^4.1.0-rc.0",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.10.6",
     "swiper": "^10.3.1",
     "swr": "^2.2.4"
   },

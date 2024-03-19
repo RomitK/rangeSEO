@@ -86,7 +86,7 @@ border: 1.5px solid #2f3c6a;
 }
 .fillBtn.cardBtn:hover{
 background-color: unset;
-color:#2f3c6a !important;
+/* color:#2f3c6a !important; */
 border: 1.5px solid #2f3c6a;
 }
 .imgSection{

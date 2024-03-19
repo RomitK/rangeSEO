@@ -9,6 +9,9 @@ import PhoneInput from "react-phone-number-input";
 import { useForm, Controller } from "react-hook-form";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 import { saveContactFormApi } from "@/src/services/HomeService";
+import { FieldError } from "react-hook-form";
+import Swal from 'sweetalert2';
+import { isValidPhoneNumber } from 'react-phone-number-input';
 
 function GoldenVisaModel(props) {
 
@@ -23,9 +26,18 @@ function GoldenVisaModel(props) {
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
-        toast.success(
-          "Thank you. Our team will get back to you soon."
-        );
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          showCloseButton: true,
+          title: "Form Submitted",
+          text: "Thank you. Our team will get back to you soon.",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        // toast.success(
+        //   "Thank you. Our team will get back to you soon."
+        // );
         reset();
         careerCloseRef.current.click();
       })
@@ -70,8 +82,8 @@ function GoldenVisaModel(props) {
                 <div className="col-12 col-lg-12 col-md-12 ">
                   <div className="">
                     <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
-                    <input type="hidden" value="GoldenVisaForm" {...register("formName", { required: false })}/>
-                    <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
+                      <input type="hidden" value="GoldenVisaForm" {...register("formName", { required: false })} />
+                      <input type="hidden" value={currentPageURL} {...register("page", { required: false })} />
                       <div className="">
                         <div className="row">
                           <div className="col-md-12">
@@ -83,34 +95,34 @@ function GoldenVisaModel(props) {
                                 width="150"
                               />
                               <h6 className="text-primary py-2">
-                              Enter Details
-                            </h6>
+                                Enter your details here
+                              </h6>
                             </div>
                             <div className="form-group  mb-2">
-                              
+
                               <input
                                 type="text"
                                 name="nameCon2"
                                 id="nameCon2"
                                 className="form-control"
-                                placeholder="Enter your name"
+                                placeholder="Name"
                                 autoComplete="off"
                                 {...register("name", { required: true })}
-                                
+
                               />
                               {errors.name && <small className="text-danger">Name is required.</small>}
                             </div>
                             <div className="form-group  mb-2">
-                              
+
                               <input
                                 type="email"
                                 name="emailCon2"
                                 id="emailCon2"
                                 className="form-control"
-                                placeholder="Enter your email address"
+                                placeholder="Email address"
                                 autoComplete="off"
                                 {...register("email", { required: true })}
-                                
+
                               />
                               {errors.email && <small className="text-danger">Email is required.</small>}
                             </div>
@@ -118,23 +130,38 @@ function GoldenVisaModel(props) {
                               <Controller
                                 name="phone"
                                 control={control}
-                                rules={{ required: true }}
-                                render={({ field: { onChange, value } }) => (
-                                  <PhoneInput
-                                    international
-                                    countryCallingCodeEditable={false}
-                                    className="form-control  fs-14 d-flex"
-                                    defaultCountry="AE"
-                                    placeholder="Enter Phone Number"
-                                    value={value}
-                                    onChange={onChange}
-                                    style={{ border: "0px" }}
-                                  />
+                                rules={{
+                                  required: 'Phone is required.',
+                                  validate: {
+                                    validPhoneNumber: (value) => isValidPhoneNumber(value) || 'Invalid phone number'
+                                  }
+                                }}
+                                render={({ field }) => (
+                                  <>
+                                    <PhoneInput
+                                      international
+                                      countryCallingCodeEditable={false}
+                                      className={`form-control fs-14 d-flex ${errors.phone ? 'is-invalid' : ''}`}
+                                      defaultCountry="AE"
+                                      placeholder="Enter Phone Number"
+                                      error={errors.phone ? 'Invalid phone number' : undefined}
+                                      {...field}
+                                      style={{ border: "0px" }}
+                                      onChange={(phone) => {
+                                        field.onChange(phone); // keep react-hook-form's onChange in sync
+                                      }}
+                                    />
+                                    {errors.phone && (
+                                      <small className="text-danger">
+                                        {(errors.phone as FieldError).message}
+                                      </small>
+                                    )}
+
+                                  </>
                                 )}
                               />
-                              {errors.phone && <small className="text-danger">Phone is required.</small>}
                             </div>
-                            
+
                             <div className="form-group  mb-2">
                               <textarea
                                 name="messageCon2"

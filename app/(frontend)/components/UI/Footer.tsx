@@ -11,6 +11,7 @@ import { getCurrentUrl } from "@/src/utils/helpers/common";
 import { useForm } from "react-hook-form";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import { toast } from "react-toastify";
+import Swal from 'sweetalert2'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -65,9 +66,20 @@ function Footer() {
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
-        toast.success("Thank you for subscribing to our mailing list.", {
-          toastId: "subscription-success-toast"
+
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          showCloseButton: true,
+          title: "Subscription Successful",
+          text: "Thank you for subscribing to our mailing list.",
+          showConfirmButton: false,
+          timer: 1500
         });
+
+        // toast.success("Thank you for subscribing to our mailing list.", {
+        //   toastId: "subscription-success-toast"
+        // });
 
         reset();
       })

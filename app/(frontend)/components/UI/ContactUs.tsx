@@ -8,6 +8,7 @@ import "react-phone-number-input/style.css";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 import { FieldError } from "react-hook-form";
+import Swal from 'sweetalert2'
 
 const ContactUs = () => {
 
@@ -22,9 +23,20 @@ const ContactUs = () => {
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
-        toast.success(
-          "Thank you. Our team will get back to you soon."
-        );
+
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          showCloseButton: true,
+          title: "Form Submitted",
+          text: "Thank you. Our team will get back to you soon.",
+          showConfirmButton: false,
+          timer: 1500
+        });
+
+        // toast.success(
+        //   "Thank you. Our team will get back to you soon."
+        // );
         reset();
       })
       .catch((err) => {

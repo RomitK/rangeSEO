@@ -7,6 +7,10 @@ import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import PhoneInput from "react-phone-number-input";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
+import Swal from 'sweetalert2';
+import { isValidPhoneNumber } from 'react-phone-number-input';
+import { FieldError } from "react-hook-form";
+
 function CalenderModel() {
   const {
     register,
@@ -56,7 +60,10 @@ function CalenderModel() {
   ];
 
   const [formData, setFormData] = useState(initialState);
-
+  // Function to get the date part of a date object as a string
+  const getDateAsString = (date) => {
+    return date.toISOString().split('T')[0];
+  };
   const onSubmit = (data) => {
     data.date = formData.date;
     data.time = formData.time;
@@ -68,9 +75,19 @@ function CalenderModel() {
         setStartDate(null);
         setConfirm(false);
         reset();
-        toast.success(
-          "Thank you. Our team will get back to you soon." 
-        );
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          showCloseButton: true,
+          title: "Form Submitted",
+          text: "Thank you. Our team will get back to you soon.",
+          showConfirmButton: false,
+          timer: 1500
+        });
+
+        // toast.success(
+        //   "Thank you. Our team will get back to you soon."
+        // );
         closeRef.current.click();
       })
       .catch((err) => {
@@ -86,9 +103,8 @@ function CalenderModel() {
       aria-hidden="true"
     >
       <div
-        className={`modal-dialog  modal-dialog-centered modal-lg modalBookMeet ${
-          startDate ? "modalBookView" : ""
-        } `}
+        className={`modal-dialog  modal-dialog-centered modal-lg modalBookMeet ${startDate ? "modalBookView" : ""
+          } `}
       >
         <div className="modal-content">
           {/* <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
@@ -111,7 +127,7 @@ function CalenderModel() {
           </div>
           <div className="modal-body  p-0 rounded-1 m-2">
             <div className="row g-0">
-              {(!startDate || confirm) && ( <>
+              {(!startDate || confirm) && (<>
 
 
                 <div className="col-12 col-lg-5 col-md-12 border-end descricalenderCol propertyDesktopItemLink">
@@ -144,30 +160,23 @@ function CalenderModel() {
                   </div>
                 </div>
 
-              <div className="col-12 col-lg-5 col-md-12  descricalenderCol " id="mobItemLink">
-            
-                <div className="p-3 text-center">
-                  <img
-                    src="/images/logo_blue.png"
-                    alt="Range Property"
-                    className="img-fluid"
-                    width="180"
-                  />
+                <div className="col-12 col-lg-5 col-md-12  descricalenderCol " id="mobItemLink">
+
+                  <div className="p-3 text-center">
+                    <img
+                      src="/images/logo_blue.png"
+                      alt="Range Property"
+                      className="img-fluid"
+                      width="180"
+                    />
+                  </div>
                 </div>
-              </div>
-
-
-
               </>
-
-
-                
               )}
 
               <div
-                className={`col-12 ${
-                  startDate && !confirm ? "col-lg-12" : "col-lg-7"
-                }  col-md-12 calenderCol `}
+                className={`col-12 ${startDate && !confirm ? "col-lg-12" : "col-lg-7"
+                  }  col-md-12 calenderCol `}
               >
                 <div className="calenderDiv p-4">
                   <form id="bookAviewing" onSubmit={handleSubmit(onSubmit)}>
@@ -186,9 +195,8 @@ function CalenderModel() {
                           </div>
 
                           <div
-                            className={` ${
-                              startDate ? "col-md-7" : "col-md-12"
-                            } newcol py-2`}
+                            className={` ${startDate ? "col-md-7" : "col-md-12"
+                              } newcol py-2`}
                           >
                             <DatePicker
                               id="calendar"
@@ -196,8 +204,9 @@ function CalenderModel() {
                               minDate={minDate}
                               selected={startDate ?? new Date()}
                               onChange={(date) => {
+                                const dateString = getDateAsString(date); // Convert date object to date string
                                 setStartDate(date);
-                                setFormData({ ...formData, date: date });
+                                setFormData({ ...formData, date: dateString }); // Update formData with date string
                               }}
                             />
                           </div>
@@ -214,9 +223,8 @@ function CalenderModel() {
                                   {timeOptions.map((item, index) => {
                                     return (
                                       <div
-                                        className={`pickitem ${
-                                          formData.time == item ? "active" : ""
-                                        }`}
+                                        className={`pickitem ${formData.time == item ? "active" : ""
+                                          }`}
                                         key={"pickitem" + index}
                                       >
                                         <button
@@ -261,7 +269,7 @@ function CalenderModel() {
                                 type="text"
                                 id="nameCon2"
                                 className="form-control"
-                                placeholder="Enter your name"
+                                placeholder="Name"
                                 autoComplete="off"
                                 {...register("name", { required: true })}
                               />
@@ -277,7 +285,7 @@ function CalenderModel() {
                                 name="emailCon2"
                                 id="emailCon2"
                                 className="form-control"
-                                placeholder="Enter your email address"
+                                placeholder="Email address"
                                 autoComplete="off"
                                 {...register("email", { required: true })}
                               />
@@ -291,25 +299,36 @@ function CalenderModel() {
                               <Controller
                                 name="phone"
                                 control={control}
-                                rules={{ required: true }}
-                                render={({ field: { onChange, value } }) => (
-                                  <PhoneInput
-                                    international
-                                    countryCallingCodeEditable={false}
-                                    className="form-control "
-                                    defaultCountry="AE"
-                                    placeholder="Enter Phone Number"
-                                    value={value}
-                                    onChange={onChange}
-                                    style={{ border: "0px" }}
-                                  />
+                                rules={{
+                                  required: 'Phone is required.',
+                                  validate: {
+                                    validPhoneNumber: (value) => isValidPhoneNumber(value) || 'Invalid phone number'
+                                  }
+                                }}
+                                render={({ field }) => (
+                                  <>
+                                    <PhoneInput
+                                      international
+                                      countryCallingCodeEditable={false}
+                                      className={`form-control fs-14 d-flex ${errors.phone ? 'is-invalid' : ''}`}
+                                      defaultCountry="AE"
+                                      placeholder="Enter Phone Number"
+                                      error={errors.phone ? 'Invalid phone number' : undefined}
+                                      {...field}
+                                      style={{ border: "0px" }}
+                                      onChange={(phone) => {
+                                        field.onChange(phone); // keep react-hook-form's onChange in sync
+                                      }}
+                                    />
+                                    {errors.phone && (
+                                      <small className="text-danger">
+                                        {(errors.phone as FieldError).message}
+                                      </small>
+                                    )}
+
+                                  </>
                                 )}
                               />
-                              {errors.phone && (
-                                <small className="text-danger">
-                                  Phone is required.
-                                </small>
-                              )}
                             </div>
                             <div className="form-group mb-2">
                               <textarea

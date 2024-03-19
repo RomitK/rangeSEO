@@ -13,6 +13,9 @@ import {
   sendOTPApi,
   verifyOTPApi,
 } from "@/src/services/HomeService";
+import { isValidPhoneNumber } from 'react-phone-number-input'
+import Swal from 'sweetalert2'
+import { FieldError } from "react-hook-form";
 
 function ModelDubaiGuide(props) {
   console.log(props)
@@ -177,7 +180,14 @@ function ModelDubaiGuide(props) {
                 setIsLoading(false);
                 closeRef.current.click();
                 reset();
-                toast.success("Thank you. Your document is downloading.");
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Thank you. Your document is downloading.",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                //toast.success("Thank you. Your document is downloading.");
               })
               .catch(function (error) {
                 toast.error(`Download failed Something went wrong!`);
@@ -404,7 +414,7 @@ function ModelDubaiGuide(props) {
                                   name="nameCon2"
                                   id="nameCon2"
                                   className="form-control "
-                                  placeholder="Enter your name"
+                                  placeholder="Name"
                                   autoComplete="off"
                                   {...register("name", { required: true })}
                                 />
@@ -420,7 +430,7 @@ function ModelDubaiGuide(props) {
                                   name="emailCon2"
                                   id="emailCon2"
                                   className="form-control"
-                                  placeholder="Enter your email address"
+                                  placeholder="Email address"
                                   autoComplete="off"
                                   {...register("email", { required: true })}
                                 />
@@ -435,27 +445,37 @@ function ModelDubaiGuide(props) {
                                 <Controller
                                   name="phone"
                                   control={control}
-                                  rules={{ required: true }}
-                                  render={({ field: { onChange, value } }) => (
-                                    <PhoneInput
-                                      international
-                                      countryCallingCodeEditable={false}
-                                      className="form-control"
-                                      defaultCountry="AE"
-                                      placeholder="Enter Phone Number"
-                                      value={value}
-                                      onChange={(phone) => {
-                                        handlePhoneChange(phone);
-                                        onChange(phone); // keep react-hook-form's onChange in sync
-                                      }}
-                                    />
+                                  rules={{
+                                    required: 'Phone is required.',
+                                    validate: {
+                                      validPhoneNumber: (value) => isValidPhoneNumber(value) || 'Invalid phone number'
+                                    }
+                                  }}
+                                  render={({ field }) => (
+                                    <>
+                                      <PhoneInput
+                                        international
+                                        countryCallingCodeEditable={false}
+                                        className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+                                        defaultCountry="AE"
+                                        placeholder="Enter Phone Number"
+                                        error={errors.phone ? 'Invalid phone number' : undefined}
+                                        {...field}
+                                        style={{ border: "0px" }}
+                                        onChange={(phone) => {
+                                          handlePhoneChange(phone);
+                                          field.onChange(phone); // keep react-hook-form's onChange in sync
+                                        }}
+                                      />
+                                      {errors.phone && (
+                                        <small className="text-danger">
+                                          {(errors.phone as FieldError).message}
+                                        </small>
+                                      )}
+
+                                    </>
                                   )}
                                 />
-                                {errors.phone && (
-                                  <small className="text-danger">
-                                    Phone is required.
-                                  </small>
-                                )}
                               </div>
                               <input
                                 type="hidden"

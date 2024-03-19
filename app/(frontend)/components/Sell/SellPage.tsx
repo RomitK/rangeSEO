@@ -8,8 +8,10 @@ import { getCurrentUrl } from "@/src/utils/helpers/common";
 import { useForm, Controller } from "react-hook-form";
 import SellModel from "../models/SellModel";
 import { useGetSingleManagementData } from "@/src/services/ManagementService";
-import { useGetSellerGuideData } from "@/src/services/DubaiGuideService" 
-
+import { useGetSellerGuideData } from "@/src/services/DubaiGuideService"
+import { isValidPhoneNumber } from 'react-phone-number-input'
+import { FieldError } from "react-hook-form";
+import Swal from 'sweetalert2'
 function SellPage() {
 
   const [isMobileDev, setIsMobileDev] = useState(false);
@@ -17,7 +19,7 @@ function SellPage() {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
-      if(isMobileDevice){
+      if (isMobileDevice) {
         document.body.style.overflow = 'auto';
       }
       setIsMobileDev(isMobileDevice);
@@ -48,9 +50,21 @@ function SellPage() {
   const onSubmit = (data) => {
     saveContactFormApi(data)
       .then((res) => {
-        toast.success(
-          "Thank you. Our team will get back to you soon."
-        );
+
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          showCloseButton: true,
+          title: "Form Submitted",
+          text: "Thank you. Our team will get back to you soon.",
+          showConfirmButton: false,
+          timer: 1500
+        });
+
+
+        // toast.success(
+        //   "Thank you. Our team will get back to you soon."
+        // );
         reset();
       })
       .catch((err) => {
@@ -203,13 +217,13 @@ function SellPage() {
               property sale in Dubai a rewarding and hassle-free endeavor.
             </p>
             <div className="video">
-            <iframe width="100%" height="500"  src="https://www.youtube-nocookie.com/embed/QtyzrF1G2y0?si=ncGL8qggLYJPo1-3" 
-            title="YouTube video player" 
-            frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowFullScreen></iframe>
+              <iframe width="100%" height="500" src="https://www.youtube-nocookie.com/embed/QtyzrF1G2y0?si=ncGL8qggLYJPo1-3"
+                title="YouTube video player"
+                frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen></iframe>
             </div>
 
-              {/* <iframe width="100%" height="500" 
+            {/* <iframe width="100%" height="500" 
             src="https://www.youtube-nocookie.com/embed/-6jlrq7idl8" 
             title="YouTube video player" 
             frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"
@@ -244,12 +258,12 @@ function SellPage() {
               <div className="colmBoxContent">
                 <h2>
 
-                
+
 
                   GUIDE TO SELLING <br />
                   YOUR PROPERTY
                 </h2>
-                
+
                 <a
                   className="fillBtn"
                   data-bs-toggle="modal"
@@ -261,64 +275,75 @@ function SellPage() {
             <div className="colmBox formBox" id="sellContact">
               <h3 className="title">Contact our agent now</h3>
               <div className="row ">
-              <form onSubmit={handleSubmit(onSubmit)}>
-                  <input type="hidden" value="sellContactForm" {...register("formName", { required: false })}/>
-                  <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
-                <div className="col-12 mb-2">
-                  <input
-                    className="form-control cntInptField"
-                    placeholder="Name"
-                    type="text"
-                    {...register("name", { required: true })}
-                  />
-                  {errors.name && <small className="text-danger">Name is required.</small>}
-                </div>
-                <div className="col-12 mb-2">
-                  <input
-                    className="form-control cntInptField"
-                    placeholder="Email Address"
-                    type="email"
-                  
-                  {...register("email", { required: true })}
-                  />
-                  {errors.email && <small className="text-danger">Email is required.</small>}
-                </div>
-                <div className="col-12 mb-2">
-                  <Controller
-                  name="phone"
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field: { onChange, value } }) => (
-                    <PhoneInput
-                      international
-                      countryCallingCodeEditable={false}
-                      className="form-control cntInptField d-flex"
-                      defaultCountry="AE"
-                      placeholder="Enter Phone Number"
-                      value={value}
-                      onChange={onChange}
-                      style={{ border: "0px" }}
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <input type="hidden" value="sellContactForm" {...register("formName", { required: false })} />
+                  <input type="hidden" value={currentPageURL} {...register("page", { required: false })} />
+                  <div className="col-12 mb-2">
+                    <input
+                      className="form-control cntInptField"
+                      placeholder="Name"
+                      type="text"
+                      {...register("name", { required: true })}
                     />
-                  )}
-                />
+                    {errors.name && <small className="text-danger">Name is required.</small>}
+                  </div>
+                  <div className="col-12 mb-2">
+                    <input
+                      className="form-control cntInptField"
+                      placeholder="Email Address"
+                      type="email"
 
-                {errors.phone && <small className="text-danger">Phone is required.</small>}
+                      {...register("email", { required: true })}
+                    />
+                    {errors.email && <small className="text-danger">Email is required.</small>}
+                  </div>
+                  <div className="col-12 mb-2">
+                    <Controller
+                      name="phone"
+                      control={control}
+                      rules={{
+                        required: 'Phone is required.',
+                        validate: {
+                          validPhoneNumber: (value) => isValidPhoneNumber(value) || 'Invalid phone number'
+                        }
+                      }}
+                      render={({ field }) => (
+                        <>
+                          <PhoneInput
+                            international
+                            countryCallingCodeEditable={false}
+                            className={`form-control cntInptField d-flex ${errors.phone ? 'is-invalid' : ''}`}
+                            defaultCountry="AE"
+                            placeholder="Enter Phone Number"
+                            error={errors.phone ? 'Invalid phone number' : undefined}
+                            {...field}
+                            style={{ border: "0px" }}
+                          />
+                          {errors.phone && (
+                            <small className="text-danger">
+                              {(errors.phone as FieldError).message}
+                            </small>
+                          )}
 
-                </div>
-                <div className="col-12">
-                  <textarea
-                    className="form-control cntInptField textareaField"
-                    placeholder="Message"
-                    {...register("message", { required: false })}
-                    
-                  ></textarea>
-                </div>
-                <input
-                  className="fillBtn submitBtn"
-                  type="submit"
-                  value="Submit"
-                  id="sellSubmit"
-                />
+                        </>
+                      )}
+                    />
+
+                  </div>
+                  <div className="col-12">
+                    <textarea
+                      className="form-control cntInptField textareaField"
+                      placeholder="Message"
+                      {...register("message", { required: false })}
+
+                    ></textarea>
+                  </div>
+                  <input
+                    className="fillBtn submitBtn"
+                    type="submit"
+                    value="Submit"
+                    id="sellSubmit"
+                  />
                 </form>
               </div>
             </div>
@@ -326,10 +351,10 @@ function SellPage() {
         </div>
       </section>
       {
-        sellerGuideData && 
+        sellerGuideData &&
         <SellModel sellerLink={sellerGuideData?.sellerGuide} fileName="Seller Guide.pdf" title="Sell Guide"></SellModel>
       }
-      
+
     </>
   );
 }
