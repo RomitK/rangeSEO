@@ -12,6 +12,9 @@ import {
   sendOTPApi,
   verifyOTPApi,
 } from "@/src/services/HomeService";
+import { isValidPhoneNumber } from 'react-phone-number-input'
+import Swal from 'sweetalert2'
+import { FieldError } from "react-hook-form";
 
 function SimpleModal(props) {
   const [isMobileDev, setIsMobileDev] = useState(false);
@@ -157,12 +160,21 @@ function SimpleModal(props) {
                 setIsLoading(false);
                 closeRef.current.click();
                 reset();
-                toast.success("Thank you. Your document is downloading.");
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Thank you. Your document is downloading.",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+
+
+                //toast.success("Thank you. Your document is downloading.");
               })
               .catch(function (error) {
                 toast.error(`Download failed Something went wrong!`);
               });
- 
+
           }
           setShowOtp(true);
           setOtpSent(true);
@@ -249,272 +261,282 @@ function SimpleModal(props) {
           .catch(function (error) {
             toast.error(`Download failed Something went wrong!`);
           });
-          reset();
+        reset();
       })
       .catch((err) => {
         toast.error("Something went wrong, please try again");
       });
   };
-  
+
 
   return (
     <>
       {isLoading && <Loader />}
       <div className="modalArea">
-                <button type="button" className="btn btn-blue text-uppercase btn-lg broucherBtn" data-bs-toggle="modal" data-bs-target="#simpleModal">
-                    DOWNLOAD BROCHURE
-                    </button>
-                   
-      <div
-        className="modal fade"
-        id="simpleModal"
-        tabIndex={-1}
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog  modal-dialog-centered modal-md modalBookMeet ">
-        <div  className={`modal-content ${isMobileDev ? 'p-2' : ''}`}>
-            <div className="modal-header border-0 justify-content-end p-1">
-            <button
-                type="button"
-                className="bg-transparent border-0"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-                ref={closeRef}
-                onClick={() => {
-                  reset();
-                  clearErrors("name");
-                  clearErrors("email");
-                  clearErrors("phone");
-                  setShowOtp(false);
-                }}
-              >
-                <i className="bi bi-x-circle text-primary"></i>
-              </button>
-            </div>
-            <div className="modal-body  p-0 rounded-1 m-2">
-              <div className="row g-0">
-                <div className="col-12 col-lg-12 col-md-12 ">
-                  <div className=" text-center">
-                    <img
-                      src="/images/logo_blue.png"
-                      alt="Range Property"
-                      className="img-fluid"
-                      width="150"
-                    />
-                  </div>
-                  <div className=" p-4">
-                  {showOtp && (
-                    <form
-                      action=""
-                      method="POST"
-                      onSubmit={handleSubmit(onSubmitVisitorOTPVerifyForm)}
-                    >
-                      <div className="">
+        <button type="button" className="btn btn-blue text-uppercase btn-lg broucherBtn" data-bs-toggle="modal" data-bs-target="#simpleModal">
+          DOWNLOAD BROCHURE
+        </button>
+
+        <div
+          className="modal fade"
+          id="simpleModal"
+          tabIndex={-1}
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog  modal-dialog-centered modal-md modalBookMeet ">
+            <div className={`modal-content ${isMobileDev ? 'p-2' : ''}`}>
+              <div className="modal-header border-0 justify-content-end p-1">
+                <button
+                  type="button"
+                  className="bg-transparent border-0"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  ref={closeRef}
+                  onClick={() => {
+                    reset();
+                    clearErrors("name");
+                    clearErrors("email");
+                    clearErrors("phone");
+                    setShowOtp(false);
+                  }}
+                >
+                  <i className="bi bi-x-circle text-primary"></i>
+                </button>
+              </div>
+              <div className="modal-body  p-0 rounded-1 m-2">
+                <div className="row g-0">
+                  <div className="col-12 col-lg-12 col-md-12 ">
+                    <div className=" text-center">
+                      <img
+                        src="/images/logo_blue.png"
+                        alt="Range Property"
+                        className="img-fluid"
+                        width="150"
+                      />
+                    </div>
+                    <div className=" p-4">
+                      {showOtp && (
+                        <form
+                          action=""
+                          method="POST"
+                          onSubmit={handleSubmit(onSubmitVisitorOTPVerifyForm)}
+                        >
+                          <div className="">
+                            <div className="row">
+                              <div className="col-md-12">
+                                <h6 className="text-primary text-center p-2">
+                                  Enter Details to Download the Brochure
+                                </h6>
+
+                                <div className="form-group">
+                                  <label>
+                                    OTP{" "}
+                                    <small className="text-danger">
+                                      {" "}
+                                      {timer > 0 && (
+                                        <span>(Valid for: {timer} seconds)</span>
+                                      )}{" "}
+                                      *
+                                    </small>
+                                  </label>
+                                  <input
+                                    type="text"
+                                    name="nameCon2"
+                                    id="nameCon2"
+                                    className="form-control mb-2"
+                                    placeholder="Enter OTP code..."
+                                    autoComplete="off"
+                                    {...register("otp", { required: true })}
+                                  />
+                                  {errors.otp && (
+                                    <small className="text-danger">
+                                      OTP is required.
+                                    </small>
+                                  )}
+
+                                </div>
+                              </div>
+                            </div>
+                            <div className="modal-footer border-0">
+                              <input
+                                type="hidden"
+                                name="phone"
+                                value={optPhoneNumber} // Use the stored phone number here
+                                {...register("phoneNumber", { required: false })}
+                              />
+
+
+
+                              {timer === 0 ? (
+                                <div className="row">
+                                  <div className="col-md-6">
+                                    <button
+                                      type="button"
+                                      className="btn btn-sm btn-bluee rounded-0 px-5 float-end btnContact"
+                                      onClick={() => {
+                                        if (submitBtnRef.current) {
+
+                                          submitBtnRef.current.click();
+                                          setTimer(60);
+                                        }
+                                      }}
+                                    >
+                                      Resend OTP
+                                    </button>
+                                  </div>
+                                  <div className="col-md-6">
+                                    <button
+                                      type="button"
+                                      className="btn btn-sm btn-primary rounded-0 px-5 float-end btnContact2"
+                                      onClick={() => {
+                                        setShowOtp(false);
+                                        setTimer(60);
+                                      }}
+                                    >
+                                      Change Number
+                                    </button>
+                                  </div>
+                                </div>
+                              ) : (
+                                <button
+                                  type="submit"
+                                  name="submit"
+                                  className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                                >
+                                  {isLoading ? "Sending..." : "Verify OTP"}
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </form>
+                      )}
+
+
+                      <form
+                        ref={visiorFormRef}
+                        action=""
+                        method="POST"
+                        onSubmit={handleSubmit(onSubmitVisitorForm)}
+                        style={{ display: `${!showOtp ? "block" : "none"}` }}
+                      >
                         <div className="row">
                           <div className="col-md-12">
                             <h6 className="text-primary text-center p-2">
-                               Enter Details to Download the Brochure
+                              Enter Details to Download the Brochure
                             </h6>
 
-                            <div className="form-group">
-                              <label>
-                                OTP{" "}
-                                <small className="text-danger">
-                                  {" "}
-                                  {timer > 0 && (
-                                    <span>(Valid for: {timer} seconds)</span>
-                                  )}{" "}
-                                  *
-                                </small>
-                              </label>
-                              <input
-                                type="text"
-                                name="nameCon2"
-                                id="nameCon2"
-                                className="form-control mb-2"
-                                placeholder="Enter OTP code..."
-                                autoComplete="off"
-                                {...register("otp", { required: true })}
-                              />
-                              {errors.otp && (
-                                <small className="text-danger">
-                                  OTP is required.
-                                </small>
-                              )}
-                            
-                            </div>
+                            {!showOtp && (
+                              <>
+                                <div className="form-group mb-2">
+                                  <input
+                                    type="text"
+                                    name="nameCon2"
+                                    id="nameCon2"
+                                    className="form-control "
+                                    placeholder="Name"
+                                    autoComplete="off"
+                                    {...register("name", { required: true })}
+                                  />
+                                  {errors.name && (
+                                    <small className="text-danger">
+                                      Name is required.
+                                    </small>
+                                  )}
+                                </div>
+                                <div className="form-group mb-2">
+                                  <input
+                                    type="email"
+                                    name="emailCon2"
+                                    id="emailCon2"
+                                    className="form-control"
+                                    placeholder="Email address"
+                                    autoComplete="off"
+                                    {...register("email", { required: true })}
+                                  />
+                                  {errors.email && (
+                                    <small className="text-danger">
+                                      Email is required.
+                                    </small>
+                                  )}
+                                </div>
+
+                                <div className="form-group mb-2">
+                                  <Controller
+                                    name="phone"
+                                    control={control}
+                                    rules={{
+                                      required: 'Phone is required.',
+                                      validate: {
+                                        validPhoneNumber: (value) => isValidPhoneNumber(value) || 'Invalid phone number'
+                                      }
+                                    }}
+                                    render={({ field }) => (
+                                      <>
+                                        <PhoneInput
+                                          international
+                                          countryCallingCodeEditable={false}
+                                          className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+                                          defaultCountry="AE"
+                                          placeholder="Enter Phone Number"
+                                          error={errors.phone ? 'Invalid phone number' : undefined}
+                                          {...field}
+                                          style={{ border: "0px" }}
+                                          onChange={(phone) => {
+                                            handlePhoneChange(phone);
+                                            field.onChange(phone); // keep react-hook-form's onChange in sync
+                                          }}
+                                        />
+                                        {errors.phone && (
+                                          <small className="text-danger">
+                                            {(errors.phone as FieldError).message}
+                                          </small>
+                                        )}
+
+                                      </>
+                                    )}
+                                  />
+                                </div>
+                                <input
+                                  type="hidden"
+                                  name="countryCode"
+                                  {...register("countryCode", {
+                                    required: false,
+                                  })}
+                                />
+                              </>
+                            )}
                           </div>
                         </div>
                         <div className="modal-footer border-0">
                           <input
                             type="hidden"
-                            name="phone"
-                            value={optPhoneNumber} // Use the stored phone number here
-                            {...register("phoneNumber", { required: false })}
+                            value="homePageBrochure"
+                            {...register("formName", { required: false })}
                           />
-                          
-                          
-
-                          {timer === 0 ? (
-                            <div className="row">
-                              <div className="col-md-6">
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-bluee rounded-0 px-5 float-end btnContact"
-                                  onClick={() => {
-                                    if (submitBtnRef.current) {
-                                      
-                                      submitBtnRef.current.click();
-                                      setTimer(60);
-                                    }
-                                  }}
-                                >
-                                  Resend OTP
-                                </button>
-                              </div>
-                              <div className="col-md-6">
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-primary rounded-0 px-5 float-end btnContact2"
-                                  onClick={() => {
-                                    setShowOtp(false);
-                                    setTimer(60);
-                                  }}
-                                >
-                                  Change Number
-                                </button>
-                              </div>
-                            </div>
-                          ) : (
-                            <button
-                              type="submit"
-                              name="submit"
-                              className="btn btn-blue rounded-0 px-5 float-end btnContact2"
-                            >
-                              {isLoading ? "Sending..." : "Verify OTP"}
-                            </button>
-                          )}
+                          <input
+                            type="hidden"
+                            value={currentPageURL}
+                            {...register("page", { required: false })}
+                          />
+                          <button
+                            type="submit"
+                            name="submit"
+                            ref={submitBtnRef}
+                            className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                          >
+                            {isLoading ? "sending..." : "Submit"}
+                          </button>
                         </div>
-                      </div>
-                    </form>
-                  )}
+                      </form>
 
-                 
-                    <form
-                      ref={visiorFormRef}
-                      action=""
-                      method="POST"
-                      onSubmit={handleSubmit(onSubmitVisitorForm)}
-                      style={{ display: `${!showOtp ? "block" : "none"}` }}
-                    >
-                      <div className="row">
-                        <div className="col-md-12">
-                          <h6 className="text-primary text-center p-2">
-                          Enter Details to Download the Brochure
-                          </h6>
-
-                          {!showOtp && (
-                            <>
-                              <div className="form-group mb-2">
-                                <input
-                                  type="text"
-                                  name="nameCon2"
-                                  id="nameCon2"
-                                  className="form-control "
-                                  placeholder="Enter your name"
-                                  autoComplete="off"
-                                  {...register("name", { required: true })}
-                                />
-                                {errors.name && (
-                                  <small className="text-danger">
-                                    Name is required.
-                                  </small>
-                                )}
-                              </div>
-                              <div className="form-group mb-2">
-                                <input
-                                  type="email"
-                                  name="emailCon2"
-                                  id="emailCon2"
-                                  className="form-control"
-                                  placeholder="Enter your email address"
-                                  autoComplete="off"
-                                  {...register("email", { required: true })}
-                                />
-                                {errors.email && (
-                                  <small className="text-danger">
-                                    Email is required.
-                                  </small>
-                                )}
-                              </div>
-
-                              <div className="form-group mb-2">
-                                <Controller
-                                  name="phone"
-                                  control={control}
-                                  rules={{ required: true }}
-                                  render={({ field: { onChange, value } }) => (
-                                    <PhoneInput
-                                      international
-                                      countryCallingCodeEditable={false}
-                                      className="form-control"
-                                      defaultCountry="AE"
-                                      placeholder="Enter Phone Number"
-                                      value={value}
-                                      onChange={(phone) => {
-                                        handlePhoneChange(phone);
-                                        onChange(phone); // keep react-hook-form's onChange in sync
-                                      }}
-                                    />
-                                  )}
-                                />
-                                {errors.phone && (
-                                  <small className="text-danger">
-                                    Phone is required.
-                                  </small>
-                                )}
-                              </div>
-                              <input
-                                type="hidden"
-                                name="countryCode"
-                                {...register("countryCode", {
-                                  required: false,
-                                })}
-                              />
-                            </>
-                          )}
-                        </div>
-                      </div>
-                      <div className="modal-footer border-0">
-                        <input
-                          type="hidden"
-                          value="homePageBrochure"
-                          {...register("formName", { required: false })}
-                        />
-                        <input
-                          type="hidden"
-                          value={currentPageURL}
-                          {...register("page", { required: false })}
-                        />
-                        <button
-                          type="submit"
-                          name="submit"
-                          ref={submitBtnRef}
-                          className="btn btn-blue rounded-0 px-5 float-end btnContact2"
-                        >
-                          {isLoading ? "sending..." : "Submit"}
-                        </button>
-                      </div>
-                    </form>
-                 
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </>
   );
