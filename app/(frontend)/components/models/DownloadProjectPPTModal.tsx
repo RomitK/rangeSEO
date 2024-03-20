@@ -436,7 +436,7 @@ function DownloadProjectPPTModal(props) {
                                   name="nameCon2"
                                   id="nameCon2"
                                   className="form-control "
-                                  placeholder="Enter your name"
+                                  placeholder="Name"
                                   autoComplete="off"
                                   {...register("name", { required: true })}
                                 />
@@ -452,7 +452,7 @@ function DownloadProjectPPTModal(props) {
                                   name="emailCon2"
                                   id="emailCon2"
                                   className="form-control"
-                                  placeholder="Enter your email address"
+                                  placeholder="Email address"
                                   autoComplete="off"
                                   {...register("email", { required: true })}
                                 />
