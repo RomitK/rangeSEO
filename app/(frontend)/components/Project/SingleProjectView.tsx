@@ -140,92 +140,21 @@ function SingleProjectView({ params }) {
     setShowAll(!showAll);
   };
 
-// Inside your component
-const [activeSlideIndex, setActiveSlideIndex] = useState(0); // Initialize with the first slide index
+  // Inside your component
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
-// Function to handle slide change
-const handleBeforeChange = (oldIndex, newIndex) => {
-  setActiveSlideIndex(newIndex);
-};
+  // Function to handle slide change
+  const handleBeforeChange = (oldIndex, newIndex) => {
+    setActiveSlideIndex(newIndex);
+  };
 
 
   return (
     <>
       {projectData?.exteriorGallery && (
         <>
-        <header className={`${isMobileDev ? "h-auto" : ""}`}>
-          {/* <Swiper
-            loop={true}
-            modules={[Navigation]}
-            onSwiper={(swiper) => {
-              bannerSwiperRef.current = swiper;
-            }}
-            onBeforeInit={(swiper) => {
-              bannerSwiperRef.current = swiper;
-            }}
-            className="swiper projectGallery"
-          >
-            {projectData?.exteriorGallery?.map((exteriorGallery, index) => {
-              return (
-                <SwiperSlide
-                  className="swiperSilderItem"
-                  key={exteriorGallery.id + "exteriorGallery" + index}
-                >
-                  <img
-                    src={exteriorGallery.path}
-                    alt={
-                      exteriorGallery.title
-                        ? exteriorGallery.title
-                        : projectData.title
-                    }
-                    className="sliderCoverImg"
-                  />
-                  <div className=" sliderContainer">
-                    <div className="sliderContentArea">
-                      <div className="sliderContent">
-                        <h5>{projectData?.sub_title_1}</h5>
-                        <h1>{projectData?.sub_title_2}</h1>
-                        <p className="mb-5">
-                          {projectData &&
-                            projectData.shortDescription &&
-                            parse(projectData?.shortDescription ?? "")}
-                            {
-                             projectData && projectData?.permit_number &&
-                             (
-                              <>
-                               Permit Number:{projectData?.permit_number}
-                              </>
-                             )
-                            }
-                           
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              );
-            })}
-            <div className="sliderArrowBar">
-              <div
-                className="swiper-button-next text-white"
-                onClick={() => bannerSwiperRef.current?.slideNext()}
-              >
-                <span className="">
-                  <i className="bi bi-chevron-right fs-1"></i>
-                </span>
-              </div>
-              <div
-                className="swiper-button-prev text-white"
-                onClick={() => bannerSwiperRef.current?.slidePrev()}
-              >
-                <span className="">
-                  <i className="bi bi-chevron-left fs-1"></i>
-                </span>
-              </div>
-            </div>
-          </Swiper> */}
-
-<Slider
+          <header className={`${isMobileDev ? "h-auto" : ""}`}>
+          <Slider
   {...(isMobileDev ? mobileSettings : desktopSettings)}
   ref={sliderRef}
   className="swiperprojectGallery"  beforeChange={handleBeforeChange}
@@ -273,49 +202,16 @@ const handleBeforeChange = (oldIndex, newIndex) => {
   ))}
 </Slider>
 
-        </header>
 
-        
-</>
+          </header>
+
+
+        </>
       )}
       {projectData && (
         <section className="mb-3">
           <div className="container">
-            {/* {isMobileDev && (
-            <div className="row">
-              <div className="col-6">
-                <div className="vtTextBXox">
-                  <p>Starting Price</p>
-                  <h3 className="text-primary">
-                    AED {new Intl.NumberFormat().format(projectData?.price)}
-                  </h3>
-                </div>
-              </div>
-              <div className="col-6">
-                <div className="vtTextBXox">
-                  <p>Available Units</p>
-                  <h3 className="text-primary">{projectData?.availableUnits} </h3>
-                </div>
-              </div>
-              <div className="col-6">
-                <div className="vtTextBXox">
-                  <p>Handover</p>
-                  <h3 className="text-primary">{projectData?.handOver}</h3>
-                </div>
-              </div>
-              <div className="col-6">
-                <div className="vtTextBXox">
-                  <p>Location</p>
-                  
-                    <h3 className="text-primary">
-                      {projectData?.communityName}
-                    </h3>
-                  
-                </div>
-              </div>
-            </div>
-            )} */}
-            {/* {!isMobileDev && ( */}
+
             <div className="row">
               <div className="col-md-3">
                 <div className="vtTextBXox">
@@ -404,7 +300,7 @@ const handleBeforeChange = (oldIndex, newIndex) => {
                   <h4 className="sctionMdTitle text-primary">
                     Project Details
                   </h4>
-                  
+
                   <div className="text-secondary mb-4">
                     {/* {parse(projectData?.hightlightDescription ?? "")} */}
                     {parse(projectData?.longDescription ?? "")}
@@ -439,7 +335,7 @@ const handleBeforeChange = (oldIndex, newIndex) => {
                       (interiorGallery, index) => {
                         return (
                           <SwiperSlide
-                            key={interiorGallery.id + +"interiorGallery"}
+                            key={interiorGallery.id + "interiorGallery1" + index}
                           >
                             <img
                               src={interiorGallery.path}
@@ -493,91 +389,90 @@ const handleBeforeChange = (oldIndex, newIndex) => {
                 <div className="col-12 col-lg-12 col-md-12">
                   <div className="row ">
                     <div
-                      className={`mainHead  text-primary ${
-                        isMobileDev ? "mb-1" : "mb-5"
-                      }`}
+                      className={`mainHead  text-primary ${isMobileDev ? "mb-1" : "mb-5"
+                        }`}
                     >
                       <h4>AMENITIES</h4>
                     </div>
                     {projectData.amenities && (
                       <Swiper
-                      slidesPerView={2}
-                      spaceBetween={0}
-                      pagination={{
-                        el: ".swiper-pagination",
-                        clickable: true,
-                      }}
-                      navigation={{
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
-                      }}
-                      breakpoints={{
-                        640: {
-                          slidesPerView: 2,
-                          spaceBetween: 50,
-                        },
-                        768: {
-                          slidesPerView: 4,
-                          spaceBetween: 50,
-                        },
-                        1024: {
-                          slidesPerView: 6,
-                          spaceBetween: 50,
-                        },
-                      }}
-                      autoplay={{
-                        delay: 3000,
-                      }}
-                      modules={[Navigation, Pagination, Autoplay]}
-                      onSwiper={(swiper) => {
-                        amentitiesSwiperRef.current = swiper;
-                      }}
-                      
-                      className={`swiper amenitiesSwiper ${isMobileDev ? "px-2" : "px-5"}`} 
-                    >
-                      {projectData?.amenities?.map((amenity, index) => {
-                        return (
-                          <SwiperSlide key={amenity.id + index + "amentity"}>
-                            <div className="swiper-slide">
-                              <div className="py-3">
-                                <div className="mb-2">
-                                  <div className="amenityImg mx-auto">
-                                    <img
-                                      src={amenity.image}
-                                      alt={amenity.name}
-                                      className="img-fluid"
-                                     
-                                    />
+                        slidesPerView={2}
+                        spaceBetween={0}
+                        pagination={{
+                          el: ".swiper-pagination",
+                          clickable: true,
+                        }}
+                        navigation={{
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                        }}
+                        breakpoints={{
+                          640: {
+                            slidesPerView: 2,
+                            spaceBetween: 50,
+                          },
+                          768: {
+                            slidesPerView: 4,
+                            spaceBetween: 50,
+                          },
+                          1024: {
+                            slidesPerView: 6,
+                            spaceBetween: 50,
+                          },
+                        }}
+                        autoplay={{
+                          delay: 3000,
+                        }}
+                        modules={[Navigation, Pagination, Autoplay]}
+                        onSwiper={(swiper) => {
+                          amentitiesSwiperRef.current = swiper;
+                        }}
+
+                        className={`swiper amenitiesSwiper ${isMobileDev ? "px-2" : "px-5"}`}
+                      >
+                        {projectData?.amenities?.map((amenity, index) => {
+                          return (
+                            <SwiperSlide key={amenity.id + index + "amentity"}>
+                              <div className="swiper-slide">
+                                <div className="py-3">
+                                  <div className="mb-2">
+                                    <div className="amenityImg mx-auto">
+                                      <img
+                                        src={amenity.image}
+                                        alt={amenity.name}
+                                        className="img-fluid"
+
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="text-center">
+                                    <small className="fs-16">
+                                      {amenity.name}
+                                    </small>
                                   </div>
                                 </div>
-                                <div className="text-center">
-                                  <small className="fs-16">
-                                    {amenity.name}
-                                  </small>
-                                </div>
                               </div>
-                            </div>
-                          </SwiperSlide>
-                        );
-                      })}
-                      <div
-                        className="swiper-button-next text-primary"
-                        onClick={() => amentitiesSwiperRef.current?.slideNext()}
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-right fs-1"></i>
-                        </span>
-                      </div>
-                      <div
-                        className="swiper-button-prev text-primary"
-                        onClick={() => amentitiesSwiperRef.current?.slidePrev()}
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-left fs-1"></i>
-                        </span>
-                      </div>
-                      {/* <div className="swiper-pagination"></div> */}
-                    </Swiper>
+                            </SwiperSlide>
+                          );
+                        })}
+                        <div
+                          className="swiper-button-next text-primary"
+                          onClick={() => amentitiesSwiperRef.current?.slideNext()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-right fs-1"></i>
+                          </span>
+                        </div>
+                        <div
+                          className="swiper-button-prev text-primary"
+                          onClick={() => amentitiesSwiperRef.current?.slidePrev()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-left fs-1"></i>
+                          </span>
+                        </div>
+                        {/* <div className="swiper-pagination"></div> */}
+                      </Swiper>
                     )}
                   </div>
                 </div>
@@ -589,9 +484,8 @@ const handleBeforeChange = (oldIndex, newIndex) => {
         <section className={`tableSection  ${isMobileDev ? 'mb-2' : ''}`}>
           <div className="container">
             <h4
-              className={`sctionMdTitle text-primary ${
-                isMobileDev ? "my-1" : "my-4"
-              }`}
+              className={`sctionMdTitle text-primary ${isMobileDev ? "my-1" : "my-4"
+                }`}
             >
               Property Type
             </h4>
@@ -683,7 +577,7 @@ const handleBeforeChange = (oldIndex, newIndex) => {
                               //data-bs-target="#floorplan"
                               data-bs-target={"#gallaryModalImg-" + type.id}
 
-                              // onClick={() => setFloorPlanFile(type.floorPlan)}
+                            // onClick={() => setFloorPlanFile(type.floorPlan)}
                             >
                               view
                             </button>
@@ -698,87 +592,87 @@ const handleBeforeChange = (oldIndex, newIndex) => {
             )}
             {isMobileDev && (
               <>
-              <div className="tableContainer">
-                <table className="priceTable">
-                  <thead>
-                    <tr>
-                    <th>
-                        <h5 className="tblThText">Bedroom</h5>
-                      </th>
-                      <th>
-                        <h5 className="tblThText">Size</h5>
-                      </th>
-                     
-                      <th>
-                        <h5 className="tblThText text-center">
-                          Price (AED)
-                        </h5>
-                      </th>
-                      <th>
-                        <h5 className="tblThText text-center">PP</h5>
-                      </th>
-                      <th>
-                        <h5 className="tblThText text-center">FP</h5>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {projectData?.types?.map((type, index) => {
-                      return (
-                        <tr key={type.id}>
-                          
-                         
-                          <td className="p-0 priceTableGrayBorder">
-                            <p className="tblTdText text-secondary">
-                              {type?.bedrooms}
-                            </p>
-                          </td>
-                          
-                          <td className="p-0 priceTableGrayBorder">
-                            <p className="tblTdText text-secondary">
-                              {type?.area} {type?.areaUnit}
-                            </p>
-                          </td>
-                          <td className="p-0 priceTableGrayBorder">
-                            <p className="tblTdText text-secondary text-center">
-                             
-                              {type &&
-                                new Intl.NumberFormat().format(
-                                  type?.startingPrice
-                                )}{" "}
-                            </p>
-                          </td>
-                          <td className="p-0 text-center ">
-                            <button
-                              className="fillBtn  mrAuto w-auto"
-                              data-bs-toggle="modal"
-                              data-bs-target="#paymentplan"
-                              onClick={() => setCurrentUnit(type)}
-                            >
-                              view
-                            </button>
-                          </td>
-                          <td className="p-0 text-center">
-                            <button
-                              className="fillBtn  mrAuto w-auto"
-                              data-bs-toggle="modal"
-                              //data-bs-target="#floorplan"
-                              data-bs-target={"#gallaryModalImg-" + type.id}
+                <div className="tableContainer">
+                  <table className="priceTable">
+                    <thead>
+                      <tr>
+                        <th>
+                          <h5 className="tblThText">Bedroom</h5>
+                        </th>
+                        <th>
+                          <h5 className="tblThText">Size</h5>
+                        </th>
+
+                        <th>
+                          <h5 className="tblThText text-center">
+                            Price (AED)
+                          </h5>
+                        </th>
+                        <th>
+                          <h5 className="tblThText text-center">PP</h5>
+                        </th>
+                        <th>
+                          <h5 className="tblThText text-center">FP</h5>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {projectData?.types?.map((type, index) => {
+                        return (
+                          <tr key={type.id}>
+
+
+                            <td className="p-0 priceTableGrayBorder">
+                              <p className="tblTdText text-secondary">
+                                {type?.bedrooms}
+                              </p>
+                            </td>
+
+                            <td className="p-0 priceTableGrayBorder">
+                              <p className="tblTdText text-secondary">
+                                {type?.area} {type?.areaUnit}
+                              </p>
+                            </td>
+                            <td className="p-0 priceTableGrayBorder">
+                              <p className="tblTdText text-secondary text-center">
+
+                                {type &&
+                                  new Intl.NumberFormat().format(
+                                    type?.startingPrice
+                                  )}{" "}
+                              </p>
+                            </td>
+                            <td className="p-0 text-center ">
+                              <button
+                                className="fillBtn  mrAuto w-auto"
+                                data-bs-toggle="modal"
+                                data-bs-target="#paymentplan"
+                                onClick={() => setCurrentUnit(type)}
+                              >
+                                view
+                              </button>
+                            </td>
+                            <td className="p-0 text-center">
+                              <button
+                                className="fillBtn  mrAuto w-auto"
+                                data-bs-toggle="modal"
+                                //data-bs-target="#floorplan"
+                                data-bs-target={"#gallaryModalImg-" + type.id}
 
                               // onClick={() => setFloorPlanFile(type.floorPlan)}
-                            >
-                              view
-                            </button>
-                            {/* <FloorPlanModal images={type?.floorPlan}/> */}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
+                              >
+                                view
+                              </button>
+                              {/* <FloorPlanModal images={type?.floorPlan}/> */}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
 
-              {/* <Swiper
+                {/* <Swiper
                 slidesPerView={1}
                 spaceBetween={50}
                 loop={true}
@@ -937,7 +831,7 @@ const handleBeforeChange = (oldIndex, newIndex) => {
                 </div>
               </Swiper> */}
               </>
-              
+
             )}
           </div>
         </section>
@@ -1153,7 +1047,7 @@ const handleBeforeChange = (oldIndex, newIndex) => {
                         delay: 3000,
                       }}
                       modules={[Navigation, Autoplay]}
-                     
+
                       onSwiper={(swiper) => {
                         otherProjectSwiperRef.current = swiper;
                       }}
@@ -1643,7 +1537,7 @@ const handleBeforeChange = (oldIndex, newIndex) => {
             </div>
           </section>
         )}
-      {projectData?.types?.map((type, index) => {
+{projectData?.types?.map((type, index) => {
         return (
           <div
             key={"type-" + index}

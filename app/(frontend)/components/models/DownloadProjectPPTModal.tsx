@@ -12,6 +12,9 @@ import {
   sendOTPApi,
   verifyOTPApi,
 } from "@/src/services/HomeService";
+import Swal from 'sweetalert2'
+import { FieldError } from "react-hook-form";
+import { isValidPhoneNumber } from 'react-phone-number-input'
 
 function DownloadProjectPPTModal(props) {
 
@@ -24,11 +27,12 @@ function DownloadProjectPPTModal(props) {
     page: props.pageUrl,
   });
   const [formName, setformName] = useState()
-  const [isMobileDev, setIsMobileDev] = useState(false);
+  const [propertySlug, setPropertySlug] = useState(props?.slug);
   const visiorFormRef = useRef(null);
   const submitBtnRef = useRef(null);
   const [otpSent, setOtpSent] = useState(false);
   const [countdown, setCountdown] = useState(60); // 2 minutes in seconds
+  const [isMobileDev, setIsMobileDev] = useState(false);
 
   const closeRef = useRef(null);
   const fileRef = useRef(null);
@@ -42,8 +46,6 @@ function DownloadProjectPPTModal(props) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [optPhoneNumber, setOptPhoneNumber] = useState("");
   const [timer, setTimer] = useState(60);
-
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   useEffect(() => {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
@@ -62,8 +64,11 @@ function DownloadProjectPPTModal(props) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   useEffect(() => {
     setformName(props.formName)
+    setPropertySlug(props.slug)
   }, [props]);
 
   useEffect(() => {
@@ -105,7 +110,10 @@ function DownloadProjectPPTModal(props) {
     reset,
     clearErrors,
   } = useForm();
-
+  // Register a value without binding it to an input field
+  React.useEffect(() => {
+    register('dynamicValue', { value: props.slug });
+  }, [register]);
   const handlePhoneChange = (phone) => {
     if (phone) {
       const phoneNumberParsed = parsePhoneNumberFromString(phone);
@@ -150,6 +158,8 @@ function DownloadProjectPPTModal(props) {
   };
   const onSubmitVisitorOTPVerifyForm = (data) => {
     setIsLoading(true);
+    data['project'] = props.slug
+    console.log(data)
     verifyOTPApi(data)
       .then((res) => {
         if (res.data.data.verify === true) {
@@ -163,7 +173,14 @@ function DownloadProjectPPTModal(props) {
                 setIsLoading(false);
                 closeRef.current.click();
                 reset();
-                toast.success("Thank you. Your document is downloading.");
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Thank you. Your document is downloading.",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                // toast.success("Thank you. Your document is downloading.");
               })
               .catch(function (error) {
                 toast.error(`Download failed Something went wrong!`);
@@ -184,6 +201,9 @@ function DownloadProjectPPTModal(props) {
       });
   };
   const onSubmitVisitorForm = (data) => {
+    console.log(props.slug)
+    data['project'] = props.slug
+    console.log(data)
     setIsLoading(true);
     sendOTPApi(data)
       .then((res) => {
@@ -192,10 +212,7 @@ function DownloadProjectPPTModal(props) {
         setIsLoading(false);
         setValue("otp", "");
         setCountdown(60);
-        // closeRef.current.click();
-        // toast.success("Thank you. Our team will get back to you soon.");
-        // downloadFile()
-        // reset();
+
       })
       .catch((err) => {
         setIsLoading(false);
@@ -306,7 +323,7 @@ function DownloadProjectPPTModal(props) {
                       width="150"
                     />
                   </div>
-                  <div className="">
+                  <div className={` ${isMobileDev ? '' : ''}`}>
                     {showOtp && (
                       <form
                         action=""
@@ -450,27 +467,37 @@ function DownloadProjectPPTModal(props) {
                                 <Controller
                                   name="phone"
                                   control={control}
-                                  rules={{ required: true }}
-                                  render={({ field: { onChange, value } }) => (
-                                    <PhoneInput
-                                      international
-                                      countryCallingCodeEditable={false}
-                                      className="form-control"
-                                      defaultCountry="AE"
-                                      placeholder="Enter Phone Number"
-                                      value={value}
-                                      onChange={(phone) => {
-                                        handlePhoneChange(phone);
-                                        onChange(phone); // keep react-hook-form's onChange in sync
-                                      }}
-                                    />
+                                  rules={{
+                                    required: 'Phone is required.',
+                                    validate: {
+                                      validPhoneNumber: (value) => isValidPhoneNumber(value) || 'Invalid phone number'
+                                    }
+                                  }}
+                                  render={({ field }) => (
+                                    <>
+                                      <PhoneInput
+                                        international
+                                        countryCallingCodeEditable={false}
+                                        className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+                                        defaultCountry="AE"
+                                        placeholder="Enter Phone Number"
+                                        error={errors.phone ? 'Invalid phone number' : undefined}
+                                        {...field}
+                                        style={{ border: "0px" }}
+                                        onChange={(phone) => {
+                                          handlePhoneChange(phone);
+                                          field.onChange(phone); // keep react-hook-form's onChange in sync
+                                        }}
+                                      />
+                                      {errors.phone && (
+                                        <small className="text-danger">
+                                          {(errors.phone as FieldError).message}
+                                        </small>
+                                      )}
+
+                                    </>
                                   )}
                                 />
-                                {errors.phone && (
-                                  <small className="text-danger">
-                                    Phone is required.
-                                  </small>
-                                )}
                               </div>
                               <input
                                 type="hidden"
@@ -487,13 +514,9 @@ function DownloadProjectPPTModal(props) {
                         <input
                           type="hidden"
                           value="projectBrochure"
-                          {...register("formName", { required: true })}
+                          {...register("formName", { required: false })}
                         />
-                        <input
-                          type="hidden"
-                          value={props.slug}
-                          {...register("project", { required: true })}
-                        />
+
                         <input
                           type="hidden"
                           value={currentPageURL}
