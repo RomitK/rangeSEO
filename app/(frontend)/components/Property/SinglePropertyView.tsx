@@ -1309,7 +1309,7 @@ function SinglePropertyView({ params }) {
                                           propertyData?.address_longitude
                                         ),
                                       }}
-                                      options={{ mapId: "4504f8b37365c3d0" }}
+                                      options={{ mapId: process.env.MAP_ID }}
                                       mapContainerClassName="map-container"
                                       onLoad={onMapLoad}
                                       onClick={() => {

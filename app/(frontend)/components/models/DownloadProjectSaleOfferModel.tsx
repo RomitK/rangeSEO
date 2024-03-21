@@ -15,6 +15,9 @@ import ErrorToast from "../toast/ErrorToast";
 import { fetchResponseErrors } from "@/src/utils/helpers/common";
 import "react-phone-number-input/style.css";
 import { parsePhoneNumberFromString, AsYouType } from "libphonenumber-js";
+import Swal from 'sweetalert2'
+import { FieldError } from "react-hook-form";
+import { isValidPhoneNumber } from 'react-phone-number-input'
 
 function DownloadProjectSaleOfferModel(props) {
   const [formData, setFormData] = useState({
@@ -151,13 +154,21 @@ function DownloadProjectSaleOfferModel(props) {
       .then((res) => {
         console.log(res.data);
         if (res.data.data.verify) {
-          toast.success("The sale offer has been sent to the provided email address");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "sale offer has been sent to the provided email address.",
+            showConfirmButton: false,
+            timer: 1500
+          });
+
+          //toast.success("The sale offer has been sent to the provided email address");
           setShowOtp(true);
           setOtpSent(true);
           reset();
           setTimer(60);
           closeRef.current.click();
-          
+
         } else {
           toast.error("Invalid OTP");
         }
@@ -192,7 +203,16 @@ function DownloadProjectSaleOfferModel(props) {
       .then((res) => {
         console.log(res.data.data);
         if (res.data.data === true) {
-          toast.success("Please wait, the Sale Offer is downloading.");
+
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Thank you. Your document is downloading.",
+            showConfirmButton: false,
+            timer: 1500
+          });
+
+          //toast.success("Please wait, the Sale Offer is downloading.");
           downloadFile();
           reset();
         } else {
@@ -223,7 +243,7 @@ function DownloadProjectSaleOfferModel(props) {
         aria-hidden="true"
       >
         <div className="modal-dialog  modal-dialog-centered modal-md modalBookMeet ">
-          <div   className={`modal-content ${isMobileDev ? 'p-2' : ''}`}>
+          <div className={`modal-content ${isMobileDev ? 'p-2' : ''}`}>
             <div className="modal-header border-0 justify-content-end p-1">
               <button
                 type="button"
@@ -256,22 +276,22 @@ function DownloadProjectSaleOfferModel(props) {
                     />
                   </div>
                   {!UserAs && (
-                   <div className="p-4 py-2 d-flex justify-content-center">
-                   <button
-                       className="btn btn-sm btn-bluee rounded-0 p-3 me-2 btnContact2 text-nowrap d-flex justify-content-center"
-                       onClick={() => setUserAs("Visitor")}
-                   >
-                       I am a Buyer
-                   </button>
-               
-                   <button
-                       className="btn btn-sm btn-primary rounded-0 p-3 btnContact2 text-nowrap d-flex justify-content-center"
-                       onClick={() => setUserAs("Employee")}
-                   >
-                       I am an Agent
-                   </button>
-               </div>
-               
+                    <div className="p-4 py-2 d-flex justify-content-center">
+                      <button
+                        className="btn btn-sm btn-bluee rounded-0 p-3 me-2 btnContact2 text-nowrap d-flex justify-content-center"
+                        onClick={() => setUserAs("Visitor")}
+                      >
+                        I am a Buyer
+                      </button>
+
+                      <button
+                        className="btn btn-sm btn-primary rounded-0 p-3 btnContact2 text-nowrap d-flex justify-content-center"
+                        onClick={() => setUserAs("Employee")}
+                      >
+                        I am an Agent
+                      </button>
+                    </div>
+
                   )}
 
                   {UserAs && UserAs == "Visitor" && showOtp && (
@@ -377,7 +397,7 @@ function DownloadProjectSaleOfferModel(props) {
                       <div className="row">
                         <div className="col-md-12">
                           <h6 className="text-primary text-center p-2">
-                          Enter Details to Download the Sale Offer
+                            Enter Details to Download the Sale Offer
                           </h6>
 
                           {!showOtp && (
@@ -388,7 +408,7 @@ function DownloadProjectSaleOfferModel(props) {
                                   name="nameCon2"
                                   id="nameCon2"
                                   className="form-control "
-                                  placeholder="Enter your name"
+                                  placeholder="Name"
                                   autoComplete="off"
                                   {...register("name", { required: true })}
                                 />
@@ -404,7 +424,7 @@ function DownloadProjectSaleOfferModel(props) {
                                   name="emailCon2"
                                   id="emailCon2"
                                   className="form-control"
-                                  placeholder="Enter your email address"
+                                  placeholder="Email address"
                                   autoComplete="off"
                                   {...register("email", { required: true })}
                                 />
@@ -419,27 +439,37 @@ function DownloadProjectSaleOfferModel(props) {
                                 <Controller
                                   name="phone"
                                   control={control}
-                                  rules={{ required: true }}
-                                  render={({ field: { onChange, value } }) => (
-                                    <PhoneInput
-                                      international
-                                      countryCallingCodeEditable={false}
-                                      className="form-control"
-                                      defaultCountry="AE"
-                                      placeholder="Enter Phone Number"
-                                      value={value}
-                                      onChange={(phone) => {
-                                        handlePhoneChange(phone);
-                                        onChange(phone); // keep react-hook-form's onChange in sync
-                                      }}
-                                    />
+                                  rules={{
+                                    required: 'Phone is required.',
+                                    validate: {
+                                      validPhoneNumber: (value) => isValidPhoneNumber(value) || 'Invalid phone number'
+                                    }
+                                  }}
+                                  render={({ field }) => (
+                                    <>
+                                      <PhoneInput
+                                        international
+                                        countryCallingCodeEditable={false}
+                                        className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+                                        defaultCountry="AE"
+                                        placeholder="Enter Phone Number"
+                                        error={errors.phone ? 'Invalid phone number' : undefined}
+                                        {...field}
+                                        style={{ border: "0px" }}
+                                        onChange={(phone) => {
+                                          handlePhoneChange(phone);
+                                          field.onChange(phone); // keep react-hook-form's onChange in sync
+                                        }}
+                                      />
+                                      {errors.phone && (
+                                        <small className="text-danger">
+                                          {(errors.phone as FieldError).message}
+                                        </small>
+                                      )}
+
+                                    </>
                                   )}
                                 />
-                                {errors.phone && (
-                                  <small className="text-danger">
-                                    Phone is required.
-                                  </small>
-                                )}
                               </div>
                               <input
                                 type="hidden"
@@ -507,7 +537,7 @@ function DownloadProjectSaleOfferModel(props) {
                                     name="nameCon2"
                                     id="nameCon2"
                                     className="form-control "
-                                    placeholder="Enter Employee Id"
+                                    placeholder="Employee Id"
                                     autoComplete="off"
                                     {...register("employeeId", {
                                       required: true,
