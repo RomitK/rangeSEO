@@ -32,7 +32,7 @@ import { getCurrentUrl } from "@/src/utils/helpers/common";
 import GallaryModalImg from "@/app/(frontend)/components/models/GallaryModalImg";
 import GallaryModalVideo from "@/app/(frontend)/components/models/GallaryModalVideo";
 import DownloadProjectPPTModal from "../models/DownloadProjectPPTModal";
-import DownloadProjectSaleOfferModel from '@/app/(frontend)/components/models/DownloadPropertySaleOfferModel'
+// import DownloadProjectSaleOfferModel from '@/app/(frontend)/components/models/DownloadPropertySaleOfferModel'
 import "@/public/css/single-project-view-styles.css";
 
 import MortgageCalculator from "./MortgageCalculator";
@@ -1951,7 +1951,7 @@ function SinglePropertyView({ params }) {
         propertyData &&
         <SaleOfferModal />
       }
-      <DownloadProjectSaleOfferModel brochureLink={propertyData?.saleOfferLink} fileName={propertyData?.name + " SaleOffer.pdf"} />
+      {/* <DownloadProjectSaleOfferModel brochureLink={propertyData?.saleOfferLink} fileName={propertyData?.name + " SaleOffer.pdf"} /> */}
     </>
   );
 }

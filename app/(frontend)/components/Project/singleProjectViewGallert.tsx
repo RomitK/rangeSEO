@@ -26,7 +26,7 @@ import SaleOfferModal from "@/app/(frontend)/components/models/SaleOfferModal";
 import GallaryModalImg from "@/app/(frontend)/components/models/GallaryModalImg";
 import DownloadBrochure from "@/app/(frontend)/components/models/DownloadBrochure";
 import DownloadProjectPPTModal from "../models/DownloadProjectPPTModal";
-import DownloadProjectSaleOfferModel from "@/app/(frontend)/components/models/DownloadProjectSaleOfferModel";
+// import DownloadProjectSaleOfferModel from "@/app/(frontend)/components/models/DownloadProjectSaleOfferModel";
 
 import "@/public/css/single-project-view-styles.css";
 function SingleProjectView({ params }) {
@@ -1598,7 +1598,7 @@ function SingleProjectView({ params }) {
       ></PaymentPlanModel>
 
       <SaleOfferModal />
-      <DownloadProjectSaleOfferModel />
+      {/* <DownloadProjectSaleOfferModel /> */}
       <DownloadProjectPPTModal
         brochureLink={projectData?.brochureLink}
         fileName={projectData?.title}
