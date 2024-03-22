@@ -149,7 +149,7 @@ function Navbar() {
 
                     <li className="dropdown navDropMain nav-item">
                       <a
-                        className="dropdown-toggle nav-link "
+                        className="dropdown-toggle nav-link" href="/communities"
                         data-toggle="dropdown"
                       >
                         Insights<b className="caret"></b>
