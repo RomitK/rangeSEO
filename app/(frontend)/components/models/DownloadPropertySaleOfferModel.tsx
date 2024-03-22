@@ -19,7 +19,7 @@ import Swal from 'sweetalert2'
 import { FieldError } from "react-hook-form";
 import { isValidPhoneNumber } from 'react-phone-number-input'
 
-function DownloadProjectSaleOfferModel(props) {
+function DownloadPropertySaleOfferModel(props) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,6 +28,7 @@ function DownloadProjectSaleOfferModel(props) {
     formName: "downloadBrochureForm",
     page: props.pageUrl,
   });
+  const [propertySlug, setPropertySlug] = useState(props.slug);
   const visiorFormRef = useRef(null);
   const submitBtnRef = useRef(null);
   const [otpSent, setOtpSent] = useState(false);
@@ -80,7 +81,10 @@ function DownloadProjectSaleOfferModel(props) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+  useEffect(() => {
+    //setformName(props.formName)
+    setPropertySlug(props.slug)
+  }, [props]);
   useEffect(() => {
     // console.log(timer);
     let interval;
@@ -157,7 +161,8 @@ function DownloadProjectSaleOfferModel(props) {
           Swal.fire({
             position: "center",
             icon: "success",
-            title: "sale offer has been sent to the provided email address.",
+            title: "Form Submitted",
+            text: "Sale offer has been sent to the provided email address.",
             showConfirmButton: false,
             timer: 1500
           });
@@ -490,6 +495,11 @@ function DownloadProjectSaleOfferModel(props) {
                         />
                         <input
                           type="hidden"
+                          value={propertySlug}
+                          {...register("property", { required: false })}
+                        />
+                        <input
+                          type="hidden"
                           value={currentPageURL}
                           {...register("page", { required: false })}
                         />
@@ -528,6 +538,12 @@ function DownloadProjectSaleOfferModel(props) {
                                     })}
                                   />
                                   <input
+
+                                    type="hidden"
+                                    value={propertySlug}
+                                    {...register("property", { required: false })}
+                                  />
+                                  <input
                                     type="hidden"
                                     value={currentPageURL}
                                     {...register("page", { required: false })}
@@ -560,6 +576,12 @@ function DownloadProjectSaleOfferModel(props) {
                             {...register("formName", { required: false })}
                           />
                           <input
+
+                            type="hidden"
+                            value={propertySlug}
+                            {...register("property", { required: false })}
+                          />
+                          <input
                             type="hidden"
                             value={currentPageURL}
                             {...register("page", { required: false })}
@@ -584,4 +606,4 @@ function DownloadProjectSaleOfferModel(props) {
     </>
   );
 }
-export default DownloadProjectSaleOfferModel;
+export default DownloadPropertySaleOfferModel;
