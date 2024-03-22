@@ -10,16 +10,23 @@ type Props = {
 export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
-  const HomeMeta = await fetch(`${process.env.API_HOST}homePage/meta`).then(
-    (res) => res.json()
-  );
+
+
+  const HomeMeta = await fetch(
+    `${process.env.API_HOST}homePage/meta`,
+    { cache: "no-store" }
+  )
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log("err", err);
+    });
   return {
     title: HomeMeta?.data?.title,
     description: HomeMeta?.data?.meta_description,
     keywords: HomeMeta?.data?.meta_keywords,
   };
-};
 
+};
 export default function Home() {
   return (
     <>
