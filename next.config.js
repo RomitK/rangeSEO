@@ -28,4 +28,10 @@ module.exports = {
     ];
   },
 };
+// next.config.js
+module.exports = {
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
+};
 module.exports = nextConfig;
