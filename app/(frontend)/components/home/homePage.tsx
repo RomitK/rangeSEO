@@ -1,23 +1,26 @@
 "use client";
 import React from "react";
-import WhyRange from "@/app/(frontend)/components/WhyRange/WhyRange";
-import AboutDubai from "@/app/(frontend)/components/AboutDubai/AboutDubai";
-import ProjectList from "@/app/(frontend)/components/HomeProject/ProjectList";
-import LookingFor from "@/app/(frontend)/components/LookingFor/LookingFor";
-import Testimonials from "@/app/(frontend)/components/Testimonial/TestimonialList";
-import HomeSearch from "@/app/(frontend)/components/HomeSearch/HomeSearch";
-import { SWRProvider } from "@/app/swr-provider";
-// import "@/public/css/developers-styles.css";
 import { useRef } from "react";
+import Link from "next/link";
+import dynamic from 'next/dynamic';
+import { useState, useEffect } from "react";
+import { useGetAllHomeData } from "@/src/services/HomeService";
+
 import { Swiper, SwiperSlide } from "swiper/react";
-// import required modules
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import SwiperCore, { Swiper as SwiperType } from "swiper";
 import "swiper/swiper-bundle.css";
 import "swiper/css/pagination";
-import { useState, useEffect } from "react";
-import { useGetAllHomeData } from "@/src/services/HomeService";
-import Link from "next/link";
+import { SWRProvider } from "@/app/swr-provider";
+
+const WhyRange = dynamic(() => import('@/app/(frontend)/components/WhyRange/WhyRange'));
+const AboutDubai = dynamic(() => import('@/app/(frontend)/components/AboutDubai/AboutDubai'));
+const ProjectList = dynamic(() => import('@/app/(frontend)/components/HomeProject/ProjectList'));
+const LookingFor = dynamic(() => import('@/app/(frontend)/components/LookingFor/LookingFor'));
+const HomeSearch = dynamic(() => import('@/app/(frontend)/components/HomeSearch/HomeSearch'));
+const Testimonials = dynamic(() => import('@/app/(frontend)/components/Testimonial/TestimonialList'));
+
+// import "@/public/css/developers-styles.css";
 
 const HomePage = () => {
 

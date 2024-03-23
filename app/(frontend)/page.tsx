@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Head from "next/head";
-import HomePage from "./components/home/homePage";
-
+import dynamic from 'next/dynamic';
+const HomePage = dynamic(() => import('@/app/(frontend)/components/home/homePage'));
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
