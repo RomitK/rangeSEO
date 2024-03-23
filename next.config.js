@@ -13,5 +13,19 @@ const nextConfig = {
     TIKTOK_LINK: process.env.TIKTOK_LINK,
   },
 };
-
+module.exports = {
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600', // Cache assets for 1 hour (3600 seconds)
+          },
+        ],
+      },
+    ];
+  },
+};
 module.exports = nextConfig;
