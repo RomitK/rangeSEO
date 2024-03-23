@@ -69,10 +69,16 @@ function HomeSearch() {
 
   return (
     <>
+
+
+
       <section
         className="mainBg  d-md-block d-lg-block d-xl-block overlayBg homeHeader"
         id="home"
       >
+
+        <link rel="preload" href="videos/ramadan-desktop.jpg" as="image" />
+        <link rel="preload" href="videos/ramzan-mobile.jpg" as="image" />
 
         <div className="p-relative videoContainer ">
           <video
