@@ -76,10 +76,6 @@ function HomeSearch() {
         className="mainBg  d-md-block d-lg-block d-xl-block overlayBg homeHeader"
         id="home"
       >
-
-        <link rel="preload" href="videos/ramadan-desktop.jpg" as="image" />
-        <link rel="preload" href="videos/ramzan-mobile.jpg" as="image" />
-
         <div className="p-relative videoContainer ">
           <video
             className="d-block w-100 videoMain propertyDesktopItemLink"
@@ -98,6 +94,7 @@ function HomeSearch() {
             className="d-block w-100 videoMain"
             muted playsInline autoPlay loop
             preload="metadata"
+            // poster="videos/homeSearchBannerImage.jpg"
             poster="videos/ramzan-mobile.jpg"
           >
             {/* <source src="/videos/dk-mobile.mp4" type="video/mp4" />

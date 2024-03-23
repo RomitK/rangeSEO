@@ -48,6 +48,8 @@ export default function RootLayout({
               gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
           `}
         </Script>
+        <link rel="preload" href="videos/ramadan-desktop.jpg" as="image" />
+        <link rel="preload" href="videos/ramzan-mobile.jpg" as="image" />
 
       </head>
       <body className={inter.className} suppressHydrationWarning={true}>
