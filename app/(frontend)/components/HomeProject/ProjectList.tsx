@@ -364,6 +364,7 @@ function ProjectList() {
                           <div
                             className="form-select"
                             data-bs-toggle="dropdown"
+                            aria-haspopup="true"
                             aria-expanded="false"
                             data-bs-auto-close="outside"
                           >

@@ -278,7 +278,7 @@ function Footer() {
                           </div>
                           <button
                             type="submit"
-                            className="btn btn-primary  rounded-0 "
+                            className="btn btn-primary  rounded-0" aria-label="Submit"
                           >
                             <i className="bi bi-check2"></i>
                           </button>
