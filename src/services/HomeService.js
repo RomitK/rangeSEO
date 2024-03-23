@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import httpClient from "./http-client";
 export const useGetAllHomeData = () => {
-  const { data: homeData, error, mutate } = useSWR(`/homeData1`);
+  const { data: homeData, error, mutate } = useSWR(`/homeData`);
   return { homeData: homeData?.data, homeDataMutate: mutate };
 };
 
