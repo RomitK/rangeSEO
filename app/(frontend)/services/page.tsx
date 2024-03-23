@@ -11,8 +11,8 @@ import "@/public/css/services-styles.css";
 function Services() {
   const router = useRouter();
   const [activeService, setActiveService] = useState('');
-  const contactSideText =" An esteemed award-winning real estate brokerage based in Dubai, UAE.";
-  const pageUrl ="Services"
+  const contactSideText = " An esteemed award-winning real estate brokerage based in Dubai, UAE.";
+  const pageUrl = "Services"
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -51,7 +51,7 @@ function Services() {
   return (
     <>
       {/*<header className="serviceHeader">
-        <img src="/images/banner/service-banner.webp" className="headerImg" />
+        <img loading="lazy"  src="/images/banner/service-banner.webp" className="headerImg" />
          <div className="p-relative">
           <video
             className="d-block w-100 videoMain"
@@ -83,7 +83,7 @@ function Services() {
           <div className="row">
             <div className="col-md-6">
               <div className="serviceCard">
-                <img
+                <img loading="lazy"
                   src="/images/services/service1.webp"
                   className="serviceCardImg"
                   alt="Residential Sales & Leasing"
@@ -112,7 +112,7 @@ function Services() {
             </div>
             <div className="col-md-6">
               <div className="serviceCard">
-                <img
+                <img loading="lazy"
                   src="/images/services/service2.webp"
                   className="serviceCardImg"
                   alt="Commercial Sales & Leasing"
@@ -141,7 +141,7 @@ function Services() {
             </div>
             <div className="col-md-6">
               <div className="serviceCard">
-                <img
+                <img loading="lazy"
                   src="/images/services/service3.webp"
                   className="serviceCardImg"
                   alt="Property Management"
@@ -167,7 +167,7 @@ function Services() {
             </div>
             <div className="col-md-6">
               <div className="serviceCard">
-                <img
+                <img loading="lazy"
                   src="/images/services/service4.webp"
                   className="serviceCardImg"
                   alt="Holiday Homes"
@@ -194,7 +194,7 @@ function Services() {
             </div>
             <div className="col-md-6">
               <div className="serviceCard">
-                <img
+                <img loading="lazy"
                   src="/images/services/service5.webp"
                   className="serviceCardImg"
                   alt="Mortgage Services"
@@ -202,7 +202,7 @@ function Services() {
                 <div className="serCardContent ">
                   <h3 className="cardTitle text-center">Mortgage Services</h3>
                   <p className="fs-14 text-secondary mb-4">
-                  My mortgage brokerage is dedicated to helping our clients achieve their dream of home ownership. Our team of experienced professionals are committed to providing exceptional customer service and personalised solutions to meet the specific needs of each of our clients.
+                    My mortgage brokerage is dedicated to helping our clients achieve their dream of home ownership. Our team of experienced professionals are committed to providing exceptional customer service and personalised solutions to meet the specific needs of each of our clients.
                   </p>
                   <button
                     className="fillBtn  mrAuto cardBtn"
@@ -217,7 +217,7 @@ function Services() {
             </div>
             <div className="col-md-6">
               <div className="serviceCard">
-                <img
+                <img loading="lazy"
                   src="/images/services/service6.webp"
                   className="serviceCardImg"
                   alt=" Investment Consultancy"
@@ -247,7 +247,7 @@ function Services() {
 
             {/* <div className="col-md-6">
               <div className="serviceCard">
-                <img
+                <img loading="lazy" 
                   src="/images/guides/portfolio.jpg"
                   className="serviceCardImg"
                   alt=" Investment Consultancy"

@@ -2734,7 +2734,7 @@ function MortgagePage() {
           </h4> */}
                     <div className="row">
                         <div className="col-md-3 text-center">
-                            <img
+                            <img loading="lazy"
                                 src="images/mortage_logo.png"
                                 alt="My Mortgage"
                                 className="img-fluid py-2"

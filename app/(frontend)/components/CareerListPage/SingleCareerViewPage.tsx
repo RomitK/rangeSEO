@@ -16,7 +16,7 @@ function SingleCareerViewPage({ params }) {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
-      if(isMobileDevice){
+      if (isMobileDevice) {
         document.body.style.overflow = 'auto';
       }
       setIsMobileDev(isMobileDevice);
@@ -32,7 +32,7 @@ function SingleCareerViewPage({ params }) {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-}, []);
+  }, []);
 
   const { CareerData } = useGetSingleCareerData(slug);
   const [currentCareerId, setCurrentCareerId] = useState(0);
@@ -42,7 +42,7 @@ function SingleCareerViewPage({ params }) {
   return (
     <>
       <header className="header careerHeader">
-        <img
+        <img loading="lazy"
           src="/images/banner/banner-3.webp"
           className="headerImgVideo"
           alt="career"
@@ -51,7 +51,7 @@ function SingleCareerViewPage({ params }) {
           <h2 className="headTitle mb-3 joinRange">JOIN RANGE</h2>
           <a href="#currentOpening" className="fillBtn linkBtn">
             SEE CURRENT OPENING
-            <img
+            <img loading="lazy"
               src="/images/icons/btn-right-arrow.png"
               className="btnRightArrow"
               alt="arrow"
@@ -70,8 +70,8 @@ function SingleCareerViewPage({ params }) {
 
                   <div className="listflexRow">
                     {
-                        CareerData?.location && <div className="listflexBar">
-                        <img
+                      CareerData?.location && <div className="listflexBar">
+                        <img loading="lazy"
                           src="/images/icons/location_icon.png"
                           className="iconImg"
                           alt="location"
@@ -80,9 +80,9 @@ function SingleCareerViewPage({ params }) {
                       </div>
                     }
                     {
-                        CareerData?.type &&  
-                        <div className="listflexBar">
-                        <img
+                      CareerData?.type &&
+                      <div className="listflexBar">
+                        <img loading="lazy"
                           src="/images/icons/type-icon.png"
                           className="iconImg"
                           alt="type"
@@ -90,38 +90,38 @@ function SingleCareerViewPage({ params }) {
                         <p>{CareerData?.type}</p>
                       </div>
                     }
-                    
+
                   </div>
                   <p className="fs-14 text-secondary mb-4">
                     {CareerData && parse(CareerData?.description ?? "")}
                   </p>
                 </div>
                 {
-                    CareerData?.responsibilities && 
-                    <div className="CarearInfoList ">
+                  CareerData?.responsibilities &&
+                  <div className="CarearInfoList ">
                     <h4 className="listTitle ">Key Responsibilities:</h4>
                     <div className="ulList">
-                        {CareerData && parse(CareerData?.responsibilities ?? "")}
+                      {CareerData && parse(CareerData?.responsibilities ?? "")}
                     </div>
-                    </div>
+                  </div>
                 }
-                
+
                 {
-                    CareerData?.requirements && 
-                    <div className="CarearInfoList ">
+                  CareerData?.requirements &&
+                  <div className="CarearInfoList ">
                     <h4 className="listTitle">
-                        Qualification and Skills required:
+                      Qualification and Skills required:
                     </h4>
                     <div className="ulList">
-                        {CareerData && parse(CareerData?.requirements ?? "")}
+                      {CareerData && parse(CareerData?.requirements ?? "")}
                     </div>
-                    </div>
+                  </div>
                 }
-                
+
                 {CareerData?.assistance &&
-                    <div className="CarearInfoList">
+                  <div className="CarearInfoList">
                     <h4 className="listTitle ">
-                    Assistance:
+                      Assistance:
                     </h4>
                     <div className="ulList">
                       {CareerData && parse(CareerData?.assistance ?? "")}
@@ -130,9 +130,9 @@ function SingleCareerViewPage({ params }) {
                 }
 
                 {CareerData?.benfits &&
-                    <div className="CarearInfoList">
+                  <div className="CarearInfoList">
                     <h4 className="listTitle ">
-                    Benefits:
+                      Benefits:
                     </h4>
                     <div className="ulList">
                       {CareerData && parse(CareerData?.benfits ?? "")}
@@ -140,7 +140,7 @@ function SingleCareerViewPage({ params }) {
                   </div>
                 }
                 {
-                    CareerData && <a
+                  CareerData && <a
                     href="#"
                     className="fillBtn appleNowBtn text-decoration-none"
                     data-bs-toggle="modal"
@@ -153,7 +153,7 @@ function SingleCareerViewPage({ params }) {
                     APPLY NOW
                   </a>
                 }
-                
+
               </div>
             </div>
           </div>

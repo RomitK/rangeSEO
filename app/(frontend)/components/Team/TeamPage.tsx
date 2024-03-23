@@ -34,7 +34,7 @@ function TeamPage() {
   return (
     <>
       {/* <header className="aboutHeader">
-        <img
+        <img loading="lazy" 
           src="/images/banner/teamBanner.webp"
           className="headerSimpleImg"
           alt="team"
@@ -62,7 +62,7 @@ function TeamPage() {
                 return (
                   <div className="teamCard" key={team.id} >
                     <div className="imgBox">
-                      <img
+                      <img loading="lazy"
                         src={team?.image}
                         className="mainCrd"
                         alt={team?.name}
@@ -81,7 +81,7 @@ function TeamPage() {
                             className="text-decoration-none socialLink"
                             target="_blanket"
                           >
-                            <img
+                            <img loading="lazy"
                               src="/images/icons/phone-icon.png"
                               className="crdSocialIcon"
                               alt="phone"
@@ -94,7 +94,7 @@ function TeamPage() {
                             className="text-decoration-none socialLink"
                             target="_blanket"
                           >
-                            <img
+                            <img loading="lazy"
                               src="/images/icons/mail-icon.png"
                               className="crdSocialIcon"
                               alt="mail"
@@ -108,7 +108,7 @@ function TeamPage() {
                             className="text-decoration-none socialLink"
                             target="_blanket"
                           >
-                            <img
+                            <img loading="lazy"
                               // src="/images/icons/team-whatsapp1.png"
                               src="/images/icons/whatsapp-icon.png"
                               className="crdSocialIcon"

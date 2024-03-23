@@ -18,7 +18,7 @@ function LookingFor() {
                         <div className="col-6 col-lg-3 col-md-3">
                             <div className="card cardInterest">
                                 <div className="my-3">
-                                    <center><img src="/images/icons/interest1.png"
+                                    <center><img loading="lazy"  src="/images/icons/interest1.png"
                                             className="img-fluid" alt="range" width="80px" /></center>
                                 </div>
                                 <div className="card-body text-center">
@@ -30,7 +30,7 @@ function LookingFor() {
                         <div className="col-6 col-lg-3 col-md-3">
                             <div className="card cardInterest">
                                 <div className="my-3">
-                                    <center><img src="/images/icons/interest2.png"
+                                    <center><img loading="lazy"  src="/images/icons/interest2.png"
                                             className="img-fluid" alt="range" width="80px"/></center>
                                 </div>
                                 <div className="card-body text-center">
@@ -42,7 +42,7 @@ function LookingFor() {
                         <div className="col-6 col-lg-3 col-md-3">
                             <div className="card cardInterest">
                                 <div className="my-3">
-                                    <center><img src="/images/icons/interest3.png"
+                                    <center><img loading="lazy"  src="/images/icons/interest3.png"
                                             className="img-fluid" alt="range" width="80px"/></center>
                                 </div>
                                 <div className="card-body text-center">
@@ -54,7 +54,7 @@ function LookingFor() {
                         <div className="col-6 col-lg-3 col-md-3">
                             <div className="card cardInterest">
                                 <div className="my-3">
-                                    <center><img src="/images/icons/interest4.png"
+                                    <center><img loading="lazy"  src="/images/icons/interest4.png"
                                             className="img-fluid" alt="range" width="80px" /></center>
                                 </div>
                                 <div className="card-body text-center">
@@ -82,7 +82,7 @@ function LookingFor() {
             <div className="proCircleCard">
               <Link className="proCircleBox" href="/properties">
                 <div className="circleContent">
-                  <img
+                  <img loading="lazy"
                     src="/images/icons/interest1.png"
                     className="proCricleImg"
                     alt="range"
@@ -101,7 +101,7 @@ function LookingFor() {
             <div className="proCircleCard">
               <Link className="proCircleBox" href="/sell">
                 <div className="circleContent">
-                  <img
+                  <img loading="lazy"
                     src="/images/icons/sell.png"
                     className="proCricleImg"
                     alt="range"
@@ -120,7 +120,7 @@ function LookingFor() {
             <div className="proCircleCard">
               <Link className="proCircleBox" href="/services">
                 <div className="circleContent">
-                  <img
+                  <img loading="lazy"
                     src="/images/icons/interest2.png"
                     className="proCricleImg"
                     alt="range"
@@ -139,7 +139,7 @@ function LookingFor() {
             <div className="proCircleCard">
               <Link className="proCircleBox" href="/services">
                 <div className="circleContent">
-                  <img
+                  <img loading="lazy"
                     src="/images/icons/interest3.png"
                     className="proCricleImg"
                     alt="range"
@@ -158,7 +158,7 @@ function LookingFor() {
             <div className="proCircleCard">
               <Link className="proCircleBox" href="/mortgage">
                 <div className="circleContent">
-                  <img
+                  <img loading="lazy"
                     src="/images/icons/interest4.png"
                     className="proCricleImg"
                     alt="range"
@@ -206,7 +206,7 @@ function LookingFor() {
                       <div className="proCircleCard mb-2" >
                         <Link className="proCircleBox lookingSingleMobileCard" href="/properties">
                           <div className="circleContent">
-                            <img
+                            <img loading="lazy" 
                               src="/images/icons/interest1.png"
                               className="proCricleImg"
                               alt="range"
@@ -225,7 +225,7 @@ function LookingFor() {
                       <div className="proCircleCard mb-2">
                         <Link className="proCircleBox lookingSingleMobileCard" href="/sell">
                           <div className="circleContent">
-                            <img
+                            <img loading="lazy" 
                               src="/images/icons/interest2.png"
                               className="proCricleImg"
                               alt="range"
@@ -245,7 +245,7 @@ function LookingFor() {
                       <div className="proCircleCard mb-2 ">
                         <Link className="proCircleBox lookingSingleMobileCard" href="/services">
                           <div className="circleContent">
-                            <img
+                            <img loading="lazy" 
                               src="/images/icons/interest2.png"
                               className="proCricleImg"
                               alt="range"
@@ -265,7 +265,7 @@ function LookingFor() {
                     <div className="proCircleCard mb-2 ">
                       <Link className="proCircleBox lookingSingleMobileCard" href="/services">
                         <div className="circleContent">
-                          <img
+                          <img loading="lazy" 
                             src="/images/icons/interest3.png"
                             className="proCricleImg"
                             alt="range"
@@ -285,7 +285,7 @@ function LookingFor() {
                       <div className="proCircleCard mb-2">
                         <Link className="proCircleBox lookingSingleMobileCard" href="/services">
                           <div className="circleContent">
-                            <img
+                            <img loading="lazy" 
                               src="/images/icons/interest4.png"
                               className="proCricleImg"
                               alt="range"
@@ -320,7 +320,7 @@ function LookingFor() {
             </Swiper>
           </div>
              */}
-          
+
           <div className="col-12 col-lg-12 col-md-12">
             <div className="borderBottom"></div>
           </div>

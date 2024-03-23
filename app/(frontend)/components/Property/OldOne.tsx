@@ -233,7 +233,7 @@ function SinglePropertyView({ params }) {
                                                 {propertyData?.gallery?.map((image, index) => {
                                                     return (
                                                         <SwiperSlide key={image.id + index + "gallery"}>
-                                                            <img
+                                                            <img loading="lazy"
                                                                 src={image.path}
                                                                 alt={
                                                                     image.title ? image.title : propertyData.name
@@ -281,7 +281,7 @@ function SinglePropertyView({ params }) {
                                                     {propertyData?.gallery?.map((image, index) => {
                                                         return (
                                                             <SwiperSlide key={image.id + index + "gallery2"}>
-                                                                <img
+                                                                <img loading="lazy"
                                                                     src={image.path}
                                                                     alt={
                                                                         image.title
@@ -452,7 +452,7 @@ function SinglePropertyView({ params }) {
                                                 <ul className="list-unstyled proInfoList">
                                                     <li className="liBar">
                                                         <small>
-                                                            <img
+                                                            <img loading="lazy"
                                                                 src="/images/icons/bed-blue.png"
                                                                 alt="Range"
                                                                 className="img-fluid"
@@ -465,7 +465,7 @@ function SinglePropertyView({ params }) {
                                                     </li>
                                                     <li className="liBar">
                                                         <small>
-                                                            <img
+                                                            <img loading="lazy"
                                                                 src="/images/icons/bath-blue.png"
                                                                 alt="Range"
                                                                 className="img-fluid"
@@ -479,7 +479,7 @@ function SinglePropertyView({ params }) {
 
                                                     <li className="liBar">
                                                         <small>
-                                                            <img
+                                                            <img loading="lazy"
                                                                 src="/images/icons/area-blue.png"
                                                                 alt="Range"
                                                                 className="img-fluid"
@@ -494,7 +494,7 @@ function SinglePropertyView({ params }) {
                                                     {propertyData && propertyData.developer && (
                                                         <li className="liBar">
                                                             <small>
-                                                                <img
+                                                                <img loading="lazy"
                                                                     src="/images/icons/building.png"
                                                                     alt="Range"
                                                                     className="img-fluid"
@@ -524,7 +524,7 @@ function SinglePropertyView({ params }) {
                                                                     }`}
                                                             >
                                                                 <center>
-                                                                    <img
+                                                                    <img loading="lazy"
                                                                         src={
                                                                             propertyData?.agent &&
                                                                             propertyData.agent?.image
@@ -555,7 +555,7 @@ function SinglePropertyView({ params }) {
                                                                             }
                                                                             className="Probtn bg-primary"
                                                                         >
-                                                                            <img
+                                                                            <img loading="lazy"
                                                                                 alt="callNow"
                                                                                 src="/images/icons/phone.png"
                                                                                 className="proPhoneIcon"
@@ -687,7 +687,7 @@ function SinglePropertyView({ params }) {
                                                                                     href={`/communities/${propertyData.community["slug"]}`}
                                                                                     className="text-decoration-none communityImgCont"
                                                                                 >
-                                                                                    <img
+                                                                                    <img loading="lazy"
                                                                                         src={community["path"]}
                                                                                         alt={community["title"]}
                                                                                         className="img-fluid"
@@ -762,7 +762,7 @@ function SinglePropertyView({ params }) {
                                                                         <div className="py-3">
                                                                             <div className="mb-2">
                                                                                 <div className="amenityImg mx-auto">
-                                                                                    <img
+                                                                                    <img loading="lazy"
                                                                                         src={amenity.image}
                                                                                         alt={amenity.name}
                                                                                         className="img-fluid"
@@ -831,7 +831,7 @@ function SinglePropertyView({ params }) {
                                                                                     <div className="py-3">
                                                                                         <div className="mb-2">
                                                                                             <div className="amenityImg mx-auto">
-                                                                                                <img
+                                                                                                <img loading="lazy"
                                                                                                     src={amenity.image}
                                                                                                     alt={amenity.name}
                                                                                                     className="img-fluid"
@@ -923,7 +923,7 @@ function SinglePropertyView({ params }) {
                                                                                     <div className="py-3">
                                                                                         <div className="mb-2">
                                                                                             <div className="amenityImg mx-auto">
-                                                                                                <img
+                                                                                                <img loading="lazy"
                                                                                                     src={amenity.image}
                                                                                                     alt={amenity.name}
                                                                                                     className="img-fluid"
@@ -990,7 +990,7 @@ function SinglePropertyView({ params }) {
                                     href={`/projects/${propertyData?.project?.slug}`}
                                     className="text-decoration-none"
                                   >
-                                    <img
+                                    <img loading="lazy" 
                                       src={propertyData?.project?.image}
                                       alt={propertyData?.project?.name}
                                       className="img-fluid"
@@ -1045,7 +1045,7 @@ function SinglePropertyView({ params }) {
                                                                                                         href={`/projects/${propertyData.project["slug"]}`}
                                                                                                         className="text-decoration-none"
                                                                                                     >
-                                                                                                        <img
+                                                                                                        <img loading="lazy"
                                                                                                             src={project["path"]}
                                                                                                             alt={
                                                                                                                 project["title"]
@@ -1096,7 +1096,7 @@ function SinglePropertyView({ params }) {
                                                                     }`}
                                                             >
                                                                 <div className="circleImgBox">
-                                                                    <img
+                                                                    <img loading="lazy"
                                                                         alt="handover"
                                                                         src="/images/icons/pro-icon-1.webp"
                                                                         className="iconImg"
@@ -1112,7 +1112,7 @@ function SinglePropertyView({ params }) {
                                                                     }`}
                                                             >
                                                                 <div className="circleImgBox">
-                                                                    <img
+                                                                    <img loading="lazy"
                                                                         alt="developer"
                                                                         src="/images/icons/pro-icon-2.webp"
                                                                         className="iconImg"
@@ -1128,7 +1128,7 @@ function SinglePropertyView({ params }) {
                                                                     }`}
                                                             >
                                                                 <div className="circleImgBox">
-                                                                    <img
+                                                                    <img loading="lazy"
                                                                         alt="developer"
                                                                         src="/images/icons/pro-icon-3.webp"
                                                                         className="iconImg"
@@ -1464,7 +1464,7 @@ function SinglePropertyView({ params }) {
                                             <ul className="list-unstyled proInfoList">
                                                 <li className="liBar">
                                                     <small>
-                                                        <img
+                                                        <img loading="lazy"
                                                             src="/images/icons/bed-blue.png"
                                                             alt="Range"
                                                             className="img-fluid"
@@ -1477,7 +1477,7 @@ function SinglePropertyView({ params }) {
                                                 </li>
                                                 <li className="liBar">
                                                     <small>
-                                                        <img
+                                                        <img loading="lazy"
                                                             src="/images/icons/bath-blue.png"
                                                             alt="Range"
                                                             className="img-fluid"
@@ -1491,7 +1491,7 @@ function SinglePropertyView({ params }) {
 
                                                 <li className="liBar">
                                                     <small>
-                                                        <img
+                                                        <img loading="lazy"
                                                             src="/images/icons/area-blue.png"
                                                             alt="Range"
                                                             className="img-fluid"
@@ -1506,7 +1506,7 @@ function SinglePropertyView({ params }) {
                                                 {propertyData && propertyData.developer && (
                                                     <li className="liBar">
                                                         <small>
-                                                            <img
+                                                            <img loading="lazy"
                                                                 src="/images/icons/building.png"
                                                                 alt="Range"
                                                                 className="img-fluid"
@@ -1531,7 +1531,7 @@ function SinglePropertyView({ params }) {
                                                     <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
                                                         <div className="my-auto projctSpecIMg me-3 mb-3">
                                                             <center>
-                                                                <img
+                                                                <img loading="lazy"
                                                                     src={
                                                                         propertyData?.agent &&
                                                                         propertyData.agent?.image
@@ -1559,7 +1559,7 @@ function SinglePropertyView({ params }) {
                                                                     href={"tel:" + propertyData?.agent?.contact}
                                                                     className="Probtn bg-primary"
                                                                 >
-                                                                    <img
+                                                                    <img loading="lazy"
                                                                         alt="call"
                                                                         src="/images/icons/phone.png"
                                                                         className="proPhoneIcon"
@@ -1604,7 +1604,7 @@ function SinglePropertyView({ params }) {
                                                                     href={"tel:" + propertyData?.agent?.contact}
                                                                     className="Probtn bg-primary "
                                                                 >
-                                                                    <img
+                                                                    <img loading="lazy"
                                                                         alt="call"
                                                                         src="/images/icons/phone.png"
                                                                         className="proPhoneIcon"
@@ -1698,7 +1698,7 @@ function SinglePropertyView({ params }) {
                                                                                 href={`/communities/${propertyData.community["slug"]}`}
                                                                                 className="text-decoration-none communityImgCont"
                                                                             >
-                                                                                <img
+                                                                                <img loading="lazy"
                                                                                     src={gallery["path"]}
                                                                                     alt={
                                                                                         gallery["path"]
@@ -1763,7 +1763,7 @@ function SinglePropertyView({ params }) {
                                     data-bs-target="#fixBtn-1"
                                     aria-expanded="false"
                                 >
-                                    <img
+                                    <img loading="lazy"
                                         alt="cross"
                                         src="/images/icons/btn-icon-5.png"
                                         className="fixBtnIcon"
@@ -1821,7 +1821,7 @@ function SinglePropertyView({ params }) {
                                     data-bs-target="#fixBtn-2"
                                     aria-expanded="false"
                                 >
-                                    <img
+                                    <img loading="lazy"
                                         alt="cross"
                                         src="/images/icons/btn-icon-4.png"
                                         className="fixBtnIcon"
@@ -1846,7 +1846,7 @@ function SinglePropertyView({ params }) {
                                             data-bs-toggle="modal"
                                             data-bs-target="#downloadBrochure"
                                         >
-                                            <img
+                                            <img loading="lazy"
                                                 alt="downlaod"
                                                 src="/images/icons/btn-icon-2.png"
                                                 className="fixBtnIcon"
@@ -1860,7 +1860,7 @@ function SinglePropertyView({ params }) {
                                             data-bs-target="#projectSaleOffer"
                                         >
                                             {" "}
-                                            <img
+                                            <img loading="lazy"
                                                 alt="saleoffer"
                                                 src="/images/icons/btn-icon-1.png"
                                                 className="fixBtnIcon"
@@ -1943,7 +1943,7 @@ function SinglePropertyView({ params }) {
                                                                                                 className="text-decoration-none"
                                                                                             >
                                                                                                 <div className="projectImgCont">
-                                                                                                    <img
+                                                                                                    <img loading="lazy"
                                                                                                         src={
                                                                                                             similarProperty.property_banner
                                                                                                         }
@@ -1989,7 +1989,7 @@ function SinglePropertyView({ params }) {
                                                                                             <ul className="list-unstyled mb-0 d-flex justify-content-between">
                                                                                                 <li className="d-inline">
                                                                                                     <small>
-                                                                                                        <img
+                                                                                                        <img loading="lazy"
                                                                                                             src="/images/icons/bed.png"
                                                                                                             alt="Range"
                                                                                                             className="img-fluid"
@@ -2002,7 +2002,7 @@ function SinglePropertyView({ params }) {
                                                                                                 </li>
                                                                                                 <li className="d-inline">
                                                                                                     <small>
-                                                                                                        <img
+                                                                                                        <img loading="lazy"
                                                                                                             src="/images/icons/bath.png"
                                                                                                             alt="Range"
                                                                                                             className="img-fluid"
@@ -2017,7 +2017,7 @@ function SinglePropertyView({ params }) {
                                                                                                 </li>
                                                                                                 <li className="d-inline">
                                                                                                     <small>
-                                                                                                        <img
+                                                                                                        <img loading="lazy"
                                                                                                             src="/images/icons/area.png"
                                                                                                             alt="Range"
                                                                                                             className="img-fluid"

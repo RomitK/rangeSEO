@@ -154,53 +154,53 @@ function SingleProjectView({ params }) {
       {projectData?.exteriorGallery && (
         <>
           <header className={`${isMobileDev ? "h-auto" : ""}`}>
-          <Slider
-  {...(isMobileDev ? mobileSettings : desktopSettings)}
-  ref={sliderRef}
-  className="swiperprojectGallery"  beforeChange={handleBeforeChange}
->
-  {projectData?.exteriorGallery?.map((exteriorGallery, index) => (
-    <div
-    className="swiperSilderItem"
-    key={exteriorGallery.id + "exteriorGallery" + index}
-  >
-    <img
-      src={exteriorGallery.path}
-      alt={
-        exteriorGallery.title
-          ? exteriorGallery.title
-          : projectData.title
-      }
-      className="sliderCoverImg"
-    />
+            <Slider
+              {...(isMobileDev ? mobileSettings : desktopSettings)}
+              ref={sliderRef}
+              className="swiperprojectGallery" beforeChange={handleBeforeChange}
+            >
+              {projectData?.exteriorGallery?.map((exteriorGallery, index) => (
+                <div
+                  className="swiperSilderItem"
+                  key={exteriorGallery.id + "exteriorGallery" + index}
+                >
+                  <img loading="lazy"
+                    src={exteriorGallery.path}
+                    alt={
+                      exteriorGallery.title
+                        ? exteriorGallery.title
+                        : projectData.title
+                    }
+                    className="sliderCoverImg"
+                  />
 
-    <div className="sliderContainer">
-      <div className="sliderContentArea" style={{ display: index === activeSlideIndex ? 'flex' : 'none' }}>
-        <div className="sliderContent">
-          <h5>{projectData?.sub_title_1}</h5>
-          <h1>{projectData?.sub_title_2}</h1>
-          <p className="mb-5">
-            {projectData &&
-              projectData.shortDescription &&
-              parse(projectData?.shortDescription ?? "")}
-              {
-               projectData && projectData?.permit_number &&
-               (
-                <>
-                 Permit Number:{projectData?.permit_number}
-                </>
-               )
-              }
-             
-          </p>
-        </div>
-      </div>
-    </div>
- 
-    
-  </div>
-  ))}
-</Slider>
+                  <div className="sliderContainer">
+                    <div className="sliderContentArea" style={{ display: index === activeSlideIndex ? 'flex' : 'none' }}>
+                      <div className="sliderContent">
+                        <h5>{projectData?.sub_title_1}</h5>
+                        <h1>{projectData?.sub_title_2}</h1>
+                        <p className="mb-5">
+                          {projectData &&
+                            projectData.shortDescription &&
+                            parse(projectData?.shortDescription ?? "")}
+                          {
+                            projectData && projectData?.permit_number &&
+                            (
+                              <>
+                                Permit Number:{projectData?.permit_number}
+                              </>
+                            )
+                          }
+
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+              ))}
+            </Slider>
 
 
           </header>
@@ -337,7 +337,7 @@ function SingleProjectView({ params }) {
                           <SwiperSlide
                             key={interiorGallery.id + "interiorGallery1" + index}
                           >
-                            <img
+                            <img loading="lazy"
                               src={interiorGallery.path}
                               className="clmCoverImg"
                               alt={
@@ -437,7 +437,7 @@ function SingleProjectView({ params }) {
                                 <div className="py-3">
                                   <div className="mb-2">
                                     <div className="amenityImg mx-auto">
-                                      <img
+                                      <img loading="lazy"
                                         src={amenity.image}
                                         alt={amenity.name}
                                         className="img-fluid"
@@ -848,7 +848,7 @@ function SingleProjectView({ params }) {
                 data-bs-target="#fixBtn-1"
                 aria-expanded="false"
               >
-                <img
+                <img loading="lazy"
                   src="/images/icons/btn-icon-5.png"
                   className="fixBtnIcon"
                 />
@@ -883,7 +883,7 @@ function SingleProjectView({ params }) {
                     Share on whatsapp
                   </WhatsappShareButton>
                   {/* <button className="btnContentItem">
-                                          <img src="/images/icons/btn-icon-3.png" className="fixBtnIcon" />
+                                          <img loading="lazy"  src="/images/icons/btn-icon-3.png" className="fixBtnIcon" />
                                            Share on Email
                                       </button> */}
 
@@ -906,7 +906,7 @@ function SingleProjectView({ params }) {
                 data-bs-target="#fixBtn-2"
                 aria-expanded="false"
               >
-                <img
+                <img loading="lazy"
                   src="/images/icons/btn-icon-4.png"
                   className="fixBtnIcon"
                 />
@@ -931,7 +931,7 @@ function SingleProjectView({ params }) {
                     data-bs-toggle="modal"
                     data-bs-target="#downloadBrochure"
                   >
-                    <img
+                    <img loading="lazy"
                       src="/images/icons/btn-icon-2.png"
                       className="fixBtnIcon"
                     />
@@ -944,18 +944,18 @@ function SingleProjectView({ params }) {
                     data-bs-target="#projectSaleOffer"
                   >
                     {" "}
-                    <img
+                    <img loading="lazy" 
                       src="/images/icons/btn-icon-1.png"
                       className="fixBtnIcon"
                     />
                     CLICK FOR A SALE OFFER
                   </a> */}
                   {/* <button className="btnContentItem">
-                                          <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
+                                          <img loading="lazy"  src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
                                            download & Share Property Presentation
                                       </button>
                                       <button className="btnContentItem">
-                                          <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
+                                          <img loading="lazy"  src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
                                             Download & Share Sale offer
                                       </button> */}
                 </div>
@@ -991,7 +991,7 @@ function SingleProjectView({ params }) {
                     </div>
                     <div className="col-md-5">
                       <div className="colmImgBox">
-                        <img
+                        <img loading="lazy"
                           src={projectData.developer.logo}
                           alt={projectData.developer.name}
                           className="clmContainImg"
@@ -1067,7 +1067,7 @@ function SingleProjectView({ params }) {
                                 href={`/projects/${project.slug}`}
                                 className="fw-bold mb-1 text-decoration-none text-white"
                               >
-                                <img
+                                <img loading="lazy"
                                   src={project.mainImage}
                                   alt={project.title}
                                   className="img-fluid"
@@ -1208,7 +1208,7 @@ function SingleProjectView({ params }) {
                                                 className="text-decoration-none"
                                               >
                                                 <div className="projectImgCont">
-                                                  <img
+                                                  <img loading="lazy"
                                                     src={
                                                       similarProperty.mainImage
                                                     }
@@ -1254,7 +1254,7 @@ function SingleProjectView({ params }) {
                                               <ul className="list-unstyled mb-0 d-flex justify-content-between">
                                                 <li className="d-inline">
                                                   <small>
-                                                    <img
+                                                    <img loading="lazy"
                                                       src="/images/icons/bed.png"
                                                       alt="Range"
                                                       className="img-fluid"
@@ -1267,7 +1267,7 @@ function SingleProjectView({ params }) {
                                                 </li>
                                                 <li className="d-inline">
                                                   <small>
-                                                    <img
+                                                    <img loading="lazy"
                                                       src="/images/icons/bath.png"
                                                       alt="Range"
                                                       className="img-fluid"
@@ -1282,7 +1282,7 @@ function SingleProjectView({ params }) {
                                                 </li>
                                                 <li className="d-inline">
                                                   <small>
-                                                    <img
+                                                    <img loading="lazy"
                                                       src="/images/icons/area.png"
                                                       alt="Range"
                                                       className="img-fluid"
@@ -1402,7 +1402,7 @@ function SingleProjectView({ params }) {
                                                   className="text-decoration-none"
                                                 >
                                                   <div className="projectImgCont">
-                                                    <img
+                                                    <img loading="lazy"
                                                       src={
                                                         similarProperty.mainImage
                                                       }
@@ -1448,7 +1448,7 @@ function SingleProjectView({ params }) {
                                                 <ul className="list-unstyled mb-0 d-flex justify-content-between">
                                                   <li className="d-inline">
                                                     <small>
-                                                      <img
+                                                      <img loading="lazy"
                                                         src="/images/icons/bed.png"
                                                         alt="Range"
                                                         className="img-fluid"
@@ -1463,7 +1463,7 @@ function SingleProjectView({ params }) {
                                                   </li>
                                                   <li className="d-inline">
                                                     <small>
-                                                      <img
+                                                      <img loading="lazy"
                                                         src="/images/icons/bath.png"
                                                         alt="Range"
                                                         className="img-fluid"
@@ -1478,7 +1478,7 @@ function SingleProjectView({ params }) {
                                                   </li>
                                                   <li className="d-inline">
                                                     <small>
-                                                      <img
+                                                      <img loading="lazy"
                                                         src="/images/icons/area.png"
                                                         alt="Range"
                                                         className="img-fluid"
@@ -1537,7 +1537,7 @@ function SingleProjectView({ params }) {
             </div>
           </section>
         )}
-{projectData?.types?.map((type, index) => {
+      {projectData?.types?.map((type, index) => {
         return (
           <div
             key={"type-" + index}
@@ -1573,7 +1573,7 @@ function SingleProjectView({ params }) {
                         {type?.floorPlan?.map((image, index) => {
                           return (
                             <SwiperSlide className="sliderItem" key={image.id}>
-                              <img
+                              <img loading="lazy"
                                 src={image.path}
                                 alt={image.path}
                                 className="sliderGallaryImg floorplans"

@@ -1,8 +1,8 @@
 import ContactModel from "../models/contactModel";
 import SimpleModal from "../models/simpleModal";
 function AboutDubai(props) {
-  const contactSideText ="An esteemed award-winning real estate brokerage based in Dubai, UAE.";
-  const pageUrl ="Home"
+  const contactSideText = "An esteemed award-winning real estate brokerage based in Dubai, UAE.";
+  const pageUrl = "Home"
   return (
     <>
       <section className="bg-light my-5  p-relative aboutSectionArea">
@@ -17,7 +17,7 @@ function AboutDubai(props) {
                     </div>
                     <div className="pb-4">
                       <p className="text-secondary mb-0">
-                      Dubai is a thriving city that embodies the pinnacle of ambition and innovation. Located at the heart of the United Arab Emirates, this city has risen from the desert to become a global hub of commerce and luxury. In Dubai, you'll find a dynamic blend of tradition and modernity, offering unparalleled investment opportunities and a lifestyle that redefines luxury. From its iconic skyline to pristine beaches, Dubai stands as a testament to human ingenuity, welcoming investors and those seeking a world where success knows no bounds.
+                        Dubai is a thriving city that embodies the pinnacle of ambition and innovation. Located at the heart of the United Arab Emirates, this city has risen from the desert to become a global hub of commerce and luxury. In Dubai, you'll find a dynamic blend of tradition and modernity, offering unparalleled investment opportunities and a lifestyle that redefines luxury. From its iconic skyline to pristine beaches, Dubai stands as a testament to human ingenuity, welcoming investors and those seeking a world where success knows no bounds.
                       </p>
                     </div>
                     <div className="pb-4">
@@ -51,10 +51,10 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img
+                                          <img loading="lazy"
                                             src="/images/icons/benefit1.png"
                                             alt="range"
-                                            
+
                                             width="25px"
                                           />
                                         </div>
@@ -68,10 +68,10 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img
+                                          <img loading="lazy"
                                             src="images/icons/benefit2.png"
                                             alt="range"
-                                           
+
                                             width="25px"
                                           />
                                         </div>
@@ -87,10 +87,10 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img
+                                          <img loading="lazy"
                                             src="images/icons/benefit3.png"
                                             alt="range"
-                                            
+
                                             width="25px"
                                           />
                                         </div>
@@ -104,16 +104,16 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img
+                                          <img loading="lazy"
                                             src="images/icons/benefit3.png"
                                             alt="range"
-                                           
+
                                             width="25px"
                                           />
                                         </div>
                                         <div className="my-auto">
                                           <small className="text-dark">
-                                           Tax Free Income
+                                            Tax Free Income
                                           </small>
                                         </div>
                                       </div>
@@ -123,10 +123,10 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img
+                                          <img loading="lazy"
                                             src="images/icons/benefit5.png"
                                             alt="range"
-                                            
+
                                             width="25px"
                                           />
                                         </div>
@@ -140,10 +140,10 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img
+                                          <img loading="lazy"
                                             src="/images/icons/benefit6.png"
                                             alt="range"
-                                            
+
                                             width="25px"
                                           />
                                         </div>
@@ -186,7 +186,7 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img
+                                          <img loading="lazy" 
                                             src="images/icons/benefit1.png"
                                             alt="range"
                                             className="img-fluid"
@@ -203,7 +203,7 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img
+                                          <img loading="lazy" 
                                             src="images/icons/benefit2.png"
                                             alt="range"
                                             className="img-fluid"
@@ -222,7 +222,7 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img
+                                          <img loading="lazy" 
                                             src="images/icons/benefit3.png"
                                             alt="range"
                                             className="img-fluid"
@@ -239,7 +239,7 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img
+                                          <img loading="lazy" 
                                             src="/images/icons/benefit3.png"
                                             alt="range"
                                             className="img-fluid"
@@ -258,7 +258,7 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img
+                                          <img loading="lazy" 
                                             src="/images/icons/benefit5.png"
                                             alt="range"
                                             className="img-fluid"
@@ -275,7 +275,7 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img
+                                          <img loading="lazy" 
                                             src="/images/icons/benefit6.png"
                                             alt="range"
                                             className="img-fluid"
@@ -298,14 +298,14 @@ function AboutDubai(props) {
                       </div>
                     </div>
                     <div className="">
-                    <SimpleModal brochure={props.brochure}/>
+                      <SimpleModal brochure={props.brochure} />
                     </div>
                   </div>
                 </div>
                 <div className="col-12 col-lg-6 col-md-6">
-                    <div className="imgCoverBox">
-                        <div className="bgAboutDubai"></div>
-                     </div>
+                  <div className="imgCoverBox">
+                    <div className="bgAboutDubai"></div>
+                  </div>
                 </div>
               </div>
             </div>

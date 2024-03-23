@@ -10,7 +10,7 @@ function MapProject(props) {
                             className="text-decoration-none"
                         >
                             <div className="projectImgCont">
-                                <img
+                                <img loading="lazy"
                                     src={props.property_banner}
                                     alt="project1"
                                     className="img-fluid propImg"

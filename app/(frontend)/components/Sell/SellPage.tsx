@@ -108,7 +108,7 @@ function SellPage() {
   return (
     <>
       <header className="sellWithRange">
-        <img
+        <img loading="lazy"
           src="/images/banner/banner-4.webp"
           className="headerImgVideo"
           alt="sell your property"
@@ -138,7 +138,7 @@ function SellPage() {
           </h4>
           <div className="rowArea">
             <div className="colmBox">
-              <img
+              <img loading="lazy"
                 src="/images/icons/property.png"
                 className="iconImg"
                 alt="PROPERTY VALUATION"
@@ -146,12 +146,12 @@ function SellPage() {
               <h5 className="colmBoxText">PROPERTY VALUATION </h5>
             </div>
             <div className="colmBox">
-              <img
+              <img loading="lazy"
                 src="/images/icons/icon-4.png"
                 className="arrrowIconImg"
                 alt="arrrowIconImg"
               />
-              <img
+              <img loading="lazy"
                 src="/images/icons/icon-6.png"
                 className="iconImg"
                 alt="MARKETING"
@@ -159,12 +159,12 @@ function SellPage() {
               <h5 className="colmBoxText">MARKETING </h5>
             </div>
             <div className="colmBox">
-              <img
+              <img loading="lazy"
                 src="/images/icons/icon-4.png"
                 className="arrrowIconImg"
                 alt="arrrowIconImg"
               />
-              <img
+              <img loading="lazy"
                 src="/images/icons/icon-9.png"
                 className="iconImg"
                 alt="VIEWING"
@@ -172,12 +172,12 @@ function SellPage() {
               <h5 className="colmBoxText">VIEWING </h5>
             </div>
             <div className="colmBox">
-              <img
+              <img loading="lazy"
                 src="/images/icons/icon-4.png"
                 className="arrrowIconImg"
                 alt="arrrowIconImg"
               />
-              <img
+              <img loading="lazy"
                 src="/images/icons/icon-8.png"
                 className="iconImg"
                 alt="NEGOTIATIONS"
@@ -185,12 +185,12 @@ function SellPage() {
               <h5 className="colmBoxText">NEGOTIATIONS</h5>
             </div>
             <div className="colmBox">
-              <img
+              <img loading="lazy"
                 src="/images/icons/icon-4.png"
                 className="arrrowIconImg"
                 alt="arrrowIconImg"
               />
-              <img
+              <img loading="lazy"
                 src="/images/icons/icon-7.png"
                 className="iconImg"
                 alt="PROPERTY TRACKER"
@@ -250,7 +250,7 @@ function SellPage() {
         <div className="container">
           <div className="rowSec">
             <div className="colmBox">
-              <img
+              <img loading="lazy"
                 src="/images/banner/banner-5.webp"
                 className="colmBoxImg"
                 alt="sell your properties"

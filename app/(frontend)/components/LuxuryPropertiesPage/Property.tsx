@@ -5,12 +5,12 @@ function Property(props) {
       <div>
         <div className="card propertyCardNew rounded-0">
           <div className="">
-          <Link
+            <Link
               href={`/properties/${props.slug}`}
               className="text-decoration-none"
             >
               <div className="projectImgCont">
-                <img
+                <img loading="lazy"
                   src={props.property_banner}
                   alt="project1"
                   className="img-fluid propImg"
@@ -21,7 +21,7 @@ function Property(props) {
                       {props.categoryName}
                     </span>
                     {
-                      props.completionStatusName && props.categoryName !="Rent" &&
+                      props.completionStatusName && props.categoryName != "Rent" &&
                       <span className="badge float-end fs-10 projectType">
                         {props.completionStatusName}
                       </span>
@@ -50,9 +50,9 @@ function Property(props) {
             </div>
             <p className="fs-18 mb-2 text-primary fw-semibold">
               AED  {props &&
-                                new Intl.NumberFormat().format(
-                                  props.price
-                                )}
+                new Intl.NumberFormat().format(
+                  props.price
+                )}
             </p>
             <div className="features">
               <div>

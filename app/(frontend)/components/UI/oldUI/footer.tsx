@@ -41,7 +41,7 @@ function Footer() {
                 <div className="col-12 col-lg-4 col-md-4">
                   <div className="mb-3">
                     <Link href={{ pathname: "/" }}>
-                      <img
+                      <img loading="lazy"
                         src="/images/logo_white.png"
                         alt="Range Internation Property Investments"
                         className="img-fluid"
@@ -242,7 +242,7 @@ function Footer() {
                     >
                       <span className="iconRoundBlack">
                         {/* <i className="fa fa-twitter"></i> */}
-                        <img src="/images/icons/twitter-icon.png" className="twitterIcon" />
+                        <img loading="lazy" src="/images/icons/twitter-icon.png" className="twitterIcon" />
                       </span>
                     </a>
                   </div>

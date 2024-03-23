@@ -62,7 +62,7 @@ function SingleMediaView({ params }) {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
 
-      if(isMobileDevice){
+      if (isMobileDevice) {
         document.body.style.overflow = 'auto';
       }
 
@@ -126,7 +126,7 @@ function SingleMediaView({ params }) {
                                 className="carouselItemWd"
                                 key={gallery.id + index}
                               >
-                                <img
+                                <img loading="lazy"
                                   src={gallery.path}
                                   alt={gallery.title}
                                   className="bSliderImg"
@@ -161,7 +161,7 @@ function SingleMediaView({ params }) {
                   <div>
                     {mediaData?.media?.additionalImage && (
                       <a className="imgcardBox" href="#">
-                        <img
+                        <img loading="lazy"
                           src={mediaData?.media?.additionalImage}
                           className="bSliderImg"
                         />
@@ -185,69 +185,69 @@ function SingleMediaView({ params }) {
                       </div>
                     )}
 
-{
-  isMobileDev  && (
-    <>
-    <div className={`${isMobileDev ? 'p-2' : 'socialBox'}`} >
-                    <div className="socialFlexBar">
-                      <p className="text-primary">Date: </p>
-                      <h5>{mediaData?.media?.date}</h5>
-                    </div>
-                    <div className="socialFlexBar">
-                      <p className="text-primary">Event: </p>
-                      <h5>{mediaData?.media?.event}</h5>
-                    </div>
-                    <div className="socialFlexBar">
-                      <p className="text-primary">Share: </p>
-                      <div className="socialIconsList">
-                        <FacebookShareButton url={getCurrentUrl()}>
-                          <FontAwesomeIcon
-                            icon={faFacebookIcon}
-                            style={{ color: "#1877F2", fontSize: "30px" }}
-                          />
-                        </FacebookShareButton>
-                       
-                        <a href="#"></a>
-                        <TwitterShareButton url={getCurrentUrl()}>
-                          <span className="">
-                            <svg
-                              viewBox="0 0 24 24"
-                              aria-hidden="true"
-                              style={{ height: "30px" }}
-                              className="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp r-18jsvk2 r-16y2uox r-8kz0gk"
-                            >
-                              <g>
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-                              </g>
-                            </svg>
-                          </span>
-                        </TwitterShareButton>
+                    {
+                      isMobileDev && (
+                        <>
+                          <div className={`${isMobileDev ? 'p-2' : 'socialBox'}`} >
+                            <div className="socialFlexBar">
+                              <p className="text-primary">Date: </p>
+                              <h5>{mediaData?.media?.date}</h5>
+                            </div>
+                            <div className="socialFlexBar">
+                              <p className="text-primary">Event: </p>
+                              <h5>{mediaData?.media?.event}</h5>
+                            </div>
+                            <div className="socialFlexBar">
+                              <p className="text-primary">Share: </p>
+                              <div className="socialIconsList">
+                                <FacebookShareButton url={getCurrentUrl()}>
+                                  <FontAwesomeIcon
+                                    icon={faFacebookIcon}
+                                    style={{ color: "#1877F2", fontSize: "30px" }}
+                                  />
+                                </FacebookShareButton>
 
-                        <LinkedinShareButton url={getCurrentUrl()}>
-                          <FontAwesomeIcon
-                            icon={faLinkedinIcon}
-                            style={{ color: "#0A66C2", fontSize: "30px" }}
-                          />
-                        </LinkedinShareButton>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={`btnFlxClm mrb ${isMobileDev ? 'mb-2' : ''}`}>
-                    <WhatsappShareButton url={getCurrentUrl()}  className="cnLinkBtn whatsappBtn" style={{ fontSize: "larger" }}>
-                        <i className="fa fs-lg fa-whatsapp "></i>
-                        Whatsapp
-                      
-                    </WhatsappShareButton>
-                    <EmailShareButton url={getCurrentUrl()} className="cnLinkBtn email" id="email2" style={{ "backgroundColor": "#283975 !important", fontSize: "larger" }} > 
-                      
-                        <i className="fa fs-lg fa-envelope "></i>
-                        Email
-                      
-                    </EmailShareButton>
-                  </div></>
-  )
-}
-                  
+                                <a href="#"></a>
+                                <TwitterShareButton url={getCurrentUrl()}>
+                                  <span className="">
+                                    <svg
+                                      viewBox="0 0 24 24"
+                                      aria-hidden="true"
+                                      style={{ height: "30px" }}
+                                      className="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp r-18jsvk2 r-16y2uox r-8kz0gk"
+                                    >
+                                      <g>
+                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                                      </g>
+                                    </svg>
+                                  </span>
+                                </TwitterShareButton>
+
+                                <LinkedinShareButton url={getCurrentUrl()}>
+                                  <FontAwesomeIcon
+                                    icon={faLinkedinIcon}
+                                    style={{ color: "#0A66C2", fontSize: "30px" }}
+                                  />
+                                </LinkedinShareButton>
+                              </div>
+                            </div>
+                          </div>
+                          <div className={`btnFlxClm mrb ${isMobileDev ? 'mb-2' : ''}`}>
+                            <WhatsappShareButton url={getCurrentUrl()} className="cnLinkBtn whatsappBtn" style={{ fontSize: "larger" }}>
+                              <i className="fa fs-lg fa-whatsapp "></i>
+                              Whatsapp
+
+                            </WhatsappShareButton>
+                            <EmailShareButton url={getCurrentUrl()} className="cnLinkBtn email" id="email2" style={{ "backgroundColor": "#283975 !important", fontSize: "larger" }} >
+
+                              <i className="fa fs-lg fa-envelope "></i>
+                              Email
+
+                            </EmailShareButton>
+                          </div></>
+                      )
+                    }
+
 
 
                     <span className="lineShape mb-5"></span>
@@ -298,7 +298,7 @@ function SingleMediaView({ params }) {
                                       className="blogCard"
                                     >
                                       <div className="bCardHead">
-                                        <img
+                                        <img loading="lazy"
                                           src={mediaDataSingle.image}
                                           alt={mediaDataSingle.title}
                                           className="crlcardImg"
@@ -348,74 +348,74 @@ function SingleMediaView({ params }) {
                   </div>
                 </div>
                 <div className="col-md-4">
-                {
-  !isMobileDev  && (
-    <>
-    <div className="socialBox">
-                    <div className="socialFlexBar">
-                      <p className="text-primary">Date: </p>
-                      <h5>{mediaData?.media?.date}</h5>
-                    </div>
-                    <div className="socialFlexBar">
-                      <p className="text-primary">Event: </p>
-                      <h5>{mediaData?.media?.event}</h5>
-                    </div>
-                    <div className="socialFlexBar">
-                      <p className="text-primary">Share: </p>
-                      <div className="socialIconsList">
-                        <FacebookShareButton url={getCurrentUrl()}>
-                          <FontAwesomeIcon
-                            icon={faFacebookIcon}
-                            style={{ color: "#1877F2", fontSize: "30px" }}
-                          />
-                        </FacebookShareButton>
-                        {/* <InstapaperShareButton url={getCurrentUrl()}>
+                  {
+                    !isMobileDev && (
+                      <>
+                        <div className="socialBox">
+                          <div className="socialFlexBar">
+                            <p className="text-primary">Date: </p>
+                            <h5>{mediaData?.media?.date}</h5>
+                          </div>
+                          <div className="socialFlexBar">
+                            <p className="text-primary">Event: </p>
+                            <h5>{mediaData?.media?.event}</h5>
+                          </div>
+                          <div className="socialFlexBar">
+                            <p className="text-primary">Share: </p>
+                            <div className="socialIconsList">
+                              <FacebookShareButton url={getCurrentUrl()}>
+                                <FontAwesomeIcon
+                                  icon={faFacebookIcon}
+                                  style={{ color: "#1877F2", fontSize: "30px" }}
+                                />
+                              </FacebookShareButton>
+                              {/* <InstapaperShareButton url={getCurrentUrl()}>
                           <FontAwesomeIcon
                             icon={faInstagramIcon}
                             style={{ color: "#E4405F", fontSize: "30px" }}
                           />
                         </InstapaperShareButton> */}
-                        <a href="#"></a>
-                        <TwitterShareButton url={getCurrentUrl()}>
-                          <span className="">
-                            <svg
-                              viewBox="0 0 24 24"
-                              aria-hidden="true"
-                              style={{ height: "30px" }}
-                              className="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp r-18jsvk2 r-16y2uox r-8kz0gk"
-                            >
-                              <g>
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-                              </g>
-                            </svg>
-                          </span>
-                        </TwitterShareButton>
+                              <a href="#"></a>
+                              <TwitterShareButton url={getCurrentUrl()}>
+                                <span className="">
+                                  <svg
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                    style={{ height: "30px" }}
+                                    className="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp r-18jsvk2 r-16y2uox r-8kz0gk"
+                                  >
+                                    <g>
+                                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                                    </g>
+                                  </svg>
+                                </span>
+                              </TwitterShareButton>
 
-                        <LinkedinShareButton url={getCurrentUrl()}>
-                          <FontAwesomeIcon
-                            icon={faLinkedinIcon}
-                            style={{ color: "#0A66C2", fontSize: "30px" }}
-                          />
-                        </LinkedinShareButton>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="btnFlxClm mrb">
-                    <WhatsappShareButton url={getCurrentUrl()}  className="cnLinkBtn whatsappBtn" style={{ fontSize: "larger" }}>
-                        <i className="fa fs-lg fa-whatsapp "></i>
-                        Whatsapp
-                      
-                    </WhatsappShareButton>
-                    <EmailShareButton url={getCurrentUrl()} className="cnLinkBtn email" id="email2" style={{ "backgroundColor": "#283975 !important", fontSize: "larger" }} > 
-                      
-                        <i className="fa fs-lg fa-envelope "></i>
-                        Email
-                      
-                    </EmailShareButton>
-                  </div>
-    </>
-                  
-  )}
+                              <LinkedinShareButton url={getCurrentUrl()}>
+                                <FontAwesomeIcon
+                                  icon={faLinkedinIcon}
+                                  style={{ color: "#0A66C2", fontSize: "30px" }}
+                                />
+                              </LinkedinShareButton>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="btnFlxClm mrb">
+                          <WhatsappShareButton url={getCurrentUrl()} className="cnLinkBtn whatsappBtn" style={{ fontSize: "larger" }}>
+                            <i className="fa fs-lg fa-whatsapp "></i>
+                            Whatsapp
+
+                          </WhatsappShareButton>
+                          <EmailShareButton url={getCurrentUrl()} className="cnLinkBtn email" id="email2" style={{ "backgroundColor": "#283975 !important", fontSize: "larger" }} >
+
+                            <i className="fa fs-lg fa-envelope "></i>
+                            Email
+
+                          </EmailShareButton>
+                        </div>
+                      </>
+
+                    )}
 
                   {mediaData?.similarMedia &&
                     mediaData?.similarMedia.length > 0 && (
@@ -429,7 +429,7 @@ function SingleMediaView({ params }) {
                               key={similarMedia.id}
                             >
                               <div className="bCardHead">
-                                <img
+                                <img loading="lazy"
                                   src={similarMedia.image}
                                   alt={similarMedia.title}
                                   className="eventCardImg"

@@ -67,7 +67,7 @@ const DownloadPPTModal = () => {
         data-bs-toggle="modal"
         data-bs-target="#downlaodPPT"
       >
-        <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
+        <img loading="lazy"  src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
         CLICK FOR MORE DETAILS
       </a> */}
 
@@ -97,7 +97,7 @@ const DownloadPPTModal = () => {
                 <div className="col-12 col-lg-5 col-md-12 border-end descricalenderCol">
                   <div className="border-bottom">
                     <div className="p-3">
-                      <img
+                      <img loading="lazy"
                         src="/images/logo_blue.png"
                         alt="Range Property"
                         className="img-fluid"
@@ -107,7 +107,7 @@ const DownloadPPTModal = () => {
                   </div>
                   <div className="p-3">
                     <div className="agent-img mt-2">
-                      <img
+                      <img loading="lazy"
                         src="/images/videocall.webp"
                         alt="Range Property"
                         className="agent-img"

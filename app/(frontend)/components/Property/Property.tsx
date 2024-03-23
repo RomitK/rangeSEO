@@ -6,12 +6,12 @@ function Property(props) {
         {" "}
         <div className="card propertyCardNew rounded-0">
           <div className="">
-          <Link
+            <Link
               href={`/properties/${props.slug}`}
               className="text-decoration-none"
             >
               <div className="projectImgCont">
-                <img
+                <img loading="lazy"
                   src={props.property_banner}
                   alt="project1"
                   className="img-fluid propImg"

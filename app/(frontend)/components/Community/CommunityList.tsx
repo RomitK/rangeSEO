@@ -133,7 +133,7 @@ function CommunityList() {
                 <nav className="navbar bg-white mobItemLink ">
                   <div className="container justify-content-start">
                     <div className="col-4">
-                      <img
+                      <img loading="lazy"
                         src="/images/icons/menu.png"
                         alt="Range Internation Property Investments"
                         className="img-fluid navMobMen cursor-pointer"
@@ -153,7 +153,7 @@ function CommunityList() {
                               href={{ pathname: "/" }}
                               className="navbar-brand"
                             >
-                              <img
+                              <img loading="lazy"
                                 src="/images/logo_blue.png"
                                 alt="Range Internation Property Investments"
                                 className="img-fluid navMobLogo"
@@ -292,7 +292,7 @@ function CommunityList() {
                     </div>
                     <div className="col-4">
                       <Link href={{ pathname: "/" }} className="navbar-brand">
-                        <img
+                        <img loading="lazy"
                           src="/images/logo_blue.png"
                           alt="Range Internation Property Investments"
                           className="img-fluid navMobLogo"
@@ -301,7 +301,7 @@ function CommunityList() {
                       </Link>
                     </div>
                     <div className="col-4">
-                      <img
+                      <img loading="lazy"
                         src="/images/icons/filter.png"
                         alt="Range Internation Property Investments"
                         className="img-fluid navMobMen cursor-pointer float-end"
@@ -497,7 +497,7 @@ function CommunityList() {
                     href={`/communities/${community?.slug}?accommodation=${form?.accommodation_id.label}&developer=${form.developer_id.label}&project=${form.project_id.label}&completionStatus=${form.completion_status_id.label}&accommodation_id=${form?.accommodation_id.value}`}
                     className="cardBox"
                   >
-                    <img
+                    <img loading="lazy"
                       src={community.mainImage}
                       className="clmCardImage"
                       alt={community.name}

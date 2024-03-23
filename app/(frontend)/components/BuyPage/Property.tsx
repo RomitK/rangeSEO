@@ -7,12 +7,12 @@ function Property(props) {
         {" "}
         <div className="card propertyCardNew rounded-0">
           <div className="">
-          <Link
+            <Link
               href={`/properties/${props.slug}`}
               className="text-decoration-none"
             >
               <div className="projectImgCont">
-                <img
+                <img loading="lazy"
                   src={props.property_banner}
                   alt="project1"
                   className="img-fluid propImg"
@@ -23,12 +23,12 @@ function Property(props) {
                       {props.categoryName}
                     </span>
                     {
-                      props.completionStatusName && props.categoryName !="Rent" &&
+                      props.completionStatusName && props.categoryName != "Rent" &&
                       <span className="badge float-end fs-10 projectType">
                         {props.completionStatusName}
                       </span>
                     }
-                    
+
                   </div>
                   <div>
                     <span className="badge float-start fs-10 projectType">
@@ -53,9 +53,9 @@ function Property(props) {
             </div>
             <p className="fs-18 mb-2 text-primary fw-semibold">
               AED  {props &&
-                                new Intl.NumberFormat().format(
-                                  props.price
-                                )}
+                new Intl.NumberFormat().format(
+                  props.price
+                )}
             </p>
             <div className="features">
               <div>
@@ -82,7 +82,7 @@ function Property(props) {
                 ></i>
                 <span className="fa-sr-only"></span>
                 <span>
-                {props.area} {props.unit_measure}
+                  {props.area} {props.unit_measure}
                 </span>
               </div>
             </div>

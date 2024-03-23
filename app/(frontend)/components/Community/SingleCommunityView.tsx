@@ -318,7 +318,7 @@ function SinglecommunityDataView({ params }) {
                       {communityData?.imageGallery?.map((img, index) => (
                         <div key={img.id + "gallery"} className="slide-item">
                           <div className="communityImgCont">
-                            <img
+                            <img loading="lazy"
                               src={img.path}
                               alt={img.title ? img.title : communityData.name}
                               className="img-fluid communityGalleryImage"
@@ -437,7 +437,7 @@ function SinglecommunityDataView({ params }) {
                                 <div className="card border-0 rounded-0 bg-primary ">
                                   <div className="">
                                     <center>
-                                      <img
+                                      <img loading="lazy"
                                         src={highlight.image}
                                         className="img-fluid"
                                         alt={highlight.name}
@@ -821,7 +821,7 @@ function SinglecommunityDataView({ params }) {
                                   <div className="py-3">
                                     <div className="mb-2">
                                       <div className="amenityImg mx-auto">
-                                        <img
+                                        <img loading="lazy"
                                           src={amenity.image}
                                           alt={amenity.name}
                                           className="img-fluid"
@@ -907,7 +907,7 @@ function SinglecommunityDataView({ params }) {
                                   <div className="py-3">
                                     <div className="mb-2">
                                       <div className="amenityImg mx-auto">
-                                        <img
+                                        <img loading="lazy"
                                           src={amenity.image}
                                           alt={amenity.name}
                                           className="img-fluid"
@@ -1043,7 +1043,7 @@ function SinglecommunityDataView({ params }) {
                                               className="text-decoration-none"
                                             >
                                               <div className="projectImgCont">
-                                                <img
+                                                <img loading="lazy"
                                                   src={property.property_banner}
                                                   alt={property.name}
                                                   className="img-fluid propImg"
@@ -1085,7 +1085,7 @@ function SinglecommunityDataView({ params }) {
                                             <ul className="list-unstyled mb-0 d-flex justify-content-between">
                                               <li className="d-inline">
                                                 <small>
-                                                  <img
+                                                  <img loading="lazy"
                                                     src="/images/icons/bed.png"
                                                     alt="Range"
                                                     className="img-fluid"
@@ -1098,7 +1098,7 @@ function SinglecommunityDataView({ params }) {
                                               </li>
                                               <li className="d-inline">
                                                 <small>
-                                                  <img
+                                                  <img loading="lazy"
                                                     src="/images/icons/bath.png"
                                                     alt="Range"
                                                     className="img-fluid"
@@ -1111,7 +1111,7 @@ function SinglecommunityDataView({ params }) {
                                               </li>
                                               <li className="d-inline">
                                                 <small>
-                                                  <img
+                                                  <img loading="lazy"
                                                     src="/images/icons/area.png"
                                                     alt="Range"
                                                     className="img-fluid"
@@ -1226,7 +1226,7 @@ function SinglecommunityDataView({ params }) {
                                               className="text-decoration-none"
                                             >
                                               <div className="projectImgCont">
-                                                <img
+                                                <img loading="lazy"
                                                   src={property.property_banner}
                                                   alt={property.name}
                                                   className="img-fluid propImg"
@@ -1268,7 +1268,7 @@ function SinglecommunityDataView({ params }) {
                                             <ul className="list-unstyled mb-0 d-flex justify-content-between">
                                               <li className="d-inline">
                                                 <small>
-                                                  <img
+                                                  <img loading="lazy"
                                                     src="/images/icons/bed.png"
                                                     alt="Range"
                                                     className="img-fluid"
@@ -1281,7 +1281,7 @@ function SinglecommunityDataView({ params }) {
                                               </li>
                                               <li className="d-inline">
                                                 <small>
-                                                  <img
+                                                  <img loading="lazy"
                                                     src="/images/icons/bath.png"
                                                     alt="Range"
                                                     className="img-fluid"
@@ -1294,7 +1294,7 @@ function SinglecommunityDataView({ params }) {
                                               </li>
                                               <li className="d-inline">
                                                 <small>
-                                                  <img
+                                                  <img loading="lazy"
                                                     src="/images/icons/area.png"
                                                     alt="Range"
                                                     className="img-fluid"
@@ -1506,7 +1506,7 @@ function SinglecommunityDataView({ params }) {
                                         className="text-decoration-none"
                                       >
                                         <div className="projectImgCont">
-                                          <img
+                                          <img loading="lazy"
                                             src={nearbyCommunity.mainImage}
                                             alt="project1"
                                             className="img-fluid propImg"

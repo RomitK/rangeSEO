@@ -162,7 +162,7 @@ function CareerModel(props) {
                 {/* <div className="col-12 col-lg-5 col-md-12 border-end descricalenderCol">
                   <div className="border-bottom">
                     <div className="p-3">
-                      <img
+                      <img loading="lazy" 
                         src="/images/logo_blue.png"
                         alt="Range Property"
                         className="img-fluid"
@@ -172,7 +172,7 @@ function CareerModel(props) {
                   </div>
                   <div className="p-3">
                     <div className="agent-img mt-2">
-                      <img
+                      <img loading="lazy" 
                         src="/images/videocall.webp"
                         alt="Range Property"
                         className="agent-img"
@@ -193,7 +193,7 @@ function CareerModel(props) {
                         <div className="row">
                           <div className="col-md-12">
                             <div className=" text-center">
-                              <img
+                              <img loading="lazy"
                                 src="/images/logo_blue.png"
                                 alt="Range Property"
                                 className="img-fluid"
@@ -201,12 +201,12 @@ function CareerModel(props) {
                               />
                               <h6 className="text-primary py-2">
                                 Share your CV with us
-                             
-                              {/* {props.careerPosition} */}
-                            </h6>
+
+                                {/* {props.careerPosition} */}
+                              </h6>
                             </div>
                             <div className="form-group  mb-2">
-                              <input type="hidden" value={props.careerId}  {...register("career_id", { required: true })}/>
+                              <input type="hidden" value={props.careerId}  {...register("career_id", { required: true })} />
                               <input
                                 type="text"
                                 name="nameCon2"
@@ -215,12 +215,12 @@ function CareerModel(props) {
                                 placeholder="Enter your name"
                                 autoComplete="off"
                                 {...register("name", { required: true })}
-                                
+
                               />
                               {errors.name && <small className="text-danger">Name is required.</small>}
                             </div>
                             <div className="form-group  mb-2">
-                              
+
                               <input
                                 type="email"
                                 name="emailCon2"
@@ -229,7 +229,7 @@ function CareerModel(props) {
                                 placeholder="Enter your email address"
                                 autoComplete="off"
                                 {...register("email", { required: true })}
-                                
+
                               />
                               {errors.email && <small className="text-danger">Email is required.</small>}
                             </div>

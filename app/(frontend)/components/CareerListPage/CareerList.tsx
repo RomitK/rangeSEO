@@ -25,25 +25,25 @@ function CareerListPage() {
   const contactSideText = " An esteemed award-winning real estate brokerage based in Dubai, UAE.";
   const [isMobileDev, setIsMobileDev] = useState(false);
   useEffect(() => {
-      const handleResize = () => {
-        // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
-        const isMobileDevice = window.innerWidth < 768;
-        if(isMobileDevice){
-          document.body.style.overflow = 'auto';
-        }
-        setIsMobileDev(isMobileDevice);
-      };
-  
-      // Initial check on component mount
-      handleResize();
-  
-      // Add event listener for window resize
-      window.addEventListener("resize", handleResize);
-  
-      // Clean up the event listener on component unmount
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      if (isMobileDevice) {
+        document.body.style.overflow = 'auto';
+      }
+      setIsMobileDev(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
   const onNextPage = () => {
     const newCareers = CareersData?.careers.slice(0, visibleCareers.length * 2);
@@ -59,7 +59,7 @@ function CareerListPage() {
   return (
     <>
       <header className="header careerHeader">
-        <img
+        <img loading="lazy"
           src="/images/banner/banner-3.webp"
           className="headerImgVideo"
           alt="career"
@@ -68,7 +68,7 @@ function CareerListPage() {
           <h2 className="headTitle mb-3 joinRange">JOIN RANGE</h2>
           <a href="#currentOpening" className="fillBtn linkBtn">
             SEE CURRENT OPENING
-            <img
+            <img loading="lazy"
               src="/images/icons/btn-right-arrow.png"
               className="btnRightArrow"
               alt="arrow"
@@ -79,7 +79,7 @@ function CareerListPage() {
       <section className={`multiCarouselSection ${isMobileDev ? 'my-2' : ''}`}>
         <div className="container">
           <h4 className={`sctionMdTitle text-primary ${isMobileDev ? 'pb-0' : 'mb-4'}`}>WHY RANGE?</h4>
-          <p  className={`fs-14 text-secondary ${isMobileDev ? '' : 'mb-2'}`}>
+          <p className={`fs-14 text-secondary ${isMobileDev ? '' : 'mb-2'}`}>
             Range International Property Investments, a distinguished
             Dubai-based brokerage, boasts
             <span className="pWt600">
@@ -95,87 +95,87 @@ function CareerListPage() {
             </span>
           </p>
 
-          
-          
+
+
           {CareersData?.counters &&
-          <Swiper
-            slidesPerView={4}
-            spaceBetween={0}
-            loop={true}
-            // pagination={{
-            //   clickable: true,
-            // }}
-            onBeforeInit={(swiper) => {
-              swiperRef.current = swiper;
-            }}
-            navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            }}
-            modules={[Pagination, Navigation]}
-            className="mySwiper multiItemsCarousel"
-            breakpoints={{
-              300: {
-                slidesPerView: 1,
-              },
-              992: {
-                slidesPerView: 3,
-              },
-              1200: {
-                slidesPerView: 4,
-              },
-            }}
-          >
-            {CareersData?.counters?.map((counter, index) => {
-              return (
-                <SwiperSlide key={counter.id}>
-                <div className="counterBox">
-                  <h2 className="counterTit text-primary">{counter.value}</h2>
-                  <p className="countertext">{counter.key}</p>
-                </div>
-              </SwiperSlide>
-              );
-            })}
-            <div
-              className="swiper-button-prev swiperUniquePrev text-primary"
-              onClick={() => swiperRef.current?.slidePrev()}
+            <Swiper
+              slidesPerView={4}
+              spaceBetween={0}
+              loop={true}
+              // pagination={{
+              //   clickable: true,
+              // }}
+              onBeforeInit={(swiper) => {
+                swiperRef.current = swiper;
+              }}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              modules={[Pagination, Navigation]}
+              className="mySwiper multiItemsCarousel"
+              breakpoints={{
+                300: {
+                  slidesPerView: 1,
+                },
+                992: {
+                  slidesPerView: 3,
+                },
+                1200: {
+                  slidesPerView: 4,
+                },
+              }}
             >
-              <span className="">
-                <i className="bi bi-chevron-left fs-1"></i>
-              </span>
-            </div>
-            <div
-              className="swiper-button-next swiperUniqueNext text-primary"
-              onClick={() => swiperRef.current?.slideNext()}
-            >
-              <span className="">
-                <i className="bi bi-chevron-right fs-1"></i>
-              </span>
-            </div>
-          </Swiper>
+              {CareersData?.counters?.map((counter, index) => {
+                return (
+                  <SwiperSlide key={counter.id}>
+                    <div className="counterBox">
+                      <h2 className="counterTit text-primary">{counter.value}</h2>
+                      <p className="countertext">{counter.key}</p>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+              <div
+                className="swiper-button-prev swiperUniquePrev text-primary"
+                onClick={() => swiperRef.current?.slidePrev()}
+              >
+                <span className="">
+                  <i className="bi bi-chevron-left fs-1"></i>
+                </span>
+              </div>
+              <div
+                className="swiper-button-next swiperUniqueNext text-primary"
+                onClick={() => swiperRef.current?.slideNext()}
+              >
+                <span className="">
+                  <i className="bi bi-chevron-right fs-1"></i>
+                </span>
+              </div>
+            </Swiper>
           }
 
 
-      <div className="">
+          <div className="">
 
-      <iframe width="100%" height="600"  src="https://www.youtube.com/embed/0Jg0PalVzk4?si=kmoa6MrpN80-wMlC" title="YouTube video player" 
-      frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+            <iframe width="100%" height="600" src="https://www.youtube.com/embed/0Jg0PalVzk4?si=kmoa6MrpN80-wMlC" title="YouTube video player"
+              frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
-             
-            </div>
+
+          </div>
 
         </div>
 
- 
+
       </section>
-     
+
 
       <section className="ListingSection" id="currentOpening">
         <div className="container">
           <div className="text-center mb-2  row g-3 justify-content-center">
             <h4 className=" text-primary">OPEN ROLES</h4>
 
-            
+
             <p className="fs-14 text-secondary mb-2">
               We are currently hiring for the below mentioned roles. Please
               click on the role to view the full job description and apply with
@@ -199,7 +199,7 @@ function CareerListPage() {
                       </h3>
                       <div className="listflexRow">
                         <div className="listflexBar">
-                          <img
+                          <img loading="lazy"
                             src="/images/icons/location_icon.png"
                             className="iconImg"
                             alt="location"
@@ -207,7 +207,7 @@ function CareerListPage() {
                           <p>{career.location}</p>
                         </div>
                         <div className="listflexBar">
-                          <img
+                          <img loading="lazy"
                             src="/images/icons/type-icon.png"
                             className="iconImg"
                             alt="type"

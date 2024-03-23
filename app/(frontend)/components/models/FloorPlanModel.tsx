@@ -8,7 +8,7 @@ import "@/public/css/gallery-modal-styles.css";
 import { Pagination, Navigation } from "swiper/modules";
 
 function FloorPlanModal(props) {
-    console.log(props)
+  console.log(props)
   return (
     <>
       <button
@@ -54,7 +54,7 @@ function FloorPlanModal(props) {
                     {props?.images?.map((image, index) => {
                       return (
                         <SwiperSlide className="sliderItem" key={image.id}>
-                          <img
+                          <img loading="lazy"
                             src={image.path}
                             alt={image.path}
                             className="sliderGallaryImg"

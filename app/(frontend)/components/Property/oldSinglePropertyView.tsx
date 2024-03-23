@@ -204,7 +204,7 @@ function SinglePropertyView({ params }) {
                         {propertyData?.gallery?.map((image, index) => {
                           return (
                             <SwiperSlide key={image.id + index + "gallery"}>
-                              <img src={image.path} alt={image.title ? image.title : propertyData.name} className="propertyGallery" />
+                              <img loading="lazy" src={image.path} alt={image.title ? image.title : propertyData.name} className="propertyGallery" />
                             </SwiperSlide>
                           );
                         })}
@@ -246,7 +246,7 @@ function SinglePropertyView({ params }) {
                           {propertyData?.gallery?.map((image, index) => {
                             return (
                               <SwiperSlide key={image.id + index + "gallery2"}>
-                                <img
+                                <img loading="lazy"
                                   src={image.path}
                                   alt={image.title ? image.title : propertyData.name}
                                   className="img-fluid"
@@ -411,7 +411,7 @@ function SinglePropertyView({ params }) {
                         <ul className="list-unstyled proInfoList">
                           <li className="liBar">
                             <small>
-                              <img
+                              <img loading="lazy"
                                 src="/images/icons/bed-blue.png"
                                 alt="Range"
                                 className="img-fluid"
@@ -424,7 +424,7 @@ function SinglePropertyView({ params }) {
                           </li>
                           <li className="liBar">
                             <small>
-                              <img
+                              <img loading="lazy"
                                 src="/images/icons/bath-blue.png"
                                 alt="Range"
                                 className="img-fluid"
@@ -438,7 +438,7 @@ function SinglePropertyView({ params }) {
 
                           <li className="liBar">
                             <small>
-                              <img
+                              <img loading="lazy"
                                 src="/images/icons/area-blue.png"
                                 alt="Range"
                                 className="img-fluid"
@@ -455,7 +455,7 @@ function SinglePropertyView({ params }) {
 
                             <li className="liBar">
                               <small>
-                                <img
+                                <img loading="lazy"
                                   src="/images/icons/building.png"
                                   alt="Range"
                                   className="img-fluid"
@@ -480,7 +480,7 @@ function SinglePropertyView({ params }) {
                             <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
                               <div className="my-auto projctSpecIMg me-3 mb-3">
                                 <center>
-                                  <img
+                                  <img loading="lazy"
                                     src={
                                       propertyData?.agent && propertyData.agent?.image
                                     }
@@ -505,7 +505,7 @@ function SinglePropertyView({ params }) {
                                     href={"tel:" + propertyData?.agent?.contact}
                                     className="Probtn bg-primary"
                                   >
-                                    <img
+                                    <img loading="lazy"
                                       src="/images/icons/phone.png"
                                       className="proPhoneIcon"
                                     />
@@ -567,7 +567,7 @@ function SinglePropertyView({ params }) {
                               className="text-decoration-none  text-black"
                             >
                               <small>
-                                <img
+                                <img loading="lazy" 
                                   src="/images/icons/whatsapp.png"
                                   alt="Range"
                                   className="img-fluid"
@@ -577,7 +577,7 @@ function SinglePropertyView({ params }) {
                             </WhatsappShareButton>
                             <EmailShareButton url={getCurrentUrl()}>
                               <small>
-                                <img
+                                <img loading="lazy" 
                                   src="/images/icons/gmail.png"
                                   alt="Range"
                                   className="img-fluid"
@@ -652,7 +652,7 @@ function SinglePropertyView({ params }) {
                                           href={`/communities/${propertyData.community["slug"]}`}
                                           className="text-decoration-none communityImgCont"
                                         >
-                                          <img
+                                          <img loading="lazy"
                                             src={community["path"]}
                                             alt={community["title"]}
                                             className="img-fluid"
@@ -714,7 +714,7 @@ function SinglePropertyView({ params }) {
                                   <div className="py-3">
                                     <div className="mb-2">
                                       <div className="amenityImg mx-auto">
-                                        <img
+                                        <img loading="lazy"
                                           src={amenity.image}
                                           alt={amenity.name}
                                           className="img-fluid"
@@ -771,7 +771,7 @@ function SinglePropertyView({ params }) {
                                       <div className="py-3">
                                         <div className="mb-2">
                                           <div className="amenityImg mx-auto">
-                                            <img
+                                            <img loading="lazy"
                                               src={amenity.image}
                                               alt={amenity.name}
                                               className="img-fluid"
@@ -831,7 +831,7 @@ function SinglePropertyView({ params }) {
                                     href={`/projects/${propertyData?.project?.slug}`}
                                     className="text-decoration-none"
                                   >
-                                    <img
+                                    <img loading="lazy" 
                                       src={propertyData?.project?.image}
                                       alt={propertyData?.project?.name}
                                       className="img-fluid"
@@ -879,7 +879,7 @@ function SinglePropertyView({ params }) {
                                                   href={`/projects/${propertyData.project["slug"]}`}
                                                   className="text-decoration-none communityImgCont"
                                                 >
-                                                  <img
+                                                  <img loading="lazy"
                                                     src={project["path"]}
                                                     alt={project["title"] ? project["title"] : propertyData.project['name']}
                                                     className="img-fluid"
@@ -921,7 +921,7 @@ function SinglePropertyView({ params }) {
                             <div className="clBoxList">
                               <div className="clBoxitem">
                                 <div className="circleImgBox">
-                                  <img src="/images/icons/pro-icon-1.webp" className="iconImg" />
+                                  <img loading="lazy" src="/images/icons/pro-icon-1.webp" className="iconImg" />
                                 </div>
                                 <div className="clBoxitemitem">
                                   <h5>{propertyData?.project?.handOver}</h5>
@@ -930,7 +930,7 @@ function SinglePropertyView({ params }) {
                               </div>
                               <div className="clBoxitem">
                                 <div className="circleImgBox">
-                                  <img src="/images/icons/pro-icon-2.webp" className="iconImg" />
+                                  <img loading="lazy" src="/images/icons/pro-icon-2.webp" className="iconImg" />
                                 </div>
                                 <div className="clBoxitemitem">
                                   <h5>{propertyData?.developer.name}</h5>
@@ -939,7 +939,7 @@ function SinglePropertyView({ params }) {
                               </div>
                               <div className="clBoxitem">
                                 <div className="circleImgBox">
-                                  <img src="/images/icons/pro-icon-3.webp" className="iconImg" />
+                                  <img loading="lazy" src="/images/icons/pro-icon-3.webp" className="iconImg" />
                                 </div>
                                 <div className="clBoxitemitem">
                                   <h5>{propertyData?.community["name"]}</h5>
@@ -1318,7 +1318,7 @@ function SinglePropertyView({ params }) {
                       <ul className="list-unstyled proInfoList">
                         <li className="liBar">
                           <small>
-                            <img
+                            <img loading="lazy"
                               src="/images/icons/bed-blue.png"
                               alt="Range"
                               className="img-fluid"
@@ -1331,7 +1331,7 @@ function SinglePropertyView({ params }) {
                         </li>
                         <li className="liBar">
                           <small>
-                            <img
+                            <img loading="lazy"
                               src="/images/icons/bath-blue.png"
                               alt="Range"
                               className="img-fluid"
@@ -1345,7 +1345,7 @@ function SinglePropertyView({ params }) {
 
                         <li className="liBar">
                           <small>
-                            <img
+                            <img loading="lazy"
                               src="/images/icons/area-blue.png"
                               alt="Range"
                               className="img-fluid"
@@ -1362,7 +1362,7 @@ function SinglePropertyView({ params }) {
 
                           <li className="liBar">
                             <small>
-                              <img
+                              <img loading="lazy"
                                 src="/images/icons/building.png"
                                 alt="Range"
                                 className="img-fluid"
@@ -1387,7 +1387,7 @@ function SinglePropertyView({ params }) {
                           <div className="d-flex justify-content-start py-2 border-bottom border-2 ">
                             <div className="my-auto projctSpecIMg me-3 mb-3">
                               <center>
-                                <img
+                                <img loading="lazy"
                                   src={
                                     propertyData?.agent && propertyData.agent?.image
                                   }
@@ -1412,7 +1412,7 @@ function SinglePropertyView({ params }) {
                                   href={"tel:" + propertyData?.agent?.contact}
                                   className="Probtn bg-primary"
                                 >
-                                  <img
+                                  <img loading="lazy"
                                     src="/images/icons/phone.png"
                                     className="proPhoneIcon"
                                   />
@@ -1474,7 +1474,7 @@ function SinglePropertyView({ params }) {
                             className="text-decoration-none  text-black"
                           >
                             <small>
-                              <img
+                              <img loading="lazy" 
                                 src="/images/icons/whatsapp.png"
                                 alt="Range"
                                 className="img-fluid"
@@ -1484,7 +1484,7 @@ function SinglePropertyView({ params }) {
                           </WhatsappShareButton>
                           <EmailShareButton url={getCurrentUrl()}>
                             <small>
-                              <img
+                              <img loading="lazy" 
                                 src="/images/icons/gmail.png"
                                 alt="Range"
                                 className="img-fluid"
@@ -1594,7 +1594,7 @@ function SinglePropertyView({ params }) {
                                         href={`/communities/${propertyData.community["slug"]}`}
                                         className="text-decoration-none communityImgCont"
                                       >
-                                        <img
+                                        <img loading="lazy"
                                           src={gallery["path"]}
                                           alt={gallery["path"] ? gallery["title"] : propertyData.community["name"]}
                                           className="img-fluid"
@@ -1648,7 +1648,7 @@ function SinglePropertyView({ params }) {
             <div className="accordion" id="accordionExample">
               <div className="accordion-item">
                 <button className="accordion-button FxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#fixBtn-1" aria-expanded="false" >
-                  <img src="/images/icons/btn-icon-5.png" className="fixBtnIcon" />
+                  <img loading="lazy" src="/images/icons/btn-icon-5.png" className="fixBtnIcon" />
                   <svg className="crossSvgIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
                     <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
                   </svg>
@@ -1676,7 +1676,7 @@ function SinglePropertyView({ params }) {
                     </WhatsappShareButton>
                     {/* 
                                       <button className="btnContentItem">
-                                          <img src="/images/icons/btn-icon-3.png" className="fixBtnIcon" />
+                                          <img loading="lazy"  src="/images/icons/btn-icon-3.png" className="fixBtnIcon" />
                                            Share on Email
                                       </button> */}
 
@@ -1698,7 +1698,7 @@ function SinglePropertyView({ params }) {
               </div>
               <div className="accordion-item">
                 <button className="accordion-button collapsed FxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#fixBtn-2" aria-expanded="false" >
-                  <img src="/images/icons/btn-icon-4.png" className="fixBtnIcon" />
+                  <img loading="lazy" src="/images/icons/btn-icon-4.png" className="fixBtnIcon" />
                   <svg className="crossSvgIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
                     <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
                   </svg>
@@ -1706,7 +1706,7 @@ function SinglePropertyView({ params }) {
                 <div id="fixBtn-2" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                   <div className="fixBtnContent">
                     {/* <button className="btnContentItem">
-                                          <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
+                                          <img loading="lazy"  src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
                                            download & Share Property Presentation
                                       </button> */}
 
@@ -1716,7 +1716,7 @@ function SinglePropertyView({ params }) {
                       data-bs-toggle="modal"
                       data-bs-target="#downloadBrochure"
                     >
-                      <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
+                      <img loading="lazy" src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
                       DOWNLOAD BROCHURE
                     </a>
                     {/* <a
@@ -1724,7 +1724,7 @@ function SinglePropertyView({ params }) {
                                       data-bs-toggle="modal"
                                       data-bs-target="#downlaodPPT"
                                     >
-                                      <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
+                                      <img loading="lazy"  src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
                                       CLICK FOR MORE DETAILS
                                     </a> */}
 
@@ -1732,7 +1732,7 @@ function SinglePropertyView({ params }) {
                       className="btnContentItem text-decoration-none"
                       data-bs-toggle="modal"
                       data-bs-target="#projectSaleOffer"
-                    > <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
+                    > <img loading="lazy" src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
                       CLICK FOR A SALE OFFER
                     </a>
 
@@ -1743,7 +1743,7 @@ function SinglePropertyView({ params }) {
                                         whatsapp={propertyData?.agent?.whatsapp}
                                       /> */}
                     {/* <button className="btnContentItem">
-                                          <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
+                                          <img loading="lazy"  src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
                                             Download & Share Sale offer
                                       </button> */}
                   </div>
@@ -1815,7 +1815,7 @@ function SinglePropertyView({ params }) {
                                               className="text-decoration-none"
                                             >
                                               <div className="projectImgCont">
-                                                <img
+                                                <img loading="lazy"
                                                   src={
                                                     similarProperty.property_banner
                                                   }
@@ -1861,7 +1861,7 @@ function SinglePropertyView({ params }) {
                                             <ul className="list-unstyled mb-0 d-flex justify-content-between">
                                               <li className="d-inline">
                                                 <small>
-                                                  <img
+                                                  <img loading="lazy"
                                                     src="/images/icons/bed.png"
                                                     alt="Range"
                                                     className="img-fluid"
@@ -1874,7 +1874,7 @@ function SinglePropertyView({ params }) {
                                               </li>
                                               <li className="d-inline">
                                                 <small>
-                                                  <img
+                                                  <img loading="lazy"
                                                     src="/images/icons/bath.png"
                                                     alt="Range"
                                                     className="img-fluid"
@@ -1887,7 +1887,7 @@ function SinglePropertyView({ params }) {
                                               </li>
                                               <li className="d-inline">
                                                 <small>
-                                                  <img
+                                                  <img loading="lazy"
                                                     src="/images/icons/area.png"
                                                     alt="Range"
                                                     className="img-fluid"

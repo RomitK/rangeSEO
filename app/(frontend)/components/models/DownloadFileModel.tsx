@@ -72,7 +72,7 @@ function DownloadFileModel(props) {
                 <div className="col-12 col-lg-5 col-md-12 border-end descricalenderCol">
                   <div className="border-bottom">
                     <div className="p-3">
-                      <img
+                      <img loading="lazy"
                         src="/images/logo_blue.png"
                         alt="Range Property"
                         className="img-fluid"
@@ -82,7 +82,7 @@ function DownloadFileModel(props) {
                   </div>
                   <div className="p-3">
                     <div className="agent-img mt-2">
-                      <img
+                      <img loading="lazy"
                         src="/images/videocall.webp"
                         alt="Range Property"
                         className="agent-img"
@@ -138,9 +138,9 @@ function DownloadFileModel(props) {
                                 required
                               />
                             </div>
-                            
+
                             <div className="form-group">
-                            <PhoneInput
+                              <PhoneInput
                                 international
                                 countryCallingCodeEditable={false}
                                 className="form-control mb-2 fs-14 d-flex"

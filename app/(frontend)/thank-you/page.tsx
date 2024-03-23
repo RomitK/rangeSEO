@@ -16,7 +16,7 @@ function Thankyou() {
                             <div className="row">
                                 <div className="col-12 col-lg-12 col-md-12 my-auto">
                                     <div className="secHead text-center mb-3 thank-you-page-content">
-                                        <img src="/images/icons/check.png" alt="tick" width={100} className="img-fluid" /><br /><br />
+                                        <img loading="lazy" src="/images/icons/check.png" alt="tick" width={100} className="img-fluid" /><br /><br />
                                         <h5 className="">Thank you for Contacting Us. A member from our team will ring you shortly.</h5>
                                     </div>
                                     <div className="text-center">

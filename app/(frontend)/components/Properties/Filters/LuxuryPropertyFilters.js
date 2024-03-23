@@ -776,7 +776,7 @@ function LuxuryPropertyFilters({
           <nav className="navbar bg-white mobItemLink ">
             <div className="container justify-content-start">
               <div className="col-4">
-                <img
+                <img loading="lazy" 
                   src="/images/icons/menu.png"
                   alt="Range Internation Property Investments"
                   className="img-fluid navMobMen cursor-pointer"
@@ -793,7 +793,7 @@ function LuxuryPropertyFilters({
                   <div className="offcanvas-header">
                     <div className="">
                       <Link href={{ pathname: "/" }} className="navbar-brand">
-                        <img
+                        <img loading="lazy" 
                           src="/images/logo_blue.png"
                           alt="Range Internation Property Investments"
                           className="img-fluid navMobLogo"
@@ -932,7 +932,7 @@ function LuxuryPropertyFilters({
               </div>
               <div className="col-4">
                 <Link href={{ pathname: "/" }} className="navbar-brand">
-                  <img
+                  <img loading="lazy" 
                     src="/images/logo_blue.png"
                     alt="Range Internation Property Investments"
                     className="img-fluid navMobLogo"
@@ -941,7 +941,7 @@ function LuxuryPropertyFilters({
                 </Link>
               </div>
               <div className="col-4">
-                <img
+                <img loading="lazy" 
                   src="/images/icons/filter.png"
                   alt="Range Internation Property Investments"
                   className="img-fluid navMobMen cursor-pointer float-end"

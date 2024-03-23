@@ -7,12 +7,12 @@ function Project(props) {
         {" "}
         <div className="card propertyCardNew rounded-0">
           <div className="">
-          <Link
+            <Link
               href={`/projects/${props.slug}`}
               className="text-decoration-none"
             >
               <div className="projectImgCont">
-                <img
+                <img loading="lazy"
                   src={props.mainImage}
                   alt="project1"
                   className="img-fluid propImg"
@@ -40,7 +40,7 @@ function Project(props) {
               <small className="text-secondary">{props.address}</small>
             </div>
             <p className="fs-18 mb-2 text-primary fw-semibold">
-              Starting Price AED {  new Intl.NumberFormat().format(props.starting_price )}
+              Starting Price AED {new Intl.NumberFormat().format(props.starting_price)}
             </p>
             <div className="features">
               <div>
@@ -72,7 +72,7 @@ function Project(props) {
               </div>*/}
 
               <div>
-              <img src="/images/icons/hand-over-bg.png" className="iconImg" height={10}/>
+                <img loading="lazy" src="/images/icons/hand-over-bg.png" className="iconImg" height={10} />
                 <span className="fa-sr-only"></span>
                 <span>
                   {props.handOver}

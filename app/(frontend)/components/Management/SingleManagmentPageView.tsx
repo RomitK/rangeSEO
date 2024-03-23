@@ -12,7 +12,7 @@ function SingleManagmentPageView({ params }) {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
-      if(isMobileDevice){
+      if (isMobileDevice) {
         document.body.style.overflow = 'auto';
       }
       setIsMobileDev(isMobileDevice);
@@ -74,7 +74,7 @@ function SingleManagmentPageView({ params }) {
               </div> */}
             </div>
             <div className="col-md-4">
-              <img
+              <img loading="lazy"
                 src={managementData?.image}
                 className="leaderImg"
                 alt={managementData?.name}
@@ -98,11 +98,11 @@ function SingleManagmentPageView({ params }) {
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
               ></iframe> */}
-              <iframe width="100%" height="500" 
-            src="https://www.youtube-nocookie.com/embed/-6jlrq7idl8" 
-            title="YouTube video player" 
-            frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen></iframe>
+              <iframe width="100%" height="500"
+                src="https://www.youtube-nocookie.com/embed/-6jlrq7idl8"
+                title="YouTube video player"
+                frameBorder="0" allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen></iframe>
             </div>
 
             {/* <video

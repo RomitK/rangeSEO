@@ -21,7 +21,7 @@ function Navbar() {
           <div className="container py-3">
             <div className="my-auto">
               <Link href={{ pathname: "/" }} className="navbar-brand">
-                <img
+                <img loading="lazy"
                   src="/images/logo_blue.png"
                   alt="Range Internation Property Investments"
                   className="img-fluid navMobLogo"
@@ -170,7 +170,7 @@ function Navbar() {
                   </li>
                 </ul>
                 <div className=" my-auto me-0 me-lg-3 me-md-3 ms-3 ms-lg-0 ms-md-0">
-                  <img
+                  <img loading="lazy"
                     src="/images/icons/menu.png"
                     alt="Range Internation Property Investments"
                     className="img-fluid navMobMen cursor-pointer"
@@ -187,7 +187,7 @@ function Navbar() {
                     <div className="offcanvas-header">
                       <div className="">
                         <Link href={{ pathname: "/" }} className="navbar-brand">
-                          <img
+                          <img loading="lazy"
                             src="/images/logo_blue.png"
                             alt="Range Internation Property Investments"
                             className="img-fluid navMobLogo"
@@ -317,7 +317,7 @@ function Navbar() {
                 <div className="my-auto">
                   <div className="d-flex justify-content-end">
                     <div className="my-auto me-1">
-                      <img
+                      <img loading="lazy"
                         src="/images/icons/phone.png"
                         alt="Range Internation Property Investments"
                         className="img-fluid"
@@ -341,7 +341,7 @@ function Navbar() {
           <div className="container py-3">
             <div className="my-auto">
               <Link href={{ pathname: "/" }} className="navbar-brand">
-                <img
+                <img loading="lazy"
                   src="/images/logo_white.png"
                   alt="Range Internation Property Investments"
                   className="img-fluid navMobLogo"
@@ -523,7 +523,7 @@ function Navbar() {
                   </li>
                 </ul>
                 <div className=" my-auto me-0 me-lg-3 me-md-3 ms-3 ms-lg-0 ms-md-0">
-                  <img
+                  <img loading="lazy"
                     src="/images/icons/menu.png"
                     alt="Range Internation Property Investments"
                     data-bs-toggle="offcanvas"
@@ -540,7 +540,7 @@ function Navbar() {
                     <div className="offcanvas-header">
                       <div className="">
                         <Link href={{ pathname: "/" }} className="navbar-brand">
-                          <img
+                          <img loading="lazy"
                             src="/images/logo_blue.png"
                             alt="Range Internation Property Investments"
                             className="img-fluid navMobLogo"
@@ -667,7 +667,7 @@ function Navbar() {
                 <div className="my-auto">
                   <div className="d-flex justify-content-end">
                     <div className="my-auto me-1">
-                      <img
+                      <img loading="lazy"
                         src="/images/icons/phone.png"
                         alt="Range Internation Property Investments"
                         className="img-fluid filterBright"

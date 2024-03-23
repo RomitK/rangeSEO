@@ -85,7 +85,7 @@ function ProjectList() {
                           href={`/projects/${project.slug}`}
                           className="fw-bold mb-1 text-decoration-none text-white"
                         >
-                          <img
+                          <img loading="lazy"
                             src={project.mainImage}
                             alt={project.title}
                             className="img-fluid"

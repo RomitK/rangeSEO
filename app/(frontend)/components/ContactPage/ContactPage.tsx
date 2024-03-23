@@ -105,7 +105,7 @@ function ContactPage() {
   return (
     <>
       {/* <header id="contactUsHeader">
-        <img
+        <img loading="lazy" 
           src="/images/banner/contactUsBanner.webp"
           className="headerSimpleImg"
         />
@@ -135,7 +135,7 @@ function ContactPage() {
                     <div className="contactBox bdrOnly">
                       <h5 className="">Call Us</h5>
                       <a href="tel:80072888" className="textFlexBar">
-                        <img
+                        <img loading="lazy"
                           src="/images/icons/phone-icon.png"
                           className="contact-icon"
                           alt="phone"
@@ -148,7 +148,7 @@ function ContactPage() {
                     <div className="contactBox bdr">
                       <h5>Email</h5>
                       <a href="mailto:sales@range.ae" className="textFlexBar">
-                        <img
+                        <img loading="lazy"
                           src="/images/icons/mail-icon.png"
                           className="contact-icon"
                           alt="mail"
@@ -166,7 +166,7 @@ function ContactPage() {
                         }
                         className="textFlexBar"
                       >
-                        <img
+                        <img loading="lazy"
                           src="/images/icons/whatsapp-icon.png"
                           className="contact-icon"
                           alt="whatsapp"
@@ -179,7 +179,7 @@ function ContactPage() {
                     <div className="contactBox">
                       <h5>Address</h5>
                       <a href="tel:80072888" className="textFlexBar">
-                        <img
+                        <img loading="lazy"
                           src="/images/icons/map_pin.png"
                           className="contact-icon"
                           alt="whatsapp"
@@ -200,7 +200,7 @@ function ContactPage() {
                     <div className="contactBox">
                       <h5 className="">Call Us</h5>
                       <a href="tel:80072888" className="textFlexBar">
-                        <img
+                        <img loading="lazy"
                           src="/images/icons/phone-icon.png"
                           className="contact-icon"
                           alt="phone"
@@ -213,7 +213,7 @@ function ContactPage() {
                     <div className="contactBox bdr">
                       <h5>Email</h5>
                       <a href="mailto:sales@range.ae" className="textFlexBar">
-                        <img
+                        <img loading="lazy"
                           src="/images/icons/mail-icon.png"
                           className="contact-icon"
                           alt="mail"
@@ -231,7 +231,7 @@ function ContactPage() {
                         }
                         className="textFlexBar"
                       >
-                        <img
+                        <img loading="lazy"
                           src="/images/icons/whatsapp-icon.png"
                           className="contact-icon"
                           alt="whatsapp"
@@ -244,7 +244,7 @@ function ContactPage() {
                     <div className="contactBox">
                       <h5>Address</h5>
                       <a href="tel:80072888" className="textFlexBar">
-                        <img
+                        <img loading="lazy"
                           src="/images/icons/map_pin.png"
                           className="contact-icon"
                           alt="whatsapp"

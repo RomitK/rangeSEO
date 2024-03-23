@@ -88,7 +88,7 @@ function GoldenVisaModel(props) {
                         <div className="row">
                           <div className="col-md-12">
                             <div className=" text-center">
-                              <img
+                              <img loading="lazy"
                                 src="/images/logo_blue.png"
                                 alt="Range Property"
                                 className="img-fluid"

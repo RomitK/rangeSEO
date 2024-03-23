@@ -132,7 +132,7 @@ function DubaiGuidePage() {
           >
             {guideData?.map((guide, index) => (
               <div className="clmSliderItem" key={index}>
-                <img src={guide.slider_image} className="multiItem" alt={guide.title} />
+                <img loading="lazy" src={guide.slider_image} className="multiItem" alt={guide.title} />
                 <div className="carouselcontent">
                   <h3>{guide.title}</h3>
                   {guide?.id &&
@@ -176,7 +176,7 @@ function DubaiGuidePage() {
                 {(index % 2 === 0) && (
                   <div className="col-md-6">
                     <div className="crdImgBox">
-                      <img
+                      <img loading="lazy"
                         src={guide.feature_image}
                         className="horiCrdImg"
                         alt={guide.title}
@@ -210,7 +210,7 @@ function DubaiGuidePage() {
                 {(index % 2 != 0) && (
                   <div className="col-md-6">
                     <div className="crdImgBox">
-                      <img
+                      <img loading="lazy"
                         src={guide.feature_image}
                         className="horiCrdImg"
                         alt={guide.title}

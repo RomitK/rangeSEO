@@ -7,11 +7,11 @@ const AgentBotton = (props) => {
         <div className="d-flex justify-content-center w-100">
           <ul
             className="nav bottomMenu justify-content-around align-items-center"
-           
+
           >
             <li className="nav-item">
               <a href={"tel:" + props.contact} className="Probtn bg-primary p-3">
-                <img src="/images/icons/phone.png" className="proPhoneIcon" />
+                <img loading="lazy" src="/images/icons/phone.png" className="proPhoneIcon" />
                 CALL NOW
               </a>
             </li>

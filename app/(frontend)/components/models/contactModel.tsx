@@ -67,7 +67,7 @@ function ContactModel(props) {
                 <div className="col-12 col-lg-5 col-md-12 border-end descricalenderCol">
                   <div className="border-bottom">
                     <div className="p-3">
-                      <img
+                      <img loading="lazy"
                         src="/images/logo_blue.png"
                         alt="Range Property"
                         className="img-fluid"
@@ -77,14 +77,14 @@ function ContactModel(props) {
                   </div>
                   <div className="p-3">
                     <div className="agent-img mt-2">
-                      <img
+                      <img loading="lazy"
                         src="/images/videocall.webp"
                         alt="Range Property"
                         className="agent-img"
                       />
                     </div>
                     <div className="col-md-12 mt-3 mb-3">
-                    <h5>
+                      <h5>
                         <strong className="need">{props.sideText}</strong>
                       </h5>
                     </div>
@@ -116,7 +116,7 @@ function ContactModel(props) {
                               />
                             </div>
                             <div className="form-group">
-                              
+
                               <input
                                 type="email"
                                 name="emailCon2"
@@ -163,13 +163,13 @@ function ContactModel(props) {
                               /> */}
                             </div>
                             <div className="form-group">
-                              
+
                               <textarea
                                 name="messageCon2"
                                 id="messageCon2"
                                 className="form-control mb-2"
                                 placeholder="Message"
-                               
+
                                 autoComplete={"off"}
                                 value={formData.message}
                                 onChange={(e) =>

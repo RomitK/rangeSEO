@@ -112,7 +112,7 @@ function SingleProjectView({ params }) {
                   className="swiperSilderItem"
                   key={exteriorGallery.id + "exteriorGallery" + index}
                 >
-                  <img
+                  <img loading="lazy"
                     src={exteriorGallery.path}
                     alt={
                       exteriorGallery.title
@@ -130,15 +130,15 @@ function SingleProjectView({ params }) {
                           {projectData &&
                             projectData.shortDescription &&
                             parse(projectData?.shortDescription ?? "")}
-                            {
-                             projectData && projectData?.permit_number &&
-                             (
+                          {
+                            projectData && projectData?.permit_number &&
+                            (
                               <>
-                               Permit Number:{projectData?.permit_number}
+                                Permit Number:{projectData?.permit_number}
                               </>
-                             )
-                            }
-                           
+                            )
+                          }
+
                         </p>
                       </div>
                     </div>
@@ -293,7 +293,7 @@ function SingleProjectView({ params }) {
                   <h4 className="sctionMdTitle text-primary">
                     Project Details
                   </h4>
-                  
+
                   <div className="text-secondary mb-4">
                     {/* {parse(projectData?.hightlightDescription ?? "")} */}
                     {parse(projectData?.longDescription ?? "")}
@@ -330,7 +330,7 @@ function SingleProjectView({ params }) {
                           <SwiperSlide
                             key={interiorGallery.id + +"interiorGallery"}
                           >
-                            <img
+                            <img loading="lazy"
                               src={interiorGallery.path}
                               className="clmCoverImg"
                               alt={
@@ -382,91 +382,90 @@ function SingleProjectView({ params }) {
                 <div className="col-12 col-lg-12 col-md-12">
                   <div className="row ">
                     <div
-                      className={`mainHead  text-primary ${
-                        isMobileDev ? "mb-1" : "mb-5"
-                      }`}
+                      className={`mainHead  text-primary ${isMobileDev ? "mb-1" : "mb-5"
+                        }`}
                     >
                       <h4>AMENITIES</h4>
                     </div>
                     {projectData.amenities && (
                       <Swiper
-                      slidesPerView={2}
-                      spaceBetween={0}
-                      pagination={{
-                        el: ".swiper-pagination",
-                        clickable: true,
-                      }}
-                      navigation={{
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
-                      }}
-                      breakpoints={{
-                        640: {
-                          slidesPerView: 2,
-                          spaceBetween: 50,
-                        },
-                        768: {
-                          slidesPerView: 4,
-                          spaceBetween: 50,
-                        },
-                        1024: {
-                          slidesPerView: 6,
-                          spaceBetween: 50,
-                        },
-                      }}
-                      autoplay={{
-                        delay: 3000,
-                      }}
-                      modules={[Navigation, Pagination, Autoplay]}
-                      onSwiper={(swiper) => {
-                        amentitiesSwiperRef.current = swiper;
-                      }}
-                      
-                      className={`swiper amenitiesSwiper ${isMobileDev ? "px-2" : "px-5"}`} 
-                    >
-                      {projectData?.amenities?.map((amenity, index) => {
-                        return (
-                          <SwiperSlide key={amenity.id + index + "amentity"}>
-                            <div className="swiper-slide">
-                              <div className="py-3">
-                                <div className="mb-2">
-                                  <div className="amenityImg mx-auto">
-                                    <img
-                                      src={amenity.image}
-                                      alt={amenity.name}
-                                      className="img-fluid"
-                                     
-                                    />
+                        slidesPerView={2}
+                        spaceBetween={0}
+                        pagination={{
+                          el: ".swiper-pagination",
+                          clickable: true,
+                        }}
+                        navigation={{
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                        }}
+                        breakpoints={{
+                          640: {
+                            slidesPerView: 2,
+                            spaceBetween: 50,
+                          },
+                          768: {
+                            slidesPerView: 4,
+                            spaceBetween: 50,
+                          },
+                          1024: {
+                            slidesPerView: 6,
+                            spaceBetween: 50,
+                          },
+                        }}
+                        autoplay={{
+                          delay: 3000,
+                        }}
+                        modules={[Navigation, Pagination, Autoplay]}
+                        onSwiper={(swiper) => {
+                          amentitiesSwiperRef.current = swiper;
+                        }}
+
+                        className={`swiper amenitiesSwiper ${isMobileDev ? "px-2" : "px-5"}`}
+                      >
+                        {projectData?.amenities?.map((amenity, index) => {
+                          return (
+                            <SwiperSlide key={amenity.id + index + "amentity"}>
+                              <div className="swiper-slide">
+                                <div className="py-3">
+                                  <div className="mb-2">
+                                    <div className="amenityImg mx-auto">
+                                      <img loading="lazy"
+                                        src={amenity.image}
+                                        alt={amenity.name}
+                                        className="img-fluid"
+
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="text-center">
+                                    <small className="fs-16">
+                                      {amenity.name}
+                                    </small>
                                   </div>
                                 </div>
-                                <div className="text-center">
-                                  <small className="fs-16">
-                                    {amenity.name}
-                                  </small>
-                                </div>
                               </div>
-                            </div>
-                          </SwiperSlide>
-                        );
-                      })}
-                      <div
-                        className="swiper-button-next text-primary"
-                        onClick={() => amentitiesSwiperRef.current?.slideNext()}
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-right fs-1"></i>
-                        </span>
-                      </div>
-                      <div
-                        className="swiper-button-prev text-primary"
-                        onClick={() => amentitiesSwiperRef.current?.slidePrev()}
-                      >
-                        <span className="">
-                          <i className="bi bi-chevron-left fs-1"></i>
-                        </span>
-                      </div>
-                      {/* <div className="swiper-pagination"></div> */}
-                    </Swiper>
+                            </SwiperSlide>
+                          );
+                        })}
+                        <div
+                          className="swiper-button-next text-primary"
+                          onClick={() => amentitiesSwiperRef.current?.slideNext()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-right fs-1"></i>
+                          </span>
+                        </div>
+                        <div
+                          className="swiper-button-prev text-primary"
+                          onClick={() => amentitiesSwiperRef.current?.slidePrev()}
+                        >
+                          <span className="">
+                            <i className="bi bi-chevron-left fs-1"></i>
+                          </span>
+                        </div>
+                        {/* <div className="swiper-pagination"></div> */}
+                      </Swiper>
                     )}
                   </div>
                 </div>
@@ -478,9 +477,8 @@ function SingleProjectView({ params }) {
         <section className={`tableSection  ${isMobileDev ? 'mb-2' : ''}`}>
           <div className="container">
             <h4
-              className={`sctionMdTitle text-primary ${
-                isMobileDev ? "my-1" : "my-4"
-              }`}
+              className={`sctionMdTitle text-primary ${isMobileDev ? "my-1" : "my-4"
+                }`}
             >
               Property Type
             </h4>
@@ -572,7 +570,7 @@ function SingleProjectView({ params }) {
                               //data-bs-target="#floorplan"
                               data-bs-target={"#gallaryModalImg-" + type.id}
 
-                              // onClick={() => setFloorPlanFile(type.floorPlan)}
+                            // onClick={() => setFloorPlanFile(type.floorPlan)}
                             >
                               view
                             </button>
@@ -587,87 +585,87 @@ function SingleProjectView({ params }) {
             )}
             {isMobileDev && (
               <>
-              <div className="tableContainer">
-                <table className="priceTable">
-                  <thead>
-                    <tr>
-                    <th>
-                        <h5 className="tblThText">Bedroom</h5>
-                      </th>
-                      <th>
-                        <h5 className="tblThText">Size</h5>
-                      </th>
-                     
-                      <th>
-                        <h5 className="tblThText text-center">
-                          Price (AED)
-                        </h5>
-                      </th>
-                      <th>
-                        <h5 className="tblThText text-center">PP</h5>
-                      </th>
-                      <th>
-                        <h5 className="tblThText text-center">FP</h5>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {projectData?.types?.map((type, index) => {
-                      return (
-                        <tr key={type.id}>
-                          
-                         
-                          <td className="p-0 priceTableGrayBorder">
-                            <p className="tblTdText text-secondary">
-                              {type?.bedrooms}
-                            </p>
-                          </td>
-                          
-                          <td className="p-0 priceTableGrayBorder">
-                            <p className="tblTdText text-secondary">
-                              {type?.area} {type?.areaUnit}
-                            </p>
-                          </td>
-                          <td className="p-0 priceTableGrayBorder">
-                            <p className="tblTdText text-secondary text-center">
-                             
-                              {type &&
-                                new Intl.NumberFormat().format(
-                                  type?.startingPrice
-                                )}{" "}
-                            </p>
-                          </td>
-                          <td className="p-0 text-center ">
-                            <button
-                              className="fillBtn  mrAuto w-auto"
-                              data-bs-toggle="modal"
-                              data-bs-target="#paymentplan"
-                              onClick={() => setCurrentUnit(type)}
-                            >
-                              view
-                            </button>
-                          </td>
-                          <td className="p-0 text-center">
-                            <button
-                              className="fillBtn  mrAuto w-auto"
-                              data-bs-toggle="modal"
-                              //data-bs-target="#floorplan"
-                              data-bs-target={"#gallaryModalImg-" + type.id}
+                <div className="tableContainer">
+                  <table className="priceTable">
+                    <thead>
+                      <tr>
+                        <th>
+                          <h5 className="tblThText">Bedroom</h5>
+                        </th>
+                        <th>
+                          <h5 className="tblThText">Size</h5>
+                        </th>
+
+                        <th>
+                          <h5 className="tblThText text-center">
+                            Price (AED)
+                          </h5>
+                        </th>
+                        <th>
+                          <h5 className="tblThText text-center">PP</h5>
+                        </th>
+                        <th>
+                          <h5 className="tblThText text-center">FP</h5>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {projectData?.types?.map((type, index) => {
+                        return (
+                          <tr key={type.id}>
+
+
+                            <td className="p-0 priceTableGrayBorder">
+                              <p className="tblTdText text-secondary">
+                                {type?.bedrooms}
+                              </p>
+                            </td>
+
+                            <td className="p-0 priceTableGrayBorder">
+                              <p className="tblTdText text-secondary">
+                                {type?.area} {type?.areaUnit}
+                              </p>
+                            </td>
+                            <td className="p-0 priceTableGrayBorder">
+                              <p className="tblTdText text-secondary text-center">
+
+                                {type &&
+                                  new Intl.NumberFormat().format(
+                                    type?.startingPrice
+                                  )}{" "}
+                              </p>
+                            </td>
+                            <td className="p-0 text-center ">
+                              <button
+                                className="fillBtn  mrAuto w-auto"
+                                data-bs-toggle="modal"
+                                data-bs-target="#paymentplan"
+                                onClick={() => setCurrentUnit(type)}
+                              >
+                                view
+                              </button>
+                            </td>
+                            <td className="p-0 text-center">
+                              <button
+                                className="fillBtn  mrAuto w-auto"
+                                data-bs-toggle="modal"
+                                //data-bs-target="#floorplan"
+                                data-bs-target={"#gallaryModalImg-" + type.id}
 
                               // onClick={() => setFloorPlanFile(type.floorPlan)}
-                            >
-                              view
-                            </button>
-                            {/* <FloorPlanModal images={type?.floorPlan}/> */}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
+                              >
+                                view
+                              </button>
+                              {/* <FloorPlanModal images={type?.floorPlan}/> */}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
 
-              {/* <Swiper
+                {/* <Swiper
                 slidesPerView={1}
                 spaceBetween={50}
                 loop={true}
@@ -826,7 +824,7 @@ function SingleProjectView({ params }) {
                 </div>
               </Swiper> */}
               </>
-              
+
             )}
           </div>
         </section>
@@ -843,7 +841,7 @@ function SingleProjectView({ params }) {
                 data-bs-target="#fixBtn-1"
                 aria-expanded="false"
               >
-                <img
+                <img loading="lazy"
                   src="/images/icons/btn-icon-5.png"
                   className="fixBtnIcon"
                 />
@@ -878,7 +876,7 @@ function SingleProjectView({ params }) {
                     Share on whatsapp
                   </WhatsappShareButton>
                   {/* <button className="btnContentItem">
-                                          <img src="/images/icons/btn-icon-3.png" className="fixBtnIcon" />
+                                          <img loading="lazy"  src="/images/icons/btn-icon-3.png" className="fixBtnIcon" />
                                            Share on Email
                                       </button> */}
 
@@ -901,7 +899,7 @@ function SingleProjectView({ params }) {
                 data-bs-target="#fixBtn-2"
                 aria-expanded="false"
               >
-                <img
+                <img loading="lazy"
                   src="/images/icons/btn-icon-4.png"
                   className="fixBtnIcon"
                 />
@@ -926,7 +924,7 @@ function SingleProjectView({ params }) {
                     data-bs-toggle="modal"
                     data-bs-target="#downloadBrochure"
                   >
-                    <img
+                    <img loading="lazy"
                       src="/images/icons/btn-icon-2.png"
                       className="fixBtnIcon"
                     />
@@ -939,18 +937,18 @@ function SingleProjectView({ params }) {
                     data-bs-target="#projectSaleOffer"
                   >
                     {" "}
-                    <img
+                    <img loading="lazy" 
                       src="/images/icons/btn-icon-1.png"
                       className="fixBtnIcon"
                     />
                     CLICK FOR A SALE OFFER
                   </a> */}
                   {/* <button className="btnContentItem">
-                                          <img src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
+                                          <img loading="lazy"  src="/images/icons/btn-icon-2.png" className="fixBtnIcon" />
                                            download & Share Property Presentation
                                       </button>
                                       <button className="btnContentItem">
-                                          <img src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
+                                          <img loading="lazy"  src="/images/icons/btn-icon-1.png" className="fixBtnIcon" />
                                             Download & Share Sale offer
                                       </button> */}
                 </div>
@@ -986,7 +984,7 @@ function SingleProjectView({ params }) {
                     </div>
                     <div className="col-md-5">
                       <div className="colmImgBox">
-                        <img
+                        <img loading="lazy"
                           src={projectData.developer.logo}
                           alt={projectData.developer.name}
                           className="clmContainImg"
@@ -1042,7 +1040,7 @@ function SingleProjectView({ params }) {
                         delay: 3000,
                       }}
                       modules={[Navigation, Autoplay]}
-                     
+
                       onSwiper={(swiper) => {
                         otherProjectSwiperRef.current = swiper;
                       }}
@@ -1062,7 +1060,7 @@ function SingleProjectView({ params }) {
                                 href={`/projects/${project.slug}`}
                                 className="fw-bold mb-1 text-decoration-none text-white"
                               >
-                                <img
+                                <img loading="lazy"
                                   src={project.mainImage}
                                   alt={project.title}
                                   className="img-fluid"
@@ -1203,7 +1201,7 @@ function SingleProjectView({ params }) {
                                                 className="text-decoration-none"
                                               >
                                                 <div className="projectImgCont">
-                                                  <img
+                                                  <img loading="lazy"
                                                     src={
                                                       similarProperty.mainImage
                                                     }
@@ -1249,7 +1247,7 @@ function SingleProjectView({ params }) {
                                               <ul className="list-unstyled mb-0 d-flex justify-content-between">
                                                 <li className="d-inline">
                                                   <small>
-                                                    <img
+                                                    <img loading="lazy"
                                                       src="/images/icons/bed.png"
                                                       alt="Range"
                                                       className="img-fluid"
@@ -1262,7 +1260,7 @@ function SingleProjectView({ params }) {
                                                 </li>
                                                 <li className="d-inline">
                                                   <small>
-                                                    <img
+                                                    <img loading="lazy"
                                                       src="/images/icons/bath.png"
                                                       alt="Range"
                                                       className="img-fluid"
@@ -1277,7 +1275,7 @@ function SingleProjectView({ params }) {
                                                 </li>
                                                 <li className="d-inline">
                                                   <small>
-                                                    <img
+                                                    <img loading="lazy"
                                                       src="/images/icons/area.png"
                                                       alt="Range"
                                                       className="img-fluid"
@@ -1397,7 +1395,7 @@ function SingleProjectView({ params }) {
                                                   className="text-decoration-none"
                                                 >
                                                   <div className="projectImgCont">
-                                                    <img
+                                                    <img loading="lazy"
                                                       src={
                                                         similarProperty.mainImage
                                                       }
@@ -1443,7 +1441,7 @@ function SingleProjectView({ params }) {
                                                 <ul className="list-unstyled mb-0 d-flex justify-content-between">
                                                   <li className="d-inline">
                                                     <small>
-                                                      <img
+                                                      <img loading="lazy"
                                                         src="/images/icons/bed.png"
                                                         alt="Range"
                                                         className="img-fluid"
@@ -1458,7 +1456,7 @@ function SingleProjectView({ params }) {
                                                   </li>
                                                   <li className="d-inline">
                                                     <small>
-                                                      <img
+                                                      <img loading="lazy"
                                                         src="/images/icons/bath.png"
                                                         alt="Range"
                                                         className="img-fluid"
@@ -1473,7 +1471,7 @@ function SingleProjectView({ params }) {
                                                   </li>
                                                   <li className="d-inline">
                                                     <small>
-                                                      <img
+                                                      <img loading="lazy"
                                                         src="/images/icons/area.png"
                                                         alt="Range"
                                                         className="img-fluid"
@@ -1568,7 +1566,7 @@ function SingleProjectView({ params }) {
                         {type?.floorPlan?.map((image, index) => {
                           return (
                             <SwiperSlide className="sliderItem" key={image.id}>
-                              <img
+                              <img loading="lazy"
                                 src={image.path}
                                 alt={image.path}
                                 className="sliderGallaryImg floorplans"

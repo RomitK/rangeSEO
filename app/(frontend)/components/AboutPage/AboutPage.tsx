@@ -6,7 +6,7 @@ function AboutPage() {
   return (
     <>
       <header className="aboutHeader">
-        <img
+        <img loading="lazy"
           src="/images/banner/new-about.jpg"
           className="headerSimpleImg"
           id="headerSimpleImg"
@@ -17,8 +17,8 @@ function AboutPage() {
         <div className="container">
           <h4 className="sctionMdTitle text-primary ">ABOUT RANGE</h4>
           <p className="fs-14 text-secondary mb-4">
-          Range International Property Investments is an esteemed award-winning real estate brokerage based in Dubai, UAE. With over two decades of unmatched experience, we have established ourselves as industry leaders, renowned for our exceptional services and deep knowledge of the real estate market locally and internationally. Our dynamic and innovative team of industry experts is dedicated to delivering exceptional results while building lasting relationships based on professionalism, integrity, and trust. <br/><br/>
-          Our forte goes beyond sales & leases of residential, commercial, and off-plan properties. Our expertise extends to Financial Consultancy, Wealth Management, Property Valuation, and Mortgage services. By closely monitoring market trends, we identify high-return investment opportunities, providing you with a seamless and customer-focused experience. Our commitment to research and guidance allows you to have access to extensive premium real estate opportunities in today’s dynamic market. Experience the difference with Range and unlock extraordinary possibilities in the ever-changing real estate landscape.
+            Range International Property Investments is an esteemed award-winning real estate brokerage based in Dubai, UAE. With over two decades of unmatched experience, we have established ourselves as industry leaders, renowned for our exceptional services and deep knowledge of the real estate market locally and internationally. Our dynamic and innovative team of industry experts is dedicated to delivering exceptional results while building lasting relationships based on professionalism, integrity, and trust. <br /><br />
+            Our forte goes beyond sales & leases of residential, commercial, and off-plan properties. Our expertise extends to Financial Consultancy, Wealth Management, Property Valuation, and Mortgage services. By closely monitoring market trends, we identify high-return investment opportunities, providing you with a seamless and customer-focused experience. Our commitment to research and guidance allows you to have access to extensive premium real estate opportunities in today’s dynamic market. Experience the difference with Range and unlock extraordinary possibilities in the ever-changing real estate landscape.
           </p>
           {/* <p className="fs-14 text-secondary mb-5">
                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
@@ -34,7 +34,7 @@ function AboutPage() {
           <div className="row">
             <div className="col-md-6">
               <div className="simpleCard">
-                <img
+                <img loading="lazy"
                   src="/images/icons/about-mission-icon.png"
                   className="cardIcon"
                   alt="mission"
@@ -51,7 +51,7 @@ function AboutPage() {
             </div>
             <div className="col-md-6">
               <div className="simpleCard">
-                <img
+                <img loading="lazy"
                   src="/images/icons/about-vision-icon.png"
                   className="cardIcon"
                   alt="vission"
@@ -78,7 +78,7 @@ function AboutPage() {
                 return (
                   <div className="col-md-4" key={management.id}>
                     <div className="userCard">
-                      <img
+                      <img loading="lazy"
                         src={management.image}
                         className="leaderImg"
                         alt={management.name}

@@ -17,11 +17,11 @@ function MediaPage({ params }) {
   const [events, setEvents] = useState([]);
   const [isMobileDev, setIsMobileDev] = useState(false);
   useEffect(() => {
-    
+
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
-      if(isMobileDevice){
+      if (isMobileDevice) {
         document.body.style.overflow = 'auto';
       }
       setIsMobileDev(isMobileDevice);
@@ -142,7 +142,7 @@ function MediaPage({ params }) {
                   CELEBRATION
                 </button>
               </li>
-              
+
             </ul>
             <div className="tab-content" id="myTabContent">
               {/* Tab 1 Contant Area Start */}
@@ -156,7 +156,7 @@ function MediaPage({ params }) {
                           className="blogCard proGalleryCard"
                         >
                           <div className="bCardHead">
-                            <img src={media.image} alt={media.title} className="eventCardImg" />
+                            <img loading="lazy" src={media.image} alt={media.title} className="eventCardImg" />
                             <span className="cdTagBtn"> {media.type}</span>
                             <div className="overlay">
                               <p className="crdText">{media.short_content}</p>
@@ -174,7 +174,7 @@ function MediaPage({ params }) {
               {/* Tab 2 Contant Area Start */}
               <div className="tab-pane fade" id="newTab">
                 <div className="row">
-                {news?.map(function (media, index) {
+                  {news?.map(function (media, index) {
                     return (
                       <div className="col-md-4" key={media.id}>
                         <Link
@@ -182,7 +182,7 @@ function MediaPage({ params }) {
                           className="blogCard proGalleryCard"
                         >
                           <div className="bCardHead">
-                            <img src={media.image} alt={media.title} className="eventCardImg" />
+                            <img loading="lazy" src={media.image} alt={media.title} className="eventCardImg" />
                             <span className="cdTagBtn"> {media.type}</span>
                             <div className="overlay">
                               <p className="crdText">{media.short_content}</p>
@@ -200,7 +200,7 @@ function MediaPage({ params }) {
               {/* Tab 3 Contant Area Start */}
               <div className="tab-pane fade" id="blogTab">
                 <div className="row">
-                {blogs?.map(function (media, index) {
+                  {blogs?.map(function (media, index) {
                     return (
                       <div className="col-md-4" key={media.id}>
                         <Link
@@ -208,7 +208,7 @@ function MediaPage({ params }) {
                           className="blogCard proGalleryCard"
                         >
                           <div className="bCardHead">
-                            <img src={media.image} alt={media.title} className="eventCardImg" />
+                            <img loading="lazy" src={media.image} alt={media.title} className="eventCardImg" />
                             <span className="cdTagBtn"> {media.type}</span>
                             <div className="overlay">
                               <p className="crdText">{media.short_content}</p>
@@ -226,7 +226,7 @@ function MediaPage({ params }) {
               {/* Tab 4 Contant Area Start */}
               <div className="tab-pane fade" id="awardTab">
                 <div className="row">
-                {awards?.map(function (media, index) {
+                  {awards?.map(function (media, index) {
                     return (
                       <div className="col-md-4" key={media.id}>
                         <Link
@@ -234,7 +234,7 @@ function MediaPage({ params }) {
                           className="blogCard proGalleryCard"
                         >
                           <div className="bCardHead">
-                            <img src={media.image} alt={media.title} className="eventCardImg" />
+                            <img loading="lazy" src={media.image} alt={media.title} className="eventCardImg" />
                             <span className="cdTagBtn"> {media.type}</span>
                             <div className="overlay">
                               <p className="crdText">{media.short_content}</p>
@@ -252,7 +252,7 @@ function MediaPage({ params }) {
               {/* Tab 5 Contant Area Start */}
               <div className="tab-pane fade" id="celebrationTab">
                 <div className="row">
-                {celebrations?.map(function (media, index) {
+                  {celebrations?.map(function (media, index) {
                     return (
                       <div className="col-md-4" key={media.id}>
                         <Link
@@ -260,7 +260,7 @@ function MediaPage({ params }) {
                           className="blogCard proGalleryCard"
                         >
                           <div className="bCardHead">
-                            <img src={media.image} alt={media.title} className="eventCardImg" />
+                            <img loading="lazy" src={media.image} alt={media.title} className="eventCardImg" />
                             <span className="cdTagBtn"> {media.type}</span>
                             <div className="overlay">
                               <p className="crdText">{media.short_content}</p>
@@ -278,7 +278,7 @@ function MediaPage({ params }) {
               {/* Tab 6 Contant Area Start */}
               <div className="tab-pane fade" id="eventTab">
                 <div className="row">
-                {events?.map(function (media, index) {
+                  {events?.map(function (media, index) {
                     return (
                       <div className="col-md-4" key={media.id}>
                         <Link
@@ -286,7 +286,7 @@ function MediaPage({ params }) {
                           className="blogCard proGalleryCard"
                         >
                           <div className="bCardHead">
-                            <img src={media.image} alt={media.title} className="eventCardImg" />
+                            <img loading="lazy" src={media.image} alt={media.title} className="eventCardImg" />
                             <span className="cdTagBtn"> {media.type}</span>
                             <div className="overlay">
                               <p className="crdText">{media.short_content}</p>

@@ -58,7 +58,7 @@ function Management() {
               </p>
             </div>
             <div className="col-md-4">
-              <img src="/images/team/nitin.png" className="leaderImg" />
+              <img loading="lazy" src="/images/team/nitin.png" className="leaderImg" />
             </div>
           </div>
         </section>
@@ -91,16 +91,16 @@ function Management() {
             className="mySwiper multiItemsSlider"
           >
             <SwiperSlide>
-              <img src="images/blogs/blog5.png" className="awardsImg" />
+              <img loading="lazy" src="images/blogs/blog5.png" className="awardsImg" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src="images/blogs/blog2.png" className="awardsImg" />
+              <img loading="lazy" src="images/blogs/blog2.png" className="awardsImg" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src="images/blogs/blog3.png" className="awardsImg" />
+              <img loading="lazy" src="images/blogs/blog3.png" className="awardsImg" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src="images/blogs/blog4.png" className="awardsImg" />
+              <img loading="lazy" src="images/blogs/blog4.png" className="awardsImg" />
             </SwiperSlide>
           </Swiper>
         </section>

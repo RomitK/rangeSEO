@@ -26,7 +26,7 @@ const HomePage = () => {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
-      if(isMobileDevice){
+      if (isMobileDevice) {
         document.body.style.overflow = 'auto';
       }
       setIsMobileDev(isMobileDevice);
@@ -115,7 +115,7 @@ const HomePage = () => {
                                       href={`communities/${community.slug}`}
                                       className=" text-decoration-none "
                                     >
-                                      <img
+                                      <img loading="lazy"
                                         src={community.mainImage}
                                         alt={community.name}
                                         className="img-fluid"
@@ -224,7 +224,7 @@ const HomePage = () => {
                                   key={developer.id}
                                 >
                                   <div className="HomepartnerBox">
-                                    <img
+                                    <img loading="lazy"
                                       src={developer.logo}
                                       className="logoImg"
                                       alt={developer.name}

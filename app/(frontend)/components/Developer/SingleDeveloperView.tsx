@@ -269,7 +269,7 @@ function SingleDeveloperView({ params }) {
                         {developerData?.imageGallery?.map((img, index) => (
                           <div key={img.id + "gallery"} className="slide-item">
                             <div className="communityImgCont">
-                              <img
+                              <img loading="lazy"
                                 src={img.path}
                                 alt={img.title ? img.title : developerData.name}
                                 className="img-fluid communityGalleryImage"
@@ -506,7 +506,7 @@ function SingleDeveloperView({ params }) {
                             href={`/projects/${project?.slug}`}
                             className="text-decoration-none text-white"
                           >
-                            <img
+                            <img loading="lazy"
                               src={project.mainImage}
                               alt={project.title}
                               className="img-fluid"
@@ -600,7 +600,7 @@ function SingleDeveloperView({ params }) {
                                   className="text-decoration-none text-white"
                                 >
                                   <div className="projectImgCont">
-                                    <img
+                                    <img loading="lazy"
                                       src={community.mainImage}
                                       alt={community.name}
                                       className="img-fluid propImg"
@@ -712,7 +712,7 @@ function SingleDeveloperView({ params }) {
                                         className="text-decoration-none text-white"
                                       >
                                         <div className="projectImgCont">
-                                          <img
+                                          <img loading="lazy" 
                                             src={property.property_banner}
                                             alt="project1"
                                             className="img-fluid propImg"
@@ -754,7 +754,7 @@ function SingleDeveloperView({ params }) {
                                         <ul className="list-unstyled mb-0 d-flex justify-content-between">
                                           <li className="d-inline">
                                             <small>
-                                              <img
+                                              <img loading="lazy" 
                                                 src="/images/icons/bed.png"
                                                 alt="Range"
                                                 className="img-fluid"
@@ -767,7 +767,7 @@ function SingleDeveloperView({ params }) {
                                           </li>   
                                           <li className="d-inline">
                                             <small>
-                                              <img
+                                              <img loading="lazy" 
                                                 src="/images/icons/bath.png"
                                                 alt="Range"
                                                 className="img-fluid"
@@ -780,7 +780,7 @@ function SingleDeveloperView({ params }) {
                                           </li>
                                           <li className="d-inline">
                                             <small>
-                                              <img
+                                              <img loading="lazy" 
                                                 src="/images/icons/area.png"
                                                 alt="Range"
                                                 className="img-fluid"
@@ -909,7 +909,7 @@ function SingleDeveloperView({ params }) {
                                             className="text-decoration-none"
                                           >
                                             <div className="projectImgCont">
-                                              <img
+                                              <img loading="lazy"
                                                 src={property.property_banner}
                                                 alt={property.name}
                                                 className="img-fluid propImg"
@@ -951,7 +951,7 @@ function SingleDeveloperView({ params }) {
                                           <ul className="list-unstyled mb-0 d-flex justify-content-between">
                                             <li className="d-inline">
                                               <small>
-                                                <img
+                                                <img loading="lazy"
                                                   src="/images/icons/bed.png"
                                                   alt="Range"
                                                   className="img-fluid"
@@ -964,7 +964,7 @@ function SingleDeveloperView({ params }) {
                                             </li>
                                             <li className="d-inline">
                                               <small>
-                                                <img
+                                                <img loading="lazy"
                                                   src="/images/icons/bath.png"
                                                   alt="Range"
                                                   className="img-fluid"
@@ -977,7 +977,7 @@ function SingleDeveloperView({ params }) {
                                             </li>
                                             <li className="d-inline">
                                               <small>
-                                                <img
+                                                <img loading="lazy"
                                                   src="/images/icons/area.png"
                                                   alt="Range"
                                                   className="img-fluid"
@@ -1086,7 +1086,7 @@ function SingleDeveloperView({ params }) {
                                             className="text-decoration-none"
                                           >
                                             <div className="projectImgCont">
-                                              <img
+                                              <img loading="lazy"
                                                 src={property.property_banner}
                                                 alt={property.name}
                                                 className="img-fluid propImg"
@@ -1128,7 +1128,7 @@ function SingleDeveloperView({ params }) {
                                           <ul className="list-unstyled mb-0 d-flex justify-content-between">
                                             <li className="d-inline">
                                               <small>
-                                                <img
+                                                <img loading="lazy"
                                                   src="/images/icons/bed.png"
                                                   alt="Range"
                                                   className="img-fluid"
@@ -1141,7 +1141,7 @@ function SingleDeveloperView({ params }) {
                                             </li>
                                             <li className="d-inline">
                                               <small>
-                                                <img
+                                                <img loading="lazy"
                                                   src="/images/icons/bath.png"
                                                   alt="Range"
                                                   className="img-fluid"
@@ -1154,7 +1154,7 @@ function SingleDeveloperView({ params }) {
                                             </li>
                                             <li className="d-inline">
                                               <small>
-                                                <img
+                                                <img loading="lazy"
                                                   src="/images/icons/area.png"
                                                   alt="Range"
                                                   className="img-fluid"

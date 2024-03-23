@@ -83,7 +83,7 @@ function SingleProjectView({ params }) {
                 className="swiperSilderItem"
                 key={exteriorGallery.id + +"exteriorGallery" + index}
               >
-                <img src={exteriorGallery.path} className="sliderCoverImg" />
+                <img loading="lazy" src={exteriorGallery.path} className="sliderCoverImg" />
                 <div className=" sliderContainer">
                   <div className="sliderContentArea">
                     <div className="sliderContent">
@@ -152,87 +152,87 @@ function SingleProjectView({ params }) {
       </section>
 
       <section>
-          <div className="tabsListConatiner ">
-              <div className="container">
-                    <div className="row">
-                        <div className="col-3 selectTitle">
-                          <a
-                            className="tabTitle active"
-                            href="#Hightlights"
-                            aria-selected="true"
-                          >
-                            Hightlights
-                          </a>
-                        </div>
-                        <div className="col-3 selectTitle ">
-                          <a
-                            className="tabTitle"
-                            href="#ProjectDetails"
-                            aria-selected="true"
-                          >
-                            Project Details
-                          </a>
-                        </div>
-                        <div className="col-3 selectTitle">
-                          <a
-                            className="tabTitle "
-                            href="#NearBy"
-                            aria-selected="true"
-                          >
-                            Nearby
-                          </a>
-                        </div>
-                        <div className="col-3 selectTitle">
-                          <a
-                            className="tabTitle"
-                            href="#AvailableProperties"
-                            aria-selected="true"
-                          >
-                            Available Properties
-                          </a>
-                        </div>
-                    </div>
+        <div className="tabsListConatiner ">
+          <div className="container">
+            <div className="row">
+              <div className="col-3 selectTitle">
+                <a
+                  className="tabTitle active"
+                  href="#Hightlights"
+                  aria-selected="true"
+                >
+                  Hightlights
+                </a>
               </div>
+              <div className="col-3 selectTitle ">
+                <a
+                  className="tabTitle"
+                  href="#ProjectDetails"
+                  aria-selected="true"
+                >
+                  Project Details
+                </a>
+              </div>
+              <div className="col-3 selectTitle">
+                <a
+                  className="tabTitle "
+                  href="#NearBy"
+                  aria-selected="true"
+                >
+                  Nearby
+                </a>
+              </div>
+              <div className="col-3 selectTitle">
+                <a
+                  className="tabTitle"
+                  href="#AvailableProperties"
+                  aria-selected="true"
+                >
+                  Available Properties
+                </a>
+              </div>
+            </div>
           </div>
+        </div>
       </section>
       <section id="Hightlights">
-               <div className="container ">
-                <div className="row align-items-center ">
-                  <div className="col-md-8">
-                    <div className="secTabCntent" id="hightlight">
-                      <h4 className="sctionMdTitle text-primary">
-                        Hightlights
-                      </h4>
-                      <div className="text-secondary mb-4">
-                        {parse(projectData?.hightlightDescription ?? "")}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <Swiper
-                      pagination={true}
-                      modules={[Pagination]}
-                      onSwiper={(swiper) => {
-                        innerSwiperRef.current = swiper;
-                      }}
-                      className="mySwiper singleSlider clmSlider"
-                    >
-                      {projectData?.interiorGallery?.map(
-                        (interiorGallery, index) => {
-                          return (
-                            <SwiperSlide
-                              key={interiorGallery.id + +"interiorGallery"}
-                            >
-                              <img
-                                src={interiorGallery.path}
-                                className="clmCoverImg"
-                              />
-                            </SwiperSlide>
-                          );
-                        }
-                      )}
+        <div className="container ">
+          <div className="row align-items-center ">
+            <div className="col-md-8">
+              <div className="secTabCntent" id="hightlight">
+                <h4 className="sctionMdTitle text-primary">
+                  Hightlights
+                </h4>
+                <div className="text-secondary mb-4">
+                  {parse(projectData?.hightlightDescription ?? "")}
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <Swiper
+                pagination={true}
+                modules={[Pagination]}
+                onSwiper={(swiper) => {
+                  innerSwiperRef.current = swiper;
+                }}
+                className="mySwiper singleSlider clmSlider"
+              >
+                {projectData?.interiorGallery?.map(
+                  (interiorGallery, index) => {
+                    return (
+                      <SwiperSlide
+                        key={interiorGallery.id + +"interiorGallery"}
+                      >
+                        <img loading="lazy"
+                          src={interiorGallery.path}
+                          className="clmCoverImg"
+                        />
+                      </SwiperSlide>
+                    );
+                  }
+                )}
 
-                      {/* <div className="carouselArrowBar">
+                {/* <div className="carouselArrowBar">
                         <div
                           className="swiper-button-next text-white"
                           onClick={() => innerSwiperRef.current?.slideNext()}
@@ -250,10 +250,10 @@ function SingleProjectView({ params }) {
                           </span>
                         </div>
                       </div> */}
-                    </Swiper>
-                  </div>
-                </div>
-              </div>
+              </Swiper>
+            </div>
+          </div>
+        </div>
       </section>
       <section id="ProjectDetails">
         <div className="container ">
@@ -373,7 +373,7 @@ function SingleProjectView({ params }) {
                 </div>
                 <div className="col-md-5">
                   <div className="colmImgBox">
-                    <img
+                    <img loading="lazy"
                       src={projectData.developer.logo}
                       className="clmContainImg"
                     />
@@ -434,7 +434,7 @@ function SingleProjectView({ params }) {
                           href={`/projects/${project.slug}`}
                           className="fw-bold mb-1 text-decoration-none text-white"
                         >
-                          <img
+                          <img loading="lazy"
                             src={project.mainImage}
                             alt={project.title}
                             className="img-fluid"
@@ -530,7 +530,7 @@ function SingleProjectView({ params }) {
                           href={`/projects/${project.slug}`}
                           className="fw-bold mb-1 text-decoration-none text-white"
                         >
-                          <img
+                          <img loading="lazy"
                             src={project.mainImage}
                             alt={project.title}
                             className="img-fluid"
@@ -617,7 +617,7 @@ function SingleProjectView({ params }) {
                           href={`/projects/${project.slug}`}
                           className="fw-bold mb-1 text-decoration-none text-white"
                         >
-                          <img
+                          <img loading="lazy"
                             src={project.mainImage}
                             alt={project.title}
                             className="img-fluid"
@@ -663,187 +663,187 @@ function SingleProjectView({ params }) {
       {projectData?.types?.map((type, index) => {
         return (
 
-          <div className="modal-dialog  modal-dialog-centered modal-lg modalBookMeet "  id={"pricePlanModal" + type.id}
-          key={index + "pricePlanModal"}>
-          <div className="modal-content">
-            <div className="modal-header border-0 justify-content-end p-1">
-              <button
-                type="button"
-                className="bg-transparent border-0"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              >
-                <i className="bi bi-x-circle text-primary"></i>
-              </button>
+          <div className="modal-dialog  modal-dialog-centered modal-lg modalBookMeet " id={"pricePlanModal" + type.id}
+            key={index + "pricePlanModal"}>
+            <div className="modal-content">
+              <div className="modal-header border-0 justify-content-end p-1">
+                <button
+                  type="button"
+                  className="bg-transparent border-0"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <i className="bi bi-x-circle text-primary"></i>
+                </button>
+              </div>
             </div>
-            </div>
-        </div>
-          
+          </div>
+
         );
       })}
 
       {projectData?.types?.map((type, index) => {
         return (
-         
 
-<div
-className="modal fade"
-id={"floorPlanModal" + type.id}
-key={index + "floorPlanModal"}
-tabIndex={-1}
-aria-labelledby="exampleModalLabel"
-aria-hidden="true"
-ref={contactCloseRef}
->
-<div className="modal-dialog  modal-dialog-centered modal-lg modalBookMeet ">
-  <div className="modal-content">
-    <div className="modal-header border-0 justify-content-end p-1">
-      <button
-        type="button"
-        className="bg-transparent border-0"
-        data-bs-dismiss="modal"
-        aria-label="Close"
-      >
-        <i className="bi bi-x-circle text-primary"></i>
-      </button>
-    </div>
 
-    <div className="modal-body  p-0 rounded-1 m-2">
-      <div className="row g-0">
-        <div className="col-12 col-lg-5 col-md-12 border-end descricalenderCol">
-          <div className="border-bottom">
-            <div className="p-3">
-              <img
-                src="/images/logo_blue.png"
-                alt="Range Property"
-                className="img-fluid"
-                width="150"
-              />
-            </div>
-          </div>
-          <div className="p-3">
-            <div className="assist-text  text-left mt-3 mb-5">
-              <h5>
-                <strong className="need">An esteemed award-winning real estate brokerage based in Dubai, UAE</strong>
-              </h5>
-            </div>
-          </div>
-        </div>
-        <div className="col-12 col-lg-7 col-md-12 ">
-          <div className=" p-4">
-            <form action="" method="POST">
-              <div className="">
-                <div className="row">
-                  <div className="col-md-12">
-                    <h6 className="text-primary">Enter Details</h6>
-                    <div className="form-group">
-                      <label>
-                        Name<small className="text-danger">*</small>
-                      </label>
-                      <input
-                        type="text"
-                        name="nameCon2"
-                        id="nameCon2"
-                        className="form-control mb-2"
-                        placeholder="Enter your name"
-                        autoComplete="off"
-                        value={formData.name}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            name: e.target.value,
-                          })
-                        }
-                        required
-                      />
+          <div
+            className="modal fade"
+            id={"floorPlanModal" + type.id}
+            key={index + "floorPlanModal"}
+            tabIndex={-1}
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+            ref={contactCloseRef}
+          >
+            <div className="modal-dialog  modal-dialog-centered modal-lg modalBookMeet ">
+              <div className="modal-content">
+                <div className="modal-header border-0 justify-content-end p-1">
+                  <button
+                    type="button"
+                    className="bg-transparent border-0"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <i className="bi bi-x-circle text-primary"></i>
+                  </button>
+                </div>
+
+                <div className="modal-body  p-0 rounded-1 m-2">
+                  <div className="row g-0">
+                    <div className="col-12 col-lg-5 col-md-12 border-end descricalenderCol">
+                      <div className="border-bottom">
+                        <div className="p-3">
+                          <img loading="lazy"
+                            src="/images/logo_blue.png"
+                            alt="Range Property"
+                            className="img-fluid"
+                            width="150"
+                          />
+                        </div>
+                      </div>
+                      <div className="p-3">
+                        <div className="assist-text  text-left mt-3 mb-5">
+                          <h5>
+                            <strong className="need">An esteemed award-winning real estate brokerage based in Dubai, UAE</strong>
+                          </h5>
+                        </div>
+                      </div>
                     </div>
-                    <div className="form-group">
-                      <label>
-                        Email<small className="text-danger">*</small>
-                      </label>
-                      <input
-                        type="email"
-                        name="emailCon2"
-                        id="emailCon2"
-                        className="form-control mb-2"
-                        placeholder="Enter your email address"
-                        autoComplete="off"
-                        value={formData.email}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            email: e.target.value,
-                          })
-                        }
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>
-                        Phone Number{" "}
-                        <small className="text-danger">*</small>
-                      </label>
-                      <input
-                        id="fullNumber3"
-                        type="hidden"
-                        name="fullNumber"
-                      />
-                      <input
-                        type="tel"
-                        className="form-control mb-2"
-                        id="telephoneNew3"
-                        name="phone"
-                        placeholder="Enter your Phone Number"
-                        value={formData.phone}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            phone: e.target.value,
-                          })
-                        }
-                        autoComplete="off"
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Message</label>
-                      <input
-                        type="text"
-                        name="messageCon2"
-                        id="messageCon2"
-                        className="form-control mb-2"
-                        placeholder="Message"
-                        autoComplete={"off"}
-                        value={formData.message}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            message: e.target.value,
-                          })
-                        }
-                      />
+                    <div className="col-12 col-lg-7 col-md-12 ">
+                      <div className=" p-4">
+                        <form action="" method="POST">
+                          <div className="">
+                            <div className="row">
+                              <div className="col-md-12">
+                                <h6 className="text-primary">Enter Details</h6>
+                                <div className="form-group">
+                                  <label>
+                                    Name<small className="text-danger">*</small>
+                                  </label>
+                                  <input
+                                    type="text"
+                                    name="nameCon2"
+                                    id="nameCon2"
+                                    className="form-control mb-2"
+                                    placeholder="Enter your name"
+                                    autoComplete="off"
+                                    value={formData.name}
+                                    onChange={(e) =>
+                                      setFormData({
+                                        ...formData,
+                                        name: e.target.value,
+                                      })
+                                    }
+                                    required
+                                  />
+                                </div>
+                                <div className="form-group">
+                                  <label>
+                                    Email<small className="text-danger">*</small>
+                                  </label>
+                                  <input
+                                    type="email"
+                                    name="emailCon2"
+                                    id="emailCon2"
+                                    className="form-control mb-2"
+                                    placeholder="Enter your email address"
+                                    autoComplete="off"
+                                    value={formData.email}
+                                    onChange={(e) =>
+                                      setFormData({
+                                        ...formData,
+                                        email: e.target.value,
+                                      })
+                                    }
+                                    required
+                                  />
+                                </div>
+                                <div className="form-group">
+                                  <label>
+                                    Phone Number{" "}
+                                    <small className="text-danger">*</small>
+                                  </label>
+                                  <input
+                                    id="fullNumber3"
+                                    type="hidden"
+                                    name="fullNumber"
+                                  />
+                                  <input
+                                    type="tel"
+                                    className="form-control mb-2"
+                                    id="telephoneNew3"
+                                    name="phone"
+                                    placeholder="Enter your Phone Number"
+                                    value={formData.phone}
+                                    onChange={(e) =>
+                                      setFormData({
+                                        ...formData,
+                                        phone: e.target.value,
+                                      })
+                                    }
+                                    autoComplete="off"
+                                    required
+                                  />
+                                </div>
+                                <div className="form-group">
+                                  <label>Message</label>
+                                  <input
+                                    type="text"
+                                    name="messageCon2"
+                                    id="messageCon2"
+                                    className="form-control mb-2"
+                                    placeholder="Message"
+                                    autoComplete={"off"}
+                                    value={formData.message}
+                                    onChange={(e) =>
+                                      setFormData({
+                                        ...formData,
+                                        message: e.target.value,
+                                      })
+                                    }
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div className="modal-footer border-0">
+                              <button
+                                type="submit"
+                                name="submit"
+                                className="btn btn-blue rounded-0 px-5 float-end btnContact2"
+                                onClick={handleSubmit}
+                              >
+                                Submit
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="modal-footer border-0">
-                  <button
-                    type="submit"
-                    name="submit"
-                    className="btn btn-blue rounded-0 px-5 float-end btnContact2"
-                    onClick={handleSubmit}
-                  >
-                    Submit
-                  </button>
-                </div>
               </div>
-            </form>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
         );
       })}
 

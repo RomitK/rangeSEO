@@ -70,24 +70,24 @@ function MortgageModel(props) {
                 <div className="col-12 col-lg-12 col-md-12 ">
                   <div className="">
                     <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
-                    <input type="hidden" value="viewClosingCostForm" {...register("formName", { required: false })}/>
-                    <input type="hidden" value={currentPageURL} {...register("page", { required: false })}/>
+                      <input type="hidden" value="viewClosingCostForm" {...register("formName", { required: false })} />
+                      <input type="hidden" value={currentPageURL} {...register("page", { required: false })} />
                       <div className="">
                         <div className="row">
                           <div className="col-md-12">
                             <div className=" text-center">
-                              <img
+                              <img loading="lazy"
                                 src="/images/logo_blue.png"
                                 alt="Range Property"
                                 className="img-fluid"
                                 width="150"
                               />
                               <h6 className="text-primary py-2">
-                              Enter Details
-                            </h6>
+                                Enter Details
+                              </h6>
                             </div>
                             <div className="form-group  mb-2">
-                              
+
                               <input
                                 type="text"
                                 name="nameCon2"
@@ -96,12 +96,12 @@ function MortgageModel(props) {
                                 placeholder="Enter your name"
                                 autoComplete="off"
                                 {...register("name", { required: true })}
-                                
+
                               />
                               {errors.name && <small className="text-danger">Name is required.</small>}
                             </div>
                             <div className="form-group  mb-2">
-                              
+
                               <input
                                 type="email"
                                 name="emailCon2"
@@ -110,7 +110,7 @@ function MortgageModel(props) {
                                 placeholder="Enter your email address"
                                 autoComplete="off"
                                 {...register("email", { required: true })}
-                                
+
                               />
                               {errors.email && <small className="text-danger">Email is required.</small>}
                             </div>
@@ -134,7 +134,7 @@ function MortgageModel(props) {
                               />
                               {errors.phone && <small className="text-danger">Phone is required.</small>}
                             </div>
-                            
+
                             <div className="form-group  mb-2">
                               <textarea
                                 name="messageCon2"

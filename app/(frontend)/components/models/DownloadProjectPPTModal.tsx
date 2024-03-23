@@ -316,7 +316,7 @@ function DownloadProjectPPTModal(props) {
               <div className="row g-0">
                 <div className="col-12 col-lg-12 col-md-12 ">
                   <div className=" text-center">
-                    <img
+                    <img loading="lazy"
                       src="/images/logo_blue.png"
                       alt="Range Property"
                       className="img-fluid"
