@@ -28,4 +28,17 @@ module.exports = {
     ];
   },
 };
+
+module.exports = {
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.node = {
+        fs: 'empty' // Fix for purgecss
+      }
+    }
+
+    return config
+  }
+}
+
 module.exports = nextConfig;
