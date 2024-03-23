@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useRef, useState, useCallback } from "react";
+import Image from 'next/image'
 function Navbar() {
   const homePage = usePathname() === "/" ? true : false;
   const [isMobile, setIsMobile] = useState(false);
@@ -54,7 +55,7 @@ function Navbar() {
             <div className="container py-3">
               <div className="my-auto">
                 <Link href={{ pathname: "/" }} className="navbar-brand">
-                  <img loading="lazy"
+                  <Image loading="lazy"
                     src="/images/logo_blue.png"
                     alt="Range Internation Property Investments"
                     className="img-fluid navMobLogo"
@@ -223,7 +224,7 @@ function Navbar() {
                     </li>
                   </ul>
                   <div className=" my-auto me-0 me-lg-3 me-md-3 ms-3 ms-lg-0 ms-md-0">
-                    <img loading="lazy"
+                    <Image loading="lazy"
                       src="/images/icons/menu.png"
                       alt="Range Internation Property Investments"
                       className="img-fluid navMobMen cursor-pointer"
@@ -240,7 +241,7 @@ function Navbar() {
                       <div className="offcanvas-header">
                         <div className="">
                           <Link href={{ pathname: "/" }} className="navbar-brand">
-                            <img loading="lazy"
+                            <Image loading="lazy"
                               src="/images/logo_blue.png"
                               alt="Range Internation Property Investments"
                               className="img-fluid navMobLogo"
@@ -370,7 +371,7 @@ function Navbar() {
                   <div className="my-auto">
                     <div className="d-flex justify-content-end">
                       <div className="my-auto me-1">
-                        <img loading="lazy"
+                        <Image loading="lazy"
                           src="/images/icons/phone.png"
                           alt="Range Internation Property Investments"
                           className="img-fluid"
@@ -396,7 +397,7 @@ function Navbar() {
         <nav className="navbar bg-white">
           <div className="container justify-content-start">
             <div className="col-4">
-              <img loading="lazy"
+              <Image loading="lazy"
                 src="/images/icons/menu.png"
                 alt="Range Internation Property Investments"
                 className="img-fluid navMobMen cursor-pointer"
@@ -413,7 +414,7 @@ function Navbar() {
                 <div className="offcanvas-header">
                   <div className="">
                     <Link href={{ pathname: "/" }} className="navbar-brand">
-                      <img loading="lazy"
+                      <Image loading="lazy"
                         src="/images/logo_blue.png"
                         alt="Range Internation Property Investments"
                         className="img-fluid navMobLogo"
@@ -542,7 +543,7 @@ function Navbar() {
             </div>
             <div className="col-4">
               <Link href={{ pathname: "/" }} className="navbar-brand">
-                <img loading="lazy"
+                <Image loading="lazy"
                   src="/images/logo_blue.png"
                   alt="Range Internation Property Investments"
                   className="img-fluid navMobLogo"
