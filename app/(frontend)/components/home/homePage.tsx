@@ -54,7 +54,7 @@ const HomePage = () => {
   return (
     <>
       <SWRProvider>
-
+        <HomeSearch></HomeSearch>
         <LookingFor></LookingFor>
         <WhyRange></WhyRange>
         <AboutDubai brochure={homeData?.brochure}></AboutDubai>
