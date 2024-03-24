@@ -1,4 +1,5 @@
-import CalenderModel from "../models/calenderModel";
+import CalenderModel from "@/app/(frontend)/components/models/calenderModel";
+import Image from 'next/image'
 function WhyRange() {
     return (
         <>
@@ -28,8 +29,8 @@ function WhyRange() {
                                         <div className="col-12 col-lg-6 col-md-6 my-auto">
                                             <div className="d-flex justify-content-start py-3 py-lg-5 py-md-3">
                                                 <div className="my-auto me-3">
-                                                    <center><img loading="lazy" src="/images/icons/why1.png"
-                                                        className="img-fluid" alt="range" width="60" /></center>
+                                                    <center><Image loading="lazy" src="/images/icons/why1.webp"
+                                                        className="img-fluid" alt="range" width={60} height={60} /></center>
                                                 </div>
                                                 <div className="my-auto">
                                                     <div className="mainHead text-primary text-uppercase">
@@ -42,8 +43,8 @@ function WhyRange() {
                                         <div className="col-12 col-lg-6 col-md-6 my-auto">
                                             <div className="d-flex justify-content-start  py-3 py-lg-5 py-md-3">
                                                 <div className="my-auto me-3">
-                                                    <center><img loading="lazy" src="/images/icons/why2.png"
-                                                        className="img-fluid" alt="range" width="60" /></center>
+                                                    <center><Image loading="lazy" src="/images/icons/why2.webp"
+                                                        className="img-fluid" alt="range" width={60} height={60} /></center>
                                                 </div>
                                                 <div className="my-auto">
                                                     <div className="mainHead text-primary text-uppercase">
@@ -56,8 +57,8 @@ function WhyRange() {
                                         <div className="col-12 col-lg-6 col-md-6 my-auto">
                                             <div className="d-flex justify-content-start  py-3 py-lg-5 py-md-3">
                                                 <div className="my-auto me-3">
-                                                    <center><img loading="lazy" src="/images/icons/why3.png"
-                                                        className="img-fluid" alt="range" width="60" /></center>
+                                                    <center><Image loading="lazy" src="/images/icons/why3.webp"
+                                                        className="img-fluid" alt="range" width={60} height={60} /></center>
                                                 </div>
                                                 <div className="my-auto">
                                                     <div className="mainHead text-primary text-uppercase">
@@ -70,8 +71,8 @@ function WhyRange() {
                                         <div className="col-12 col-lg-6 col-md-6 my-auto">
                                             <div className="d-flex justify-content-start  py-3 py-lg-5 py-md-3">
                                                 <div className="my-auto me-3">
-                                                    <center><img loading="lazy" src="/images/icons/why4.png"
-                                                        className="img-fluid" alt="range" width="60" /></center>
+                                                    <center><Image loading="lazy" src="/images/icons/why4.webp"
+                                                        className="img-fluid" alt="range" width={60} height={60} /></center>
                                                 </div>
                                                 <div className="my-auto">
                                                     <div className="mainHead text-primary text-uppercase">

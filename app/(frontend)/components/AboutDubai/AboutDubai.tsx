@@ -1,8 +1,7 @@
 import ContactModel from "../models/contactModel";
 import SimpleModal from "../models/simpleModal";
+import Image from 'next/image'
 function AboutDubai(props) {
-  const contactSideText = "An esteemed award-winning real estate brokerage based in Dubai, UAE.";
-  const pageUrl = "Home"
   return (
     <>
       <section className="bg-light my-5  p-relative aboutSectionArea">
@@ -51,11 +50,11 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img loading="lazy"
+                                          <Image loading="lazy"
                                             src="/images/icons/benefit1.png"
                                             alt="range"
-
-                                            width="25px"
+                                            height={25}
+                                            width={25}
                                           />
                                         </div>
                                         <div className="my-auto">
@@ -68,11 +67,11 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img loading="lazy"
-                                            src="images/icons/benefit2.png"
+                                          <Image loading="lazy"
+                                            src="/images/icons/benefit2.png"
                                             alt="range"
-
-                                            width="25px"
+                                            height={25}
+                                            width={25}
                                           />
                                         </div>
                                         <div className="my-auto">
@@ -87,11 +86,11 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img loading="lazy"
-                                            src="images/icons/benefit3.png"
+                                          <Image loading="lazy"
+                                            src="/images/icons/benefit3.png"
                                             alt="range"
-
-                                            width="25px"
+                                            height={25}
+                                            width={25}
                                           />
                                         </div>
                                         <div className="my-auto">
@@ -104,11 +103,11 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img loading="lazy"
-                                            src="images/icons/benefit3.png"
+                                          <Image loading="lazy"
+                                            src="/images/icons/benefit3.png"
                                             alt="range"
-
-                                            width="25px"
+                                            height={25}
+                                            width={25}
                                           />
                                         </div>
                                         <div className="my-auto">
@@ -124,10 +123,10 @@ function AboutDubai(props) {
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
                                           <img loading="lazy"
-                                            src="images/icons/benefit5.png"
+                                            src="/images/icons/benefit5.png"
                                             alt="range"
-
-                                            width="25px"
+                                            height={25}
+                                            width={25}
                                           />
                                         </div>
                                         <div className="my-auto">
@@ -140,11 +139,11 @@ function AboutDubai(props) {
                                     <td>
                                       <div className="d-flex">
                                         <div className="my-auto me-2">
-                                          <img loading="lazy"
+                                          <Image loading="lazy"
                                             src="/images/icons/benefit6.png"
                                             alt="range"
-
-                                            width="25px"
+                                            height={25}
+                                            width={25}
                                           />
                                         </div>
                                         <div className="my-auto">
