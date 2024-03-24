@@ -54,9 +54,6 @@ const HomePage = () => {
   return (
     <>
       <SWRProvider>
-        <HomeSearch></HomeSearch>
-        <LookingFor></LookingFor>
-        <WhyRange></WhyRange>
         <AboutDubai brochure={homeData?.brochure}></AboutDubai>
         <ProjectList></ProjectList>
         <div>
@@ -167,7 +164,6 @@ const HomePage = () => {
             </div>
           </section>
         </div>
-
         <div>
           <section className="my-5">
             <div className="container-fluid px-0">

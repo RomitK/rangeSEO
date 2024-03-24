@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useRef, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import $ from "jquery";

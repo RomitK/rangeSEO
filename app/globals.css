@@ -66,6 +66,7 @@ input:focus, input.form-control:focus {
 }
 body {
   font-family: "Montserrat", sans-serif;
+  font-display: swap;
 }
 h1,
 h2,
@@ -75,12 +76,15 @@ h5,
 h6 {
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
+  font-display: swap;
+  
 }
 p,
 small,
 a {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
+  font-display: swap;
 }
 /* common  */
 .form-control {
