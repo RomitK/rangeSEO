@@ -55,11 +55,12 @@ function Navbar() {
             <div className="container py-3">
               <div className="my-auto">
                 <Link href={{ pathname: "/" }} className="navbar-brand">
-                  <img loading="lazy"
+                  <Image loading="lazy"
                     src="/images/logo_blue.png"
                     alt="Range Internation Property Investments"
                     className="img-fluid navMobLogo"
-                    width="175"
+                    width={175}
+                    height={175}
                   />
                 </Link>
               </div>
@@ -224,13 +225,14 @@ function Navbar() {
                     </li>
                   </ul>
                   <div className=" my-auto me-0 me-lg-3 me-md-3 ms-3 ms-lg-0 ms-md-0">
-                    <img loading="lazy"
+                    <Image loading="lazy"
                       src="/images/icons/menu.png"
                       alt="Range Internation Property Investments"
                       className="img-fluid navMobMen cursor-pointer"
                       data-bs-toggle="offcanvas"
                       data-bs-target="#offcanvasRight"
-                      width="35"
+                      width={35}
+                      height={35}
                     />
                     <div
                       className="offcanvas offcanvas-end"
@@ -241,11 +243,12 @@ function Navbar() {
                       <div className="offcanvas-header">
                         <div className="">
                           <Link href={{ pathname: "/" }} className="navbar-brand">
-                            <img loading="lazy"
+                            <Image loading="lazy"
                               src="/images/logo_blue.png"
                               alt="Range Internation Property Investments"
                               className="img-fluid navMobLogo"
-                              width="175"
+                              width={175}
+                              height={175}
                             />
                           </Link>
                         </div>
@@ -371,11 +374,12 @@ function Navbar() {
                   <div className="my-auto">
                     <div className="d-flex justify-content-end">
                       <div className="my-auto me-1">
-                        <img loading="lazy"
+                        <Image loading="lazy"
                           src="/images/icons/phone.png"
                           alt="Range Internation Property Investments"
                           className="img-fluid"
-                          width="15"
+                          width={15}
+                          height={15}
                         />
                       </div>
                       <div className="my-auto text-uppercase text-end  navMob14 fs-14 text-primary">
@@ -397,13 +401,14 @@ function Navbar() {
         <nav className="navbar bg-white">
           <div className="container justify-content-start">
             <div className="col-4">
-              <img loading="lazy"
+              <Image loading="lazy"
                 src="/images/icons/menu.png"
                 alt="Range Internation Property Investments"
                 className="img-fluid navMobMen cursor-pointer"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasRight2"
-                width="25"
+                width={25}
+                height={25}
               />
               <div
                 className="offcanvas offcanvas-start"
@@ -414,11 +419,12 @@ function Navbar() {
                 <div className="offcanvas-header">
                   <div className="">
                     <Link href={{ pathname: "/" }} className="navbar-brand">
-                      <img loading="lazy"
+                      <Image loading="lazy"
                         src="/images/logo_blue.png"
                         alt="Range Internation Property Investments"
                         className="img-fluid navMobLogo"
-                        width="175"
+                        width={175}
+                        height={175}
                       />
                     </Link>
                   </div>
@@ -543,11 +549,12 @@ function Navbar() {
             </div>
             <div className="col-4">
               <Link href={{ pathname: "/" }} className="navbar-brand">
-                <img loading="lazy"
+                <Image loading="lazy"
                   src="/images/logo_blue.png"
                   alt="Range Internation Property Investments"
                   className="img-fluid navMobLogo"
-                  width="175"
+                  width={175}
+                  height={175}
                 />
               </Link>
             </div>
