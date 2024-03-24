@@ -50,8 +50,8 @@ export default function RootLayout({
               gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
           `}
         </Script>
-        <link rel="preload" href="videos/ramadan-desktop.webp" as="image" />
-        <link rel="preload" href="videos/ramzan-mobile.webp" as="image" />
+        <link rel="preload" href="/videos/ramadan-desktop.webp" as="image" />
+        <link rel="preload" href="/videos/ramzan-mobile.webp" as="image" />
 
       </head>
       <body className={inter.className} suppressHydrationWarning={true}>
