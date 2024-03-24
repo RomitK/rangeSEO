@@ -8,7 +8,7 @@ function Layout(props) {
     <>
       <Header />
       <Navbar />
-      <section>{props.children}</section>
+      {/* <section>{props.children}</section> */}
       <Footer />
     </>
   );
