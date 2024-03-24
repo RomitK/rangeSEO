@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 import Layout from "./(frontend)/components/UI/Layout";
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], display: 'swap' });
 import Head from "next/head";
 import Script from 'next/script'
 import { SpeedInsights } from '@vercel/speed-insights/react';
