@@ -111,11 +111,12 @@ function Footer() {
                 <div className="col-12 col-lg-4 col-md-4">
                   <div className="mb-3">
                     <Link href={{ pathname: "/" }}>
-                      <img loading="lazy"
+                      <Image loading="lazy"
                         src="/images/logo_blue.png"
                         alt="Range Internation Property Investments"
                         className="img-fluid"
-                        width="175"
+                        width={175}
+                        height={175}
                       />
                     </Link>
                   </div>
@@ -341,7 +342,7 @@ function Footer() {
                     >
                       <span className="">
                         {/* <i className="fa fa-twitter"></i>
-                        <img loading="lazy"  src="/images/icons/twitter-icon.png" className="twitterIcon"/> */}
+                        <Image loading="lazy"  src="/images/icons/twitter-icon.png" className="twitterIcon"/> */}
                         <svg
                           viewBox="0 0 24 24"
                           aria-hidden="true"
@@ -443,7 +444,7 @@ function Footer() {
           <div className="floatingBtn">
             <div className="iconMain shake">
               <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
-                <img loading="lazy" className="" src="/images/icons/whatsapp.png" alt="chatIcon" width="60" />
+                <Image loading="lazy" className="" src="/images/icons/whatsapp.png" alt="chatIcon" width={60} height={60} />
               </a>
             </div>
           </div>
@@ -454,7 +455,7 @@ function Footer() {
           <div className="floatingBtnListing">
             <div className="iconMain shake">
               <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
-                <img loading="lazy" className="" src="/images/icons/whatsapp.png" alt="chatIcon1" width="60" />
+                <Image loading="lazy" className="" src="/images/icons/whatsapp.png" alt="chatIcon1" width={60} height={60} />
               </a>
             </div>
           </div>
@@ -466,7 +467,7 @@ function Footer() {
           <div className="floatingBtn">
             <div className="iconMain shake">
               <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
-                <img loading="lazy" className="" src="/images/icons/whatsapp.png" alt="chatIcon2" width="60" />
+                <Image loading="lazy" className="" src="/images/icons/whatsapp.png" alt="chatIcon2" width={60} height={60} />
               </a>
             </div>
           </div>
