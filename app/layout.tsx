@@ -8,6 +8,8 @@ import Layout from "./(frontend)/components/UI/Layout";
 const inter = Inter({ subsets: ["latin"] });
 import Head from "next/head";
 import Script from 'next/script'
+import { SpeedInsights } from '@vercel/speed-insights/react';
+
 export const metadata: Metadata = {
   title: "Range International Property Investments",
   description: "Range International Property Investments",
@@ -71,6 +73,7 @@ export default function RootLayout({
             pauseOnHover
             theme="light"
           />
+          <SpeedInsights />
         </Layout>
       </body>
     </html>
