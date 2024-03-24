@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Head from "next/head";
+import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 const HomePage = dynamic(() => import('@/app/(frontend)/components/home/homePage'));
 const HomeSearch = dynamic(() => import('@/app/(frontend)/components/HomeSearch/HomeSearch'));
 const LookingFor = dynamic(() => import('@/app/(frontend)/components/LookingFor/LookingFor'));
 const WhyRange = dynamic(() => import('@/app/(frontend)/components/WhyRange/WhyRange'));
+import Loader from "@/app/(frontend)/components/UI/Loader";
 
 type Props = {
   params: { slug: string };
@@ -35,7 +37,9 @@ export default function Home() {
       <HomeSearch />
       <LookingFor />
       <WhyRange />
-      {/* <HomePage /> */}
+      <Suspense fallback={<Loader />}>
+        <HomePage />
+      </Suspense>
     </>
   );
 }
