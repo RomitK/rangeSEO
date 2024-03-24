@@ -83,7 +83,7 @@ function HomeSearch() {
             muted playsInline autoPlay loop
             preload="metadata"
             // poster="videos/homeSearchBannerImageWithText.jpg"
-            poster="/videos/ramadan-desktop.jpg"
+            poster="/videos/ramadan-desktop.webp"
           >
             {/* <source src="/videos/dk-version-3.mp4" type="video/mp4" />
             <source src="/videos/dk-version-3.mp4" type="video/mov" /> */}
@@ -96,7 +96,7 @@ function HomeSearch() {
             muted playsInline autoPlay loop
             preload="metadata"
             // poster="videos/homeSearchBannerImage.jpg"
-            poster="/videos/ramzan-mobile.jpg"
+            poster="/videos/ramzan-mobile.webp"
           >
             {/* <source src="/videos/dk-mobile.mp4" type="video/mp4" />
             <source src="/videos/dk-mobile.mp4" type="video/mov" /> */}
