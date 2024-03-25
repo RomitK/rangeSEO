@@ -4,11 +4,11 @@ import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
-import Layout from "./(frontend)/components/UI/Layout";
-const inter = Inter({ subsets: ["latin"], display: 'swap' });
 import Head from "next/head";
 import Script from 'next/script'
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import Layout from "./(frontend)/components/UI/Layout";
+const inter = Inter({ subsets: ["latin"], display: 'swap' });
 
 export const metadata: Metadata = {
   title: "Range International Property Investments",
@@ -73,7 +73,6 @@ export default function RootLayout({
             pauseOnHover
             theme="light"
           />
-          <SpeedInsights />
         </Layout>
       </body>
     </html>
