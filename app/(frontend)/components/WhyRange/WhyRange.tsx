@@ -1,4 +1,6 @@
-import CalenderModel from "@/app/(frontend)/components/models/calenderModel";
+import dynamic from 'next/dynamic';
+const CalenderModel = dynamic(() => import('@/app/(frontend)/components/models/calenderModel'));
+
 import Image from 'next/image'
 function WhyRange() {
     return (

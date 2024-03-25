@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, useId } from "react";
 import React from "react";
 import Select from "react-select";
 import Link from "next/link";
+import dynamic from 'next/dynamic';
 import { useRouter } from "next/navigation";
 import {
   GoogleMap,
@@ -13,9 +14,10 @@ import {
 } from "@react-google-maps/api";
 import { useGetAllHomeData } from "@/src/services/HomeService";
 import Modal from "./Model";
-import MapProject from "./MapProject";
-import Project from "./Project";
 import { priceShortFormat } from "@/app/utils/formatNumber"
+
+const Project = dynamic(() => import('@/app/(frontend)/components/HomeProject/Project'));
+
 function ProjectList() {
   const router = useRouter();
   const { homeData } = useGetAllHomeData();
