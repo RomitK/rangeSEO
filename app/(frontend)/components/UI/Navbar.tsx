@@ -60,7 +60,7 @@ function Navbar() {
                     alt="Range Internation Property Investments"
                     className="img-fluid navMobLogo"
                     width={175}
-                    height={175}
+                    height={30}
                   />
                 </Link>
               </div>
@@ -232,7 +232,6 @@ function Navbar() {
                       data-bs-toggle="offcanvas"
                       data-bs-target="#offcanvasRight"
                       width={35}
-                      height={35}
                     />
                     <div
                       className="offcanvas offcanvas-end"
@@ -248,7 +247,7 @@ function Navbar() {
                               alt="Range Internation Property Investments"
                               className="img-fluid navMobLogo"
                               width={175}
-                              height={175}
+                              height={30}
                             />
                           </Link>
                         </div>
@@ -408,7 +407,7 @@ function Navbar() {
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasRight2"
                 width={25}
-                height={25}
+                height={10}
               />
               <div
                 className="offcanvas offcanvas-start"
@@ -424,7 +423,7 @@ function Navbar() {
                         alt="Range Internation Property Investments"
                         className="img-fluid navMobLogo"
                         width={175}
-                        height={175}
+                        height={30}
                       />
                     </Link>
                   </div>
@@ -554,7 +553,7 @@ function Navbar() {
                   alt="Range Internation Property Investments"
                   className="img-fluid navMobLogo"
                   width={175}
-                  height={175}
+                  height={30}
                 />
               </Link>
             </div>
