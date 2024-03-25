@@ -453,37 +453,76 @@ function ProjectList() {
                     </div>
                   </div>
                 </div>
-                {homeData?.projects?.map((project, index) => {
-                  return (
-                    <div
-                      className="col-12 col-lg-3 col-md-3"
-                      key={project.id + index}
-                    >
-                      <div className="projectImgCont">
-                        <Link
-                          href={`/projects/${project.slug}`}
-                          className="fw-bold mb-1 text-decoration-none text-white"
+                {homeData?.projects ? (
+                  <>
+                    {homeData?.projects?.map((project, index) => {
+                      return (
+                        <div
+                          className="col-12 col-lg-3 col-md-3"
+                          key={project.id + index}
                         >
-                          <img loading="lazy"
-                            src={project.mainImage}
-                            alt={project.title}
-                            className="img-fluid"
-                          />
-                          <div className="projectImgOverlay">
-                            <div>
-                              <span className="badge projectType">
-                                {project.accommodation}
-                              </span>
-                            </div>
-                            <div className="text-white">
-                              <p className="fw-bold mb-1">{project.title}</p>
-                            </div>
+                          <div className="projectImgCont">
+                            <Link
+                              href={`/projects/${project.slug}`}
+                              className="fw-bold mb-1 text-decoration-none text-white"
+                            >
+                              <img loading="lazy"
+                                src={project.mainImage}
+                                alt={project.title}
+                                className="img-fluid"
+                              />
+                              <div className="projectImgOverlay">
+                                <div>
+                                  <span className="badge projectType">
+                                    {project.accommodation}
+                                  </span>
+                                </div>
+                                <div className="text-white">
+                                  <p className="fw-bold mb-1">{project.title}</p>
+                                </div>
+                              </div>
+                            </Link>
                           </div>
-                        </Link>
-                      </div>
-                    </div>
-                  );
-                })}
+                        </div>
+                      );
+                    })}
+                  </>
+
+                ) : (
+                  <>
+                    {[...Array(8)].map((_, index) => {
+                      return (
+                        <div
+                          className="col-12 col-lg-3 col-md-3"
+                          key={"project" + index}
+                        >
+                          <div className="projectImgCont">
+                            <Link
+                              href={`/projects/${index}`}
+                              className="fw-bold mb-1 text-decoration-none text-white"
+                            >
+                              <img loading="lazy"
+                                src="/images/projects/test.webp"
+                                alt={"testproject" + index}
+                                className="img-fluid"
+                              />
+                              <div className="projectImgOverlay">
+                                <div>
+                                  <span className="badge projectType">
+                                    Apartment
+                                  </span>
+                                </div>
+                                <div className="text-white">
+                                  <p className="fw-bold mb-1">Test Project</p>
+                                </div>
+                              </div>
+                            </Link>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </>
+                )}
               </div>
             </div>
           </div>

@@ -37,7 +37,6 @@ export default function Home() {
       <HomeSearch />
       <LookingFor />
       <WhyRange />
-
       <HomePage />
 
     </>
