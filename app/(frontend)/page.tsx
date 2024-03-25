@@ -37,9 +37,9 @@ export default function Home() {
       <HomeSearch />
       <LookingFor />
       <WhyRange />
-      <Suspense fallback={<Loader />}>
-        <HomePage />
-      </Suspense>
+
+      <HomePage />
+
     </>
   );
 }

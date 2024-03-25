@@ -10,9 +10,9 @@ function Layout(props) {
     <>
       <Header />
       <Navbar />
-      <Suspense fallback={<Loader />}>
-        <section>{props.children}</section>
-      </Suspense>
+
+      <section>{props.children}</section>
+
       <Footer />
     </>
   );
