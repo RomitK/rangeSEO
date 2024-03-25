@@ -13,8 +13,20 @@ function Layout(props) {
 
       <section>{props.children}</section>
 
-      {/* <Footer /> */}
+      <Suspense fallback={<FooterPlaceholder />}>
+        <Footer />
+      </Suspense>
     </>
+  );
+}
+
+// Placeholder component for the footer
+function FooterPlaceholder() {
+  return (
+    <footer style={{ minHeight: "100px" }}>
+      {/* You can customize the placeholder styling */}
+      <div>Loading...</div>
+    </footer>
   );
 }
 
