@@ -71,96 +71,150 @@ const HomePage = () => {
                       </div>
                     </div>
                     <div className="col-12 col-lg-12 col-md-12">
-                      <Suspense fallback={<Loader />}>
-                        {homeData?.communities && (
-                          <Swiper
-                            slidesPerView={1}
-                            spaceBetween={10}
-                            loop={true}
-                            pagination={{
-                              el: ".swiper-pagination",
-                              clickable: true,
-                            }}
-                            navigation={{
-                              nextEl: ".swiper-button-next",
-                              prevEl: ".swiper-button-prev",
-                            }}
-                            breakpoints={{
-                              640: {
-                                slidesPerView: 2,
-                                spaceBetween: 10,
-                              },
-                              768: {
-                                slidesPerView: 3,
-                                spaceBetween: 10,
-                              },
-                              1024: {
-                                slidesPerView: 4,
-                                spaceBetween: 10,
-                              },
-                            }}
-                            autoplay={{
-                              delay: 3000,
-                            }}
-                            modules={[Navigation, Pagination, Autoplay]}
-                            onSwiper={(swiper) => {
-                              PropertySwiperRef.current = swiper;
-                            }}
-                            className="swiper pb-5 projectSlider"
+                      {homeData?.communities ? (
+                        <Swiper
+                          slidesPerView={1}
+                          spaceBetween={10}
+                          loop={true}
+                          pagination={{
+                            el: ".swiper-pagination",
+                            clickable: true,
+                          }}
+                          navigation={{
+                            nextEl: ".swiper-button-next",
+                            prevEl: ".swiper-button-prev",
+                          }}
+                          breakpoints={{
+                            640: {
+                              slidesPerView: 2,
+                              spaceBetween: 10,
+                            },
+                            768: {
+                              slidesPerView: 3,
+                              spaceBetween: 10,
+                            },
+                            1024: {
+                              slidesPerView: 4,
+                              spaceBetween: 10,
+                            },
+                          }}
+                          autoplay={{
+                            delay: 3000,
+                          }}
+                          modules={[Navigation, Pagination, Autoplay]}
+                          onSwiper={(swiper) => {
+                            PropertySwiperRef.current = swiper;
+                          }}
+                          className="swiper pb-5 projectSlider"
+                        >
+                          {homeData.communities.map((community, index) => (
+                            <SwiperSlide key={community.id + index}>
+                              <div className="swiper-slide">
+                                <div className="communityImgCont">
+                                  <Link
+                                    href={`communities/${community.slug}`}
+                                    className="text-decoration-none"
+                                  >
+                                    <img
+                                      loading="lazy"
+                                      src={community.mainImage}
+                                      alt={community.name}
+                                      className="img-fluid"
+                                    />
+                                    <div className="communityImgOverlay">
+                                      <div className="text-white">
+                                        <p className="fw-bold mb-1">{community.name}</p>
+                                      </div>
+                                    </div>
+                                  </Link>
+                                </div>
+                              </div>
+                            </SwiperSlide>
+                          ))}
+                          <div
+                            className="swiper-button-prev swiperUniquePrev text-white"
+                            onClick={() => PropertySwiperRef.current?.slidePrev()}
                           >
-                            {homeData?.communities?.map((community, index) => {
-                              return (
-                                <SwiperSlide key={community.id + index}>
-                                  <div className="swiper-slide">
-                                    <div className="communityImgCont">
-                                      <Link
-                                        href={`communities/${community.slug}`}
-                                        className=" text-decoration-none "
-                                      >
-                                        <img loading="lazy"
-                                          src={community.mainImage}
-                                          alt={community.name}
-                                          className="img-fluid"
-                                        />
-                                        <div className="communityImgOverlay">
-                                          <div className="text-white">
-                                            <p className="fw-bold mb-1">
-                                              {community.name}
-                                            </p>
-                                          </div>
-                                        </div>
-                                      </Link>
+                            <span className=""><i className="bi bi-chevron-left fs-1"></i></span>
+                          </div>
+                          <div
+                            className="swiper-button-next swiperUniqueNext text-white"
+                            onClick={() => PropertySwiperRef.current?.slideNext()}
+                          >
+                            <span className=""><i className="bi bi-chevron-right fs-1"></i></span>
+                          </div>
+                        </Swiper>
+                      ) : (
+                        // Render a separate Swiper for dummy images
+                        <Swiper
+                          slidesPerView={1}
+                          spaceBetween={10}
+                          loop={true}
+                          pagination={{
+                            el: ".swiper-pagination",
+                            clickable: true,
+                          }}
+                          navigation={{
+                            nextEl: ".swiper-button-next",
+                            prevEl: ".swiper-button-prev",
+                          }}
+                          breakpoints={{
+                            640: {
+                              slidesPerView: 2,
+                              spaceBetween: 10,
+                            },
+                            768: {
+                              slidesPerView: 3,
+                              spaceBetween: 10,
+                            },
+                            1024: {
+                              slidesPerView: 4,
+                              spaceBetween: 10,
+                            },
+                          }}
+                          autoplay={{
+                            delay: 3000,
+                          }}
+                          modules={[Navigation, Pagination, Autoplay]}
+                          onSwiper={(swiper) => {
+                            PropertySwiperRef.current = swiper;
+                          }}
+                          className="swiper pb-5 projectSlider"
+                        >
+                          {[...Array(4)].map((_, index) => (
+                            <SwiperSlide key={index}>
+                              <div className="swiper-slide">
+                                <div className="communityImgCont">
+                                  <img
+                                    src="/images/community/test.webp"
+                                    alt="Dummy Image"
+                                    className="img-fluid"
+                                  />
+                                  <div className="communityImgOverlay">
+                                    <div className="text-white">
+                                      <p className="fw-bold mb-1">Dummy Community Name</p>
                                     </div>
                                   </div>
-                                </SwiperSlide>
-                              );
-                            })}
-
-                            <div
-                              className="swiper-button-prev swiperUniquePrev text-white"
-                              onClick={() =>
-                                PropertySwiperRef.current?.slidePrev()
-                              }
-                            >
-                              <span className="">
-                                <i className="bi bi-chevron-left fs-1"></i>
-                              </span>
-                            </div>
-                            <div
-                              className="swiper-button-next swiperUniqueNext text-white"
-                              onClick={() =>
-                                PropertySwiperRef.current?.slideNext()
-                              }
-                            >
-                              <span className="">
-                                <i className="bi bi-chevron-right fs-1"></i>
-                              </span>
-                            </div>
-                            {/* <div className="swiper-pagination"></div> */}
-                          </Swiper>
-                        )}
-                      </Suspense>
+                                </div>
+                              </div>
+                            </SwiperSlide>
+                          ))}
+                          <div
+                            className="swiper-button-prev swiperUniquePrev text-white"
+                            onClick={() => PropertySwiperRef.current?.slidePrev()}
+                          >
+                            <span className=""><i className="bi bi-chevron-left fs-1"></i></span>
+                          </div>
+                          <div
+                            className="swiper-button-next swiperUniqueNext text-white"
+                            onClick={() => PropertySwiperRef.current?.slideNext()}
+                          >
+                            <span className=""><i className="bi bi-chevron-right fs-1"></i></span>
+                          </div>
+                        </Swiper>
+                      )}
                     </div>
+
                   </div>
                 </div>
               </div>
