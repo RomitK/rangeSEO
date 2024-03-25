@@ -232,6 +232,7 @@ function Navbar() {
                       data-bs-toggle="offcanvas"
                       data-bs-target="#offcanvasRight"
                       width={35}
+                      height={20}
                     />
                     <div
                       className="offcanvas offcanvas-end"
