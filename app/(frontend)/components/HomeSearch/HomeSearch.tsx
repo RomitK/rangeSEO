@@ -1,8 +1,11 @@
 "use client";
 import React from "react";
 import { useState, useEffect } from "react";
+import dynamic from 'next/dynamic';
 import Link from "next/link";
-import LazyVideo from "../UI/LazyVideo";
+const LazyVideo = dynamic(() => import('@/app/(frontend)/components/UI/LazyVideo'));
+import Image from 'next/image'
+
 function HomeSearch() {
   const [suggestion, setSuggestion] = useState([]);
   const [showSuggestion, setShowSuggestion] = useState(false);
@@ -78,11 +81,10 @@ function HomeSearch() {
         id="home"
       >
         <div className="p-relative videoContainer ">
-
           <LazyVideo
             src="/videos/dk-version-3.mp4"
             poster="/videos/ramadan-desktop.webp"
-            id=" "
+            id=""
             className="d-block w-100 videoMain propertyDesktopItemLink"
           />
           <LazyVideo
