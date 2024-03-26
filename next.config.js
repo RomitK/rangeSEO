@@ -25,6 +25,15 @@ module.exports = {
           },
         ],
       },
+      {
+        source: '/static/:path*', // Apply caching headers to assets in the /static directory
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600', // Cache assets for 1 hour
+          },
+        ],
+      },
     ];
   },
 };
