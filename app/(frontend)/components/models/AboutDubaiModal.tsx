@@ -16,7 +16,7 @@ import { isValidPhoneNumber } from 'react-phone-number-input'
 import Swal from 'sweetalert2'
 import { FieldError } from "react-hook-form";
 
-function SimpleModal(props) {
+function AboutDubaiModal(props) {
   const [isMobileDev, setIsMobileDev] = useState(false);
   useEffect(() => {
     const handleResize = () => {
@@ -541,4 +541,4 @@ function SimpleModal(props) {
     </>
   );
 }
-export default SimpleModal;
+export default AboutDubaiModal;

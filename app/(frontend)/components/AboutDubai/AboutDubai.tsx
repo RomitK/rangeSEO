@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import Image from 'next/image'
-const SimpleModal = dynamic(() => import('@/app/(frontend)/components/models/simpleModal'));
+const AboutDubaiModal = dynamic(() => import('@/app/(frontend)/components/models/AboutDubaiModal'));
 
 function AboutDubai(props) {
   return (
@@ -163,7 +163,7 @@ function AboutDubai(props) {
                       </div>
                     </div>
                     <div className="">
-                      <SimpleModal brochure={props.brochure} />
+                      <AboutDubaiModal />
                     </div>
                   </div>
                 </div>
