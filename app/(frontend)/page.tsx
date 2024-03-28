@@ -7,6 +7,7 @@ const HomeSearch = dynamic(() => import('@/app/(frontend)/components/HomeSearch/
 const LookingFor = dynamic(() => import('@/app/(frontend)/components/LookingFor/LookingFor'));
 const WhyRange = dynamic(() => import('@/app/(frontend)/components/WhyRange/WhyRange'));
 import Loader from "@/app/(frontend)/components/UI/Loader";
+import PAGES from "@/src/constants/pages";
 
 type Props = {
   params: { slug: string };
@@ -17,7 +18,7 @@ export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
   const HomeMeta = await fetch(
-    `${process.env.API_HOST}homePage/meta`,
+    `${process.env.API_HOST}meta/${PAGES.home}`,
     { cache: "no-store" }
   )
     .then((res) => res.json())
