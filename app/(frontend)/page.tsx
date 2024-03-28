@@ -18,7 +18,7 @@ export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
   const HomeMeta = await fetch(
-    `${process.env.API_HOST}meta/home`,
+    `${process.env.API_HOST}meta/${PAGES.home}`,
     { cache: "no-store" }
   )
     .then((res) => res.json())
@@ -33,6 +33,8 @@ export const generateMetadata = async ({
 
 };
 export default function Home() {
+  console.log('test')
+  console.log(`${process.env.API_HOST}meta/${PAGES.home}`)
   return (
     <>
       <HomeSearch />
