@@ -18,7 +18,7 @@ export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
   const HomeMeta = await fetch(
-    `${process.env.API_HOST}meta/${PAGES.home}`,
+    `${process.env.API_HOST}meta/home`,
     { cache: "no-store" }
   )
     .then((res) => res.json())
