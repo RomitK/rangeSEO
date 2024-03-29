@@ -8,8 +8,8 @@ export const useGetAllHomeData = () => {
 
 
 export const useGetHomeCommunities = () => {
-  const { data: homeData, error, mutate } = useSWR(`/homeCommunities`);
-  return { homeData: homeData?.data, isLoading: !error && !homeData, isError: error, mutate };
+  const { data: homeCommunities, error, mutate } = useSWR(`/homeCommunities`);
+  return { homeCommunities: homeCommunities?.data, isLoading: !error && !homeCommunities, isError: error, mutate };
   //return { homeData: homeData?.data, homeDataMutate: mutate };
 };
 

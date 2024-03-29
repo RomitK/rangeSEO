@@ -10,8 +10,8 @@ import "swiper/swiper-bundle.css";
 import "swiper/css/pagination";
 
 function CommunityHomeList() {
-    const PropertySwiperRef = useRef<SwiperCore>();
-    const { homeData, isLoading, isError, mutate } = useGetHomeCommunities();
+    const CommunitiesSwiperRef = useRef<SwiperCore>();
+    const { homeCommunities, isLoading, isError, mutate } = useGetHomeCommunities();
     useEffect(() => {
         mutate();
     }, [mutate]);
@@ -32,7 +32,7 @@ function CommunityHomeList() {
                                         </div>
                                     </div>
                                     <div className="col-12 col-lg-12 col-md-12">
-                                        {homeData?.communities ? (
+                                        {homeCommunities ? (
                                             <Swiper
                                                 slidesPerView={1}
                                                 spaceBetween={10}
@@ -64,11 +64,11 @@ function CommunityHomeList() {
                                                 }}
                                                 modules={[Navigation, Pagination, Autoplay]}
                                                 onSwiper={(swiper) => {
-                                                    PropertySwiperRef.current = swiper;
+                                                    CommunitiesSwiperRef.current = swiper;
                                                 }}
                                                 className="swiper pb-5 projectSlider"
                                             >
-                                                {homeData.communities.map((community, index) => (
+                                                {homeCommunities.map((community, index) => (
                                                     <SwiperSlide key={community.id + index}>
                                                         <div className="swiper-slide">
                                                             <div className="communityImgCont">
@@ -94,13 +94,13 @@ function CommunityHomeList() {
                                                 ))}
                                                 <div
                                                     className="swiper-button-prev swiperUniquePrev text-white"
-                                                    onClick={() => PropertySwiperRef.current?.slidePrev()}
+                                                    onClick={() => CommunitiesSwiperRef.current?.slidePrev()}
                                                 >
                                                     <span className=""><i className="bi bi-chevron-left fs-1"></i></span>
                                                 </div>
                                                 <div
                                                     className="swiper-button-next swiperUniqueNext text-white"
-                                                    onClick={() => PropertySwiperRef.current?.slideNext()}
+                                                    onClick={() => CommunitiesSwiperRef.current?.slideNext()}
                                                 >
                                                     <span className=""><i className="bi bi-chevron-right fs-1"></i></span>
                                                 </div>
@@ -138,7 +138,7 @@ function CommunityHomeList() {
                                                 }}
                                                 modules={[Navigation, Pagination, Autoplay]}
                                                 onSwiper={(swiper) => {
-                                                    PropertySwiperRef.current = swiper;
+                                                    CommunitiesSwiperRef.current = swiper;
                                                 }}
                                                 className="swiper pb-5 projectSlider"
                                             >
@@ -162,13 +162,13 @@ function CommunityHomeList() {
                                                 ))}
                                                 <div
                                                     className="swiper-button-prev swiperUniquePrev text-white"
-                                                    onClick={() => PropertySwiperRef.current?.slidePrev()}
+                                                    onClick={() => CommunitiesSwiperRef.current?.slidePrev()}
                                                 >
                                                     <span className=""><i className="bi bi-chevron-left fs-1"></i></span>
                                                 </div>
                                                 <div
                                                     className="swiper-button-next swiperUniqueNext text-white"
-                                                    onClick={() => PropertySwiperRef.current?.slideNext()}
+                                                    onClick={() => CommunitiesSwiperRef.current?.slideNext()}
                                                 >
                                                     <span className=""><i className="bi bi-chevron-right fs-1"></i></span>
                                                 </div>
