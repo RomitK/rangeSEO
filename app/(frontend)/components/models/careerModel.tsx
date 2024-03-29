@@ -8,6 +8,7 @@ import { fetchResponseErrors } from "@/src/utils/helpers/common";
 import PhoneInput from "react-phone-number-input";
 import { useForm, Controller } from "react-hook-form";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
+import Swal from 'sweetalert2'
 
 function CareerModel(props) {
 
@@ -51,9 +52,19 @@ function CareerModel(props) {
 
     saveCareerFormApi(formData)
       .then((res) => {
-        toast.success(
-          "Thank you, Our team will get back to you soon."
-        );
+
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Form Submitted",
+          text: "Thank you, Our team will get back to you soon.",
+          showConfirmButton: false,
+          timer: 1500
+        });
+
+        // toast.success(
+        //   "Thank you, Our team will get back to you soon."
+        // );
         reset();
         careerCloseRef.current.click();
         //setFormData(initialState);
