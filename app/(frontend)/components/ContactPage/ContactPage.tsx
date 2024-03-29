@@ -1,6 +1,11 @@
+"use client";
+import { SWRProvider } from "@/app/swr-provider";
+import { useGetAllManagementData } from "@/src/services/ManagementService";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import "@/public/css/about-styles.css";
 import { useGetContactFaqsData } from "@/src/services/FaqService";
 import parse from "html-react-parser";
-import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
 import { useForm, Controller } from "react-hook-form";
@@ -11,8 +16,17 @@ import { getCurrentUrl } from "@/src/utils/helpers/common";
 import Swal from 'sweetalert2'
 import { FieldError } from "react-hook-form";
 import { isValidPhoneNumber } from 'react-phone-number-input'
+const ContactPage = () => {
+  return (
+    <>
+      <SWRProvider> {/* Wrap the SWRProvider around the component */}
+        <ContactContent />
+      </SWRProvider>
+    </>
+  );
+};
 
-function ContactPage() {
+const ContactContent = () => { // Define the content in a separate component
   const [isMobileDev, setIsMobileDev] = useState(false);
   useEffect(() => {
 
@@ -417,29 +431,8 @@ function ContactPage() {
           </div>
         </div>
       </section>
-      {/* <section className="sectionBanner">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8">
-              <h2 className="bnrTitle">Still need help?</h2>
-              <p className="fs-12 text-secondary">
-                Click on the blue round button at the bottom right corner of
-                this page. You can <br />
-                also email our support team at{" "}
-                <a href="#" className="fs-12">
-                  info@range.ae
-                </a>
-              </p>
-            </div>
-            <div className="col-md-4">
-              <a href="#contactSectionId" className="fillBtn contactBtn btn">
-                CONTACT US
-              </a>
-            </div>
-          </div>
-        </div>
-      </section> */}
     </>
   );
-}
+};
+
 export default ContactPage;

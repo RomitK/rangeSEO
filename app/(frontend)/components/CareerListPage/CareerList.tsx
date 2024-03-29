@@ -1,3 +1,5 @@
+"use client";
+import { SWRProvider } from "@/app/swr-provider";
 import { useGetAllCareerData } from "@/src/services/CareerService";
 import React, { useRef, useState, useEffect } from "react";
 // Import Swiper React components
@@ -15,8 +17,17 @@ import ContactSection from "../ContactSection/ContactSection";
 import "@/public/css/career-page-styles.css";
 import "@/public/css/responsive.css";
 
+const CareerList = () => {
+  return (
+    <>
+      <SWRProvider> {/* Wrap the SWRProvider around the component */}
+        <CareerContent />
+      </SWRProvider>
+    </>
+  );
+};
 
-function CareerListPage() {
+const CareerContent = () => { // Define the content in a separate component
   const { CareersData } = useGetAllCareerData();
   const [careers, setCareers] = useState([]);
   const [visibleCareers, setVisibleCareers] = useState([]);
@@ -255,5 +266,6 @@ function CareerListPage() {
       {/* <ContactSection></ContactSection> */}
     </>
   );
-}
-export default CareerListPage;
+};
+
+export default CareerList;

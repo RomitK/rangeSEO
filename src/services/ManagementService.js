@@ -7,11 +7,10 @@ export const useGetSingleManagementData = (slug) => {
   } = useSWR(slug ? `/managements/${slug}` : null);
   return { managementData: managementData?.data, managementDataMutate: mutate };
 };
-export const useGetAllManagementData = (slug) => {
-  const {
-    data: managementsData,
-    error,
-    mutate,
-  } = useSWR(`/managements`);
-  return { managementsData: managementsData?.data, managementsDataMutate: mutate };
+
+
+export const useGetAllManagementData = () => {
+  const { data: managementsData, error, mutate } = useSWR(`/managements`);
+  return { managementsData: managementsData?.data, isLoading: !error && !managementsData, isError: error, mutate };
 };
+

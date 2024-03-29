@@ -15,8 +15,10 @@ export const useGetAllTeamData = (slug) => {
     error,
     mutate,
   } = useSWR(`/agents`);
-  return { teamsData: teamsData?.data, teamsDataMutate: mutate };
+  // return { teamsData: teamsData?.data, teamsDataMutate: mutate };
+  return { teamsData: teamsData?.data, isLoading: !error && !teamsData, isError: error, mutate };
 };
+
 export const useCheckTeamEmployeeId = (slug) => {
   const {
     data: teamsData,

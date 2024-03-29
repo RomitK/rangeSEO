@@ -10,6 +10,7 @@ import { useForm, Controller } from "react-hook-form";
 import { getCurrentUrl } from "@/src/utils/helpers/common";
 
 function CareerModel(props) {
+
   const [isMobileDev, setIsMobileDev] = useState(false);
   const {
     register,
@@ -41,7 +42,7 @@ function CareerModel(props) {
   const onSubmit = (data) => {
 
     const formData = new FormData();
-    formData.append('career_id', data.career_id);
+    formData.append('career_id', props.careerId);
     formData.append('name', data.name);
     formData.append('email', data.email);
     formData.append('contact_number', data.phone);

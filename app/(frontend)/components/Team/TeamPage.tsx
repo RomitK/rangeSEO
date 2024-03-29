@@ -1,12 +1,23 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
-import Link from "next/link";
+import { SWRProvider } from "@/app/swr-provider";
 import { useGetAllTeamData } from "@/src/services/TeamService";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import "@/public/css/about-styles.css";
 
-function TeamPage() {
+const TeamPage = () => {
+  return (
+    <>
+      <SWRProvider> {/* Wrap the SWRProvider around the component */}
+        <TeamContent />
+      </SWRProvider>
+    </>
+  );
+};
+
+const TeamContent = () => { // Define the content in a separate component
+  const { teamsData, isLoading, isError, mutate } = useGetAllTeamData();
   const [isMobileDev, setIsMobileDev] = useState(false);
-  const { teamsData } = useGetAllTeamData();
   useEffect(() => {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
@@ -30,6 +41,9 @@ function TeamPage() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  useEffect(() => {
+    mutate();
+  }, [mutate]);
 
   return (
     <>
@@ -127,5 +141,6 @@ function TeamPage() {
       </section>
     </>
   );
-}
+};
+
 export default TeamPage;
