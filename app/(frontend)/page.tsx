@@ -6,6 +6,7 @@ const HomePage = dynamic(() => import('@/app/(frontend)/components/home/homePage
 const HomeSearch = dynamic(() => import('@/app/(frontend)/components/HomeSearch/HomeSearch'));
 const LookingFor = dynamic(() => import('@/app/(frontend)/components/LookingFor/LookingFor'));
 const WhyRange = dynamic(() => import('@/app/(frontend)/components/WhyRange/WhyRange'));
+const AboutDubai = dynamic(() => import('@/app/(frontend)/components/AboutDubai/AboutDubai'));
 import Loader from "@/app/(frontend)/components/UI/Loader";
 import PAGES from "@/src/constants/pages";
 
@@ -33,13 +34,13 @@ export const generateMetadata = async ({
 
 };
 export default function Home() {
-  console.log('test')
   console.log(`${process.env.API_HOST}meta/${PAGES.home}`)
   return (
     <>
       <HomeSearch />
       <LookingFor />
       <WhyRange />
+      <AboutDubai />
       <HomePage />
 
     </>

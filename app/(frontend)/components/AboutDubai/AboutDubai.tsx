@@ -1,3 +1,4 @@
+"use client";
 import dynamic from 'next/dynamic';
 import Image from 'next/image'
 const AboutDubaiModal = dynamic(() => import('@/app/(frontend)/components/models/AboutDubaiModal'));

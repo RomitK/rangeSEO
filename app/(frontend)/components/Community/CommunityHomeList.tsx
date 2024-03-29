@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { useGetAllHomeData } from "@/src/services/HomeService";
+import { useGetHomeCommunities } from "@/src/services/HomeService";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 
 function CommunityHomeList() {
     const PropertySwiperRef = useRef<SwiperCore>();
-    const { homeData, isLoading, isError, mutate } = useGetAllHomeData();
+    const { homeData, isLoading, isError, mutate } = useGetHomeCommunities();
     useEffect(() => {
         mutate();
     }, [mutate]);

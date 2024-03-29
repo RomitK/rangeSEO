@@ -6,6 +6,14 @@ export const useGetAllHomeData = () => {
   //return { homeData: homeData?.data, homeDataMutate: mutate };
 };
 
+
+export const useGetHomeCommunities = () => {
+  const { data: homeData, error, mutate } = useSWR(`/homeCommunities`);
+  return { homeData: homeData?.data, isLoading: !error && !homeData, isError: error, mutate };
+  //return { homeData: homeData?.data, homeDataMutate: mutate };
+};
+
+
 export const saveContactFormApi = (data) => {
   return httpClient.post("/contactUs", data);
 };

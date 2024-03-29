@@ -15,7 +15,6 @@ import "swiper/css/pagination";
 import { SWRProvider } from "@/app/swr-provider";
 import Loader from "@/app/(frontend)/components/UI/Loader";
 const WhyRange = dynamic(() => import('@/app/(frontend)/components/WhyRange/WhyRange'));
-const AboutDubai = dynamic(() => import('@/app/(frontend)/components/AboutDubai/AboutDubai'));
 const ProjectList = dynamic(() => import('@/app/(frontend)/components/HomeProject/ProjectList'));
 const LookingFor = dynamic(() => import('@/app/(frontend)/components/LookingFor/LookingFor'));
 const HomeSearch = dynamic(() => import('@/app/(frontend)/components/HomeSearch/HomeSearch'));
@@ -28,7 +27,6 @@ const HomePage = () => {
   return (
     <>
       <SWRProvider>
-        <AboutDubai />
         <ProjectList />
         <CommunityHomeList />
         <DeveloperHomeList />
