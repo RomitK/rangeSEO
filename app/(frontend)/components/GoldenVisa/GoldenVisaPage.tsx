@@ -1,3 +1,5 @@
+"use client";
+import { SWRProvider } from "@/app/swr-provider";
 import { useState, useRef, useEffect } from "react";
 import QUESTIONS from "../../../../src/constants/checkEligibilityQuestions";
 import VisaCategories from "./VisaCategories";
@@ -5,14 +7,24 @@ import "@/public/css/golden-visa-styles.css";
 import "@/public/css/responsive.css";
 
 
-function GoldenVisaPage() {
+const GoldenVisaPage = () => {
+  return (
+    <>
+      <SWRProvider> {/* Wrap the SWRProvider around the component */}
+        <GoldenVisaContent />
+      </SWRProvider>
+    </>
+  );
+};
+
+const GoldenVisaContent = () => {
 
   const [isMobileDev, setIsMobileDev] = useState(false);
   useEffect(() => {
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
-      if(isMobileDevice){
+      if (isMobileDevice) {
         document.body.style.overflow = 'auto';
       }
       setIsMobileDev(isMobileDevice);
@@ -73,7 +85,7 @@ function GoldenVisaPage() {
       <section className={`${isMobileDev ? "my-2" : "my-5"}`}>
         <div className="container">
           <div className="">
-          <div className=" ">
+            <div className=" ">
               <h1 className="sctionMdTitle text-primary text-center">
                 Check Your Eligibility
               </h1>
@@ -182,7 +194,7 @@ function GoldenVisaPage() {
                               Check
                             </button>
                           )}
-                          </div>
+                        </div>
                         <div>
                           {currentQuestion + 1 != QUESTIONS.length && (
                             <button

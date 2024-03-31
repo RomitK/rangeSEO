@@ -1,36 +1,43 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
+import { SWRProvider } from "@/app/swr-provider";
 import Link from "next/link";
 import { useGetAllFaqsData } from "@/src/services/FaqService";
 import parse from "html-react-parser";
 import "@/public/css/faq-styles.css";
 
-
-function FaqsPage() {
+const FaqsPage = () => {
+  return (
+    <SWRProvider>
+      <FaqsPageContent />
+    </SWRProvider>
+  );
+}
+const FaqsPageContent = () => {
   const [query, setQuery] = useState("");
   const { faqsData } = useGetAllFaqsData(query);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobileDev, setIsMobileDev] = useState(false);
   useEffect(() => {
-      const handleResize = () => {
-        // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
-        const isMobileDevice = window.innerWidth < 768;
-        if(isMobileDevice){
-          document.body.style.overflow = 'auto';
-        }
-        setIsMobileDev(isMobileDevice);
-      };
-  
-      // Initial check on component mount
-      handleResize();
-  
-      // Add event listener for window resize
-      window.addEventListener("resize", handleResize);
-  
-      // Clean up the event listener on component unmount
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
+    const handleResize = () => {
+      // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
+      const isMobileDevice = window.innerWidth < 768;
+      if (isMobileDevice) {
+        document.body.style.overflow = 'auto';
+      }
+      setIsMobileDev(isMobileDevice);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
   return (
     <>
@@ -40,7 +47,7 @@ function FaqsPage() {
             DUBAI REAL ESTATE FAQ
           </h4> */}
 
-          
+
           <div className={`location-heading-div text-center ${isMobileDev ? "" : "padding"}`}>
             <h2 className="location-heading">Frequently Ask Questions</h2>
           </div>
@@ -70,9 +77,8 @@ function FaqsPage() {
                 return (
                   <div className="accordion-item" key={index + "faq"}>
                     <button
-                      className={`accordion-button ${
-                        activeIndex != index ? " collapsed" : ""
-                      } `}
+                      className={`accordion-button ${activeIndex != index ? " collapsed" : ""
+                        } `}
                       data-bs-toggle="collapse"
                       data-bs-target={"#faqCollapse-" + index}
                       aria-expanded={activeIndex == index ? true : false}
@@ -84,9 +90,8 @@ function FaqsPage() {
                     </button>
                     <div
                       id={"faqCollapse-" + index}
-                      className={`accordion-collapse collapse  ${
-                        activeIndex == index ? " show" : ""
-                      } `}
+                      className={`accordion-collapse collapse  ${activeIndex == index ? " show" : ""
+                        } `}
                       data-bs-parent="#FAQAccordion"
                     >
                       <div className="accordion-body">
@@ -101,28 +106,6 @@ function FaqsPage() {
           </div>
         </div>
       </section>
-      {/* <section className="sectionBanner">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8">
-              <h2 className="bnrTitle">Still need help?</h2>
-              <p className="fs-12 text-secondary">
-                Click on the blue round button at the bottom right corner of
-                this page. You can <br />
-                also email our support team at{" "}
-                <a href="#" className="fs-12">
-                  info@range.ae
-                </a>
-              </p>
-            </div>
-            <div className="col-md-4">
-              <Link className="fillBtn contactBtn btn" href="/contactUs">
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section> */}
     </>
   );
 }

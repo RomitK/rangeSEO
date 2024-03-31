@@ -1,15 +1,39 @@
-"use client";
-import React from "react";
-import { SWRProvider } from "@/app/swr-provider";
-import GoldenVisaPage from "../components/GoldenVisa/GoldenVisaPage";
+import type { Metadata } from "next";
+import dynamic from 'next/dynamic';
+import Link from "next/link";
+import PAGES from "@/src/constants/pages";
 import "@/public/css/goldenVisa-styles.css";
+import Image from 'next/image'
+
+const GoldenVisaPage = dynamic(() => import('@/app/(frontend)/components/GoldenVisa/GoldenVisaPage'));
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const HomeMeta = await fetch(
+    `${process.env.API_HOST}meta/${PAGES.golden_visa}`,
+    { cache: "no-store" }
+  )
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log("err", err);
+    });
+  return {
+    title: HomeMeta?.data?.title,
+    description: HomeMeta?.data?.meta_description,
+    keywords: HomeMeta?.data?.meta_keywords,
+  };
+
+};
 
 function GoldenVisa() {
   return (
     <>
-      <SWRProvider>
-        <GoldenVisaPage></GoldenVisaPage>
-      </SWRProvider>
+      <GoldenVisaPage />
     </>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { SWRProvider } from "@/app/swr-provider";
 import { useRef } from "react";
 import Link from "next/link";
 import Select from "react-select";
@@ -18,7 +19,16 @@ type OptionType = {
   value: string;
   label: string;
 };
-function DeveloperList({ params }) {
+const DeveloperList = ({ params }) => {
+  return (
+    <>
+      <SWRProvider>
+        <DeveloperListContent params={params}></DeveloperListContent>
+      </SWRProvider>
+    </>
+  );
+}
+const DeveloperListContent = ({ params }) => {
   const [form, setForm] = useState({
     project_id: { label: "All", value: "" },
     completion_status_id: { label: "All", value: "" },

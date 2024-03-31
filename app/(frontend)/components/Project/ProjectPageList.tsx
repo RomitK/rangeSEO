@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState, useCallback } from "react";
+import { SWRProvider } from "@/app/swr-provider";
 import Project from "./Project";
 import {
   GoogleMap,
@@ -17,7 +18,17 @@ import { useGetProjectAmenities } from "@/src/services/AmenityService"
 import axios from "axios";
 import { priceShortFormat } from "@/app/utils/formatNumber"
 
-const PropertyList = ({ params }) => {
+const ProjectList = (params) => {
+  return (
+    <SWRProvider>
+      <ProjectListContent params={params} />
+    </SWRProvider>
+
+  );
+}
+
+
+const ProjectListContent = ({ params }) => {
   const [showMap, setShowMap] = useState(true);
   const [properties, setProperties] = useState([]);
   const [totalProperties, setTotalProperties] = useState(0);
@@ -443,4 +454,4 @@ const PropertyList = ({ params }) => {
     </div>
   );
 };
-export default PropertyList;
+export default ProjectList;

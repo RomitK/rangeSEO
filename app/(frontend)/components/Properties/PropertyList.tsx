@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState, useCallback } from "react";
+import { SWRProvider } from "@/app/swr-provider";
 import {
   GoogleMap,
   InfoWindow,
@@ -22,7 +23,17 @@ import ReadyFilters from "@/app/(frontend)/components/Properties/Filters/Buy/Rea
 import OffPlanFilters from "@/app/(frontend)/components/Properties/Filters/Buy/OffPlanFilters";
 import Property from "@/app/(frontend)/components/Properties/Property";
 
-const PropertyList = ({ params }) => {
+
+const PropertyList = (params) => {
+  return (
+    <SWRProvider>
+      <PropertyListContent params={params} />
+    </SWRProvider>
+
+  );
+}
+
+const PropertyListContent = ({ params }) => {
   //console.log(params);
   const isLuxuryProperties = Object.hasOwn(params, 'isLuxury');
   const isRentPage = Object.hasOwn(params, 'rent');

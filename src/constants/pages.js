@@ -17,7 +17,10 @@ const PAGES = {
     'offplan': 'Off-plan',
     'communities': 'Communities',
     'developers': 'Developers',
-    'projects': 'Projects'
+    'projects': 'Projects',
+
+    'luxury_properties': 'Luxury Properties',
+    'mortgage': 'Mortgage'
 };
 
 export default PAGES;

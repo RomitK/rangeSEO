@@ -1,16 +1,10 @@
 "use client";
+import { SWRProvider } from "@/app/swr-provider";
 import React, { useState, useRef, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Swiper as SwiperType } from "swiper";
 import "swiper/css/navigation";
 
-import { Pagination, Navigation } from "swiper/modules";
-import ContactModel from "../models/contactModel";
 import { useGetAllGuideDataWithSearch, useGetAllGuideData } from "@/src/services/DubaiGuideService";
-import DubaiGuideModelGolden from "../models/dubaiGuide/ModelGolden";
-import ModelInvestment from "../models/dubaiGuide/ModelInvestment";
-import ModelBuyer from "../models/dubaiGuide/ModelBuyer";
-import ModelPortfolioManagement from "../models/dubaiGuide/ModelPortfolioManagement";
 import ModelDubaiGuide from "../models/dubaiGuide/ModelDubaiGuide";
 
 import "@/public/css/responsive.css";
@@ -21,7 +15,17 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
-function DubaiGuidePage() {
+const DubaiGuidePage = () => {
+  return (
+    <>
+      <SWRProvider>
+        <DubaiGuideContent />
+      </SWRProvider>
+    </>
+  )
+};
+
+const DubaiGuideContent = () => {
   const pageUrl = "Dubai Guide";
   const [query, setQuery] = useState("");
   const swiperRef = useRef<SwiperCore>();
@@ -55,24 +59,6 @@ function DubaiGuidePage() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  const images = [
-    {
-      id: 1,
-      image: "/images/guides/golden-visa.webp",
-      title: "GOLDEN VISA",
-    },
-    {
-      id: 2,
-      image: "/images/banner/banner-3.webp",
-      title: "INVESTMENT GUIDE",
-    },
-    {
-      id: 3,
-      image: "/images/banner/invest.jpeg",
-      title: "BUYER GUIDE",
-    },
-  ];
-
   const sliderRef = useRef(null);
 
   // Define custom arrow components for navigation

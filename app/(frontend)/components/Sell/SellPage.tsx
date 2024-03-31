@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { SWRProvider } from "@/app/swr-provider";
 import "@/public/css/sell-with-range.css";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
@@ -12,7 +13,16 @@ import { useGetSellerGuideData } from "@/src/services/DubaiGuideService"
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import { FieldError } from "react-hook-form";
 import Swal from 'sweetalert2'
-function SellPage() {
+
+const SellPage = () => {
+  return (
+    <SWRProvider>
+      <SellPageContent />
+    </SWRProvider>
+  );
+}
+
+const SellPageContent = () => {
 
   const [isMobileDev, setIsMobileDev] = useState(false);
   useEffect(() => {

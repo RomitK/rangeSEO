@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import { SWRProvider } from "@/app/swr-provider";
 import "@/public/css/sell-with-range.css";
 import { toast } from "react-toastify";
 import { saveContactFormApi } from "@/src/services/HomeService";
@@ -26,7 +27,14 @@ type OptionType = {
   label: string;
 };
 
-function MortgagePage() {
+const MortgagePage = () => {
+  return (
+    <SWRProvider>
+      <MortgagePageContent />
+    </SWRProvider>
+  );
+}
+const MortgagePageContent = () => {
   const { bankNameOption } = useGetBankNames();
   const { mortgageYearOption } = useGetMortageYears();
   const router = useRouter();
@@ -1981,12 +1989,19 @@ function MortgagePage() {
         <div className="container">
           <div className="row">
             <div className="col-md-3 text-center">
-              <img loading="lazy"
-                src="images/mortage_logo.png"
-                alt="My Mortgage"
-                className="img-fluid py-2"
-                width={150}
-              />
+              <a
+                href="https://mymortgage.ae/"
+                className="text-decoration-none"
+                target="_blanket"
+                aria-label={`mymortgage`}
+              >
+                <img loading="lazy"
+                  src="images/mortage_logo.png"
+                  alt="My Mortgage"
+                  className="img-fluid py-2"
+                  width={150}
+                />
+              </a>
             </div>
             <div className="col-md-9">
               <p className="fs-14 text-secondary mb-4">

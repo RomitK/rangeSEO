@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-
+import { SWRProvider } from "@/app/swr-provider";
 import Link from "next/link";
 import Select from "react-select";
 import parse from "html-react-parser";
@@ -18,7 +18,16 @@ type OptionType = {
   value: string;
   label: string;
 };
-function CommunityList() {
+const CommunityList = () => {
+  return (
+    <>
+      <SWRProvider>
+        <CommunityListContent />
+      </SWRProvider>
+    </>
+  );
+}
+const CommunityListContent = () => {
 
   const [isMobileDev, setIsMobileDev] = useState(false);
   useEffect(() => {
