@@ -1,11 +1,12 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
+import { SWRProvider } from "@/app/swr-provider";
 import Link from "next/link";
 import { useGetMedias } from "@/src/services/MediaService";
 import axios from "axios";
 
 
-function MediaPage({ params }) {
+const MediaPageContent = ({ params }) => {
   const [form, setForm] = useState({});
   const { mediaData } = useGetMedias("", form);
   const [links, setLinks] = useState(null);
@@ -65,7 +66,7 @@ function MediaPage({ params }) {
     setAwards(mediaData?.awards?.data);
     setBlogs(mediaData?.blogs?.data);
     setCelebrations(mediaData?.celebrations?.data);
-    console.log(mediaData?.celebrations)
+    //console.log(mediaData?.celebrations)
     setEvents(mediaData?.events?.data);
     //setLinks(mediaData?.links);
   }, [mediaData]);
@@ -306,6 +307,15 @@ function MediaPage({ params }) {
           {/* <button className="viewLinkBtn mb-5">View All</button> */}
         </div>
       </section>
+    </>
+  );
+}
+const MediaPage = ({ params }) => {
+  return (
+    <>
+      <SWRProvider>
+        <MediaPageContent params={params} />
+      </SWRProvider>
     </>
   );
 }
