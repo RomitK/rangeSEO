@@ -50,6 +50,23 @@ export default function RootLayout({
               gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
           `}
         </Script>
+
+
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16515013820"
+        />
+        <Script
+          dangerouslySetInnerHTML={{
+            __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'AW-16515013820');
+              `,
+          }}
+        />
+
         <link rel="preload" href="/videos/ramadan-desktop.webp" as="image" />
         <link rel="preload" href="/videos/ramzan-mobile.webp" as="image" />
 
