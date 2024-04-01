@@ -275,7 +275,8 @@ const MortgagePageContent = () => {
   const bankHandleChange = (e) => {
     if (e) {
       setBankData(e);
-      setSelectedBankValue(e?.value);
+
+      setSelectedBankValue(e?.label);
     }
   }
   const termHandleChange = (e) => {
@@ -1665,7 +1666,7 @@ const MortgagePageContent = () => {
 
                                               <input type="hidden"
                                                 value={selectedBankValue}
-                                                {...register("existing_mortgage_bank_id", { required: false })}
+                                                {...register("existing_mortgage_bank_name", { required: false })}
                                               />
 
                                               <input type="hidden"
@@ -1849,7 +1850,7 @@ const MortgagePageContent = () => {
 
                                             <input type="text"
                                               value={selectedBankValue}
-                                              {...register("existing_mortgage_bank_id", { required: false })}
+                                              {...register("existing_mortgage_bank_name", { required: false })}
                                             />
 
                                             <input type="text"
