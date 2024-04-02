@@ -52,18 +52,20 @@ export default function RootLayout({
         </Script>
 
 
-        <Script
+        {/* Add the script for Google Tag Manager */}
+        <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-16515013820"
         />
-        <Script
+        {/* Add the inline script for Google Tag Manager */}
+        <script
           dangerouslySetInnerHTML={{
             __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'AW-16515013820');
-              `,
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-16515013820');
+            `,
           }}
         />
 
