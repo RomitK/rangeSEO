@@ -35,7 +35,7 @@ export default function About() {
     <>
       <header className="aboutHeader">
         <img loading="lazy"
-          src="/images/banner/new-about.webp"
+          src="/images/banner/new-about-banner.jpg"
           className="headerSimpleImg"
           id="headerSimpleImg"
           alt="header"
