@@ -31,10 +31,10 @@ export const generateMetadata = async ({
 
 };
 
-const Ready = ({ params }) => {
+const Ready = (params) => {
   params = { "ready": true }
   return (
-      <PropertyList params={params}></PropertyList>
+    <PropertyList params={params}></PropertyList>
   );
 };
 

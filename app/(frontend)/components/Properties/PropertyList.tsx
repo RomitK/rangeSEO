@@ -24,7 +24,7 @@ import OffPlanFilters from "@/app/(frontend)/components/Properties/Filters/Buy/O
 import Property from "@/app/(frontend)/components/Properties/Property";
 
 
-const PropertyList = (params) => {
+const PropertyList = ({ params }) => {
   return (
     <SWRProvider>
       <PropertyListContent params={params} />
