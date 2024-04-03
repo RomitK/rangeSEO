@@ -53,7 +53,7 @@ const LazyVideo = ({ src, poster, id, className }) => {
             id={id}
             className={className}
         >
-            <source src={src} type="video/mp4" />
+            {/* <source src={src} type="video/mp4" /> */}
             {/* Add additional source types here if needed */}
             Sorry, your browser doesn't support videos.
         </video>
