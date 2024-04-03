@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const LazyVideo = ({ src, poster, id, className }) => {
     const videoRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         const options = {
@@ -24,17 +25,25 @@ const LazyVideo = ({ src, poster, id, className }) => {
     const handleIntersection = (entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                const video = entry.target;
-                video.load(); // Lazy load video when it enters viewport
-                video.play(); // Optional: Auto play video when it enters viewport
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
             }
         });
     };
 
+    useEffect(() => {
+        if (isVisible && videoRef.current) {
+            videoRef.current.load();
+            videoRef.current.play();
+        } else if (videoRef.current) {
+            videoRef.current.pause();
+        }
+    }, [isVisible]);
+
     return (
         <video
             ref={videoRef}
-
             muted
             playsInline
             autoPlay
@@ -44,9 +53,8 @@ const LazyVideo = ({ src, poster, id, className }) => {
             id={id}
             className={className}
         >
-            {/* Add appropriate video sources */}
-            {/* <source src={src} type="video/mp4" />
-      <source src={src} type="video/webm" /> */}
+            <source src={src} type="video/mp4" />
+            {/* Add additional source types here if needed */}
             Sorry, your browser doesn't support videos.
         </video>
     );
