@@ -109,13 +109,13 @@ function HomeSearch() {
           </video> */}
 
           <LazyVideo
-            src="/videos/dk-version-3.mp4"
+            src=""
             poster="/videos/ramadan-desktop.webp"
             id=""
             className="d-block w-100 videoMain propertyDesktopItemLink"
           />
           <LazyVideo
-            src="/videos/dk-mobile.mp4"
+            src=""
             poster="/videos/ramzan-mobile.webp"
             id="mobItemLink"
             className="-block w-100 videoMain"
