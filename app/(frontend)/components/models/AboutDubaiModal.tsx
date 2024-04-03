@@ -273,7 +273,7 @@ function AboutDubaiModal(props) {
     <>
       {isLoading && <Loader />}
       <div className="modalArea">
-        <button type="button" className="btn btn-blue text-uppercase btn-lg broucherBtn" data-bs-toggle="modal" data-bs-target="#simpleModal">
+        <button type="button" className="btn btn-blue text-uppercase btn-lg broucherBtn" data-bs-toggle="modal" data-bs-target="#simpleModal" id="downloadHomeBrochureBtn">
           DOWNLOAD BROCHURE
         </button>
 

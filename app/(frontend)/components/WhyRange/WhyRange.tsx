@@ -21,7 +21,7 @@ function WhyRange() {
                                             </p>
                                         </div>
                                         <div className="">
-                                            <button className="btn btn-blue text-uppercase btn-lg" data-bs-toggle="modal"
+                                            <button className="btn btn-blue text-uppercase btn-lg" data-bs-toggle="modal" id="bookACallBtn"
                                                 data-bs-target="#bookAmeeting">Book A Call</button>
                                         </div>
                                     </div>
