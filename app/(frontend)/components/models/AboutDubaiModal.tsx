@@ -165,7 +165,11 @@ function AboutDubaiModal(props) {
                   icon: "success",
                   title: "Thank you. Your document is downloading.",
                   showConfirmButton: false,
-                  timer: 1500
+                  showCloseButton: true,
+                  timer: 2000,
+                  didOpen: (toast) => {
+                    Swal.getPopup().setAttribute('id', 'homeBrochureDownlaod');
+                  }
                 });
 
 
