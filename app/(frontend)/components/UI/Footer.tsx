@@ -443,8 +443,8 @@ function Footer() {
         !isMobile && (
           <div className="floatingBtn">
             <div className="iconMain shake">
-              <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
-                <Image loading="lazy" className="" src="/images/icons/whatsapp.png" alt="chatIcon" id="websiteWhatsapp" width={60} height={60} />
+              <a id="websiteWhatsapp" target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
+                <Image loading="lazy" className="" src="/images/icons/whatsapp.png" alt="chatIcon" width={60} height={60} />
               </a>
             </div>
           </div>
@@ -454,8 +454,8 @@ function Footer() {
         isMobile && lisitingPage && (
           <div className="floatingBtnListing">
             <div className="iconMain shake">
-              <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
-                <Image loading="lazy" className="" src="/images/icons/whatsapp.png" alt="chatIcon1" id="websiteWhatsapp" width={60} height={60} />
+              <a id="websiteWhatsapp" target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
+                <Image loading="lazy" className="" src="/images/icons/whatsapp.png" alt="chatIcon1" width={60} height={60} />
               </a>
             </div>
           </div>
@@ -466,8 +466,8 @@ function Footer() {
         isMobile && !lisitingPage && !isPropertiesSlugRoute && (
           <div className="floatingBtn">
             <div className="iconMain shake">
-              <a target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
-                <Image loading="lazy" className="" src="/images/icons/whatsapp.png" alt="chatIcon2" id="websiteWhatsapp" width={60} height={60} />
+              <a id="websiteWhatsapp" target="_blank" href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services ">
+                <Image loading="lazy" className="" src="/images/icons/whatsapp.png" alt="chatIcon2" width={60} height={60} />
               </a>
             </div>
           </div>
