@@ -31,7 +31,7 @@ const ContactUs = () => {
           title: "Form Submitted",
           text: "Thank you. Our team will get back to you soon.",
           showConfirmButton: false,
-         // timer: 2000,
+          timer: 2000,
           didOpen: (toast) => {
             Swal.getPopup().setAttribute('id', 'footerContactForm');
           }
