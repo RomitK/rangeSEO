@@ -12,7 +12,8 @@ const nextConfig = {
     YOUTUBE_LINK: process.env.YOUTUBE_LINK,
     TIKTOK_LINK: process.env.TIKTOK_LINK,
     WHATSAPP_LINK : process.env.WHATSAPP_LINK,
-    WHATSAPP_NUMBER : process.env.WHATSAPP_NUMBER
+    WHATSAPP_NUMBER : process.env.WHATSAPP_NUMBER,
+    GOOGLE_TAG_MANAGER: process.env.GOOGLE_TAG_MANAGER
   },
 };
 module.exports = {
