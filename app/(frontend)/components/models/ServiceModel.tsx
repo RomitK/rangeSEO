@@ -35,7 +35,7 @@ function ServiceModel(props) {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: "serviceFormSubmit",
-      serviceName: formName,
+      serviceFormName: formName,
     });
     data.formName = formName; // Set the formName in the data before submitting
     saveContactFormApi(data)
