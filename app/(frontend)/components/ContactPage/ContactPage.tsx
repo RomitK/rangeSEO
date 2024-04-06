@@ -178,6 +178,7 @@ const ContactContent = () => { // Define the content in a separate component
                     <div className="contactBox bdrOnly">
                       <h5>WhatsApp</h5>
                       <a
+                        target="_blank"
                         id="contactWhatsapp"
                         href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services"
                         className="textFlexBar whatsappBtnClick"
@@ -242,10 +243,10 @@ const ContactContent = () => { // Define the content in a separate component
                     <div className="contactBox bdrOnly">
                       <h5>WhatsApp</h5>
                       <a
-                        href={
-                          "https://wa.me/+971506337953?text=Hi, Please let me know more about investing in Dubai Real Estate"
-                        }
-                        className="textFlexBar"
+                        target="_blank"
+                        id="contactWhatsapp"
+                        href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services"
+                        className="textFlexBar whatsappBtnClick"
                       >
                         <img loading="lazy"
                           src="/images/icons/whatsapp-icon.png"
