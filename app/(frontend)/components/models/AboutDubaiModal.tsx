@@ -149,49 +149,52 @@ function AboutDubaiModal(props) {
   const onSubmitVisitorOTPVerifyForm = (data) => {
     setIsLoading(true);
     verifyOTPApi(data)
-      .then((res) => {
-        console.log(res.data.data.verify);
-        if (res.data.data.verify === true) {
+    .then((res) => {
+      console.log(res.data.data.verify);
+      if (res.data.data.verify === true) {
           if (res.data.data.link) {
-            new JsFileDownloader({
-              url: res.data.data.link,
-            })
+              // Start the file download process
+              setIsLoading(true); // Set isLoading to true before starting the download
+              new JsFileDownloader({
+                  url: res.data.data.link,
+              })
               .then(function () {
-                setIsLoading(false);
-                closeRef.current.click();
-                reset();
-                Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  title: "Thank you. Your document is downloading.",
-                  showConfirmButton: false,
-                  showCloseButton: true,
-                  timer: 2000,
-                  didOpen: (toast) => {
-                    Swal.getPopup().setAttribute('id', 'homeBrochureDownloadForm');
-                  }
-                });
-
-
-                //toast.success("Thank you. Your document is downloading.");
+                  // File download successful
+                  setIsLoading(false); // Set isLoading to false after the download is complete
+                  closeRef.current.click();
+                  reset();
+                  Swal.fire({
+                      position: "center",
+                      icon: "success",
+                      title: "Thank you. Your document is downloading.",
+                      showConfirmButton: false,
+                      showCloseButton: true,
+                      timer: 2000,
+                      didOpen: (toast) => {
+                          Swal.getPopup().setAttribute('id', 'homeBrochureDownloadForm');
+                      }
+                  });
+                   //toast.success("Thank you. Your document is downloading.");
               })
               .catch(function (error) {
-                toast.error(`Download failed Something went wrong!`);
+                  // File download failed
+                  setIsLoading(false); // Set isLoading to false if there is an error during download
+                  toast.error(`Download failed. Something went wrong!`);
               });
-
           }
           setShowOtp(true);
           setOtpSent(true);
           reset();
-        } else {
+      } else {
           toast.error("Invalid OTP");
-        }
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        toast.error("Invalid OTP");
-        setIsLoading(false);
-      });
+      }
+      setIsLoading(false);
+  })
+  .catch((err) => {
+      toast.error("Invalid OTP");
+      setIsLoading(false);
+  });
+  
   };
   const onSubmitVisitorForm = (data) => {
     setIsLoading(true);
