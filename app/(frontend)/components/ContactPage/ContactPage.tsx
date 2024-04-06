@@ -180,7 +180,7 @@ const ContactContent = () => { // Define the content in a separate component
                       <a
                         target="_blank"
                         id="contactWhatsapp"
-                        href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services"
+                        href={process.env.WHATSAPP_LINK}
                         className="textFlexBar whatsappBtnClick"
                       >
                         <img loading="lazy"
@@ -188,7 +188,7 @@ const ContactContent = () => { // Define the content in a separate component
                           className="contact-icon"
                           alt="whatsapp"
                         />
-                        <p className="fs-12">+971 50 633 7953</p>
+                        <p className="fs-12">{process.env.WHATSAPP_NUMBER}</p>
                       </a>
                     </div>
                   </div>
@@ -245,7 +245,7 @@ const ContactContent = () => { // Define the content in a separate component
                       <a
                         target="_blank"
                         id="contactWhatsapp"
-                        href="https://api.whatsapp.com/send?phone=+971586851659&amp;text=Hi, I would like to explore the Range`s services"
+                        href={process.env.WHATSAPP_LINK}
                         className="textFlexBar whatsappBtnClick"
                       >
                         <img loading="lazy"
@@ -253,7 +253,7 @@ const ContactContent = () => { // Define the content in a separate component
                           className="contact-icon"
                           alt="whatsapp"
                         />
-                        <p className="fs-18">+971 50 633 7953</p>
+                        <p className="fs-18">{process.env.WHATSAPP_NUMBER}</p>
                       </a>
                     </div>
                   </div>
