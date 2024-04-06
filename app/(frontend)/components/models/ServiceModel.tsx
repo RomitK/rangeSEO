@@ -34,7 +34,7 @@ function ServiceModel(props) {
     // Trigger a data layer event
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-      event: "serviceData",
+      event: "serviceModelClik",
       serviceName: formName,
     });
     data.formName = formName; // Set the formName in the data before submitting
