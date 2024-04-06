@@ -20,6 +20,7 @@ const ServicePage = () => {
 }
 
 const ServicePageContent = () => {
+
     const router = useRouter();
     const [activeService, setActiveService] = useState('');
     const contactSideText = " An esteemed award-winning real estate brokerage based in Dubai, UAE.";
@@ -59,6 +60,20 @@ const ServicePageContent = () => {
     const goldenHandler = () => {
         router.push("/goldenVisa");
     };
+
+
+    // Combined function to handle button click, set ActiveService, and push data to the data layer
+    const handleEnquireNowClick = (serviceName) => {
+        // Set ActiveService
+        setActiveService(serviceName);
+        // Push the event and data to the data layer
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: "serviceData",
+            serviceModelName: serviceName,
+        });
+    };
+
     return (
         <>
             {/*<header className="serviceHeader">
@@ -111,10 +126,11 @@ const ServicePageContent = () => {
                                         ROI.
                                     </p>
                                     <button
-                                        className="fillBtn  mrAuto cardBtn"
+                                        className="fillBtn  mrAuto cardBtn serviceModelOpen"
                                         data-bs-toggle="modal"
                                         data-bs-target="#enquireNow"
-                                        onClick={() => setActiveService("ResidentialSales&Leasing")}
+                                        // onClick={() => setActiveService("ResidentialSales&Leasing")}
+                                        onClick={() => handleEnquireNowClick('ResidentialSales&Leasing')}
                                     >
                                         ENQUIRE NOW
                                     </button>
@@ -140,10 +156,11 @@ const ServicePageContent = () => {
                                         or retail.
                                     </p>
                                     <button
-                                        className="fillBtn  mrAuto cardBtn"
+                                        className="fillBtn  mrAuto cardBtn serviceModelOpen"
                                         data-bs-toggle="modal"
                                         data-bs-target="#enquireNow"
-                                        onClick={() => setActiveService("CommercialSales&Leasing")}
+                                        //onClick={() => setActiveService("CommercialSales&Leasing")}
+                                        onClick={() => handleEnquireNowClick('CommercialSales&Leasing')}
                                     >
                                         ENQUIRE NOW
                                     </button>
@@ -166,10 +183,11 @@ const ServicePageContent = () => {
                                         for its highest potential.
                                     </p>
                                     <button
-                                        className="fillBtn  mrAuto cardBtn"
+                                        className="fillBtn  mrAuto cardBtn serviceModelOpen"
                                         data-bs-toggle="modal"
                                         data-bs-target="#enquireNow"
-                                        onClick={() => setActiveService("Property/PortfolioManagement")}
+                                        //onClick={() => setActiveService("Property/PortfolioManagement")}
+                                        onClick={() => handleEnquireNowClick('Property/PortfolioManagement')}
                                     >
                                         ENQUIRE NOW
                                     </button>
@@ -193,10 +211,11 @@ const ServicePageContent = () => {
                                         loved ones.
                                     </p>
                                     <button
-                                        className="fillBtn  mrAuto cardBtn"
+                                        className="fillBtn  mrAuto cardBtn serviceModelOpen"
                                         data-bs-toggle="modal"
                                         data-bs-target="#enquireNow"
-                                        onClick={() => setActiveService("HolidayHomes")}
+                                        //onClick={() => setActiveService("HolidayHomes")}
+                                        onClick={() => handleEnquireNowClick('HolidayHomes')}
                                     >
                                         ENQUIRE NOW
                                     </button>
@@ -216,10 +235,11 @@ const ServicePageContent = () => {
                                         My mortgage brokerage is dedicated to helping our clients achieve their dream of home ownership. Our team of experienced professionals are committed to providing exceptional customer service and personalised solutions to meet the specific needs of each of our clients.
                                     </p>
                                     <button
-                                        className="fillBtn  mrAuto cardBtn"
+                                        className="fillBtn  mrAuto cardBtn serviceModelOpen"
                                         data-bs-toggle="modal"
                                         data-bs-target="#enquireNow"
-                                        onClick={() => setActiveService("MortgageServices")}
+                                        //onClick={() => setActiveService("MortgageServices")}
+                                        onClick={() => handleEnquireNowClick('MortgageServices')}
                                     >
                                         ENQUIRE NOW
                                     </button>
@@ -245,10 +265,11 @@ const ServicePageContent = () => {
                                         portfolio.
                                     </p>
                                     <button
-                                        className="fillBtn  mrAuto cardBtn"
+                                        className="fillBtn  mrAuto cardBtn serviceModelOpen"
                                         data-bs-toggle="modal"
                                         data-bs-target="#enquireNow"
-                                        onClick={() => setActiveService("InvestmentConsultancy")}
+                                        //onClick={() => setActiveService("InvestmentConsultancy")}
+                                        onClick={() => handleEnquireNowClick('InvestmentConsultancy')}
                                     >
                                         ENQUIRE NOW
                                     </button>
