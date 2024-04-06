@@ -69,7 +69,7 @@ const ServicePageContent = () => {
         // Push the event and data to the data layer
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
-            event: "serviceData",
+            event: "serviceModelClik",
             serviceModelName: serviceName,
         });
     };
