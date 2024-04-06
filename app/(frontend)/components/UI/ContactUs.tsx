@@ -130,6 +130,7 @@ const ContactUs = () => {
                   <button
                     className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
                     type="submit"
+                    id="footerContactFormBtn"
                   >
                     Submit
                   </button>

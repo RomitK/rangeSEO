@@ -284,6 +284,7 @@ function Footer() {
                           <button
                             type="submit"
                             className="btn btn-primary  rounded-0" aria-label="Submit"
+                            id="subcribeFormBtn"
                           >
                             <i className="bi bi-check2"></i>
                           </button>
