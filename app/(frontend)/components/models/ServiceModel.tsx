@@ -30,6 +30,13 @@ function ServiceModel(props) {
 
   const currentPageURL = getCurrentUrl();
   const onSubmit = (data) => {
+    console.log(formName)
+    // Trigger a data layer event
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "serviceData",
+      serviceName: formName,
+    });
     data.formName = formName; // Set the formName in the data before submitting
     saveContactFormApi(data)
       .then((res) => {

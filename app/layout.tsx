@@ -9,7 +9,7 @@ import Script from 'next/script'
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import Layout from "./(frontend)/components/UI/Layout";
 const inter = Inter({ subsets: ["latin"], display: 'swap' });
-
+import { GoogleTagManager } from "@next/third-parties/google";
 export const metadata: Metadata = {
   title: "Range International Property Investments",
   description: "Range International Property Investments",
