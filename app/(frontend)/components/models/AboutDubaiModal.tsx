@@ -168,7 +168,7 @@ function AboutDubaiModal(props) {
                   showCloseButton: true,
                   timer: 2000,
                   didOpen: (toast) => {
-                    Swal.getPopup().setAttribute('id', 'homeBrochureDownlaod');
+                    Swal.getPopup().setAttribute('id', 'homeBrochureDownloadForm');
                   }
                 });
 
