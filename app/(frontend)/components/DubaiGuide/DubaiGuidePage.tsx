@@ -186,6 +186,11 @@ const DubaiGuideContent = () => {
                         setFileName(guide?.title);
                         setDownloadLink(guide?.guide_file);
                         setTitle(guide?.title);
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                          event: "guideModelClick",
+                          guideModelName: guide?.title,
+                        });
                       }}
                     >
                       DOWNLOAD NOW

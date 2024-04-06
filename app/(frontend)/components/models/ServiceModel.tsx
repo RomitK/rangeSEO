@@ -32,11 +32,7 @@ function ServiceModel(props) {
   const onSubmit = (data) => {
     console.log(formName)
     // Trigger a data layer event
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "serviceFormSubmit",
-      serviceFormName: formName,
-    });
+
     data.formName = formName; // Set the formName in the data before submitting
     saveContactFormApi(data)
       .then((res) => {
@@ -47,8 +43,17 @@ function ServiceModel(props) {
           title: "Form Submitted",
           text: "Thank you. Our team will get back to you soon.",
           showConfirmButton: false,
-          timer: 1500
+          timer: 2000,
+          didOpen: (toast) => {
+            Swal.getPopup().setAttribute('id', 'serviceFormSubmit');
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: "serviceFormSubmit",
+              serviceFormName: formName,
+            });
+          }
         });
+
         // toast.success(
         //   "Thank you. Our team will get back to you soon."
         // );

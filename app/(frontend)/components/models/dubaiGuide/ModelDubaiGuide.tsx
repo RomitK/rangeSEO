@@ -171,13 +171,14 @@ function ModelDubaiGuide(props) {
       .then((res) => {
         if (res.data.data.verify === true) {
           if (props.downloadLink) {
-
+            setIsLoading(true); // Set isLoading to true before starting the download
             //console.log(props.downloadLink)
             new JsFileDownloader({
               url: props.downloadLink,
             })
               .then(function () {
-                setIsLoading(false);
+                // File download successful
+                setIsLoading(false); // Set isLoading to false after the download is complete
                 closeRef.current.click();
                 reset();
                 Swal.fire({
@@ -185,11 +186,23 @@ function ModelDubaiGuide(props) {
                   icon: "success",
                   title: "Thank you. Your document is downloading.",
                   showConfirmButton: false,
-                  timer: 1500
+                  showCloseButton: true,
+                  timer: 2000,
+                  didOpen: (toast) => {
+                    Swal.getPopup().setAttribute('id', 'guideFormSubmit');
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                      event: "guideFormSubmit",
+                      guideFormName: props.title,
+                    });
+                  }
                 });
+                
                 //toast.success("Thank you. Your document is downloading.");
               })
               .catch(function (error) {
+                // File download failed
+                setIsLoading(false); // Set isLoading to false if there is an error during download
                 toast.error(`Download failed Something went wrong!`);
               });
 
