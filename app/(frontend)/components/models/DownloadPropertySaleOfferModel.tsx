@@ -172,7 +172,7 @@ function DownloadPropertySaleOfferModel(props) {
                 event: "propertySaleOfferFormSubmit",
                 propertyName: props.name,
                 propertyURL: getCurrentUrl(),
-                endUser: 'agent'
+                propertySaleOfferEndUser: 'agent'
               });
             }
           });
@@ -232,7 +232,7 @@ function DownloadPropertySaleOfferModel(props) {
                 event: "propertySaleOfferFormSubmit",
                 propertyName: props.name,
                 propertyURL: getCurrentUrl(),
-                endUser: 'user'
+                propertySaleOfferEndUser: 'user'
               });
             }
           });
