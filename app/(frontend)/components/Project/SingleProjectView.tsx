@@ -155,7 +155,7 @@ function SingleProjectView({ params }) {
       event: "projectWhatsappShare",
       projectTitle: projectData?.title,
       projectURL: getCurrentUrl(),
-      sharingMedium: sharingMedium
+      projectsharingMedium: sharingMedium
     });
 
     // Perform Whatsapp share action
