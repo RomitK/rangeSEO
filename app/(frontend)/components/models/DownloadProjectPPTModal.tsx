@@ -164,7 +164,7 @@ function DownloadProjectPPTModal(props) {
       .then((res) => {
         if (res.data.data.verify === true) {
           if (res.data.data.link) {
-
+            setIsLoading(true);
             console.log(res.data.data.link)
             new JsFileDownloader({
               url: res.data.data.link,
@@ -178,11 +178,21 @@ function DownloadProjectPPTModal(props) {
                   icon: "success",
                   title: "Thank you. Your document is downloading.",
                   showConfirmButton: false,
-                  timer: 1500
+                  timer: 2000,
+                  didOpen: (toast) => {
+                    Swal.getPopup().setAttribute('id', 'projectDetailFormSubmit');
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                      event: "projectDetailFormSubmit",
+                      projectTitle: props.title,
+                      projectURL: getCurrentUrl(),
+                    });
+                  }
                 });
                 // toast.success("Thank you. Your document is downloading.");
               })
               .catch(function (error) {
+                setIsLoading(false);
                 toast.error(`Download failed Something went wrong!`);
               });
 

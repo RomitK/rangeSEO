@@ -148,6 +148,19 @@ function SingleProjectView({ params }) {
     setActiveSlideIndex(newIndex);
   };
 
+  const handleSharingHook = (sharingMedium) => {
+    // Push data to dataLayer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "projectWhatsappShare",
+      projectTitle: projectData?.title,
+      projectURL: getCurrentUrl(),
+      sharingMedium: sharingMedium
+    });
+
+    // Perform Whatsapp share action
+    // Note: This will open the Whatsapp share dialog
+  };
 
   return (
     <>
@@ -878,6 +891,7 @@ function SingleProjectView({ params }) {
                     url={getCurrentUrl()}
                     className="btnContentItem whatsapp"
                     style={{ width: "100%" }}
+                    onClick={() => handleSharingHook('whatsapp')} // Pass a reference to the function
                   >
                     <i className="fa fa-whatsapp" aria-hidden="true"></i>
                     Share on whatsapp
@@ -891,6 +905,7 @@ function SingleProjectView({ params }) {
                     url={getCurrentUrl()}
                     className="btnContentItem email"
                     style={{ width: "100%" }}
+                    onClick={() => handleSharingHook('email')} // Pass a reference to the function
                   >
                     <i className="fa fa-envelope" aria-hidden="true"></i>
                     Share on Email
@@ -930,6 +945,15 @@ function SingleProjectView({ params }) {
                     className="btnContentItem text-decoration-none"
                     data-bs-toggle="modal"
                     data-bs-target="#downloadBrochure"
+
+                    onClick={() => {
+                      window.dataLayer = window.dataLayer || [];
+                      window.dataLayer.push({
+                        event: "projectDetailModelClick",
+                        projectModelName: projectData?.title,
+                      });
+                    }}
+
                   >
                     <img loading="lazy"
                       src="/images/icons/btn-icon-2.png"
