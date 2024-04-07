@@ -99,7 +99,10 @@ const MortgagePageContent = () => {
           title: "Form Submitted",
           text: "Thank you. Our team will get back to you soon.",
           showConfirmButton: false,
-          timer: 1500
+          timer: 2000,
+          didOpen: (toast) => {
+            Swal.getPopup().setAttribute('id', 'mortgageFormSubmit');
+          }
         });
         //toast.success("Thank you. Our team will get back to you soon.");
         setIsLoading(false);
@@ -1788,6 +1791,7 @@ const MortgagePageContent = () => {
                                               <div className="col-12 mb-2">
                                                 <div className="text-start">
                                                   <button
+                                                    id="mortgageFormBtn"
                                                     className="btn btn-primary px-5 text-uppercase rounded-0 btn-lg"
                                                     type="submit"
                                                   >
