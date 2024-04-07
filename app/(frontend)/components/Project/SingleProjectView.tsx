@@ -152,7 +152,7 @@ function SingleProjectView({ params }) {
     // Push data to dataLayer
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-      event: "projectWhatsappShare",
+      event: "projectSharing",
       projectTitle: projectData?.title,
       projectURL: getCurrentUrl(),
       projectsharingMedium: sharingMedium
