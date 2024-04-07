@@ -290,7 +290,7 @@ function MortgageCalculator({ property }) {
                         window.dataLayer.push({
                           event: "propertyMortgageClick",
                           propertyModelName: propertyData?.name,
-                          propertyTitle: propertyData?.title,
+                          propertyName: propertyData?.title,
                           propertyURL: getCurrentUrl(),
                         });
                       }}>

@@ -170,7 +170,7 @@ function DownloadPropertySaleOfferModel(props) {
               window.dataLayer = window.dataLayer || [];
               window.dataLayer.push({
                 event: "propertySaleOfferFormSubmit",
-                propertyTitle: props.name,
+                propertyName: props.name,
                 propertyURL: getCurrentUrl(),
                 endUser: 'agent'
               });
@@ -230,7 +230,7 @@ function DownloadPropertySaleOfferModel(props) {
               window.dataLayer = window.dataLayer || [];
               window.dataLayer.push({
                 event: "propertySaleOfferFormSubmit",
-                propertyTitle: props.name,
+                propertyName: props.name,
                 propertyURL: getCurrentUrl(),
                 endUser: 'user'
               });

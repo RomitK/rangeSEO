@@ -179,7 +179,7 @@ function DownloadPropertyPPTModal(props) {
                     window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
                       event: "propertyDetailFormSubmit",
-                      propertyTitle: props.name,
+                      propertyName: props.name,
                       propertyURL: getCurrentUrl(),
                     });
                   }

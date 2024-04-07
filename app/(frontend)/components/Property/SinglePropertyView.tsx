@@ -267,7 +267,7 @@ function SinglePropertyView({ params }) {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: "propertySharing",
-      propertyTitle: propertyData?.name,
+      propertyName: propertyData?.name,
       propertyURL: getCurrentUrl(),
       propertysharingMedium: sharingMedium
     });
@@ -1922,7 +1922,7 @@ function SinglePropertyView({ params }) {
                         window.dataLayer.push({
                           event: "propertyDetailModelClick",
                           propertyModelName: propertyData?.name,
-                          propertyTitle: propertyData?.title,
+                          propertyName: propertyData?.title,
                           propertyURL: getCurrentUrl(),
                         });
                       }}
@@ -1944,7 +1944,7 @@ function SinglePropertyView({ params }) {
                         window.dataLayer.push({
                           event: "propertySaleOfferModelClick",
                           propertyModelName: propertyData?.name,
-                          propertyTitle: propertyData?.title,
+                          propertyName: propertyData?.title,
                           propertyURL: getCurrentUrl(),
                         });
                       }}
