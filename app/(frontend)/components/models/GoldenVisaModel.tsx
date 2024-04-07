@@ -33,7 +33,10 @@ function GoldenVisaModel(props) {
           title: "Form Submitted",
           text: "Thank you. Our team will get back to you soon.",
           showConfirmButton: false,
-          timer: 1500
+          timer: 2000,
+          didOpen: (toast) => {
+            Swal.getPopup().setAttribute('id', 'goldenVisaFormSubmit');
+          }
         });
         // toast.success(
         //   "Thank you. Our team will get back to you soon."
@@ -176,6 +179,7 @@ function GoldenVisaModel(props) {
                         </div>
                         <div className="modal-footer border-0">
                           <button
+                            id="goldenVisaFormBtn"
                             type="submit"
                             name="submit"
                             className="btn btn-blue rounded-0 px-5 float-end btnContact2"
