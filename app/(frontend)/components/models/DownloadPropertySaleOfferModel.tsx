@@ -164,7 +164,17 @@ function DownloadPropertySaleOfferModel(props) {
             title: "Form Submitted",
             text: "Sale offer has been sent to the provided email address.",
             showConfirmButton: false,
-            timer: 1500
+            timer: 2000,
+            didOpen: (toast) => {
+              Swal.getPopup().setAttribute('id', 'propertySaleOfferFormSubmit');
+              window.dataLayer = window.dataLayer || [];
+              window.dataLayer.push({
+                event: "propertySaleOfferFormSubmit",
+                propertyTitle: props.name,
+                propertyURL: getCurrentUrl(),
+                endUser: 'agent'
+              });
+            }
           });
 
           //toast.success("The sale offer has been sent to the provided email address");
@@ -214,7 +224,17 @@ function DownloadPropertySaleOfferModel(props) {
             icon: "success",
             title: "Thank you. Your document is downloading.",
             showConfirmButton: false,
-            timer: 1500
+            timer: 2000,
+            didOpen: (toast) => {
+              Swal.getPopup().setAttribute('id', 'propertySaleOfferFormSubmit');
+              window.dataLayer = window.dataLayer || [];
+              window.dataLayer.push({
+                event: "propertySaleOfferFormSubmit",
+                propertyTitle: props.name,
+                propertyURL: getCurrentUrl(),
+                endUser: 'user'
+              });
+            }
           });
 
           //toast.success("Please wait, the Sale Offer is downloading.");

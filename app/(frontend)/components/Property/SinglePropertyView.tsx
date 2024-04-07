@@ -262,7 +262,19 @@ function SinglePropertyView({ params }) {
   const toggleShowAll = () => {
     setShowAll(!showAll);
   };
+  const handleSharingHook = (sharingMedium) => {
+    // Push data to dataLayer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "propertySharing",
+      propertyTitle: propertyData?.name,
+      propertyURL: getCurrentUrl(),
+      propertysharingMedium: sharingMedium
+    });
 
+    // Perform Whatsapp share action
+    // Note: This will open the Whatsapp share dialog
+  };
   return (
     <>
       <section className={`${isMobileDev ? "my-3" : "my-5"}`}>
@@ -1847,6 +1859,7 @@ function SinglePropertyView({ params }) {
                       url={getCurrentUrl()}
                       className="btnContentItem whatsapp"
                       style={{ width: "100%" }}
+                      onClick={() => handleSharingHook('whatsapp')} // Pass a reference to the function
                     >
                       <i
                         className="fa fa-whatsapp"
@@ -1860,6 +1873,7 @@ function SinglePropertyView({ params }) {
                       url={getCurrentUrl()}
                       className="btnContentItem email"
                       style={{ width: "100%" }}
+                      onClick={() => handleSharingHook('email')} // Pass a reference to the function
                     >
                       <i
                         className="fa fa-envelope"
@@ -1903,6 +1917,15 @@ function SinglePropertyView({ params }) {
                       className="btnContentItem text-decoration-none"
                       data-bs-toggle="modal"
                       data-bs-target="#downloadBrochure"
+                      onClick={() => {
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                          event: "propertyDetailModelClick",
+                          propertyModelName: propertyData?.name,
+                          propertyTitle: propertyData?.title,
+                          propertyURL: getCurrentUrl(),
+                        });
+                      }}
                     >
                       <img loading="lazy"
                         alt="downlaod"
@@ -1916,6 +1939,15 @@ function SinglePropertyView({ params }) {
                       className="btnContentItem text-decoration-none"
                       data-bs-toggle="modal"
                       data-bs-target="#projectSaleOffer"
+                      onClick={() => {
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                          event: "propertySaleOfferModelClick",
+                          propertyModelName: propertyData?.name,
+                          propertyTitle: propertyData?.title,
+                          propertyURL: getCurrentUrl(),
+                        });
+                      }}
                     >
                       {" "}
                       <img loading="lazy"

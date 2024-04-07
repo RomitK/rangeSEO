@@ -950,7 +950,9 @@ function SingleProjectView({ params }) {
                       window.dataLayer = window.dataLayer || [];
                       window.dataLayer.push({
                         event: "projectDetailModelClick",
+                        projectTitle: projectData?.title,
                         projectModelName: projectData?.title,
+                        projectURL: getCurrentUrl(),
                       });
                     }}
 

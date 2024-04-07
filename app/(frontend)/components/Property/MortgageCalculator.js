@@ -284,7 +284,16 @@ function MortgageCalculator({ property }) {
                 <div className="mb-2">
                     {/* <a href="" className="text-white fs-16"  data-bs-toggle="modal"
                     data-bs-target="#mortageModel"> */}
-                    <a href={redirectUrl} className="text-white fs-16" target="_blanket">
+                    <a href={redirectUrl} className="text-white fs-16" target="_blanket" 
+                        onClick={() => {
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                          event: "propertyMortgageClick",
+                          propertyModelName: propertyData?.name,
+                          propertyTitle: propertyData?.title,
+                          propertyURL: getCurrentUrl(),
+                        });
+                      }}>
                         VIEW CLOSING COSTS
                     </a>
                 </div>

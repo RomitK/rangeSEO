@@ -173,7 +173,16 @@ function DownloadPropertyPPTModal(props) {
                   icon: "success",
                   title: "Thank you. Your document is downloading.",
                   showConfirmButton: false,
-                  timer: 1500
+                  timer: 2000,
+                  didOpen: (toast) => {
+                    Swal.getPopup().setAttribute('id', 'propertyDetailFormSubmit');
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                      event: "propertyDetailFormSubmit",
+                      propertyTitle: props.name,
+                      propertyURL: getCurrentUrl(),
+                    });
+                  }
                 });
                 //toast.success("Thank you. Your document is downloading.");
               })
