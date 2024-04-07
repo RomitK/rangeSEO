@@ -68,7 +68,10 @@ const SellPageContent = () => {
           title: "Form Submitted",
           text: "Thank you. Our team will get back to you soon.",
           showConfirmButton: false,
-          timer: 1500
+          timer: 2000,
+          didOpen: (toast) => {
+            Swal.getPopup().setAttribute('id', 'sellFormSubmit');
+          }
         });
 
 
@@ -275,6 +278,7 @@ const SellPageContent = () => {
                 </h2>
 
                 <a
+                  id="sellGuideModelOpen"
                   className="fillBtn"
                   data-bs-toggle="modal"
                   data-bs-target="#downloadNow">
@@ -340,7 +344,7 @@ const SellPageContent = () => {
                     />
 
                   </div>
-                  <div className="col-12">
+                  <div className="col-12 mb-2">
                     <textarea
                       className="form-control cntInptField textareaField"
                       placeholder="Message"
@@ -348,12 +352,16 @@ const SellPageContent = () => {
 
                     ></textarea>
                   </div>
-                  <input
+                  <div className="col-12">
+                  <button
                     className="fillBtn submitBtn"
                     type="submit"
                     value="Submit"
                     id="sellSubmit"
-                  />
+                  >Submit
+                    </button>
+                  </div>
+                  
                 </form>
               </div>
             </div>

@@ -138,7 +138,8 @@ function SellModel(props) {
         if (res.data.data.verify === true) {
           if (res.data.data.link) {
 
-            console.log(res.data.data.link)
+            setIsLoading(true); // Set isLoading to true before starting the download
+            //console.log(props.downloadLink)
             new JsFileDownloader({
               url: res.data.data.link,
             })
@@ -151,12 +152,17 @@ function SellModel(props) {
                   icon: "success",
                   title: "Thank you. Your document is downloading.",
                   showConfirmButton: false,
-                  timer: 1500
+                  timer: 2000,
+                  didOpen: (toast) => {
+                    Swal.getPopup().setAttribute('id', 'sellGuideFormSubmit');
+                  }
                 });
 
                 // toast.success("Thank you. Your document is downloading.");
               })
               .catch(function (error) {
+                // File download failed
+                setIsLoading(false); // Set isLoading to false if there is an error during download
                 toast.error(`Download failed Something went wrong!`);
               });
 
