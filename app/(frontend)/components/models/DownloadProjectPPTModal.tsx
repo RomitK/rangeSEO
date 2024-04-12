@@ -184,7 +184,7 @@ function DownloadProjectPPTModal(props) {
                     window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
                       event: "projectDetailFormSubmit",
-                      projectName: props.title,
+                      projectTitle: props.title,
                       projectURL: getCurrentUrl(),
                     });
                   }
