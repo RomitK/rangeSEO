@@ -2172,6 +2172,7 @@ function SinglePropertyView({ params }) {
           brochureLink={propertyData?.brochureLink}
           fileName={propertyData?.name + " Brochure.pdf"}
           slug={propertyData?.slug}
+          name={propertyData?.name}
         />
       )}
 
@@ -2180,6 +2181,7 @@ function SinglePropertyView({ params }) {
         brochureLink={propertyData?.saleOfferLink}
         fileName={propertyData?.name + " SaleOffer.pdf"}
         slug={propertyData?.slug}
+        name={propertyData?.name}
       />
 
       {propertyData?.agent && (
