@@ -27,9 +27,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
 
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
             (function(w,d,s,l,i){
               w[l]=w[l]||[];
               w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
@@ -40,8 +40,8 @@ export default function RootLayout({
               f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','${process.env.GOOGLE_TAG_MANAGER}');
           `,
-        }}
-      />
+          }}
+        />
 
         {/* google analytics code start*/}
         <Script
@@ -104,21 +104,21 @@ export default function RootLayout({
         </noscript>
 
 
-        <link rel="preload" href="/videos/ramadan-desktop.webp" as="image" />
-        <link rel="preload" href="/videos/ramzan-mobile.webp" as="image" />
+        <link rel="preload" href="/videos/homeSearchBannerImageWithText.jpg" as="image" />
+        <link rel="preload" href="/videos/homeSearchBannerImage.jpg" as="image" />
 
       </head>
       <body className={inter.className} suppressHydrationWarning={true}>
 
-      <noscript>
-        <iframe
-          src={`https://www.googletagmanager.com/ns.html?id=${process.env.GOOGLE_TAG_MANAGER}`}
-          height="0"
-          width="0"
-          style={{ display: "none", visibility: "hidden" }}
-        ></iframe>
-      </noscript>
-      
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${process.env.GOOGLE_TAG_MANAGER}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
+
         <Layout>
           {children}
           <ToastContainer

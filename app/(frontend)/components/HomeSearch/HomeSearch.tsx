@@ -86,7 +86,7 @@ function HomeSearch() {
             className="d-block w-100 videoMain propertyDesktopItemLink"
             muted playsInline autoPlay loop
             preload="metadata"
-            poster="videos/homeSearchBannerImageWithText.jpg"
+            poster="/videos/homeSearchBannerImageWithText.jpg"
 
           >
             <source src="/videos/dk-version-3.mp4" type="video/mp4" />
@@ -99,7 +99,7 @@ function HomeSearch() {
             className="d-block w-100 videoMain"
             muted playsInline autoPlay loop
             preload="metadata"
-            poster="videos/homeSearchBannerImage.jpg"
+            poster="/videos/homeSearchBannerImage.jpg"
 
           >
             <source src="/videos/dk-mobile.mp4" type="video/mp4" />

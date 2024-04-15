@@ -20,6 +20,24 @@ module.exports = {
   async headers() {
     return [
       {
+        source: '/videos/dk-version-3.mp4',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, immutable',
+          },
+        ],
+      },
+      {
+        source: '/videos/dk-mobile.mp4',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, immutable',
+          },
+        ],
+      },
+      {
         source: '/(.*)',
         headers: [
           {
@@ -44,6 +62,7 @@ module.exports = {
 module.exports = {
   images: {
     formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 120,
   },
 };
 module.exports = nextConfig;
