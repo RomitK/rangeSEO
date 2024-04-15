@@ -32,22 +32,13 @@ const LazyVideo = ({ src, poster, id, className }) => {
         });
     };
 
-    const [autoplayEnabled, setAutoplayEnabled] = useState(false);
-
     useEffect(() => {
-        const handleAutoplay = () => {
-            if (isVisible) {
-                setAutoplayEnabled(true);
-            }
-        };
-
-        window.addEventListener('scroll', handleAutoplay);
-        window.addEventListener('click', handleAutoplay);
-
-        return () => {
-            window.removeEventListener('scroll', handleAutoplay);
-            window.removeEventListener('click', handleAutoplay);
-        };
+        if (isVisible && videoRef.current) {
+            videoRef.current.load();
+            videoRef.current.play();
+        } else if (videoRef.current) {
+            videoRef.current.pause();
+        }
     }, [isVisible]);
 
     return (
@@ -55,16 +46,14 @@ const LazyVideo = ({ src, poster, id, className }) => {
             ref={videoRef}
             muted
             playsInline
-            autoPlay={autoplayEnabled}
+            autoPlay
             loop
-            preload={isVisible ? 'auto' : 'none'}
-            poster={isVisible ? poster : ''}
+            preload="metadata"
+            poster={poster}
             id={id}
             className={className}
         >
-            {isVisible && (
-                <source src={src} type="video/mp4" />
-            )}
+            <source src={src} type="video/mp4" />
             {/* Add additional source types here if needed */}
             Sorry, your browser doesn't support videos.
         </video>
