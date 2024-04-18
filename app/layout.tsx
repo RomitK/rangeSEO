@@ -104,8 +104,8 @@ export default function RootLayout({
         </noscript>
 
 
-        <link rel="preload" href="/videos/homeSearchBannerImageWithText.jpg" as="image" />
-        <link rel="preload" href="/videos/homeSearchBannerImage.jpg" as="image" />
+        <link rel="preload" href="/videos/homeSearchBannerImageWithText.webp" as="image" />
+        <link rel="preload" href="/videos/homeSearchBannerImage.webp" as="image" />
 
       </head>
       <body className={inter.className} suppressHydrationWarning={true}>
