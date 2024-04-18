@@ -73,9 +73,6 @@ function HomeSearch() {
 
   return (
     <>
-
-
-
       <section
         className="mainBg  d-md-block d-lg-block d-xl-block overlayBg homeHeader"
         id="home"
@@ -120,19 +117,6 @@ function HomeSearch() {
             <source src="/videos/dk-mobile.mp4" type="video/mov" />
             Sorry, your browser doesn't support videos.
           </video> */}
-
-          {/* <LazyVideo
-            src="/videos/dk-version-3.mp4"
-            poster="/videos/homeSearchBannerImageWithText.jpg"
-            id=""
-            className="d-block w-100 videoMain propertyDesktopItemLink"
-          />
-          <LazyVideo
-            src="/videos/dk-mobile.mp4"
-            poster="/videos/ramzan-mobile.jpg"
-            id="mobItemLink"
-            className="-block w-100 videoMain"
-          /> */}
 
           <div className="videoOverlay"></div>
         </div>
