@@ -82,7 +82,21 @@ function HomeSearch() {
       >
         <div className="p-relative videoContainer">
 
-          <video
+          <LazyVideo
+            src="/videos/dk-version-3.mp4"
+            poster="/videos/homeSearchBannerImageWithText.webp"
+            id=""
+            className="d-block w-100 videoMain propertyDesktopItemLink"
+          />
+
+          <LazyVideo
+            src="/videos/dk-mobile.mp4"
+            poster="/videos/homeSearchBannerImage.webp"
+            id="mobItemLink"
+            className="d-block w-100 videoMain propertyDesktopItemLink"
+          />
+
+          {/* <video
             className="d-block w-100 videoMain propertyDesktopItemLink"
             muted playsInline autoPlay loop
             preload="metadata"
@@ -105,7 +119,7 @@ function HomeSearch() {
             <source src="/videos/dk-mobile.mp4" type="video/mp4" />
             <source src="/videos/dk-mobile.mp4" type="video/mov" />
             Sorry, your browser doesn't support videos.
-          </video>
+          </video> */}
 
           {/* <LazyVideo
             src="/videos/dk-version-3.mp4"
