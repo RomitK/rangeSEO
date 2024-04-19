@@ -40,12 +40,12 @@ export default function Home() {
     <>
 
       <HomeSearch />
-
-      <LookingFor />
-      <WhyRange />
-      <AboutDubai />
-      <HomePage />
-
+      <Suspense fallback={<Loader />}>
+        <LookingFor />
+        <WhyRange />
+        <AboutDubai />
+        <HomePage />
+      </Suspense>
     </>
   );
 }
