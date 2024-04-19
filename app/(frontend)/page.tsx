@@ -35,16 +35,17 @@ export const generateMetadata = async ({
 
 // Wrap the dynamically loaded components with Suspense and provide a fallback loader
 export default function Home() {
-  console.log(`${process.env.API_HOST}meta/${PAGES.home}`)
+
   return (
     <>
-      <Suspense fallback={<Loader />}>
-        <HomeSearch />
-        <LookingFor />
-        <WhyRange />
-        <AboutDubai />
-        <HomePage />
-      </Suspense>
+
+      <HomeSearch />
+
+      <LookingFor />
+      <WhyRange />
+      <AboutDubai />
+      <HomePage />
+
     </>
   );
 }
