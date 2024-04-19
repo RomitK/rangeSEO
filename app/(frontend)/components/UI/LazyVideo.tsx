@@ -7,7 +7,7 @@ const LazyVideo = ({ src, poster, id, className }) => {
     useEffect(() => {
         const options = {
             rootMargin: '0px',
-            threshold: 0.1, // Adjust as needed
+            threshold: 0.5, // Adjust as needed
         };
 
         const observer = new IntersectionObserver(handleIntersection, options);
