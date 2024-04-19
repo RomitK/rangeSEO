@@ -35,12 +35,10 @@ export const generateMetadata = async ({
 
 // Wrap the dynamically loaded components with Suspense and provide a fallback loader
 export default function Home() {
-
   return (
     <>
-
-      <HomeSearch />
       <Suspense fallback={<Loader />}>
+        <HomeSearch />
         <LookingFor />
         <WhyRange />
         <AboutDubai />
