@@ -182,7 +182,7 @@ const DubaiGuideContent = () => {
                       data-bs-target="#downloadNowInvestment"
                       onClick={() => {
                         setSourceId(guide?.source_id)
-                        setFormName(guide?.title + " Form");
+                        setFormName(guide?.title.replace(/\s+/g, '-'));
                         setFileName(guide?.title);
                         setDownloadLink(guide?.guide_file);
                         setTitle(guide?.title);

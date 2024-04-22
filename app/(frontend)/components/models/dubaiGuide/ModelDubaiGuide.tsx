@@ -18,7 +18,7 @@ import Swal from 'sweetalert2'
 import { FieldError } from "react-hook-form";
 
 function ModelDubaiGuide(props) {
-  console.log(props)
+  //console.log(props)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -54,8 +54,8 @@ function ModelDubaiGuide(props) {
     reset();
     setTimer(60);
     setShowOtp(false);
-    console.log(showOtp)
-    console.log(timer)
+    // console.log(showOtp)
+    // console.log(timer)
     const handleResize = () => {
       // Check if the window width is below a certain threshold (e.g., 768 pixels for mobile)
       const isMobileDevice = window.innerWidth < 768;
@@ -142,30 +142,31 @@ function ModelDubaiGuide(props) {
     }
   };
 
-  const downloadFile = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(props.brochureLink);
-      const blob = await response.blob();
+  // const downloadFile = async () => {
+  //   setIsLoading(true);
+  //   try {
+  //     const response = await fetch(props.brochureLink);
+  //     const blob = await response.blob();
 
-      const url = URL.createObjectURL(blob);
+  //     const url = URL.createObjectURL(blob);
 
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", props.fileName); // Set the desired filename
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+  //     const link = document.createElement("a");
+  //     link.href = url;
+  //     link.setAttribute("download", props.fileName); // Set the desired filename
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     document.body.removeChild(link);
 
-      URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error("Error downloading file:", error);
-    } finally {
-      setIsLoading(false);
-      closeRef.current.click();
-    }
-  };
+  //     URL.revokeObjectURL(url);
+  //   } catch (error) {
+  //     console.error("Error downloading file:", error);
+  //   } finally {
+  //     setIsLoading(false);
+  //     closeRef.current.click();
+  //   }
+  // };
   const onSubmitVisitorOTPVerifyForm = (data) => {
+    //console.log(props.fileName)
     setIsLoading(true);
     verifyOTPApi(data)
       .then((res) => {
@@ -197,7 +198,7 @@ function ModelDubaiGuide(props) {
                     });
                   }
                 });
-                
+
                 //toast.success("Thank you. Your document is downloading.");
               })
               .catch(function (error) {
