@@ -492,7 +492,7 @@ function SellModel(props) {
                       <div className="modal-footer border-0">
                         <input
                           type="hidden"
-                          value="SellerGuideDownloadForm"
+                          value="SellerGuideDownload"
                           {...register("formName", { required: true })}
                         />
                         <input
