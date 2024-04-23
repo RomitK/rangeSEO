@@ -575,7 +575,7 @@ function SingleProjectView({ params }) {
                           </td>
                           <td>
                             <button
-                              className="fillBtn tblBtn mrAuto"
+                              className="tblBtn mrAuto"
                               data-bs-toggle="modal"
                               data-bs-target="#paymentplan"
                               onClick={() => setCurrentUnit(type)}
@@ -585,7 +585,7 @@ function SingleProjectView({ params }) {
                           </td>
                           <td>
                             <button
-                              className="fillBtn tblBtn mrAuto"
+                              className="tblBtn mrAuto"
                               data-bs-toggle="modal"
                               //data-bs-target="#floorplan"
                               data-bs-target={"#gallaryModalImg-" + type.id}
