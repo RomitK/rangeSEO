@@ -46,7 +46,7 @@ function SingleManagmentPageView({ params }) {
                 {managementData?.name}
               </h4>
               <span className="ceoText">{managementData?.designation}</span>
-              <p className="fs-12 text-secondary mb-4">
+              <p className=" text-secondary mb-4">
                 {managementData &&
                   managementData.message &&
                   parse(managementData?.message ?? "")}
@@ -73,11 +73,12 @@ function SingleManagmentPageView({ params }) {
                 </a>
               </div> */}
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 text-center">
               <img loading="lazy"
-                src={managementData?.image}
-                className="leaderImg"
+                src={managementData?.additionalImage}
+                className=""
                 alt={managementData?.name}
+                height={500}
               />
             </div>
           </div>

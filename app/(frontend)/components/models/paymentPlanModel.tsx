@@ -75,7 +75,8 @@ function PaymentPlanModel(props) {
                   {props?.project?.payment?.map(function (pay, index) {
                     return (
                       <table
-                        className="table table-bordered"
+                      
+                        className="table table-bordered tblThText border-collapse"
                         key={"payment-" + index}
                       >
                         <thead>

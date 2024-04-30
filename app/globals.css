@@ -8,7 +8,9 @@
 @import "../public/css/style.css";
 @import "../public/css/bottombar.css";
 @import "../public/css/responsive.css";
-
+.border-collapse{
+  border-collapse: collapse !important;
+}
 .map-container {
   /* height: 80vh; */
   /* height: 60vh; */
