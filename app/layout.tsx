@@ -106,7 +106,7 @@ export default function RootLayout({
 
         <link rel="preload" href="/videos/homeSearchBannerImageWithText.webp" as="image" />
         <link rel="preload" href="/videos/homeSearchBannerImage.webp" as="image" />
-        <meta name="robots" content="index,follow" />
+        <meta name="robots" content="index,follow" />      
       </head>
       <body className={inter.className} suppressHydrationWarning={true}>
 

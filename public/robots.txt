@@ -1,3 +1,4 @@
 User-agent: *
 Disallow:
 Sitemap: https://www.range.ae/sitemap.xml
+Allow: /sitemap.xml
