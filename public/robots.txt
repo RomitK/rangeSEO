@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://range.ae/sitemap.xml
+Sitemap: https://www.range.ae/sitemap.xml
