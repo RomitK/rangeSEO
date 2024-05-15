@@ -31,21 +31,15 @@ export const generateMetadata = async ({
     description: HomeMeta?.data?.meta_description,
     keywords: HomeMeta?.data?.meta_keywords,
     openGraph: {
-      title: 'Range International Property Investments ',
-      description: 'Range International Property Investments',
+      title: 'Range International Property Investments1 ',
+      description: 'Range International Property Investments2',
       url: 'https://www.range.ae/',
-      siteName: 'Range International Property Investments',
+      siteName: 'Range International Property Investments3',
       images: [
         {
           url: 'https://www.range.ae/favicon.ico',
           width: 800,
           height: 600,
-        },
-        {
-          url: 'https://www.range.ae/favicon.ico',
-          width: 1800,
-          height: 1600,
-          alt: 'Range',
         },
       ],
       locale: 'en_US',
