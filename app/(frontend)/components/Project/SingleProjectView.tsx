@@ -314,9 +314,16 @@ function SingleProjectView({ params }) {
                   </h4>
 
                   <div className="text-secondary mb-4">
-
                     {parse(projectData?.longDescription ?? "")}
                   </div>
+                  {
+                    projectData && projectData?.permit_number &&
+                    (
+                      <>
+                        Permit Number:{projectData?.permit_number}
+                      </>
+                    )
+                  }
                   {projectData && projectData.qr && (
                     <img loading="lazy"
                       src={projectData.qr}
