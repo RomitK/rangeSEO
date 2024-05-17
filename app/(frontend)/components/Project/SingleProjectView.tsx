@@ -204,7 +204,6 @@ function SingleProjectView({ params }) {
                               </>
                             )
                           }
-
                         </p>
                       </div>
                     </div>
@@ -315,9 +314,17 @@ function SingleProjectView({ params }) {
                   </h4>
 
                   <div className="text-secondary mb-4">
-                    {/* {parse(projectData?.hightlightDescription ?? "")} */}
+
                     {parse(projectData?.longDescription ?? "")}
                   </div>
+                  {projectData && projectData.qr && (
+                    <img loading="lazy"
+                      src={projectData.qr}
+                      className=""
+                    />
+                  )
+                  }
+
                 </div>
                 {/* <button
                 className="btn btn-blue text-uppercase btn-lg btnTextWt"
