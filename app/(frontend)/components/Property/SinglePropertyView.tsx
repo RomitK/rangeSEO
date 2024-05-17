@@ -402,6 +402,8 @@ function SinglePropertyView({ params }) {
                               }}
                             >
                               {parse(propertyData?.description ?? "")}
+
+
                             </div>
                             {!showAll && (
                               <button
@@ -427,6 +429,10 @@ function SinglePropertyView({ params }) {
                             {propertyData &&
                               parse(propertyData?.description ?? "")}
                           </div>
+                        )}
+
+                        {propertyData && propertyData.qr && (
+                          <img loading="lazy" src={propertyData.qr} className="" />
                         )}
                       </div>
                     </div>
