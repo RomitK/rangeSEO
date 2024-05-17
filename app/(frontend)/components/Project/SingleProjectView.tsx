@@ -319,9 +319,9 @@ function SingleProjectView({ params }) {
                   {
                     projectData && projectData?.permit_number &&
                     (
-                      <>
+                      <p>
                         Permit Number:{projectData?.permit_number}
-                      </>
+                      </p>
                     )
                   }
                   {projectData && projectData.qr && (
