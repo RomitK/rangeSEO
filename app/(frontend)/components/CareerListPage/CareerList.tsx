@@ -166,16 +166,12 @@ const CareerContent = () => { // Define the content in a separate component
             </Swiper>
           }
 
-
           {/* <div className="">
-
             <iframe width="100%" height="600" src="https://www.youtube.com/embed/0Jg0PalVzk4?si=kmoa6MrpN80-wMlC" title="YouTube video player"
               frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
           </div> */}
 
         </div>
-
-
       </section>
 
 
